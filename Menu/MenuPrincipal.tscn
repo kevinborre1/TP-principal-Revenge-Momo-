@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bsxcr5klie67l"]
+
+[ext_resource type="Texture2D" uid="uid://q7m1d451iptq" path="res://Imagenes/Menu-Principal.png" id="1_5ni12"]
+[ext_resource type="Script" uid="uid://wcigcklt1t8f" path="res://Menu/menu_principal.gd" id="1_75c1s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ni12"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75c1s"]
+bg_color = Color(0.7607843, 0.7607843, 0.7607843, 0.3882353)
+
+[node name="MenuPrincipal" type="Control" unique_id=1262808577]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_75c1s")
+
+[node name="ImagenMenu" type="TextureRect" parent="." unique_id=1351547030]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 647.0
+texture = ExtResource("1_5ni12")
+expand_mode = 1
+
+[node name="Botones" type="VBoxContainer" parent="." unique_id=972915465]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 377.0
+offset_right = 307.0
+offset_bottom = 535.0
+theme_override_constants/separation = 13
+
+[node name="Jugar Local" type="Button" parent="Botones" unique_id=426393780]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
+text = " "
+
+[node name="Jugar en Linea" type="Button" parent="Botones" unique_id=1914302376]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
+text = " "
+
+[node name="Opciones" type="Button" parent="Botones" unique_id=919302973]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
+text = " "
+
+[node name="Creditos" type="Button" parent="Botones" unique_id=1509690947]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
+text = " "
+
+[node name="Salir" type="Button" parent="Botones" unique_id=1959921038]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
+text = " "
+
+[connection signal="pressed" from="Botones/Jugar Local" to="." method="_on_jugar_local_pressed"]
+[connection signal="pressed" from="Botones/Jugar en Linea" to="." method="_on_jugar_en_linea_pressed"]
+[connection signal="pressed" from="Botones/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="Botones/Creditos" to="." method="_on_creditos_pressed"]
+[connection signal="pressed" from="Botones/Salir" to="." method="_on_salir_pressed"]

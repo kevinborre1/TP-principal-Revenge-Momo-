@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bu1gtagvdw4vf"]
+
+[ext_resource type="Script" uid="uid://bbpcuglm0x0eg" path="res://Menu/creditos.gd" id="1_de2y5"]
+[ext_resource type="Texture2D" uid="uid://cfifi5rr76niw" path="res://Imagenes/Creditos.png" id="1_lqf88"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l0muk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uj3w"]
+bg_color = Color(0.6872153, 0.68721485, 0.68721515, 0.36078432)
+
+[node name="Creditos" type="Control" unique_id=1848826234]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_de2y5")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=717679377]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 649.0
+texture = ExtResource("1_lqf88")
+expand_mode = 1
+
+[node name="Volver" type="Button" parent="." unique_id=979830742]
+layout_mode = 0
+offset_left = 1045.0
+offset_top = 30.0
+offset_right = 1116.0
+offset_bottom = 82.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l0muk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2uj3w")
+
+[connection signal="pressed" from="Volver" to="." method="_on_volver_pressed"]
