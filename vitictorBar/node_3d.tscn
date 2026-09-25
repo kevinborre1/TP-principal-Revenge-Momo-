@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dywch7k16daub"]
+
+[ext_resource type="PackedScene" uid="uid://djtiov0xsymcc" path="res://vitictorBar/victorBar.glb" id="1_psr2n"]
+
+[node name="Node3D" type="Node3D" unique_id=683354801]
+
+[node name="victorBar" parent="." unique_id=1528389492 instance=ExtResource("1_psr2n")]
