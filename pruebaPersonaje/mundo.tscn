@@ -41,48 +41,52 @@ shadow_enabled = true
 
 [node name="scene" type="Node3D" parent="." unique_id=160946663]
 
-[node name="Tree_01" parent="scene" unique_id=691405252 instance=ExtResource("1_h0xsf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.123421, 0, 3.2663128)
-
-[node name="Tree_03" parent="scene" unique_id=1463238961 instance=ExtResource("2_32437")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.746043, 0, -9.544281)
-
-[node name="Tree_04" parent="scene" unique_id=184192682 instance=ExtResource("3_am0d0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.987841, 0, 6.441608)
-
-[node name="Tree_02" parent="scene" unique_id=808614598 instance=ExtResource("4_d0rk4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7699003, 0, 5.5203123)
-
-[node name="Tree_05" parent="scene" unique_id=1255601425 instance=ExtResource("5_iru1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.699749, 0, 10.222321)
-
-[node name="Ground_01" parent="scene" unique_id=587720298 instance=ExtResource("6_rlt2m")]
+[node name="Suelo 1" parent="scene" unique_id=587720298 instance=ExtResource("6_rlt2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5780194, 0, 0.58179855)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="scene/Ground_01/Ground_01" parent_id_path=PackedInt32Array(587720298, 550433475) index="0" unique_id=1261392928]
+[node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 1/Ground_01" parent_id_path=PackedInt32Array(587720298, 885417928) index="0" unique_id=1261392928]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="scene/Ground_01/Ground_01/StaticBody3D" unique_id=158037786]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="scene/Suelo 1/Ground_01/StaticBody3D" unique_id=158037786]
 shape = SubResource("ConcavePolygonShape3D_e8y5e")
 
-[node name="Ground_03" parent="scene" unique_id=1746700513 instance=ExtResource("7_0g0yr")]
+[node name="Suelo 3" parent="scene" unique_id=1746700513 instance=ExtResource("7_0g0yr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4866085, -0.4318676, 26.892689)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="scene/Ground_03/Ground_03" parent_id_path=PackedInt32Array(1746700513, 140996133) index="0" unique_id=859087765]
+[node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 3/Ground_03" parent_id_path=PackedInt32Array(1746700513, 1648351127) index="0" unique_id=859087765]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="scene/Ground_03/Ground_03/StaticBody3D" unique_id=1302987247]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="scene/Suelo 3/Ground_03/StaticBody3D" unique_id=1302987247]
 shape = SubResource("ConcavePolygonShape3D_47ooj")
 
 [node name="Grass_01" parent="scene" unique_id=526483216 instance=ExtResource("8_7s8u0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4837823, 0, 9.357094)
 
-[node name="Rock_02" parent="scene" unique_id=807610416 instance=ExtResource("9_ae2g2")]
+[node name="Arboles" type="Node3D" parent="scene" unique_id=765207033]
+
+[node name="Tree_01" parent="scene/Arboles" unique_id=691405252 instance=ExtResource("1_h0xsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.123421, 0, 3.2663128)
+
+[node name="Tree_03" parent="scene/Arboles" unique_id=1463238961 instance=ExtResource("2_32437")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.746043, 0, -9.544281)
+
+[node name="Tree_04" parent="scene/Arboles" unique_id=184192682 instance=ExtResource("3_am0d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.987841, 0, 6.441608)
+
+[node name="Tree_02" parent="scene/Arboles" unique_id=808614598 instance=ExtResource("4_d0rk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7699003, 0, 5.5203123)
+
+[node name="Tree_05" parent="scene/Arboles" unique_id=1255601425 instance=ExtResource("5_iru1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.699749, 0, 10.222321)
+
+[node name="Piedras" type="Node3D" parent="scene" unique_id=421842719]
+
+[node name="Rock_02" parent="scene/Piedras" unique_id=807610416 instance=ExtResource("9_ae2g2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2506533, 0.05339265, 3.1246896)
 
-[node name="Rock_03" parent="scene" unique_id=646335578 instance=ExtResource("10_1yej1")]
+[node name="Rock_03" parent="scene/Piedras" unique_id=646335578 instance=ExtResource("10_1yej1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5776608, 0.1351862, 3.1474562)
 
 [node name="Player" parent="." unique_id=679560290 instance=ExtResource("11_ya8h2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2165396, -0.08451924, 5.407311)
 
-[editable path="scene/Ground_01"]
-[editable path="scene/Ground_03"]
+[editable path="scene/Suelo 1"]
+[editable path="scene/Suelo 3"]

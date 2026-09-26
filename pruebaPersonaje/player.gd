@@ -2,18 +2,24 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var multiplicadorDeCarrera = 2
 var mouse_sensitivy := 0.003
-
+var StaminaMax = 100.0
+var StaminaActual= 100.0
+var StaminaRegeneracion = 0.75
+var StaminaPerdida=1.0
 # Referencias a los nodos
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var skeleton_3d: Skeleton3D = find_child("Skeleton3D", true, false) as Skeleton3D
-
+@onready var barraStamina = $BarraDeStamina
 var camera_rotation := Vector2.ZERO
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	print("Hijos directos: ", get_children())
+	print("barraStamina encontrada: ", barraStamina)
+	configurar_barraStamina()
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_rotation.x -= event.relative.y * mouse_sensitivy
@@ -31,12 +37,18 @@ func _input(event: InputEvent) -> void:
 		activar_ragdoll()
 
 func _physics_process(delta: float) -> void:
+	var velocidadActual = SPEED
+	actualizar_barraStamina()
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	if Input.is_action_just_pressed("Salto") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	if Input.is_action_pressed("Correr") and StaminaActual>0:
+		velocidadActual = SPEED * multiplicadorDeCarrera
+		StaminaActual -= StaminaPerdida
+	elif (StaminaActual< StaminaMax):
+		StaminaActual += StaminaRegeneracion
 	var input_dir := Input.get_vector("Izquierda", "Derecha", "Adelante", "Atras")
 	
 	# Vector de movimiento horizontal corregido
@@ -44,8 +56,8 @@ func _physics_process(delta: float) -> void:
 	var direction = move_vector.normalized()
 	
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * velocidadActual
+		velocity.z = direction.z * velocidadActual
 		
 		# Buscamos el nodo visual del personaje
 		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
@@ -55,8 +67,8 @@ func _physics_process(delta: float) -> void:
 			modelo.rotation.y = lerp_angle(modelo.rotation.y, target_angle, 15.0 * delta)
 	else:
 		# Frenado rápido
-		velocity.x = move_toward(velocity.x, 0, SPEED * 4.0 * delta)
-		velocity.z = move_toward(velocity.z, 0, SPEED * 4.0 * delta)
+		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
+		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
 
 	move_and_slide()
 
@@ -65,3 +77,11 @@ func activar_ragdoll():
 		collision_shape_3d.disabled = true
 	if skeleton_3d:
 		skeleton_3d.physical_bones_start_simulation()
+func configurar_barraStamina():
+	if barraStamina != null:
+		barraStamina.visible = true
+		barraStamina.min_value = 0.0
+		barraStamina.max_value= StaminaMax
+func actualizar_barraStamina():
+	if barraStamina != null:
+		barraStamina.value = StaminaActual

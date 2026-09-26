@@ -1764,3 +1764,9 @@ skeleton = NodePath("..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Walk (1)" unique_id=1859335305]
 libraries/ = SubResource("AnimationLibrary_a2kit")
 autoplay = &"mixamo_com"
+
+[node name="BarraDeStamina" type="ProgressBar" parent="." unique_id=1225548899]
+offset_left = 37.0
+offset_top = 580.0
+offset_right = 300.0
+offset_bottom = 615.0
