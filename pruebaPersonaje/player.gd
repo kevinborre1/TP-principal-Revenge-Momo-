@@ -1,9 +1,14 @@
 extends CharacterBody3D
+class_name Player
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var multiplicadorDeCarrera = 2
 var mouse_sensitivy := 0.003
+@export var saludMax: int = 100.0
+@export var saludActual: int = saludMax
+var herido = false
+signal cambioSalud
 var StaminaMax = 100.0
 var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
@@ -107,3 +112,11 @@ func configurar_barraStamina():
 	barraStamina.max_value= StaminaMax
 func actualizar_barraStamina():
 	barraStamina.value = StaminaActual
+	
+	#a modificar / expandir
+func heridoPorEnemigo(area):
+	saludActual -=10
+	if saludActual < 0:
+		saludActual = saludMax
+	herido = true
+	cambioSalud.emit()
