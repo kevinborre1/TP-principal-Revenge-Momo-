@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bdd42b2j7dofr"]
+
+[ext_resource type="Script" uid="uid://cy006uvidc4y" path="res://addons/tube/tube_client.gd" id="1_n6af1"]
+[ext_resource type="Resource" uid="uid://b033qcbqk5clr" path="res://Red/red_configuration.tres" id="2_2w4h5"]
+
+[node name="NetworkManager" type="Node3D" unique_id=931706553]
+
+[node name="TubeClient" type="Node" parent="." unique_id=1688814142]
+script = ExtResource("1_n6af1")
+context = ExtResource("2_2w4h5")
+metadata/_custom_type_script = "uid://cy006uvidc4y"

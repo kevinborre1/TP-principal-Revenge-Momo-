@@ -7,7 +7,7 @@
 [node name="Walk (1)" parent="." unique_id=134952855 instance=ExtResource("1_5wylg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010213017, 0, -0.003231287)
 
-[node name="Skeleton3D" parent="Walk (1)" index="0" unique_id=1498912759]
+[node name="Skeleton3D" parent="Walk (1)" index="0" unique_id=1882542058]
 bones/0/position = Vector3(0.0012084178, 0.95424116, -0.003676954)
 bones/0/rotation = Quaternion(-0.017908016, 0.018717704, -0.029889446, 0.99921757)
 bones/1/rotation = Quaternion(-0.028923206, 0.015417477, 0.027335208, 0.9990889)
@@ -62,7 +62,7 @@ bones/61/rotation = Quaternion(-0.2548983, -0.058182944, 0.037644666, 0.9644815)
 bones/62/rotation = Quaternion(0.5554815, -0.03307397, -0.095622584, 0.8253501)
 bones/63/rotation = Quaternion(0.3939911, 0.024975618, -0.010964688, 0.9187095)
 
-[node name="AnimationPlayer" parent="Walk (1)" index="1" unique_id=2115794786]
+[node name="AnimationPlayer" parent="Walk (1)" index="1" unique_id=984647234]
 autoplay = &"mixamo_com"
 
 [editable path="Walk (1)"]

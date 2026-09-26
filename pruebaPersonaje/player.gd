@@ -8,13 +8,34 @@ var mouse_sensitivy := 0.003
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var skeleton_3d: Skeleton3D = find_child("Skeleton3D", true, false) as Skeleton3D
+#################
+@onready var camara: Camera3D = find_child("Camera3D", true, false) as Camera3D
+#################
 
 var camera_rotation := Vector2.ZERO
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# Asignar autoridad al nodo principal y sincronizador
+	var id_player = name.to_int()
+	set_multiplayer_authority(id_player)
+	
+	if has_node("MultiplayerSynchronizer"):
+		$MultiplayerSynchronizer.set_multiplayer_authority(id_player)
+	
+	# prender la camara y usar solo el mouse si somos los due;os
+	if is_multiplayer_authority():
+		if camara:
+			camara.make_current()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		if camara:
+			camara.current = false
 
 func _input(event: InputEvent) -> void:
+	# si no es nuestro personaje ignoramos el mouse
+	if not is_multiplayer_authority():
+		return
+	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_rotation.x -= event.relative.y * mouse_sensitivy
 		camera_rotation.y -= event.relative.x * mouse_sensitivy
@@ -31,6 +52,11 @@ func _input(event: InputEvent) -> void:
 		activar_ragdoll()
 
 func _physics_process(delta: float) -> void:
+	
+	# si no es nuestro personaje no calculamos sus fisicas con nuestro teclado
+	if not is_multiplayer_authority():
+		return
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
