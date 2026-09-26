@@ -103,10 +103,7 @@ func activar_ragdoll():
 	if skeleton_3d:
 		skeleton_3d.physical_bones_start_simulation()
 func configurar_barraStamina():
-	if barraStamina != null:
-		barraStamina.visible = true
-		barraStamina.min_value = 0.0
-		barraStamina.max_value= StaminaMax
+	barraStamina.min_value = 0.0
+	barraStamina.max_value= StaminaMax
 func actualizar_barraStamina():
-	if barraStamina != null:
-		barraStamina.value = StaminaActual
+	barraStamina.value = StaminaActual
