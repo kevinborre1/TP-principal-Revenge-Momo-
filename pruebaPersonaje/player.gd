@@ -18,7 +18,6 @@ var camera_rotation := Vector2.ZERO
 
 
 func _ready() -> void:
-	configurar_barraStamina()
 	# Asignar autoridad al nodo principal y sincronizador
 	var id_player = name.to_int()
 	set_multiplayer_authority(id_player)
@@ -34,6 +33,8 @@ func _ready() -> void:
 	else:
 		if camara:
 			camara.current = false
+	
+	configurar_barraStamina()
 
 func _input(event: InputEvent) -> void:
 	# si no es nuestro personaje ignoramos el mouse
