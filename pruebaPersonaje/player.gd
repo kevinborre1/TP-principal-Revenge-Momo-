@@ -30,11 +30,13 @@ func _ready() -> void:
 		if camara:
 			camara.make_current()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		configurar_barraStamina()
 	else:
 		if camara:
 			camara.current = false
-	
-	configurar_barraStamina()
+		if barraStamina:
+			barraStamina.visible = false
+
 
 func _input(event: InputEvent) -> void:
 	# si no es nuestro personaje ignoramos el mouse
