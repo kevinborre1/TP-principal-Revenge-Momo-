@@ -7,9 +7,6 @@
 [node name="Walk (1)" parent="." unique_id=134952855 instance=ExtResource("1_5wylg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010213017, 0, -0.003231287)
 
-<<<<<<< HEAD
-[node name="Skeleton3D" parent="Walk (1)" index="0" unique_id=1320401293]
-=======
 [node name="Skeleton3D" parent="Walk (1)" index="0" unique_id=1882542058]
 >>>>>>> d244f09c575e2e7c2de7369593c6b84b1fa1166a
 bones/0/position = Vector3(0.0012084178, 0.95424116, -0.003676954)
