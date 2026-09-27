@@ -91,4 +91,3 @@ If you encounter a bug, unexpected behavior, or a rig format that fails to auto-
 - **Bug Reports**: Please include your Godot version, operating system, and steps to reproduce the issue. Providing a minimal reproduction scene or sample skeleton helps diagnose problems quickly.
 - **Unrecognized Rig Formats**: If you work with a humanoid rig standard or naming convention that is not automatically mapped, open an issue listing the bone naming pattern so support can be incorporated.
 - **Feature Suggestions**: Ideas for workflow improvements, joint preset options, or physics adjustments are welcome.
-

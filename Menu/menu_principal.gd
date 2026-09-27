@@ -1,13 +1,12 @@
 extends Control
 
-
 func _on_jugar_local_pressed() -> void:
-	pass # Replace with function body.
-
+	Global.modo_multijugador = "local"
+	get_tree().change_scene_to_file("res://pruebaPersonaje/mundo.tscn")
 
 func _on_jugar_en_linea_pressed() -> void:
+	Global.modo_multijugador = "linea"
 	get_tree().change_scene_to_file("res://Menu/Jugar en Linea.tscn")
-
 
 func _on_opciones_pressed() -> void:
 	pass # Replace with function body.

@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cggg4u3gixymf" path="res://assets/Grass_01.fbx" id="8_7s8u0"]
 [ext_resource type="PackedScene" uid="uid://bo1visiq0uh48" path="res://assets/Rock_02.fbx" id="9_ae2g2"]
 [ext_resource type="PackedScene" uid="uid://bqucxdd45xhh" path="res://assets/Rock_03.fbx" id="10_1yej1"]
+[ext_resource type="PackedScene" uid="uid://blmgdhrpsp8c0" path="res://pruebaPersonaje/player.tscn" id="11_ya8h2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ic15a"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -90,32 +91,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5776608, 0.1351862, 3.14745
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
 spawn_path = NodePath("..")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=429966252]
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1477393098]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+columns = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=524396032]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GridContainer" unique_id=524396032]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" unique_id=728237508]
+[node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer" unique_id=728237508]
 handle_input_locally = false
 size = Vector2i(574, 648)
 render_target_update_mode = 4
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer" unique_id=1188815233]
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer" unique_id=1188815233]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2" unique_id=891366992]
+[node name="SubViewport2" type="SubViewport" parent="GridContainer/SubViewportContainer2" unique_id=891366992]
 handle_input_locally = false
 size = Vector2i(574, 648)
 render_target_update_mode = 4
+
+[node name="Player" parent="GridContainer/SubViewportContainer2/SubViewport2" unique_id=1613382235 instance=ExtResource("11_ya8h2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2165396, -0.08451924, 5.407311)
 
 [editable path="scene/Suelo 1"]
 [editable path="scene/Suelo 3"]
