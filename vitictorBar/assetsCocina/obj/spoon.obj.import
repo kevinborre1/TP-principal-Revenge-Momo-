@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bb43bf1basoiu"
+path="res://.godot/imported/spoon.obj-b5f214fda9f2d25c30d0a8e82b907805.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spoon.obj-b5f214fda9f2d25c30d0a8e82b907805.mesh"]
+
+source_file="res://vitictorBar/assetsCocina/obj/spoon.obj"
+dest_files=["res://.godot/imported/spoon.obj-b5f214fda9f2d25c30d0a8e82b907805.mesh", "res://.godot/imported/spoon.obj-b5f214fda9f2d25c30d0a8e82b907805.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bhm18slc2g3xy"
+path="res://.godot/imported/beer_bottle.obj-f0995d52fa85c2cb9fb23e2f53121929.mesh"
+
+[deps]
+
+files=["res://.godot/imported/beer_bottle.obj-f0995d52fa85c2cb9fb23e2f53121929.mesh"]
+
+source_file="res://vitictorBar/assetsCocina/obj/beer_bottle.obj"
+dest_files=["res://.godot/imported/beer_bottle.obj-f0995d52fa85c2cb9fb23e2f53121929.mesh", "res://.godot/imported/beer_bottle.obj-f0995d52fa85c2cb9fb23e2f53121929.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

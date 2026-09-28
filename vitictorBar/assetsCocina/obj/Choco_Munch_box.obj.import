@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ce7ho5pc8bsaw"
+path="res://.godot/imported/Choco_Munch_box.obj-1862970f97005bdd25d5dca5572db863.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Choco_Munch_box.obj-1862970f97005bdd25d5dca5572db863.mesh"]
+
+source_file="res://vitictorBar/assetsCocina/obj/Choco_Munch_box.obj"
+dest_files=["res://.godot/imported/Choco_Munch_box.obj-1862970f97005bdd25d5dca5572db863.mesh", "res://.godot/imported/Choco_Munch_box.obj-1862970f97005bdd25d5dca5572db863.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -19,6 +19,8 @@ var StaminaPerdida=1.0
 @onready var skeleton_3d: Skeleton3D = find_child("Skeleton3D", true, false) as Skeleton3D
 @onready var barraStamina = $BarraDeStamina
 @onready var camara: Camera3D = find_child("Camera3D", true, false) as Camera3D
+@onready var animation = $"Walk (1)/AnimationPlayer"
+@onready var macarena: AudioStreamPlayer3D = $musicaBaile
 var camera_rotation := Vector2.ZERO
 
 
@@ -74,6 +76,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not is_on_floor():
 		activar_ragdoll()
 func _physics_process(delta: float) -> void:
+	
+	player_animation()
 	# Bloqueamos el movimiento en línea si no es nuestra autoridad
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
@@ -148,3 +152,61 @@ func heridoPorEnemigo(area):
 		saludActual = saludMax
 	herido = true
 	cambioSalud.emit()
+	
+func is_moving():
+	return abs(velocity.z) > 0 || abs(velocity.x) > 0
+
+func player_animation():
+	# 1. Si está en el aire (Salto)
+	if not is_on_floor():
+		detener_musica_baile()
+		if animation.has_animation("salta"):
+			animation.play("salta", 0.1, 1.8)
+		elif animation.has_animation("Jump/mixamo_com"):
+			animation.play("Jump/mixamo_com", 0.1, 1.8)
+		return
+	else:
+		animation.speed_scale = 1.0
+
+	# Definir acciones según P1 o P2
+	var act_bailar = "bailar"
+	var act_correr = "Correr"
+	if Global.modo_multijugador == "local" and name == "2":
+		act_bailar = "bailar_p2"
+		act_correr = "Correr_p2"
+
+	# 2. Si presiona la tecla de Baile
+	if Input.is_action_pressed(act_bailar):
+		# Reproducir música si no está sonando ya
+		if macarena and not macarena.playing:
+			macarena.play()
+
+		if animation.has_animation("Macarena Dance/mixamo_com"):
+			animation.play("Macarena Dance/mixamo_com", 0.3)
+			return
+		elif animation.has_animation("baila"):
+			animation.play("baila", 0.3)
+			return
+
+	# Si llegó acá, NO está bailando -> Detener la música
+	detener_musica_baile()
+
+	# 3. Movimiento (Caminar / Correr / Idle)
+	if is_moving():
+		if Input.is_action_pressed(act_correr) and StaminaActual > 0:
+			if animation.has_animation("Fast Run/mixamo_com"):
+				animation.play("Fast Run/mixamo_com", 0.2)
+			elif animation.has_animation("correr"):
+				animation.play("Fast Run/mixamo_com", 0.2)
+			else:
+				animation.play("camina", 0.2, 1.8)
+		else:
+			animation.play("camina", 0.3)
+	else:
+		animation.play("Standing Idle/mixamo_com", 0.3)
+
+
+# Función auxiliar para frenar la canción
+func detener_musica_baile():
+	if macarena and macarena.playing:
+		macarena.stop()

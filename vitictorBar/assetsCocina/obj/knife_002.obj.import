@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bbtdjagmy3n3i"
+path="res://.godot/imported/knife_002.obj-89f33ae441b2f4e0e0dc30ea6ecec432.mesh"
+
+[deps]
+
+files=["res://.godot/imported/knife_002.obj-89f33ae441b2f4e0e0dc30ea6ecec432.mesh"]
+
+source_file="res://vitictorBar/assetsCocina/obj/knife_002.obj"
+dest_files=["res://.godot/imported/knife_002.obj-89f33ae441b2f4e0e0dc30ea6ecec432.mesh", "res://.godot/imported/knife_002.obj-89f33ae441b2f4e0e0dc30ea6ecec432.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

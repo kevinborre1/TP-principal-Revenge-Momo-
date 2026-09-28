@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cxri4e250ghpm"
+path="res://.godot/imported/soda_bottle.obj-9fcca19e7f99c2a7f0e74b7b2f0dc57a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/soda_bottle.obj-9fcca19e7f99c2a7f0e74b7b2f0dc57a.mesh"]
+
+source_file="res://vitictorBar/assetsCocina/obj/soda_bottle.obj"
+dest_files=["res://.godot/imported/soda_bottle.obj-9fcca19e7f99c2a7f0e74b7b2f0dc57a.mesh", "res://.godot/imported/soda_bottle.obj-9fcca19e7f99c2a7f0e74b7b2f0dc57a.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bv0j1u8txwk66"
+path="res://.godot/imported/bowl_01.obj-289be8a2099ef87465e418b8f844f33c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bowl_01.obj-289be8a2099ef87465e418b8f844f33c.mesh"]
+
+source_file="res://vitictorBar/assetsCocina/obj/bowl_01.obj"
+dest_files=["res://.godot/imported/bowl_01.obj-289be8a2099ef87465e418b8f844f33c.mesh", "res://.godot/imported/bowl_01.obj-289be8a2099ef87465e418b8f844f33c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
