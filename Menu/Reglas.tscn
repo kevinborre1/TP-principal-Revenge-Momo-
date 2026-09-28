@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://kb8hdy3afrqc"]
+
+[ext_resource type="Texture2D" uid="uid://kcowg5u0b0hk" path="res://Menu/reglas3.png" id="1_6hsbj"]
+[ext_resource type="Script" uid="uid://di3c8e4b6ud5e" path="res://Menu/reglas.gd" id="1_odo7h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_odo7h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlrqy"]
+bg_color = Color(0.6872153, 0.68721485, 0.68721515, 0.36078432)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikws0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hucsh"]
+bg_color = Color(0.7607843, 0.7607843, 0.7607843, 0.3882353)
+
+[node name="Reglas" type="Control" unique_id=185479542]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_odo7h")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1025989435]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 647.0
+texture = ExtResource("1_6hsbj")
+expand_mode = 1
+
+[node name="Volver" type="Button" parent="." unique_id=1880323341]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 27.0
+offset_right = 126.0
+offset_bottom = 102.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_odo7h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wlrqy")
+
+[node name="Jugar" type="Button" parent="." unique_id=303314634]
+layout_mode = 0
+offset_left = 886.0
+offset_top = 517.0
+offset_right = 1111.0
+offset_bottom = 585.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ikws0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hucsh")
+text = " "
+
+[connection signal="pressed" from="Volver" to="." method="_on_volver_pressed"]
+[connection signal="pressed" from="Jugar" to="." method="_on_jugar_pressed"]

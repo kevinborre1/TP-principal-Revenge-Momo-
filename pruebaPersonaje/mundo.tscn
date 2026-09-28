@@ -174,7 +174,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5780194, 0, 0.58179855)
 visible = false
 
-[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=987694178]
+[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=431428625]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 1/Ground_01" index="0" unique_id=1261392928]
@@ -188,7 +188,7 @@ shape = SubResource("ConcavePolygonShape3D_e8y5e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4866085, -0.4318676, 26.892689)
 visible = false
 
-[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=1570874739]
+[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=1138646798]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 3/Ground_03" index="0" unique_id=859087765]
@@ -282,6 +282,12 @@ metadata/_edit_lock_ = true
 
 [node name="Node3D3" parent="Terreno" unique_id=683354801 instance=ExtResource("23_0gt8b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.170895, 0.4654808, 1255.21)
+
+[node name="CharacterBody3D" parent="Terreno/Node3D3" index="1" unique_id=1060927623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61.856815)
+
+[node name="Skeleton3D" parent="Terreno/Node3D3" index="2" unique_id=681079757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61.856815)
 
 [editable path="scene/Suelo 1"]
 [editable path="scene/Suelo 3"]

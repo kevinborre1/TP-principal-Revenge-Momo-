@@ -1292,6 +1292,7 @@ spring_length = 1.55
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=9406401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6198035e-08, 0, -0.41405725)
+current = true
 
 [node name="Walk (1)" type="Node3D" parent="." unique_id=134952855]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00756979, 0, 0.062193394)
@@ -1901,4 +1902,8 @@ texture = ExtResource("7_7fgg8")
 
 [node name="musicaBaile" type="AudioStreamPlayer3D" parent="." unique_id=1923782396]
 auto_translate_mode = 2
+visible = false
+stream = ExtResource("12_jwaew")
+
+[node name="musicaBaile2" type="AudioStreamPlayer" parent="." unique_id=616582377]
 stream = ExtResource("12_jwaew")

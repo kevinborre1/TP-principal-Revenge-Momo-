@@ -20,7 +20,7 @@ var StaminaPerdida=1.0
 @onready var barraStamina = $BarraDeStamina
 @onready var camara: Camera3D = find_child("Camera3D", true, false) as Camera3D
 @onready var animation = $"Walk (1)/AnimationPlayer"
-@onready var macarena: AudioStreamPlayer3D = $musicaBaile
+@onready var macarena: AudioStreamPlayer = $musicaBaile2
 var camera_rotation := Vector2.ZERO
 
 

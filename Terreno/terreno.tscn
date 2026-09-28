@@ -158,6 +158,12 @@ metadata/_edit_lock_ = true
 [node name="Node3D2" parent="." unique_id=683354801 instance=ExtResource("12_obobi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.170895, 0.4654808, 1255.21)
 
+[node name="CharacterBody3D" parent="Node3D2" index="1" unique_id=1060927623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61.856815)
+
+[node name="Skeleton3D" parent="Node3D2" index="2" unique_id=681079757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61.856815)
+
 [node name="enemigo" type="CharacterBody3D" parent="." unique_id=446794919]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 1, 1256.919)
 script = ExtResource("13_yoo2w")
