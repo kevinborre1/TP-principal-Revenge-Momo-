@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://2pd4bos3vi0c" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Robin.fbx" id="5_vubg1"]
 [ext_resource type="PackedScene" uid="uid://dydrw2kt0buw3" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Woodruff_Cluster_1.fbx" id="6_bmrm7"]
 [ext_resource type="PackedScene" uid="uid://dywch7k16daub" path="res://vitictorBar/node_3d.tscn" id="12_obobi"]
+[ext_resource type="Script" uid="uid://dqee0eyyrmxgu" path="res://Terreno/enemigo.gd" id="13_yoo2w"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 
@@ -131,6 +132,13 @@ normal_texture = ExtResource("4_owi05")
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_k1edr"), SubResource("Terrain3DMeshAsset_vycbi"), SubResource("Terrain3DMeshAsset_nei3j"), SubResource("Terrain3DMeshAsset_krr3c"), SubResource("Terrain3DMeshAsset_rygad"), SubResource("Terrain3DMeshAsset_0gkdn")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gf7y2"), SubResource("Terrain3DTextureAsset_vubg1")])
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8w0r3"]
+radius = 0.5595703
+height = 3.5839844
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8w0r3"]
+height = 3.0737305
+
 [node name="Node3D" type="Node3D" unique_id=695447382]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1977473538]
@@ -148,10 +156,22 @@ top_level = true
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=679560290 instance=ExtResource("5_a7npe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.698826, 0, 1257.9711)
+transform = Transform3D(0.9994859, 0, 0.03206347, 0, 1, 0, -0.03206347, 0, 0.9994859, 36.858963, 0, 1257.9711)
 
 [node name="Node3D2" parent="." unique_id=683354801 instance=ExtResource("12_obobi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.170895, 0.4654808, 1255.21)
+
+[node name="enemigo" type="CharacterBody3D" parent="." unique_id=446794919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1256.9193)
+script = ExtResource("13_yoo2w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemigo" unique_id=31742382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9170041, 0)
+shape = SubResource("CapsuleShape3D_8w0r3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemigo" unique_id=529517291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.104504, 0)
+mesh = SubResource("CapsuleMesh_8w0r3")
 
 [editable path="Node3D2"]
 [editable path="Node3D2/StaticBody3D/CollisionShape3D/victorBar"]

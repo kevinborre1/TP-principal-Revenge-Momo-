@@ -45,7 +45,7 @@ shadow_enabled = true
 [node name="Suelo 1" parent="scene" unique_id=587720298 instance=ExtResource("6_rlt2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5780194, 0, 0.58179855)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 1/Ground_01" parent_id_path=PackedInt32Array(587720298, 431428625) index="0" unique_id=1261392928]
+[node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 1/Ground_01" parent_id_path=PackedInt32Array(587720298, 745526064) index="0" unique_id=1261392928]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="scene/Suelo 1/Ground_01/StaticBody3D" unique_id=158037786]
 shape = SubResource("ConcavePolygonShape3D_e8y5e")
@@ -53,7 +53,7 @@ shape = SubResource("ConcavePolygonShape3D_e8y5e")
 [node name="Suelo 3" parent="scene" unique_id=1746700513 instance=ExtResource("7_0g0yr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4866085, -0.4318676, 26.892689)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 3/Ground_03" parent_id_path=PackedInt32Array(1746700513, 1138646798) index="0" unique_id=859087765]
+[node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 3/Ground_03" parent_id_path=PackedInt32Array(1746700513, 1862714810) index="0" unique_id=859087765]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="scene/Suelo 3/Ground_03/StaticBody3D" unique_id=1302987247]
 shape = SubResource("ConcavePolygonShape3D_47ooj")

@@ -84,14 +84,14 @@ data = PackedVector3Array(-1, 0, 1, 1, 0, -1, 1, 0, 1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [node name="victorBar" parent="StaticBody3D/CollisionShape3D" unique_id=1528389492 instance=ExtResource("1_psr2n")]
 
-[node name="Cube" parent="StaticBody3D/CollisionShape3D/victorBar" index="0" unique_id=1647064464]
+[node name="Cube" parent="StaticBody3D/CollisionShape3D/victorBar" index="0" unique_id=1558759405]
 surface_material_override/0 = SubResource("StandardMaterial3D_wprwl")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube" index="0" unique_id=1525408779]
 transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_psr2n")
 
-[node name="Cube_001" parent="StaticBody3D/CollisionShape3D/victorBar" index="1" unique_id=1196331078]
+[node name="Cube_001" parent="StaticBody3D/CollisionShape3D/victorBar" index="1" unique_id=1077238090]
 visible = false
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_001" index="0" unique_id=966590914]
@@ -99,49 +99,49 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 shape = SubResource("ConcavePolygonShape3D_wxi1j")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_002" parent_id_path=PackedInt32Array(1528389492, 889012256) index="0" unique_id=533663916]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_002" parent_id_path=PackedInt32Array(1528389492, 910673872) index="0" unique_id=533663916]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_lnmj3")
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_003" parent_id_path=PackedInt32Array(1528389492, 2068193501) index="0" unique_id=1842345872]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_003" parent_id_path=PackedInt32Array(1528389492, 335588512) index="0" unique_id=1842345872]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_tych6")
 
-[node name="Cube_004" parent="StaticBody3D/CollisionShape3D/victorBar" index="4" unique_id=2138613250]
+[node name="Cube_004" parent="StaticBody3D/CollisionShape3D/victorBar" index="4" unique_id=1135562221]
 surface_material_override/0 = SubResource("StandardMaterial3D_8h85h")
 
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_004" index="0" unique_id=1736810180]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_l07nc")
 
-[node name="Cube_005" parent="StaticBody3D/CollisionShape3D/victorBar" index="5" unique_id=54840528]
+[node name="Cube_005" parent="StaticBody3D/CollisionShape3D/victorBar" index="5" unique_id=2126391438]
 surface_material_override/0 = SubResource("StandardMaterial3D_tpxr6")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_005" index="0" unique_id=1860247047]
 shape = SubResource("ConcavePolygonShape3D_orslj")
 
-[node name="Cube_006" parent="StaticBody3D/CollisionShape3D/victorBar" index="6" unique_id=1237081872]
+[node name="Cube_006" parent="StaticBody3D/CollisionShape3D/victorBar" index="6" unique_id=1881514141]
 surface_material_override/0 = SubResource("StandardMaterial3D_avwl4")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_006" index="0" unique_id=458722952]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_xutyf")
 
-[node name="Cube_007" parent="StaticBody3D/CollisionShape3D/victorBar" index="7" unique_id=56092808]
+[node name="Cube_007" parent="StaticBody3D/CollisionShape3D/victorBar" index="7" unique_id=35787294]
 surface_material_override/0 = SubResource("StandardMaterial3D_l4k46")
 
 [node name="CollisionShape3D10" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_007" index="0" unique_id=558462299]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_ds3ud")
 
-[node name="Cube_008" parent="StaticBody3D/CollisionShape3D/victorBar" index="8" unique_id=103238626]
+[node name="Cube_008" parent="StaticBody3D/CollisionShape3D/victorBar" index="8" unique_id=1803647441]
 surface_material_override/0 = SubResource("StandardMaterial3D_c3qdh")
 
 [node name="CollisionShape3D11" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Cube_008" index="0" unique_id=1737128360]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_113d4")
 
-[node name="Plane" parent="StaticBody3D/CollisionShape3D/victorBar" index="9" unique_id=1387218289]
+[node name="Plane" parent="StaticBody3D/CollisionShape3D/victorBar" index="9" unique_id=796032649]
 transform = Transform3D(52.059326, 0, 0, 0, 1, 0, 0, 0, 14.723247, 59.794945, -0.36860794, -0.10015869)
 surface_material_override/0 = SubResource("StandardMaterial3D_b5hyx")
 
@@ -149,13 +149,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_b5hyx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00037908554, -1.9073486e-06, 0.0068027587)
 shape = SubResource("ConcavePolygonShape3D_pfjm2")
 
-[node name="Plane_001" parent="StaticBody3D/CollisionShape3D/victorBar" index="10" unique_id=1827759411]
+[node name="Plane_001" parent="StaticBody3D/CollisionShape3D/victorBar" index="10" unique_id=316332110]
 surface_material_override/0 = SubResource("StandardMaterial3D_8xm12")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Plane_001" index="0" unique_id=1948677716]
 shape = SubResource("ConcavePolygonShape3D_wylih")
 
-[node name="Plane_002" parent="StaticBody3D/CollisionShape3D/victorBar" index="11" unique_id=800511833]
+[node name="Plane_002" parent="StaticBody3D/CollisionShape3D/victorBar" index="11" unique_id=1549454353]
 surface_material_override/0 = SubResource("StandardMaterial3D_7wrgn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/CollisionShape3D/victorBar/Plane_002" index="0" unique_id=1985948443]

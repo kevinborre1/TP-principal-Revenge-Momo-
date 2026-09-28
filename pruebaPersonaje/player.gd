@@ -58,23 +58,35 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	# En línea bloqueamos si no es autoridad; en local dejamos pasar a ambos
+	# Bloqueamos inputs si estamos en línea y no somos el dueño del personaje
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
-	
-	# NOTA: Para mover 2 cámaras distintas con un solo mouse en PC hay limitaciones.
-	# El Jugador 2 generalmente necesitará un Joystick (Gamepad) para mover su cámara.
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and name == "1":
-		camera_rotation.x -= event.relative.y * mouse_sensitivy
-		camera_rotation.y -= event.relative.x * mouse_sensitivy
-		camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(-60), deg_to_rad(30))
-		spring_arm_3d.rotation.x = camera_rotation.x
-		spring_arm_3d.rotation.y = camera_rotation.y
+		
+	# --- TRUCO PARA PRUEBAS ---
+	# Si haces clic izquierdo, vuelve a capturar el ratón (útil si inicias la escena directamente)
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# --------------------------
 
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if event.is_action_pressed("ui_accept") and not is_on_floor():
 		activar_ragdoll()
+
+	# --- LÓGICA DE LA CÁMARA CON EL RATÓN ---
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		
+		# Si estamos en modo local y NO somos el jugador 1, ignoramos el ratón
+		if Global.modo_multijugador == "local" and name != "1":
+			return 
+			
+		camera_rotation.x -= event.relative.y * mouse_sensitivy
+		camera_rotation.y -= event.relative.x * mouse_sensitivy
+		
+		camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(-60), deg_to_rad(30))
+		
+		spring_arm_3d.rotation.x = camera_rotation.x
+		spring_arm_3d.rotation.y = camera_rotation.y
 func _physics_process(delta: float) -> void:
 	
 	player_animation()
