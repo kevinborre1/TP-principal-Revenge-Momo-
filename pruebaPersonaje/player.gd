@@ -31,19 +31,22 @@ func _ready() -> void:
 	if has_node("MultiplayerSynchronizer"):
 		$MultiplayerSynchronizer.set_multiplayer_authority(id_player)
 	
+	# SOLUCIÓN: En lugar de is_multiplayer_authority() que puede fallar en el frame 1,
+	# comparamos directamente nuestro ID de red con el nombre del nodo.
+	var es_mi_personaje = (id_player == multiplayer.get_unique_id())
+	
 	# Lógica de encendido de cámara y UI
 	if Global.modo_multijugador == "local":
-		# En local, AMBOS jugadores necesitan su cámara y barra activas
+		# En local, AMBOS jugadores necesitan su cámara activa en su SubViewport
 		if camara:
 			camara.make_current()
 		if barraStamina:
 			barraStamina.visible = true
 		configurar_barraStamina()
-		# Nota: El mouse capturado en pantalla dividida en PC requiere lógica extra para 2 ratones, 
-		# se asume que un jugador usará teclado y otro un joystick/teclado.
-	else:
-		# En línea, solo prendemos las cosas si somos los dueños
-		if is_multiplayer_authority():
+		
+	elif Global.modo_multijugador == "linea":
+		# En línea, solo encendemos si este personaje es NUESTRO
+		if es_mi_personaje:
 			if camara:
 				camara.make_current()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -51,6 +54,7 @@ func _ready() -> void:
 			if barraStamina:
 				barraStamina.visible = true
 		else:
+			# Apagamos la cámara y UI de los clones de otros jugadores en nuestra pantalla
 			if camara:
 				camara.current = false
 			if barraStamina:

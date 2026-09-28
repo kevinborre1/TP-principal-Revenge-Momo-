@@ -11,7 +11,7 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
 
 func _ready() -> void:
-	# 1. Forzar al contenedor principal a ocupar TODA la ventana ignorando márgenes
+	# 1. Configurar la UI
 	contenedor_principal.set_anchors_preset(Control.PRESET_FULL_RECT)
 	subviewport_container1.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	subviewport_container1.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -20,27 +20,28 @@ func _ready() -> void:
 	subviewport_container2.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	subviewport_container2.stretch = true
 
+	# SOLUCIÓN: Ocultamos la UI por defecto para evitar pantallas grises
+	contenedor_principal.hide() 
+
 	if Global.modo_multijugador == "local":
-		# MODO LOCAL: Usamos la UI de pantalla dividida
-		contenedor_principal.show() # Aseguramos que la interfaz sea visible
+		# MODO LOCAL
+		contenedor_principal.show() # Solo la mostramos si es local
 		subviewport_container2.show()
 		subviewport2.world_3d = subviewport1.world_3d
 		
-		# Instanciar Jugador 1
 		var p1 = player_scene.instantiate()
 		p1.name = "1"
 		p1.position = Vector3(36, 2, 1250)
 		subviewport1.add_child(p1)
 		
-		# Instanciar Jugador 2
 		var p2 = player_scene.instantiate()
 		p2.name = "2" 
 		p2.position = Vector3(40, 2, 1250)
 		subviewport2.add_child(p2)
 		
 	elif Global.modo_multijugador == "linea":
-		# MODO EN LÍNEA: Apagamos la UI dividida y volvemos a la pantalla normal
-		contenedor_principal.hide() 
+		# MODO EN LÍNEA
+		# (La UI ya está oculta, no necesitamos hacer contenedor_principal.hide() de nuevo)
 		
 		if not multiplayer.is_server():
 			return

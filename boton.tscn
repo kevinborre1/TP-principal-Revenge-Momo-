@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dq5r63f7yqpiu"]
+
+[ext_resource type="Script" uid="uid://bqcmxonb3smgp" path="res://boton.gd" id="1_rwjfm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.9686279, 1, 1)
+
+[node name="Boton" type="Node3D" unique_id=277829318]
+script = ExtResource("1_rwjfm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1118606556]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1351402084]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=532576062]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+shape = SubResource("BoxShape3D_g4v7s")
