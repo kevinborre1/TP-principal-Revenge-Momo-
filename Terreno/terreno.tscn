@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://d2qkan6iv8cgr"]
+
+[ext_resource type="PackedScene" uid="uid://bdot8hp7c7v5d" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Birch_Tree_1.fbx" id="1_1dry3"]
+[ext_resource type="Texture2D" uid="uid://ddprscrpsofah" path="res://Terreno/ground037_alb_ht.png" id="1_tl1gn"]
+[ext_resource type="Texture2D" uid="uid://c1ots7w6i0i1q" path="res://Terreno/ground037_nrm_rgh.png" id="2_a7npe"]
+[ext_resource type="PackedScene" uid="uid://1tptb7s653mi" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Brown_Mushrooms_Cluster_1.fbx" id="2_obobi"]
+[ext_resource type="Texture2D" uid="uid://c88j3oj0lf6om" path="res://Terreno/rock023_alb_ht.png" id="3_s1pw2"]
+[ext_resource type="PackedScene" uid="uid://d275c6keqrayv" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Forest_Grass_1.fbx" id="3_yoo2w"]
+[ext_resource type="PackedScene" uid="uid://dslubx5buq6k0" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Pine_Tree_1.fbx" id="4_gf7y2"]
+[ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://Terreno/rock023_nrm_rgh.png" id="4_owi05"]
+[ext_resource type="PackedScene" uid="uid://blmgdhrpsp8c0" path="res://pruebaPersonaje/player.tscn" id="5_a7npe"]
+[ext_resource type="PackedScene" uid="uid://2pd4bos3vi0c" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Robin.fbx" id="5_vubg1"]
+[ext_resource type="PackedScene" uid="uid://dydrw2kt0buw3" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Woodruff_Cluster_1.fbx" id="6_bmrm7"]
+[ext_resource type="PackedScene" uid="uid://dywch7k16daub" path="res://vitictorBar/node_3d.tscn" id="12_obobi"]
+
+[sub_resource type="Environment" id="Environment_75c1s"]
+
+[sub_resource type="Gradient" id="Gradient_456fj"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3lk1t"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ghxa4"]
+noise = SubResource("FastNoiseLite_3lk1t")
+color_ramp = SubResource("Gradient_456fj")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_1dry3"]
+_shader_parameters = {
+&"bias_distance": null,
+&"blend_sharpness": null,
+&"depth_blur": null,
+&"enable_macro_variation": null,
+&"enable_projection": null,
+&"flat_terrain_normals": null,
+&"macro_variation1": null,
+&"macro_variation2": null,
+&"macro_variation_slope": null,
+&"mipmap_bias": null,
+&"noise1_angle": null,
+&"noise1_offset": null,
+&"noise1_scale": null,
+&"noise2_scale": null,
+&"noise_texture": SubResource("NoiseTexture2D_ghxa4"),
+&"projection_threshold": null,
+&"world_noise_fragment_normals": null,
+&"world_noise_height": null,
+&"world_noise_lod_distance": null,
+&"world_noise_max_octaves": null,
+&"world_noise_min_octaves": null,
+&"world_noise_offset": null,
+&"world_noise_region_blend": null,
+&"world_noise_scale": null
+}
+world_background = 2
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_k1edr"]
+name = "Birch_Tree_1"
+scene_file = ExtResource("1_1dry3")
+density = 0.041912578
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_vycbi"]
+name = "Brown_Mushrooms_Cluster_1"
+id = 1
+scene_file = ExtResource("2_obobi")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_nei3j"]
+name = "Forest_Grass_1"
+id = 2
+scene_file = ExtResource("3_yoo2w")
+density = 5.5967016
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_krr3c"]
+name = "Pine_Tree_1"
+id = 3
+scene_file = ExtResource("4_gf7y2")
+density = 0.041923407
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_rygad"]
+name = "Robin"
+id = 4
+scene_file = ExtResource("5_vubg1")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_0gkdn"]
+name = "Woodruff_Cluster_1"
+id = 5
+scene_file = ExtResource("6_bmrm7")
+density = 7.877409
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_gf7y2"]
+name = "ground037_alb_ht"
+albedo_texture = ExtResource("1_tl1gn")
+normal_texture = ExtResource("2_a7npe")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_vubg1"]
+name = "rock023_alb_ht"
+id = 1
+albedo_texture = ExtResource("3_s1pw2")
+normal_texture = ExtResource("4_owi05")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_bmrm7"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_k1edr"), SubResource("Terrain3DMeshAsset_vycbi"), SubResource("Terrain3DMeshAsset_nei3j"), SubResource("Terrain3DMeshAsset_krr3c"), SubResource("Terrain3DMeshAsset_rygad"), SubResource("Terrain3DMeshAsset_0gkdn")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gf7y2"), SubResource("Terrain3DTextureAsset_vubg1")])
+
+[node name="Node3D" type="Node3D" unique_id=695447382]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1977473538]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=79602697]
+environment = SubResource("Environment_75c1s")
+
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=354426980]
+data_directory = "res://Terreno"
+material = SubResource("Terrain3DMaterial_1dry3")
+assets = SubResource("Terrain3DAssets_bmrm7")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." unique_id=679560290 instance=ExtResource("5_a7npe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.698826, 0, 1257.9711)
+
+[node name="Node3D2" parent="." unique_id=683354801 instance=ExtResource("12_obobi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.170895, 0.4654808, 1255.21)
+
+[editable path="Node3D2"]
+[editable path="Node3D2/StaticBody3D/CollisionShape3D/victorBar"]
