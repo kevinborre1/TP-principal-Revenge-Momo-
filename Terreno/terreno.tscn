@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://d275c6keqrayv" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Forest_Grass_1.fbx" id="3_yoo2w"]
 [ext_resource type="PackedScene" uid="uid://dslubx5buq6k0" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Pine_Tree_1.fbx" id="4_gf7y2"]
 [ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://Terreno/rock023_nrm_rgh.png" id="4_owi05"]
-[ext_resource type="PackedScene" uid="uid://blmgdhrpsp8c0" path="res://pruebaPersonaje/player.tscn" id="5_a7npe"]
 [ext_resource type="PackedScene" uid="uid://2pd4bos3vi0c" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Robin.fbx" id="5_vubg1"]
 [ext_resource type="PackedScene" uid="uid://dydrw2kt0buw3" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Woodruff_Cluster_1.fbx" id="6_bmrm7"]
 [ext_resource type="PackedScene" uid="uid://dywch7k16daub" path="res://vitictorBar/node_3d.tscn" id="12_obobi"]
@@ -152,17 +151,15 @@ environment = SubResource("Environment_75c1s")
 data_directory = "res://Terreno"
 material = SubResource("Terrain3DMaterial_1dry3")
 assets = SubResource("Terrain3DAssets_bmrm7")
+collision_mode = 3
 top_level = true
 metadata/_edit_lock_ = true
-
-[node name="Player" parent="." unique_id=679560290 instance=ExtResource("5_a7npe")]
-transform = Transform3D(0.9994859, 0, 0.03206347, 0, 1, 0, -0.03206347, 0, 0.9994859, 36.858963, 0, 1257.9711)
 
 [node name="Node3D2" parent="." unique_id=683354801 instance=ExtResource("12_obobi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.170895, 0.4654808, 1255.21)
 
 [node name="enemigo" type="CharacterBody3D" parent="." unique_id=446794919]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1256.9193)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 1, 1256.919)
 script = ExtResource("13_yoo2w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemigo" unique_id=31742382]

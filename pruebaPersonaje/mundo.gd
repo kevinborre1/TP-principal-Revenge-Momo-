@@ -2,6 +2,8 @@ extends Node3D
 
 var player_scene = preload("res://pruebaPersonaje/player.tscn")
 
+@onready var spawn1: Marker3D = $Terreno/Spawn1
+@onready var spawn2: Marker3D = $Terreno/Spawn2
 @onready var contenedor_principal = $HBoxContainer
 @onready var subviewport_container1 = $HBoxContainer/SubViewportContainer
 @onready var subviewport_container2 = $HBoxContainer/SubViewportContainer2
@@ -32,13 +34,13 @@ func _ready() -> void:
 		# Instanciar Jugador 1
 		var p1 = player_scene.instantiate()
 		p1.name = "1"
-		p1.position = Vector3(2, 5, 0)
+		p1.position = Vector3(36, 2, 1250)
 		subviewport1.add_child(p1)
 		
 		# Instanciar Jugador 2
 		var p2 = player_scene.instantiate()
 		p2.name = "2" 
-		p2.position = Vector3(-2, 5, 0)
+		p2.position = Vector3(40, 2, 1250)
 		subviewport2.add_child(p2)
 		
 	elif Global.modo_multijugador == "linea":
