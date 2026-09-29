@@ -54,7 +54,7 @@ func _ready() -> void:
 func add_player(peer_id: int) -> void:
 	var new_player = player_scene.instantiate()
 	new_player.name = str(peer_id) 
-	new_player.position = Vector3(randf_range(-2, 2), 5, 0)
+	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
 	
 	# SOLUCIÓN: Agregamos al jugador directo al "mundo" para que el MultiplayerSpawner lo detecte
 	add_child(new_player)

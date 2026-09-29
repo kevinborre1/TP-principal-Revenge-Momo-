@@ -162,10 +162,10 @@ mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_k1edr"), 
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gf7y2"), SubResource("Terrain3DTextureAsset_vubg1")])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gx084"]
-size = Vector3(0.51123047, 5.135742, 6.286237)
+size = Vector3(0.51123047, 5.135742, 14.751516)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rhlx0"]
-size = Vector3(0.48754883, 4.94751, 6.364826)
+size = Vector3(0.48754883, 4.94751, 15.993306)
 
 [node name="Perso" type="Node3D" unique_id=1851682851]
 script = ExtResource("1_32437")
@@ -294,30 +294,27 @@ metadata/_edit_lock_ = true
 [node name="Node3D3" parent="Terreno" unique_id=683354801 instance=ExtResource("23_0gt8b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.170895, 0.4654808, 1255.21)
 
-[node name="CollisionShape3D" parent="Terreno/Node3D3/StaticBody3D/CollisionShape3D/victorBar/Plane_002" parent_id_path=PackedInt32Array(683354801, 1528389492, 281698263) index="0" unique_id=1985948443]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008016825, -0.09394455, -0.006790161)
-
 [node name="Boton" parent="Terreno/Node3D3/StaticBody3D/CollisionShape3D" parent_id_path=PackedInt32Array(683354801, 1064991508) index="1" unique_id=277829318 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("24_a0xth")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7206154, -0.37801743, 7.1971436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.104748, 0.2586174, 7.1971436)
 script = ExtResource("25_rhlx0")
 id_boton = 1
 puerta_destino = NodePath("../../../Puerta")
 
 [node name="Boton2" parent="Terreno/Node3D3/StaticBody3D/CollisionShape3D" parent_id_path=PackedInt32Array(683354801, 1064991508) index="2" unique_id=2017348483 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("24_a0xth")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1627121, -0.40253282, 6.708496)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3096676, 0.29526067, -0.053100586)
 script = ExtResource("25_rhlx0")
 puerta_destino = NodePath("../../../Puerta")
 
 [node name="Puerta" type="AnimatableBody3D" parent="Terreno/Node3D3" unique_id=2040297608]
-transform = Transform3D(0.07343074, 0, 0.9973003, 0, 1, 0, -0.9973003, 0, 0.07343074, 0.66952515, 0, 8.044678)
+transform = Transform3D(0.99944, 0, 0.03346069, 0, 1, 0, -0.03346069, 0, 0.99944, -7.9124546, 1.1637187, -2.829956)
 script = ExtResource("25_gx084")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Terreno/Node3D3/Puerta" unique_id=890800226]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24389648, 2.067871, 1.7359314)
+transform = Transform3D(1.0000042, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000042, 0.24389839, 2.067871, 5.968506)
 shape = SubResource("BoxShape3D_gx084")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terreno/Node3D3/Puerta/CollisionShape3D" unique_id=1281589721]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15197754, -0.054254055, 0.023956299)
+transform = Transform3D(0.9999981, 0, 3.3527613e-08, 0, 1, 0, -3.3527613e-08, 0, 0.9999981, -0.15198898, -0.054254055, -0.61572266)
 mesh = SubResource("BoxMesh_rhlx0")
 
 [connection signal="body_entered" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" method="_on_body_entered"]
