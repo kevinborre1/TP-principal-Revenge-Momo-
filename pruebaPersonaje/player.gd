@@ -25,19 +25,36 @@ var camera_rotation := Vector2.ZERO
 
 
 func _ready() -> void:
+	# APAGAR FÍSICAS Y COLISIONES INMEDIATAMENTE AL NACER
+	set_physics_process(false) # Apaga la gravedad y el movimiento
+	if collision_shape_3d:
+		collision_shape_3d.disabled = true # Evita que colisione con el host si aparecen juntos
+		
 	var id_player = name.to_int()
 	set_multiplayer_authority(id_player)
 	add_to_group("Jugador")
 	if has_node("MultiplayerSynchronizer"):
 		$MultiplayerSynchronizer.set_multiplayer_authority(id_player)
 	
-	# SOLUCIÓN: En lugar de is_multiplayer_authority() que puede fallar en el frame 1,
-	# comparamos directamente nuestro ID de red con el nombre del nodo.
+	# Le damos medio segundo a la red para que sincronice todo y al mapa para cargar.
+	await get_tree().create_timer(0.5).timeout
+	
+	# POSICIONAR AL JUGADOR
+	if Global.modo_multijugador == "linea":
+		if id_player == 1:
+			global_position = Vector3(36, 10, 1250) 
+		else:
+			global_position = Vector3(40, 10, 1250)
+			
+	# PRENDER TODO DE NUEVO
+	if collision_shape_3d:
+		collision_shape_3d.disabled = false
+	set_physics_process(true) # Reactiva el _physics_process (gravedad y controles)
+	
+	# PRENDER LA CÁMARA (Si es mi personaje)
 	var es_mi_personaje = (id_player == multiplayer.get_unique_id())
 	
-	# Lógica de encendido de cámara y UI
 	if Global.modo_multijugador == "local":
-		# En local, AMBOS jugadores necesitan su cámara activa en su SubViewport
 		if camara:
 			camara.make_current()
 		if barraStamina:
@@ -45,7 +62,6 @@ func _ready() -> void:
 		configurar_barraStamina()
 		
 	elif Global.modo_multijugador == "linea":
-		# En línea, solo encendemos si este personaje es NUESTRO
 		if es_mi_personaje:
 			if camara:
 				camara.make_current()
@@ -54,7 +70,6 @@ func _ready() -> void:
 			if barraStamina:
 				barraStamina.visible = true
 		else:
-			# Apagamos la cámara y UI de los clones de otros jugadores en nuestra pantalla
 			if camara:
 				camara.current = false
 			if barraStamina:
@@ -66,7 +81,6 @@ func _input(event: InputEvent) -> void:
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
 		
-	# --- TRUCO PARA PRUEBAS ---
 	# Si haces clic izquierdo, vuelve a capturar el ratón (útil si inicias la escena directamente)
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -77,7 +91,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not is_on_floor():
 		activar_ragdoll()
 
-	# --- LÓGICA DE LA CÁMARA CON EL RATÓN ---
+	# LÓGICA DE LA CÁMARA
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		
 		# Si estamos en modo local y NO somos el jugador 1, ignoramos el ratón

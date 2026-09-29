@@ -10,7 +10,7 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
 
 func _ready() -> void:
-	# 1. Configurar la UI
+	# Configurar la UI
 	contenedor_principal.set_anchors_preset(Control.PRESET_FULL_RECT)
 	subviewport_container1.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	subviewport_container1.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -19,7 +19,7 @@ func _ready() -> void:
 	subviewport_container2.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	subviewport_container2.stretch = true
 
-	# SOLUCIÓN: Ocultamos la UI por defecto para evitar pantallas grises
+	# Ocultamos la UI por defecto para evitar pantallas grises
 	contenedor_principal.hide() 
 
 	if Global.modo_multijugador == "local":
@@ -55,11 +55,11 @@ func add_player(peer_id: int) -> void:
 	new_player.name = str(peer_id) 
 	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
 	
-	# SOLUCIÓN: Agregamos al jugador directo al "mundo" para que el MultiplayerSpawner lo detecte
+	# Agregamos al jugador directo al "mundo" para que el MultiplayerSpawner lo detecte
 	add_child(new_player)
 	
 func _disconnected_player(peer_id: int) -> void:
-	# SOLUCIÓN: Buscamos al jugador en el "mundo", no en el SubViewport
+	# Buscamos al jugador en el "mundo", no en el SubViewport
 	var player_deleted = get_node_or_null(str(peer_id))
 	if player_deleted:
 		player_deleted.queue_free()
