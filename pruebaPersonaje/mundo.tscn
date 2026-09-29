@@ -1,6 +1,5 @@
-[gd_scene format=3 uid="uid://c36m5f476yj6c"]
+[gd_scene format=3 uid="uid://dkcosjnr7kgx4"]
 
-[ext_resource type="Script" uid="uid://djw3ses77l8wm" path="res://pruebaPersonaje/mundo.gd" id="1_32437"]
 [ext_resource type="PackedScene" uid="uid://d2wvvnxs1v8it" path="res://assets/Tree_01.fbx" id="1_h0xsf"]
 [ext_resource type="PackedScene" uid="uid://lq2it3q3jr6h" path="res://assets/Tree_03.fbx" id="2_32437"]
 [ext_resource type="PackedScene" uid="uid://blx0d4bhbth4c" path="res://assets/Tree_04.fbx" id="3_am0d0"]
@@ -26,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://boton.tscn" id="24_a0xth"]
 [ext_resource type="Script" uid="uid://hvgyl0m1iyim" path="res://pruebaPersonaje/puerta.gd" id="25_gx084"]
 [ext_resource type="Script" uid="uid://bqcmxonb3smgp" path="res://boton.gd" id="25_rhlx0"]
+
+[sub_resource type="GDScript" id="GDScript_gx084"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ic15a"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -168,7 +169,7 @@ size = Vector3(0.51123047, 5.135742, 14.751516)
 size = Vector3(0.48754883, 4.94751, 15.993306)
 
 [node name="Perso" type="Node3D" unique_id=1851682851]
-script = ExtResource("1_32437")
+script = SubResource("GDScript_gx084")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1332439656]
 environment = SubResource("Environment_2kh35")
@@ -184,7 +185,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5780194, 0, 0.58179855)
 visible = false
 
-[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=2014391702]
+[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=515401297]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 1/Ground_01" index="0" unique_id=1261392928]
@@ -198,7 +199,7 @@ shape = SubResource("ConcavePolygonShape3D_e8y5e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4866085, -0.4318676, 26.892689)
 visible = false
 
-[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=477117978]
+[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=543544171]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 3/Ground_03" index="0" unique_id=859087765]
@@ -314,7 +315,7 @@ transform = Transform3D(1.0000042, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0,
 shape = SubResource("BoxShape3D_gx084")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terreno/Node3D3/Puerta/CollisionShape3D" unique_id=1281589721]
-transform = Transform3D(0.9999981, 0, 3.3527613e-08, 0, 1, 0, -3.3527613e-08, 0, 0.9999981, -0.15198898, -0.054254055, -0.61572266)
+transform = Transform3D(1.0109733, 0, 2.0489097e-08, 0, 1, 0, -2.9802322e-08, 0, 0.6721759, -0.15625954, -0.054254055, -0.48828125)
 mesh = SubResource("BoxMesh_rhlx0")
 
 [connection signal="body_entered" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" method="_on_body_entered"]

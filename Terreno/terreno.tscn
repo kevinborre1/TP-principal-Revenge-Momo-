@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d2qkan6iv8cgr"]
 
 [ext_resource type="PackedScene" uid="uid://bdot8hp7c7v5d" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Birch_Tree_1.fbx" id="1_1dry3"]
+[ext_resource type="Script" uid="uid://4qu5m185e7xp" path="res://Terreno/terreno.gd" id="1_bmrm7"]
 [ext_resource type="Texture2D" uid="uid://ddprscrpsofah" path="res://Terreno/ground037_alb_ht.png" id="1_tl1gn"]
 [ext_resource type="Texture2D" uid="uid://c1ots7w6i0i1q" path="res://Terreno/ground037_nrm_rgh.png" id="2_a7npe"]
 [ext_resource type="PackedScene" uid="uid://1tptb7s653mi" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Brown_Mushrooms_Cluster_1.fbx" id="2_obobi"]
@@ -11,7 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://2pd4bos3vi0c" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Robin.fbx" id="5_vubg1"]
 [ext_resource type="PackedScene" uid="uid://dydrw2kt0buw3" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Woodruff_Cluster_1.fbx" id="6_bmrm7"]
 [ext_resource type="PackedScene" uid="uid://dywch7k16daub" path="res://vitictorBar/node_3d.tscn" id="12_obobi"]
+[ext_resource type="Script" uid="uid://hvgyl0m1iyim" path="res://pruebaPersonaje/puerta.gd" id="13_gf7y2"]
 [ext_resource type="Script" uid="uid://dqee0eyyrmxgu" path="res://Terreno/enemigo.gd" id="13_yoo2w"]
+[ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://boton.tscn" id="14_vubg1"]
+[ext_resource type="Script" uid="uid://bqcmxonb3smgp" path="res://boton.gd" id="15_bmrm7"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 
@@ -171,7 +175,14 @@ height = 3.5839844
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8w0r3"]
 height = 3.0737305
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vubg1"]
+size = Vector3(0.51123047, 5.135742, 14.751516)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bmrm7"]
+size = Vector3(0.48754883, 4.94751, 15.993306)
+
 [node name="Node3D" type="Node3D" unique_id=695447382]
+script = ExtResource("1_bmrm7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1977473538]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -194,25 +205,25 @@ transform = Transform3D(0.54225534, 0, 0, 0, 0.5258939, 0, 0, 0, 0.550888, 36.17
 [node name="victorBar" parent="Node3D2/StaticBody3D/CollisionShape3D" parent_id_path=PackedInt32Array(683354801, 1064991508) index="0" unique_id=1528389492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40.352905)
 
-[node name="Cube_007" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="6" unique_id=93282707]
+[node name="Cube_007" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="6" unique_id=172692172]
 visible = false
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_009" parent_id_path=PackedInt32Array(683354801, 1528389492, 2079054129) index="0" unique_id=1505367740]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_009" parent_id_path=PackedInt32Array(683354801, 1528389492, 353038513) index="0" unique_id=1505367740]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_009/StaticBody3D" unique_id=259876883]
 shape = SubResource("ConcavePolygonShape3D_obobi")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_010" parent_id_path=PackedInt32Array(683354801, 1528389492, 383434657) index="0" unique_id=246020246]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_010" parent_id_path=PackedInt32Array(683354801, 1528389492, 942690490) index="0" unique_id=246020246]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_010/StaticBody3D" unique_id=244446790]
 shape = SubResource("ConcavePolygonShape3D_yoo2w")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_011" parent_id_path=PackedInt32Array(683354801, 1528389492, 791308098) index="0" unique_id=526544652]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_011" parent_id_path=PackedInt32Array(683354801, 1528389492, 304546072) index="0" unique_id=526544652]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_011/StaticBody3D" unique_id=977512987]
 shape = SubResource("ConcavePolygonShape3D_gf7y2")
 
-[node name="Cube_012" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="11" unique_id=954606465]
+[node name="Cube_012" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="11" unique_id=434722124]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_012" index="0" unique_id=1849022753]
@@ -220,12 +231,12 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_012/StaticBody3D" unique_id=1482663805]
 shape = SubResource("ConcavePolygonShape3D_vubg1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_013" parent_id_path=PackedInt32Array(683354801, 1528389492, 1909089965) index="0" unique_id=1457147174]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_013" parent_id_path=PackedInt32Array(683354801, 1528389492, 744258603) index="0" unique_id=1457147174]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_013/StaticBody3D" unique_id=707485466]
 shape = SubResource("ConcavePolygonShape3D_bmrm7")
 
-[node name="Cube_015" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="13" unique_id=554101072]
+[node name="Cube_015" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="13" unique_id=944072720]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_015" index="0" unique_id=1355467895]
@@ -233,27 +244,27 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_015/StaticBody3D" unique_id=2002664170]
 shape = SubResource("ConcavePolygonShape3D_k1edr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_016" parent_id_path=PackedInt32Array(683354801, 1528389492, 1071207086) index="0" unique_id=1442165286]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_016" parent_id_path=PackedInt32Array(683354801, 1528389492, 731392864) index="0" unique_id=1442165286]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_016/StaticBody3D" unique_id=820747284]
 shape = SubResource("ConcavePolygonShape3D_vycbi")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_017" parent_id_path=PackedInt32Array(683354801, 1528389492, 1736289125) index="0" unique_id=77422694]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_017" parent_id_path=PackedInt32Array(683354801, 1528389492, 1733768974) index="0" unique_id=77422694]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_017/StaticBody3D" unique_id=459541507]
 shape = SubResource("ConcavePolygonShape3D_nei3j")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_018" parent_id_path=PackedInt32Array(683354801, 1528389492, 432924271) index="0" unique_id=239709365]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_018" parent_id_path=PackedInt32Array(683354801, 1528389492, 940105129) index="0" unique_id=239709365]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_018/StaticBody3D" unique_id=1567926194]
 shape = SubResource("ConcavePolygonShape3D_krr3c")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_019" parent_id_path=PackedInt32Array(683354801, 1528389492, 1861333536) index="0" unique_id=937055422]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_019" parent_id_path=PackedInt32Array(683354801, 1528389492, 814990540) index="0" unique_id=937055422]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_019/StaticBody3D" unique_id=1260196297]
 shape = SubResource("ConcavePolygonShape3D_rygad")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_020" parent_id_path=PackedInt32Array(683354801, 1528389492, 655814449) index="0" unique_id=1764717038]
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_020" parent_id_path=PackedInt32Array(683354801, 1528389492, 740282492) index="0" unique_id=1764717038]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_020/StaticBody3D" unique_id=459597716]
 shape = SubResource("ConcavePolygonShape3D_0gkdn")
@@ -269,6 +280,65 @@ shape = SubResource("CapsuleShape3D_8w0r3")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enemigo" unique_id=529517291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.104504, 0)
 mesh = SubResource("CapsuleMesh_8w0r3")
+
+[node name="Puerta" type="AnimatableBody3D" parent="." unique_id=2014995360]
+transform = Transform3D(0.98927, 0, 0.043630783, 0, 1, 0, -0.033120204, 0, 1.3032113, -7.9124546, 1.1637187, 116.50506)
+script = ExtResource("13_gf7y2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Puerta" unique_id=1880878467]
+transform = Transform3D(1.0000042, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000042, 0.24389839, 2.067871, 5.968506)
+shape = SubResource("BoxShape3D_vubg1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Puerta/CollisionShape3D" unique_id=24777070]
+transform = Transform3D(1.0109733, 0, 1.4901161e-08, 0, 1, 0, -2.7939677e-08, 0, 0.6721759, -34.779522, 10.829405, 784.54895)
+mesh = SubResource("BoxMesh_bmrm7")
+
+[node name="Boton" parent="." unique_id=1661296307 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.104748, 0.2586174, 1074.3428)
+script = ExtResource("15_bmrm7")
+id_boton = 1
+puerta_destino = NodePath("")
+
+[node name="Boton2" parent="." unique_id=1599931534 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3096676, 0.29526067, 1167.321)
+script = ExtResource("15_bmrm7")
+puerta_destino = NodePath("")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1891850317]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=1172638336]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" unique_id=674497882]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer" unique_id=1162450000]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2" unique_id=156789992]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=274023316]
+_spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
+spawn_path = NodePath("..")
+
+[connection signal="body_entered" from="Boton" to="Boton" method="_on_body_entered"]
+[connection signal="body_exited" from="Boton" to="Boton" method="_on_body_exited"]
+[connection signal="body_entered" from="Boton2" to="Boton2" method="_on_body_entered"]
+[connection signal="body_exited" from="Boton2" to="Boton2" method="_on_body_exited"]
 
 [editable path="Node3D2"]
 [editable path="Node3D2/StaticBody3D/CollisionShape3D/victorBar"]

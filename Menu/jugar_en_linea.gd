@@ -13,7 +13,7 @@ var codigo_Ingresado
 
 
 func _ready() -> void:
-	# Conecta se;ales de red
+	# Conecta señales de red
 	tube_client.session_created.connect(_on_session_created)
 	tube_client.session_joined.connect(_on_session_joined)
 	tube_client.error_raised.connect(_on_error)
@@ -52,11 +52,14 @@ func _on_session_created() -> void:
 	DisplayServer.clipboard_set(codigo)
 	print("Sesión creada. Código copiado: ", codigo)
 
-	get_tree().change_scene_to_file("res://pruebaPersonaje/mundo.tscn")
+	# SOLUCIÓN: Cambiado a terreno.tscn
+	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
 
 func _on_session_joined() -> void:
 	print("Unido exitosamente al Host")
-	get_tree().change_scene_to_file("res://pruebaPersonaje/mundo.tscn")
+	
+	# SOLUCIÓN: Cambiado a terreno.tscn
+	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
 
 func _on_error(_code, message) -> void:
 	# Si falla mostramos el error y reactivamos todo para que puedan volver a intentar
