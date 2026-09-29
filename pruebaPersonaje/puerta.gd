@@ -17,10 +17,10 @@ func actualizar_estado_boton(id: int, activo: bool):
 
 func verificar_apertura():
 	# Si los dos están presionados y la puerta está cerrada, se abre
-	if boton_1_activo and boton_2_activo and not esta_abierta:
+	if boton_1_activo or boton_2_activo and not esta_abierta:
 		abrir_puerta()
 	# Si alguno se baja y la puerta estaba abierta, se cierra (opcional)
-	elif (not boton_1_activo or not boton_2_activo) and esta_abierta:
+	elif (not boton_1_activo and not boton_2_activo) and esta_abierta:
 		cerrar_puerta()
 
 func abrir_puerta():
