@@ -178,6 +178,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="scene" type="Node3D" parent="." unique_id=160946663]
+visible = false
 
 [node name="Suelo 1" parent="scene" unique_id=587720298 instance=ExtResource("6_rlt2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5780194, 0, 0.58179855)
@@ -277,6 +278,7 @@ size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="Terreno" parent="." unique_id=695447382 instance=ExtResource("12_32437")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1862793, 3.0517578e-05, 0.8508301)
 
 [node name="Spawn1" type="Marker3D" parent="Terreno" unique_id=766041144]
 
