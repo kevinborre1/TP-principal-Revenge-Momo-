@@ -282,6 +282,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.104504, 0)
 mesh = SubResource("CapsuleMesh_8w0r3")
 
 [node name="Puerta" type="AnimatableBody3D" parent="." unique_id=2014995360]
+
 transform = Transform3D(-0.03898208, 0, 1.3029299, 0, 1, 0, -0.9890563, 0, -0.0513529, 53.473286, 1.1637187, 1232.6576)
 script = ExtResource("13_gf7y2")
 
@@ -295,12 +296,15 @@ mesh = SubResource("BoxMesh_vicex")
 
 [node name="Boton" parent="." unique_id=1661296307 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.02181, 0.5934515, 1231.0383)
+
 script = ExtResource("15_bmrm7")
 id_boton = 1
 puerta_destino = NodePath("../Puerta")
 
 [node name="Boton2" parent="." unique_id=1599931534 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
+
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.78489, 0.63828754, 1234.1234)
+
 script = ExtResource("15_bmrm7")
 puerta_destino = NodePath("../Puerta")
 
