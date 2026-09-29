@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://6305oxv7tmi8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
+size = Vector3(0.51123047, 1, 2.6713142)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lfkbx"]
+size = Vector3(0.48754883, 1, 2.7693634)
+
+[node name="Puerta" type="Node3D" unique_id=431748661]
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="." unique_id=774502557]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D" unique_id=1362199106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24438477, 0, 1.3326702)
+shape = SubResource("BoxShape3D_lfkbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D/CollisionShape3D" unique_id=1056541199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15274191, 0.009588718, -1.3581859)
+mesh = SubResource("BoxMesh_lfkbx")

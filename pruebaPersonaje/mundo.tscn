@@ -23,6 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://c88j3oj0lf6om" path="res://Terreno/rock023_alb_ht.png" id="21_60bd6"]
 [ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://Terreno/rock023_nrm_rgh.png" id="22_f2pkn"]
 [ext_resource type="PackedScene" uid="uid://dywch7k16daub" path="res://vitictorBar/node_3d.tscn" id="23_0gt8b"]
+[ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://boton.tscn" id="24_a0xth"]
+[ext_resource type="Script" uid="uid://hvgyl0m1iyim" path="res://pruebaPersonaje/puerta.gd" id="25_gx084"]
+[ext_resource type="Script" uid="uid://bqcmxonb3smgp" path="res://boton.gd" id="25_rhlx0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ic15a"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -158,6 +161,12 @@ normal_texture = ExtResource("22_f2pkn")
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_k1edr"), SubResource("Terrain3DMeshAsset_vycbi"), SubResource("Terrain3DMeshAsset_nei3j"), SubResource("Terrain3DMeshAsset_krr3c"), SubResource("Terrain3DMeshAsset_rygad"), SubResource("Terrain3DMeshAsset_0gkdn")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gf7y2"), SubResource("Terrain3DTextureAsset_vubg1")])
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gx084"]
+size = Vector3(0.51123047, 5.135742, 6.286237)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rhlx0"]
+size = Vector3(0.48754883, 4.94751, 6.364826)
+
 [node name="Perso" type="Node3D" unique_id=1851682851]
 script = ExtResource("1_32437")
 
@@ -174,7 +183,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5780194, 0, 0.58179855)
 visible = false
 
-[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=431428625]
+[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=2014391702]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 1/Ground_01" index="0" unique_id=1261392928]
@@ -188,7 +197,7 @@ shape = SubResource("ConcavePolygonShape3D_e8y5e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4866085, -0.4318676, 26.892689)
 visible = false
 
-[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=1138646798]
+[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=477117978]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 3/Ground_03" index="0" unique_id=859087765]
@@ -283,11 +292,36 @@ metadata/_edit_lock_ = true
 [node name="Node3D3" parent="Terreno" unique_id=683354801 instance=ExtResource("23_0gt8b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.170895, 0.4654808, 1255.21)
 
-[node name="CharacterBody3D" parent="Terreno/Node3D3" index="1" unique_id=1060927623]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61.856815)
+[node name="CollisionShape3D" parent="Terreno/Node3D3/StaticBody3D/CollisionShape3D/victorBar/Plane_002" parent_id_path=PackedInt32Array(683354801, 1528389492, 281698263) index="0" unique_id=1985948443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008016825, -0.09394455, -0.006790161)
 
-[node name="Skeleton3D" parent="Terreno/Node3D3" index="2" unique_id=681079757]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61.856815)
+[node name="Boton" parent="Terreno/Node3D3/StaticBody3D/CollisionShape3D" parent_id_path=PackedInt32Array(683354801, 1064991508) index="1" unique_id=277829318 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("24_a0xth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7206154, -0.37801743, 7.1971436)
+script = ExtResource("25_rhlx0")
+id_boton = 1
+puerta_destino = NodePath("../../../Puerta")
+
+[node name="Boton2" parent="Terreno/Node3D3/StaticBody3D/CollisionShape3D" parent_id_path=PackedInt32Array(683354801, 1064991508) index="2" unique_id=2017348483 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("24_a0xth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1627121, -0.40253282, 6.708496)
+script = ExtResource("25_rhlx0")
+puerta_destino = NodePath("../../../Puerta")
+
+[node name="Puerta" type="AnimatableBody3D" parent="Terreno/Node3D3" unique_id=2040297608]
+transform = Transform3D(0.07343074, 0, 0.9973003, 0, 1, 0, -0.9973003, 0, 0.07343074, 0.66952515, 0, 8.044678)
+script = ExtResource("25_gx084")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terreno/Node3D3/Puerta" unique_id=890800226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24389648, 2.067871, 1.7359314)
+shape = SubResource("BoxShape3D_gx084")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terreno/Node3D3/Puerta/CollisionShape3D" unique_id=1281589721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15197754, -0.054254055, 0.023956299)
+mesh = SubResource("BoxMesh_rhlx0")
+
+[connection signal="body_entered" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" method="_on_body_entered"]
+[connection signal="body_exited" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" method="_on_body_exited"]
+[connection signal="body_entered" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton2" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton2" method="_on_body_entered"]
+[connection signal="body_exited" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton2" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton2" method="_on_body_exited"]
 
 [editable path="scene/Suelo 1"]
 [editable path="scene/Suelo 3"]

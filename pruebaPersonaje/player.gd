@@ -27,7 +27,7 @@ var camera_rotation := Vector2.ZERO
 func _ready() -> void:
 	var id_player = name.to_int()
 	set_multiplayer_authority(id_player)
-	
+	add_to_group("Jugador")
 	if has_node("MultiplayerSynchronizer"):
 		$MultiplayerSynchronizer.set_multiplayer_authority(id_player)
 	
