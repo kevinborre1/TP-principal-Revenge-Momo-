@@ -175,11 +175,11 @@ height = 3.5839844
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8w0r3"]
 height = 3.0737305
 
+[sub_resource type="BoxMesh" id="BoxMesh_bmrm7"]
+size = Vector3(0.48754883, 5.7564697, 23.594501)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vubg1"]
 size = Vector3(0.51123047, 5.135742, 14.751516)
-
-[sub_resource type="BoxMesh" id="BoxMesh_bmrm7"]
-size = Vector3(0.48754883, 4.94751, 15.993306)
 
 [node name="Node3D" type="Node3D" unique_id=695447382]
 script = ExtResource("1_bmrm7")
@@ -282,25 +282,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.104504, 0)
 mesh = SubResource("CapsuleMesh_8w0r3")
 
 [node name="Puerta" type="AnimatableBody3D" parent="." unique_id=2014995360]
-transform = Transform3D(0.98927, 0, 0.043630783, 0, 1, 0, -0.033120204, 0, 1.3032113, -7.9124546, 1.1637187, 116.50506)
+transform = Transform3D(0.30176708, 0, 0.020538427, 0, 1.0349078, 0, -0.010102992, 0, 0.6134639, -7.9124546, 1.1637187, 847.7068)
 script = ExtResource("13_gf7y2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Puerta" unique_id=24777070]
+transform = Transform3D(1.0156112, 0, -0.0366535, 0, 1, 0, 0.07012413, 0, 0.53086084, 395.69647, 1.9497494, 614.09155)
+mesh = SubResource("BoxMesh_bmrm7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Puerta" unique_id=1880878467]
 transform = Transform3D(1.0000042, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000042, 0.24389839, 2.067871, 5.968506)
 shape = SubResource("BoxShape3D_vubg1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Puerta/CollisionShape3D" unique_id=24777070]
-transform = Transform3D(1.0109733, 0, 1.4901161e-08, 0, 1, 0, -2.7939677e-08, 0, 0.6721759, -34.779522, 10.829405, 784.54895)
-mesh = SubResource("BoxMesh_bmrm7")
-
 [node name="Boton" parent="." unique_id=1661296307 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.104748, 0.2586174, 1074.3428)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118.343834, 0.65856314, 1217.6608)
 script = ExtResource("15_bmrm7")
 id_boton = 1
 puerta_destino = NodePath("")
 
 [node name="Boton2" parent="." unique_id=1599931534 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3096676, 0.29526067, 1167.321)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.28457, 0.8585999, 1222.1473)
 script = ExtResource("15_bmrm7")
 puerta_destino = NodePath("")
 
