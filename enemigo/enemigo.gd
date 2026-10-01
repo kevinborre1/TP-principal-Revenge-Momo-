@@ -13,26 +13,16 @@ func _physics_process(delta: float) -> void:
 
 	# 3. Perseguir al jugador si existe
 	if jugador_objetivo:
-		# Calculamos la dirección hacia el jugador
-		var direccion = global_position.direction_to(jugador_objetivo.global_position)
-		
-		# Anulamos la dirección Y para que el enemigo no intente volar o hundirse
-		direccion.y = 0 
-		direccion = direccion.normalized()
-		
-		# Aplicamos la velocidad
-		velocity.x = direccion.x * SPEED
-		velocity.z = direccion.z * SPEED
-		
-		# Hacer que el enemigo rote y mire hacia el jugador
+		# Hacer que el enemigo mire hacia el jugador
 		var posicion_mirar = Vector3(jugador_objetivo.global_position.x, global_position.y, jugador_objetivo.global_position.z)
 		if global_position.distance_to(posicion_mirar) > 0.1:
 			look_at(posicion_mirar, Vector3.UP)
-			
-	else:
-		# Si no hay jugadores vivos o detectados, se detiene
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+		# Avanzar hacia ADELANTE en su eje local (-basis.z)
+		var direccion_adelante = -global_transform.basis.z
+		velocity.x = direccion_adelante.x * SPEED
+		velocity.z = direccion_adelante.z * SPEED
+		
 
 	move_and_slide()
 

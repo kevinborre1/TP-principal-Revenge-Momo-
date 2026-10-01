@@ -1283,7 +1283,7 @@ properties/3/replication_mode = 1
 script = ExtResource("1_cm308")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=953820401]
-transform = Transform3D(1, 0, 0, 0, 0.6752861, 0, 0, 0, 1, 0, 0.82293344, 0)
+transform = Transform3D(1, 0, 0, 0, 0.6752861, 0, 0, 0, 1, 0, 0.9624349, 0.14012158)
 shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1910096983]
