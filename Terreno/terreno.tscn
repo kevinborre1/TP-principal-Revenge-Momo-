@@ -249,6 +249,16 @@ size = Vector3(1, 5.61084, 5.93042)
 albedo_texture = ExtResource("17_rygad")
 uv1_scale = Vector3(3, 3, 3)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_rsdri"]
+vertices = PackedVector3Array(-5.2341156, 0.33245838, -1229.6151, -5.2341156, 0.33245838, -1207.3651, 31.265884, 0.33245838, -1207.3651, 31.265884, 0.33245838, -1229.6151)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_height = 0.1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rsdri"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f3mle"]
+size = Vector3(0.91049194, 1, 0.85180664)
+
 [node name="Node3D" type="Node3D" unique_id=695447382]
 script = ExtResource("1_bmrm7")
 
@@ -455,6 +465,19 @@ spawn_path = NodePath("..")
 [node name="enemigo2" parent="." unique_id=1184756133 instance=ExtResource("20_krr3c")]
 transform = Transform3D(1.4541333, 0, 0, 0, 1.8874688, 0, 0, 0, 1, 75.804, 2, 2439.216)
 platform_wall_layers = 1
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="enemigo2" unique_id=256286077]
+navigation_mesh = SubResource("NavigationMesh_rsdri")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="enemigo2/NavigationRegion3D" unique_id=1864901041]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemigo2/NavigationRegion3D/StaticBody3D" unique_id=958141724]
+transform = Transform3D(19.069237, 0, 0, 0, 1, 0, 0, 0, 12.196544, 12.585121, -0.5664661, -1218.1686)
+mesh = SubResource("PlaneMesh_rsdri")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemigo2/NavigationRegion3D/StaticBody3D" unique_id=2058208479]
+transform = Transform3D(41.05986, 0, 0, 0, 0.62386036, 0, 0, 0, 26.97744, 12.986588, -0.35561144, -1218.5333)
+shape = SubResource("BoxShape3D_f3mle")
 
 [connection signal="body_entered" from="Boton" to="Boton" method="_on_body_entered"]
 [connection signal="body_exited" from="Boton" to="Boton" method="_on_body_exited"]
