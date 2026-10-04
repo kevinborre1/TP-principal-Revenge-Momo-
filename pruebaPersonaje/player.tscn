@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://3btbeik6vykv" path="res://pruebaPersonaje/movimientos/macarena.mp3" id="12_jwaew"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
-height = 2.9501953
+height = 2.6706543
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riqsh"]
 resource_name = "Ch02_body"
@@ -1283,7 +1283,7 @@ properties/3/replication_mode = 1
 script = ExtResource("1_cm308")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=953820401]
-transform = Transform3D(1, 0, 0, 0, 0.6752861, 0, 0, 0, 1, 0, 0.9624349, 0.14012158)
+transform = Transform3D(1, 0, 0, 0, 0.6752861, 0, 0, 0, 1, 0, 0.8680498, 0.14012158)
 shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1910096983]
