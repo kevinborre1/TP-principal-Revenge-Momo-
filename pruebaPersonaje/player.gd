@@ -22,6 +22,7 @@ var StaminaPerdida=1.0
 @onready var animation = $"Walk (1)/AnimationPlayer"
 @onready var macarena: AudioStreamPlayer = $musicaBaile2
 var camera_rotation := Vector2.ZERO
+var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 
 
 func _ready() -> void:
@@ -138,11 +139,14 @@ func _physics_process(delta: float) -> void:
 	# Ahora procesamos con las teclas que correspondan a cada uno
 	if Input.is_action_just_pressed(act_salto) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	if Input.is_action_pressed(act_correr) and StaminaActual > 0:
+	print(Input.is_physical_key_pressed(KEY_SHIFT))
+	var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
+	if Global.modo_multijugador == "local" and name == "2":
+		correr_fisico = Input.is_physical_key_pressed(KEY_P)
+	if correr_fisico and StaminaActual > 0:
 		velocidadActual = SPEED * multiplicadorDeCarrera
 		StaminaActual -= StaminaPerdida
-	elif (StaminaActual < StaminaMax) and not Input.is_action_pressed(act_correr) :
+	elif (StaminaActual < StaminaMax) and not correr_fisico :
 		StaminaActual += StaminaRegeneracion
 		
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
