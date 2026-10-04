@@ -142,7 +142,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed(act_correr) and StaminaActual > 0:
 		velocidadActual = SPEED * multiplicadorDeCarrera
 		StaminaActual -= StaminaPerdida
-	elif (StaminaActual < StaminaMax):
+	elif (StaminaActual < StaminaMax) and not Input.is_action_pressed(act_correr) :
 		StaminaActual += StaminaRegeneracion
 		
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
