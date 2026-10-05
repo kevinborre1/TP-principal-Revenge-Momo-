@@ -1,0 +1,496 @@
+[gd_scene format=3 uid="uid://bqns2dkcdavq"]
+
+[ext_resource type="PackedScene" uid="uid://bdot8hp7c7v5d" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Birch_Tree_1.fbx" id="1_x3xat"]
+[ext_resource type="PackedScene" uid="uid://1tptb7s653mi" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Brown_Mushrooms_Cluster_1.fbx" id="2_p46jp"]
+[ext_resource type="PackedScene" uid="uid://d275c6keqrayv" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Forest_Grass_1.fbx" id="3_dws54"]
+[ext_resource type="PackedScene" uid="uid://dslubx5buq6k0" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Pine_Tree_1.fbx" id="4_ebtrj"]
+[ext_resource type="PackedScene" uid="uid://2pd4bos3vi0c" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Robin.fbx" id="5_ma1tk"]
+[ext_resource type="PackedScene" uid="uid://dydrw2kt0buw3" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Woodruff_Cluster_1.fbx" id="6_x1p7f"]
+[ext_resource type="Texture2D" uid="uid://ddprscrpsofah" path="res://Terreno/ground037_alb_ht.png" id="7_p3c8g"]
+[ext_resource type="Texture2D" uid="uid://c1ots7w6i0i1q" path="res://Terreno/ground037_nrm_rgh.png" id="8_dwacr"]
+[ext_resource type="Texture2D" uid="uid://c88j3oj0lf6om" path="res://Terreno/rock023_alb_ht.png" id="9_ymur5"]
+[ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://Terreno/rock023_nrm_rgh.png" id="10_lwo2v"]
+[ext_resource type="PackedScene" uid="uid://blmgdhrpsp8c0" path="res://pruebaPersonaje/player.tscn" id="11_p46jp"]
+[ext_resource type="Script" uid="uid://cdhh2bj1tq1v" path="res://Tutorial/puerta.gd" id="12_p3c8g"]
+[ext_resource type="Texture2D" uid="uid://q4tqm45xmq66" path="res://vitictorBar/puerta.png" id="13_dwacr"]
+[ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://boton.tscn" id="14_ymur5"]
+[ext_resource type="Script" uid="uid://b41v3633fwkh4" path="res://boton1Entrada.gd" id="15_lwo2v"]
+[ext_resource type="Script" uid="uid://dlfycosjams24" path="res://boton2Entrada.gd" id="16_ivch4"]
+
+[sub_resource type="Environment" id="Environment_ivch4"]
+
+[sub_resource type="Gradient" id="Gradient_456fj"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3lk1t"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ghxa4"]
+noise = SubResource("FastNoiseLite_3lk1t")
+color_ramp = SubResource("Gradient_456fj")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_a4klu"]
+_shader_parameters = {
+&"bias_distance": null,
+&"blend_sharpness": null,
+&"depth_blur": null,
+&"enable_macro_variation": null,
+&"enable_projection": null,
+&"flat_terrain_normals": null,
+&"macro_variation1": null,
+&"macro_variation2": null,
+&"macro_variation_slope": null,
+&"mipmap_bias": null,
+&"noise1_angle": null,
+&"noise1_offset": null,
+&"noise1_scale": null,
+&"noise2_scale": null,
+&"noise_texture": SubResource("NoiseTexture2D_ghxa4"),
+&"projection_threshold": null,
+&"world_noise_fragment_normals": null,
+&"world_noise_height": null,
+&"world_noise_lod_distance": null,
+&"world_noise_max_octaves": null,
+&"world_noise_min_octaves": null,
+&"world_noise_offset": null,
+&"world_noise_region_blend": null,
+&"world_noise_scale": null
+}
+world_background = 2
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_k1edr"]
+name = "Birch_Tree_1"
+scene_file = ExtResource("1_x3xat")
+density = 0.041912578
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_vycbi"]
+name = "Brown_Mushrooms_Cluster_1"
+id = 1
+scene_file = ExtResource("2_p46jp")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_nei3j"]
+name = "Forest_Grass_1"
+id = 2
+scene_file = ExtResource("3_dws54")
+density = 5.5967016
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_krr3c"]
+name = "Pine_Tree_1"
+id = 3
+scene_file = ExtResource("4_ebtrj")
+density = 0.041923407
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_rygad"]
+name = "Robin"
+id = 4
+scene_file = ExtResource("5_ma1tk")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_0gkdn"]
+name = "Woodruff_Cluster_1"
+id = 5
+scene_file = ExtResource("6_x1p7f")
+density = 7.877409
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_gf7y2"]
+name = "ground037_alb_ht"
+albedo_texture = ExtResource("7_p3c8g")
+normal_texture = ExtResource("8_dwacr")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_vubg1"]
+name = "rock023_alb_ht"
+id = 1
+albedo_texture = ExtResource("9_ymur5")
+normal_texture = ExtResource("10_lwo2v")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_1uqyg"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_k1edr"), SubResource("Terrain3DMeshAsset_vycbi"), SubResource("Terrain3DMeshAsset_nei3j"), SubResource("Terrain3DMeshAsset_krr3c"), SubResource("Terrain3DMeshAsset_rygad"), SubResource("Terrain3DMeshAsset_0gkdn")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gf7y2"), SubResource("Terrain3DTextureAsset_vubg1")])
+
+[sub_resource type="BoxMesh" id="BoxMesh_tr3kr"]
+size = Vector3(1, 7.3963013, 6.9848633)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1weqr"]
+size = Vector3(1.0802002, 7.3914795, 43.05385)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ect8u"]
+size = Vector3(1, 7.3930664, 51.936558)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s06mn"]
+size = Vector3(24.552551, 7.396179, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e8cmh"]
+size = Vector3(31.317574, 7.748169, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sexue"]
+size = Vector3(29.23402, 7.836731, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_372xe"]
+size = Vector3(1, 7.4554443, 14.025742)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d6yw7"]
+size = Vector3(1, 7.563965, 28.840164)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d0de0"]
+size = Vector3(29.511658, 7.381958, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kl8fx"]
+size = Vector3(10.928238, 7.4189453, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjigc"]
+size = Vector3(6.651001, 1.2636719, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a4klu"]
+size = Vector3(1, 6.9471436, 6.3875732)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uqyg"]
+albedo_texture = ExtResource("13_dwacr")
+uv1_scale = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dfpeg"]
+size = Vector3(1, 7.4783936, 62.733093)
+
+[sub_resource type="BoxMesh" id="BoxMesh_72ksg"]
+size = Vector3(10.397461, 7.4785767, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ile7"]
+size = Vector3(1, 7.932495, 22.177673)
+
+[sub_resource type="BoxMesh" id="BoxMesh_snn8e"]
+size = Vector3(1, 7.749878, 17.771973)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hi5mo"]
+size = Vector3(17.599365, 7.2299805, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0u3xn"]
+size = Vector3(1, 7.2530518, 22.399963)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aeo6j"]
+size = Vector3(1, 7.1152344, 16.411194)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vrlqc"]
+size = Vector3(27.611397, 7.5913696, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w487l"]
+size = Vector3(1, 7.4607544, 5.2384033)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dufpk"]
+size = Vector3(1, 7.483841, 8.250732)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vl2st"]
+size = Vector3(1, 7.4688416, 4.4819336)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ip032"]
+size = Vector3(10.925041, 7.4058228, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wssuk"]
+size = Vector3(9.435669, 7.4918213, 0.8378906)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wwly1"]
+size = Vector3(1, 7.548279, 8.019089)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qxnpl"]
+size = Vector3(1, 7.8016357, 23.147583)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ar4uh"]
+size = Vector3(5.7474976, 7.805786, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cii7d"]
+size = Vector3(1, 7.6957397, 38.25879)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8pqrw"]
+size = Vector3(9.344177, 7.114258, 0.8305664)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b2y03"]
+size = Vector3(13.7039795, 7.7958984, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o33t8"]
+size = Vector3(1, 7.343567, 6.641388)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rtbm7"]
+size = Vector3(1, 7.2733765, 12.613281)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ekt2k"]
+size = Vector3(15.000488, 7.385742, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qcwu3"]
+size = Vector3(1, 9.194336, 13.76355)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rhfet"]
+size = Vector3(18.397324, 8.663818, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7rmqm"]
+size = Vector3(1, 8.958313, 10.001831)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1dpmy"]
+size = Vector3(34.055817, 7.687622, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_284vd"]
+size = Vector3(1, 7.6905518, 31.850372)
+
+[sub_resource type="BoxMesh" id="BoxMesh_we43u"]
+size = Vector3(1, 7.748108, 7.1538086)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u3qxy"]
+size = Vector3(8.567749, 7.7807007, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rblst"]
+size = Vector3(11.432495, 7.5059814, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j3d8f"]
+size = Vector3(1, 7.5862427, 7.7299805)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n1jgx"]
+size = Vector3(1, 7.2246094, 19.29773)
+
+[node name="Tutorial" type="Node3D" unique_id=1249852627]
+
+[node name="Player" parent="." unique_id=679560290 instance=ExtResource("11_p46jp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1957607, 0, -34.852703)
+
+[node name="Entorno" type="Node3D" parent="." unique_id=1448917607]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Entorno" unique_id=33711303]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Entorno" unique_id=749834252]
+environment = SubResource("Environment_ivch4")
+
+[node name="Terrain3D" type="Terrain3D" parent="Entorno" unique_id=552562967]
+data_directory = "res://Terreno"
+material = SubResource("Terrain3DMaterial_a4klu")
+assets = SubResource("Terrain3DAssets_1uqyg")
+collision_mode = 3
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Laberinto" type="Node3D" parent="." unique_id=724255712]
+
+[node name="Pared 2" type="MeshInstance3D" parent="Laberinto" unique_id=1381541284]
+transform = Transform3D(0.009276213, 0, 0.99995697, 0, 1, 0, -0.99995697, 0, 0.009276213, -2.9534876, 3.1981506, -39.622803)
+mesh = SubResource("BoxMesh_tr3kr")
+
+[node name="Pared 1" type="MeshInstance3D" parent="Laberinto" unique_id=1101336425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.040100098, 3.1957397, -18.5102)
+mesh = SubResource("BoxMesh_1weqr")
+
+[node name="Pared 3" type="MeshInstance3D" parent="Laberinto" unique_id=959511783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.845626, 3.1965332, -14.14673)
+mesh = SubResource("BoxMesh_ect8u")
+
+[node name="Pared 4" type="MeshInstance3D" parent="Laberinto" unique_id=86867058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.776276, 3.1980896, 3.458468)
+mesh = SubResource("BoxMesh_s06mn")
+
+[node name="Pared 5" type="MeshInstance3D" parent="Laberinto" unique_id=557060659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.158787, 3.3740845, 11.165296)
+mesh = SubResource("BoxMesh_e8cmh")
+
+[node name="Pared 6" type="MeshInstance3D" parent="Laberinto" unique_id=1274173684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.636736, 3.4183655, 17.332031)
+mesh = SubResource("BoxMesh_sexue")
+
+[node name="Pared 7" type="MeshInstance3D" parent="Laberinto" unique_id=440766257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.42844, 3.2277222, -3.1761227)
+mesh = SubResource("BoxMesh_372xe")
+
+[node name="Pared 8" type="MeshInstance3D" parent="Laberinto" unique_id=1463949984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.709946, 3.2819824, -10.50573)
+mesh = SubResource("BoxMesh_d6yw7")
+
+[node name="Pared 9" type="MeshInstance3D" parent="Laberinto" unique_id=297001134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.423283, 3.190979, -24.519829)
+mesh = SubResource("BoxMesh_d0de0")
+
+[node name="Pared 10" type="MeshInstance3D" parent="Laberinto" unique_id=209878498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.70982, 3.2094727, -6.402981)
+mesh = SubResource("BoxMesh_kl8fx")
+
+[node name="Salto 1" type="MeshInstance3D" parent="Laberinto" unique_id=2082793231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.177269, 0.13183594, -19.153605)
+mesh = SubResource("BoxMesh_fjigc")
+
+[node name="Salto 2" type="MeshInstance3D" parent="Laberinto" unique_id=977449149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.177269, 0.13183594, -12.776619)
+mesh = SubResource("BoxMesh_fjigc")
+
+[node name="Puerta" type="AnimatableBody3D" parent="Laberinto" unique_id=978436962]
+script = ExtResource("12_p3c8g")
+
+[node name="Puerta" type="MeshInstance3D" parent="Laberinto/Puerta" unique_id=2104683256]
+transform = Transform3D(-4.3711122e-08, 0, 0.9999999, 0, 1, 0, -0.9999939, 0, -4.3711385e-08, -3.3422701, 3.4378378, 3.316163)
+mesh = SubResource("BoxMesh_a4klu")
+surface_material_override/0 = SubResource("StandardMaterial3D_1uqyg")
+
+[node name="Boton1 Primera Puerta" parent="Laberinto" unique_id=1661296307 instance=ExtResource("14_ymur5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.431713, 0, -15.908907)
+script = ExtResource("15_lwo2v")
+
+[node name="Boton2 Primera Puerta2" parent="Laberinto" unique_id=1576081667 instance=ExtResource("14_ymur5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20149136, 0, 4.6379642)
+script = ExtResource("16_ivch4")
+
+[node name="Pared 11" type="MeshInstance3D" parent="Laberinto" unique_id=1867627151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.569786, 3.2391968, 8.140888)
+mesh = SubResource("BoxMesh_dfpeg")
+
+[node name="Pared 12" type="MeshInstance3D" parent="Laberinto" unique_id=391727877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.930492, 3.2392883, 22.795835)
+mesh = SubResource("BoxMesh_72ksg")
+
+[node name="Pared 13" type="MeshInstance3D" parent="Laberinto" unique_id=661408661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.889112, 3.4662476, 28.512901)
+mesh = SubResource("BoxMesh_0ile7")
+
+[node name="Pared 14" type="MeshInstance3D" parent="Laberinto" unique_id=434081423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.471001, 3.374939, 25.725996)
+mesh = SubResource("BoxMesh_snn8e")
+
+[node name="Pared 15" type="MeshInstance3D" parent="Laberinto" unique_id=1496676715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.158713, 3.1149902, 39.42824)
+mesh = SubResource("BoxMesh_hi5mo")
+
+[node name="Pared 16" type="MeshInstance3D" parent="Laberinto" unique_id=1298045689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.708796, 3.1265259, 28.665752)
+mesh = SubResource("BoxMesh_0u3xn")
+
+[node name="Pared 17" type="MeshInstance3D" parent="Laberinto" unique_id=1206454516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20662975, 3.0576172, 31.56176)
+mesh = SubResource("BoxMesh_aeo6j")
+
+[node name="Pared 18" type="MeshInstance3D" parent="Laberinto" unique_id=395991215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3912315, 3.2956848, 45.454735)
+mesh = SubResource("BoxMesh_vrlqc")
+
+[node name="Pared 19" type="MeshInstance3D" parent="Laberinto" unique_id=990845652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.546247, 3.2303772, 24.780891)
+mesh = SubResource("BoxMesh_w487l")
+
+[node name="Pared 20" type="MeshInstance3D" parent="Laberinto" unique_id=1445959308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.47913, 3.2419205, 35.529198)
+mesh = SubResource("BoxMesh_dufpk")
+
+[node name="Pared EsterEgg" type="MeshInstance3D" parent="Laberinto" unique_id=1032081800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.50425, 3.2344208, 29.488163)
+mesh = SubResource("BoxMesh_vl2st")
+
+[node name="Pared 21" type="MeshInstance3D" parent="Laberinto" unique_id=1468472530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.802662, 3.2029114, 39.101334)
+mesh = SubResource("BoxMesh_ip032")
+
+[node name="Pared 23" type="MeshInstance3D" parent="Laberinto" unique_id=27682437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.82514, 3.2459106, -17.344845)
+mesh = SubResource("BoxMesh_wssuk")
+
+[node name="Pared 24" type="MeshInstance3D" parent="Laberinto" unique_id=262834838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.759644, 3.2741394, -21.005424)
+mesh = SubResource("BoxMesh_wwly1")
+
+[node name="Pared 25" type="MeshInstance3D" parent="Laberinto" unique_id=1577320023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.914772, 3.4008179, 11.601868)
+mesh = SubResource("BoxMesh_qxnpl")
+
+[node name="Pared 26" type="MeshInstance3D" parent="Laberinto" unique_id=240587005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.58435, 3.402893, 3.552477)
+mesh = SubResource("BoxMesh_ar4uh")
+
+[node name="Pared 27" type="MeshInstance3D" parent="Laberinto" unique_id=1911915666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.761717, 3.3478699, 36.256783)
+mesh = SubResource("BoxMesh_cii7d")
+
+[node name="Pared 28" type="MeshInstance3D" parent="Laberinto" unique_id=507063156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1720886, 3.057129, 31.47329)
+mesh = SubResource("BoxMesh_8pqrw")
+
+[node name="Pared 29" type="MeshInstance3D" parent="Laberinto" unique_id=604198956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.80767, 3.3979492, 22.542974)
+mesh = SubResource("BoxMesh_b2y03")
+
+[node name="Pared 30" type="MeshInstance3D" parent="Laberinto" unique_id=915274277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.18785, 3.1717834, 42.417305)
+mesh = SubResource("BoxMesh_o33t8")
+
+[node name="Pared 22" type="MeshInstance3D" parent="Laberinto" unique_id=1408434618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.043262, 3.2391968, 25.301014)
+mesh = SubResource("BoxMesh_dfpeg")
+
+[node name="Pared 31" type="MeshInstance3D" parent="Laberinto" unique_id=1839196896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.175738, 3.1366882, 52.19295)
+mesh = SubResource("BoxMesh_rtbm7")
+
+[node name="Pared 32" type="MeshInstance3D" parent="Laberinto" unique_id=2030442285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.000244, 3.192871, 52.27347)
+mesh = SubResource("BoxMesh_ekt2k")
+
+[node name="Pared 33" type="MeshInstance3D" parent="Laberinto" unique_id=1133241399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.893879, 4.097168, 5.7164097)
+mesh = SubResource("BoxMesh_qcwu3")
+
+[node name="Pared 34" type="MeshInstance3D" parent="Laberinto" unique_id=1818576779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.418829, 3.8319092, -23.026548)
+mesh = SubResource("BoxMesh_rhfet")
+
+[node name="Pared 35" type="MeshInstance3D" parent="Laberinto" unique_id=541943293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.944625, 3.9791565, -18.703213)
+mesh = SubResource("BoxMesh_7rmqm")
+
+[node name="Pared 36" type="MeshInstance3D" parent="Laberinto" unique_id=1198630572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.623285, 3.343811, -30.80409)
+mesh = SubResource("BoxMesh_1dpmy")
+
+[node name="Pared 37" type="MeshInstance3D" parent="Laberinto" unique_id=185528716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.46382, 3.3452759, -15.425186)
+mesh = SubResource("BoxMesh_284vd")
+
+[node name="Pared 38" type="MeshInstance3D" parent="Laberinto" unique_id=653283124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.44156, 3.374054, -14.345003)
+mesh = SubResource("BoxMesh_we43u")
+
+[node name="Pared 39" type="MeshInstance3D" parent="Laberinto" unique_id=250341012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.21484, 3.3550415, 0)
+mesh = SubResource("BoxMesh_u3qxy")
+
+[node name="Pared 40" type="MeshInstance3D" parent="Laberinto" unique_id=1628184401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.393734, 3.3903503, -14.436428)
+mesh = SubResource("BoxMesh_u3qxy")
+
+[node name="Pared 41" type="MeshInstance3D" parent="Laberinto" unique_id=1686110465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.849707, 3.2529907, -10.086164)
+mesh = SubResource("BoxMesh_rblst")
+
+[node name="Pared 42" type="MeshInstance3D" parent="Laberinto" unique_id=1411813230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.511832, 3.2931213, -6.9098616)
+mesh = SubResource("BoxMesh_j3d8f")
+
+[node name="Pared 43" type="MeshInstance3D" parent="Laberinto" unique_id=1907436924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8079615, 3.1123047, -10.576187)
+mesh = SubResource("BoxMesh_n1jgx")
