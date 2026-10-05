@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://boton.tscn" id="24_a0xth"]
 [ext_resource type="Script" uid="uid://hvgyl0m1iyim" path="res://pruebaPersonaje/puerta.gd" id="25_gx084"]
 [ext_resource type="Script" uid="uid://bqcmxonb3smgp" path="res://boton.gd" id="25_rhlx0"]
+[ext_resource type="PackedScene" uid="uid://blmgdhrpsp8c0" path="res://pruebaPersonaje/player.tscn" id="26_rhlx0"]
 
 [sub_resource type="GDScript" id="GDScript_gx084"]
 
@@ -251,33 +252,6 @@ visible = false
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
 spawn_path = NodePath("..")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=429966252]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=524396032]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" unique_id=728237508]
-handle_input_locally = false
-size = Vector2i(574, 648)
-render_target_update_mode = 4
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer" unique_id=1188815233]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2" unique_id=891366992]
-handle_input_locally = false
-size = Vector2i(574, 648)
-render_target_update_mode = 4
-
 [node name="Terreno" parent="." unique_id=695447382 instance=ExtResource("12_32437")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1862793, 3.0517578e-05, 0.8508301)
 
@@ -317,6 +291,72 @@ shape = SubResource("BoxShape3D_gx084")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terreno/Node3D3/Puerta/CollisionShape3D" unique_id=1281589721]
 transform = Transform3D(1.0109733, 0, 2.0489097e-08, 0, 1, 0, -2.9802322e-08, 0, 0.6721759, -0.15625954, -0.054254055, -0.48828125)
 mesh = SubResource("BoxMesh_rhlx0")
+
+[node name="Player" parent="." unique_id=679560290 instance=ExtResource("26_rhlx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.7525177, 1209.5585)
+
+[node name="Inventario" type="HBoxContainer" parent="Player" unique_id=309251546]
+anchors_preset = -1
+anchor_left = 0.293
+anchor_top = 0.94100004
+anchor_right = 0.517
+anchor_bottom = 0.94100004
+offset_left = 0.46398926
+offset_top = -31.768005
+offset_right = 17.415955
+offset_bottom = 32.231995
+
+[node name="Panel" type="Panel" parent="Player/Inventario" unique_id=710728649]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Player/Inventario/Panel" unique_id=1322031446]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="Player/Inventario" unique_id=52366187]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Player/Inventario/Panel2" unique_id=1737281297]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel3" type="Panel" parent="Player/Inventario" unique_id=500886295]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Player/Inventario/Panel3" unique_id=1174935137]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel4" type="Panel" parent="Player/Inventario" unique_id=1459745607]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Player/Inventario/Panel4" unique_id=1461583349]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
 
 [connection signal="body_entered" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" method="_on_body_entered"]
 [connection signal="body_exited" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" method="_on_body_exited"]

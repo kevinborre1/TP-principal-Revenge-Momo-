@@ -13,6 +13,8 @@ var StaminaMax = 100.0
 var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
 var StaminaPerdida=1.0
+var inventario = [null, null, null, null] 
+
 # Referencias a los nodos
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
@@ -21,6 +23,7 @@ var StaminaPerdida=1.0
 @onready var camara: Camera3D = find_child("Camera3D", true, false) as Camera3D
 @onready var animation = $"Walk (1)/AnimationPlayer"
 @onready var macarena: AudioStreamPlayer = $musicaBaile2
+@onready var slots_ui = $Inventario.get_children() # Obtiene los 4 Paneles
 var camera_rotation := Vector2.ZERO
 var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 
@@ -239,8 +242,22 @@ func player_animation():
 	else:
 		animation.play("Standing Idle/mixamo_com", 0.3)
 
-
+func recolectar_item(nombre_item: String, textura_icono: Texture2D) -> bool:
+	for i in range(inventario.size()):
+		# Si encontramos una casilla vacía
+			if inventario[i] == null:
+			# Guardamos el dato
+				inventario[i] = nombre_item
+			
+				var icono_visual = slots_ui[i].get_node("Icono")
+				icono_visual.texture = textura_icono
+			
+			return true # Recolección exitosa
+			
+	print("El inventario está lleno")
+	return false # No hay espacio
 # Función auxiliar para frenar la canción
 func detener_musica_baile():
 	if macarena and macarena.playing:
 		macarena.stop()
+		
