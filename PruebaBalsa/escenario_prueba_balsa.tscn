@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c662pwaw3sova"]
+
+[ext_resource type="PackedScene" uid="uid://drbl16pfdhvfc" path="res://PruebaBalsa/balsa.tscn" id="1_jdb0f"]
+[ext_resource type="PackedScene" uid="uid://blmgdhrpsp8c0" path="res://pruebaPersonaje/player.tscn" id="2_ugor3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(100, 1, 100)
+
+[node name="EscenarioPruebaBalsa" type="Node3D" unique_id=989266299]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=31943253]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=66432239]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=472985982]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="Balsa" parent="." unique_id=1691361298 instance=ExtResource("1_jdb0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1926866, 0)
+
+[node name="Player" parent="." unique_id=679560290 instance=ExtResource("2_ugor3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4266028, 1.3572719, 0)

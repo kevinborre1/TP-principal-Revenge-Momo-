@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://drbl16pfdhvfc"]
+
+[ext_resource type="Script" uid="uid://b1sug1vjol24t" path="res://PruebaBalsa/balsa.gd" id="1_af6np"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_57qmd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0u6y"]
+albedo_color = Color(0.19753164, 0.0677966, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(2.5, 0.5, 3.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(3.5, 1, 4.5)
+
+[node name="Balsa" type="CharacterBody3D" unique_id=803523883]
+script = ExtResource("1_af6np")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=39820963]
+transform = Transform3D(2.5, 0, 0, 0, 0.5, 0, 0, 0, 3.5, 0.0034487247, 0.006828308, 0.0032846928)
+mesh = SubResource("BoxMesh_57qmd")
+surface_material_override/0 = SubResource("StandardMaterial3D_d0u6y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=541825110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009277344, 0)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="ZonaAbordaje" type="Area3D" parent="." unique_id=1485306416]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonaAbordaje" unique_id=879734345]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[connection signal="body_entered" from="ZonaAbordaje" to="." method="_on_zona_abordaje_body_entered"]
+[connection signal="body_exited" from="ZonaAbordaje" to="." method="_on_zona_abordaje_body_exited"]
