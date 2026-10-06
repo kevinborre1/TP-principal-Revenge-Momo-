@@ -186,7 +186,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5780194, 0, 0.58179855)
 visible = false
 
-[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=515401297]
+[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=1979836461]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 1/Ground_01" index="0" unique_id=1261392928]
@@ -200,7 +200,7 @@ shape = SubResource("ConcavePolygonShape3D_e8y5e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4866085, -0.4318676, 26.892689)
 visible = false
 
-[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=543544171]
+[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=973785357]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 3/Ground_03" index="0" unique_id=859087765]
@@ -295,7 +295,7 @@ mesh = SubResource("BoxMesh_rhlx0")
 [node name="Player" parent="." unique_id=679560290 instance=ExtResource("26_rhlx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.7525177, 1209.5585)
 
-[node name="Inventario" type="HBoxContainer" parent="Player" unique_id=309251546]
+[node name="Inventario2" type="HBoxContainer" parent="Player" unique_id=309251546]
 anchors_preset = -1
 anchor_left = 0.293
 anchor_top = 0.94100004
@@ -306,11 +306,11 @@ offset_top = -31.768005
 offset_right = 17.415955
 offset_bottom = 32.231995
 
-[node name="Panel" type="Panel" parent="Player/Inventario" unique_id=710728649]
+[node name="Panel" type="Panel" parent="Player/Inventario2" unique_id=710728649]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="icono" type="TextureRect" parent="Player/Inventario/Panel" unique_id=1322031446]
+[node name="icono" type="TextureRect" parent="Player/Inventario2/Panel" unique_id=1322031446]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -319,11 +319,11 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
-[node name="Panel2" type="Panel" parent="Player/Inventario" unique_id=52366187]
+[node name="Panel2" type="Panel" parent="Player/Inventario2" unique_id=52366187]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="icono" type="TextureRect" parent="Player/Inventario/Panel2" unique_id=1737281297]
+[node name="icono" type="TextureRect" parent="Player/Inventario2/Panel2" unique_id=1737281297]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -332,11 +332,11 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
-[node name="Panel3" type="Panel" parent="Player/Inventario" unique_id=500886295]
+[node name="Panel3" type="Panel" parent="Player/Inventario2" unique_id=500886295]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="icono" type="TextureRect" parent="Player/Inventario/Panel3" unique_id=1174935137]
+[node name="icono" type="TextureRect" parent="Player/Inventario2/Panel3" unique_id=1174935137]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -345,11 +345,11 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
-[node name="Panel4" type="Panel" parent="Player/Inventario" unique_id=1459745607]
+[node name="Panel4" type="Panel" parent="Player/Inventario2" unique_id=1459745607]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="icono" type="TextureRect" parent="Player/Inventario/Panel4" unique_id=1461583349]
+[node name="icono" type="TextureRect" parent="Player/Inventario2/Panel4" unique_id=1461583349]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

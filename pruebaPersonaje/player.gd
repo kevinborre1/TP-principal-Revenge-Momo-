@@ -84,7 +84,9 @@ func _input(event: InputEvent) -> void:
 	# Bloqueamos inputs si estamos en línea y no somos el dueño del personaje
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
-		
+	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
+		soltar_item(0) # Suelta el ítem de la primera ranura (índice 0)
+	
 	# Si haces clic izquierdo, vuelve a capturar el ratón (útil si inicias la escena directamente)
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -109,6 +111,7 @@ func _input(event: InputEvent) -> void:
 		
 		spring_arm_3d.rotation.x = camera_rotation.x
 		spring_arm_3d.rotation.y = camera_rotation.y
+		
 func _physics_process(delta: float) -> void:
 	
 	player_animation()
@@ -168,6 +171,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
+	
+	# Coloca esto dentro de _physics_process
+	if Input.is_action_just_pressed("ui_focus_next"): # Tecla Tab por defecto
+	# Carga una imagen temporal que ya tengas en el proyecto
+		var textura_prueba = preload("res://vitictorBar/assetsCocina/textures/chocolate.png") 
+		recolectar_item("Ítem de prueba", textura_prueba)
 
 	move_and_slide()
 	
@@ -249,7 +258,7 @@ func recolectar_item(nombre_item: String, textura_icono: Texture2D) -> bool:
 			# Guardamos el dato
 				inventario[i] = nombre_item
 			
-				var icono_visual = slots_ui[i].get_node("Icono")
+				var icono_visual = slots_ui[i].get_node("icono")
 				icono_visual.texture = textura_icono
 			
 			return true # Recolección exitosa
@@ -261,3 +270,24 @@ func detener_musica_baile():
 	if macarena and macarena.playing:
 		macarena.stop()
 		
+func soltar_item(indice_slot: int):
+	if inventario[indice_slot] != null:
+		var nombre_item = inventario[indice_slot]
+
+		# 1. Vaciar el inventario
+		inventario[indice_slot] = null
+		var icono_visual = slots_ui[indice_slot].get_node("Icono")
+		icono_visual.texture = null
+
+		# 2. Instanciar la botella de nuevo en el mundo
+		if nombre_item == "Botella de Cerveza":
+			# Cargar la escena de la botella
+			var escena_botella = load("res://vitictorBar/assetsCocina/glb/beer_bottle.glb") # ¡Asegúrate de poner la ruta correcta!
+			var nueva_botella = escena_botella.instantiate()
+
+			# Obtener la escena principal del mundo para añadirla
+			var mundo = get_tree().current_scene
+			mundo.add_child(nueva_botella)
+
+			# Posicionar la botella un poco adelante y arriba del jugador
+			nueva_botella.global_position = global_position + (global_transform.basis.z * -1.5) + Vector3(0, 1, 0)
