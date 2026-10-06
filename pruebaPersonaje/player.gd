@@ -94,7 +94,8 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if event.is_action_pressed("ui_accept") and not is_on_floor():
+		# Cambia "ui_accept" por una acción específica que hayas creado, ej: "hacer_ragdoll"
+	if event.is_action_pressed("hacer_ragdoll") and not is_on_floor():
 		activar_ragdoll()
 
 	# LÓGICA DE LA CÁMARA
