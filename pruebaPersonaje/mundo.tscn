@@ -306,6 +306,58 @@ offset_top = -31.768005
 offset_right = 17.415955
 offset_bottom = 32.231995
 
+[node name="Panel" type="Panel" parent="Player/Inventario2" unique_id=710728649]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Player/Inventario2/Panel" unique_id=1322031446]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="Player/Inventario2" unique_id=52366187]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Player/Inventario2/Panel2" unique_id=1737281297]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel3" type="Panel" parent="Player/Inventario2" unique_id=500886295]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Player/Inventario2/Panel3" unique_id=1174935137]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel4" type="Panel" parent="Player/Inventario2" unique_id=1459745607]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Player/Inventario2/Panel4" unique_id=1461583349]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
 [connection signal="body_entered" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" method="_on_body_entered"]
 [connection signal="body_exited" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton" method="_on_body_exited"]
 [connection signal="body_entered" from="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton2" to="Terreno/Node3D3/StaticBody3D/CollisionShape3D/Boton2" method="_on_body_entered"]
