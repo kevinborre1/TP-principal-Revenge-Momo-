@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://w1tkjhbikrtk" path="res://enemigo/enemigo.tscn" id="20_krr3c"]
 [ext_resource type="Script" uid="uid://cpijd7v4m7hdc" path="res://Terreno/botella_cerveza.gd" id="21_0gkdn"]
 [ext_resource type="PackedScene" uid="uid://chha660qt0ow1" path="res://vitictorBar/assetsCocina/glb/beer_bottle.glb" id="21_rygad"]
-[ext_resource type="Texture2D" uid="uid://b05jqra573b5n" path="res://vitictorBar/assetsCocina/textures/beer bottle.png" id="22_yxiyc"]
+[ext_resource type="Texture2D" uid="uid://bc3icldv1i6an" path="res://vitictorBar/assetsCocina/textures/cerveza.jpg" id="22_yxiyc"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 
@@ -322,8 +322,8 @@ cell_height = 0.1
 size = Vector3(0.91049194, 1, 0.85180664)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8w0r3"]
-height = 4.96
-radius = 0.4
+height = 1.6554726
+radius = 0.1381836
 
 [node name="Node3D" type="Node3D" unique_id=695447382]
 script = ExtResource("1_bmrm7")
@@ -692,17 +692,16 @@ script = ExtResource("21_0gkdn")
 textura_icono = ExtResource("22_yxiyc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BotellaCerveza" unique_id=1759098200]
-transform = Transform3D(0.9873963, 0, 0, 0, 0.225, 0, 0, 0, 1, 43.991707, 0.62242556, 1241.9916)
+transform = Transform3D(4.329, 0, 0, 0, 1, 0, 0, 0, 4.45, 43.991707, -1.0020373, 1241.9916)
 shape = SubResource("CylinderShape3D_8w0r3")
 
 [node name="beer_bottle" parent="BotellaCerveza" unique_id=1591477823 instance=ExtResource("21_rygad")]
-transform = Transform3D(3.4614308, 0, 0, 0, 2.8573425, 0, 0, 0, 1.9329164, 44.18923, 0.59614146, 1241.9994)
+transform = Transform3D(3.4614308, 0, 0, 0, 2.8573425, 0, 0, 0, 1.9329164, 44.18923, -0.942564, 1241.9994)
 
 [connection signal="body_entered" from="Boton" to="Boton" method="_on_body_entered"]
 [connection signal="body_exited" from="Boton" to="Boton" method="_on_body_exited"]
 [connection signal="body_entered" from="Boton2" to="Boton2" method="_on_body_entered"]
 [connection signal="body_exited" from="Boton2" to="Boton2" method="_on_body_exited"]
 [connection signal="body_entered" from="BotellaCerveza" to="BotellaCerveza" method="_on_body_entered"]
-[connection signal="body_exited" from="BotellaCerveza" to="BotellaCerveza" method="_on_body_exited"]
 
 [editable path="Node3D2/StaticBody3D/CollisionShape3D/victorBar"]
