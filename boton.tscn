@@ -7,7 +7,7 @@ size = Vector3(2.6607685, 2.2677002, 2.1987915)
 size = Vector3(2.5054626, 0.25927734, 2.3391113)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77to7"]
-albedo_color = Color(0, 1, 1, 1)
+albedo_color = Color(6.6901744e-06, 0.9074077, 0.057302408, 1)
 
 [node name="Area3D" type="Area3D" unique_id=1661296307]
 
