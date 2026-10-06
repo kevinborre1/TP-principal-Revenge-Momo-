@@ -10,6 +10,9 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
 
 func _ready() -> void:
+	print("Mundo ready, llamando set_mode")
+	GameManager.set_mode(GameManager.GameMode.RECOLECCION, 3)
+	
 	# Configurar la UI
 	contenedor_principal.set_anchors_preset(Control.PRESET_FULL_RECT)
 	subviewport_container1.size_flags_horizontal = Control.SIZE_EXPAND_FILL

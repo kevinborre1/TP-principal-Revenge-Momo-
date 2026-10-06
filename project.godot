@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 NetworkManager="*uid://bdd42b2j7dofr"
 Global="*uid://b3vlg3aw4po6o"
+GameManager="*uid://cchkgm2wgox1r"
 
 [display]
 

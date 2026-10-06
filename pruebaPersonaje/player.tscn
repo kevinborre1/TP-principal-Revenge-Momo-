@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cqlbgxemxlrsn" path="res://assets/objetoprueba1.png" id="7_7fgg8"]
 [ext_resource type="AnimationLibrary" uid="uid://cy4i6lh10w3tb" path="res://pruebaPersonaje/movimientos/Macarena Dance.fbx" id="7_gpnnl"]
 [ext_resource type="AnimationLibrary" uid="uid://3aoqg7e5syl5" path="res://pruebaPersonaje/movimientos/Standing Idle.fbx" id="8_7fotu"]
+[ext_resource type="Script" uid="uid://cq64ums2jdd4k" path="res://pruebaPersonaje/hud.gd" id="11_7fotu"]
+[ext_resource type="Script" uid="uid://cpbrvyfpmv2oi" path="res://pruebaPersonaje/icon_counter.gd" id="12_gpnnl"]
 [ext_resource type="AudioStream" uid="uid://3btbeik6vykv" path="res://pruebaPersonaje/movimientos/macarena.mp3" id="12_jwaew"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
@@ -1884,22 +1886,50 @@ vertical_alignment = 1
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=247967191]
 offset_right = 206.0
 offset_bottom = 48.0
+script = ExtResource("11_7fotu")
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer2" unique_id=564133736]
 layout_mode = 2
 columns = 3
 
 [node name="Objeto1" type="TextureRect" parent="PanelContainer2/GridContainer" unique_id=1224983909]
+visible = false
 layout_mode = 2
 texture = ExtResource("7_7fgg8")
 
 [node name="Objeto2" type="TextureRect" parent="PanelContainer2/GridContainer" unique_id=758084862]
+visible = false
 layout_mode = 2
 texture = ExtResource("7_7fgg8")
 
 [node name="Objeto3" type="TextureRect" parent="PanelContainer2/GridContainer" unique_id=1602424306]
+visible = false
 layout_mode = 2
 texture = ExtResource("7_7fgg8")
+
+[node name="icon_counter" type="Control" parent="PanelContainer2" unique_id=628607451 node_paths=PackedStringArray("icons")]
+layout_mode = 2
+script = ExtResource("12_gpnnl")
+icons = [NodePath("Icon1"), NodePath("Icon2"), NodePath("Icon3")]
+
+[node name="Icon1" type="TextureRect" parent="PanelContainer2/icon_counter" unique_id=1034182045]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Icon2" type="TextureRect" parent="PanelContainer2/icon_counter" unique_id=738929151]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 1.0
+offset_right = 132.0
+offset_bottom = 65.0
+
+[node name="Icon3" type="TextureRect" parent="PanelContainer2/icon_counter" unique_id=570243472]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 1.0
+offset_right = 204.0
+offset_bottom = 65.0
 
 [node name="musicaBaile" type="AudioStreamPlayer3D" parent="." unique_id=1923782396]
 auto_translate_mode = 2
