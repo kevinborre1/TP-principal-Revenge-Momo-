@@ -37,7 +37,7 @@ shape = SubResource("CapsuleShape3D_jv311")
 [node name="patato" parent="." unique_id=2035732365 instance=ExtResource("2_hft8b")]
 transform = Transform3D(0.40626174, 0, 0, 0, 0.4067235, 0, 0, 0, 0.44677544, -35.89851, -1, -1219.7277)
 
-[node name="Skeleton3D" parent="patato/Арматура" parent_id_path=PackedInt32Array(2035732365, 1409857617) index="0" unique_id=642690580]
+[node name="Skeleton3D" parent="patato/Арматура" parent_id_path=PackedInt32Array(2035732365, 1045598121) index="0" unique_id=84810393]
 bones/2/rotation = Quaternion(0.88404053, 4.625517e-17, 4.6255202e-17, -0.46741024)
 bones/4/rotation = Quaternion(0.20026135, -0.096802495, -0.70044947, 0.6781557)
 bones/6/rotation = Quaternion(-0.10085652, 0.2041848, -0.6769851, 0.69987696)
@@ -80,7 +80,7 @@ bones/64/rotation = Quaternion(0.017122367, -0.7089767, -0.01965526, 0.70475)
 bones/65/rotation = Quaternion(-0.02738534, 1.268843e-06, -4.7254275e-08, 0.999625)
 bones/66/rotation = Quaternion(0.47904867, -0.5057072, 0.49444875, 0.5198971)
 
-[node name="AnimationPlayer" parent="patato" index="1" unique_id=1814360341]
+[node name="AnimationPlayer" parent="patato" index="1" unique_id=218453790]
 autoplay = &"Арматура|Idle"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1451007841]
