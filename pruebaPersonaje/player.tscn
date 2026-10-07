@@ -1944,13 +1944,13 @@ stream = ExtResource("12_jwaew")
 
 [node name="Inventario" type="HBoxContainer" parent="." unique_id=278210272]
 anchors_preset = -1
-anchor_left = 0.293
+anchor_left = 0.33900002
 anchor_top = 0.94100004
-anchor_right = 0.517
+anchor_right = 0.63500005
 anchor_bottom = 0.94100004
-offset_left = 101.46399
+offset_left = 0.47198486
 offset_top = -33.768005
-offset_right = 116.415955
+offset_right = -0.52008057
 offset_bottom = 30.231995
 
 [node name="Panel" type="Panel" parent="Inventario" unique_id=130061932]
@@ -1997,6 +1997,19 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
 [node name="icono" type="TextureRect" parent="Inventario/Panel4" unique_id=191225096]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel5" type="Panel" parent="Inventario" unique_id=1967599951]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Inventario/Panel5" unique_id=1328534898]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
