@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ke3aopuhwr2j" path="res://pruebaPersonaje/minijuego/assets/simbolo_05.png" id="6_tdsrg"]
 [ext_resource type="Texture2D" uid="uid://b84jukgmmhgvk" path="res://pruebaPersonaje/minijuego/assets/simbolo_06.png" id="7_0ykop"]
 [ext_resource type="Texture2D" uid="uid://dsml5d52pnpfu" path="res://pruebaPersonaje/minijuego/assets/simbolo_07.png" id="8_fwy4r"]
-[ext_resource type="Texture2D" uid="uid://7bocb0wwxdcy" path="res://pruebaPersonaje/minijuego/assets/simbolo_08.png" id="9_khfty"]
+[ext_resource type="Texture2D" uid="uid://bvo1iv6a7i4qv" path="res://pruebaPersonaje/minijuego/assets/simbolo_08.png" id="9_khfty"]
 [ext_resource type="Texture2D" uid="uid://dejjbsib2lqwe" path="res://pruebaPersonaje/minijuego/assets/fondomemotest.png" id="10_e8t0k"]
 
 [node name="Memotest" type="Control" unique_id=168619133 node_paths=PackedStringArray("cartas")]
