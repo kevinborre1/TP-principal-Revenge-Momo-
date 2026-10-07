@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cyw4utmcalmk4" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_NormalGL.png" id="15_xobj3"]
 [ext_resource type="Script" uid="uid://dlfycosjams24" path="res://boton2Entrada.gd" id="16_ivch4"]
 [ext_resource type="Texture2D" uid="uid://cc0psb35bx41d" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_Roughness.png" id="16_j1fac"]
+[ext_resource type="PackedScene" uid="uid://cslvsk57vr3gy" path="res://Tutorial/Wooden Sign by iPoly3D - mxyDWLsKer.glb" id="22_1uqyg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1weqr"]
 sky_top_color = Color(0.34343228, 0.55091774, 0.726523, 1)
@@ -1850,3 +1851,6 @@ mesh = SubResource("CapsuleMesh_jsbho")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Colisiones Arboles/Arbol 10/StaticBody3D" unique_id=1806963660]
 shape = SubResource("ConcavePolygonShape3D_pwyva")
+
+[node name="Root Scene" parent="." unique_id=475365765 instance=ExtResource("22_1uqyg")]
+transform = Transform3D(-0.9848077, 0, -0.17364822, 0, 1, 0, 0.17364822, 0, -0.9848077, -1.8209951, 0, -30.33037)
