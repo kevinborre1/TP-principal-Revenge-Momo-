@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://c868hq7er7g4o"]
+
+[ext_resource type="Script" uid="uid://35ufupsn0ors" path="res://pruebaPersonaje/minijuego/minijuego_memoria.gd" id="1_ruw0t"]
+[ext_resource type="Texture2D" uid="uid://delij66hgjpjg" path="res://pruebaPersonaje/minijuego/assets/simbolo_01.png" id="2_immjw"]
+[ext_resource type="Texture2D" uid="uid://c7mg2054an34v" path="res://pruebaPersonaje/minijuego/assets/simbolo_02.png" id="3_e8t0k"]
+[ext_resource type="Texture2D" uid="uid://ctpnuqjtqob2b" path="res://pruebaPersonaje/minijuego/assets/simbolo_03.png" id="4_5ou33"]
+[ext_resource type="Texture2D" uid="uid://blpj1urbxyxfy" path="res://pruebaPersonaje/minijuego/assets/simbolo_04.png" id="5_8bdsy"]
+[ext_resource type="Texture2D" uid="uid://ke3aopuhwr2j" path="res://pruebaPersonaje/minijuego/assets/simbolo_05.png" id="6_tdsrg"]
+[ext_resource type="Texture2D" uid="uid://b84jukgmmhgvk" path="res://pruebaPersonaje/minijuego/assets/simbolo_06.png" id="7_0ykop"]
+[ext_resource type="Texture2D" uid="uid://dsml5d52pnpfu" path="res://pruebaPersonaje/minijuego/assets/simbolo_07.png" id="8_fwy4r"]
+[ext_resource type="Texture2D" uid="uid://7bocb0wwxdcy" path="res://pruebaPersonaje/minijuego/assets/simbolo_08.png" id="9_khfty"]
+[ext_resource type="Texture2D" uid="uid://dejjbsib2lqwe" path="res://pruebaPersonaje/minijuego/assets/fondomemotest.png" id="10_e8t0k"]
+
+[node name="Memotest" type="Control" unique_id=168619133 node_paths=PackedStringArray("cartas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ruw0t")
+cartas = [NodePath("Panel/GridContainer/Button"), NodePath("Panel/GridContainer/Button2"), NodePath("Panel/GridContainer/Button3"), NodePath("Panel/GridContainer/Button4"), NodePath("Panel/GridContainer/Button5"), NodePath("Panel/GridContainer/Button6"), NodePath("Panel/GridContainer/Button7"), NodePath("Panel/GridContainer/Button8"), NodePath("Panel/GridContainer/Button9"), NodePath("Panel/GridContainer/Button10"), NodePath("Panel/GridContainer/Button11"), NodePath("Panel/GridContainer/Button12"), NodePath("Panel/GridContainer/Button13"), NodePath("Panel/GridContainer/Button14"), NodePath("Panel/GridContainer/Button15"), NodePath("Panel/GridContainer/Button16")]
+simbolos = Array[Texture2D]([ExtResource("2_immjw"), ExtResource("3_e8t0k"), ExtResource("4_5ou33"), ExtResource("5_8bdsy"), ExtResource("6_tdsrg"), ExtResource("7_0ykop"), ExtResource("8_fwy4r"), ExtResource("9_khfty")])
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1456097012]
+layout_mode = 0
+offset_top = -225.0
+offset_right = 1138.0
+offset_bottom = 826.0
+texture = ExtResource("10_e8t0k")
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="." unique_id=1849263423]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 576.0
+offset_top = 324.0
+offset_right = -576.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel" unique_id=15588912]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -300.5
+offset_right = 561.0
+offset_bottom = 300.5
+grow_vertical = 2
+columns = 4
+
+[node name="Button" type="Button" parent="Panel/GridContainer" unique_id=1327679498]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button2" type="Button" parent="Panel/GridContainer" unique_id=103664901]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button3" type="Button" parent="Panel/GridContainer" unique_id=161186853]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button4" type="Button" parent="Panel/GridContainer" unique_id=747192090]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button5" type="Button" parent="Panel/GridContainer" unique_id=1868288409]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button6" type="Button" parent="Panel/GridContainer" unique_id=396268581]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button7" type="Button" parent="Panel/GridContainer" unique_id=1457841518]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button8" type="Button" parent="Panel/GridContainer" unique_id=2006569807]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button9" type="Button" parent="Panel/GridContainer" unique_id=1188736783]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button10" type="Button" parent="Panel/GridContainer" unique_id=382395186]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button11" type="Button" parent="Panel/GridContainer" unique_id=2123775288]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button12" type="Button" parent="Panel/GridContainer" unique_id=2069846191]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button13" type="Button" parent="Panel/GridContainer" unique_id=597137183]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button14" type="Button" parent="Panel/GridContainer" unique_id=1902488076]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button15" type="Button" parent="Panel/GridContainer" unique_id=1274311542]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button16" type="Button" parent="Panel/GridContainer" unique_id=2000485865]
+custom_minimum_size = Vector2(145, 145)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LabelResultado" type="Label" parent="Panel" unique_id=1703854310]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -493.0
+offset_top = -47.0
+offset_right = -151.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 34
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelTimer" type="Label" parent="Panel" unique_id=15944679]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -232.0
+offset_top = -213.0
+offset_right = -70.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 35
+
+[node name="LabelTitulo" type="Label" parent="Panel" unique_id=838625689]
+layout_mode = 1
+offset_left = -561.0
+offset_top = -318.0
+offset_right = -171.0
+offset_bottom = -165.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 35
+text = "HORA DEL MEMOTEST!!
+
+TIEMPO RESTANTE:"
