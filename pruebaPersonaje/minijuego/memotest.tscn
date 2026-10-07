@@ -23,22 +23,22 @@ cartas = [NodePath("Panel/GridContainer/Button"), NodePath("Panel/GridContainer/
 simbolos = Array[Texture2D]([ExtResource("2_immjw"), ExtResource("3_e8t0k"), ExtResource("4_5ou33"), ExtResource("5_8bdsy"), ExtResource("6_tdsrg"), ExtResource("7_0ykop"), ExtResource("8_fwy4r"), ExtResource("9_khfty")])
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1456097012]
-layout_mode = 0
-offset_top = -225.0
-offset_right = 1138.0
-offset_bottom = 826.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("10_e8t0k")
 stretch_mode = 6
 
 [node name="Panel" type="Panel" parent="." unique_id=1849263423]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 576.0
-offset_top = 324.0
-offset_right = -576.0
-offset_bottom = -324.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 

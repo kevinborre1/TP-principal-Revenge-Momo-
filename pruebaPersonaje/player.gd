@@ -14,6 +14,11 @@ var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
 var StaminaPerdida=1.0
 var inventario = [null, null, null, null] 
+var input_bloqueado: bool = false
+
+#Nodos de minijuego
+var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
+var minijuego_instance: Control = null
 
 # Referencias a los nodos
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
@@ -81,6 +86,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if input_bloqueado:
+		return
 	# Bloqueamos inputs si estamos en línea y no somos el dueño del personaje
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
@@ -114,6 +121,8 @@ func _input(event: InputEvent) -> void:
 		spring_arm_3d.rotation.y = camera_rotation.y
 		
 func _physics_process(delta: float) -> void:
+	if input_bloqueado:
+		return
 	
 	player_animation()
 	# Bloqueamos el movimiento en línea si no es nuestra autoridad
@@ -292,3 +301,30 @@ func soltar_item(indice_slot: int):
 
 			# Posicionar la botella un poco adelante y arriba del jugador
 			nueva_botella.global_position = global_position + (global_transform.basis.z * -1.5) + Vector3(0, 1, 0)
+			
+#Funciones de minijuego
+func abrir_minijuego() -> void:
+	if minijuego_instance:
+		return  # ya está abierto, evitar duplicados
+	minijuego_instance = minijuego_scene.instantiate()
+	$ContenedorMinijuego.add_child(minijuego_instance)  
+	minijuego_instance.minijuego_terminado.connect(_on_minijuego_terminado)
+	
+	#Subir opacidad de contenedorMinijuego
+	var tween = create_tween()
+	tween.tween_property($ContenedorMinijuego, "modulate:a", 1.0, 0.5)
+	
+	input_bloqueado = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _on_minijuego_terminado() -> void:
+	# Desvanece el contenedor 
+	var tween = create_tween()
+	tween.tween_property($ContenedorMinijuego, "modulate:a", 0.0, 0.5)
+	# Espera a que la animación del Tween termine antes de borrar el minijuego
+	await tween.finished
+	
+	minijuego_instance.queue_free()
+	minijuego_instance = null
+	input_bloqueado = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
