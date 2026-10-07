@@ -67,8 +67,18 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
 theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
 text = " "
 
+[node name="Tutorial" type="Button" parent="Botones" unique_id=1660388416]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
+theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
+text = " Tutorial
+"
+alignment = 0
+
 [connection signal="pressed" from="Botones/Jugar Local" to="." method="_on_jugar_local_pressed"]
 [connection signal="pressed" from="Botones/Jugar en Linea" to="." method="_on_jugar_en_linea_pressed"]
 [connection signal="pressed" from="Botones/Opciones" to="." method="_on_opciones_pressed"]
 [connection signal="pressed" from="Botones/Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="pressed" from="Botones/Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="Botones/Tutorial" to="." method="_on_tutorial_pressed"]

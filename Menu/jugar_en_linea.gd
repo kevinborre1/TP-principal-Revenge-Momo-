@@ -47,19 +47,13 @@ func _on_codigo_text_submitted(new_text: String) -> void:
 
 func _on_session_created() -> void:
 	var codigo = tube_client.session_id
-	
-	# Copiamos el código al portapapeles igual que en el proyecto anterior
 	DisplayServer.clipboard_set(codigo)
 	print("Sesión creada. Código copiado: ", codigo)
 
-	# SOLUCIÓN: Cambiado a terreno.tscn
-	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
-
+	_cargar_mapa_correspondiente()
 func _on_session_joined() -> void:
 	print("Unido exitosamente al Host")
-	
-	# SOLUCIÓN: Cambiado a terreno.tscn
-	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+	_cargar_mapa_correspondiente()
 
 func _on_error(_code, message) -> void:
 	# Si falla mostramos el error y reactivamos todo para que puedan volver a intentar
@@ -76,3 +70,9 @@ func _enable_interface() -> void:
 	host_button.disabled = false
 	input_code.editable = true
 	back_button.disabled = false
+
+func _cargar_mapa_correspondiente() -> void:
+	if Global.mapa_seleccionado == "tutorial":
+		get_tree().change_scene_to_file("res://Tutorial/Tutorial.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Terreno/terreno.tscn")

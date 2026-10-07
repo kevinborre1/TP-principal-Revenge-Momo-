@@ -50,11 +50,20 @@ func _ready() -> void:
 	
 	# POSICIONAR AL JUGADOR
 	if Global.modo_multijugador == "linea":
-		if id_player == 1:
-			global_position = Vector3(36, 10, 1250) 
+		# Verificamos si estamos en la escena del tutorial
+		if get_tree().current_scene.name == "Tutorial":
+			# Ajusta estas coordenadas "X, Y, Z" a donde quieres que aparezcan dentro de tu laberinto
+			if id_player == 1:
+				global_position = Vector3(0, 5, 0) # Posición Host en Tutorial
+			else:
+				global_position = Vector3(2, 5, 0) # Posición Cliente en Tutorial
 		else:
-			global_position = Vector3(40, 10, 1250)
-			
+			# Coordenadas originales para terreno.tscn
+			if id_player == 1:
+				global_position = Vector3(36, 10, 1250) 
+			else:
+				global_position = Vector3(40, 10, 1250)
+
 	# PRENDER TODO DE NUEVO
 	if collision_shape_3d:
 		collision_shape_3d.disabled = false
