@@ -10,7 +10,6 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
 
 func _ready() -> void:
-	print("Mundo ready, llamando set_mode")
 	GameManager.set_mode(GameManager.GameMode.RECOLECCION, 3)
 	
 	# Configurar la UI
@@ -49,18 +48,17 @@ func _ready() -> void:
 			return
 
 		add_player(1)
-		
+		for peer_id in multiplayer.get_peers():
+			add_player(peer_id)
 		multiplayer.peer_connected.connect(add_player)
 		multiplayer.peer_disconnected.connect(_disconnected_player)
 
 func add_player(peer_id: int) -> void:
 	var new_player = player_scene.instantiate()
-	new_player.name = str(peer_id) 
+	new_player.name = str(peer_id)
 	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
 	
-	# Agregamos al jugador directo al "mundo" para que el MultiplayerSpawner lo detecte
 	add_child(new_player)
-	
 func _disconnected_player(peer_id: int) -> void:
 	# Buscamos al jugador en el "mundo", no en el SubViewport
 	var player_deleted = get_node_or_null(str(peer_id))

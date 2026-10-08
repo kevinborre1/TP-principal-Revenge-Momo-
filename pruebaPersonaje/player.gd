@@ -164,7 +164,6 @@ func _physics_process(delta: float) -> void:
 	# Ahora procesamos con las teclas que correspondan a cada uno
 	if Input.is_action_just_pressed(act_salto) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	print(Input.is_physical_key_pressed(KEY_SHIFT))
 	var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 	if Global.modo_multijugador == "local" and name == "2":
 		correr_fisico = Input.is_physical_key_pressed(KEY_P)
