@@ -54,9 +54,9 @@ func _ready() -> void:
 		if get_tree().current_scene.name == "Tutorial":
 			# Ajusta estas coordenadas "X, Y, Z" a donde quieres que aparezcan dentro de tu laberinto
 			if id_player == 1:
-				global_position = Vector3(0, 5, 0) # Posición Host en Tutorial
+				global_position = Vector3(-3, 0, -36) # Posición Host en Tutorial
 			else:
-				global_position = Vector3(2, 5, 0) # Posición Cliente en Tutorial
+				global_position = Vector3(-3, 0, -33) # Posición Cliente en Tutorial
 		else:
 			# Coordenadas originales para terreno.tscn
 			if id_player == 1:
