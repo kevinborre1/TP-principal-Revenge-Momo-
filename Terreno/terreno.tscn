@@ -20,11 +20,36 @@
 [ext_resource type="Script" uid="uid://bqcmxonb3smgp" path="res://boton.gd" id="15_bmrm7"]
 [ext_resource type="PackedScene" uid="uid://bjqqjt32fkagg" path="res://enemigo/patato.fbx" id="16_rpqym"]
 [ext_resource type="Texture2D" uid="uid://q4tqm45xmq66" path="res://vitictorBar/puerta.png" id="17_rygad"]
-[ext_resource type="PackedScene" uid="uid://w1tkjhbikrtk" path="res://enemigo/enemigo.tscn" id="20_krr3c"]
+[ext_resource type="Script" uid="uid://bnnp4lm7hc5an" path="res://Terreno/puerta_2.gd" id="19_pdshk"]
 [ext_resource type="Script" uid="uid://cpijd7v4m7hdc" path="res://Terreno/botella_cerveza.gd" id="21_0gkdn"]
+[ext_resource type="Script" uid="uid://31ktempl0d1s" path="res://botonCafe.gd" id="21_pyml3"]
 [ext_resource type="PackedScene" uid="uid://chha660qt0ow1" path="res://vitictorBar/assetsCocina/glb/beer_bottle.glb" id="21_rygad"]
 [ext_resource type="Texture2D" uid="uid://bc3icldv1i6an" path="res://vitictorBar/assetsCocina/textures/cerveza.jpg" id="22_yxiyc"]
 [ext_resource type="Script" uid="uid://bjp4o2v15d72x" path="res://Terreno/computadora.gd" id="24_pcwax"]
+[ext_resource type="PackedScene" uid="uid://e6oxkppnouwv" path="res://vitictorBar/assetsCocina/fbx/chair.fbx" id="25_1u527"]
+[ext_resource type="PackedScene" uid="uid://cc208xjbbgby8" path="res://vitictorBar/assetsCocina/fbx/SM_Shop_Register_01.glb" id="26_pyml3"]
+[ext_resource type="PackedScene" uid="uid://dol7hqm1lfnbw" path="res://vitictorBar/assetsCocina/fbx/SM_Shop_Counter_Display_Glass_01.glb" id="27_pdshk"]
+[ext_resource type="PackedScene" uid="uid://dr1qnkao78y4c" path="res://vitictorBar/assetsCocina/fbx/SM_Shop_Gondola_Single_01.glb" id="28_byfxw"]
+[ext_resource type="PackedScene" uid="uid://dxnb3a4k08hjx" path="res://vitictorBar/assetsCocina/fbx/Choco_Munch_box.fbx" id="29_p5cfm"]
+[ext_resource type="PackedScene" uid="uid://cvwhgu0gm21jm" path="res://vitictorBar/assetsCocina/fbx/Choco_Chumps_box.fbx" id="30_gkey5"]
+[ext_resource type="PackedScene" uid="uid://d0f1j4eiu0ml4" path="res://vitictorBar/assetsCocina/fbx/chocolate_bar_close.fbx" id="31_0yns6"]
+[ext_resource type="PackedScene" uid="uid://cd5mg7op0bl2i" path="res://vitictorBar/assetsCocina/fbx/Chipsy_Chunks_box.fbx" id="32_k6sp0"]
+[ext_resource type="PackedScene" uid="uid://blenva1usfisd" path="res://vitictorBar/assetsCocina/fbx/can_fantac.fbx" id="33_veext"]
+[ext_resource type="PackedScene" uid="uid://ce031dnjg0pfa" path="res://vitictorBar/assetsCocina/fbx/can_cola_cola.fbx" id="34_770lr"]
+[ext_resource type="PackedScene" uid="uid://bi4w7wela0akn" path="res://vitictorBar/assetsCocina/fbx/can_beer.fbx" id="35_5lm5q"]
+[ext_resource type="PackedScene" uid="uid://bjoj5uh0yfw1h" path="res://vitictorBar/assetsCocina/fbx/Pizza_box_close.fbx" id="36_k37ix"]
+[ext_resource type="PackedScene" uid="uid://c0enlnhwd0012" path="res://vitictorBar/assetsCocina/fbx/pizza_one_slice_gone.fbx" id="37_lj8x8"]
+[ext_resource type="PackedScene" uid="uid://cqr5o55f22ego" path="res://vitictorBar/assetsCocina/fbx/glass_of_water_02.fbx" id="38_bvgek"]
+[ext_resource type="PackedScene" uid="uid://bvb81ku3046c4" path="res://vitictorBar/assetsCocina/fbx/table_01.fbx" id="39_ytc5w"]
+[ext_resource type="PackedScene" uid="uid://cihokrpxg3gem" path="res://vitictorBar/assetsCocina/fbx/table_02.fbx" id="40_2jws4"]
+[ext_resource type="PackedScene" uid="uid://clqqk1km6h288" path="res://vitictorBar/assetsCocina/fbx/SM_Shop_Counter_Service_01.glb" id="41_ym7rp"]
+[ext_resource type="PackedScene" uid="uid://yuy3my284fhg" path="res://vitictorBar/assetsCocina/fbx/clean_plate.fbx" id="42_in8rv"]
+[ext_resource type="PackedScene" uid="uid://bm7fbpvxgucrr" path="res://vitictorBar/AlfajorDeMaizena.glb" id="43_j5rcw"]
+[ext_resource type="PackedScene" uid="uid://dx42oo3axk1d8" path="res://vitictorBar/assetsCocina/fbx/PastaFrola.glb" id="44_uy27y"]
+[ext_resource type="PackedScene" uid="uid://cybuejfqnc28x" path="res://vitictorBar/assetsCocina/fbx/fridge_close.fbx" id="45_cpu1q"]
+[ext_resource type="PackedScene" uid="uid://b1mciugvmlpik" path="res://vitictorBar/assetsCocina/fbx/fridge_door.fbx" id="46_hcbc3"]
+[ext_resource type="PackedScene" uid="uid://b20d6k1ew4s6q" path="res://vitictorBar/assetsCocina/fbx/microwave.fbx" id="47_rkuii"]
+[ext_resource type="PackedScene" uid="uid://cmpgb70r83wqk" path="res://vitictorBar/assetsCocina/Coffee bean by Poly by Google - 7ONZQTx9Tuz.glb" id="48_yeivc"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 
@@ -258,6 +283,8 @@ uv1_scale = Vector3(9, 9, 9)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bmrm7"]
 data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, -1, -1, 0.30769998, -1, 0.9374, 1, -1, 1, -0.30769998, -1, 0.9374, 1, -1, 1, 0.30769998, -1, 0.9374, 1, -1, -1, 0.30769998, -1, -0.27359998, 0.30769998, -1, 0.9374, -1, -1, 1, 1, -1, 1, -0.30769998, -1, 0.9374, 1, -1, -1, -0.30769998, -1, -0.27359998, 0.30769998, -1, -0.27359998, -1, -1, 1, -0.30769998, -1, 0.9374, -0.30769998, -1, 0.30769998, -1, -1, -1, -0.30769998, -1, -0.27359998, 1, -1, -1, -0.30769998, -1, 0.30769998, -1, -1, -1, -1, -1, 1, -0.30769998, -1, -0.27359998, -1, -1, -1, -0.30769998, -1, 0.30769998, -1, 1, -1, -0.30769998, 1, 0.5032, -1, 1, 1, -0.30769998, 1, 0.9374, -1, 1, 1, -0.30769998, 1, 0.5032, -1, 1, -1, -0.30769998, 1, -0.27359998, -0.30769998, 1, 0.5032, 1, 1, 1, -1, 1, 1, -0.30769998, 1, 0.9374, -1, 1, -1, 0.30769998, 1, -0.27359998, -0.30769998, 1, -0.27359998, 1, 1, 1, -0.30769998, 1, 0.9374, 0.30769998, 1, 0.9374, 1, 1, -1, 0.30769998, 1, -0.27359998, -1, 1, -1, 1, 1, 1, 0.30769998, 1, 0.9374, 0.30769998, 1, 0.30769998, 0.30769998, 1, -0.27359998, 1, 1, -1, 0.30769998, 1, 0.30769998, 0.30769998, 1, 0.30769998, 1, 1, -1, 1, 1, 1, 0.30769998, -1, -0.27359998, 0.30769998, 1, 0.9374, 0.30769998, -1, 0.9374, 0.30769998, 1, 0.9374, 0.30769998, -1, -0.27359998, 0.30769998, 1, 0.30769998, 0.30769998, 1, 0.30769998, 0.30769998, -1, -0.27359998, 0.30769998, 1, -0.27359998, 0.30769998, -1, -0.27359998, -0.30769998, 1, -0.27359998, 0.30769998, 1, -0.27359998, 0.30769998, -1, -0.27359998, -0.30769998, -1, -0.27359998, -0.30769998, 1, -0.27359998, -0.30769998, -1, 0.30769998, -0.30769998, 1, -0.27359998, -0.30769998, -1, -0.27359998, -0.30769998, -1, 0.30769998, -0.30769998, 1, 0.5032, -0.30769998, 1, -0.27359998, -0.30769998, 1, 0.5032, -0.30769998, -1, 0.30769998, -0.30769998, -1, 0.9374, -0.30769998, 1, 0.5032, -0.30769998, -1, 0.9374, -0.30769998, 1, 0.9374, -0.30769998, -1, 0.9374, 0.30769998, 1, 0.9374, -0.30769998, 1, 0.9374, -0.30769998, -1, 0.9374, 0.30769998, -1, 0.9374, 0.30769998, 1, 0.9374)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_6sg3r"]
+
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k1edr"]
 data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1)
 
@@ -314,16 +341,6 @@ size = Vector3(1, 5.61084, 5.93042)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bulcj"]
 albedo_texture = ExtResource("17_rygad")
 uv1_scale = Vector3(3, 3, 3)
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_rsdri"]
-vertices = PackedVector3Array(-5.2341156, 0.33245838, -1229.6151, -5.2341156, 0.33245838, -1207.3651, 31.265884, 0.33245838, -1207.3651, 31.265884, 0.33245838, -1229.6151)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-cell_height = 0.1
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_rsdri"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_f3mle"]
-size = Vector3(0.91049194, 1, 0.85180664)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8w0r3"]
 height = 1.6554726
@@ -537,6 +554,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wno3s")
 shape = SubResource("ConcavePolygonShape3D_yoo2w")
 
 [node name="Cube_011" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="10" unique_id=560374512]
+transform = Transform3D(54.626095, 0, 0, 0, 0, -8.816416, 0, 0.7657801, 0, 105.70716, 8.651398, -22.454346)
 surface_material_override/0 = SubResource("StandardMaterial3D_3dupi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_011" index="0" unique_id=526544652]
@@ -561,7 +579,27 @@ surface_material_override/0 = SubResource("StandardMaterial3D_y5j7y")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_013/StaticBody3D" unique_id=707485466]
 shape = SubResource("ConcavePolygonShape3D_bmrm7")
 
-[node name="Cube_015" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="13" unique_id=1613410229]
+[node name="Cube_014" type="MeshInstance3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" unique_id=2079169209]
+transform = Transform3D(0, 0.7657803, 0, 0, 0, -7.571259, -26.27154, 0, 0, 159.7403, 8.624495, 0.043701172)
+mesh = SubResource("CylinderMesh_6sg3r")
+surface_material_override/0 = SubResource("StandardMaterial3D_y5j7y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_014" unique_id=2102408967]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_014/StaticBody3D" unique_id=1946930889]
+shape = SubResource("ConcavePolygonShape3D_bmrm7")
+
+[node name="Cube_021" type="MeshInstance3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" unique_id=652057664]
+transform = Transform3D(0, 0.7657803, 0, 0, 0, -7.5712605, -26.271544, 0, 0, 159.7403, 3.5836208, 0.043701172)
+mesh = SubResource("CylinderMesh_6sg3r")
+surface_material_override/0 = SubResource("StandardMaterial3D_y5j7y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_021" unique_id=1633462122]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_021/StaticBody3D" unique_id=262344954]
+shape = SubResource("ConcavePolygonShape3D_bmrm7")
+
+[node name="Cube_015" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="15" unique_id=1613410229]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_015" index="0" unique_id=1355467895]
@@ -569,7 +607,7 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_015/StaticBody3D" unique_id=2002664170]
 shape = SubResource("ConcavePolygonShape3D_k1edr")
 
-[node name="Cube_016" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="14" unique_id=379239159]
+[node name="Cube_016" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="16" unique_id=379239159]
 surface_material_override/0 = SubResource("StandardMaterial3D_dj0k3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_016" index="0" unique_id=1442165286]
@@ -577,7 +615,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dj0k3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_016/StaticBody3D" unique_id=820747284]
 shape = SubResource("ConcavePolygonShape3D_vycbi")
 
-[node name="Cube_017" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="15" unique_id=56392371]
+[node name="Cube_017" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="17" unique_id=56392371]
 surface_material_override/0 = SubResource("StandardMaterial3D_2qmix")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_017" index="0" unique_id=77422694]
@@ -585,7 +623,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2qmix")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_017/StaticBody3D" unique_id=459541507]
 shape = SubResource("ConcavePolygonShape3D_nei3j")
 
-[node name="Cube_018" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="16" unique_id=634516553]
+[node name="Cube_018" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="18" unique_id=634516553]
 surface_material_override/0 = SubResource("StandardMaterial3D_tk8hj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_018" index="0" unique_id=239709365]
@@ -593,7 +631,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tk8hj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_018/StaticBody3D" unique_id=1567926194]
 shape = SubResource("ConcavePolygonShape3D_krr3c")
 
-[node name="Cube_019" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="17" unique_id=208491190]
+[node name="Cube_019" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="19" unique_id=208491190]
 surface_material_override/0 = SubResource("StandardMaterial3D_2duit")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_019" index="0" unique_id=937055422]
@@ -601,7 +639,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2duit")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_019/StaticBody3D" unique_id=1260196297]
 shape = SubResource("ConcavePolygonShape3D_rygad")
 
-[node name="Cube_020" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="18" unique_id=1492767259]
+[node name="Cube_020" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar" index="20" unique_id=1492767259]
 surface_material_override/0 = SubResource("StandardMaterial3D_tw80j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D2/StaticBody3D/CollisionShape3D/victorBar/Cube_020" index="0" unique_id=1764717038]
@@ -627,146 +665,146 @@ mesh = SubResource("CapsuleMesh_8w0r3")
 
 [node name="Skeleton3D" parent="enemigo/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1045598121) index="0" unique_id=84810393]
 bones/2/position = Vector3(0, 0.009419135, 0)
-bones/2/rotation = Quaternion(0.8840405, 4.625521e-17, 4.6255195e-17, -0.46741036)
+bones/2/rotation = Quaternion(0.88404053, 4.625517e-17, 4.6255202e-17, -0.46741024)
 bones/2/scale = Vector3(1, 0.9999999, 0.99999964)
 bones/3/position = Vector3(-1.1647669e-25, 0.005018588, 9.159616e-10)
 bones/3/rotation = Quaternion(0.15716286, -0.2582996, 0.65824115, 0.68941987)
 bones/3/scale = Vector3(1, 1.0000001, 1.0000001)
 bones/4/position = Vector3(-1.1262082e-09, 0.0024429136, 4.980055e-11)
-bones/4/rotation = Quaternion(0.22986858, -0.12748934, -0.69551903, 0.6687004)
+bones/4/rotation = Quaternion(0.20026135, -0.096802495, -0.70044947, 0.6781557)
 bones/4/scale = Vector3(1.0000001, 1, 1)
 bones/6/position = Vector3(-1.1262082e-09, 0.0024429136, 4.980055e-11)
-bones/6/rotation = Quaternion(-0.1202286, 0.22288223, -0.67106164, 0.6968105)
+bones/6/rotation = Quaternion(-0.10085652, 0.2041848, -0.6769851, 0.69987696)
 bones/6/scale = Vector3(1.0000001, 0.99999994, 1)
 bones/8/position = Vector3(-1.2548804e-18, 0.005018588, 9.159616e-10)
 bones/8/rotation = Quaternion(0.15716286, 0.2582996, -0.65824115, 0.68941987)
 bones/8/scale = Vector3(1, 1.0000001, 1.0000001)
 bones/9/position = Vector3(1.1262082e-09, 0.0024429136, 2.6764053e-11)
-bones/9/rotation = Quaternion(0.22986856, 0.12748934, 0.695519, 0.66870046)
+bones/9/rotation = Quaternion(0.20026134, 0.0968025, 0.70044947, 0.6781557)
 bones/9/scale = Vector3(1.0000001, 1, 0.99999994)
 bones/11/position = Vector3(1.1262082e-09, 0.0024429136, 2.6764053e-11)
-bones/11/rotation = Quaternion(-0.1202286, -0.22288223, 0.67106164, 0.6968105)
+bones/11/rotation = Quaternion(-0.10085652, -0.2041848, 0.6769851, 0.69987696)
 bones/11/scale = Vector3(1.0000001, 0.99999994, 1)
-bones/13/rotation = Quaternion(0.5, -0.5, -0.5, -0.5)
-bones/14/rotation = Quaternion(0, -2.1855694e-08, 0, 1)
+bones/13/rotation = Quaternion(0.50000006, -0.5, -0.5, -0.50000006)
+bones/14/rotation = Quaternion(-0.29891133, 0.6408214, -0.29891133, 0.64082134)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/position = Vector3(0, 0.008149067, -3.469447e-18)
-bones/15/rotation = Quaternion(0, 0, 0, 1)
+bones/15/rotation = Quaternion(5.3154338e-08, 1.9305629e-08, -0.32340953, 0.9462591)
 bones/16/position = Vector3(0, 0.004922257, -3.469447e-18)
-bones/16/rotation = Quaternion(0, 0, 0, 1)
+bones/16/rotation = Quaternion(4.2726445e-08, 1.4851275e-08, -0.26329258, 0.964716)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/position = Vector3(0, 0.0021876695, -3.469447e-18)
-bones/17/rotation = Quaternion(-1.1599585e-06, 0.6935171, 0.72044015, -1.2097905e-06)
+bones/17/rotation = Quaternion(-1.1069899e-06, 0.6935172, 0.72044015, -1.152324e-06)
 bones/17/scale = Vector3(1, 0.9999997, 0.9999999)
 bones/18/position = Vector3(-8.198161e-15, 0.0016038273, -2.229903e-09)
-bones/18/rotation = Quaternion(0.013461444, 0.7069775, 0.01346149, 0.7069798)
+bones/18/rotation = Quaternion(-0.22230092, 0.5957061, 0.47420672, 0.60897017)
 bones/18/scale = Vector3(1, 0.9999999, 0.99999994)
 bones/19/position = Vector3(-4.585712e-09, 0.0010837041, 1.5603346e-14)
-bones/19/rotation = Quaternion(-0.014928959, 0.7069481, 0.014929007, 0.70695025)
+bones/19/rotation = Quaternion(-0.33449778, 0.6631743, -0.14805572, 0.652986)
 bones/19/scale = Vector3(1, 0.99999994, 1.0000001)
 bones/21/position = Vector3(0, 0.0021876695, -3.469447e-18)
 bones/21/rotation = Quaternion(0.32275116, 1.3246924e-08, -3.884726e-08, 0.94648385)
 bones/21/scale = Vector3(1, 0.9999999, 1)
 bones/22/position = Vector3(-2.3138163e-16, 0.0017737813, 4.4926195e-11)
-bones/22/rotation = Quaternion(-0.22277051, 3.134695e-08, 1.6532237e-08, 0.9748709)
+bones/22/rotation = Quaternion(-0.19711739, -0.19531997, -0.42296398, 0.8626102)
 bones/22/scale = Vector3(1, 0.9999999, 0.9999999)
 bones/23/position = Vector3(1.466007e-16, 0.0017003525, -2.471352e-09)
-bones/23/rotation = Quaternion(-0.014431513, -4.5071708e-08, 1.2574546e-09, 0.9998959)
+bones/23/rotation = Quaternion(-0.0075105163, -0.16422406, -0.83796626, 0.52037156)
 bones/23/scale = Vector3(1, 1, 1)
 bones/25/position = Vector3(0, 0.0021876695, -3.469447e-18)
 bones/25/rotation = Quaternion(-0.019596282, -2.234229e-07, 7.012066e-09, 0.999808)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/position = Vector3(-5.9210584e-16, 0.0015580679, -5.162664e-10)
-bones/26/rotation = Quaternion(0.01959628, 2.2342287e-07, -7.012067e-09, 0.999808)
+bones/26/rotation = Quaternion(0.017339654, 0.009129834, -0.46579507, 0.88467556)
 bones/26/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/27/position = Vector3(3.516851e-16, 0.0015874025, -5.9135544e-12)
-bones/27/rotation = Quaternion(-0.012292374, 1.816145e-07, -5.8106486e-10, 0.9999244)
+bones/27/rotation = Quaternion(-0.006397298, 0.010496458, -0.8538424, 0.5203866)
 bones/27/scale = Vector3(1, 1, 1)
 bones/29/position = Vector3(0, 0.0021876695, -3.469447e-18)
 bones/29/rotation = Quaternion(-0.36811525, -1.0600613e-07, 9.6567774e-08, 0.9297802)
 bones/29/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/30/position = Vector3(-3.9675412e-16, 0.0017169192, 1.2201817e-10)
-bones/30/rotation = Quaternion(0.27470547, 2.4870795e-07, -3.8319214e-08, 0.9615284)
+bones/30/rotation = Quaternion(0.24307178, 0.21334824, -0.41416302, 0.85080403)
 bones/30/scale = Vector3(1, 1.0000001, 1)
 bones/31/position = Vector3(2.5818295e-16, 0.001867886, 1.8024839e-09)
-bones/31/rotation = Quaternion(-0.007437436, -1.1903544e-07, 4.150794e-09, 0.99997234)
+bones/31/rotation = Quaternion(-0.0038702404, 0.17368793, -0.8360559, 0.5204115)
 bones/31/scale = Vector3(1, 1, 1.0000001)
-bones/33/rotation = Quaternion(0.9617073, 7.634211e-17, 7.634211e-17, -0.27407876)
+bones/33/rotation = Quaternion(0.96170735, 7.6342206e-17, 7.6342146e-17, -0.2740786)
 bones/33/scale = Vector3(1, 0.99999994, 1)
 bones/34/position = Vector3(7.0951167e-26, 0.005792515, -4.4046386e-10)
-bones/34/rotation = Quaternion(0.6054929, 8.314932e-24, 1.3444644e-16, 0.79585075)
+bones/34/rotation = Quaternion(0.5631511, -4.1362943e-18, 1.3586446e-16, 0.826354)
 bones/34/scale = Vector3(1, 0.99999994, 0.9999999)
 bones/36/position = Vector3(7.0951167e-26, 0.005792515, -4.4046386e-10)
-bones/36/rotation = Quaternion(0.117976665, 1.1837676e-07, 1.4063903e-08, 0.99301636)
+bones/36/rotation = Quaternion(0.24896449, 1.1545569e-07, 2.967888e-08, 0.96851265)
 bones/36/scale = Vector3(1, 0.99999994, 1)
 bones/38/position = Vector3(-0.0068364646, 0.0002734581, -3.6741582e-11)
-bones/38/rotation = Quaternion(1.1097716e-06, -3.1042788e-08, 0.9704964, 0.24111558)
+bones/38/rotation = Quaternion(1.0930551e-06, 1.4878515e-07, 0.9979161, 0.064526126)
 bones/38/scale = Vector3(1, 1, 1)
 bones/39/position = Vector3(8.096041e-10, 0.0037006224, -7.4530826e-16)
-bones/39/rotation = Quaternion(-0.0012670485, 0.7071063, 0.0012667999, 0.707105)
+bones/39/rotation = Quaternion(0.017093416, 0.7092149, 0.019626312, 0.70451176)
 bones/39/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
 bones/40/position = Vector3(6.81104e-16, 0.0020590266, -3.0544334e-11)
-bones/40/rotation = Quaternion(-0.2165733, -1.2148955e-06, 3.3042892e-07, 0.9762664)
+bones/40/rotation = Quaternion(-0.0317241, -1.2678632e-06, 5.303945e-08, 0.99949676)
 bones/40/scale = Vector3(1, 0.99999994, 1)
 bones/41/position = Vector3(-8.028e-16, 0.0029200956, -1.9842776e-10)
-bones/41/rotation = Quaternion(0.4866725, 0.4896309, -0.5101597, 0.5129801)
+bones/41/rotation = Quaternion(0.4699328, 0.49719235, -0.503181, 0.52798843)
 bones/41/scale = Vector3(0.9999998, 1, 0.9999999)
-bones/43/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
-bones/44/rotation = Quaternion(0, 2.1855694e-08, 0, 1)
+bones/43/rotation = Quaternion(0.50000006, 0.5, 0.5, -0.50000006)
+bones/44/rotation = Quaternion(-0.30262378, -0.63907653, 0.30262387, 0.63907653)
 bones/44/scale = Vector3(1, 1, 1)
 bones/45/position = Vector3(0, 0.008149067, -3.469447e-18)
-bones/45/rotation = Quaternion(0, 0, 0, 1)
+bones/45/rotation = Quaternion(4.0489653e-08, -1.2940729e-08, 0.32753295, 0.9448398)
 bones/45/scale = Vector3(1, 1, 1)
 bones/46/position = Vector3(0, 0.004922257, -3.469447e-18)
-bones/46/rotation = Quaternion(0, 0, 0, 1)
+bones/46/rotation = Quaternion(3.1740523e-08, -9.657005e-09, 0.26015535, 0.9655669)
 bones/46/scale = Vector3(1, 1, 1)
 bones/47/position = Vector3(0, 0.0021876695, -3.469447e-18)
 bones/47/rotation = Quaternion(1.1599585e-06, 0.6935171, 0.72044015, 1.2097905e-06)
 bones/47/scale = Vector3(1, 0.9999997, 0.9999999)
 bones/48/position = Vector3(8.198161e-15, 0.0016038273, -2.229903e-09)
-bones/48/rotation = Quaternion(0.013461444, -0.7069775, -0.01346149, 0.7069798)
+bones/48/rotation = Quaternion(-0.31410378, -0.5402367, -0.5473872, 0.5566422)
 bones/48/scale = Vector3(1, 0.9999999, 0.99999994)
 bones/49/position = Vector3(4.585712e-09, 0.0010837041, 1.5603346e-14)
-bones/49/rotation = Quaternion(-0.014928959, -0.7069481, -0.014929007, 0.70695025)
+bones/49/rotation = Quaternion(-0.15898664, -0.6986668, 0.072503, 0.6937804)
 bones/49/scale = Vector3(1, 0.99999994, 1.0000001)
 bones/51/position = Vector3(0, 0.0021876695, -3.469447e-18)
 bones/51/rotation = Quaternion(0.32275116, -1.3246924e-08, 3.884726e-08, 0.94648385)
 bones/51/scale = Vector3(1, 0.9999999, 1)
 bones/52/position = Vector3(2.3138163e-16, 0.0017737813, 4.4926195e-11)
-bones/52/rotation = Quaternion(-0.22277051, -3.134695e-08, -1.6532237e-08, 0.9748709)
+bones/52/rotation = Quaternion(-0.19071014, 0.21668161, 0.4692224, 0.8345712)
 bones/52/scale = Vector3(1, 0.9999999, 0.9999999)
 bones/53/position = Vector3(-1.466007e-16, 0.0017003525, -2.471352e-09)
-bones/53/rotation = Quaternion(-0.014431513, 4.5071708e-08, -1.2574546e-09, 0.9998959)
+bones/53/rotation = Quaternion(-0.009950717, 0.13929297, 0.7107531, 0.6894407)
 bones/53/scale = Vector3(1, 1, 1)
 bones/55/position = Vector3(0, 0.0021876695, -3.469447e-18)
 bones/55/rotation = Quaternion(-0.019596282, 2.234229e-07, -7.012066e-09, 0.999808)
 bones/55/scale = Vector3(1, 1, 1)
 bones/56/position = Vector3(5.9210584e-16, 0.0015580679, -5.162664e-10)
-bones/56/rotation = Quaternion(0.01959628, -2.2342287e-07, 7.012067e-09, 0.999808)
+bones/56/rotation = Quaternion(0.016776003, -0.0101283025, 0.5167379, 0.8559193)
 bones/56/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/57/position = Vector3(-3.516851e-16, 0.0015874025, -5.9135544e-12)
-bones/57/rotation = Quaternion(-0.012292374, -1.816145e-07, 5.8106486e-10, 0.9999244)
+bones/57/rotation = Quaternion(-0.008475775, -0.008902982, 0.7242191, 0.6894604)
 bones/57/scale = Vector3(1, 1, 1)
 bones/59/position = Vector3(0, 0.0021876695, -3.469447e-18)
 bones/59/rotation = Quaternion(-0.36811525, 1.0600613e-07, -9.6567774e-08, 0.9297802)
 bones/59/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/60/position = Vector3(3.9675412e-16, 0.0017169192, 1.2201817e-10)
-bones/60/rotation = Quaternion(0.27470547, -2.4870795e-07, 3.8319214e-08, 0.9615284)
+bones/60/rotation = Quaternion(0.2351708, -0.23668163, 0.45945907, 0.8231488)
 bones/60/scale = Vector3(1, 1.0000001, 1)
 bones/61/position = Vector3(-2.5818295e-16, 0.001867886, 1.8024839e-09)
-bones/61/rotation = Quaternion(-0.007437436, 1.1903544e-07, -4.150794e-09, 0.99997234)
+bones/61/rotation = Quaternion(-0.0051279385, -0.14732003, 0.70913273, 0.6894935)
 bones/61/scale = Vector3(1, 1, 1.0000001)
 bones/63/position = Vector3(0.0068364646, 0.0002734581, -3.6741582e-11)
-bones/63/rotation = Quaternion(-1.1097716e-06, -3.1042788e-08, 0.9704964, -0.24111558)
+bones/63/rotation = Quaternion(-1.0917881e-06, 1.5524382e-07, 0.9983133, -0.05805607)
 bones/63/scale = Vector3(1, 1, 1)
 bones/64/position = Vector3(-8.096041e-10, 0.0037006224, -7.4530826e-16)
-bones/64/rotation = Quaternion(-0.0012670485, -0.7071063, -0.0012667999, 0.707105)
+bones/64/rotation = Quaternion(0.017122367, -0.7089767, -0.01965526, 0.70475)
 bones/64/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
 bones/65/position = Vector3(-6.81104e-16, 0.0020590266, -3.0544334e-11)
-bones/65/rotation = Quaternion(-0.2165733, 1.2148955e-06, -3.3042892e-07, 0.9762664)
+bones/65/rotation = Quaternion(-0.02738534, 1.268843e-06, -4.7254275e-08, 0.999625)
 bones/65/scale = Vector3(1, 0.99999994, 1)
 bones/66/position = Vector3(8.028e-16, 0.0029200956, -1.9842776e-10)
-bones/66/rotation = Quaternion(0.4866725, -0.4896309, 0.5101597, 0.5129801)
+bones/66/rotation = Quaternion(0.47904867, -0.5057072, 0.49444875, 0.5198971)
 bones/66/scale = Vector3(0.9999998, 1, 0.9999999)
 
 [node name="AnimationPlayer" parent="enemigo/patato" index="1" unique_id=218453790]
@@ -789,11 +827,28 @@ transform = Transform3D(0.9999939, 0, 0, 0, 1, 0, 1.527369e-07, 0, 0.9999999, 0.
 mesh = SubResource("BoxMesh_vicex")
 surface_material_override/0 = SubResource("StandardMaterial3D_bulcj")
 
+[node name="Puerta2" type="AnimatableBody3D" parent="." unique_id=300958911]
+transform = Transform3D(-0.030443523, 0, 0.642794, 0, 0.5136482, 0, -0.7724154, 0, -0.0253347, 119.89899, 0.65126586, 1223.9072)
+script = ExtResource("19_pdshk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Puerta2" unique_id=93297095]
+transform = Transform3D(0.9979651, 0, -0.06345789, 0, 1, 0, 0.063457474, 0, 0.9979745, -0.2664795, 2.3224792, 0.7082634)
+shape = SubResource("BoxShape3D_lfkbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Puerta2/CollisionShape3D" unique_id=1873423828]
+transform = Transform3D(0.9999939, 0, 0, 0, 1, 0, 1.527369e-07, 0, 0.9999999, 0.00024414063, -0.64701605, -0.029167175)
+mesh = SubResource("BoxMesh_vicex")
+surface_material_override/0 = SubResource("StandardMaterial3D_bulcj")
+
 [node name="Boton" parent="." unique_id=1661296307 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.02181, 0.0030641556, 1231.3691)
 script = ExtResource("15_bmrm7")
 id_boton = 1
 puerta_destino = NodePath("../Puerta")
+
+[node name="Boton3" parent="." unique_id=2042099905 instance=ExtResource("14_vubg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.88409, 0.0030641556, 1231.3999)
+script = ExtResource("21_pyml3")
 
 [node name="Boton2" parent="." unique_id=1599931534 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.78489, -0.0029411316, 1234.1234)
@@ -831,23 +886,6 @@ render_target_update_mode = 4
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
 spawn_path = NodePath("..")
 
-[node name="enemigo2" parent="." unique_id=85389909 instance=ExtResource("20_krr3c")]
-transform = Transform3D(1.4541333, 0, 0, 0, 1.8874688, 0, 0, 0, 1, 75.804, 2, 2439.216)
-platform_wall_layers = 1
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="enemigo2" unique_id=256286077]
-navigation_mesh = SubResource("NavigationMesh_rsdri")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="enemigo2/NavigationRegion3D" unique_id=1864901041]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemigo2/NavigationRegion3D/StaticBody3D" unique_id=958141724]
-transform = Transform3D(19.069237, 0, 0, 0, 1, 0, 0, 0, 12.196544, 12.585121, -0.5664661, -1218.1686)
-mesh = SubResource("PlaneMesh_rsdri")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemigo2/NavigationRegion3D/StaticBody3D" unique_id=2058208479]
-transform = Transform3D(41.05986, 0, 0, 0, 0.62386036, 0, 0, 0, 26.97744, 12.986588, -0.35561144, -1218.5333)
-shape = SubResource("BoxShape3D_f3mle")
-
 [node name="BotellaCerveza" type="Area3D" parent="." unique_id=1553557114]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 4)
 script = ExtResource("21_0gkdn")
@@ -872,8 +910,277 @@ script = ExtResource("24_pcwax")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TerminalMemotest/Area3D" unique_id=1255939308]
 shape = SubResource("CylinderShape3D_7fotu")
 
+[node name="chair" parent="." unique_id=1381050318 instance=ExtResource("25_1u527")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 60.492157, 1.1593013, 1213.9172)
+
+[node name="SM_Shop_Register_012" parent="chair" unique_id=313549100 instance=ExtResource("26_pyml3")]
+transform = Transform3D(-2.370273e-08, 0, 0.53375995, 0, 0.54237205, 0, -0.550888, 0, -2.3702832e-08, 18.959848, 0.6117277, -1.1337585)
+
+[node name="SM_Shop_Counter_Display_Glass_012" parent="chair" unique_id=1905555071 instance=ExtResource("27_pdshk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 19.006323, -0.3619811, 2.4461975)
+
+[node name="SM_Shop_Gondola_Single_012" parent="chair" unique_id=112346730 instance=ExtResource("28_byfxw")]
+transform = Transform3D(-4.5192632e-08, 0, -0.53375995, 0, 0.54237247, 0, 1.0503461, 0, -2.3702837e-08, 20.503378, 0.66785854, -0.33563232)
+
+[node name="Choco_Munch_box" parent="chair" unique_id=761097350 instance=ExtResource("29_p5cfm")]
+transform = Transform3D(0.403, 0, 0, 0, 0.403, 0, 0, 0, 0.403, 20.457464, 1.500433, -0.6890564)
+
+[node name="Choco_Munch_box2" parent="chair/Choco_Munch_box" unique_id=568783756 instance=ExtResource("29_p5cfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19769287)
+
+[node name="Choco_Munch_box3" parent="chair/Choco_Munch_box" unique_id=1350184427 instance=ExtResource("29_p5cfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4333496)
+
+[node name="Choco_Munch_box4" parent="chair/Choco_Munch_box" unique_id=910697587 instance=ExtResource("29_p5cfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.71606445)
+
+[node name="Choco_Munch_box5" parent="chair/Choco_Munch_box" unique_id=757895341 instance=ExtResource("29_p5cfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9901123)
+
+[node name="Choco_Munch_box6" parent="chair/Choco_Munch_box" unique_id=848028001 instance=ExtResource("29_p5cfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2802734)
+
+[node name="Choco_Munch_box7" parent="chair/Choco_Munch_box" unique_id=715834916 instance=ExtResource("29_p5cfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5853882)
+
+[node name="Choco_Munch_box8" parent="chair/Choco_Munch_box" unique_id=625093369 instance=ExtResource("29_p5cfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.9130859)
+
+[node name="Choco_Chumps_box" parent="chair" unique_id=785463606 instance=ExtResource("30_gkey5")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333337, 0, 0, 0, 0.33333334, 20.444273, 1.3153806, 0.3755188)
+
+[node name="Choco_Chumps_box2" parent="chair/Choco_Chumps_box" unique_id=1367546022 instance=ExtResource("30_gkey5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3232422)
+
+[node name="Choco_Chumps_box3" parent="chair/Choco_Chumps_box" unique_id=2033858225 instance=ExtResource("30_gkey5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7023926)
+
+[node name="Choco_Chumps_box4" parent="chair/Choco_Chumps_box" unique_id=277398386 instance=ExtResource("30_gkey5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.40551758)
+
+[node name="Choco_Chumps_box5" parent="chair/Choco_Chumps_box" unique_id=805258432 instance=ExtResource("30_gkey5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.95544434)
+
+[node name="Choco_Chumps_box6" parent="chair/Choco_Chumps_box" unique_id=864877546 instance=ExtResource("30_gkey5")]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -0.9999999, 0, 1.0000001, -4.371139e-08, 0, -0.1299591, -1.4733887)
+
+[node name="chocolate_bar_close" parent="chair" unique_id=1085080176 instance=ExtResource("31_0yns6")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 20.434298, 0.76879007, 0.051513672)
+
+[node name="chocolate_bar_close2" parent="chair" unique_id=387759798 instance=ExtResource("31_0yns6")]
+transform = Transform3D(0.7, 0, 0, 0, 0.68955153, -0.12049367, 0, 0.12049367, 0.68955153, 20.434298, 0.78964156, 0.17980957)
+
+[node name="Chipsy_Chunks_box" parent="chair" unique_id=1771258087 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333337, 0, 0, 0, 0.33333334, 20.425428, 1.1530468, 0.5480957)
+
+[node name="Chipsy_Chunks_box2" parent="chair/Chipsy_Chunks_box" unique_id=934601131 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.0269775)
+
+[node name="Chipsy_Chunks_box3" parent="chair/Chipsy_Chunks_box" unique_id=126092384 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3068848)
+
+[node name="Chipsy_Chunks_box4" parent="chair/Chipsy_Chunks_box" unique_id=1228199939 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1896973)
+
+[node name="Chipsy_Chunks_box5" parent="chair/Chipsy_Chunks_box" unique_id=108645566 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.3631592)
+
+[node name="Chipsy_Chunks_box6" parent="chair/Chipsy_Chunks_box" unique_id=1472309964 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.7312012)
+
+[node name="Chipsy_Chunks_box7" parent="chair/Chipsy_Chunks_box" unique_id=868032772 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6236572)
+
+[node name="Chipsy_Chunks_box8" parent="chair/Chipsy_Chunks_box" unique_id=1736873833 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6635742)
+
+[node name="Chipsy_Chunks_box9" parent="chair/Chipsy_Chunks_box" unique_id=1849437876 instance=ExtResource("32_k6sp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.026123)
+
+[node name="can_fantac" parent="chair" unique_id=2107522489 instance=ExtResource("33_veext")]
+transform = Transform3D(0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0, 0.40000004, 18.819342, 0.23799038, 2.0150146)
+
+[node name="can_fantac2" parent="chair/can_fantac" unique_id=2032676569 instance=ExtResource("33_veext")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.12590027, 0, 0)
+
+[node name="can_fantac3" parent="chair/can_fantac" unique_id=1455850138 instance=ExtResource("33_veext")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.12590027, 0, -0.15563965)
+
+[node name="can_fantac4" parent="chair/can_fantac" unique_id=1417095594 instance=ExtResource("33_veext")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.12590027, 0, -0.29315186)
+
+[node name="can_fantac5" parent="chair/can_fantac" unique_id=1942603095 instance=ExtResource("33_veext")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.014137268, 0, -0.29315186)
+
+[node name="can_fantac6" parent="chair/can_fantac" unique_id=134998383 instance=ExtResource("33_veext")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.014137268, 0, -0.47686768)
+
+[node name="can_cola_cola" parent="chair" unique_id=1193854767 instance=ExtResource("34_770lr")]
+transform = Transform3D(0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0, 0.40000004, 18.813711, 0.23155737, 2.0647278)
+
+[node name="can_cola_cola2" parent="chair/can_cola_cola" unique_id=1308434649 instance=ExtResource("34_770lr")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0.13861084)
+
+[node name="can_cola_cola3" parent="chair/can_cola_cola" unique_id=568930937 instance=ExtResource("34_770lr")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0.32562256)
+
+[node name="can_cola_cola5" parent="chair/can_cola_cola" unique_id=1895576988 instance=ExtResource("34_770lr")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0.569458)
+
+[node name="can_cola_cola6" parent="chair/can_cola_cola" unique_id=745405357 instance=ExtResource("34_770lr")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.1714325, 0, 0.763855)
+
+[node name="can_cola_cola4" parent="chair/can_cola_cola" unique_id=428357906 instance=ExtResource("34_770lr")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.14430237, 0, 0.2694702)
+
+[node name="can_beer" parent="chair" unique_id=786450081 instance=ExtResource("35_5lm5q")]
+transform = Transform3D(0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0, 0.40000004, 18.787554, 0.24042481, 1.9627991)
+
+[node name="can_beer2" parent="chair/can_beer" unique_id=1226809733 instance=ExtResource("35_5lm5q")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, -0.4963379)
+
+[node name="can_beer3" parent="chair/can_beer" unique_id=2049879861 instance=ExtResource("35_5lm5q")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, -0.7642822)
+
+[node name="can_beer4" parent="chair/can_beer" unique_id=51675706 instance=ExtResource("35_5lm5q")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.13938904, 0, -0.60131836)
+
+[node name="can_beer5" parent="chair/can_beer" unique_id=817264008 instance=ExtResource("35_5lm5q")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.13938904, 0, 1.4706421)
+
+[node name="can_beer6" parent="chair/can_beer" unique_id=298216270 instance=ExtResource("35_5lm5q")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.012207031, 0, 1.1936035)
+
+[node name="can_beer7" parent="chair/can_beer" unique_id=403521829 instance=ExtResource("35_5lm5q")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.012207031, 0, 1.644165)
+
+[node name="can_beer8" parent="chair/can_beer" unique_id=254821810 instance=ExtResource("35_5lm5q")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.19611359, 0, 1.2564697)
+
+[node name="Pizza_box_close" parent="chair" unique_id=1439819761 instance=ExtResource("36_k37ix")]
+transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 7.9973297, 0.5251649, -1.036438)
+
+[node name="Pizza_box_close2" parent="chair" unique_id=557479616 instance=ExtResource("36_k37ix")]
+transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 7.9973297, 0.5733306, -1.104187)
+
+[node name="pizza_one_slice_gone" parent="chair" unique_id=1450248960 instance=ExtResource("37_lj8x8")]
+transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 8.375931, 0.6641317, -1.1281738)
+
+[node name="glass_of_water_03" parent="chair" unique_id=400428871 instance=ExtResource("38_bvgek")]
+transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 8.177862, 0.58401746, -0.7304077)
+
+[node name="glass_of_water_04" parent="chair" unique_id=55837000 instance=ExtResource("38_bvgek")]
+transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 7.729599, 0.58401746, -1.1965027)
+
+[node name="chair2" parent="chair" unique_id=1748929700 instance=ExtResource("25_1u527")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9627323, 0, -0.24780273)
+
+[node name="chair3" parent="chair" unique_id=202349801 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1640759, 0, -0.94470215)
+
+[node name="table_01" parent="chair" unique_id=821074196 instance=ExtResource("39_ytc5w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.015106, 0.08065969, -1.1748047)
+
+[node name="chair4" parent="chair/table_01" unique_id=868749504 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.71017647, -0.08065969, -0.03817749)
+
+[node name="chair5" parent="chair/table_01" unique_id=1558060588 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.80153847, -0.08065969, -0.03817749)
+
+[node name="table_03" parent="chair" unique_id=753855209 instance=ExtResource("39_ytc5w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.015106, 0.08065969, 5.468567)
+
+[node name="chair4" parent="chair/table_03" unique_id=276198278 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.71017647, -0.08065969, -0.03817749)
+
+[node name="chair5" parent="chair/table_03" unique_id=1593465014 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.80153847, -0.08065969, -0.03817749)
+
+[node name="table_04" parent="chair" unique_id=1430665709 instance=ExtResource("39_ytc5w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.061365, 0.08065969, 5.468567)
+
+[node name="chair4" parent="chair/table_04" unique_id=1048095697 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.71017647, -0.08065969, -0.03817749)
+
+[node name="chair5" parent="chair/table_04" unique_id=9209147 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.80153847, -0.08065969, -0.03817749)
+
+[node name="table_05" parent="chair" unique_id=1700925344 instance=ExtResource("39_ytc5w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.061365, 0.08065969, -1.0977478)
+
+[node name="chair4" parent="chair/table_05" unique_id=958280024 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.71017647, -0.08065969, -0.03817749)
+
+[node name="chair5" parent="chair/table_05" unique_id=1051901858 instance=ExtResource("25_1u527")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.80153847, -0.08065969, -0.03817749)
+
+[node name="table_02" parent="chair" unique_id=669928868 instance=ExtResource("40_2jws4")]
+transform = Transform3D(1.3333334, 0, 0, 0, 1.3333334, 0, 0, 0, 1.3333334, -0.51935005, -0.21342345, -1.1318359)
+
+[node name="SM_Shop_Counter_Service_012" parent="chair" unique_id=249485172 instance=ExtResource("41_ym7rp")]
+transform = Transform3D(-6.940024e-08, 0, -1, 0, 1, 0, 1.5876925, 0, -4.371139e-08, 19.00715, -0.37720245, -0.15206909)
+
+[node name="Pizza_box_close3" parent="chair" unique_id=229323947 instance=ExtResource("36_k37ix")]
+transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 19.054037, 0.38292432, 2.1070862)
+
+[node name="clean_plate" parent="chair" unique_id=205197740 instance=ExtResource("42_in8rv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.034166, 0.5735745, 2.7930298)
+
+[node name="AlfajorDeMaizena2" parent="chair/clean_plate" unique_id=1956889257 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.13278198, 0.025900126, -0.014160156)
+
+[node name="AlfajorDeMaizena4" parent="chair/clean_plate" unique_id=1299559427 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.13278198, 0.025900126, -0.10614014)
+
+[node name="AlfajorDeMaizena8" parent="chair/clean_plate" unique_id=564678101 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.027999878, 0.025900126, -0.0035705566)
+
+[node name="AlfajorDeMaizena9" parent="chair/clean_plate" unique_id=161516397 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.26889038, 0.025900126, -0.0035705566)
+
+[node name="AlfajorDeMaizena10" parent="chair/clean_plate" unique_id=2115638242 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.044647217, 0.025900126, 0.08139038)
+
+[node name="AlfajorDeMaizena5" parent="chair/clean_plate" unique_id=1471784682 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.13278198, 0.069122076, -0.05279541)
+
+[node name="AlfajorDeMaizena6" parent="chair/clean_plate" unique_id=1562813229 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.13278198, 0.069122076, 0.035369873)
+
+[node name="AlfajorDeMaizena7" parent="chair/clean_plate" unique_id=941118796 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.13278198, 0.11371529, -0.0138549805)
+
+[node name="AlfajorDeMaizena3" parent="chair/clean_plate" unique_id=1578958750 instance=ExtResource("43_j5rcw")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0.13278198, 0.028341115, 0.07846069)
+
+[node name="clean_plate2" parent="chair" unique_id=901325985 instance=ExtResource("42_in8rv")]
+transform = Transform3D(0.7230071, 0, 0, 0, 0.7232794, 0, 0, 0, 0.7231323, 18.950705, 0.6077084, 1.77948)
+
+[node name="PastaFrola2" parent="chair/clean_plate2" unique_id=1024604008 instance=ExtResource("44_uy27y")]
+transform = Transform3D(0.13831124, 0, 0, 0, 0.13825917, 0, 0, 0, 0.13828729, -0.022380829, 0.0063616037, 0.0073242188)
+
+[node name="clean_plate3" parent="chair" unique_id=190784114 instance=ExtResource("42_in8rv")]
+transform = Transform3D(0.7230071, 0, 0, 0, 0.7232794, 0, 0, 0, 0.7231323, 18.950705, 0.6077084, 2.406433)
+
+[node name="PastaFrola2" parent="chair/clean_plate3" unique_id=201549902 instance=ExtResource("44_uy27y")]
+transform = Transform3D(0.13831124, 0, 0, 0, 0.13825917, 0, 0, 0, 0.13828729, -0.022380829, 0.0063616037, 0.0073242188)
+
+[node name="fridge_close" parent="." unique_id=1430146747 instance=ExtResource("45_cpu1q")]
+transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, 121.10585, 3.0407333, 1229.6597)
+
+[node name="fridge_door" parent="fridge_close" unique_id=1950874358 instance=ExtResource("46_hcbc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4711914, -0.9332237, 0.3968506)
+
+[node name="microwave" parent="." unique_id=208741543 instance=ExtResource("47_rkuii")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 117.0892, 3.2922585, 1217.0051)
+
+[node name="Coffee bean by Poly by Google - 7ONZQTx9Tuz" parent="." unique_id=936193032 instance=ExtResource("48_yeivc")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 118.10256, 0.37128186, 1216.8588)
+
 [connection signal="body_entered" from="Boton" to="Boton" method="_on_body_entered"]
 [connection signal="body_exited" from="Boton" to="Boton" method="_on_body_exited"]
+[connection signal="body_entered" from="Boton3" to="Boton3" method="_on_body_entered"]
+[connection signal="body_exited" from="Boton3" to="Boton3" method="_on_body_exited"]
 [connection signal="body_entered" from="Boton2" to="Boton2" method="_on_body_entered"]
 [connection signal="body_exited" from="Boton2" to="Boton2" method="_on_body_exited"]
 [connection signal="body_entered" from="BotellaCerveza" to="BotellaCerveza" method="_on_body_entered"]
