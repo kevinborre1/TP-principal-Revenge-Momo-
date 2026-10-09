@@ -334,6 +334,7 @@ func abrir_minijuego() -> void:
 	if minijuego_instance:
 		return  # ya está abierto, evitar duplicados
 	minijuego_instance = minijuego_scene.instantiate()
+	minijuego_instance.nombre_jugador = "Jugador 1" if name == "1" else "Jugador 2"
 	$ContenedorMinijuego.add_child(minijuego_instance)  
 	minijuego_instance.minijuego_terminado.connect(_on_minijuego_terminado)
 	
@@ -344,7 +345,7 @@ func abrir_minijuego() -> void:
 	input_bloqueado = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _on_minijuego_terminado() -> void:
+func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 	# Desvanece el contenedor 
 	var tween = create_tween()
 	tween.tween_property($ContenedorMinijuego, "modulate:a", 0.0, 0.5)
