@@ -19,12 +19,14 @@ func _ready() -> void:
 	tube_client.error_raised.connect(_on_error)
 
 func _on_hostear_partida_pressed() -> void:
-	_disable_interface()
-	cartel_error.text = "Creando Sesion"
-	cartel_error.show()
-	
-	tube_client.create_session()
-
+	if Global.mapa_seleccionado == "tutorial":
+		get_tree().change_scene_to_file("res://Tutorial/Tutorial.tscn")
+		_disable_interface()
+		cartel_error.text = "Creando Sesion"
+		cartel_error.show()
+		tube_client.create_session()
+	else:
+		get_tree().change_scene_to_file("res://Menu/MenuSeleccionModo.tscn")
 
 func _on_volver_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
@@ -51,6 +53,7 @@ func _on_session_created() -> void:
 	print("Sesión creada. Código copiado: ", codigo)
 
 	_cargar_mapa_correspondiente()
+	
 func _on_session_joined() -> void:
 	print("Unido exitosamente al Host")
 	_cargar_mapa_correspondiente()
