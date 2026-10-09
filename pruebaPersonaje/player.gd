@@ -21,6 +21,7 @@ var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
 var minijuego_instance: Control = null
 
 # Referencias a los nodos
+@onready var detector_items = $DetectorItems
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var skeleton_3d: Skeleton3D = find_child("Skeleton3D", true, false) as Skeleton3D
@@ -128,6 +129,13 @@ func _input(event: InputEvent) -> void:
 		
 		spring_arm_3d.rotation.x = camera_rotation.x
 		spring_arm_3d.rotation.y = camera_rotation.y
+		# RECOGER CON Q
+	if event is InputEventKey and event.physical_keycode == KEY_Q and event.pressed and not event.echo:
+		intentar_recoger_item()
+
+	# CONSUMIR CON E
+	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
+		consumir_item(0) # Consume lo que haya en la ranura 0
 		
 func _physics_process(delta: float) -> void:
 	if input_bloqueado:
@@ -190,11 +198,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
 	
-	# Coloca esto dentro de _physics_process
-	if Input.is_action_just_pressed("ui_focus_next"): # Tecla Tab por defecto
-	# Carga una imagen temporal que ya tengas en el proyecto
-		var textura_prueba = preload("res://vitictorBar/assetsCocina/textures/chocolate.png") 
-		recolectar_item("Ítem de prueba", textura_prueba)
 
 	move_and_slide()
 	
@@ -269,20 +272,22 @@ func player_animation():
 	else:
 		animation.play("Standing Idle/mixamo_com", 0.3)
 
-func recolectar_item(nombre_item: String, textura_icono: Texture2D) -> bool:
+func recolectar_item(nombre_item: String, textura_icono: Texture2D, ruta: String) -> bool:
 	for i in range(inventario.size()):
-		# Si encontramos una casilla vacía
-			if inventario[i] == null:
-			# Guardamos el dato
-				inventario[i] = nombre_item
+		if inventario[i] == null:
+			# Guardamos nombre y ruta
+			inventario[i] = {
+				"nombre": nombre_item,
+				"ruta_escena": ruta
+			}
 			
-				var icono_visual = slots_ui[i].get_node("icono")
-				icono_visual.texture = textura_icono
-			
-			return true # Recolección exitosa
+			var icono_visual = slots_ui[i].get_node("icono") # ¡Ojo con mayúsculas/minúsculas de tu nodo "icono"!
+			icono_visual.texture = textura_icono
+			return true 
 			
 	print("El inventario está lleno")
-	return false # No hay espacio
+	return false
+
 # Función auxiliar para frenar la canción
 func detener_musica_baile():
 	if macarena and macarena.playing:
@@ -290,26 +295,40 @@ func detener_musica_baile():
 		
 func soltar_item(indice_slot: int):
 	if inventario[indice_slot] != null:
-		var nombre_item = inventario[indice_slot]
+		var ruta = inventario[indice_slot]["ruta_escena"]
 
-		# 1. Vaciar el inventario
+		# Vaciamos inventario visual
 		inventario[indice_slot] = null
-		var icono_visual = slots_ui[indice_slot].get_node("Icono")
+		var icono_visual = slots_ui[indice_slot].get_node("icono")
 		icono_visual.texture = null
 
-		# 2. Instanciar la botella de nuevo en el mundo
-		if nombre_item == "Botella de Cerveza":
-			# Cargar la escena de la botella
-			var escena_botella = load("res://vitictorBar/assetsCocina/glb/beer_bottle.glb") # ¡Asegúrate de poner la ruta correcta!
-			var nueva_botella = escena_botella.instantiate()
+		# Creamos el objeto de nuevo en el mundo
+		if ruta != "":
+			var escena_objeto = load(ruta)
+			if escena_objeto:
+				var nuevo_objeto = escena_objeto.instantiate()
+				var mundo = get_tree().current_scene
+				mundo.add_child(nuevo_objeto)
+				nuevo_objeto.global_position = global_position + (global_transform.basis.z * -1.5) + Vector3(0, 1, 0)
 
-			# Obtener la escena principal del mundo para añadirla
-			var mundo = get_tree().current_scene
-			mundo.add_child(nueva_botella)
-
-			# Posicionar la botella un poco adelante y arriba del jugador
-			nueva_botella.global_position = global_position + (global_transform.basis.z * -1.5) + Vector3(0, 1, 0)
+func consumir_item(indice_slot: int):
+	if inventario[indice_slot] != null:
+		var ruta = inventario[indice_slot]["ruta_escena"]
+		
+		var escena_objeto = load(ruta)
+		if escena_objeto:
+			var item_temporal = escena_objeto.instantiate()
 			
+			if item_temporal is ItemBase:
+				item_temporal.usar_item(self) # Ejecutamos el efecto de curar
+				
+				# Limpiamos el inventario
+				inventario[indice_slot] = null
+				var icono_visual = slots_ui[indice_slot].get_node("icono")
+				icono_visual.texture = null
+				
+			item_temporal.queue_free()
+
 #Funciones de minijuego
 func abrir_minijuego() -> void:
 	if minijuego_instance:
@@ -336,3 +355,18 @@ func _on_minijuego_terminado() -> void:
 	minijuego_instance = null
 	input_bloqueado = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func intentar_recoger_item():
+	if not detector_items: return
+
+	var cuerpos_cercanos = detector_items.get_overlapping_areas() # Usamos areas porque tus items son Area3D
+	print("Objetos detectados cerca: ", cuerpos_cercanos.size()) # Para ver si al menos detecta algo
+	for cuerpo in cuerpos_cercanos:
+		# Godot sabe que la BotellaCerveza ES un ItemBase por la herencia
+		print("Revisando objeto: ", cuerpo.name) # Para ver qué detectó
+		if cuerpo is ItemBase:
+			print("¡Es un ItemBase! Intentando recoger...")
+			var exito = recolectar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
+			if exito:
+				cuerpo.ser_recogido()
+				break

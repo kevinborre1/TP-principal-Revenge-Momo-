@@ -1281,6 +1281,10 @@ properties/3/path = NodePath("SpringArm3D:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aud2g"]
+radius = 0.12841797
+height = 0.66796875
+
 [node name="Player" type="CharacterBody3D" unique_id=679560290 groups=["jugadores"]]
 script = ExtResource("1_cm308")
 
@@ -2022,3 +2026,10 @@ expand_mode = 1
 modulate = Color(1, 1, 1, 0)
 offset_right = 1155.0
 offset_bottom = 642.0
+
+[node name="DetectorItems" type="Area3D" parent="." unique_id=1659537331]
+transform = Transform3D(3.5441399, 0, 0, 0, 3.1686375, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectorItems" unique_id=1955064420]
+transform = Transform3D(1, 0, 0, 0, 0.9999819, 0, 0, 0, 2.8297653, 0.0066881394, 0.27442756, 0.046158075)
+shape = SubResource("CapsuleShape3D_aud2g")

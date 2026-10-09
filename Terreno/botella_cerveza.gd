@@ -1,19 +1,18 @@
-extends Area3D
+extends ItemBase 
+class_name BotellaCerveza
 
-@export var textura_icono: Texture2D
-@export var nombre_item: String = "Botella de Cerveza"
+@export var cantidad_curacion: int = 30 # Cuánta vida cura
 
-func _on_body_entered(body: Node3D) -> void:
-	# Verificamos si el que tocó la botella es el jugador
-	if body.is_in_group("Jugador") and body.has_method("recolectar_item"):
+func usar_item(jugador) -> void:
+	# Lógica para curar al jugador cuando aprieta la tecla E
+	if jugador.saludActual >= jugador.saludMax:
+		print("Salud llena. No puedes usar la botella.")
+		return
 		
-		# Intentamos guardar la botella en el inventario
-		var exito = body.recolectar_item(nombre_item, textura_icono)
+	jugador.saludActual += cantidad_curacion
+	
+	if jugador.saludActual > jugador.saludMax:
+		jugador.saludActual = jugador.saludMax
 		
-		# Si hubo espacio y se recogió con éxito, eliminamos la botella del mundo 3D
-		if exito:
-			queue_free()
-
-
-func _on_body_exited(body: Node3D) -> void:
-	pass # Replace with function body.
+	jugador.cambioSalud.emit()
+	print("Te curaste. Tu salud ahora es: ", jugador.saludActual)
