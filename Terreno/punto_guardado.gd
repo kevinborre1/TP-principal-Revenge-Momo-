@@ -1,8 +1,9 @@
 extends Area3D
 
-const RUTA_SAVE = "user://partida.tres"
+var RUTA_SAVE = ""
 
 func _ready() -> void:
+	RUTA_SAVE = SaveAndLoad.rutaUtilizada
 	# 1. Detectar cuando un personaje entra al área
 	body_entered.connect(_on_body_entered)
 	

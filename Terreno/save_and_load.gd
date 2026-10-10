@@ -1,8 +1,9 @@
 extends Node
 
-const RUTA_SAVE = "user://partida.tres"
+@export var rutaUtilizada = ""
 
 func save_game() -> void:
+	print("Guardando en: ", rutaUtilizada)
 	# Solo el Host/Servidor ejecuta y guarda en su PC
 	if not multiplayer.is_server():
 		return
@@ -21,7 +22,7 @@ func save_game() -> void:
 			data.pos_cliente = jugador.global_position
 
 	# Guardamos el recurso en la PC del Host usando ResourceSaver (como en el video)
-	var err = ResourceSaver.save(data, RUTA_SAVE)
+	var err = ResourceSaver.save(data, rutaUtilizada)
 	if err == OK:
 		print("Servidor: Partida guardada correctamente con los datos de ambos jugadores.")
 	else:
@@ -29,14 +30,15 @@ func save_game() -> void:
 
 
 func load_game() -> void:
+	print("Guardando en: ", rutaUtilizada)
 	if not multiplayer.is_server():
 		return
 		
-	if not ResourceLoader.exists(RUTA_SAVE):
+	if not ResourceLoader.exists(rutaUtilizada):
 		print("No existe ningún archivo de guardado.")
 		return
 		
-	var data = ResourceLoader.load(RUTA_SAVE) as SaveData
+	var data = ResourceLoader.load(rutaUtilizada) as SaveData
 	if data == null:
 		return
 		
