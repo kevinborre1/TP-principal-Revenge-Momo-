@@ -45,10 +45,17 @@ func load_game() -> void:
 	# Buscamos a los jugadores spawneados y les reasignamos la posición guardada
 	var jugadores = get_tree().get_nodes_in_group("Jugador")
 	
-	for jugador in jugadores:
+	for jugador in get_tree().get_nodes_in_group("Jugador"):
 		if jugador.get_multiplayer_authority() == 1:
 			jugador.global_position = data.pos_host
 		else:
-			jugador.global_position = data.pos_cliente
+			# Si nunca se guardó al cliente, aparece al lado del host
+			var destino = data.pos_cliente
+			if destino == Vector3.ZERO:
+				destino = data.pos_host + Vector3(2, 0, 0)
 			
+			if Global.modo_multijugador == "linea":
+				jugador.mover_a.rpc_id(jugador.get_multiplayer_authority(), destino)
+			else:
+				jugador.global_position = destino
 	print("Servidor: Partida cargada y posiciones aplicadas.")

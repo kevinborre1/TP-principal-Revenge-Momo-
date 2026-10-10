@@ -63,7 +63,6 @@ func _ready() -> void:
 				global_position = Vector3(36, 10, 1250) 
 			else:
 				global_position = Vector3(40, 10, 1250)
-	
 
 	# PRENDER TODO DE NUEVO
 	if collision_shape_3d:
