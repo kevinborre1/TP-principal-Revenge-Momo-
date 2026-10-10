@@ -19,7 +19,7 @@ func save_game() -> void:
 		if jugador.get_multiplayer_authority() == 1:
 			data.pos_host = jugador.global_position
 		else:
-			data.pos_cliente = jugador.global_position
+			data.pos_cliente = data.pos_host + Vector3(2, 0, 0)
 
 	# Guardamos el recurso en la PC del Host usando ResourceSaver (como en el video)
 	var err = ResourceSaver.save(data, rutaUtilizada)
@@ -49,13 +49,7 @@ func load_game() -> void:
 		if jugador.get_multiplayer_authority() == 1:
 			jugador.global_position = data.pos_host
 		else:
-			# Si nunca se guardó al cliente, aparece al lado del host
-			var destino = data.pos_cliente
-			if destino == Vector3.ZERO:
-				destino = data.pos_host + Vector3(2, 0, 0)
-			
-			if Global.modo_multijugador == "linea":
-				jugador.mover_a.rpc_id(jugador.get_multiplayer_authority(), destino)
-			else:
-				jugador.global_position = destino
+			data.pos_cliente = data.pos_host + Vector3(2, 0, 0)
+		if Global.modo_multijugador == "linea":
+			jugador.mover_a.rpc_id(jugador.get_multiplayer_authority(), data.pos_cliente)
 	print("Servidor: Partida cargada y posiciones aplicadas.")
