@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sw5nsyx6rqbv"
-path.s3tc="res://.godot/imported/Water_Diffuse.png-953a91198ac5f4cda30f0162d2f33f58.s3tc.ctex"
+path.s3tc="res://.godot/imported/Water_Diffuse.png-f2acc1de828c23f142d0eb9bd3a767b7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://escenario2/Water_Diffuse.png"
-dest_files=["res://.godot/imported/Water_Diffuse.png-953a91198ac5f4cda30f0162d2f33f58.s3tc.ctex"]
+source_file="res://EscenaAgua/Water_Diffuse.png"
+dest_files=["res://.godot/imported/Water_Diffuse.png-f2acc1de828c23f142d0eb9bd3a767b7.s3tc.ctex"]
 
 [params]
 

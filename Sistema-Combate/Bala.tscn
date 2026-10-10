@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b8nvdqb8wsvbc"]
+
+[ext_resource type="Script" uid="uid://b4gfag46vpcq4" path="res://Sistema-Combate/bala.gd" id="1_81lri"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lfkbx"]
+radius = 0.12890625
+height = 0.47262573
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfkbx"]
+radius = 0.14550781
+height = 0.48086548
+
+[node name="Bala" type="Area3D" unique_id=565648693]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_81lri")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=714715927]
+transform = Transform3D(0.0052329917, -0.99998635, 0, 0.99998635, 0.0052329917, 0, 0, 0, 1, 0.024630262, 0.00750539, 0.0033410788)
+mesh = SubResource("CapsuleMesh_lfkbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=366785130]
+transform = Transform3D(0.0052329917, -0.99998635, 0, 0.99998635, 0.0052329917, 0, 0, 0, 1, 0.020052671, 0.007529344, 0.0033410788)
+shape = SubResource("CapsuleShape3D_lfkbx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

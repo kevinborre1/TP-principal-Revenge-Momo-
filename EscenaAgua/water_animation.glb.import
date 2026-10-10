@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cdkjou2aey537"
-path="res://.godot/imported/water_animation.glb-3722d5b56df37ba89c185fa576c069fe.scn"
+path="res://.godot/imported/water_animation.glb-1f58682e4c327ebf24d78241db68960b.scn"
 
 [deps]
 
-source_file="res://escenario2/water_animation.glb"
-dest_files=["res://.godot/imported/water_animation.glb-3722d5b56df37ba89c185fa576c069fe.scn"]
+source_file="res://EscenaAgua/water_animation.glb"
+dest_files=["res://.godot/imported/water_animation.glb-1f58682e4c327ebf24d78241db68960b.scn"]
 
 [params]
 

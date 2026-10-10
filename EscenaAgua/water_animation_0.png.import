@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drgo1eyc3jpoa"
-path.s3tc="res://.godot/imported/water_animation_0.png-2ffa3e03767399ef39e9203e473d7a87.s3tc.ctex"
+path.s3tc="res://.godot/imported/water_animation_0.png-4ce7ffa09f81efcddc131c5e3d510a2c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://escenario2/water_animation_0.png"
-dest_files=["res://.godot/imported/water_animation_0.png-2ffa3e03767399ef39e9203e473d7a87.s3tc.ctex"]
+source_file="res://EscenaAgua/water_animation_0.png"
+dest_files=["res://.godot/imported/water_animation_0.png-4ce7ffa09f81efcddc131c5e3d510a2c.s3tc.ctex"]
 
 [params]
 

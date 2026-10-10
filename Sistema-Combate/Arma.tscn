@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c6yr2jemw2ntr"]
+
+[ext_resource type="Script" uid="uid://brpg0t4uudgfw" path="res://Sistema-Combate/arma.gd" id="1_sjkoq"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lfkbx"]
+radius = 0.09277344
+height = 0.24700928
+
+[sub_resource type="BoxMesh" id="BoxMesh_lfkbx"]
+size = Vector3(0.069122314, 0.05053711, 0.03314209)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aui74"]
+albedo_color = Color(1, 1, 0.2901961, 1)
+
+[node name="Arma" type="Node3D" unique_id=628720648]
+script = ExtResource("1_sjkoq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1087771205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.098846436, 0)
+mesh = SubResource("CapsuleMesh_lfkbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1113567639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017282039, 0.04137084, 0.08779721)
+mesh = SubResource("BoxMesh_lfkbx")
+surface_material_override/0 = SubResource("StandardMaterial3D_aui74")
+
+[node name="PuntoDeDisparo" type="Marker3D" parent="." unique_id=1203174570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015576456, -0.06360865, 0.51843965)

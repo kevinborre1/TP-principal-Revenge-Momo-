@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d1l6ap6nfykqm" path="res://pruebaPersonaje/Walk (1)_0.png" id="1_0b1hf"]
 [ext_resource type="Script" uid="uid://dr0ie81mwqtl1" path="res://pruebaPersonaje/player.gd" id="1_cm308"]
 [ext_resource type="Texture2D" uid="uid://cp51tkl1jrxvy" path="res://pruebaPersonaje/Walk (1)_3.png" id="2_cm308"]
+[ext_resource type="PackedScene" uid="uid://c6yr2jemw2ntr" path="res://Sistema-Combate/Arma.tscn" id="2_ww6v2"]
 [ext_resource type="Texture2D" uid="uid://um6po6qebank" path="res://pruebaPersonaje/Walk (1)_4.png" id="3_iy3o6"]
 [ext_resource type="Texture2D" uid="uid://0qnbe0ocqagm" path="res://assets/checkboxempty.png" id="5_iy3o6"]
 [ext_resource type="AnimationLibrary" uid="uid://eai1q0ciaapr" path="res://pruebaPersonaje/movimientos/Fast Run.fbx" id="5_jvtdh"]
@@ -1760,6 +1761,14 @@ bones/64/enabled = true
 bones/64/position = Vector3(2.3171047e-11, 0.06702245, 2.669704e-11)
 bones/64/rotation = Quaternion(-2.40752e-10, -1.02240265e-16, 3.469447e-18, 1)
 bones/64/scale = Vector3(1, 1, 1)
+
+[node name="ManoDerechaAtachmen" type="BoneAttachment3D" parent="Walk (1)/Skeleton3D" unique_id=1308574947]
+transform = Transform3D(-0.015917499, -0.9694304, 0.24484898, 0.16210178, -0.2441425, -0.9560949, 0.98664564, 0.024471816, 0.16103256, -0.77533925, 1.3864048, -0.046387926)
+bone_name = "mixamorig_RightHandMiddle2"
+bone_idx = 44
+
+[node name="Arma" parent="Walk (1)/Skeleton3D/ManoDerechaAtachmen" unique_id=628720648 instance=ExtResource("2_ww6v2")]
+transform = Transform3D(0.6580592, 0.13838196, 0.74014103, 0.18369146, -0.9827717, 0.020425867, 0.73021597, 0.12251633, -0.67214125, -3.4093857e-05, -0.002076745, 0.0005245209)
 
 [node name="Ch02_Cloth" type="MeshInstance3D" parent="Walk (1)/Skeleton3D" unique_id=1686294271]
 mesh = SubResource("ArrayMesh_21m8b")

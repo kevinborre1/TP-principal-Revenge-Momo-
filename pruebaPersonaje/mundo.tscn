@@ -22,9 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://c88j3oj0lf6om" path="res://Terreno/rock023_alb_ht.png" id="21_60bd6"]
 [ext_resource type="Texture2D" uid="uid://c307hdmos4gtm" path="res://Terreno/rock023_nrm_rgh.png" id="22_f2pkn"]
 [ext_resource type="PackedScene" uid="uid://dywch7k16daub" path="res://vitictorBar/node_3d.tscn" id="23_0gt8b"]
-[ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://boton.tscn" id="24_a0xth"]
+[ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://BotonesScript/boton.tscn" id="24_a0xth"]
 [ext_resource type="Script" uid="uid://hvgyl0m1iyim" path="res://pruebaPersonaje/puerta.gd" id="25_gx084"]
-[ext_resource type="Script" uid="uid://bqcmxonb3smgp" path="res://boton.gd" id="25_rhlx0"]
+[ext_resource type="Script" uid="uid://bqcmxonb3smgp" path="res://BotonesScript/boton.gd" id="25_rhlx0"]
 [ext_resource type="PackedScene" uid="uid://blmgdhrpsp8c0" path="res://pruebaPersonaje/player.tscn" id="26_rhlx0"]
 
 [sub_resource type="GDScript" id="GDScript_gx084"]

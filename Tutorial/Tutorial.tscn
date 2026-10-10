@@ -16,10 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://bwdtuuonwj4b" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_AmbientOcclusion.png" id="13_1uqyg"]
 [ext_resource type="Texture2D" uid="uid://q4tqm45xmq66" path="res://vitictorBar/puerta.png" id="13_dwacr"]
 [ext_resource type="Texture2D" uid="uid://dkks1uqgrfwbv" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_Displacement.png" id="14_f2drb"]
-[ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://boton.tscn" id="14_ymur5"]
-[ext_resource type="Script" uid="uid://b41v3633fwkh4" path="res://boton1Entrada.gd" id="15_lwo2v"]
+[ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://BotonesScript/boton.tscn" id="14_ymur5"]
+[ext_resource type="Script" uid="uid://b41v3633fwkh4" path="res://BotonesScript/boton1Entrada.gd" id="15_lwo2v"]
 [ext_resource type="Texture2D" uid="uid://cyw4utmcalmk4" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_NormalGL.png" id="15_xobj3"]
-[ext_resource type="Script" uid="uid://dlfycosjams24" path="res://boton2Entrada.gd" id="16_ivch4"]
+[ext_resource type="Script" uid="uid://dlfycosjams24" path="res://BotonesScript/boton2Entrada.gd" id="16_ivch4"]
 [ext_resource type="Texture2D" uid="uid://cc0psb35bx41d" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_Roughness.png" id="16_j1fac"]
 [ext_resource type="PackedScene" uid="uid://cslvsk57vr3gy" path="res://Tutorial/Wooden Sign by iPoly3D - mxyDWLsKer.glb" id="22_1uqyg"]
 [ext_resource type="Script" uid="uid://q7k24kusq6rp" path="res://Tutorial/final_del_tutorial.gd" id="23_f2drb"]
@@ -38,54 +38,7 @@ sky = SubResource("Sky_tr3kr")
 
 [sub_resource type="Compositor" id="Compositor_sxovr"]
 
-[sub_resource type="Gradient" id="Gradient_456fj"]
-offsets = PackedFloat32Array(0.2, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3lk1t"]
-noise_type = 2
-frequency = 0.03
-cellular_jitter = 3.0
-cellular_return_type = 0
-domain_warp_enabled = true
-domain_warp_type = 1
-domain_warp_amplitude = 50.0
-domain_warp_fractal_type = 2
-domain_warp_fractal_lacunarity = 1.5
-domain_warp_fractal_gain = 1.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ghxa4"]
-noise = SubResource("FastNoiseLite_3lk1t")
-color_ramp = SubResource("Gradient_456fj")
-seamless = true
-
 [sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_a4klu"]
-_shader_parameters = {
-&"bias_distance": null,
-&"blend_sharpness": null,
-&"depth_blur": null,
-&"enable_macro_variation": null,
-&"enable_projection": null,
-&"flat_terrain_normals": null,
-&"macro_variation1": null,
-&"macro_variation2": null,
-&"macro_variation_slope": null,
-&"mipmap_bias": null,
-&"noise1_angle": null,
-&"noise1_offset": null,
-&"noise1_scale": null,
-&"noise2_scale": null,
-&"noise_texture": SubResource("NoiseTexture2D_ghxa4"),
-&"projection_threshold": null,
-&"world_noise_fragment_normals": null,
-&"world_noise_height": null,
-&"world_noise_lod_distance": null,
-&"world_noise_max_octaves": null,
-&"world_noise_min_octaves": null,
-&"world_noise_offset": null,
-&"world_noise_region_blend": null,
-&"world_noise_scale": null
-}
 world_background = 2
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_k1edr"]
