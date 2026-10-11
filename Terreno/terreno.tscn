@@ -289,7 +289,7 @@ height = 3.5839844
 height = 3.0737305
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
-height = 2.0361328
+height = 1.543457
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sexue"]
 
@@ -309,6 +309,16 @@ size = Vector3(0.07165527, 0.94140625, 0.08734131)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kl8fx"]
 size = Vector3(1.3025513, 0.10775757, 1.2484741)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d6yw7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hi5mo"]
+size = Vector3(3.3547363, 1.4614258, 0.5947876)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d0de0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0u3xn"]
+size = Vector3(1.0300293, 2.470581, 1.1217957)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cnt6s"]
 
@@ -492,6 +502,14 @@ uv1_scale = Vector3(9, 9, 9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tr3kr"]
 size = Vector3(2.0163574, 1, 2.3875732)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_372xe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ile7"]
+size = Vector3(2.198944, 0.1076355, 1.1221924)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_snn8e"]
+size = Vector3(0.090408325, 0.50341797, 0.071746826)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smujk"]
 
@@ -2113,7 +2131,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_8w0r3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1149178605]
-transform = Transform3D(3.1854696, 0, 0, 0, 2.0391526, 0, 0, 0, 3.1385317, 0, 2.6348867, -0.21594238)
+transform = Transform3D(3.1854696, 0, 0, 0, 2.0391526, 0, 0, 0, 3.1385317, 0, 1.8960922, -0.21594238)
 shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="patato" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1166769141 instance=ExtResource("16_rpqym")]
@@ -2275,7 +2293,7 @@ visible = false
 shape = SubResource("CapsuleShape3D_8w0r3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Enemigos VictorBars/enemigo2" unique_id=559317328]
-transform = Transform3D(1, 0, 0, 0, 0.901129, 0, 0, 0, 0.986, 0.8047142, 0.34970236, -0.4567871)
+transform = Transform3D(1, 0, 0, 0, 0.901129, 0, 0, 0, 0.986, 0.804718, 0.45420337, -0.4567871)
 shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VictorBars/Enemigos VictorBars/enemigo2" unique_id=154868832]
@@ -2693,12 +2711,6 @@ transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 8.177
 [node name="glass_of_water_04" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=55837000 instance=ExtResource("38_bvgek")]
 transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 7.729599, 0.58401746, -1.1965027)
 
-[node name="chair2" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=1748929700 instance=ExtResource("25_1u527")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9627323, 0, -0.24780273)
-
-[node name="chair3" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=202349801 instance=ExtResource("25_1u527")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1640759, 0, -0.94470215)
-
 [node name="table_01" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=821074196 instance=ExtResource("39_ytc5w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.015106, 0.08065969, -1.1748047)
 
@@ -2947,11 +2959,15 @@ shape = SubResource("BoxShape3D_d0de0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01461792, 0.4011078, 0.020141602)
 shape = SubResource("BoxShape3D_kl8fx")
 
-[node name="table_02" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=669928868 instance=ExtResource("40_2jws4")]
-transform = Transform3D(1.3333334, 0, 0, 0, 1.3333334, 0, 0, 0, 1.3333334, -0.51935005, -0.21342345, -1.1318359)
-
 [node name="SM_Shop_Counter_Service_012" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=249485172 instance=ExtResource("41_ym7rp")]
 transform = Transform3D(-6.940024e-08, 0, -1, 0, 1, 0, 1.5876925, 0, -4.371139e-08, 19.00715, -0.37720245, -0.15206909)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Cocina/SM_Shop_Counter_Service_012" unique_id=2028126477]
+physics_material_override = SubResource("PhysicsMaterial_d6yw7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Cocina/SM_Shop_Counter_Service_012/StaticBody3D" unique_id=1209237304]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 1.3287149e-12, 0, 1, 0.61047363, 0.23071289, -0.0140686035)
+shape = SubResource("BoxShape3D_hi5mo")
 
 [node name="Pizza_box_close3" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=229323947 instance=ExtResource("36_k37ix")]
 transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 19.054037, 0.38292432, 2.1070862)
@@ -3003,6 +3019,13 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.2
 
 [node name="fridge_door" parent="VictorBars/Decoraciones VictorBars/Cocina/fridge_close" unique_id=1950874358 instance=ExtResource("46_hcbc3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4711914, -0.9332237, 0.3968506)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Cocina/fridge_close/fridge_door" unique_id=559695015]
+physics_material_override = SubResource("PhysicsMaterial_d0de0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Cocina/fridge_close/fridge_door/StaticBody3D" unique_id=635350849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47058105, 0.7352907, -0.44844055)
+shape = SubResource("BoxShape3D_0u3xn")
 
 [node name="Coffee bean by Poly by Google - 7ONZQTx9Tuz" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=936193032 instance=ExtResource("48_yeivc")]
 transform = Transform3D(0.06666667, 0, 0, 0, 0.06666667, 0, 0, 0, 0.06666667, 19.20347, -0.26267314, 0.98049927)
@@ -3135,8 +3158,122 @@ shape = SubResource("BoxShape3D_tr3kr")
 [node name="Sketchfab_Scene" parent="VictorBars/Decoraciones VictorBars/Banio" unique_id=183955961 instance=ExtResource("53_gkey5")]
 transform = Transform3D(-7.3766, 0, -1.1138357e-06, 0, 7.606097, 0, 1.0963812e-06, 0, -7.2610044, 1.0430527, 0.62187034, 61.751953)
 
-[node name="Puerta3" parent="VictorBars/Decoraciones VictorBars" unique_id=1151896331 instance=ExtResource("57_k37ix")]
+[node name="Haul de entrada" type="Node3D" parent="VictorBars/Decoraciones VictorBars" unique_id=1573066865]
+
+[node name="Puerta3" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1151896331 instance=ExtResource("57_k37ix")]
 transform = Transform3D(1, 0, 0, 0, 1.2954012, 0, 0, 0, 1.427239, 32.105522, 0.0021679401, 1222.1293)
+
+[node name="table_02" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=669928868 instance=ExtResource("40_2jws4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 58.934105, 0.5190309, 1210.5217)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_02" unique_id=756219561]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_02/StaticBody3D" unique_id=925900336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_02/StaticBody3D" unique_id=1082182799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_02/StaticBody3D" unique_id=1514743633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_02/StaticBody3D" unique_id=648235402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, 0.56484985)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_02/StaticBody3D" unique_id=1254729579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, -0.5130615)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="chair2" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1748929700 instance=ExtResource("25_1u527")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 57.60396, 1.1593013, 1213.1738)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair2" unique_id=1147624682]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair2/StaticBody3D" unique_id=1838023819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair2/StaticBody3D" unique_id=468677186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair2/StaticBody3D" unique_id=81917964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair2" unique_id=188831584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96287346, 0, 0.2513733)
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair2/StaticBody3D2" unique_id=17480072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair2/StaticBody3D2" unique_id=170900071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair2/StaticBody3D2" unique_id=1853902631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair3" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=202349801 instance=ExtResource("25_1u527")]
+transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, 53.99993, 1.1593013, 1211.0831)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair3" unique_id=282146831]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair3/StaticBody3D" unique_id=1043476187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair3/StaticBody3D" unique_id=933450468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair3/StaticBody3D" unique_id=1608183424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair4" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=925584048 instance=ExtResource("25_1u527")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 57.60396, 1.1593013, 1213.1738)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4" unique_id=535944663]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=425320504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=762370055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=2089326090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4" unique_id=1661266409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96287346, 0, 0.2513733)
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D2" unique_id=566162900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D2" unique_id=404084661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D2" unique_id=591690054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
 
 [node name="Base VictorBars" type="Node3D" parent="VictorBars" unique_id=1025805428]
 
@@ -3355,7 +3492,7 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 
 [node name="0" type="MeshInstance3D" parent="Campus/Base Campus/Agua/Sketchfab_model/e179be81fa0a492eb2ed52be822eb2c2_fbx/Object_2/RootNode/Water Export" unique_id=87325876]
-transform = Transform3D(1, 0, 0, 0, 1.2173144, 1.0587912e-22, 0, 1.0587912e-22, 1, -0.8615265, 4.8966675, -18.09098)
+transform = Transform3D(1, 0, 0, 0, 1.2173144, 1.0587912e-22, 0, 1.0587912e-22, 1, 0.5200348, 4.7130737, -18.090982)
 mesh = SubResource("ArrayMesh_3jr33")
 blend_shapes/morph_0 = 1.0
 blend_shapes/morph_1 = 0.0
