@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 # exporto estas variables para poder cambiarlas desde el inspector sin necesidad de abrir el script.
 @export var speed: float = 5.0
 @export var turn_speed: float = 2.5
@@ -52,10 +51,10 @@ func _physics_process(delta: float) -> void:
 	
 # para conectar el area 3d
 func _on_zona_abordaje_body_entered(body: Node3D) -> void: 
-	if body.name == "Player":
+	if body.is_in_group("jugadores"):
 		player_is_near = true
 		player_node = body
 
 func _on_zona_abordaje_body_exited(body: Node3D) -> void:
-	if body.name == "Player":
+	if body.is_in_group("jugadores"):
 		player_is_near = false
