@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h7e1k0hd1fr5"
-path="res://.godot/imported/Jugar_en_Linea.png-6961bae4a5307b4ee2b5c057c1521845.ctex"
+uid="uid://detwuls2ebbc1"
+path="res://.godot/imported/Reglas.png-28683bba95ce5d5187ecad6707106ac1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Imagenes/Jugar_en_Linea.png"
-dest_files=["res://.godot/imported/Jugar_en_Linea.png-6961bae4a5307b4ee2b5c057c1521845.ctex"]
+source_file="res://Imagenes/Reglas.png"
+dest_files=["res://.godot/imported/Reglas.png-28683bba95ce5d5187ecad6707106ac1.ctex"]
 
 [params]
 

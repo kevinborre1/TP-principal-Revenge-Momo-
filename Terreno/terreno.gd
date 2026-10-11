@@ -2,7 +2,6 @@ extends Node3D
 
 var player_scene = preload("res://pruebaPersonaje/player.tscn")
 
-
 @onready var contenedor_principal = $HBoxContainer
 @onready var subviewport_container1 = $HBoxContainer/SubViewportContainer
 @onready var subviewport_container2 = $HBoxContainer/SubViewportContainer2
@@ -26,7 +25,7 @@ func _ready() -> void:
 
 	if Global.modo_multijugador == "local":
 		# MODO LOCAL
-		contenedor_principal.show() # Solo la mostramos si es local
+		contenedor_principal.show()
 		subviewport_container2.show()
 		subviewport2.world_3d = subviewport1.world_3d
 		
@@ -42,8 +41,6 @@ func _ready() -> void:
 		
 	elif Global.modo_multijugador == "linea":
 		# MODO EN LÍNEA
-		# (La UI ya está oculta, no necesitamos hacer contenedor_principal.hide() de nuevo)
-		
 		if not multiplayer.is_server():
 			return
 
@@ -59,8 +56,8 @@ func add_player(peer_id: int) -> void:
 	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
 	
 	add_child(new_player)
+
 func _disconnected_player(peer_id: int) -> void:
-	# Buscamos al jugador en el "mundo", no en el SubViewport
 	var player_deleted = get_node_or_null(str(peer_id))
 	if player_deleted:
 		player_deleted.queue_free()

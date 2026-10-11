@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1ecke105e83n"]
 
-[ext_resource type="Texture2D" uid="uid://h7e1k0hd1fr5" path="res://Imagenes/Jugar_en_Linea.png" id="1_dqn8n"]
 [ext_resource type="Script" uid="uid://ccvg4vonrijbk" path="res://Menu/jugar_en_linea.gd" id="1_ep540"]
+[ext_resource type="Texture2D" uid="uid://dw5gmxj80l2uf" path="res://Imagenes/JugarEnLinea.png" id="2_e4v3r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sxovr"]
 
@@ -27,30 +27,48 @@ script = ExtResource("1_ep540")
 layout_mode = 0
 offset_right = 1153.0
 offset_bottom = 648.0
-texture = ExtResource("1_dqn8n")
+texture = ExtResource("2_e4v3r")
 expand_mode = 1
 
-[node name="Hostear Partida" type="Button" parent="." unique_id=1234604023]
+[node name="Hostear Slot 1" type="Button" parent="." unique_id=1234604023]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 296.0
-offset_right = 378.0
-offset_bottom = 351.0
+offset_left = 138.0
+offset_top = 265.0
+offset_right = 412.0
+offset_bottom = 426.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ep540")
+
+[node name="Hostear Slot 2" type="Button" parent="." unique_id=1253695901]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 266.0
+offset_right = 716.0
+offset_bottom = 427.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ep540")
+
+[node name="Hostear Slot 3" type="Button" parent="." unique_id=1360266902]
+layout_mode = 0
+offset_left = 747.0
+offset_top = 265.0
+offset_right = 1021.0
+offset_bottom = 426.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sxovr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ep540")
 
 [node name="Codigo" type="LineEdit" parent="." unique_id=627213490]
 layout_mode = 0
-offset_left = 124.0
-offset_top = 417.0
-offset_right = 381.0
-offset_bottom = 458.0
+offset_left = 362.0
+offset_top = 525.0
+offset_right = 771.0
+offset_bottom = 566.0
 
 [node name="Volver" type="Button" parent="." unique_id=572891037]
 layout_mode = 0
-offset_left = 1064.0
+offset_left = 1043.0
 offset_top = 30.0
-offset_right = 1099.0
+offset_right = 1132.0
 offset_bottom = 82.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sxovr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tr3kr")
@@ -58,15 +76,17 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_tr3kr")
 [node name="CartelError" type="Label" parent="." unique_id=1238487144]
 visible = false
 layout_mode = 0
-offset_left = 121.0
-offset_top = 467.0
-offset_right = 384.0
-offset_bottom = 513.0
+offset_left = 342.0
+offset_top = 594.0
+offset_right = 798.0
+offset_bottom = 640.0
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="Hostear Partida" to="." method="_on_hostear_partida_pressed"]
+[connection signal="pressed" from="Hostear Slot 1" to="." method="_on_hostear_partida_pressed"]
+[connection signal="pressed" from="Hostear Slot 2" to="." method="_on_hostear_slot_2_pressed"]
+[connection signal="pressed" from="Hostear Slot 3" to="." method="_on_hostear_slot_3_pressed"]
 [connection signal="text_submitted" from="Codigo" to="." method="_on_codigo_text_submitted"]
 [connection signal="pressed" from="Volver" to="." method="_on_volver_pressed"]

@@ -67,8 +67,7 @@ func _ready() -> void:
 				global_position = Vector3(-3, 0, -36) # Posición Host en Tutorial
 			else:
 				global_position = Vector3(-3, 0, -33) # Posición Cliente en Tutorial
-		else:
-			# Coordenadas originales para terreno.tscn
+		elif SaveAndLoad.rutaUtilizada == "" or not ResourceLoader.exists(SaveAndLoad.rutaUtilizada):
 			if id_player == 1:
 				global_position = Vector3(36, 10, 1250) 
 			else:
