@@ -107,7 +107,7 @@ func _ready() -> void:
 	if raycast:
 		raycast.add_exception(self)
 		
-	actualizar_modo_combate()
+	#actualizar_modo_combate()
 
 # 1. FUNCIÓN _INPUT: Solo para cámara y ratón
 func _input(event: InputEvent) -> void:
