@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://bsxcr5klie67l"]
 
-[ext_resource type="Texture2D" uid="uid://q7m1d451iptq" path="res://Imagenes/Menu-Principal.png" id="1_5ni12"]
 [ext_resource type="Script" uid="uid://wcigcklt1t8f" path="res://Menu/menu_principal.gd" id="1_75c1s"]
+[ext_resource type="Texture2D" uid="uid://dhioq3cu7oxw3" path="res://Imagenes/Menu-Principal-_2_.png" id="2_75c1s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ni12"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75c1s"]
 bg_color = Color(0.7607843, 0.7607843, 0.7607843, 0.3882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_101yj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8iqr"]
+bg_color = Color(0.23529412, 0.23529412, 0.23529412, 0.45882353)
 
 [node name="MenuPrincipal" type="Control" unique_id=1262808577]
 layout_mode = 3
@@ -21,7 +27,7 @@ script = ExtResource("1_75c1s")
 layout_mode = 0
 offset_right = 1156.0
 offset_bottom = 647.0
-texture = ExtResource("1_5ni12")
+texture = ExtResource("2_75c1s")
 expand_mode = 1
 
 [node name="Botones" type="VBoxContainer" parent="." unique_id=972915465]
@@ -76,9 +82,20 @@ text = " Tutorial
 "
 alignment = 0
 
+[node name="Reglas" type="Button" parent="." unique_id=1835973867]
+layout_mode = 0
+offset_left = 1088.0
+offset_top = 16.0
+offset_right = 1141.0
+offset_bottom = 69.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_101yj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o8iqr")
+text = "   "
+
 [connection signal="pressed" from="Botones/Jugar Local" to="." method="_on_jugar_local_pressed"]
 [connection signal="pressed" from="Botones/Jugar en Linea" to="." method="_on_jugar_en_linea_pressed"]
 [connection signal="pressed" from="Botones/Opciones" to="." method="_on_opciones_pressed"]
 [connection signal="pressed" from="Botones/Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="pressed" from="Botones/Salir" to="." method="_on_salir_pressed"]
 [connection signal="pressed" from="Botones/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Reglas" to="." method="_on_reglas_pressed"]
