@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw5gmxj80l2uf"
-path="res://.godot/imported/Menú de partida en campus abandonado.png-7e8686c248fd986c1b2829281db80d04.ctex"
+uid="uid://detwuls2ebbc1"
+path="res://.godot/imported/Reglas.png-28683bba95ce5d5187ecad6707106ac1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Imagenes/Menú de partida en campus abandonado.png"
-dest_files=["res://.godot/imported/Menú de partida en campus abandonado.png-7e8686c248fd986c1b2829281db80d04.ctex"]
+source_file="res://Imagenes/Reglas.png"
+dest_files=["res://.godot/imported/Reglas.png-28683bba95ce5d5187ecad6707106ac1.ctex"]
 
 [params]
 

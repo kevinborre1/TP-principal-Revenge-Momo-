@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kcowg5u0b0hk"
-path="res://.godot/imported/reglas3.png-eea93d4447390baa3fc7501e106cf580.ctex"
+uid="uid://dw5gmxj80l2uf"
+path="res://.godot/imported/JugarEnLinea.png-c0ddba362612c09487c1b1e15d186d7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/reglas3.png"
-dest_files=["res://.godot/imported/reglas3.png-eea93d4447390baa3fc7501e106cf580.ctex"]
+source_file="res://Imagenes/JugarEnLinea.png"
+dest_files=["res://.godot/imported/JugarEnLinea.png-c0ddba362612c09487c1b1e15d186d7f.ctex"]
 
 [params]
 
