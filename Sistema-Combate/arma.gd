@@ -6,17 +6,28 @@ extends Node3D
 @export var cadencia: float = 0.2
 var puede_disparar: bool = true
 
+func _jugador_dueño() -> Player:
+	var nodo: Node = self
+	while nodo and not (nodo is Player):
+		nodo = nodo.get_parent()
+	return nodo as Player
+
 func _unhandled_input(event: InputEvent) -> void:
+	var jugador := _jugador_dueño()
+	if jugador == null or jugador.input_bloqueado:
+		return
 	if event.is_action_pressed("disparar") and puede_disparar:
 		disparar()
 
 func disparar() -> void:
 	if not escena_bala:
 		return
+	puede_disparar = false 
 		
 	# Buscamos al jugador y a la cámara / raycast
-	var player = get_tree().get_first_node_in_group("Jugador")
+	var player = _jugador_dueño() #get_tree().get_first_node_in_group("Jugador")
 	if not player:
+		puede_disparar = true
 		return
 		
 	var raycast: RayCast3D = player.find_child("RayCastDisparo", true, false)

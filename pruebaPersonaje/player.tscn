@@ -2060,6 +2060,7 @@ offset_right = 28.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/PuntoDeMira" unique_id=526329824]
