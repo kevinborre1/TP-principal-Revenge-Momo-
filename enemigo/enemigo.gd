@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 const SPEED = 3.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+@export var vida_maxima: int = 20
+var vida_actual: int = vida_maxima
 
 func _physics_process(delta: float) -> void:
 	# 1. Aplicar gravedad para que no flote
@@ -46,3 +48,17 @@ func obtener_jugador_mas_cercano() -> Node3D:
 				jugador_cercano = j
 				
 	return jugador_cercano
+
+func _daniar(danio: int) -> void:
+	vida_actual -= danio
+	print("¡El enemigo recibió un disparo! Daño:", danio, " | Vida restante:", vida_actual)
+	
+	# Aquí puedes agregar efectos visuales, partículas de impacto o sangre en "transformacion_bala.origin"
+	
+	if vida_actual <= 0:
+		morir()
+
+func morir() -> void:
+	print("El enemigo ha muerto.")
+	# Aquí puedes liberar el nodo o activar una animación de muerte / ragdoll
+	queue_free()

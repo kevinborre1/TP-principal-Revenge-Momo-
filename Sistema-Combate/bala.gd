@@ -1,7 +1,7 @@
 extends Area3D
 
-const TIEMPO_VIDA: float = 20.0
-const VELOCIDAD_BALA: float = 1.0
+const TIEMPO_VIDA: float = 4.0
+const VELOCIDAD_BALA: float = 70.0
 const DANIO_BALA: int = 10
 
 var tiempo: float = 0.0
@@ -24,8 +24,8 @@ func _physics_process(delta: float) -> void:
 
 func _al_colisionar(body: Node3D) -> void:
 	if not golpeo_algo:
-		if body.has_method("golpeo_bala"):
-			body.golpeo_bala(DANIO_BALA, global_transform)
+		if body.has_method("_daniar"):
+			body._daniar(DANIO_BALA)
 		golpeo_algo = true
 		queue_free()
 		

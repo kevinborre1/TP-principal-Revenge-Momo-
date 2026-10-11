@@ -11,8 +11,6 @@ radius = 0.14550781
 height = 0.48086548
 
 [node name="Bala" type="Area3D" unique_id=565648693]
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("1_81lri")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=714715927]
