@@ -266,7 +266,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x47i8"]
-size = Vector3(1, 3.6032715, 8.466797)
+size = Vector3(1, 3.6032715, 9.01123)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
 size = Vector3(0.91296387, 5.6449585, 5.9629517)
@@ -506,10 +506,10 @@ size = Vector3(2.0202026, 1, 2.3875732)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_372xe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ile7"]
-size = Vector3(2.198944, 0.1076355, 1.1221924)
+size = Vector3(2.198944, 0.1076355, 1.2476196)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_snn8e"]
-size = Vector3(0.090408325, 0.50341797, 0.071746826)
+size = Vector3(0.090408325, 0.604126, 0.071746826)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smujk"]
 
@@ -2039,7 +2039,7 @@ autoplay = &"Armature|Open"
 transform = Transform3D(-7.2852316e-07, 0, 16.666668, 0, 36.98862, 0, -45.958385, 0, -2.0089049e-06, -20098.715, -36.487328, 2841.365)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/Puerta2/AtravesoPuerta" unique_id=1829698031]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.86395, 1.3016357, 1220.8798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.86395, 1.3016357, 1220.6075)
 shape = SubResource("BoxShape3D_x47i8")
 
 [node name="Puerta" type="AnimatableBody3D" parent="VictorBars/Interacciones VictorBars" unique_id=2014995360]
@@ -3241,37 +3241,507 @@ shape = SubResource("BoxShape3D_dfpeg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
 shape = SubResource("BoxShape3D_72ksg")
 
-[node name="chair4" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=925584048 instance=ExtResource("25_1u527")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 57.60396, 1.1593013, 1213.1738)
+[node name="table_03" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1212384400 instance=ExtResource("40_2jws4")]
+transform = Transform3D(3.152043, -2.0907166, -1.3013566, 0, 2.1137533, -3.3958867, 2.462646, 2.6759953, 1.6656604, 59.056725, 0.5190309, 1226.2468)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4" unique_id=535944663]
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_03" unique_id=875330811]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_03/StaticBody3D" unique_id=94867400]
+transform = Transform3D(1, 6.2584877e-07, 1.1920929e-07, 2.9802322e-08, 1, 3.5762787e-07, 0, -2.9802322e-08, 1.0000004, 0.003982544, 0.39190674, -0.0016098022)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_03/StaticBody3D" unique_id=597335869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_03/StaticBody3D" unique_id=538324764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_03/StaticBody3D" unique_id=422626143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, 0.56484985)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_03/StaticBody3D" unique_id=378199891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, -0.5130615)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="table_04" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1139351413 instance=ExtResource("40_2jws4")]
+transform = Transform3D(-3.8688977, -0.7438016, 0.69165796, -0.20259444, -2.104022, -3.3958867, 0.9952824, -3.3196158, 1.9973888, 52.85145, 1.512391, 1225.8994)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_04" unique_id=1708343102]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_04/StaticBody3D" unique_id=277984415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_04/StaticBody3D" unique_id=1452269625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_04/StaticBody3D" unique_id=804865717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_04/StaticBody3D" unique_id=280745522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, 0.56484985)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_04/StaticBody3D" unique_id=774437618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, -0.5130615)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="table_05" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=829934325 instance=ExtResource("40_2jws4")]
+transform = Transform3D(3.80063, -1.1606284, 0.45623595, -0.024333676, 1.3940755, 3.7491279, -1.246843, -3.5650377, 1.3175308, 47.987785, 1.512391, 1225.8994)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_05" unique_id=2051788811]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_05/StaticBody3D" unique_id=94337967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_05/StaticBody3D" unique_id=1773487918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_05/StaticBody3D" unique_id=816836254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_05/StaticBody3D" unique_id=937414949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, 0.56484985)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_05/StaticBody3D" unique_id=1726362214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, -0.5130615)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="table_06" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1430280649 instance=ExtResource("40_2jws4")]
+transform = Transform3D(3.0621686, 2.2649946, 1.2218503, 0.20684415, -2.1095607, 3.392192, 2.5652158, -2.5336838, -1.732083, 42.777054, 3.500595, 1213.0339)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_06" unique_id=972378437]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_06/StaticBody3D" unique_id=389511246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_06/StaticBody3D" unique_id=826988426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_06/StaticBody3D" unique_id=1289117203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_06/StaticBody3D" unique_id=1156860161]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057983, 0.2666626, 0.5648575)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_06/StaticBody3D" unique_id=1565437911]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057831, -0.017715454, -0.51304626)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="table_07" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=2003578089 instance=ExtResource("40_2jws4")]
+transform = Transform3D(-1.1302562, -0.25188884, -3.828716, -0.39006928, 3.978236, -0.14657515, 3.817114, 0.33194938, -1.14867, 46.802822, 3.500595, 1222.9489)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_07" unique_id=923346134]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_07/StaticBody3D" unique_id=443860838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_07/StaticBody3D" unique_id=41048101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_07/StaticBody3D" unique_id=1020069184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_07/StaticBody3D" unique_id=1730094241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, 0.56484985)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_07/StaticBody3D" unique_id=1477614632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.005784, 0.14966846, -0.5130615)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="table_08" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=516706905 instance=ExtResource("40_2jws4")]
+transform = Transform3D(-0.8417644, 0.021492092, -3.910366, 1.5516971, 3.6733823, -0.3138363, 3.5893815, -1.5829707, -0.781368, 33.80531, 3.500595, 1227.4883)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_08" unique_id=1115914175]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_08/StaticBody3D" unique_id=1383203102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_08/StaticBody3D" unique_id=106739064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_08/StaticBody3D" unique_id=30387409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_08/StaticBody3D" unique_id=1825284772]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057983, 0.2666626, 0.5648575)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_08/StaticBody3D" unique_id=1010037989]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057831, -0.017715454, -0.51304626)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="chair4" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=925584048 instance=ExtResource("25_1u527")]
+transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, 44.77035, 1.1593013, 1211.631)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4" unique_id=747900419]
 physics_material_override = SubResource("PhysicsMaterial_sexue")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=425320504]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=901521022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
 shape = SubResource("BoxShape3D_fjigc")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=762370055]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=2145989325]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
 shape = SubResource("BoxShape3D_dfpeg")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=2089326090]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D" unique_id=1220646040]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
 shape = SubResource("BoxShape3D_72ksg")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4" unique_id=1661266409]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96287346, 0, 0.2513733)
+[node name="chair5" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1851159190 instance=ExtResource("25_1u527")]
+transform = Transform3D(0.41751933, -2.3505702, 1.8167272, 0, -1.8345813, -2.3736706, 2.9708042, 0.3303511, -0.25532436, 53.801353, 1.1593013, 1225.4735)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair5" unique_id=1951125422]
 physics_material_override = SubResource("PhysicsMaterial_sexue")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D2" unique_id=566162900]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair5/StaticBody3D" unique_id=1350355571]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
 shape = SubResource("BoxShape3D_fjigc")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D2" unique_id=404084661]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair5/StaticBody3D" unique_id=1495634570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
 shape = SubResource("BoxShape3D_dfpeg")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair4/StaticBody3D2" unique_id=591690054]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair5/StaticBody3D" unique_id=1829918197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair6" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=2110974723 instance=ExtResource("25_1u527")]
+transform = Transform3D(2.9937468, 0.07626577, 0.17794196, 2.410601e-07, 2.7574062, -1.1818258, -0.19359702, 1.1793625, 2.7516584, 45.03302, 1.1593013, 1231.1349)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair6" unique_id=711019948]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair6/StaticBody3D" unique_id=268658446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair6/StaticBody3D" unique_id=1829455913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair6/StaticBody3D" unique_id=188513379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair7" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=805626985 instance=ExtResource("25_1u527")]
+transform = Transform3D(2.9937468, 0.07626577, 0.17794196, 2.410601e-07, 2.7574062, -1.1818258, -0.19359702, 1.1793625, 2.7516584, 37.227474, 1.1593013, 1231.1349)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair7" unique_id=2130190978]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair7/StaticBody3D" unique_id=1667814032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair7/StaticBody3D" unique_id=626333761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair7/StaticBody3D" unique_id=724920274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair8" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1817137883 instance=ExtResource("25_1u527")]
+transform = Transform3D(1.7886744, -0.9487904, -2.2136936, 0, 2.7574062, -1.1818258, 2.4084523, 0.70463395, 1.6440339, 33.094196, 1.1593013, 1231.1349)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair8" unique_id=1647218871]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair8/StaticBody3D" unique_id=2130086758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair8/StaticBody3D" unique_id=901643546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair8/StaticBody3D" unique_id=1229742249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair9" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=949477633 instance=ExtResource("25_1u527")]
+transform = Transform3D(0.71051425, 0, -2.9146476, 0, 3.0000002, 0, 2.9146473, 0, 0.7105143, 45.03302, 1.1593013, 1217.4208)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair9" unique_id=1899422520]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair9/StaticBody3D" unique_id=69336375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair9/StaticBody3D" unique_id=128858137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair9/StaticBody3D" unique_id=819463078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair10" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=544512379 instance=ExtResource("25_1u527")]
+transform = Transform3D(0.71051425, 2.548066e-07, 2.9146476, 0, -3.0000002, 2.6226834e-07, 2.9146473, -6.211514e-08, -0.71051437, 45.03302, 2.7655559, 1217.4208)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair10" unique_id=19219863]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair10/StaticBody3D" unique_id=1665237913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair10/StaticBody3D" unique_id=1797086196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair10/StaticBody3D" unique_id=2116988425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair11" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=59845857 instance=ExtResource("25_1u527")]
+transform = Transform3D(0.71051425, 0, -2.9146476, 0, 3.0000002, 0, 2.9146473, 0, 0.7105143, 45.03302, 4.9864335, 1217.4208)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair11" unique_id=544620741]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair11/StaticBody3D" unique_id=1354981405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair11/StaticBody3D" unique_id=601356091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair11/StaticBody3D" unique_id=1125540828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair12" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=537285232 instance=ExtResource("25_1u527")]
+transform = Transform3D(0.71051425, -2.9146476, 1.274033e-07, 0, -1.3113417e-07, -3.0000002, 2.9146473, 0.71051437, -3.105757e-08, 44.85456, 6.5276546, 1221.1233)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair12" unique_id=243970581]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair12/StaticBody3D" unique_id=1618343637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair12/StaticBody3D" unique_id=923416564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair12/StaticBody3D" unique_id=240933049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair13" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1317050429 instance=ExtResource("25_1u527")]
+transform = Transform3D(0.71051425, -2.1142106, -2.006311, 0, 2.0650637, -2.1761231, 2.9146473, 0.51538885, 0.4890858, 33.917515, 1.1593013, 1220.9619)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair13" unique_id=664726608]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair13/StaticBody3D" unique_id=674936290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair13/StaticBody3D" unique_id=1332128266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair13/StaticBody3D" unique_id=766239053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair14" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1279545891 instance=ExtResource("25_1u527")]
+transform = Transform3D(2.364032, 1.8469846, -8.073426e-08, 0, -1.3113417e-07, -3.0000002, -1.8469844, 2.3640325, -1.0333514e-07, 41.632046, 0.89377165, 1222.0494)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair14" unique_id=1516359816]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair14/StaticBody3D" unique_id=912066572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair14/StaticBody3D" unique_id=1120566945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair14/StaticBody3D" unique_id=674138709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair15" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=920608165 instance=ExtResource("25_1u527")]
+transform = Transform3D(1.0723629, 2.3750212, -1.4863758, 2.7342098, -1.2345431, 0, -0.6116649, -1.3546878, -2.6058948, 33.803116, 1.1593013, 1215.7258)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair15" unique_id=1198218234]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair15/StaticBody3D" unique_id=840888118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair15/StaticBody3D" unique_id=1163693211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair15/StaticBody3D" unique_id=918244205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="table_09" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1674210662 instance=ExtResource("40_2jws4")]
+transform = Transform3D(-2.407952, 2.920691, -1.292796, 0.9236537, 2.1865947, 3.2195745, 3.0575511, 1.6396219, -1.9907314, 36.25343, 1.156323, 1212.168)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_09" unique_id=1555136558]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_09/StaticBody3D" unique_id=1545184603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_09/StaticBody3D" unique_id=709147885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_09/StaticBody3D" unique_id=267528252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_09/StaticBody3D" unique_id=729597668]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057983, 0.2666626, 0.5648575)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_09/StaticBody3D" unique_id=1928499916]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057831, -0.017715454, -0.51304626)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="table_10" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1951639902 instance=ExtResource("40_2jws4")]
+transform = Transform3D(-3.6152716, 1.4493546, -0.91058785, 1.5516971, 3.6733818, -0.3138363, 0.7225193, -0.6368903, -3.8823094, 50.84726, 1.53233, 1212.5852)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_10" unique_id=362550452]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_10/StaticBody3D" unique_id=328491489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_10/StaticBody3D" unique_id=1562963631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_10/StaticBody3D" unique_id=983918204]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_10/StaticBody3D" unique_id=632902087]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057983, 0.2666626, 0.5648575)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_10/StaticBody3D" unique_id=60552114]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057831, -0.017715454, -0.51304626)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="table_11" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=932990140 instance=ExtResource("40_2jws4")]
+transform = Transform3D(-3.9897366, -0.0049588676, -0.28629962, 0.27298048, -1.2733401, -3.7820733, -0.086450554, -3.7919095, 1.2704115, 59.455963, 5.6561375, 1210.8136)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_11" unique_id=56576747]
+physics_material_override = SubResource("PhysicsMaterial_372xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_11/StaticBody3D" unique_id=530016764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003982544, 0.39192203, 0.06109619)
+shape = SubResource("BoxShape3D_0ile7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_11/StaticBody3D" unique_id=992242155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0045748, 0.15292531, 0.5465393)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_11/StaticBody3D" unique_id=380216246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0097237, 0.14740485, -0.5232849)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_11/StaticBody3D" unique_id=1775663059]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057983, 0.2666626, 0.5648575)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/table_11/StaticBody3D" unique_id=1551665524]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, -1.1920929e-07, 1, -2.9802322e-08, -5.9604645e-08, 0, 1, 1.0057831, -0.017715454, -0.51304626)
+shape = SubResource("BoxShape3D_snn8e")
+
+[node name="chair16" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=848951944 instance=ExtResource("25_1u527")]
+transform = Transform3D(0.78858644, 1.7465258, 2.3081987, 2.7342098, -1.2345431, 0, 0.9498567, 2.1036997, -1.916304, 39.604713, 1.1593013, 1213.6942)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair16" unique_id=1859986641]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair16/StaticBody3D" unique_id=793909778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair16/StaticBody3D" unique_id=908573439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair16/StaticBody3D" unique_id=819432776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair17" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=828247134 instance=ExtResource("25_1u527")]
+transform = Transform3D(-2.6610322, -1.0841048, -0.8623358, 0, -1.8675439, 2.3478248, -1.3852457, 2.082546, 1.6565317, 59.837494, 3.6754818, 1226.6123)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair17" unique_id=1522523676]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair17/StaticBody3D" unique_id=965008071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair17/StaticBody3D" unique_id=1703971104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair17/StaticBody3D" unique_id=1342386852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
+shape = SubResource("BoxShape3D_72ksg")
+
+[node name="chair18" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=136126898 instance=ExtResource("25_1u527")]
+transform = Transform3D(1.0723629, 2.3750212, -1.4863758, 2.7342098, -1.2345431, 0, -0.6116649, -1.3546878, -2.6058948, 57.255165, 1.1593013, 1224.274)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair18" unique_id=500721532]
+physics_material_override = SubResource("PhysicsMaterial_sexue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair18/StaticBody3D" unique_id=1863388938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003326416, 0.016815186, 0.2087326)
+shape = SubResource("BoxShape3D_fjigc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair18/StaticBody3D" unique_id=845670670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021972656, -0.028064817, -0.012939453)
+shape = SubResource("BoxShape3D_dfpeg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/chair18/StaticBody3D" unique_id=1880679902]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
 shape = SubResource("BoxShape3D_72ksg")
 
@@ -3388,7 +3858,6 @@ shape = SubResource("ConcavePolygonShape3D_bmrm7")
 
 [node name="Cube_015" type="MeshInstance3D" parent="VictorBars/Base VictorBars" unique_id=1385748515]
 transform = Transform3D(0, 2.005825, 0, 0, 0, -2.8075712, -3.961016, 0, 0, 75.488174, 2.8695998, 1264.7268)
-visible = false
 mesh = SubResource("ArrayMesh_e3ld7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Base VictorBars/Cube_015" unique_id=1355467895]

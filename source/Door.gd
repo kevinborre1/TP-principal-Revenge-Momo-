@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var atraveso_puerta: Area3D = $AtravesoPuerta
-@onready var video_player: VideoStreamPlayer = $"../VideoVictor" # O la ruta a tu nodo de video
+@onready var video_player: VideoStreamPlayer = $"../../VideoVictor" # O la ruta a tu nodo de video
 
 @export var botones_necesarios: int = 2
 @export var tiempo_espera_maximo: float = 10.0 # Tiempo máxima abierta si nadie pasa
@@ -19,6 +19,7 @@ var cinematica_reproducida: bool = false
 var timer_reinicio: SceneTreeTimer = null
 
 func _ready() -> void:
+	print("Puerta: ", name, " | anim: ", animation_player, " | area: ", atraveso_puerta, " | video: ", video_player)
 	if animation_player:
 		animation_player.stop()
 		
@@ -74,6 +75,7 @@ func abrir_puerta() -> void:
 # --- DETECCIÓN AL CRUZAR LA COLISIÓN ---
 func _on_atraveso_puerta_body_entered(body: Node3D) -> void:
 	# Filtramos para asegurarnos de que sea un personaje jugador
+	print("Entró: ", body.name, " | abierta: ", esta_abierta, " | cerrando: ", cerrando, " | cinemática: ", cinematica_reproducida)
 	if not body.is_in_group("Jugador") and not body.name.is_valid_int():
 		return
 		
