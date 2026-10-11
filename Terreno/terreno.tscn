@@ -501,7 +501,7 @@ uv1_scale = Vector3(9, 9, 9)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sxovr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tr3kr"]
-size = Vector3(2.0163574, 1, 2.3875732)
+size = Vector3(2.0202026, 1, 2.3875732)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_372xe"]
 
@@ -3309,7 +3309,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 physics_material_override = SubResource("PhysicsMaterial_sxovr")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="VictorBars/Base VictorBars/Cube_006/StaticBody3D" unique_id=458722952]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0.22790599, 0, 0.1879273)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000002, -0.011015415, 0, 0.1879273)
 shape = SubResource("BoxShape3D_tr3kr")
 
 [node name="Cube_007" type="MeshInstance3D" parent="VictorBars/Base VictorBars" unique_id=1316218863]
