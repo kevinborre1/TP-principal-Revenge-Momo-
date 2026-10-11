@@ -20,9 +20,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.098846436, 0)
 mesh = SubResource("CapsuleMesh_lfkbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1113567639]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017282039, 0.04137084, 0.08779721)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0019951612, 0.04137084, 0.08779721)
 mesh = SubResource("BoxMesh_lfkbx")
 surface_material_override/0 = SubResource("StandardMaterial3D_aui74")
 
 [node name="PuntoDeDisparo" type="Marker3D" parent="." unique_id=1203174570]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015576456, -0.06360865, 0.51843965)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032410584, -0.05801283, 0.21471941)

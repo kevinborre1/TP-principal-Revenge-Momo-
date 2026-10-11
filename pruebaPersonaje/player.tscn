@@ -1302,6 +1302,9 @@ spring_length = 1.55
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6198035e-08, 0, -0.41405725)
 current = true
 
+[node name="RayCastDisparo" type="RayCast3D" parent="SpringArm3D/Camera3D" unique_id=1505029151]
+target_position = Vector3(0, 0, -100)
+
 [node name="Walk (1)" type="Node3D" parent="." unique_id=134952855]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00756979, 0, 0.062193394)
 
@@ -1762,12 +1765,12 @@ bones/64/position = Vector3(2.3171047e-11, 0.06702245, 2.669704e-11)
 bones/64/rotation = Quaternion(-2.40752e-10, -1.02240265e-16, 3.469447e-18, 1)
 bones/64/scale = Vector3(1, 1, 1)
 
-[node name="ManoDerechaAtachmen" type="BoneAttachment3D" parent="Walk (1)/Skeleton3D" unique_id=1308574947]
+[node name="ManoDerechaAttachment" type="BoneAttachment3D" parent="Walk (1)/Skeleton3D" unique_id=1308574947]
 transform = Transform3D(-0.015917499, -0.9694304, 0.24484898, 0.16210178, -0.2441425, -0.9560949, 0.98664564, 0.024471816, 0.16103256, -0.77533925, 1.3864048, -0.046387926)
 bone_name = "mixamorig_RightHandMiddle2"
 bone_idx = 44
 
-[node name="Arma" parent="Walk (1)/Skeleton3D/ManoDerechaAtachmen" unique_id=628720648 instance=ExtResource("2_ww6v2")]
+[node name="Arma" parent="Walk (1)/Skeleton3D/ManoDerechaAttachment" unique_id=628720648 instance=ExtResource("2_ww6v2")]
 transform = Transform3D(0.6580592, 0.13838196, 0.74014103, 0.18369146, -0.9827717, 0.020425867, 0.73021597, 0.12251633, -0.67214125, -3.4093857e-05, -0.002076745, 0.0005245209)
 
 [node name="Ch02_Cloth" type="MeshInstance3D" parent="Walk (1)/Skeleton3D" unique_id=1686294271]
@@ -2042,3 +2045,34 @@ transform = Transform3D(3.5441399, 0, 0, 0, 3.1686375, 0, 0, 0, 1, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectorItems" unique_id=1955064420]
 transform = Transform3D(1, 0, 0, 0, 0.9999819, 0, 0, 0, 2.8297653, 0.0066881394, 0.27442756, 0.046158075)
 shape = SubResource("CapsuleShape3D_aud2g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1864385930]
+
+[node name="PuntoDeMira" type="Control" parent="CanvasLayer" unique_id=501277100]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 3.0
+offset_right = 28.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PuntoDeMira" unique_id=526329824]
+modulate = Color(1, 0, 0.29803923, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -14.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,16 +1,33 @@
 extends Area3D
 
-@export var velocidad: float = 40.0
+const TIEMPO_VIDA: float = 20.0
+const VELOCIDAD_BALA: float = 1.0
+const DANIO_BALA: int = 10
+
+var tiempo: float = 0.0
+var golpeo_algo: bool = false
 var direccion: Vector3 = Vector3.FORWARD
 
-func _physics_process(delta: float) -> void:
-	# Mueve la bala en su dirección local o global
-	position += direccion * velocidad * delta
+func _ready() -> void:
+	# En Godot 4 las señales se conectan así:
+	body_entered.connect(_al_colisionar)
 
-func _on_body_entered(body: Node3D) -> void:
-	# Si choca con un enemigo, le hacemos daño (si tiene el método)
-	if body.has_method("recibir_daño"):
-		body.recibir_daño(10)
+func _physics_process(delta: float) -> void:
+	# Mueve la bala hacia adelante usando su base global Z
+	global_position += direccion * VELOCIDAD_BALA * delta
 	
-	# Destruye la bala al impactar
-	queue_free()
+	# Control de tiempo de vida
+	tiempo += delta
+	if tiempo >= TIEMPO_VIDA:
+		queue_free()
+		print("Desapareci")
+
+func _al_colisionar(body: Node3D) -> void:
+	if not golpeo_algo:
+		if body.has_method("golpeo_bala"):
+			body.golpeo_bala(DANIO_BALA, global_transform)
+		golpeo_algo = true
+		queue_free()
+		
+func _direccion_salida(dir: Vector3) -> void:
+	direccion =dir

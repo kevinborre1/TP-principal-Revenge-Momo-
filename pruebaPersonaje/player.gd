@@ -20,19 +20,28 @@ var input_bloqueado: bool = false
 var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
 var minijuego_instance: Control = null
 
+# Estado del arma
+@export var arma_equipada: bool = false
+
 # Referencias a los nodos
 @onready var detector_items = $DetectorItems
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var skeleton_3d: Skeleton3D = find_child("Skeleton3D", true, false) as Skeleton3D
 @onready var barraStamina = $BarraDeStamina
-@onready var camara: Camera3D = find_child("Camera3D", true, false) as Camera3D
 @onready var animation = $"Walk (1)/AnimationPlayer"
 @onready var macarena: AudioStreamPlayer = $musicaBaile2
 @onready var slots_ui = $Inventario.get_children() # Obtiene los 4 Paneles
+@onready var spring_arm: SpringArm3D = $SpringArm3D
+@onready var crosshair: Control = $CanvasLayer/PuntoDeMira # Ajusta la ruta de tu UI
+# Camara
+@onready var camara: Camera3D = find_child("Camera3D", true, false) as Camera3D
+@export var distancia_camara_normal: float = 2.0
+@export var distancia_camara_combate: float = 3.5 # Más lejos cuando saca el arma
 var camera_rotation := Vector2.ZERO
 var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
-
+# Ruta hacia tu BoneAttachment3D de la mano:
+@onready var mano_attachment: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
 
 func _ready() -> void:
 	# APAGAR FÍSICAS Y COLISIONES INMEDIATAMENTE AL NACER
@@ -93,31 +102,31 @@ func _ready() -> void:
 				camara.current = false
 			if barraStamina:
 				barraStamina.visible = false
+	
+	# Hacemos que el RayCast de la cámara ignore al propio jugador para que no colisione con su cuerpo				
+	var raycast: RayCast3D = find_child("RayCastDisparo", true, false)
+	if raycast:
+		raycast.add_exception(self)
+		
+	actualizar_modo_combate()
 
-
+# 1. FUNCIÓN _INPUT: Solo para cámara y ratón
 func _input(event: InputEvent) -> void:
 	if input_bloqueado:
 		return
 	# Bloqueamos inputs si estamos en línea y no somos el dueño del personaje
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
-	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
-		soltar_item(0) # Suelta el ítem de la primera ranura (índice 0)
 	
-	# Si haces clic izquierdo, vuelve a capturar el ratón (útil si inicias la escena directamente)
+	# Si haces clic izquierdo, vuelve a capturar el ratón
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	# --------------------------
 
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		# Cambia "ui_accept" por una acción específica que hayas creado, ej: "hacer_ragdoll"
-	if event.is_action_pressed("hacer_ragdoll") and not is_on_floor():
-		activar_ragdoll()
 
-	# LÓGICA DE LA CÁMARA
+	# LÓGICA DE LA CÁMARA (Se queda aquí para máxima fluidez)
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		
 		# Si estamos en modo local y NO somos el jugador 1, ignoramos el ratón
 		if Global.modo_multijugador == "local" and name != "1":
 			return 
@@ -129,18 +138,39 @@ func _input(event: InputEvent) -> void:
 		
 		spring_arm_3d.rotation.x = camera_rotation.x
 		spring_arm_3d.rotation.y = camera_rotation.y
-		# RECOGER CON Q
+
+# 2. FUNCIÓN _UNHANDLED_INPUT: Para acciones y gameplay
+func _unhandled_input(event: InputEvent) -> void:
+	if input_bloqueado:
+		return
+	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
+		return
+
+	# Soltar ítem con G
+	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
+		soltar_item(0)
+
+	# Activar Ragdoll
+	if event.is_action_pressed("hacer_ragdoll") and not is_on_floor():
+		activar_ragdoll()
+		
+	# Disparar y rotar el modelo hacia la cámara
+	if event.is_action_pressed("disparar") and arma_equipada:
+		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
+		if modelo and spring_arm_3d:
+			modelo.rotation.y = spring_arm_3d.rotation.y + PI
+
+	# Recoger con Q
 	if event is InputEventKey and event.physical_keycode == KEY_Q and event.pressed and not event.echo:
 		intentar_recoger_item()
 
-	# CONSUMIR CON E
+	# Consumir con E
 	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
-		consumir_item(0) # Consume lo que haya en la ranura 0
+		consumir_item(0)
 		
 func _physics_process(delta: float) -> void:
 	if input_bloqueado:
 		return
-	
 	player_animation()
 	# Bloqueamos el movimiento en línea si no es nuestra autoridad
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
@@ -181,8 +211,10 @@ func _physics_process(delta: float) -> void:
 	elif (StaminaActual < StaminaMax) and not correr_fisico :
 		StaminaActual += StaminaRegeneracion
 		
+	#CAMARA
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
 	
+	# El movimiento vuelve a ser relativo a la cámara (para que WASD responda según tu vista)
 	var move_vector = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, spring_arm_3d.rotation.y)
 	var direction = move_vector.normalized()
 	
@@ -190,15 +222,21 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * velocidadActual
 		velocity.z = direction.z * velocidadActual
 		
-		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
+		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("perso") else null))
 		if modelo:
-			var target_angle = atan2(-direction.x, -direction.z) + PI
-			modelo.rotation.y = lerp_angle(modelo.rotation.y, target_angle, 15.0 * delta)
+			# Calculamos hacia dónde se mueve el personaje respecto a la cámara
+			var target_angle = atan2(-direction.x, -direction.z)
+			
+			if arma_equipada:
+				# Con el arma equipada, el personaje rota hacia el movimiento (ajustado con + PI si caminaba al revés)
+				modelo.rotation.y = lerp_angle(modelo.rotation.y, target_angle + PI, 15.0 * delta)
+			else:
+				# Modo normal de exploración
+				modelo.rotation.y = lerp_angle(modelo.rotation.y, target_angle + PI, 15.0 * delta)
+				
 	else:
 		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
-	
-
 	move_and_slide()
 	
 func activar_ragdoll():
@@ -206,13 +244,16 @@ func activar_ragdoll():
 		collision_shape_3d.disabled = true
 	if skeleton_3d:
 		skeleton_3d.physical_bones_start_simulation()
+
 func configurar_barraStamina():
 	barraStamina.min_value = 0.0
 	barraStamina.max_value= StaminaMax
+
 func actualizar_barraStamina():
 	barraStamina.value = StaminaActual
 	
 	#a modificar / expandir
+
 func heridoPorEnemigo(area):
 	saludActual -=10
 	if saludActual < 0:
@@ -371,3 +412,27 @@ func intentar_recoger_item():
 			if exito:
 				cuerpo.ser_recogido()
 				break
+
+func actualizar_modo_combate() -> void:
+	arma_equipada = mano_attachment.get_child_count() > 0
+	
+	if arma_equipada:
+		# 1. Configuramos el SpringArm para tercera persona de combate (detrás de la espalda)
+		spring_arm.spring_length = distancia_camara_combate
+		
+		# Opcional: Desplazarlo ligeramente hacia un hombro (hombro derecho)
+		spring_arm.position = Vector3(0.5, 1.7, 0.0) # Ajusta según tu modelo
+		
+		# 2. Mostramos el punto de mira en pantalla
+		crosshair.show()
+		
+		print("Arma equipada: Modo combate activado")
+	else:
+		# Modo normal (cámara más cerca o libre)
+		spring_arm.spring_length = distancia_camara_normal
+		spring_arm.position = Vector3(0.0, 1.5, 0.0)
+		
+		# Ocultamos el punto de mira
+		crosshair.hide()
+		
+		print("Arma guardada")
