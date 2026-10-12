@@ -1,24 +1,29 @@
 [gd_scene format=3 uid="uid://b8nvdqb8wsvbc"]
 
 [ext_resource type="Script" uid="uid://b4gfag46vpcq4" path="res://Sistema-Combate/bala.gd" id="1_81lri"]
+[ext_resource type="PackedScene" uid="uid://dcyf32vf8dccd" path="res://Arma/nerf_dartbullet.glb" id="2_epie7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lfkbx"]
 radius = 0.12890625
 height = 0.47262573
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfkbx"]
-radius = 0.14550781
-height = 0.48086548
+radius = 0.056152344
+height = 0.34199524
 
 [node name="Bala" type="Area3D" unique_id=565648693]
 script = ExtResource("1_81lri")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=714715927]
 transform = Transform3D(0.0052329917, -0.99998635, 0, 0.99998635, 0.0052329917, 0, 0, 0, 1, 0.024630262, 0.00750539, 0.0033410788)
+visible = false
 mesh = SubResource("CapsuleMesh_lfkbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=366785130]
-transform = Transform3D(0.0052329917, -0.99998635, 0, 0.99998635, 0.0052329917, 0, 0, 0, 1, 0.020052671, 0.007529344, 0.0033410788)
+transform = Transform3D(0.0052329917, -0.99998635, 0, 0.99998635, 0.0052329917, 0, 0, 0, 1, 0.11898833, 0.044749737, 0.0033410788)
 shape = SubResource("CapsuleShape3D_lfkbx")
+
+[node name="Sketchfab_Scene" parent="." unique_id=1793540713 instance=ExtResource("2_epie7")]
+transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 5.2651787, -0.07614648, 0.022690773)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

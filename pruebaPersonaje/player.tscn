@@ -1771,7 +1771,7 @@ bone_name = "mixamorig_RightHandMiddle2"
 bone_idx = 44
 
 [node name="Arma" parent="Walk (1)/Skeleton3D/ManoDerechaAttachment" unique_id=628720648 instance=ExtResource("2_ww6v2")]
-transform = Transform3D(0.6580592, 0.13838196, 0.74014103, 0.18369146, -0.9827717, 0.020425867, 0.73021597, 0.12251633, -0.67214125, -3.4093857e-05, -0.002076745, 0.0005245209)
+transform = Transform3D(0.06565141, 0.35333133, 0.9331918, -0.98913807, -0.100212306, 0.10753006, 0.13151096, -0.9301154, 0.34291464, 0.0183464, -0.011590362, -0.1214937)
 
 [node name="Ch02_Cloth" type="MeshInstance3D" parent="Walk (1)/Skeleton3D" unique_id=1686294271]
 mesh = SubResource("ArrayMesh_21m8b")

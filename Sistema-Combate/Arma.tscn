@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c6yr2jemw2ntr"]
 
 [ext_resource type="Script" uid="uid://brpg0t4uudgfw" path="res://Sistema-Combate/arma.gd" id="1_sjkoq"]
+[ext_resource type="PackedScene" uid="uid://d0cmagsmnd1dh" path="res://Arma/nerf_retaliator.glb" id="2_luj8l"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lfkbx"]
 radius = 0.09277344
@@ -16,7 +17,8 @@ albedo_color = Color(1, 1, 0.2901961, 1)
 script = ExtResource("1_sjkoq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1087771205]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.098846436, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61662567, -0.098846436, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_lfkbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1113567639]
@@ -26,3 +28,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_aui74")
 
 [node name="PuntoDeDisparo" type="Marker3D" parent="." unique_id=1203174570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032410584, -0.05801283, 0.21471941)
+
+[node name="Sketchfab_Scene" parent="." unique_id=874161966 instance=ExtResource("2_luj8l")]
+transform = Transform3D(-3.059797e-09, 0, -0.07, -0.0147154415, 0.06843578, 6.4323236e-10, 0.06843578, 0.0147154415, -2.9914229e-09, 0.0060698986, -0.17855796, -0.11655143)

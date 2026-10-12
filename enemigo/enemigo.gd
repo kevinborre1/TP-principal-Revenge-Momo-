@@ -5,6 +5,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var vida_maxima: int = 20
 var vida_actual: int = vida_maxima
 
+
+
 # Variables para controlar el daño
 var tiempo_ultimo_ataque: float = 0.0
 var cooldown_ataque: float = 1.0 # El enemigo hace daño cada 1 segundo
@@ -33,6 +35,8 @@ func _physics_process(delta: float) -> void:
 	
 	# 4. Detectar colisiones con el jugador (NUEVO)
 	_comprobar_colisiones_jugador()
+
+		
 	
 func _comprobar_colisiones_jugador() -> void:
 	for i in get_slide_collision_count():
