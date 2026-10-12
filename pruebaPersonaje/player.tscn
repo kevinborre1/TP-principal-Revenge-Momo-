@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cqlbgxemxlrsn" path="res://assets/objetoprueba1.png" id="7_7fgg8"]
 [ext_resource type="AnimationLibrary" uid="uid://cy4i6lh10w3tb" path="res://pruebaPersonaje/movimientos/Macarena Dance.fbx" id="7_gpnnl"]
 [ext_resource type="AnimationLibrary" uid="uid://3aoqg7e5syl5" path="res://pruebaPersonaje/movimientos/Standing Idle.fbx" id="8_7fotu"]
+[ext_resource type="Script" uid="uid://b28kyoe3v33c2" path="res://pruebaPersonaje/stamina.gd" id="10_1kskl"]
 [ext_resource type="Script" uid="uid://cq64ums2jdd4k" path="res://pruebaPersonaje/hud.gd" id="11_7fotu"]
 [ext_resource type="Script" uid="uid://cpbrvyfpmv2oi" path="res://pruebaPersonaje/icon_counter.gd" id="12_gpnnl"]
 [ext_resource type="AudioStream" uid="uid://3btbeik6vykv" path="res://pruebaPersonaje/movimientos/macarena.mp3" id="12_jwaew"]
@@ -1811,7 +1812,7 @@ libraries/Jump = ExtResource("6_jwaew")
 "libraries/Standing Idle" = ExtResource("8_7fotu")
 autoplay = &"Macarena Dance/mixamo_com"
 
-[node name="BarraDeStamina" type="ProgressBar" parent="." unique_id=1225548899]
+[node name="BarraDeStamina" type="ProgressBar" parent="." unique_id=1225548899 node_paths=PackedStringArray("player")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -1821,6 +1822,8 @@ offset_left = -263.0
 offset_top = -35.0
 grow_horizontal = 0
 grow_vertical = 0
+script = ExtResource("10_1kskl")
+player = NodePath("..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1306570859]
 replication_config = SubResource("SceneReplicationConfig_cm308")
