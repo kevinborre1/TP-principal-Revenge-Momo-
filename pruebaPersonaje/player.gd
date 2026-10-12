@@ -325,47 +325,14 @@ func player_animation():
 	else:
 		animation.play("Standing Idle/mixamo_com", 0.3)
 
-func intentar_recoger_item() -> void:
-	if not is_multiplayer_authority():
-		return
-		
-	# Enviamos el ID del cliente actual al servidor
-	var id_cliente = multiplayer.get_unique_id()
-	solicitar_recoger_item_server.rpc_id(1, id_cliente)
-
-@rpc("any_peer", "call_local", "reliable")
-func solicitar_recoger_item_server(id_cliente_emisor: int) -> void:
-	if not multiplayer.is_server():
-		return
-		
-	if multiplayer.get_remote_sender_id() != id_cliente_emisor:
-		return
-		
-	# BUSCAMOS AL JUGADOR DE FORMA SEGURA POR SU AUTORIDAD DE RED:
-	var jugador_correcto: Node3D = null
+func intentar_recoger_item():
+	if not detector_items: return
+	var cuerpos_cercanos = detector_items.get_overlapping_areas()
 	
-	# Recorremos todos los nodos que estén en el grupo "jugadores"
-	for p in get_tree().get_nodes_in_group("jugadores"):
-		# Verificamos cuál de ellos le pertenece a este ID de cliente exacto
-		if p.has_method("is_multiplayer_authority") and p.get_multiplayer_authority() == id_cliente_emisor:
-			jugador_correcto = p
-			break
-			
-	# Si por alguna razón no lo encuentra en el grupo, usamos 'self' por defecto
-	if not jugador_correcto:
-		jugador_correcto = self
-
-	# Usamos los componentes de ese jugador exacto
-	var detector = jugador_correcto.find_child("detector_items", true, false)
-	var inventario = jugador_correcto.find_child("Inventario", true, false)
-	
-	if not detector or not inventario:
-		return
-		
-	var cuerpos_cercanos = detector.get_overlapping_areas()	
 	for cuerpo in cuerpos_cercanos:
 		if cuerpo is ItemBase:
-			var exito = inventario.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
+			# El Player solo le pasa los datos al Inventario
+			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
 			if exito:
 				cuerpo.ser_recogido()
 				break

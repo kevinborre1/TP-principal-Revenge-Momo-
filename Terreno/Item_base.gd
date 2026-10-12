@@ -8,6 +8,10 @@ class_name ItemBase
 # Esta función es llamada por el servidor tras agregarse al inventario
 func ser_recogido() -> void:
 	destruir_item_rpc.rpc()
+	
+	# Un método "virtual" vacío que los hijos podrán sobrescribir usando polimorfismo
+func usar_item(jugador) -> bool:
+	return false
 
 @rpc("call_local", "authority", "reliable")
 func destruir_item_rpc() -> void:
