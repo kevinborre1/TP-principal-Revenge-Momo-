@@ -366,13 +366,6 @@ func consumir_item(indice_slot: int):
 			
 			if item_temporal is ItemBase:
 				item_temporal.usar_item(self) # Ejecutamos el efecto de curar
-				
-				# Limpiamos el inventario
-				#inventario[indice_slot] = null
-				#var icono_visual = slots_ui[indice_slot].get_node("icono")
-				#icono_visual.texture = null
-				#
-			#item_temporal.queue_free()
 
 func recibir_cura(puntos_cura: int) -> bool:
 	
