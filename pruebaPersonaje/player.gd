@@ -14,7 +14,6 @@ var StaminaMax = 100.0
 var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
 var StaminaPerdida=1.0
-var inventario = [null, null, null, null] 
 var input_bloqueado: bool = false
 
 #Nodos de minijuego
@@ -23,6 +22,8 @@ var minijuego_instance: Control = null
 
 # Estado del arma
 @export var arma_equipada: bool = false
+
+@onready var inventario_manager = $Inventario
 
 # Referencias a los nodos
 @onready var barraSalud: ProgressBar = $BarraSalud
@@ -33,7 +34,6 @@ var minijuego_instance: Control = null
 @onready var barraStamina = $BarraDeStamina
 @onready var animation = $"Walk (1)/AnimationPlayer"
 @onready var macarena: AudioStreamPlayer = $musicaBaile2
-@onready var slots_ui = $Inventario.get_children() # Obtiene los 4 Paneles
 @onready var spring_arm: SpringArm3D = $SpringArm3D
 @onready var punto_de_mira: Control = $CanvasLayer/PuntoDeMira # Ajusta la ruta de tu UI
 # Camara
@@ -149,7 +149,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# Soltar ítem con G
 	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
-		soltar_item(0)
+		soltar_item_actual()
 
 	# Activar Ragdoll
 	if event.is_action_pressed("hacer_ragdoll") and not is_on_floor():
@@ -160,14 +160,24 @@ func _unhandled_input(event: InputEvent) -> void:
 		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
 		if modelo and spring_arm_3d:
 			modelo.rotation.y = spring_arm_3d.rotation.y + PI
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode == KEY_1: inventario_manager.seleccionar_slot(0)
+		elif event.physical_keycode == KEY_2: inventario_manager.seleccionar_slot(1)
+		elif event.physical_keycode == KEY_3: inventario_manager.seleccionar_slot(2)
+		elif event.physical_keycode == KEY_4: inventario_manager.seleccionar_slot(3)
+		elif event.physical_keycode == KEY_5: inventario_manager.seleccionar_slot(4)
 
-	# Recoger con Q
+	# Soltar ítem con G (ahora suelta el que está seleccionado)
+	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
+		soltar_item_actual()
+
+	# Recoger con E
 	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
 		intentar_recoger_item()
 
-	# Consumir con E
+	# Consumir con C (ahora consume el que está seleccionado)
 	if event is InputEventKey and event.physical_keycode == KEY_C and event.pressed and not event.echo:
-		consumir_item(0)
+		consumir_item_actual()
 		
 func _physics_process(delta: float) -> void:
 	if input_bloqueado:
@@ -315,65 +325,54 @@ func player_animation():
 	else:
 		animation.play("Standing Idle/mixamo_com", 0.3)
 
-
-
-func recolectar_item(nombre_item: String, textura_icono: Texture2D, ruta: String) -> bool:
-	for i in range(inventario.size()):
-		if inventario[i] == null:
-			# Guardamos nombre y ruta
-			inventario[i] = {
-				"nombre": nombre_item,
-				"ruta_escena": ruta
-			}
-			
-			var icono_visual = slots_ui[i].get_node("icono") # ¡Ojo con mayúsculas/minúsculas de tu nodo "icono"!
-			icono_visual.texture = textura_icono
-			return true 
-			
-	print("El inventario está lleno")
-	return false
-
+func intentar_recoger_item():
+	if not detector_items: return
+	var cuerpos_cercanos = detector_items.get_overlapping_areas()
+	
+	for cuerpo in cuerpos_cercanos:
+		if cuerpo is ItemBase:
+			# El Player solo le pasa los datos al Inventario
+			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
+			if exito:
+				cuerpo.ser_recogido()
+				break
 # Función auxiliar para frenar la canción
 func detener_musica_baile():
 	if macarena and macarena.playing:
 		macarena.stop()
 		
-func soltar_item(indice_slot: int):
-	if inventario[indice_slot] != null:
-		var ruta = inventario[indice_slot]["ruta_escena"]
+func soltar_item_actual():
+	var item = inventario_manager.obtener_item_actual()
+	if item != null:
+		var ruta = item["ruta_escena"]
+		
+		# Le decimos al inventario que borre el ítem del HUD y del arreglo
+		inventario_manager.borrar_item_actual()
 
-		# Vaciamos inventario visual
-		inventario[indice_slot] = null
-		var icono_visual = slots_ui[indice_slot].get_node("icono")
-		icono_visual.texture = null
-
-		# Creamos el objeto de nuevo en el mundo
+		# Instanciamos el objeto en el mundo
 		if ruta != "":
 			var escena_objeto = load(ruta)
 			if escena_objeto:
 				var nuevo_objeto = escena_objeto.instantiate()
-				var mundo = get_tree().current_scene
-				mundo.add_child(nuevo_objeto)
+				get_tree().current_scene.add_child(nuevo_objeto)
 				nuevo_objeto.global_position = global_position + (global_transform.basis.z * -1.5) + Vector3(0, 1, 0)
 
-func consumir_item(indice_slot: int):
-	if inventario[indice_slot] != null:
-		var ruta = inventario[indice_slot]["ruta_escena"]
-		
+func consumir_item_actual():
+	var item = inventario_manager.obtener_item_actual()
+	if item != null:
+		var ruta = item["ruta_escena"]
 		var escena_objeto = load(ruta)
+		
 		if escena_objeto:
 			var item_temporal = escena_objeto.instantiate()
-			
 			if item_temporal is ItemBase:
-				var se_uso = item_temporal.usar_item(self) # Ejecutamos el efecto de curar
+				var se_uso = item_temporal.usar_item(self)
 				
-				# Limpiamos el inventario
-				if se_uso == true :
-					inventario[indice_slot] = null
-					var icono_visual = slots_ui[indice_slot].get_node("icono")
-					icono_visual.texture = null
-					item_temporal.queue_free()
-
+				# Si se pudo usar con éxito, lo borramos del inventario
+				if se_uso == true:
+					inventario_manager.borrar_item_actual()
+					
+			item_temporal.queue_free()
 
 func recibir_cura(puntos_cura: int) -> bool:
 	
@@ -419,21 +418,6 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 	input_bloqueado = false
 	$CanvasLayer/PuntoDeMira.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-func intentar_recoger_item():
-	if not detector_items: return
-
-	var cuerpos_cercanos = detector_items.get_overlapping_areas() # Usamos areas porque tus items son Area3D
-	print("Objetos detectados cerca: ", cuerpos_cercanos.size()) # Para ver si al menos detecta algo
-	for cuerpo in cuerpos_cercanos:
-		# Godot sabe que la BotellaCerveza ES un ItemBase por la herencia
-		print("Revisando objeto: ", cuerpo.name) # Para ver qué detectó
-		if cuerpo is ItemBase:
-			print("¡Es un ItemBase! Intentando recoger...")
-			var exito = recolectar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
-			if exito:
-				cuerpo.ser_recogido()
-				break
 
 func actualizar_modo_combate() -> void:
 	arma_equipada = mano_attachment.get_child_count() > 0

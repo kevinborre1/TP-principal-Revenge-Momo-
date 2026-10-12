@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://cq64ums2jdd4k" path="res://pruebaPersonaje/hud.gd" id="11_7fotu"]
 [ext_resource type="Script" uid="uid://cpbrvyfpmv2oi" path="res://pruebaPersonaje/icon_counter.gd" id="12_gpnnl"]
 [ext_resource type="AudioStream" uid="uid://3btbeik6vykv" path="res://pruebaPersonaje/movimientos/macarena.mp3" id="12_jwaew"]
+[ext_resource type="Script" uid="uid://0lxksclcjhd3" path="res://pruebaPersonaje/inventario.gd" id="17_xspus"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
 height = 2.6706543
@@ -1289,6 +1290,10 @@ height = 0.66796875
 
 [node name="Player" type="CharacterBody3D" unique_id=679560290 groups=["jugadores"]]
 script = ExtResource("1_cm308")
+saludMax = null
+arma_equipada = null
+distancia_camara_normal = null
+distancia_camara_combate = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=953820401]
 transform = Transform3D(1, 0, 0, 0, 0.6752861, 0, 0, 0, 1, 0, 0.8680498, 0.14012158)
@@ -1971,6 +1976,7 @@ offset_left = 0.47198486
 offset_top = -33.768005
 offset_right = -0.52008057
 offset_bottom = 30.231995
+script = ExtResource("17_xspus")
 
 [node name="Panel" type="Panel" parent="Inventario" unique_id=130061932]
 custom_minimum_size = Vector2(64, 64)
