@@ -71,7 +71,9 @@
 [ext_resource type="Texture2D" uid="uid://b4k8w2h4ji5j2" path="res://Terreno/projectplaytime_destroy-a-toy_fences-pack_3.png" id="68_vg8rj"]
 [ext_resource type="Texture2D" uid="uid://cwkdw855fyh6n" path="res://Terreno/building_0.jpg" id="69_vedoo"]
 [ext_resource type="Texture2D" uid="uid://dgyt8uhi4xa6e" path="res://Terreno/building_1.png" id="70_gojle"]
+[ext_resource type="PackedScene" uid="uid://n7ugpmgmj1ei" path="res://Terreno/double_doors_with_windows.glb" id="70_vg8rj"]
 [ext_resource type="Texture2D" uid="uid://bqkcjw6sn4fdu" path="res://Terreno/building_2.png" id="71_ulhqt"]
+[ext_resource type="Texture2D" uid="uid://evhk7m8gjnv3" path="res://Terreno/cartelUngs (1).png" id="71_vedoo"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 
@@ -1977,6 +1979,13 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gvhat")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gojle"]
+albedo_texture = ExtResource("71_vedoo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rsdri"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_gojle")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjmqo"]
 resource_name = "Material"
@@ -4608,7 +4617,7 @@ mesh = SubResource("ArrayMesh_t5f5p")
 mesh = SubResource("ArrayMesh_hhygq")
 
 [node name="Perimetro9" type="Node3D" parent="Perimetro" unique_id=367401462]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.811035, 0, 0)
+transform = Transform3D(1.0585811, 0, 0, 0, 1, 0, 0, 0, 1, -44.14516, 0, 0)
 
 [node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro9" unique_id=828161689]
 mesh = SubResource("ArrayMesh_t5f5p")
@@ -5949,13 +5958,24 @@ mesh = SubResource("ArrayMesh_t5f5p")
 mesh = SubResource("ArrayMesh_hhygq")
 
 [node name="Perimetro10" type="Node3D" parent="Perimetro" unique_id=1857575179]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.638916, 0, 0)
+transform = Transform3D(1.0735035, 0, 0, 0, 1, 0, 0, 0, 1, -56.638916, 0, 0)
 
 [node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro10" unique_id=1425823888]
 mesh = SubResource("ArrayMesh_t5f5p")
 
 [node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro10" unique_id=2016159553]
 mesh = SubResource("ArrayMesh_hhygq")
+
+[node name="PuertaPrincipal" parent="Perimetro" unique_id=862817177 instance=ExtResource("70_vg8rj")]
+transform = Transform3D(2, 0, 0, 0, -8.838443e-08, -1.5, 0, 2.022, -6.556708e-08, -103.5244, -1.9776611, -0.017130878)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Perimetro" unique_id=974540777]
+transform = Transform3D(4.219626, -0.00018265465, 0.026300369, 3.6900886e-07, -0.99994236, -0.007014346, 0.11049481, 0.006978638, -1.0043705, -47.32619, -0.11480713, 5.0645065)
+mesh = SubResource("PlaneMesh_rsdri")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Perimetro" unique_id=1246472079]
+transform = Transform3D(-4.219626, 0.00018274203, 0.026300367, 0, 0.99994236, -0.0070143454, -0.1104948, -0.006978636, -1.0043703, -47.32619, 0.30981445, 5.0645065)
+mesh = SubResource("PlaneMesh_rsdri")
 
 [node name="Modulo 1" type="Node3D" parent="." unique_id=524965625]
 transform = Transform3D(-6.071737e-06, 8, -3.496911e-07, 0, -3.496911e-07, -8, -8, -6.071737e-06, 2.6540405e-13, -61.07953, 4.625722, 1233.2678)
