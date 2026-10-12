@@ -334,23 +334,38 @@ func intentar_recoger_item() -> void:
 	solicitar_recoger_item_server.rpc_id(1, id_cliente)
 
 @rpc("any_peer", "call_local", "reliable")
-func solicitar_recoger_item_server(id_cliente: int) -> void:
+func solicitar_recoger_item_server(id_cliente_emisor: int) -> void:
 	if not multiplayer.is_server():
 		return
 		
-	if not detector_items: 
+	if multiplayer.get_remote_sender_id() != id_cliente_emisor:
 		return
 		
-	# Verificamos que el RPC realmente venga del peer correcto (seguridad adicional)
-	if multiplayer.get_remote_sender_id() != id_cliente:
+	# BUSCAMOS AL JUGADOR DE FORMA SEGURA POR SU AUTORIDAD DE RED:
+	var jugador_correcto: Node3D = null
+	
+	# Recorremos todos los nodos que estén en el grupo "jugadores"
+	for p in get_tree().get_nodes_in_group("jugadores"):
+		# Verificamos cuál de ellos le pertenece a este ID de cliente exacto
+		if p.has_method("is_multiplayer_authority") and p.get_multiplayer_authority() == id_cliente_emisor:
+			jugador_correcto = p
+			break
+			
+	# Si por alguna razón no lo encuentra en el grupo, usamos 'self' por defecto
+	if not jugador_correcto:
+		jugador_correcto = self
+
+	# Usamos los componentes de ese jugador exacto
+	var detector = jugador_correcto.find_child("detector_items", true, false)
+	var inventario = jugador_correcto.find_child("Inventario", true, false)
+	
+	if not detector or not inventario:
 		return
 		
-	var cuerpos_cercanos = detector_items.get_overlapping_areas()	
+	var cuerpos_cercanos = detector.get_overlapping_areas()	
 	for cuerpo in cuerpos_cercanos:
 		if cuerpo is ItemBase:
-			# Como este código corre dentro de la instancia del jugador correspondiente,
-			# 'inventario_manager' pertenece exactamente a este jugador.
-			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
+			var exito = inventario.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
 			if exito:
 				cuerpo.ser_recogido()
 				break
