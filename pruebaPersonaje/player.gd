@@ -326,29 +326,32 @@ func player_animation():
 		animation.play("Standing Idle/mixamo_com", 0.3)
 
 func intentar_recoger_item() -> void:
-	# Si somos un cliente, le pedimos al servidor que ejecute la recogida por nosotros
 	if not is_multiplayer_authority():
 		return
 		
-	# Llamamos a una función RPC que se ejecute en el servidor
-	solicitar_recoger_item_server.rpc_id(1) # El ID 1 siempre es el servidor
+	# Enviamos el ID del cliente actual al servidor
+	var id_cliente = multiplayer.get_unique_id()
+	solicitar_recoger_item_server.rpc_id(1, id_cliente)
 
 @rpc("any_peer", "call_local", "reliable")
-func solicitar_recoger_item_server() -> void:
-	# REGLA DE ORO: Solo el servidor procesa esta lógica
+func solicitar_recoger_item_server(id_cliente: int) -> void:
 	if not multiplayer.is_server():
 		return
 		
 	if not detector_items: 
 		return
 		
+	# Verificamos que el RPC realmente venga del peer correcto (seguridad adicional)
+	if multiplayer.get_remote_sender_id() != id_cliente:
+		return
+		
 	var cuerpos_cercanos = detector_items.get_overlapping_areas()	
 	for cuerpo in cuerpos_cercanos:
 		if cuerpo is ItemBase:
-			# El servidor le pasa los datos al inventario del jugador que hizo la solicitud
+			# Como este código corre dentro de la instancia del jugador correspondiente,
+			# 'inventario_manager' pertenece exactamente a este jugador.
 			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
 			if exito:
-				# Le decimos al objeto que sea recogido (esto activará su destrucción en red)
 				cuerpo.ser_recogido()
 				break
 				
