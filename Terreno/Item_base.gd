@@ -11,6 +11,6 @@ func ser_recogido() -> void:
 	queue_free()
 
 # Un método "virtual" vacío que los hijos podrán sobrescribir usando polimorfismo
-func usar_item(jugador) -> void:
-	pass
+func usar_item(jugador) -> bool:
+	return false
 	

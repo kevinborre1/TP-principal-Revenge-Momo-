@@ -35,7 +35,7 @@ var minijuego_instance: Control = null
 @onready var macarena: AudioStreamPlayer = $musicaBaile2
 @onready var slots_ui = $Inventario.get_children() # Obtiene los 4 Paneles
 @onready var spring_arm: SpringArm3D = $SpringArm3D
-@onready var crosshair: Control = $CanvasLayer/PuntoDeMira # Ajusta la ruta de tu UI
+@onready var punto_de_mira: Control = $CanvasLayer/PuntoDeMira # Ajusta la ruta de tu UI
 # Camara
 @onready var camara: Camera3D = find_child("Camera3D", true, false) as Camera3D
 @export var distancia_camara_normal: float = 2.0
@@ -365,14 +365,14 @@ func consumir_item(indice_slot: int):
 			var item_temporal = escena_objeto.instantiate()
 			
 			if item_temporal is ItemBase:
-				item_temporal.usar_item(self) # Ejecutamos el efecto de curar
+				var se_uso = item_temporal.usar_item(self) # Ejecutamos el efecto de curar
 				
 				# Limpiamos el inventario
-				#inventario[indice_slot] = null
-				#var icono_visual = slots_ui[indice_slot].get_node("icono")
-				#icono_visual.texture = null
-				#
-			#item_temporal.queue_free()
+				if se_uso == true :
+					inventario[indice_slot] = null
+					var icono_visual = slots_ui[indice_slot].get_node("icono")
+					icono_visual.texture = null
+					item_temporal.queue_free()
 
 func recibir_cura(puntos_cura: int) -> bool:
 	
@@ -445,7 +445,7 @@ func actualizar_modo_combate() -> void:
 		spring_arm.position = Vector3(0.5, 1.7, 0.0) # Ajusta según tu modelo
 		
 		# 2. Mostramos el punto de mira en pantalla
-		crosshair.show()
+		punto_de_mira.show()
 		
 		print("Arma equipada: Modo combate activado")
 	else:
@@ -454,6 +454,6 @@ func actualizar_modo_combate() -> void:
 		spring_arm.position = Vector3(0.0, 1.5, 0.0)
 		
 		# Ocultamos el punto de mira
-		crosshair.hide()
+		punto_de_mira.hide()
 		
 		print("Arma guardada")
