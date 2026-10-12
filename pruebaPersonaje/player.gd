@@ -162,11 +162,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			modelo.rotation.y = spring_arm_3d.rotation.y + PI
 
 	# Recoger con Q
-	if event is InputEventKey and event.physical_keycode == KEY_Q and event.pressed and not event.echo:
+	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
 		intentar_recoger_item()
 
 	# Consumir con E
-	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
+	if event is InputEventKey and event.physical_keycode == KEY_C and event.pressed and not event.echo:
 		consumir_item(0)
 		
 func _physics_process(delta: float) -> void:
@@ -368,11 +368,11 @@ func consumir_item(indice_slot: int):
 				item_temporal.usar_item(self) # Ejecutamos el efecto de curar
 				
 				# Limpiamos el inventario
-				inventario[indice_slot] = null
-				var icono_visual = slots_ui[indice_slot].get_node("icono")
-				icono_visual.texture = null
-				
-			item_temporal.queue_free()
+				#inventario[indice_slot] = null
+				#var icono_visual = slots_ui[indice_slot].get_node("icono")
+				#icono_visual.texture = null
+				#
+			#item_temporal.queue_free()
 
 func recibir_cura(puntos_cura: int) -> bool:
 	
