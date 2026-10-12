@@ -374,6 +374,7 @@ func consumir_item(indice_slot: int):
 					icono_visual.texture = null
 					item_temporal.queue_free()
 
+
 func recibir_cura(puntos_cura: int) -> bool:
 	
 	if saludActual >= saludMax:
