@@ -1,21 +1,26 @@
 extends Node
 
-const SAVE_PATH := "user://puntajes.json"
+const RUTA_GENERAL := "user://puntajes.json"  # Sin slot elegido
 const MAX_ENTRADAS := 5
 
 signal puntajes_actualizados
 
-# entrada: { "nombre": String, "puntaje": int, "fecha": String }
+# Entrada: { "nombre": String, "puntaje": int, "fecha": String }
 var top: Array = []
 
 
-func _ready() -> void:
-	cargar()
+
+func _ruta_actual() -> String:
+	var slot: String = SaveAndLoad.rutaUtilizada
+	if slot == "":
+		return RUTA_GENERAL
+	return "user://puntajes_%s.json" % slot.get_file().get_basename()
 
 
-# -1 si no entró al top
+# Devuelve la posición lograda (1 a 5), o -1 si no entró al top
 func registrar(nombre: String, puntaje: int) -> int:
-	# Los empates quedan por debajo de los puntajes ya registrados
+	cargar()  # asegura que `top` corresponde al slot actual
+
 	var posicion := 0
 	for entrada in top:
 		if int(entrada["puntaje"]) >= puntaje:
@@ -40,7 +45,7 @@ func registrar(nombre: String, puntaje: int) -> int:
 
 
 func guardar() -> void:
-	var archivo := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var archivo := FileAccess.open(_ruta_actual(), FileAccess.WRITE)
 	if archivo == null:
 		push_error("No se pudo guardar el top de puntajes: %s" % FileAccess.get_open_error())
 		return
@@ -48,11 +53,19 @@ func guardar() -> void:
 
 
 func cargar() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
+	top = []  # importante: vaciar antes, si no queda el top del slot anterior
+	var ruta := _ruta_actual()
+	if not FileAccess.file_exists(ruta):
 		return
-	var archivo := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var archivo := FileAccess.open(ruta, FileAccess.READ)
 	if archivo == null:
 		return
 	var datos = JSON.parse_string(archivo.get_as_text())
 	if datos is Array:
 		top = datos
+
+
+func reiniciar() -> void:
+	top.clear()
+	guardar()  # sobrescribe el archivo del slot actual
+	puntajes_actualizados.emit()

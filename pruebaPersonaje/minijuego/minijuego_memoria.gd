@@ -129,6 +129,7 @@ func _on_nombre_enviado(texto: String) -> void:
 
 
 func _armar_texto_final(gano: bool, puntaje: int, posicion: int) -> String:
+	ScoreManager.cargar()
 	var texto := "MEJORES PUNTAJES\n"
 	if ScoreManager.top.is_empty():
 		texto += "Todavía no hay puntajes\n"
