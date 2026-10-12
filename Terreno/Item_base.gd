@@ -1,16 +1,20 @@
 extends Area3D
 class_name ItemBase
 
-# Variables comunes para todos los ítems
-@export var nombre_item: String
+@export var nombre_item: String = "Pocion"
 @export var icono: Texture2D
-@export var ruta_escena: String
+@export var ruta_escena: String = ""
 
-# Comportamiento común al ser recogido
+# Esta función es llamada por el servidor tras agregarse al inventario
 func ser_recogido() -> void:
-	queue_free()
+	destruir_item_rpc.rpc()
 
-# Un método "virtual" vacío que los hijos podrán sobrescribir usando polimorfismo
-func usar_item(jugador) -> bool:
-	return false
+@rpc("call_local", "authority", "reliable")
+func destruir_item_rpc() -> void:
+	# Ocultamos y desactivamos colisiones de inmediato para todos
+	hide()
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
 	
+	# Borramos el objeto del juego de forma limpia
+	queue_free()

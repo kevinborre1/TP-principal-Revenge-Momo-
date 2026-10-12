@@ -325,17 +325,33 @@ func player_animation():
 	else:
 		animation.play("Standing Idle/mixamo_com", 0.3)
 
-func intentar_recoger_item():
-	if not detector_items: return
-	var cuerpos_cercanos = detector_items.get_overlapping_areas()
-	
+func intentar_recoger_item() -> void:
+	# Si somos un cliente, le pedimos al servidor que ejecute la recogida por nosotros
+	if not is_multiplayer_authority():
+		return
+		
+	# Llamamos a una función RPC que se ejecute en el servidor
+	solicitar_recoger_item_server.rpc_id(1) # El ID 1 siempre es el servidor
+
+@rpc("any_peer", "call_local", "reliable")
+func solicitar_recoger_item_server() -> void:
+	# REGLA DE ORO: Solo el servidor procesa esta lógica
+	if not multiplayer.is_server():
+		return
+		
+	if not detector_items: 
+		return
+		
+	var cuerpos_cercanos = detector_items.get_overlapping_areas()	
 	for cuerpo in cuerpos_cercanos:
 		if cuerpo is ItemBase:
-			# El Player solo le pasa los datos al Inventario
+			# El servidor le pasa los datos al inventario del jugador que hizo la solicitud
 			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
 			if exito:
+				# Le decimos al objeto que sea recogido (esto activará su destrucción en red)
 				cuerpo.ser_recogido()
 				break
+				
 # Función auxiliar para frenar la canción
 func detener_musica_baile():
 	if macarena and macarena.playing:
