@@ -7,8 +7,9 @@ var multiplicadorDeCarrera = 2
 var mouse_sensitivy := 0.003
 @export var saludMax: int = 100.0
 @export var saludActual: int = saludMax
-var herido = false
 signal cambioSalud
+signal cambioStamina
+var herido = false
 var StaminaMax = 100.0
 var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
@@ -24,6 +25,7 @@ var minijuego_instance: Control = null
 @export var arma_equipada: bool = false
 
 # Referencias a los nodos
+@onready var barraSalud: ProgressBar = $BarraSalud
 @onready var detector_items = $DetectorItems
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
@@ -86,14 +88,14 @@ func _ready() -> void:
 			camara.make_current()
 		if barraStamina:
 			barraStamina.visible = true
-		configurar_barraStamina()
+		actualizar_barraStamina()
 		
 	elif Global.modo_multijugador == "linea":
 		if es_mi_personaje:
 			if camara:
 				camara.make_current()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			configurar_barraStamina()
+			actualizar_barraStamina()
 			if barraStamina:
 				barraStamina.visible = true
 		else:
@@ -107,7 +109,7 @@ func _ready() -> void:
 	if raycast:
 		raycast.add_exception(self)
 		
-	#actualizar_modo_combate()
+	actualizar_modo_combate()
 
 # 1. FUNCIÓN _INPUT: Solo para cámara y ratón
 func _input(event: InputEvent) -> void:
@@ -207,8 +209,10 @@ func _physics_process(delta: float) -> void:
 	if correr_fisico and StaminaActual > 0:
 		velocidadActual = SPEED * multiplicadorDeCarrera
 		StaminaActual -= StaminaPerdida
+		actualizar_barraStamina()
 	elif (StaminaActual < StaminaMax) and not correr_fisico :
 		StaminaActual += StaminaRegeneracion
+		actualizar_barraStamina()
 		
 	#CAMARA
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
@@ -243,16 +247,13 @@ func activar_ragdoll():
 		collision_shape_3d.disabled = true
 	if skeleton_3d:
 		skeleton_3d.physical_bones_start_simulation()
-
-func configurar_barraStamina():
-	barraStamina.min_value = 0.0
-	barraStamina.max_value= StaminaMax
-
+		
 func actualizar_barraStamina():
-	barraStamina.value = StaminaActual
+	cambioStamina.emit()
 	
-	#a modificar / expandir
-
+func actualizar_barraDeVida():
+	cambioSalud.emit()
+	
 func heridoPorEnemigo(area):
 	saludActual -= 10
 	if saludActual <= 0:
@@ -260,7 +261,8 @@ func heridoPorEnemigo(area):
 		print("¡El jugador ha muerto!")
 		# Aquí puedes agregar lógica de muerte, como reiniciar nivel o hacer ragdoll
 	herido = true
-	cambioSalud.emit()
+	actualizar_barraDeVida()
+
 func is_moving():
 	return abs(velocity.z) > 0 || abs(velocity.x) > 0
 
@@ -312,6 +314,8 @@ func player_animation():
 			animation.play("camina", 0.3)
 	else:
 		animation.play("Standing Idle/mixamo_com", 0.3)
+
+
 
 func recolectar_item(nombre_item: String, textura_icono: Texture2D, ruta: String) -> bool:
 	for i in range(inventario.size()):
@@ -370,6 +374,21 @@ func consumir_item(indice_slot: int):
 				
 			item_temporal.queue_free()
 
+func recibir_cura(puntos_cura: int) -> bool:
+	
+	if saludActual >= saludMax:
+		print("Salud llena. No puedes usar la botella.")
+		return false
+	saludActual += puntos_cura
+	
+	if saludActual > saludMax:
+		saludActual = saludMax
+	print("Te curaste. Tu salud ahora es: ", saludActual)
+	actualizar_barraDeVida()
+	return true
+	
+
+	
 #Funciones de minijuego
 func abrir_minijuego() -> void:
 	if minijuego_instance:
