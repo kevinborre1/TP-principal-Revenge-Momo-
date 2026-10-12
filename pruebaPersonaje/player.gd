@@ -373,6 +373,7 @@ func consumir_item(indice_slot: int):
 func abrir_minijuego() -> void:
 	if minijuego_instance:
 		return  # ya está abierto, evitar duplicados
+	$CanvasLayer/PuntoDeMira.hide()
 	minijuego_instance = minijuego_scene.instantiate()
 	minijuego_instance.nombre_jugador = "Jugador 1" if name == "1" else "Jugador 2"
 	$ContenedorMinijuego.add_child(minijuego_instance)  
@@ -395,6 +396,7 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 	minijuego_instance.queue_free()
 	minijuego_instance = null
 	input_bloqueado = false
+	$CanvasLayer/PuntoDeMira.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func intentar_recoger_item():
