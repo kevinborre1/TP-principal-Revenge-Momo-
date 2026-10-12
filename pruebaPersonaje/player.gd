@@ -254,12 +254,13 @@ func actualizar_barraStamina():
 	#a modificar / expandir
 
 func heridoPorEnemigo(area):
-	saludActual -=10
-	if saludActual < 0:
-		saludActual = saludMax
+	saludActual -= 10
+	if saludActual <= 0:
+		saludActual = 0
+		print("¡El jugador ha muerto!")
+		# Aquí puedes agregar lógica de muerte, como reiniciar nivel o hacer ragdoll
 	herido = true
 	cambioSalud.emit()
-	
 func is_moving():
 	return abs(velocity.z) > 0 || abs(velocity.x) > 0
 

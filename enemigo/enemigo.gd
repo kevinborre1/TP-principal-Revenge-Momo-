@@ -5,6 +5,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var vida_maxima: int = 20
 var vida_actual: int = vida_maxima
 
+# Variables para controlar el daño
+var tiempo_ultimo_ataque: float = 0.0
+var cooldown_ataque: float = 1.0 # El enemigo hace daño cada 1 segundo
+
 func _physics_process(delta: float) -> void:
 	# 1. Aplicar gravedad para que no flote
 	if not is_on_floor():
@@ -25,9 +29,26 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direccion_adelante.x * SPEED
 		velocity.z = direccion_adelante.z * SPEED
 		
-
 	move_and_slide()
-
+	
+	# 4. Detectar colisiones con el jugador (NUEVO)
+	_comprobar_colisiones_jugador()
+	
+func _comprobar_colisiones_jugador() -> void:
+	for i in get_slide_collision_count():
+		var colision = get_slide_collision(i)
+		var colisionador = colision.get_collider()
+		
+		# Comprobamos si con lo que chocamos es el Player (por clase o grupo)
+		if colisionador is Player or colisionador.is_in_group("Jugador"):
+			var tiempo_actual = Time.get_ticks_msec() / 1000.0
+			
+			# Comprobamos si ya pasó el tiempo de cooldown
+			if tiempo_actual - tiempo_ultimo_ataque >= cooldown_ataque:
+				if colisionador.has_method("heridoPorEnemigo"):
+					# Llamamos a la función de daño del Player
+					colisionador.heridoPorEnemigo(self) 
+					tiempo_ultimo_ataque = tiempo_actual
 # Función para encontrar al jugador más cercano en juegos multijugador
 func obtener_jugador_mas_cercano() -> Node3D:
 	# Obtenemos todos los nodos que asignamos al grupo "jugadores"
