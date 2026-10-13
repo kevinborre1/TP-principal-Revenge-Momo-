@@ -455,3 +455,18 @@ func actualizar_modo_combate() -> void:
 		punto_de_mira.hide()
 		
 		print("Arma guardada")
+
+
+# Funcion para la balsa
+func prepare_for_raft() -> void:
+	# reiniciar la variable que guarda el movimiento del mouse
+	camera_rotation = Vector2.ZERO
+	# resetea la rotacion del brazo de la camara
+	if spring_arm_3d:
+		spring_arm_3d.rotation = Vector3.ZERO
+	# reiniciamos la rotacion del nodo raiz del jugador
+	rotation = Vector3.ZERO
+	#reiniciamos la rotacion del modelo 3d para que no quede con mala orientacion respecto a la balsa
+	var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
+	if modelo:
+		modelo.rotation = Vector3(0, PI, 0)
