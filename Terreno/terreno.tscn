@@ -50,7 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://b1mciugvmlpik" path="res://vitictorBar/assetsCocina/fbx/fridge_door.fbx" id="46_hcbc3"]
 [ext_resource type="PackedScene" uid="uid://b20d6k1ew4s6q" path="res://vitictorBar/assetsCocina/fbx/microwave.fbx" id="47_rkuii"]
 [ext_resource type="PackedScene" uid="uid://cmpgb70r83wqk" path="res://vitictorBar/assetsCocina/Coffee bean by Poly by Google - 7ONZQTx9Tuz.glb" id="48_yeivc"]
-[ext_resource type="Script" uid="uid://cpijd7v4m7hdc" path="res://Terreno/botella_cerveza.gd" id="51_ym7rp"]
+[ext_resource type="Script" uid="uid://cvj3tgrjkax1o" path="res://Terreno/pepita.gd" id="51_vg8rj"]
 [ext_resource type="PackedScene" uid="uid://cj5xoxby3wth1" path="res://enemigo/papitas.fbx" id="52_gkey5"]
 [ext_resource type="PackedScene" uid="uid://drbl16pfdhvfc" path="res://PruebaBalsa/balsa.tscn" id="52_p5cfm"]
 [ext_resource type="PackedScene" uid="uid://c2ss50aamwhpy" path="res://vitictorBar/momo_toilet_dom_studio.glb" id="53_gkey5"]
@@ -331,6 +331,9 @@ size = Vector3(3.3547363, 1.4614258, 0.5947876)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0u3xn"]
 size = Vector3(1.0300293, 2.470581, 1.1217957)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pruwi"]
+size = Vector3(1.618103, 1.6411133, 2.5300293)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cnt6s"]
 
@@ -2360,7 +2363,7 @@ puerta_destino = NodePath("../Puerta")
 [node name="Buttom" parent="VictorBars/Interacciones VictorBars" unique_id=377298075 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1217.951)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1657600561]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1362431476]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="Area3D2" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom" unique_id=1342207512 node_paths=PackedStringArray("puerta_destino")]
@@ -2375,7 +2378,7 @@ shape = SubResource("BoxShape3D_rsdri")
 [node name="Buttom2" parent="VictorBars/Interacciones VictorBars" unique_id=2064960827 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1227.7134)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1657600561]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1362431476]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="Area3D" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom2" unique_id=2133630934 node_paths=PackedStringArray("puerta_destino")]
@@ -2410,7 +2413,7 @@ shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="patato" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1166769141 instance=ExtResource("16_rpqym")]
 
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1380552692) index="0" unique_id=394198906]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1445619735) index="0" unique_id=1491749793]
 bones/2/position = Vector3(0, 0.009419135, 0)
 bones/2/rotation = Quaternion(0.8840405, 4.625521e-17, 4.6255195e-17, -0.46741036)
 bones/2/scale = Vector3(1, 0.9999999, 0.99999964)
@@ -2554,7 +2557,7 @@ bones/66/position = Vector3(8.028e-16, 0.0029200956, -1.9842776e-10)
 bones/66/rotation = Quaternion(0.4866725, -0.4896309, 0.5101597, 0.5129801)
 bones/66/scale = Vector3(0.9999998, 1, 0.9999999)
 
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=1715887257]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=2010934325]
 autoplay = &"Арматура|Idle"
 
 [node name="enemigo2" type="CharacterBody3D" parent="VictorBars/Enemigos VictorBars" unique_id=1301735472 groups=["papitas"]]
@@ -2578,7 +2581,7 @@ mesh = SubResource("CapsuleMesh_8w0r3")
 [node name="papitas" parent="VictorBars/Enemigos VictorBars/enemigo2" unique_id=1000758820 instance=ExtResource("52_gkey5")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.8249779, -0.5619979, -0.3638916)
 
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo2/papitas" index="0" unique_id=2104534949]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo2/papitas" index="0" unique_id=1181354604]
 bones/2/position = Vector3(-1.4835991e-08, 2.2711933e-07, 2.8381027e-08)
 bones/2/rotation = Quaternion(0.13295019, 0.017577764, 0.06335436, 0.9889396)
 bones/2/scale = Vector3(1.0000001, 0.99999994, 1.0000001)
@@ -2818,7 +2821,7 @@ bones/82/position = Vector3(2.9491146e-08, 0.0068809628, 9.9838566e-08)
 bones/82/rotation = Quaternion(-2.1384981e-08, -1.1897133e-09, -4.5226256e-10, 1)
 bones/82/scale = Vector3(1.0000002, 1.0000004, 1)
 
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo2/papitas" index="1" unique_id=2124897654]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo2/papitas" index="1" unique_id=1165547959]
 autoplay = &"2165105689072_TempMotion"
 
 [node name="enemigo3" type="CharacterBody3D" parent="VictorBars/Enemigos VictorBars" unique_id=1047049109 groups=["papitas"]]
@@ -2842,7 +2845,7 @@ mesh = SubResource("CapsuleMesh_8w0r3")
 [node name="papitas" parent="VictorBars/Enemigos VictorBars/enemigo3" unique_id=1860974031 instance=ExtResource("52_gkey5")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.8249779, -0.5619979, -0.3638916)
 
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo3/papitas" index="0" unique_id=2104534949]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo3/papitas" index="0" unique_id=1181354604]
 bones/2/position = Vector3(-1.4835991e-08, 2.2711933e-07, 2.8381027e-08)
 bones/2/rotation = Quaternion(0.13295019, 0.017577764, 0.06335436, 0.9889396)
 bones/2/scale = Vector3(1.0000001, 0.99999994, 1.0000001)
@@ -3082,7 +3085,7 @@ bones/82/position = Vector3(2.9491146e-08, 0.0068809628, 9.9838566e-08)
 bones/82/rotation = Quaternion(-2.1384981e-08, -1.1897133e-09, -4.5226256e-10, 1)
 bones/82/scale = Vector3(1.0000002, 1.0000004, 1)
 
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo3/papitas" index="1" unique_id=2124897654]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo3/papitas" index="1" unique_id=1165547959]
 autoplay = &"2165105689072_TempMotion"
 
 [node name="enemigo4" type="CharacterBody3D" parent="VictorBars/Enemigos VictorBars" unique_id=1882876714 groups=["papitas"]]
@@ -3106,7 +3109,7 @@ mesh = SubResource("CapsuleMesh_8w0r3")
 [node name="papitas" parent="VictorBars/Enemigos VictorBars/enemigo4" unique_id=1979998385 instance=ExtResource("52_gkey5")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.8249779, -0.5619979, -0.3638916)
 
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo4/papitas" index="0" unique_id=2104534949]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo4/papitas" index="0" unique_id=1181354604]
 bones/2/position = Vector3(-1.4835991e-08, 2.2711933e-07, 2.8381027e-08)
 bones/2/rotation = Quaternion(0.13295019, 0.017577764, 0.06335436, 0.9889396)
 bones/2/scale = Vector3(1.0000001, 0.99999994, 1.0000001)
@@ -3346,7 +3349,7 @@ bones/82/position = Vector3(2.9491146e-08, 0.0068809628, 9.9838566e-08)
 bones/82/rotation = Quaternion(-2.1384981e-08, -1.1897133e-09, -4.5226256e-10, 1)
 bones/82/scale = Vector3(1.0000002, 1.0000004, 1)
 
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo4/papitas" index="1" unique_id=2124897654]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo4/papitas" index="1" unique_id=1165547959]
 autoplay = &"2165105689072_TempMotion"
 
 [node name="enemigo5" type="CharacterBody3D" parent="VictorBars/Enemigos VictorBars" unique_id=540343712 groups=["papitas"]]
@@ -3370,7 +3373,7 @@ mesh = SubResource("CapsuleMesh_8w0r3")
 [node name="papitas" parent="VictorBars/Enemigos VictorBars/enemigo5" unique_id=178129332 instance=ExtResource("52_gkey5")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.8249779, -0.5619979, -0.3638916)
 
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo5/papitas" index="0" unique_id=2104534949]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo5/papitas" index="0" unique_id=1181354604]
 bones/2/position = Vector3(-1.4835991e-08, 2.2711933e-07, 2.8381027e-08)
 bones/2/rotation = Quaternion(0.13295019, 0.017577764, 0.06335436, 0.9889396)
 bones/2/scale = Vector3(1.0000001, 0.99999994, 1.0000001)
@@ -3610,7 +3613,7 @@ bones/82/position = Vector3(2.9491146e-08, 0.0068809628, 9.9838566e-08)
 bones/82/rotation = Quaternion(-2.1384981e-08, -1.1897133e-09, -4.5226256e-10, 1)
 bones/82/scale = Vector3(1.0000002, 1.0000004, 1)
 
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo5/papitas" index="1" unique_id=2124897654]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo5/papitas" index="1" unique_id=1165547959]
 autoplay = &"2165105689072_TempMotion"
 
 [node name="enemigo6" type="CharacterBody3D" parent="VictorBars/Enemigos VictorBars" unique_id=514901390 groups=["papitas"]]
@@ -3634,7 +3637,7 @@ mesh = SubResource("CapsuleMesh_8w0r3")
 [node name="papitas" parent="VictorBars/Enemigos VictorBars/enemigo6" unique_id=1202629494 instance=ExtResource("52_gkey5")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.8249779, -0.5619979, -0.3638916)
 
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo6/papitas" index="0" unique_id=2104534949]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigo6/papitas" index="0" unique_id=1181354604]
 bones/2/position = Vector3(-1.4835991e-08, 2.2711933e-07, 2.8381027e-08)
 bones/2/rotation = Quaternion(0.13295019, 0.017577764, 0.06335436, 0.9889396)
 bones/2/scale = Vector3(1.0000001, 0.99999994, 1.0000001)
@@ -3874,7 +3877,7 @@ bones/82/position = Vector3(2.9491146e-08, 0.0068809628, 9.9838566e-08)
 bones/82/rotation = Quaternion(-2.1384981e-08, -1.1897133e-09, -4.5226256e-10, 1)
 bones/82/scale = Vector3(1.0000002, 1.0000004, 1)
 
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo6/papitas" index="1" unique_id=2124897654]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigo6/papitas" index="1" unique_id=1165547959]
 autoplay = &"2165105689072_TempMotion"
 
 [node name="Decoraciones VictorBars" type="Node3D" parent="VictorBars" unique_id=1458099527]
@@ -4481,12 +4484,15 @@ physics_material_override = SubResource("PhysicsMaterial_d0de0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47058105, 0.7352907, -0.44844055)
 shape = SubResource("BoxShape3D_0u3xn")
 
-[node name="caffe" type="Area3D" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=1367240297]
-transform = Transform3D(0.06666668, 0, 0, 0, 0.06666668, 0, 0, 0, 0.06666668, 19.20347, -0.26267314, 0.98049927)
-script = ExtResource("51_ym7rp")
-metadata/_custom_type_script = "uid://cpijd7v4m7hdc"
+[node name="PepitaCafe" type="Area3D" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=1166652405]
+transform = Transform3D(0.06666668, 0, 0, 0, 0.06666668, 0, 0, 0, 0.06666668, 15.410852, -0.26267314, 0.98049927)
+script = ExtResource("51_vg8rj")
 
-[node name="Coffee bean by Poly by Google - 7ONZQTx9Tuz" parent="VictorBars/Decoraciones VictorBars/Cocina/caffe" unique_id=936193032 instance=ExtResource("48_yeivc")]
+[node name="Coffee bean by Poly by Google - 7ONZQTx9Tuz" parent="VictorBars/Decoraciones VictorBars/Cocina/PepitaCafe" unique_id=936193032 instance=ExtResource("48_yeivc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Cocina/PepitaCafe" unique_id=682774743]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0.090270996, 0.9938966, 0.041992188)
+shape = SubResource("BoxShape3D_pruwi")
 
 [node name="microwave" parent="VictorBars/Decoraciones VictorBars/Cocina" unique_id=208741543 instance=ExtResource("47_rkuii")]
 transform = Transform3D(-2.9140926e-08, 0, -0.6666667, 0, 0.6666667, 0, 0.6666667, 0, -2.9140926e-08, 18.865683, 0.7109857, 1.0292969)
@@ -4625,7 +4631,7 @@ transform = Transform3D(1, 0, 0, 0, 1.2954012, 0, 0, 0, 1.427239, 32.105522, 0.0
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 
-[node name="AnimationPlayer" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5" index="1" unique_id=1144670781]
+[node name="AnimationPlayer" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5" index="1" unique_id=1852732845]
 autoplay = &"Animation"
 
 [node name="Puerta4" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1464551731 instance=ExtResource("57_k37ix")]

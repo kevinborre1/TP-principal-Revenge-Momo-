@@ -9,13 +9,13 @@
 [ext_resource type="AnimationLibrary" uid="uid://eai1q0ciaapr" path="res://pruebaPersonaje/movimientos/Fast Run.fbx" id="5_jvtdh"]
 [ext_resource type="AnimationLibrary" uid="uid://cdxlee432svia" path="res://pruebaPersonaje/movimientos/Jump.fbx" id="6_jwaew"]
 [ext_resource type="Script" uid="uid://jc271k1bd705" path="res://pruebaPersonaje/salud.gd" id="6_xb7yt"]
-[ext_resource type="Texture2D" uid="uid://cqlbgxemxlrsn" path="res://assets/objetoprueba1.png" id="7_7fgg8"]
 [ext_resource type="AnimationLibrary" uid="uid://cy4i6lh10w3tb" path="res://pruebaPersonaje/movimientos/Macarena Dance.fbx" id="7_gpnnl"]
 [ext_resource type="AnimationLibrary" uid="uid://3aoqg7e5syl5" path="res://pruebaPersonaje/movimientos/Standing Idle.fbx" id="8_7fotu"]
 [ext_resource type="Script" uid="uid://b28kyoe3v33c2" path="res://pruebaPersonaje/stamina.gd" id="10_1kskl"]
 [ext_resource type="Script" uid="uid://cq64ums2jdd4k" path="res://pruebaPersonaje/hud.gd" id="11_7fotu"]
 [ext_resource type="Script" uid="uid://cpbrvyfpmv2oi" path="res://pruebaPersonaje/icon_counter.gd" id="12_gpnnl"]
 [ext_resource type="AudioStream" uid="uid://3btbeik6vykv" path="res://pruebaPersonaje/movimientos/macarena.mp3" id="12_jwaew"]
+[ext_resource type="Texture2D" uid="uid://b4dkbgu77wug3" path="res://assets/granocafe1.png" id="14_xspus"]
 [ext_resource type="Script" uid="uid://0lxksclcjhd3" path="res://pruebaPersonaje/inventario.gd" id="17_xspus"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
@@ -1912,23 +1912,21 @@ offset_bottom = -583.0
 script = ExtResource("11_7fotu")
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer2" unique_id=564133736]
+visible = false
 layout_mode = 2
 columns = 3
 
 [node name="Objeto1" type="TextureRect" parent="PanelContainer2/GridContainer" unique_id=1224983909]
-visible = false
 layout_mode = 2
-texture = ExtResource("7_7fgg8")
+texture = ExtResource("14_xspus")
 
 [node name="Objeto2" type="TextureRect" parent="PanelContainer2/GridContainer" unique_id=758084862]
-visible = false
 layout_mode = 2
-texture = ExtResource("7_7fgg8")
+texture = ExtResource("14_xspus")
 
 [node name="Objeto3" type="TextureRect" parent="PanelContainer2/GridContainer" unique_id=1602424306]
-visible = false
 layout_mode = 2
-texture = ExtResource("7_7fgg8")
+texture = ExtResource("14_xspus")
 
 [node name="icon_counter" type="Control" parent="PanelContainer2" unique_id=628607451 node_paths=PackedStringArray("icons")]
 layout_mode = 2
