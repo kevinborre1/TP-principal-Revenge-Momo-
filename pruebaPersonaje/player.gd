@@ -262,6 +262,9 @@ func actualizar_barraStamina():
 	cambioStamina.emit()
 	
 func actualizar_barraDeVida():
+	if barraSalud:
+		barraSalud.max_value = saludMax
+		barraSalud.value = saludActual 
 	cambioSalud.emit()
 	
 func heridoPorEnemigo(area):
@@ -330,19 +333,12 @@ func intentar_recoger_item():
 	var cuerpos_cercanos = detector_items.get_overlapping_areas()
 	
 	for cuerpo in cuerpos_cercanos:
-		# Si el objeto tiene la función ser_recogido (como nuestra pepita de café)
+		# 1. Si es una pepita de café (tiene el método ser_recogido y no es un ItemBase)
 		if cuerpo.has_method("ser_recogido") and not (cuerpo is ItemBase):
 			cuerpo.ser_recogido()
 			break
 		
-		# Si es un ítem normal del inventario (como las botellas)
-		elif cuerpo is ItemBase:
-			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
-			if exito:
-				cuerpo.ser_recogido()
-				break
-		
-		# Opción B: Si es un ítem normal que va al inventario (como las botellas)
+		# 2. Si es un ítem normal del inventario (como las botellas)
 		elif cuerpo is ItemBase:
 			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
 			if exito:

@@ -11,41 +11,41 @@ var tiempo_ultimo_ataque: float = 0.0
 var cooldown_ataque: float = 1.0 # El enemigo hace daño cada 1 segundo
 
 
-
 func _physics_process(delta: float) -> void:
-	# 1. Aplicar gravedad para que no flote
+# 1. Aplicar gravedad para que no flote
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# 2. Lógica exclusiva del Líder (NUEVA PARTE)
+	# SI LA CINEMÁTICA NO HA TERMINADO (Preguntándole al GameManager), SE QUEDAN QUIETOS
+	if not GameManager.papas_atacan:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+		move_and_slide()
+		return
+
+	# 2. Lógica exclusiva del Líder
 	if es_lider:
-		# Contamos cuántas papitas siguen vivas en el mapa
 		var papitas_vivas = get_tree().get_nodes_in_group("papitas").size()
 		if papitas_vivas > 0:
-			# Si quedan papitas, el líder se queda quieto esperando
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 			move_and_slide()
-			return # Corta la función acá para que no persiga ni haga daño
+			return
 
 	# 3. Buscar al jugador más cercano
 	var jugador_objetivo = obtener_jugador_mas_cercano()
 
 	# 4. Perseguir al jugador si existe
 	if jugador_objetivo:
-		# Hacer que el enemigo mire hacia el jugador
 		var posicion_mirar = Vector3(jugador_objetivo.global_position.x, global_position.y, jugador_objetivo.global_position.z)
 		if global_position.distance_to(posicion_mirar) > 0.1:
 			look_at(posicion_mirar, Vector3.UP)
 
-		# Avanzar hacia ADELANTE en su eje local (-basis.z)
 		var direccion_adelante = -global_transform.basis.z
 		velocity.x = direccion_adelante.x * SPEED
 		velocity.z = direccion_adelante.z * SPEED
 		
 	move_and_slide()
-	
-	# 5. Detectar colisiones con el jugador
 	_comprobar_colisiones_jugador()
 
 func _comprobar_colisiones_jugador() -> void:

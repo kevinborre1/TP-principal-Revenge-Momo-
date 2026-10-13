@@ -1,8 +1,12 @@
 extends Node3D
+class_name Door
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var atraveso_puerta: Area3D = $AtravesoPuerta
 @onready var video_player: VideoStreamPlayer = $"../../VideoVictor" # O la ruta a tu nodo de video
+
+# 1. Añadimos la referencia al CollisionShape3D que bloquea el paso (ajusta la ruta si tu nodo se llama distinto)
+@onready var collision_shape: CollisionShape3D = $Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/Object_13/StaticBody3D/CollisionShape3D
 
 @export var botones_necesarios: int = 2
 @export var tiempo_espera_maximo: float = 10.0 # Tiempo máxima abierta si nadie pasa
@@ -64,6 +68,11 @@ func contar_botones_activos() -> int:
 
 func abrir_puerta() -> void:
 	esta_abierta = true
+	
+	# 2. Desactivamos la colisión instantáneamente cuando la puerta comienza a abrirse
+	if collision_shape:
+		collision_shape.disabled = true
+		
 	if animation_player:
 		animation_player.play("Armature|Open")
 		
@@ -100,6 +109,10 @@ func cerrar_puerta() -> void:
 		animation_player.play_backwards("Armature|Open")
 		await animation_player.animation_finished
 		
+	# 3. Volvemos a activar la colisión únicamente al terminar de cerrarse por completo
+	if collision_shape:
+		collision_shape.disabled = false
+		
 	cerrando = false
 
 func reproducir_cinematica() -> void:
@@ -110,4 +123,9 @@ func reproducir_cinematica() -> void:
 		# Opcional: esperar a que el video termine para ocultarlo o cambiar de escena
 		await video_player.finished
 		video_player.visible = false
-		print("Video finalizado.")
+		print("Video finalizado.¡Las papas atacan!")		
+		# HABILITAMOS EL ATAQUE DE LAS PAPAS
+		GameManager.papas_atacan = true
+ 
+
+		

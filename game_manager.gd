@@ -1,7 +1,7 @@
 extends Node
 
 enum GameMode { RECOLECCION, VIDAS_BALSA }
-
+var papas_atacan: bool = false 
 var current_mode: GameMode = GameMode.RECOLECCION
 var max_count: int = 3
 var current_count: int = 0
