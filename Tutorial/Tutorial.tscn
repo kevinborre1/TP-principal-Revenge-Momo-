@@ -15,12 +15,14 @@
 [ext_resource type="Script" uid="uid://cdhh2bj1tq1v" path="res://Tutorial/puerta.gd" id="12_p3c8g"]
 [ext_resource type="Texture2D" uid="uid://bwdtuuonwj4b" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_AmbientOcclusion.png" id="13_1uqyg"]
 [ext_resource type="Texture2D" uid="uid://q4tqm45xmq66" path="res://vitictorBar/puerta.png" id="13_dwacr"]
+[ext_resource type="PackedScene" uid="uid://crefucvws2ep4" path="res://Terreno/Botella_cerveza.tscn" id="13_j1fac"]
 [ext_resource type="Texture2D" uid="uid://dkks1uqgrfwbv" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_Displacement.png" id="14_f2drb"]
 [ext_resource type="PackedScene" uid="uid://dq5r63f7yqpiu" path="res://BotonesScript/boton.tscn" id="14_ymur5"]
 [ext_resource type="Script" uid="uid://b41v3633fwkh4" path="res://BotonesScript/boton1Entrada.gd" id="15_lwo2v"]
 [ext_resource type="Texture2D" uid="uid://cyw4utmcalmk4" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_NormalGL.png" id="15_xobj3"]
 [ext_resource type="Script" uid="uid://dlfycosjams24" path="res://BotonesScript/boton2Entrada.gd" id="16_ivch4"]
 [ext_resource type="Texture2D" uid="uid://cc0psb35bx41d" path="res://Tutorial/TexturasDelTutorial/Grass001_1K-PNG_Roughness.png" id="16_j1fac"]
+[ext_resource type="Script" uid="uid://cpa1mmhlh8llg" path="res://Tutorial/Daño.gd" id="18_xobj3"]
 [ext_resource type="PackedScene" uid="uid://cslvsk57vr3gy" path="res://Tutorial/Wooden Sign by iPoly3D - mxyDWLsKer.glb" id="22_1uqyg"]
 [ext_resource type="Script" uid="uid://q7k24kusq6rp" path="res://Tutorial/final_del_tutorial.gd" id="23_f2drb"]
 
@@ -38,7 +40,54 @@ sky = SubResource("Sky_tr3kr")
 
 [sub_resource type="Compositor" id="Compositor_sxovr"]
 
+[sub_resource type="Gradient" id="Gradient_j1fac"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_56pmq"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qpfw8"]
+noise = SubResource("FastNoiseLite_56pmq")
+color_ramp = SubResource("Gradient_j1fac")
+seamless = true
+
 [sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_a4klu"]
+_shader_parameters = {
+&"bias_distance": null,
+&"blend_sharpness": null,
+&"depth_blur": null,
+&"enable_macro_variation": null,
+&"enable_projection": null,
+&"flat_terrain_normals": null,
+&"macro_variation1": null,
+&"macro_variation2": null,
+&"macro_variation_slope": null,
+&"mipmap_bias": null,
+&"noise1_angle": null,
+&"noise1_offset": null,
+&"noise1_scale": null,
+&"noise2_scale": null,
+&"noise_texture": SubResource("NoiseTexture2D_qpfw8"),
+&"projection_threshold": null,
+&"world_noise_fragment_normals": null,
+&"world_noise_height": null,
+&"world_noise_lod_distance": null,
+&"world_noise_max_octaves": null,
+&"world_noise_min_octaves": null,
+&"world_noise_offset": null,
+&"world_noise_region_blend": null,
+&"world_noise_scale": null
+}
 world_background = 2
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_k1edr"]
@@ -124,6 +173,9 @@ size = Vector3(1, 6.9471436, 7.3591614)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uqyg"]
 albedo_texture = ExtResource("13_dwacr")
 uv1_scale = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tr3kr"]
+size = Vector3(5.9868774, 8.490112, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tr3kr"]
 size = Vector3(1, 7.3963013, 6.9848633)
@@ -761,6 +813,54 @@ physics_material_override = SubResource("PhysicsMaterial_sxovr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -9.536743e-06)
 shape = SubResource("BoxShape3D_sxovr")
 
+[node name="Cartel Correr" parent="Laberinto/Carteles" unique_id=292486477 instance=ExtResource("22_1uqyg")]
+transform = Transform3D(-0.91282284, 0, 0.40835595, 0, 1, 0, -0.40835595, 0, -0.91282284, -5.3078465, 0, 10.321569)
+
+[node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Correr" unique_id=859861122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057621002, 1.740379, 0.010120392)
+text = "¡Corre!
+Manteniendo la
+tecla \"Shift\""
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Laberinto/Carteles/Cartel Correr" unique_id=1993186428]
+physics_material_override = SubResource("PhysicsMaterial_sxovr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Carteles/Cartel Correr/StaticBody3D" unique_id=1350942581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024179459, 0.83740234, -9.536743e-06)
+shape = SubResource("BoxShape3D_sxovr")
+
+[node name="Cartel Recoger recolectable" parent="Laberinto/Carteles" unique_id=70486366 instance=ExtResource("22_1uqyg")]
+transform = Transform3D(0.86074215, 0, 0.5090414, 0, 1, 0, -0.5090414, 0, 0.86074215, -23.57549, -1.1920929e-07, -14.044928)
+
+[node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Recoger recolectable" unique_id=1993686465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057621002, 1.740379, 0.010120392)
+text = "¡RECOLECTABLES!
+Acercate y pulsa
+la tecla \"E\""
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Laberinto/Carteles/Cartel Recoger recolectable" unique_id=1233332675]
+physics_material_override = SubResource("PhysicsMaterial_sxovr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Carteles/Cartel Recoger recolectable/StaticBody3D" unique_id=504115556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -9.536743e-06)
+shape = SubResource("BoxShape3D_sxovr")
+
+[node name="Cartel Boton2" parent="Laberinto/Carteles" unique_id=2089156686 instance=ExtResource("22_1uqyg")]
+transform = Transform3D(-0.8338859, 0, -0.55193716, 0, 1, 0, 0.55193716, 0, -0.8338859, -33.82698, -1.1920929e-07, -16.32133)
+
+[node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Boton2" unique_id=1641219704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057621002, 1.740379, 0.010120392)
+text = "¡CURATE!
+Pulsa la \"C\" con la
+cerveza en la mano"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Laberinto/Carteles/Cartel Boton2" unique_id=1298157883]
+physics_material_override = SubResource("PhysicsMaterial_sxovr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Carteles/Cartel Boton2/StaticBody3D" unique_id=1478762428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -9.536743e-06)
+shape = SubResource("BoxShape3D_sxovr")
+
 [node name="Colisiones Arboles" type="Node3D" parent="Laberinto" unique_id=849873660]
 
 [node name="Arbol 1" type="MeshInstance3D" parent="Laberinto/Colisiones Arboles" unique_id=930072612]
@@ -939,6 +1039,13 @@ puerta_destino = NodePath("../Puerta Trampa 2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6280775, 0, -26.118282)
 script = ExtResource("16_ivch4")
 puerta_destino = NodePath("../Puerta Trampa 2")
+
+[node name="Generador de daño" type="Area3D" parent="Laberinto/Interacciones" unique_id=715679681]
+script = ExtResource("18_xobj3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Interacciones/Generador de daño" unique_id=179080707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.311836, 3.7450562, -22.74278)
+shape = SubResource("BoxShape3D_tr3kr")
 
 [node name="Paredes y obstaculos" type="Node3D" parent="Laberinto" unique_id=2130876284]
 
@@ -1871,6 +1978,14 @@ script = ExtResource("23_f2drb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Final/FinalDelTutorial" unique_id=1047181425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2196, 0, -5.7208138)
 shape = SubResource("BoxShape3D_ect8u")
+
+[node name="Consumibles" type="Node3D" parent="Laberinto" unique_id=1163438396]
+
+[node name="BotellaCerveza" parent="Laberinto/Consumibles" unique_id=443974799 instance=ExtResource("13_j1fac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.339, 2, -1260)
+
+[node name="BotellaCerveza2" parent="Laberinto/Consumibles" unique_id=1256583128 instance=ExtResource("13_j1fac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.62196, 2, -1260)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=225265740]
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
