@@ -4,7 +4,7 @@ const SPEED = 3.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var vida_maxima: int = 20
 var vida_actual: int = vida_maxima
-@export var es_lider: bool = false # <--- Casilla para marcar en el Inspector
+@export var es_lider: bool = false
 
 @onready var animation_player: AnimationPlayer = $papitas/AnimationPlayer
 
@@ -20,7 +20,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# SI LA CINEMÁTICA NO HA TERMINADO (Preguntándole al GameManager), SE QUEDAN QUIETOS
 	if not GameManager.papas_atacan:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -28,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		manejar_animaciones() # llamamos a la animacion de quieto
 		return
 
-	# 2. Lógica exclusiva del Líder
+	# Lógica exclusiva del Líder
 	if es_lider:
 		var papitas_vivas = get_tree().get_nodes_in_group("papitas").size()
 		if papitas_vivas > 0:
@@ -118,8 +117,6 @@ func manejar_animaciones() -> void:
 	var velocidad_horizontal = Vector2(velocity.x, velocity.z).length()
 	
 	if velocidad_horizontal > 0.1:
-		# REEMPLAZA "caminar" POR EL NOMBRE EXACTO DE TU ANIMACIÓN DE MOVIMIENTO
 		animation_player.play("2165105689072_TempMotion") 
 	else:
-		# REEMPLAZA "idle" POR EL NOMBRE EXACTO DE TU ANIMACIÓN ESTÁTICA
 		animation_player.stop()

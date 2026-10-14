@@ -308,6 +308,17 @@ height = 3.0737305
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
 height = 1.543457
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vg8rj"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("patato/AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sexue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fjigc"]
@@ -2578,6 +2589,9 @@ bones/66/scale = Vector3(0.9999998, 1, 0.9999999)
 
 [node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=613468243]
 autoplay = &"Арматура|Idle"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1047324135]
+replication_config = SubResource("SceneReplicationConfig_vg8rj")
 
 [node name="enemigo2" parent="VictorBars/Enemigos VictorBars" unique_id=485862913 instance=ExtResource("29_vg8rj")]
 transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 101.66526, 0.80794406, 1217.8475)
