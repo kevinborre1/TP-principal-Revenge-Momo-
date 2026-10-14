@@ -16,6 +16,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	var jugador := _jugador_dueño()
 	if jugador == null or jugador.input_bloqueado:
 		return
+	# evita que un jugador dispare el arma de otro
+	if not jugador.is_multiplayer_authority():
+		return
 	if event.is_action_pressed("disparar") and puede_disparar:
 		disparar()
 
@@ -33,8 +36,8 @@ func disparar() -> void:
 	var raycast: RayCast3D = player.find_child("RayCastDisparo", true, false)
 	
 	# 1. Instanciamos la bala
-	var bala = escena_bala.instantiate() as Area3D
-	bala.global_position = punto_de_disparo.global_position
+	#var bala = escena_bala.instantiate() as Area3D
+	#bala.global_position = punto_de_disparo.global_position
 	
 	var direccion_disparada = Vector3.FORWARD
 	
@@ -50,12 +53,14 @@ func disparar() -> void:
 		else:
 			direccion_disparada = -global_transform.basis.z.normalized()
 			
-	# Le asignamos la dirección a la bala
-	bala._direccion_salida(direccion_disparada)
+	generar_bala.rpc(punto_de_disparo.global_position, direccion_disparada)
 	
-	# Añadimos la bala a la escena principal
-	get_tree().current_scene.add_child(bala)
-	
-	# 4. Cadencia
 	await get_tree().create_timer(cadencia).timeout
 	puede_disparar = true
+
+@rpc("call_local", "any_peer", "reliable")
+func generar_bala(posicion_inicial: Vector3, direccion: Vector3) -> void:
+	var bala = escena_bala.instantiate() as Area3D
+	bala.global_position = posicion_inicial
+	bala._direccion_salida(direccion)
+	get_tree().current_scene.add_child(bala)

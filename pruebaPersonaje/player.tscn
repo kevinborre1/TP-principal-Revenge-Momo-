@@ -1283,6 +1283,9 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("SpringArm3D:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath("Walk (1)/AnimationPlayer:current_animation")
+properties/4/spawn = true
+properties/4/replication_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aud2g"]
 radius = 0.12841797

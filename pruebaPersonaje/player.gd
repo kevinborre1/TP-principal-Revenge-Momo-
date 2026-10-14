@@ -182,10 +182,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if input_bloqueado:
 		return
-	player_animation()
-	# Bloqueamos el movimiento en línea si no es nuestra autoridad
+		
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
+	
+	player_animation()
 		
 	var velocidadActual = SPEED
 	actualizar_barraStamina()
