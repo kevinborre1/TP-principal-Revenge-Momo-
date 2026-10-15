@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://nta3sef6c2el"
-path="res://.godot/imported/RockB.glb-09f7394e1e68af7a23eeb560229af1a9.scn"
+uid="uid://lyf75kdg6ewn"
+path="res://.godot/imported/bandera_de_argentina_roccasalva_y_carrera.glb-be65fc44fbe6e732a43cfe185794f824.scn"
 
 [deps]
 
-source_file="res://Terreno/RockB.glb"
-dest_files=["res://.godot/imported/RockB.glb-09f7394e1e68af7a23eeb560229af1a9.scn"]
+source_file="res://assets/bandera_de_argentina_roccasalva_y_carrera.glb"
+dest_files=["res://.godot/imported/bandera_de_argentina_roccasalva_y_carrera.glb-be65fc44fbe6e732a43cfe185794f824.scn"]
 
 [params]
 
-nodes/root_type="StaticBody3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false
 array_mesh/deduplicate_surfaces=true
@@ -39,14 +39,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"@MATERIAL:0": {
-"use_external/enabled": true,
-"use_external/path": "res://demo/assets/materials/M_rock30.tres"
-}
-}
-}
-gltf/naming_version=0
+_subresources={}
+gltf/naming_version=2
 gltf/embedded_image_handling=1
-gltf/texture_map_mode=0
+gltf/texture_map_mode=1
