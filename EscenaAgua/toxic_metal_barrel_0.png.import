@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8pel7rnxiy3u"
-path.s3tc="res://.godot/imported/river_rock_1.png-c25152dfc206c29d77101c4307622abf.s3tc.ctex"
+uid="uid://dcuojjgpkp88l"
+path.s3tc="res://.godot/imported/toxic_metal_barrel_0.png-2d3fa3596197068691c01d11595d2163.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "93c69183d430f93f90b450468ac87094"
+"md5": "15894048b2b0f59a70b798dd54f01c1b"
 }
 
 [deps]
 
-source_file="res://EscenaAgua/river_rock_1.png"
-dest_files=["res://.godot/imported/river_rock_1.png-c25152dfc206c29d77101c4307622abf.s3tc.ctex"]
+source_file="res://EscenaAgua/toxic_metal_barrel_0.png"
+dest_files=["res://.godot/imported/toxic_metal_barrel_0.png-2d3fa3596197068691c01d11595d2163.s3tc.ctex"]
 
 [params]
 
