@@ -532,11 +532,6 @@ shadow_mesh = SubResource("ArrayMesh_x3h64")
 albedo_texture = ExtResource("13_nei3j")
 uv1_scale = Vector3(9, 9, 9)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sxovr"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tr3kr"]
-size = Vector3(2.0202026, 1, 2.3875732)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_tx3k5"]
 size = Vector3(1, 4.743164, 2.9868164)
 
@@ -662,6 +657,11 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cpu1q")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sxovr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tr3kr"]
+size = Vector3(2.0202026, 1, 2.3875732)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmlyw"]
 
@@ -2457,7 +2457,6 @@ shape = SubResource("CapsuleShape3D_rsdri")
 [node name="patato" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1166769141 instance=ExtResource("16_rpqym")]
 
 [node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1958075320) index="0" unique_id=420187430]
-
 bones/2/position = Vector3(0, 0.009419135, 0)
 bones/2/rotation = Quaternion(0.8840405, 4.625521e-17, 4.6255195e-17, -0.46741036)
 bones/2/scale = Vector3(1, 0.9999999, 0.99999964)
@@ -3366,14 +3365,6 @@ shape = SubResource("BoxShape3D_e8cmh")
 transform = Transform3D(4.6410885, 0, 0, 0, 0, -6.5046983, 0, 0.7657801, 0, 1.2767563, 6.9021034, 56.79419)
 mesh = SubResource("ArrayMesh_oc1lh")
 surface_material_override/0 = SubResource("StandardMaterial3D_brpsb")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Banio/Cube_022" unique_id=1871919866]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
-physics_material_override = SubResource("PhysicsMaterial_sxovr")
-
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Banio/Cube_022/StaticBody3D" unique_id=710182902]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0.22790599, 0, 0.1879273)
-shape = SubResource("BoxShape3D_tr3kr")
 
 [node name="Sketchfab_Scene" parent="VictorBars/Decoraciones VictorBars/Banio" unique_id=183955961 instance=ExtResource("53_gkey5")]
 transform = Transform3D(-7.3766, 0, -1.1138357e-06, 0, 7.606097, 0, 1.0963812e-06, 0, -7.2610044, 1.0430527, 0.62187034, 61.751953)
