@@ -2,81 +2,109 @@ extends CharacterBody3D
 
 @export var speed: float = 5.0
 @export var turn_speed: float = 2.5
+@export var angulo_maximo_giro: float = 45.0  # grados a cada lado del rumbo inicial
+@export var retraso_inicio: float = 1.0       # segundos hasta que arranca después de subirse
+
+@onready var zona_cubierta: Area3D = get_node_or_null("ZonaCubierta")
 
 var is_controlled = false
 var player_is_near = false
-var player_node: Node3D = null
+var player_node: Node3D = null      # jugador que está cerca (para abordar)
+var piloto: Node3D = null           # jugador que la maneja
+var pasajeros: Array[Node3D] = []   # jugadores parados sobre la cubierta
+var _transform_previa: Transform3D
+var _rotacion_inicial: float = 0.0
+var _inicio_marcha_ms: int = 0
+
+
+func _ready() -> void:
+	_transform_previa = global_transform
+	_rotacion_inicial = rotation.y
+	if zona_cubierta:
+		zona_cubierta.body_entered.connect(_on_cubierta_body_entered)
+		zona_cubierta.body_exited.connect(_on_cubierta_body_exited)
+	else:
+		push_warning("Falta el Area3D 'ZonaCubierta' en la balsa: los pasajeros no se moverán con ella.")
+
 
 func _physics_process(delta: float) -> void:
-	# 1. LÓGICA DE ABORDAR (Inputs locales)
+	# 1. ABORDAR / BAJAR (solo el piloto; el otro jugador sube saltando)
 	if Input.is_action_just_pressed("Abordar"):
 		if is_controlled:
-			# BAJAR: Si está controlada y YO soy el piloto, me bajo
 			if is_multiplayer_authority():
-				rpc_abordar_balsa.rpc(1, false) # Devuelve la autoridad al servidor (ID 1)
-				
+				rpc_abordar_balsa.rpc(1, false)
 		elif player_is_near and player_node != null:
-			# SUBIR: Si no está controlada y YO soy el jugador que está cerca
-			# Comprobamos que el jugador cerca sea el nuestro (comparando el nombre con nuestro ID)
 			if player_node.name == str(multiplayer.get_unique_id()):
 				rpc_abordar_balsa.rpc(multiplayer.get_unique_id(), true)
-	
-	# 2. MOVIMIENTO FÍSICO
-	# Si no está siendo controlada, o si NO somos el piloto, no calculamos el movimiento
-	if not is_controlled or not is_multiplayer_authority():
-		return
-	
-	# Movimiento de la balsa (Solo lo ejecuta el piloto)
-	var turn_input = Input.get_axis("Derecha", "Izquierda")
-	rotation.y += turn_input * turn_speed * delta
 
-	var move_input = Input.get_axis("Atras", "Adelante")
-	var forward_direction = -transform.basis.z
+	# 2. MOVIMIENTO: avanza sola; el piloto solo puede girar un poco a cada lado
+	var en_marcha := is_controlled and Time.get_ticks_msec() >= _inicio_marcha_ms
+	if is_multiplayer_authority() and en_marcha:
+		var turn_input := Input.get_axis("Derecha", "Izquierda")
+		var limite := deg_to_rad(angulo_maximo_giro)
+		var giro := wrapf(rotation.y - _rotacion_inicial, -PI, PI)
+		giro = clampf(giro + turn_input * turn_speed * delta, -limite, limite)
+		rotation.y = _rotacion_inicial + giro
+		velocity = -transform.basis.z * speed
+		move_and_slide()
+
+	# 3. ARRASTRAR PASAJEROS (corre en todas las PC)
+	_arrastrar_pasajeros()
+
+
+func _arrastrar_pasajeros() -> void:
+	var cambio := global_transform * _transform_previa.affine_inverse()
+	_transform_previa = global_transform
 	
-	velocity = forward_direction * move_input * speed
-	move_and_slide()
+	for p in pasajeros:
+		if not is_instance_valid(p) or p == piloto:
+			continue
+		if Global.modo_multijugador == "linea" and not p.is_multiplayer_authority():
+			continue
+		p.global_position = cambio * p.global_position
 
 
-# Lógica de sincronización para subirse y bajarse
 @rpc("any_peer", "call_local", "reliable")
 func rpc_abordar_balsa(id_jugador: int, subiendo: bool) -> void:
-	# Buscamos al jugador exacto en el árbol de escenas por su ID
+	if subiendo and is_controlled:
+		return  # ya tiene piloto
+	
 	var jugador_objetivo = get_tree().current_scene.find_child(str(id_jugador), true, false)
 	
 	if subiendo:
-		# Le damos la autoridad de la balsa al jugador que se sube
 		set_multiplayer_authority(id_jugador)
 		is_controlled = true
+		_inicio_marcha_ms = Time.get_ticks_msec() + int(retraso_inicio * 1000.0)
 		
 		if jugador_objetivo:
-			player_node = jugador_objetivo
-			if "input_bloqueado" in player_node:
-				player_node.input_bloqueado = true
-				
-			player_node.reparent(self, false)
-			player_node.set_physics_process(false)
-			player_node.position = Vector3(0, 1.0, 0)
+			piloto = jugador_objetivo
+			if "input_bloqueado" in piloto:
+				piloto.input_bloqueado = true
 			
-			if player_node.has_method("prepare_for_raft"):
-				player_node.prepare_for_raft()
-				
+			piloto.reparent(self, false)
+			piloto.set_physics_process(false)
+			piloto.position = Vector3(0, 1.0, 0)
+			
+			if piloto.has_method("prepare_for_raft"):
+				piloto.prepare_for_raft()
 	else:
-		# Devolvemos la autoridad de la balsa al host/servidor
-		set_multiplayer_authority(1)
 		is_controlled = false
 		
-		if player_node:
-			player_node.reparent(get_tree().current_scene, false)
-			player_node.set_physics_process(true)
+		if piloto:
+			piloto.reparent(get_tree().current_scene, false)
+			piloto.set_physics_process(true)
 			
-			if "input_bloqueado" in player_node:
-				player_node.input_bloqueado = false
+			if "input_bloqueado" in piloto:
+				piloto.input_bloqueado = false
 			
-			player_node.global_position = global_position + (transform.basis.x * 2.5)
+			piloto.global_position = global_position + (transform.basis.x * 2.5)
+			piloto = null
+		
+		# Recién ahora, con el piloto ya fuera de la balsa, la autoridad vuelve al host
+		set_multiplayer_authority(1)
 
 
-# Conexión del área de abordaje
-func _on_zona_abordaje_body_entered(body: Node3D) -> void:  
+func _on_zona_abordaje_body_entered(body: Node3D) -> void:
 	if body.is_in_group("jugadores") or body.is_in_group("Jugador"):
 		player_is_near = true
 		player_node = body
@@ -84,3 +112,11 @@ func _on_zona_abordaje_body_entered(body: Node3D) -> void:
 func _on_zona_abordaje_body_exited(body: Node3D) -> void:
 	if body == player_node:
 		player_is_near = false
+
+
+func _on_cubierta_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Jugador") and body not in pasajeros:
+		pasajeros.append(body)
+
+func _on_cubierta_body_exited(body: Node3D) -> void:
+	pasajeros.erase(body)
