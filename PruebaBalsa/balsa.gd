@@ -18,6 +18,7 @@ var _inicio_marcha_ms: int = 0
 
 
 func _ready() -> void:
+	add_to_group("Balsa")
 	_transform_previa = global_transform
 	_rotacion_inicial = rotation.y
 	if zona_cubierta:
@@ -120,3 +121,39 @@ func _on_cubierta_body_entered(body: Node3D) -> void:
 
 func _on_cubierta_body_exited(body: Node3D) -> void:
 	pasajeros.erase(body)
+	
+func eliminar_balsa() -> void:
+	if Global.modo_multijugador == "linea":
+		if multiplayer.is_server():
+			rpc_eliminar_balsa.rpc()
+	else:
+		rpc_eliminar_balsa()
+
+
+@rpc("any_peer", "call_local", "reliable")
+func rpc_eliminar_balsa() -> void:
+	# Bajar al piloto
+	if is_instance_valid(piloto):
+		piloto.reparent(get_tree().current_scene, true)
+		piloto.set_physics_process(true)
+
+		if "input_bloqueado" in piloto:
+			piloto.input_bloqueado = false
+
+		piloto.global_position = global_position + transform.basis.x * 2.5
+		piloto = null
+
+	# Bajar a los pasajeros
+	for pasajero in pasajeros:
+		if not is_instance_valid(pasajero):
+			continue
+
+		# Los pasajeros no son hijos de la balsa,
+		# así que no necesitan reparent().
+		pasajero.global_position = global_position + transform.basis.x * 3.0
+
+	pasajeros.clear()
+	is_controlled = false
+
+	# Eliminar la balsa
+	queue_free()
