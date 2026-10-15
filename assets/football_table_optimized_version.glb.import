@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c0avh88wpb8r8"
-path="res://.godot/imported/Rock_04.fbx-2390cd1ebc583705a13ece1ceba1cdda.scn"
+uid="uid://blhbf753ighdm"
+path="res://.godot/imported/football_table_optimized_version.glb-a754f92fb4ede4287515b29fb68736b4.scn"
 
 [deps]
 
-source_file="res://assets/Rock_04.fbx"
-dest_files=["res://.godot/imported/Rock_04.fbx-2390cd1ebc583705a13ece1ceba1cdda.scn"]
+source_file="res://assets/football_table_optimized_version.glb"
+dest_files=["res://.godot/imported/football_table_optimized_version.glb-a754f92fb4ede4287515b29fb68736b4.scn"]
 
 [params]
 
@@ -32,7 +32,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -40,7 +40,6 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
-fbx/naming_version=2
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1
