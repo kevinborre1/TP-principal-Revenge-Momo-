@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://dxnb3a4k08hjx" path="res://vitictorBar/assetsCocina/fbx/Choco_Munch_box.fbx" id="29_p5cfm"]
 [ext_resource type="PackedScene" uid="uid://dwki634comsxy" path="res://enemigo/enemigo2.tscn" id="29_vg8rj"]
 [ext_resource type="PackedScene" uid="uid://cvwhgu0gm21jm" path="res://vitictorBar/assetsCocina/fbx/Choco_Chumps_box.fbx" id="30_gkey5"]
+[ext_resource type="Script" uid="uid://ca73yh4dobpue" path="res://Terreno/punto_activacion_oleadas.gd" id="30_v7i46"]
 [ext_resource type="PackedScene" uid="uid://d0f1j4eiu0ml4" path="res://vitictorBar/assetsCocina/fbx/chocolate_bar_close.fbx" id="31_0yns6"]
 [ext_resource type="PackedScene" uid="uid://cd5mg7op0bl2i" path="res://vitictorBar/assetsCocina/fbx/Chipsy_Chunks_box.fbx" id="32_k6sp0"]
 [ext_resource type="PackedScene" uid="uid://blenva1usfisd" path="res://vitictorBar/assetsCocina/fbx/can_fantac.fbx" id="33_veext"]
@@ -324,6 +325,9 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("patato/AnimationPlayer:current_animation")
 properties/2/spawn = true
 properties/2/replication_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1, 15, 24)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sexue"]
 
@@ -7203,8 +7207,7 @@ puerta_destino = NodePath("../Puerta")
 [node name="Buttom" parent="VictorBars/Interacciones VictorBars" unique_id=377298075 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1217.951)
 
-
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1362431476]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1707274419]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="Area3D2" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom" unique_id=1342207512 node_paths=PackedStringArray("puerta_destino")]
@@ -7219,8 +7222,7 @@ shape = SubResource("BoxShape3D_rsdri")
 [node name="Buttom2" parent="VictorBars/Interacciones VictorBars" unique_id=2064960827 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1227.7134)
 
-
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1362431476]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1707274419]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="Area3D" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom2" unique_id=2133630934 node_paths=PackedStringArray("puerta_destino")]
@@ -7255,8 +7257,7 @@ shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="patato" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1166769141 instance=ExtResource("16_rpqym")]
 
-
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1445619735) index="0" unique_id=1491749793]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 129815215) index="0" unique_id=1726063271]
 bones/2/position = Vector3(0, 0.009419135, 0)
 bones/2/rotation = Quaternion(0.8840405, 4.625521e-17, 4.6255195e-17, -0.46741036)
 bones/2/scale = Vector3(1, 0.9999999, 0.99999964)
@@ -7400,27 +7401,52 @@ bones/66/position = Vector3(8.028e-16, 0.0029200956, -1.9842776e-10)
 bones/66/rotation = Quaternion(0.4866725, -0.4896309, 0.5101597, 0.5129801)
 bones/66/scale = Vector3(0.9999998, 1, 0.9999999)
 
-
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=2010934325]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=613468243]
 autoplay = &"Арматура|Idle"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1047324135]
 replication_config = SubResource("SceneReplicationConfig_vg8rj")
 
 [node name="enemigo2" parent="VictorBars/Enemigos VictorBars" unique_id=485862913 instance=ExtResource("29_vg8rj")]
-transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 101.66526, 0.80794406, 1217.8475)
+transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 85.66526, 3.807944, 1221.8475)
 
 [node name="enemigo3" parent="VictorBars/Enemigos VictorBars" unique_id=1219971249 instance=ExtResource("29_vg8rj")]
-transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 102, 1, 1220)
+transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 100, 1, 1226)
 
 [node name="enemigo4" parent="VictorBars/Enemigos VictorBars" unique_id=503802805 instance=ExtResource("29_vg8rj")]
-transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 101, 1, 1215)
+transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 95, 1, 1215)
 
 [node name="enemigo5" parent="VictorBars/Enemigos VictorBars" unique_id=246031743 instance=ExtResource("29_vg8rj")]
-transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 100, 1, 1217)
+transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 81, 1, 1228)
 
 [node name="enemigo6" parent="VictorBars/Enemigos VictorBars" unique_id=1588322908 instance=ExtResource("29_vg8rj")]
-transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 103, 1, 1215)
+transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 105, 1, 1215)
+
+[node name="enemigo7" parent="VictorBars/Enemigos VictorBars" unique_id=964033910 instance=ExtResource("29_vg8rj")]
+transform = Transform3D(-0.99140114, 0, -0.13085812, 0, 1, 0, 0.13085812, 0, -0.99140114, 86.63147, 4, 1228.554)
+
+[node name="enemigo8" parent="VictorBars/Enemigos VictorBars" unique_id=1482326061 instance=ExtResource("29_vg8rj")]
+transform = Transform3D(0.19558284, 0, -0.9806872, 0, 1, 0, 0.9806872, 0, 0.19558284, 90.524536, 1, 1214.48)
+
+[node name="enemigo9" parent="VictorBars/Enemigos VictorBars" unique_id=322287382 instance=ExtResource("29_vg8rj")]
+transform = Transform3D(0.9657523, 0, 0.25946575, 0, 1, 0, -0.25946575, 0, 0.9657523, 101.13464, 1, 1216.1239)
+
+[node name="enemigo10" parent="VictorBars/Enemigos VictorBars" unique_id=495786739 instance=ExtResource("29_vg8rj")]
+transform = Transform3D(-0.32223192, 0, 0.9466608, 0, 1, 0, -0.9466608, 0, -0.32223192, 93.85803, 4, 1212.788)
+
+[node name="enemigo11" parent="VictorBars/Enemigos VictorBars" unique_id=1553369253 instance=ExtResource("29_vg8rj")]
+transform = Transform3D(-0.9234948, 0, -0.3836112, 0, 1, 0, 0.3836112, 0, -0.9234948, 101.86096, 1, 1225.7701)
+
+[node name="PuntoActivacionOleadas" type="Area3D" parent="VictorBars/Enemigos VictorBars" unique_id=81943117 node_paths=PackedStringArray("oleada_1", "oleada_2", "jefe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 1, 1221)
+script = ExtResource("30_v7i46")
+oleada_1 = [NodePath("../enemigo2"), NodePath("../enemigo3"), NodePath("../enemigo4"), NodePath("../enemigo5"), NodePath("../enemigo6")]
+oleada_2 = [NodePath("../enemigo7"), NodePath("../enemigo8"), NodePath("../enemigo9"), NodePath("../enemigo10"), NodePath("../enemigo11")]
+jefe = NodePath("../enemigoLider")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Enemigos VictorBars/PuntoActivacionOleadas" unique_id=1320325886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+shape = SubResource("BoxShape3D_g4v7s")
 
 [node name="Decoraciones VictorBars" type="Node3D" parent="VictorBars" unique_id=1458099527]
 
@@ -8198,25 +8224,20 @@ transform = Transform3D(1, 0, 0, 0, 1.2954012, 0, 0, 0, 1.427239, 32.105522, 0.0
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 
-
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" parent_id_path=PackedInt32Array(790094590, 1707671861) index="0" unique_id=520507754]
-
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" parent_id_path=PackedInt32Array(790094590, 617300069) index="0" unique_id=520507754]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1413139031]
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
 shape = SubResource("BoxShape3D_tx3k5")
 
-
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" parent_id_path=PackedInt32Array(790094590, 781242028) index="0" unique_id=1916084811]
-
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" parent_id_path=PackedInt32Array(790094590, 769952834) index="0" unique_id=1916084811]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=1278852078]
 transform = Transform3D(1, 0, -1.4068746e-12, 0, 1, 0, 0, 0, 1, 0, 1.9506226, 1.009285)
 shape = SubResource("BoxShape3D_fnegy")
 
-
-[node name="AnimationPlayer" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5" index="1" unique_id=1852732845]
+[node name="AnimationPlayer" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5" index="1" unique_id=983740718]
 autoplay = &"Animation"
 
 [node name="Puerta4" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1464551731 instance=ExtResource("57_k37ix")]
