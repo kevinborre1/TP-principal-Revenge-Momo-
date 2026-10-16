@@ -555,6 +555,11 @@ shadow_mesh = SubResource("ArrayMesh_x3h64")
 albedo_texture = ExtResource("13_nei3j")
 uv1_scale = Vector3(9, 9, 9)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dufpk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vrlqc"]
+size = Vector3(0.41027832, 4.8710938, 5.331665)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_tx3k5"]
 size = Vector3(1, 4.743164, 2.9868164)
 
@@ -7213,7 +7218,7 @@ puerta_destino = NodePath("../Puerta")
 [node name="Buttom" parent="VictorBars/Interacciones VictorBars" unique_id=377298075 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1217.951)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1362431476]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1511851573]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="Area3D2" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom" unique_id=1342207512 node_paths=PackedStringArray("puerta_destino")]
@@ -7228,7 +7233,7 @@ shape = SubResource("BoxShape3D_rsdri")
 [node name="Buttom2" parent="VictorBars/Interacciones VictorBars" unique_id=2064960827 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1227.7134)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1362431476]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1511851573]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="Area3D" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom2" unique_id=2133630934 node_paths=PackedStringArray("puerta_destino")]
@@ -7263,7 +7268,7 @@ shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="patato" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1166769141 instance=ExtResource("16_rpqym")]
 
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1445619735) index="0" unique_id=1491749793]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1958075320) index="0" unique_id=420187430]
 bones/2/position = Vector3(0, 0.009419135, 0)
 bones/2/rotation = Quaternion(0.8840405, 4.625521e-17, 4.6255195e-17, -0.46741036)
 bones/2/scale = Vector3(1, 0.9999999, 0.99999964)
@@ -7407,7 +7412,7 @@ bones/66/position = Vector3(8.028e-16, 0.0029200956, -1.9842776e-10)
 bones/66/rotation = Quaternion(0.4866725, -0.4896309, 0.5101597, 0.5129801)
 bones/66/scale = Vector3(0.9999998, 1, 0.9999999)
 
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=2010934325]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=1902354552]
 autoplay = &"Арматура|Idle"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1047324135]
@@ -8224,19 +8229,26 @@ transform = Transform3D(-7.3766, 0, -1.1138357e-06, 0, 7.606097, 0, 1.0963812e-0
 [node name="Haul de entrada" type="Node3D" parent="VictorBars/Decoraciones VictorBars" unique_id=1573066865]
 
 [node name="Puerta3" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1151896331 instance=ExtResource("57_k37ix")]
-transform = Transform3D(1, 0, 0, 0, 1.2954012, 0, 0, 0, 1.427239, 32.105522, 0.0021679401, 1229.4768)
+transform = Transform3D(1, 0, 0, 0, 1.2954012, 0, 0, 0, 1.427239, 32.105522, 0.0021679401, 1222.0991)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta3" unique_id=300693762]
+physics_material_override = SubResource("PhysicsMaterial_dufpk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta3/StaticBody3D" unique_id=1547164184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01361084, 1.935547, -0.050354004)
+shape = SubResource("BoxShape3D_vrlqc")
 
 [node name="Puerta5" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=790094590 instance=ExtResource("57_k37ix")]
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" parent_id_path=PackedInt32Array(790094590, 1707671861) index="0" unique_id=520507754]
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" parent_id_path=PackedInt32Array(790094590, 199828138) index="0" unique_id=520507754]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1413139031]
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
 shape = SubResource("BoxShape3D_tx3k5")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" parent_id_path=PackedInt32Array(790094590, 781242028) index="0" unique_id=1916084811]
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" parent_id_path=PackedInt32Array(790094590, 1924982047) index="0" unique_id=1916084811]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=1278852078]
@@ -8245,6 +8257,8 @@ shape = SubResource("BoxShape3D_fnegy")
 
 [node name="Puerta4" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1464551731 instance=ExtResource("57_k37ix")]
 transform = Transform3D(-4.371139e-08, 0, 0.78652894, 0, 1.2954012, 0, -1, 0, -3.4380275e-08, 38.068268, 0.0021679401, 1207.9158)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta4" unique_id=1870180590]
 
 [node name="table_02" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=669928868 instance=ExtResource("40_2jws4")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 58.934105, 0.5190309, 1210.5217)
@@ -8867,7 +8881,6 @@ shape = SubResource("BoxShape3D_tr3kr")
 
 [node name="Cube_007" type="MeshInstance3D" parent="VictorBars/Base VictorBars" unique_id=1316218863]
 transform = Transform3D(0, 0, 16.58906, 0, 0.4027191, 0, -12.872833, 0, 0, 47.865955, 9.221277, 1245.4353)
-visible = false
 mesh = SubResource("ArrayMesh_imr2f")
 surface_material_override/0 = SubResource("StandardMaterial3D_l4k46")
 
@@ -8920,7 +8933,6 @@ shape = SubResource("ConcavePolygonShape3D_gf7y2")
 
 [node name="Cube_012" type="MeshInstance3D" parent="VictorBars/Base VictorBars" unique_id=480899469]
 transform = Transform3D(0, 0, 46.146202, 0, 0.4027191, 0, -12.872833, 0, 0, 77.197205, 9.221277, 1220.1652)
-visible = false
 mesh = SubResource("ArrayMesh_jju6t")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
 
@@ -8941,7 +8953,6 @@ shape = SubResource("ConcavePolygonShape3D_bmrm7")
 
 [node name="Cube_015" type="MeshInstance3D" parent="VictorBars/Base VictorBars" unique_id=1385748515]
 transform = Transform3D(0, 2.005825, 0, 0, 0, -2.8075712, -3.961016, 0, 0, 75.488174, 2.8695998, 1264.7268)
-visible = false
 mesh = SubResource("ArrayMesh_e3ld7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Base VictorBars/Cube_015" unique_id=1355467895]
@@ -10887,7 +10898,6 @@ shape = SubResource("ConcavePolygonShape3D_n4pqo")
 
 [node name="Cube_001" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=871989993]
 transform = Transform3D(-3.0615938e-06, 0, 126.871315, 0, 1, 0, -70.0411, 0, -5.5457213e-06, 28.946613, 4.961996, -15.885132)
-visible = false
 mesh = SubResource("ArrayMesh_depym")
 surface_material_override/0 = SubResource("StandardMaterial3D_0gkdn")
 
@@ -10898,7 +10908,6 @@ shape = SubResource("ConcavePolygonShape3D_vygt8")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1626048438]
 transform = Transform3D(121.501656, 0, 0, 0, 8.902342, 0, 0, 0, 54.028698, 14.561375, 13.350308, 1.5532211)
-visible = false
 mesh = SubResource("ArrayMesh_ws36t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_002" unique_id=1553674057]
@@ -10925,8 +10934,7 @@ mesh = SubResource("ArrayMesh_v1xw6")
 shape = SubResource("ConcavePolygonShape3D_t8ije")
 
 [node name="Cube_005" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=702249303]
-transform = Transform3D(0, 0, 7.0673466, 0, 8.444732, 0, -2.9827602, 0, 0, -83.55405, 13.302889, 52.2843)
-visible = false
+transform = Transform3D(0, 0, 7.0673466, 0, 8.444731, 0, -2.98276, 0, 0, -84.260056, 13.302889, 52.2843)
 mesh = SubResource("ArrayMesh_dr10j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_005" unique_id=1683799428]
@@ -10945,7 +10953,6 @@ shape = SubResource("ConcavePolygonShape3D_3nbgv")
 
 [node name="Cube_007" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=782254405]
 transform = Transform3D(6.6882896, 0, 0, 0, 8.444732, 0, 0, 0, 12.586855, -101.27337, 13.302889, -342.30408)
-visible = false
 mesh = SubResource("ArrayMesh_ci4g5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_007" unique_id=663468325]
@@ -10964,7 +10971,6 @@ shape = SubResource("ConcavePolygonShape3D_qtcef")
 
 [node name="Cube_010" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1126895820]
 transform = Transform3D(121.501656, 0, 0, 0, 8.902342, 0, 0, 0, 54.028698, 14.561375, 13.350308, 1.5532211)
-visible = false
 mesh = SubResource("ArrayMesh_pe70q")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_010" unique_id=2078578764]
@@ -10974,7 +10980,6 @@ shape = SubResource("ConcavePolygonShape3D_usj3h")
 
 [node name="Cube_014" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1748701883]
 transform = Transform3D(113.0401, 0, 0, 0, -0.8122618, 0, 0, 0, 51.583946, 9.105843, 21.256674, 0.7302246)
-visible = false
 mesh = SubResource("ArrayMesh_a475y")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_014" unique_id=691058883]
@@ -10984,7 +10989,6 @@ shape = SubResource("ConcavePolygonShape3D_tqm6e")
 
 [node name="Cube_019" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1393355386]
 transform = Transform3D(121.501656, 0, 0, 0, 8.902342, 0, 0, 0, 54.028698, 14.561375, 13.350308, 1.5532227)
-visible = false
 mesh = SubResource("ArrayMesh_jqh5a")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_019" unique_id=1737439289]
@@ -11090,7 +11094,6 @@ shape = SubResource("ConcavePolygonShape3D_4iorf")
 
 [node name="Cube_031" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1634621463]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.5676, 12.289143, 53.387115)
-visible = false
 mesh = SubResource("ArrayMesh_bh31j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_031" unique_id=792951623]
@@ -11100,7 +11103,6 @@ shape = SubResource("ConcavePolygonShape3D_s5bdw")
 
 [node name="Cube_032" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=23734633]
 transform = Transform3D(0.46884146, 0, 33.53383, 0, -0.9823973, 0, -164.6465, 0, 0.09548973, -69.48409, 20.94582, -210.34412)
-visible = false
 mesh = SubResource("ArrayMesh_smadf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_032" unique_id=1957355833]
@@ -11943,7 +11945,6 @@ shape = SubResource("ConcavePolygonShape3D_pjqdb")
 
 [node name="Cube_123" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1242626994]
 transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504534, 0, -0.01111077, 0, -0.9999383, 183.01334, 10.570522, -1.1499023)
-visible = false
 mesh = SubResource("ArrayMesh_07rq5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_123" unique_id=649239413]
@@ -11962,7 +11963,6 @@ shape = SubResource("ConcavePolygonShape3D_ce6rr")
 
 [node name="Cube_125" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=466944455]
 transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504534, 0, -0.01111077, 0, -0.9999383, 183.01334, 10.570522, -0.7030382)
-visible = false
 mesh = SubResource("ArrayMesh_ek7cs")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_125" unique_id=1162523858]
@@ -11981,7 +11981,6 @@ shape = SubResource("ConcavePolygonShape3D_beokg")
 
 [node name="Cube_127" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1188747014]
 transform = Transform3D(-0.99993825, 0, 0.011110768, 0, 1, 0, -0.011110768, 0, -0.99993825, 183.01334, 9.181137, 1.818582)
-visible = false
 mesh = SubResource("ArrayMesh_oxg5k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_127" unique_id=1989988781]
@@ -12099,7 +12098,6 @@ shape = SubResource("ConcavePolygonShape3D_apshd")
 
 [node name="Cube_140" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1778767682]
 transform = Transform3D(6.6882896, 0, 0, 0, 8.444732, 0, 0, 0, 12.586855, -101.27337, 13.302889, -317.04724)
-visible = false
 mesh = SubResource("ArrayMesh_53ccf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_140" unique_id=1826932716]
@@ -12109,7 +12107,6 @@ shape = SubResource("ConcavePolygonShape3D_8obwa")
 
 [node name="Cube_141" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=246649805]
 transform = Transform3D(0, 0, 7.0673466, 0, 8.444732, 0, -2.9827602, 0, 0, -69.955956, 13.302889, 52.2843)
-visible = false
 mesh = SubResource("ArrayMesh_ey5o5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Cube_141" unique_id=116054772]
