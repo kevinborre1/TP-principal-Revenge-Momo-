@@ -8,14 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://cflgnk6hslmpl" path="res://assets/Ground_01.fbx" id="6_rlt2m"]
 [ext_resource type="PackedScene" uid="uid://522jwkesjpsj" path="res://assets/Ground_03.fbx" id="7_0g0yr"]
 [ext_resource type="PackedScene" uid="uid://cggg4u3gixymf" path="res://assets/Grass_01.fbx" id="8_7s8u0"]
-[ext_resource type="PackedScene" uid="uid://bo1visiq0uh48" path="res://assets/Rock_02.fbx" id="9_ae2g2"]
-[ext_resource type="PackedScene" uid="uid://bqucxdd45xhh" path="res://assets/Rock_03.fbx" id="10_1yej1"]
 [ext_resource type="PackedScene" uid="uid://d2qkan6iv8cgr" path="res://Terreno/terreno.tscn" id="12_32437"]
-[ext_resource type="PackedScene" uid="uid://bdot8hp7c7v5d" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Birch_Tree_1.fbx" id="13_a0xth"]
-[ext_resource type="PackedScene" uid="uid://1tptb7s653mi" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Brown_Mushrooms_Cluster_1.fbx" id="14_gx084"]
-[ext_resource type="PackedScene" uid="uid://d275c6keqrayv" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Forest_Grass_1.fbx" id="15_rhlx0"]
-[ext_resource type="PackedScene" uid="uid://dslubx5buq6k0" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Pine_Tree_1.fbx" id="16_yaecv"]
-[ext_resource type="PackedScene" uid="uid://2pd4bos3vi0c" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Robin.fbx" id="17_jb0fb"]
+[ext_resource type="PackedScene" uid="uid://bdot8hp7c7v5d" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Naturalza/Birch_Tree_1.fbx" id="13_a0xth"]
+[ext_resource type="PackedScene" uid="uid://1tptb7s653mi" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Naturalza/Brown_Mushrooms_Cluster_1.fbx" id="14_gx084"]
+[ext_resource type="PackedScene" uid="uid://d275c6keqrayv" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Naturalza/Forest_Grass_1.fbx" id="15_rhlx0"]
+[ext_resource type="PackedScene" uid="uid://dslubx5buq6k0" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Naturalza/Pine_Tree_1.fbx" id="16_yaecv"]
+[ext_resource type="PackedScene" uid="uid://2pd4bos3vi0c" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Naturalza/Robin.fbx" id="17_jb0fb"]
 [ext_resource type="PackedScene" uid="uid://dydrw2kt0buw3" path="res://pruebaPersonaje/assets/Forest_Kit_AssetQuest_Itch_FREE_DEMO/Meshes_DEMO/Woodruff_Cluster_1.fbx" id="18_8voav"]
 [ext_resource type="Texture2D" uid="uid://ddprscrpsofah" path="res://Terreno/ground037_alb_ht.png" id="19_7nxu0"]
 [ext_resource type="Texture2D" uid="uid://c1ots7w6i0i1q" path="res://Terreno/ground037_nrm_rgh.png" id="20_vdt1g"]
@@ -186,7 +184,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5780194, 0, 0.58179855)
 visible = false
 
-[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=987694178]
+[node name="Ground_01" parent="scene/Suelo 1" index="0" unique_id=773538586]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 1/Ground_01" index="0" unique_id=1261392928]
@@ -200,7 +198,7 @@ shape = SubResource("ConcavePolygonShape3D_e8y5e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4866085, -0.4318676, 26.892689)
 visible = false
 
-[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=1570874739]
+[node name="Ground_03" parent="scene/Suelo 3" index="0" unique_id=634902974]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="scene/Suelo 3/Ground_03" index="0" unique_id=859087765]
@@ -238,14 +236,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.699749, 0, 10.222321)
 visible = false
 
 [node name="Piedras" type="Node3D" parent="scene" unique_id=421842719]
-visible = false
-
-[node name="Rock_02" parent="scene/Piedras" unique_id=807610416 instance=ExtResource("9_ae2g2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2506533, 0.05339265, 3.1246896)
-visible = false
-
-[node name="Rock_03" parent="scene/Piedras" unique_id=646335578 instance=ExtResource("10_1yej1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5776608, 0.1351862, 3.1474562)
 visible = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1787604040]
