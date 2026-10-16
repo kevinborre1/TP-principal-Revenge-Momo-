@@ -81,6 +81,8 @@
 [ext_resource type="PackedScene" uid="uid://blhbf753ighdm" path="res://assets/football_table_optimized_version.glb" id="75_vedoo"]
 [ext_resource type="Script" uid="uid://drhsx3nb2c8ci" path="res://Terreno/eliminar_balsa.gd" id="79_vygt8"]
 [ext_resource type="PackedScene" uid="uid://cm6rehwpg7cjp" path="res://EscenaAgua/toxic_metal_barrel.glb" id="80_1cv7w"]
+[ext_resource type="PackedScene" uid="uid://b44bt33yq56r7" path="res://Menu/menu_pausa.tscn" id="82_t8ije"]
+[ext_resource type="PackedScene" uid="uid://bd2wghj4ijklk" path="res://Menu/pantalla_desconexion.tscn" id="83_imqhg"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 
@@ -12434,6 +12436,10 @@ transform = Transform3D(0.054173853, 3.4036265e-08, 0.99853164, 0.7234181, 0.689
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene/Sketchfab_Scene22/StaticBody3D" unique_id=1057357818]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
 shape = SubResource("CylinderShape3D_rsdri")
+
+[node name="MenuPausa" parent="." unique_id=405466910 instance=ExtResource("82_t8ije")]
+
+[node name="PantallaDesconexion" parent="." unique_id=1061094305 instance=ExtResource("83_imqhg")]
 
 [connection signal="body_entered" from="VictorBars/Interacciones VictorBars/Boton" to="VictorBars/Interacciones VictorBars/Boton" method="_on_body_entered"]
 [connection signal="body_exited" from="VictorBars/Interacciones VictorBars/Boton" to="VictorBars/Interacciones VictorBars/Boton" method="_on_body_exited"]

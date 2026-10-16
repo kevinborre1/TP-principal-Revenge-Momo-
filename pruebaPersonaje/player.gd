@@ -123,71 +123,59 @@ func _ready() -> void:
 		
 	actualizar_modo_combate()
 
-# 1. FUNCIÓN _INPUT: Solo para cámara y ratón
 func _input(event: InputEvent) -> void:
-	if input_bloqueado:
+	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
 		return
-	# Bloqueamos inputs si estamos en línea y no somos el dueño del personaje
-	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
+		
+	# logica exclusiva de mirar alrededor
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if Global.modo_multijugador == "local" and name != "1":
+			return
+		
+		camera_rotation.x -= event.relative.y * mouse_sensitivy
+		camera_rotation.y -= event.relative.x * mouse_sensitivy
+		camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(-60), deg_to_rad(30))
+		spring_arm_3d.rotation.x = camera_rotation.x
+		spring_arm_3d.rotation.y = camera_rotation.y
+		
+
+# FUNCIÓN _UNHANDLED_INPUT: Para acciones y gameplay
+func _unhandled_input(event: InputEvent) -> void:
+	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
 		return
 	
-	# Si haces clic izquierdo, vuelve a capturar el ratón
+	# capturar mouse SOLO si el clic no toco un boton del menu
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-	# LÓGICA DE LA CÁMARA (Se queda aquí para máxima fluidez)
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		# Si estamos en modo local y NO somos el jugador 1, ignoramos el ratón
-		if Global.modo_multijugador == "local" and name != "1":
-			return 
-			
-		camera_rotation.x -= event.relative.y * mouse_sensitivy
-		camera_rotation.y -= event.relative.x * mouse_sensitivy
-		
-		camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(-60), deg_to_rad(30))
-		
-		spring_arm_3d.rotation.x = camera_rotation.x
-		spring_arm_3d.rotation.y = camera_rotation.y
-
-# 2. FUNCIÓN _UNHANDLED_INPUT: Para acciones y gameplay
-func _unhandled_input(event: InputEvent) -> void:
-	if input_bloqueado:
-		return
-	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
-		return
-
-	# Soltar ítem con G
-	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
-		soltar_item_actual()
-
+	# logica acciones y gameplay
 	# Activar Ragdoll
 	if event.is_action_pressed("hacer_ragdoll") and not is_on_floor():
 		activar_ragdoll()
-		
-	# Disparar y rotar el modelo hacia la cámara
-	if event.is_action_pressed("disparar") and arma_equipada:
-		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
-		if modelo and spring_arm_3d:
-			modelo.rotation.y = spring_arm_3d.rotation.y + PI
+
+	# inventario
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.physical_keycode == KEY_1: inventario_manager.seleccionar_slot(0)
 		elif event.physical_keycode == KEY_2: inventario_manager.seleccionar_slot(1)
 		elif event.physical_keycode == KEY_3: inventario_manager.seleccionar_slot(2)
 		elif event.physical_keycode == KEY_4: inventario_manager.seleccionar_slot(3)
 		elif event.physical_keycode == KEY_5: inventario_manager.seleccionar_slot(4)
+		
+	# disparar y rotar el modelo hacia la camara
+	if event.is_action_pressed("disparar") and arma_equipada:
+		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
+		if modelo and spring_arm_3d:
+			modelo.rotation.y = spring_arm_3d.rotation.y + PI
 
-	# Soltar ítem con G (ahora suelta el que está seleccionado)
+	# soltar ítem con G
 	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
 		soltar_item_actual()
 
-	# Recoger con E
+	# recoger con E
 	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
 		intentar_recoger_item()
 
-	# Consumir con C (ahora consume el que está seleccionado)
+	# consumir con C 
 	if event is InputEventKey and event.physical_keycode == KEY_C and event.pressed and not event.echo:
 		consumir_item_actual()
 		

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bd2wghj4ijklk"]
+
+[ext_resource type="Script" uid="uid://dqi1j0mwljmrx" path="res://pantalla_desconexion.gd" id="1_3yvwn"]
+
+[node name="PantallaDesconexion" type="CanvasLayer" unique_id=1061094305]
+process_mode = 3
+visible = false
+script = ExtResource("1_3yvwn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=980465176]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=868306582]
+offset_left = 482.0
+offset_top = 277.0
+offset_right = 670.0
+offset_bottom = 317.0
+text = "El Host cerro la partida."
+
+[node name="Button" type="Button" parent="." unique_id=440438500]
+offset_left = 415.0
+offset_top = 466.0
+offset_right = 727.0
+offset_bottom = 521.0
+text = "VOLVER AL MENU"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
