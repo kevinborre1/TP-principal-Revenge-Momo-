@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tl2vdlhuis5l"
-path.s3tc="res://.godot/imported/Potato learning how to walk_0.png-f88922097e1e46532db02dcd88fec275.s3tc.ctex"
+uid="uid://bcg506wqr3w14"
+path.s3tc="res://.godot/imported/Walking_1.png-210cd775e1ccaa4fda7d09007efce27c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "50028abb7a5b0a21c9fde1d4fa9f71bb"
+"md5": "42fa089007902f29f35048b33cbc73b0"
 }
 
 [deps]
 
-source_file="res://enemigo/Potato learning how to walk_0.png"
-dest_files=["res://.godot/imported/Potato learning how to walk_0.png-f88922097e1e46532db02dcd88fec275.s3tc.ctex"]
+source_file="res://enemigo/TexturasEnemigos/Walking_1.png"
+dest_files=["res://.godot/imported/Walking_1.png-210cd775e1ccaa4fda7d09007efce27c.s3tc.ctex"]
 
 [params]
 
@@ -25,12 +25,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://enemigo/Walking_1.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

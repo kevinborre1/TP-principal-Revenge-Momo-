@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://khub06gn2v3m"
-path.s3tc="res://.godot/imported/potatoTexture.png-248e32d562ff2aa6b811db3c60d11a08.s3tc.ctex"
+path.s3tc="res://.godot/imported/potatoTexture.png-9f59e6abd0c3c3e62beba22554f5e5d9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://enemigo/potatoTexture.png"
-dest_files=["res://.godot/imported/potatoTexture.png-248e32d562ff2aa6b811db3c60d11a08.s3tc.ctex"]
+source_file="res://enemigo/TexturasEnemigos/potatoTexture.png"
+dest_files=["res://.godot/imported/potatoTexture.png-9f59e6abd0c3c3e62beba22554f5e5d9.s3tc.ctex"]
 
 [params]
 

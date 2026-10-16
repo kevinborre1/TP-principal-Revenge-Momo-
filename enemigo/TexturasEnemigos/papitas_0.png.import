@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b82w01lo75ild"
-path.s3tc="res://.godot/imported/Walking_0.png-55e3f96030d946a43e85c81d0fd94965.s3tc.ctex"
+uid="uid://bb7h8ti4e7ske"
+path.s3tc="res://.godot/imported/papitas_0.png-1aa069cac6157b9172b1c15c91e57b93.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "0d9bf800d3a99ff424fbdbb213ccbbc2"
+"md5": "50028abb7a5b0a21c9fde1d4fa9f71bb"
 }
 
 [deps]
 
-source_file="res://enemigo/Walking_0.png"
-dest_files=["res://.godot/imported/Walking_0.png-55e3f96030d946a43e85c81d0fd94965.s3tc.ctex"]
+source_file="res://enemigo/TexturasEnemigos/papitas_0.png"
+dest_files=["res://.godot/imported/papitas_0.png-1aa069cac6157b9172b1c15c91e57b93.s3tc.ctex"]
 
 [params]
 
