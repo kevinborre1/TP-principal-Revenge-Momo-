@@ -124,7 +124,8 @@ func manejar_animaciones() -> void:
 	else:
 		animation_player.stop()
 
-@rpc("call_local", "reliable")
+#puede ser authority
+@rpc("any_peer", "call_local", "reliable")
 func activar_enemigo() -> void:
 	activo = true
 	visible = true

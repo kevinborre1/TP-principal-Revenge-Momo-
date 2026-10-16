@@ -10,5 +10,5 @@ extends Resource
 
 # Nuevo: Guardamos si el combate ya se activó y qué enemigos siguen vivos
 @export var papas_atacan: bool = false
-@export var estado_enemigos_guardado: bool = false
-@export var enemigos_vivos: Array[String] = []
+@export var ataque_iniciado: bool = false
+@export var fase_oleada: int = 0 # 0 = sin iniciar, 1 = oleada 1, 2 = oleada 2, 3 = jefe, 4 = todos muertos
