@@ -341,7 +341,10 @@ func player_animation():
 		animation.play("Standing Idle/mixamo_com", 0.3)
 
 func intentar_recoger_item():
+	if not is_multiplayer_authority(): return
+	
 	if not detector_items: return
+	
 	var cuerpos_cercanos = detector_items.get_overlapping_areas()
 	
 	for cuerpo in cuerpos_cercanos:

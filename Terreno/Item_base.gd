@@ -13,7 +13,7 @@ func ser_recogido() -> void:
 func usar_item(jugador) -> bool:
 	return false
 
-@rpc("call_local", "authority", "reliable")
+@rpc("call_local", "any_peer", "reliable")
 func destruir_item_rpc() -> void:
 	# Ocultamos y desactivamos colisiones de inmediato para todos
 	hide()
