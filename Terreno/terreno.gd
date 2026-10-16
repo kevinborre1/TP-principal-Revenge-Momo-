@@ -7,6 +7,7 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport_container2 = $HBoxContainer/SubViewportContainer2
 @onready var subviewport1 = $HBoxContainer/SubViewportContainer/SubViewport
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
+@onready var pantalla_desconexion: CanvasLayer = $PantallaDesconexion
 
 func _ready() -> void:
 	GameManager.set_mode(GameManager.GameMode.RECOLECCION, 3)
@@ -61,3 +62,24 @@ func _disconnected_player(peer_id: int) -> void:
 	var player_deleted = get_node_or_null(str(peer_id))
 	if player_deleted:
 		player_deleted.queue_free()
+		
+func _on_servidor_desconectado() -> void:
+	print("El host se ha desconectado. Encendiendo pantalla de aviso...")
+	
+	# Desconectamos la red para que no siga intentando sincronizar nada
+	multiplayer.multiplayer_peer = null
+	
+	# Pausamos el mundo 3D por completo
+	get_tree().paused = true
+	
+	# Liberamos el ratón para que el jugador pueda hacer clic
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# Mostramos nuestra pantalla negra de error (tapa la pantalla gris)
+	pantalla_desconexion.show()
+
+# Esta es la función que se conecta al botón "Volver al Menú" de tu nueva pantalla
+func _on_boton_volver_menu_pressed() -> void:
+	get_tree().paused = false
+	# Usa la herramienta "Copiar Ruta" en tu escena del menú para pegar esto exactamente
+	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")

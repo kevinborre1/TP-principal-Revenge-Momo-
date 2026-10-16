@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://b44bt33yq56r7"]
+
+[ext_resource type="Script" uid="uid://caigq85mwv3qk" path="res://menu_pausa.gd" id="1_ab6gj"]
+[ext_resource type="Texture2D" uid="uid://b61dvv6tlyqnk" path="res://assets/MenuPausa.jpeg" id="2_ecdg0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4v7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hh54w"]
+bg_color = Color(0.6, 0.6, 0.6, 0.27450982)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gngh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5s0fj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avnxn"]
+
+[node name="MenuPausa" type="CanvasLayer" unique_id=405466910]
+script = ExtResource("1_ab6gj")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=300295580]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ecdg0")
+expand_mode = 1
+
+[node name="Logros" type="Button" parent="." unique_id=1931939627]
+offset_left = 421.0
+offset_top = 233.0
+offset_right = 740.0
+offset_bottom = 301.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g4v7s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hh54w")
+
+[node name="Volumen" type="Button" parent="." unique_id=1852075248]
+offset_left = 422.0
+offset_top = 315.0
+offset_right = 738.0
+offset_bottom = 382.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3gngh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hh54w")
+
+[node name="SalirMenu" type="Button" parent="." unique_id=1017087254]
+offset_left = 422.0
+offset_top = 405.0
+offset_right = 737.0
+offset_bottom = 471.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5s0fj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hh54w")
+
+[node name="SalirEscritorio" type="Button" parent="." unique_id=1634367406]
+offset_left = 422.0
+offset_top = 490.0
+offset_right = 739.0
+offset_bottom = 554.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_avnxn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hh54w")
+
+[node name="Codigo" type="Label" parent="." unique_id=1477420123]
+offset_left = 958.0
+offset_top = 52.0
+offset_right = 1093.0
+offset_bottom = 88.0
+
+[connection signal="pressed" from="SalirMenu" to="." method="_on_salir_menu_pressed"]
+[connection signal="pressed" from="SalirEscritorio" to="." method="_on_salir_escritorio_pressed"]

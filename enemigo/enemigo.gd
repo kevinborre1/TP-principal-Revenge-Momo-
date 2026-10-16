@@ -5,6 +5,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var vida_maxima: int = 20
 var vida_actual: int = vida_maxima
 @export var es_lider: bool = false
+var activo: bool = false 
+signal murio
 
 @onready var animation_player: AnimationPlayer = $papitas/AnimationPlayer
 
@@ -13,10 +15,15 @@ var tiempo_ultimo_ataque: float = 0.0
 var cooldown_ataque: float = 1.0 # El enemigo hace daño cada 1 segundo
 
 
+func _ready() -> void:
+	visible = false
+	_cambiar_estado_colisiones(true)
+	set_physics_process(false) # apagamos las fisicas de los enemigos al empezar hasta que se activen
+
 func _physics_process(delta: float) -> void:
-	if not multiplayer.is_server():
+	if not multiplayer.is_server() or not activo:
 		return
-# 1. Aplicar gravedad para que no flote
+# Aplicar gravedad para que no flote
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -27,20 +34,10 @@ func _physics_process(delta: float) -> void:
 		manejar_animaciones() # llamamos a la animacion de quieto
 		return
 
-	# Lógica exclusiva del Líder
-	if es_lider:
-		var papitas_vivas = get_tree().get_nodes_in_group("papitas").size()
-		if papitas_vivas > 0:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
-			move_and_slide()
-			manejar_animaciones() # llamamos a la animacipn de quieto
-			return
-
-	# 3. Buscar al jugador más cercano
+	# Buscar al jugador más cercano
 	var jugador_objetivo = obtener_jugador_mas_cercano()
-
-	# 4. Perseguir al jugador si existe
+	
+	# Perseguir al jugador si existe
 	if jugador_objetivo:
 		var posicion_mirar = Vector3(jugador_objetivo.global_position.x, global_position.y, jugador_objetivo.global_position.z)
 		if global_position.distance_to(posicion_mirar) > 0.1:
@@ -52,8 +49,13 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	_comprobar_colisiones_jugador()
-	
 	manejar_animaciones()
+
+func _cambiar_estado_colisiones(desactivado: bool) -> void:
+	for hijo in get_children():
+		if hijo is CollisionShape3D:
+			hijo.disabled = desactivado
+
 
 func _comprobar_colisiones_jugador() -> void:
 	for i in get_slide_collision_count():
@@ -104,9 +106,10 @@ func _daniar(danio: int) -> void:
 		morir()
 
 func morir() -> void:
-	print("El enemigo ha muerto.")
+	if multiplayer.is_server():
+		murio.emit()
+	
 	set_physics_process(false)
-	# Aquí puedes liberar el nodo o activar una animación de muerte / ragdoll
 	queue_free()
 
 func manejar_animaciones() -> void:
@@ -120,3 +123,10 @@ func manejar_animaciones() -> void:
 		animation_player.play("2165105689072_TempMotion") 
 	else:
 		animation_player.stop()
+
+@rpc("call_local", "reliable")
+func activar_enemigo() -> void:
+	activo = true
+	visible = true
+	_cambiar_estado_colisiones(false)
+	set_physics_process(true)
