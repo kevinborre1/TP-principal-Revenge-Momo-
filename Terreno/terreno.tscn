@@ -69,15 +69,16 @@
 [ext_resource type="VideoStream" uid="uid://drxywj2ougg8m" path="res://videos/cinematoVictor.ogv" id="60_lj8x8"]
 [ext_resource type="PackedScene" uid="uid://blibkmsitdbed" path="res://assets/pc_02.glb" id="62_2jws4"]
 [ext_resource type="Script" uid="uid://dqtdwljsqwxij" path="res://Terreno/ahogamiento.gd" id="64_vedoo"]
-[ext_resource type="Texture2D" uid="uid://dwvdr1rjmqtn8" path="res://Terreno/projectplaytime_destroy-a-toy_fences-pack_0.png" id="65_yeivc"]
-[ext_resource type="Texture2D" uid="uid://hj72jsy4hv4c" path="res://Terreno/projectplaytime_destroy-a-toy_fences-pack_1.png" id="66_u51io"]
-[ext_resource type="Texture2D" uid="uid://xv4xcb4q066w" path="res://Terreno/projectplaytime_destroy-a-toy_fences-pack_2.png" id="67_xe5tx"]
-[ext_resource type="Texture2D" uid="uid://b4k8w2h4ji5j2" path="res://Terreno/projectplaytime_destroy-a-toy_fences-pack_3.png" id="68_vg8rj"]
+[ext_resource type="Texture2D" uid="uid://dwvdr1rjmqtn8" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_0.png" id="65_yeivc"]
+[ext_resource type="Texture2D" uid="uid://hj72jsy4hv4c" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_1.png" id="66_u51io"]
+[ext_resource type="Texture2D" uid="uid://xv4xcb4q066w" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_2.png" id="67_xe5tx"]
+[ext_resource type="Texture2D" uid="uid://b4k8w2h4ji5j2" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_3.png" id="68_vg8rj"]
 [ext_resource type="Texture2D" uid="uid://cwkdw855fyh6n" path="res://Terreno/building_0.jpg" id="69_vedoo"]
 [ext_resource type="Texture2D" uid="uid://dgyt8uhi4xa6e" path="res://Terreno/building_1.png" id="70_gojle"]
 [ext_resource type="PackedScene" uid="uid://n7ugpmgmj1ei" path="res://Terreno/double_doors_with_windows.glb" id="70_vg8rj"]
 [ext_resource type="Texture2D" uid="uid://bqkcjw6sn4fdu" path="res://Terreno/building_2.png" id="71_ulhqt"]
 [ext_resource type="Texture2D" uid="uid://evhk7m8gjnv3" path="res://Terreno/cartelUngs (1).png" id="71_vedoo"]
+[ext_resource type="PackedScene" uid="uid://qk64c22avaw2" path="res://Terreno/Reja.tscn" id="74_qbwh1"]
 [ext_resource type="PackedScene" uid="uid://blhbf753ighdm" path="res://assets/football_table_optimized_version.glb" id="75_vedoo"]
 [ext_resource type="Script" uid="uid://drhsx3nb2c8ci" path="res://Terreno/eliminar_balsa.gd" id="79_vygt8"]
 [ext_resource type="PackedScene" uid="uid://cm6rehwpg7cjp" path="res://EscenaAgua/toxic_metal_barrel.glb" id="80_1cv7w"]
@@ -7219,7 +7220,7 @@ puerta_destino = NodePath("../Puerta")
 [node name="Buttom" parent="VictorBars/Interacciones VictorBars" unique_id=377298075 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1217.951)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1707274419]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=465902574]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="Area3D2" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom" unique_id=1342207512 node_paths=PackedStringArray("puerta_destino")]
@@ -7234,7 +7235,7 @@ shape = SubResource("BoxShape3D_rsdri")
 [node name="Buttom2" parent="VictorBars/Interacciones VictorBars" unique_id=2064960827 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1227.7134)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1707274419]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=465902574]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="Area3D" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom2" unique_id=2133630934 node_paths=PackedStringArray("puerta_destino")]
@@ -7269,7 +7270,7 @@ shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="patato" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1166769141 instance=ExtResource("16_rpqym")]
 
-[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 129815215) index="0" unique_id=1726063271]
+[node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1912577626) index="0" unique_id=1522588281]
 bones/2/position = Vector3(0, 0.009419135, 0)
 bones/2/rotation = Quaternion(0.8840405, 4.625521e-17, 4.6255195e-17, -0.46741036)
 bones/2/scale = Vector3(1, 0.9999999, 0.99999964)
@@ -7413,7 +7414,7 @@ bones/66/position = Vector3(8.028e-16, 0.0029200956, -1.9842776e-10)
 bones/66/rotation = Quaternion(0.4866725, -0.4896309, 0.5101597, 0.5129801)
 bones/66/scale = Vector3(0.9999998, 1, 0.9999999)
 
-[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=613468243]
+[node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=1299493334]
 autoplay = &"Арматура|Idle"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1047324135]
@@ -8230,7 +8231,7 @@ transform = Transform3D(-7.3766, 0, -1.1138357e-06, 0, 7.606097, 0, 1.0963812e-0
 [node name="Haul de entrada" type="Node3D" parent="VictorBars/Decoraciones VictorBars" unique_id=1573066865]
 
 [node name="Puerta3" parent="VictorBars/Decoraciones VictorBars/Haul de entrada" unique_id=1151896331 instance=ExtResource("57_k37ix")]
-transform = Transform3D(1, 0, 0, 0, 1.2954012, 0, 0, 0, 1.427239, 32.105522, 0.0021679401, 1222.0991)
+transform = Transform3D(1, 0, 0, 0, 1.2954012, 0, 0, 0, 1.427239, 24.157902, 0.0021679401, 1222.0991)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta3" unique_id=300693762]
 physics_material_override = SubResource("PhysicsMaterial_dufpk")
@@ -8243,13 +8244,13 @@ shape = SubResource("BoxShape3D_vrlqc")
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" parent_id_path=PackedInt32Array(790094590, 617300069) index="0" unique_id=520507754]
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" parent_id_path=PackedInt32Array(790094590, 1994626132) index="0" unique_id=520507754]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1413139031]
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
 shape = SubResource("BoxShape3D_tx3k5")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" parent_id_path=PackedInt32Array(790094590, 769952834) index="0" unique_id=1916084811]
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" parent_id_path=PackedInt32Array(790094590, 1708783680) index="0" unique_id=1916084811]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=1278852078]
@@ -9261,1454 +9262,488 @@ mesh = SubResource("ArrayMesh_t5f5p")
 [node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro" unique_id=1939707262]
 mesh = SubResource("ArrayMesh_hhygq")
 
-[node name="Perimetro2" type="Node3D" parent="Perimetro" unique_id=2138197432]
+[node name="Perimetro2" parent="Perimetro" unique_id=490232052 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4716988, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro2" unique_id=37957082]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro2" unique_id=508350133]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro159" type="Node3D" parent="Perimetro" unique_id=935829667]
+[node name="Perimetro159" parent="Perimetro" unique_id=1121519263 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4914055, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro159" unique_id=1547519401]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro159" unique_id=544313364]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro160" type="Node3D" parent="Perimetro" unique_id=458993074]
+[node name="Perimetro160" parent="Perimetro" unique_id=324058903 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.976833, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro160" unique_id=819675630]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro160" unique_id=47319457]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro161" type="Node3D" parent="Perimetro" unique_id=675482324]
+[node name="Perimetro161" parent="Perimetro" unique_id=1922440753 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.360893, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro161" unique_id=1279336055]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro161" unique_id=295174436]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro162" type="Node3D" parent="Perimetro" unique_id=419230963]
+[node name="Perimetro162" parent="Perimetro" unique_id=471258940 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(0.8851588, 0, 0, 0, 1, 0, 0, 0, 1, 21.73962, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro162" unique_id=4951305]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro162" unique_id=562701301]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro3" type="Node3D" parent="Perimetro" unique_id=1118060884]
+[node name="Perimetro3" parent="Perimetro" unique_id=865053612 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.937698, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro3" unique_id=1387642778]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro3" unique_id=2041588271]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro4" type="Node3D" parent="Perimetro" unique_id=2121919222]
+[node name="Perimetro4" parent="Perimetro" unique_id=84022479 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.433516, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro4" unique_id=604928066]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro4" unique_id=200668844]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro5" type="Node3D" parent="Perimetro" unique_id=475732081]
+[node name="Perimetro5" parent="Perimetro" unique_id=225778739 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.91793, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro5" unique_id=500432138]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro5" unique_id=1505703767]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro6" type="Node3D" parent="Perimetro" unique_id=1278797505]
+[node name="Perimetro6" parent="Perimetro" unique_id=122616826 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.398367, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro6" unique_id=1481910404]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro6" unique_id=1150297495]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro7" type="Node3D" parent="Perimetro" unique_id=1945233202]
+[node name="Perimetro7" parent="Perimetro" unique_id=2003386704 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.85665, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro7" unique_id=1855931349]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro7" unique_id=1101036798]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro8" type="Node3D" parent="Perimetro" unique_id=153409034]
+[node name="Perimetro8" parent="Perimetro" unique_id=1896028225 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.32461, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro8" unique_id=1710732183]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro8" unique_id=898192311]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro9" type="Node3D" parent="Perimetro" unique_id=367401462]
+[node name="Perimetro9" parent="Perimetro" unique_id=1064576755 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1.0585811, 0, 0, 0, 1, 0, 0, 0, 1, -44.14516, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro9" unique_id=828161689]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro9" unique_id=876722862]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro11" type="Node3D" parent="Perimetro" unique_id=553693714]
+[node name="Perimetro11" parent="Perimetro" unique_id=54903359 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.312614, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro11" unique_id=515205584]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro11" unique_id=1819158899]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro12" type="Node3D" parent="Perimetro" unique_id=2094317044]
+[node name="Perimetro12" parent="Perimetro" unique_id=875029922 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.77861, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro12" unique_id=1970211923]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro12" unique_id=1449354338]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro13" type="Node3D" parent="Perimetro" unique_id=1655547101]
+[node name="Perimetro13" parent="Perimetro" unique_id=1315588645 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.27443, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro13" unique_id=16873679]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro13" unique_id=437951164]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro14" type="Node3D" parent="Perimetro" unique_id=1823469252]
+[node name="Perimetro14" parent="Perimetro" unique_id=1268673733 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.75885, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro14" unique_id=1706585570]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro14" unique_id=1811472772]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro15" type="Node3D" parent="Perimetro" unique_id=339065580]
+[node name="Perimetro15" parent="Perimetro" unique_id=1553267736 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.23929, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro15" unique_id=994911339]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro15" unique_id=60915821]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro16" type="Node3D" parent="Perimetro" unique_id=534347232]
+[node name="Perimetro16" parent="Perimetro" unique_id=1442389640 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.69757, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro16" unique_id=401055190]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro16" unique_id=126658625]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro17" type="Node3D" parent="Perimetro" unique_id=1106595620]
+[node name="Perimetro17" parent="Perimetro" unique_id=1850610788 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.16553, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro17" unique_id=968539503]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro17" unique_id=902521840]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro18" type="Node3D" parent="Perimetro" unique_id=168951778]
+[node name="Perimetro18" parent="Perimetro" unique_id=686212174 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.65195, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro18" unique_id=1597068528]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro18" unique_id=1483099855]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro19" type="Node3D" parent="Perimetro" unique_id=109276632]
+[node name="Perimetro19" parent="Perimetro" unique_id=577571550 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.070015, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro19" unique_id=351664596]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro19" unique_id=636905520]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro20" type="Node3D" parent="Perimetro" unique_id=459592810]
+[node name="Perimetro20" parent="Perimetro" unique_id=683004529 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.535995, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro20" unique_id=188583442]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro20" unique_id=1631748799]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro21" type="Node3D" parent="Perimetro" unique_id=1838702463]
+[node name="Perimetro21" parent="Perimetro" unique_id=75547657 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.03183, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro21" unique_id=2136288043]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro21" unique_id=1540642535]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro22" type="Node3D" parent="Perimetro" unique_id=1603617698]
+[node name="Perimetro22" parent="Perimetro" unique_id=672627758 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.51625, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro22" unique_id=1266845843]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro22" unique_id=1808982988]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro23" type="Node3D" parent="Perimetro" unique_id=1174831254]
+[node name="Perimetro23" parent="Perimetro" unique_id=947917156 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -127.99669, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro23" unique_id=274603776]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro23" unique_id=1880004621]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro24" type="Node3D" parent="Perimetro" unique_id=9141303]
+[node name="Perimetro24" parent="Perimetro" unique_id=51718967 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.45497, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro24" unique_id=1214950739]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro24" unique_id=508996879]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro25" type="Node3D" parent="Perimetro" unique_id=1162949374]
+[node name="Perimetro25" parent="Perimetro" unique_id=191264697 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.92293, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro25" unique_id=410638911]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro25" unique_id=985919588]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro26" type="Node3D" parent="Perimetro" unique_id=1825539443]
+[node name="Perimetro26" parent="Perimetro" unique_id=371334146 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -144.40935, 0, 0)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro26" unique_id=1443874958]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro26" unique_id=1903147177]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro27" type="Node3D" parent="Perimetro" unique_id=2110860349]
+[node name="Perimetro27" parent="Perimetro" unique_id=475741334 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -144.561, 5.409546, 2.3655593e-07)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro27" unique_id=282003346]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro27" unique_id=467693845]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro28" type="Node3D" parent="Perimetro" unique_id=905716741]
+[node name="Perimetro28" parent="Perimetro" unique_id=1763920045 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -144.40707, 10.873352, 4.7683716e-07)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro28" unique_id=287063047]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro28" unique_id=294102137]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro29" type="Node3D" parent="Perimetro" unique_id=901714603]
+[node name="Perimetro29" parent="Perimetro" unique_id=63738252 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -144.25229, 16.367065, 7.1525574e-07)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro29" unique_id=1551511367]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro29" unique_id=1547514109]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro30" type="Node3D" parent="Perimetro" unique_id=1327320266]
+[node name="Perimetro30" parent="Perimetro" unique_id=590597439 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -144.09785, 21.849304, 9.55537e-07)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro30" unique_id=506027146]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro30" unique_id=1888092788]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro31" type="Node3D" parent="Perimetro" unique_id=2041359240]
+[node name="Perimetro31" parent="Perimetro" unique_id=80782923 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -143.94351, 27.327576, 1.1939555e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro31" unique_id=782726351]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro31" unique_id=829303814]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro32" type="Node3D" parent="Perimetro" unique_id=501527259]
+[node name="Perimetro32" parent="Perimetro" unique_id=147395570 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -143.78983, 32.78363, 1.4323741e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro32" unique_id=1386435781]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro32" unique_id=460397447]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro33" type="Node3D" parent="Perimetro" unique_id=1491800422]
+[node name="Perimetro33" parent="Perimetro" unique_id=1751959537 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -143.63583, 38.24945, 1.6726553e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro33" unique_id=393696958]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro33" unique_id=2015303044]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro34" type="Node3D" parent="Perimetro" unique_id=1229180804]
+[node name="Perimetro34" parent="Perimetro" unique_id=329340270 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -143.48134, 43.733704, 1.911074e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro34" unique_id=1239921894]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro34" unique_id=288199384]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro35" type="Node3D" parent="Perimetro" unique_id=129550699]
+[node name="Perimetro35" parent="Perimetro" unique_id=159614916 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -143.3932, 49.299316, 2.1550804e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro35" unique_id=1313543670]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro35" unique_id=315290195]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro36" type="Node3D" parent="Perimetro" unique_id=363394213]
+[node name="Perimetro36" parent="Perimetro" unique_id=677843009 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -143.23927, 54.763123, 2.3953617e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro36" unique_id=1286347118]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro36" unique_id=1284374157]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro37" type="Node3D" parent="Perimetro" unique_id=588658406]
+[node name="Perimetro37" parent="Perimetro" unique_id=659502240 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -143.08449, 60.256836, 2.6375055e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro37" unique_id=923999582]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro37" unique_id=1345687917]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro38" type="Node3D" parent="Perimetro" unique_id=732415007]
+[node name="Perimetro38" parent="Perimetro" unique_id=1821444772 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -142.93005, 65.739075, 2.8740615e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro38" unique_id=231065421]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro38" unique_id=986147448]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro39" type="Node3D" parent="Perimetro" unique_id=1028353204]
+[node name="Perimetro39" parent="Perimetro" unique_id=451429827 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -142.77571, 71.21735, 3.11248e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro39" unique_id=2114541401]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro39" unique_id=1432987035]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro40" type="Node3D" parent="Perimetro" unique_id=1425535172]
+[node name="Perimetro40" parent="Perimetro" unique_id=1432573960 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -142.62202, 76.6734, 3.3508986e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro40" unique_id=538999399]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro40" unique_id=1539043286]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro41" type="Node3D" parent="Perimetro" unique_id=583637743]
+[node name="Perimetro41" parent="Perimetro" unique_id=1490477738 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -142.46803, 82.13922, 3.5911798e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro41" unique_id=452540416]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro41" unique_id=1587365403]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro42" type="Node3D" parent="Perimetro" unique_id=1068271288]
+[node name="Perimetro42" parent="Perimetro" unique_id=1373600013 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -142.31354, 87.623474, 3.8295984e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro42" unique_id=1874461441]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro42" unique_id=1337617555]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro43" type="Node3D" parent="Perimetro" unique_id=1854347413]
+[node name="Perimetro43" parent="Perimetro" unique_id=608879446 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -142.32346, 93.121216, 4.0698797e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro43" unique_id=1060762475]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro43" unique_id=1260315971]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro44" type="Node3D" parent="Perimetro" unique_id=1477992745]
+[node name="Perimetro44" parent="Perimetro" unique_id=2125545988 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -142.16953, 98.58502, 4.3120235e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro44" unique_id=1348103714]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro44" unique_id=1366934716]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro45" type="Node3D" parent="Perimetro" unique_id=1501025910]
+[node name="Perimetro45" parent="Perimetro" unique_id=219770929 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -142.01474, 104.078735, 4.5541674e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro45" unique_id=795458521]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro45" unique_id=2113950226]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro46" type="Node3D" parent="Perimetro" unique_id=236152532]
+[node name="Perimetro46" parent="Perimetro" unique_id=450454517 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -141.8603, 109.560974, 4.7888607e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro46" unique_id=1488021113]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro46" unique_id=123041494]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro47" type="Node3D" parent="Perimetro" unique_id=191513459]
+[node name="Perimetro47" parent="Perimetro" unique_id=771871981 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -141.70596, 115.039246, 5.029142e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro47" unique_id=131138463]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro47" unique_id=817642323]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro48" type="Node3D" parent="Perimetro" unique_id=165369772]
+[node name="Perimetro48" parent="Perimetro" unique_id=627180249 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -141.55228, 120.4953, 5.2675605e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro48" unique_id=397082058]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro48" unique_id=952894929]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro49" type="Node3D" parent="Perimetro" unique_id=1005855141]
+[node name="Perimetro49" parent="Perimetro" unique_id=678964219 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -141.39828, 125.96112, 5.505979e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro49" unique_id=190597239]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro49" unique_id=1240117569]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro50" type="Node3D" parent="Perimetro" unique_id=427385668]
+[node name="Perimetro50" parent="Perimetro" unique_id=2085289643 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -141.24379, 131.44537, 5.7462603e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro50" unique_id=2080361242]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro50" unique_id=903463122]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro51" type="Node3D" parent="Perimetro" unique_id=2091079063]
+[node name="Perimetro51" parent="Perimetro" unique_id=248921576 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -141.3311, 136.96652, 5.9865415e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro51" unique_id=1483201268]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro51" unique_id=745064713]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro52" type="Node3D" parent="Perimetro" unique_id=1543240152]
+[node name="Perimetro52" parent="Perimetro" unique_id=781082161 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -141.17717, 142.43027, 6.2324107e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro52" unique_id=789331345]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro52" unique_id=697063561]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro53" type="Node3D" parent="Perimetro" unique_id=1184250443]
+[node name="Perimetro53" parent="Perimetro" unique_id=231830982 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -141.02238, 147.92401, 6.4708292e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro53" unique_id=468670570]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro53" unique_id=1404956749]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro54" type="Node3D" parent="Perimetro" unique_id=848619741]
+[node name="Perimetro54" parent="Perimetro" unique_id=1191644781 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -140.86795, 153.40625, 6.7055225e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro54" unique_id=1160198599]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro54" unique_id=558310111]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro55" type="Node3D" parent="Perimetro" unique_id=1664795855]
+[node name="Perimetro55" parent="Perimetro" unique_id=1891026354 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -140.71361, 158.88452, 6.9476664e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro55" unique_id=1922453995]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro55" unique_id=1304996488]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro56" type="Node3D" parent="Perimetro" unique_id=658292666]
+[node name="Perimetro56" parent="Perimetro" unique_id=884215162 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -140.55992, 164.34058, 7.186085e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro56" unique_id=288562299]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro56" unique_id=1799385286]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro57" type="Node3D" parent="Perimetro" unique_id=222116082]
+[node name="Perimetro57" parent="Perimetro" unique_id=456050200 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -140.40593, 169.8064, 7.422641e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro57" unique_id=389097125]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro57" unique_id=1839292934]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro58" type="Node3D" parent="Perimetro" unique_id=586408293]
+[node name="Perimetro58" parent="Perimetro" unique_id=2069749435 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -140.25143, 175.29065, 7.664785e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro58" unique_id=1280795399]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro58" unique_id=526545710]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro59" type="Node3D" parent="Perimetro" unique_id=300909315]
+[node name="Perimetro59" parent="Perimetro" unique_id=1957579681 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -140.18373, 180.85205, 7.905066e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro59" unique_id=881497699]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro59" unique_id=1803641159]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro60" type="Node3D" parent="Perimetro" unique_id=1541874701]
+[node name="Perimetro60" parent="Perimetro" unique_id=1567692999 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -140.19365, 186.3498, 8.145347e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro60" unique_id=1612907665]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro60" unique_id=1004040041]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro61" type="Node3D" parent="Perimetro" unique_id=1432485111]
+[node name="Perimetro61" parent="Perimetro" unique_id=47923655 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -140.03972, 191.8136, 8.387491e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro61" unique_id=762331709]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro61" unique_id=360321762]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro62" type="Node3D" parent="Perimetro" unique_id=29499743]
+[node name="Perimetro62" parent="Perimetro" unique_id=638413000 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -139.88493, 197.30731, 8.629635e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro62" unique_id=814158241]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro62" unique_id=949997933]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro63" type="Node3D" parent="Perimetro" unique_id=566782954]
+[node name="Perimetro63" parent="Perimetro" unique_id=358194325 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -139.7305, 202.78955, 8.864328e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro63" unique_id=1525401751]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro63" unique_id=1092990973]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro64" type="Node3D" parent="Perimetro" unique_id=1241921150]
+[node name="Perimetro64" parent="Perimetro" unique_id=1263986666 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -139.57616, 208.26782, 9.106472e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro64" unique_id=1355567220]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro64" unique_id=1099947095]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro65" type="Node3D" parent="Perimetro" unique_id=652984977]
+[node name="Perimetro65" parent="Perimetro" unique_id=575399583 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -139.42247, 213.72388, 9.343028e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro65" unique_id=786509430]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro65" unique_id=123817141]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro66" type="Node3D" parent="Perimetro" unique_id=923548664]
+[node name="Perimetro66" parent="Perimetro" unique_id=1642991723 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -139.26848, 219.1897, 9.581447e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro66" unique_id=1873252416]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro66" unique_id=1850735728]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro67" type="Node3D" parent="Perimetro" unique_id=1046579501]
+[node name="Perimetro67" parent="Perimetro" unique_id=39720582 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -139.11398, 224.67395, 9.821728e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro67" unique_id=1771468392]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro67" unique_id=984232955]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro68" type="Node3D" parent="Perimetro" unique_id=2128577265]
+[node name="Perimetro68" parent="Perimetro" unique_id=1532542480 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -139.2013, 230.1951, 1.0062009e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro68" unique_id=1746731493]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro68" unique_id=826741652]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro69" type="Node3D" parent="Perimetro" unique_id=1746908629]
+[node name="Perimetro69" parent="Perimetro" unique_id=734717216 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -139.04736, 235.65884, 1.0307878e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro69" unique_id=168121752]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro69" unique_id=1826764866]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro70" type="Node3D" parent="Perimetro" unique_id=1074965241]
+[node name="Perimetro70" parent="Perimetro" unique_id=909400171 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.89258, 241.15259, 1.0546297e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro70" unique_id=315652974]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro70" unique_id=2140189541]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro71" type="Node3D" parent="Perimetro" unique_id=644681859]
+[node name="Perimetro71" parent="Perimetro" unique_id=1674661060 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.73814, 246.63483, 1.078099e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro71" unique_id=1711554001]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro71" unique_id=526735014]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro72" type="Node3D" parent="Perimetro" unique_id=1378214242]
+[node name="Perimetro72" parent="Perimetro" unique_id=349433601 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.5838, 252.1131, 1.1024997e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro72" unique_id=1757740793]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro72" unique_id=1127036457]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro73" type="Node3D" parent="Perimetro" unique_id=1338685731]
+[node name="Perimetro73" parent="Perimetro" unique_id=1310692680 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.43011, 257.56915, 1.1263415e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro73" unique_id=507385307]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro73" unique_id=94363416]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro74" type="Node3D" parent="Perimetro" unique_id=747961301]
+[node name="Perimetro74" parent="Perimetro" unique_id=555817537 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.27612, 263.03497, 1.1501834e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro74" unique_id=1585231468]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro74" unique_id=1699789753]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro75" type="Node3D" parent="Perimetro" unique_id=895750968]
+[node name="Perimetro75" parent="Perimetro" unique_id=1652505085 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.12163, 268.51923, 1.1742115e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro75" unique_id=1332250155]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro75" unique_id=1879131249]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro76" type="Node3D" parent="Perimetro" unique_id=1757797100]
+[node name="Perimetro76" parent="Perimetro" unique_id=642082819 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.15454, 273.95615, 1.1974946e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro76" unique_id=1198613821]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro76" unique_id=1386801814]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro77" type="Node3D" parent="Perimetro" unique_id=1501114351]
+[node name="Perimetro77" parent="Perimetro" unique_id=1818497800 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.16446, 279.4539, 1.2215227e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro77" unique_id=365406123]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro77" unique_id=1737178669]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro78" type="Node3D" parent="Perimetro" unique_id=357481829]
+[node name="Perimetro78" parent="Perimetro" unique_id=495564415 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -138.01053, 284.9177, 1.2457371e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro78" unique_id=165634492]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro78" unique_id=2084264661]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro79" type="Node3D" parent="Perimetro" unique_id=32271385]
+[node name="Perimetro79" parent="Perimetro" unique_id=2044183073 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -137.85574, 290.4114, 1.2699515e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro79" unique_id=1216153964]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro79" unique_id=963133477]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro80" type="Node3D" parent="Perimetro" unique_id=1297066509]
+[node name="Perimetro80" parent="Perimetro" unique_id=1068361285 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -137.70131, 295.89365, 1.2934208e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro80" unique_id=319399698]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro80" unique_id=921587496]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro81" type="Node3D" parent="Perimetro" unique_id=1192686105]
+[node name="Perimetro81" parent="Perimetro" unique_id=818393623 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -137.54697, 301.37192, 1.3176352e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro81" unique_id=1592502517]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro81" unique_id=1596477238]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro82" type="Node3D" parent="Perimetro" unique_id=960357027]
+[node name="Perimetro82" parent="Perimetro" unique_id=1568234916 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -137.39328, 306.82797, 1.3412908e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro82" unique_id=1180732839]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro82" unique_id=1961663020]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro83" type="Node3D" parent="Perimetro" unique_id=79047802]
+[node name="Perimetro83" parent="Perimetro" unique_id=740747034 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -137.23929, 312.2938, 1.3651326e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro83" unique_id=281501429]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro83" unique_id=1125812294]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro84" type="Node3D" parent="Perimetro" unique_id=1001524645]
+[node name="Perimetro84" parent="Perimetro" unique_id=1801627668 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -137.0848, 317.77805, 1.3889745e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro84" unique_id=1726024635]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro84" unique_id=1973997887]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro85" type="Node3D" parent="Perimetro" unique_id=1849306347]
+[node name="Perimetro85" parent="Perimetro" unique_id=1208790895 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -137.1721, 323.2992, 1.4131889e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro85" unique_id=193309134]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro85" unique_id=360879669]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro86" type="Node3D" parent="Perimetro" unique_id=823918493]
+[node name="Perimetro86" parent="Perimetro" unique_id=1339912101 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -137.01817, 328.76294, 1.4377758e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro86" unique_id=370909571]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro86" unique_id=1667565410]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro87" type="Node3D" parent="Perimetro" unique_id=824390907]
+[node name="Perimetro87" parent="Perimetro" unique_id=1486021878 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -136.86339, 334.25668, 1.46161765e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro87" unique_id=1410311266]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro87" unique_id=2109946237]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro88" type="Node3D" parent="Perimetro" unique_id=924901693]
+[node name="Perimetro88" parent="Perimetro" unique_id=152183783 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -136.70895, 339.73892, 1.485087e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro88" unique_id=763649759]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro88" unique_id=35466545]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro89" type="Node3D" parent="Perimetro" unique_id=1005403195]
+[node name="Perimetro89" parent="Perimetro" unique_id=1170655638 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -136.55461, 345.2172, 1.5094876e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro89" unique_id=1539823421]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro89" unique_id=1693761239]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro90" type="Node3D" parent="Perimetro" unique_id=954940393]
+[node name="Perimetro90" parent="Perimetro" unique_id=1266408769 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -136.40092, 350.67325, 1.5333295e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro90" unique_id=2085132430]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro90" unique_id=1948137058]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro91" type="Node3D" parent="Perimetro" unique_id=670139783]
+[node name="Perimetro91" parent="Perimetro" unique_id=2044750296 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -136.24693, 356.13907, 1.5577301e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro91" unique_id=1334769427]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro91" unique_id=360920359]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro92" type="Node3D" parent="Perimetro" unique_id=1431945880]
+[node name="Perimetro92" parent="Perimetro" unique_id=1259625015 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, -136.09244, 361.62332, 1.5811995e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro92" unique_id=198457259]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro92" unique_id=1462109422]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro93" type="Node3D" parent="Perimetro" unique_id=1598072427]
+[node name="Perimetro93" parent="Perimetro" unique_id=869685658 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 26.69656, 5.409546, 2.3655593e-07)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro93" unique_id=1470637193]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro93" unique_id=640414119]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro94" type="Node3D" parent="Perimetro" unique_id=1085855694]
+[node name="Perimetro94" parent="Perimetro" unique_id=117927967 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 26.85049, 10.873352, 4.7683716e-07)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro94" unique_id=1746987929]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro94" unique_id=2115576347]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro95" type="Node3D" parent="Perimetro" unique_id=309711008]
+[node name="Perimetro95" parent="Perimetro" unique_id=210839451 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.005276, 16.367065, 7.1525574e-07)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro95" unique_id=187161903]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro95" unique_id=1930418733]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro96" type="Node3D" parent="Perimetro" unique_id=163136749]
+[node name="Perimetro96" parent="Perimetro" unique_id=342966938 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.15971, 21.849304, 9.55537e-07)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro96" unique_id=139659395]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro96" unique_id=1369258328]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro97" type="Node3D" parent="Perimetro" unique_id=964331942]
+[node name="Perimetro97" parent="Perimetro" unique_id=1585061409 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.314053, 27.327576, 1.1939555e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro97" unique_id=1606628919]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro97" unique_id=100392025]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro98" type="Node3D" parent="Perimetro" unique_id=1594734357]
+[node name="Perimetro98" parent="Perimetro" unique_id=2002793010 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.46774, 32.78363, 1.4323741e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro98" unique_id=53106678]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro98" unique_id=88704228]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro99" type="Node3D" parent="Perimetro" unique_id=677395877]
+[node name="Perimetro99" parent="Perimetro" unique_id=778171933 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.62173, 38.24945, 1.6726553e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro99" unique_id=1516072495]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro99" unique_id=1703744110]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro100" type="Node3D" parent="Perimetro" unique_id=1064916473]
+[node name="Perimetro100" parent="Perimetro" unique_id=715416518 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.776226, 43.733704, 1.911074e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro100" unique_id=1729594986]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro100" unique_id=800488708]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro101" type="Node3D" parent="Perimetro" unique_id=24441820]
+[node name="Perimetro101" parent="Perimetro" unique_id=1304875109 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.86436, 49.299316, 2.1550804e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro101" unique_id=1705537465]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro101" unique_id=288796868]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro102" type="Node3D" parent="Perimetro" unique_id=1211936394]
+[node name="Perimetro102" parent="Perimetro" unique_id=1164732200 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.018291, 54.763123, 2.3953617e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro102" unique_id=6077396]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro102" unique_id=324262859]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro103" type="Node3D" parent="Perimetro" unique_id=915018769]
+[node name="Perimetro103" parent="Perimetro" unique_id=1909008166 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.173077, 60.256836, 2.6375055e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro103" unique_id=1396374808]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro103" unique_id=268920581]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro104" type="Node3D" parent="Perimetro" unique_id=1511981035]
+[node name="Perimetro104" parent="Perimetro" unique_id=532768603 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.32751, 65.739075, 2.8740615e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro104" unique_id=1138660039]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro104" unique_id=2064425010]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro105" type="Node3D" parent="Perimetro" unique_id=614680024]
+[node name="Perimetro105" parent="Perimetro" unique_id=823660247 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.481853, 71.21735, 3.11248e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro105" unique_id=178771224]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro105" unique_id=1441529023]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro106" type="Node3D" parent="Perimetro" unique_id=523762424]
+[node name="Perimetro106" parent="Perimetro" unique_id=376973598 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.63554, 76.6734, 3.3508986e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro106" unique_id=190541116]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro106" unique_id=2018362349]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro107" type="Node3D" parent="Perimetro" unique_id=1565130839]
+[node name="Perimetro107" parent="Perimetro" unique_id=227572355 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.789532, 82.13922, 3.5911798e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro107" unique_id=486172497]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro107" unique_id=803353896]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro108" type="Node3D" parent="Perimetro" unique_id=1260168125]
+[node name="Perimetro108" parent="Perimetro" unique_id=634475582 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.944027, 87.623474, 3.8295984e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro108" unique_id=269449046]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro108" unique_id=2095088982]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro109" type="Node3D" parent="Perimetro" unique_id=1201634133]
+[node name="Perimetro109" parent="Perimetro" unique_id=1095212872 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.934109, 93.121216, 4.0698797e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro109" unique_id=1298551188]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro109" unique_id=1939982541]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro110" type="Node3D" parent="Perimetro" unique_id=170068354]
+[node name="Perimetro110" parent="Perimetro" unique_id=1530266258 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.08804, 98.58502, 4.3120235e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro110" unique_id=2024172750]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro110" unique_id=340080680]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro111" type="Node3D" parent="Perimetro" unique_id=23664023]
+[node name="Perimetro111" parent="Perimetro" unique_id=363023580 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.242825, 104.078735, 4.5578927e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro111" unique_id=177879888]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro111" unique_id=880179938]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro112" type="Node3D" parent="Perimetro" unique_id=2002943847]
+[node name="Perimetro112" parent="Perimetro" unique_id=1173593643 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.397259, 109.560974, 4.7888607e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro112" unique_id=1066551221]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro112" unique_id=644834260]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro113" type="Node3D" parent="Perimetro" unique_id=1143052268]
+[node name="Perimetro113" parent="Perimetro" unique_id=672493984 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.551601, 115.039246, 5.029142e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro113" unique_id=182617853]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro113" unique_id=1380521724]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro114" type="Node3D" parent="Perimetro" unique_id=825704917]
+[node name="Perimetro114" parent="Perimetro" unique_id=1193928367 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.705288, 120.4953, 5.2675605e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro114" unique_id=466645096]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro114" unique_id=1942116785]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro115" type="Node3D" parent="Perimetro" unique_id=186897463]
+[node name="Perimetro115" parent="Perimetro" unique_id=1083519402 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.85928, 125.96112, 5.505979e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro115" unique_id=1097524322]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro115" unique_id=15299734]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro116" type="Node3D" parent="Perimetro" unique_id=362085561]
+[node name="Perimetro116" parent="Perimetro" unique_id=1665023250 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.013775, 131.44537, 5.7462603e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro116" unique_id=832522246]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro116" unique_id=2049436847]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro117" type="Node3D" parent="Perimetro" unique_id=982679170]
+[node name="Perimetro117" parent="Perimetro" unique_id=1437026229 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.926464, 136.96652, 5.9865415e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro117" unique_id=2088581377]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro117" unique_id=638215043]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro118" type="Node3D" parent="Perimetro" unique_id=949642876]
+[node name="Perimetro118" parent="Perimetro" unique_id=211348573 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.080395, 142.43027, 6.236136e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro118" unique_id=1620799917]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro118" unique_id=1456812431]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro119" type="Node3D" parent="Perimetro" unique_id=669085151]
+[node name="Perimetro119" parent="Perimetro" unique_id=2025436269 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.23518, 147.92401, 6.4708292e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro119" unique_id=1168761031]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro119" unique_id=1434858219]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro120" type="Node3D" parent="Perimetro" unique_id=1574439850]
+[node name="Perimetro120" parent="Perimetro" unique_id=536348368 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.389614, 153.40625, 6.7055225e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro120" unique_id=1560445395]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro120" unique_id=1023741555]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro121" type="Node3D" parent="Perimetro" unique_id=1154718139]
+[node name="Perimetro121" parent="Perimetro" unique_id=560296883 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.543957, 158.88452, 6.9476664e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro121" unique_id=133447569]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro121" unique_id=1797537573]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro122" type="Node3D" parent="Perimetro" unique_id=566924751]
+[node name="Perimetro122" parent="Perimetro" unique_id=229083559 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.697643, 164.34058, 7.186085e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro122" unique_id=1950009608]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro122" unique_id=1708284170]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro123" type="Node3D" parent="Perimetro" unique_id=1285971219]
+[node name="Perimetro123" parent="Perimetro" unique_id=1139096046 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.851635, 169.8064, 7.422641e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro123" unique_id=2008123363]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro123" unique_id=1266832655]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro124" type="Node3D" parent="Perimetro" unique_id=1096330644]
+[node name="Perimetro124" parent="Perimetro" unique_id=50367313 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.00613, 175.29065, 7.664785e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro124" unique_id=586905313]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro124" unique_id=1788355392]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro125" type="Node3D" parent="Perimetro" unique_id=1272075249]
+[node name="Perimetro125" parent="Perimetro" unique_id=1333314976 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.073833, 180.85205, 7.905066e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro125" unique_id=441537525]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro125" unique_id=1687571308]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro126" type="Node3D" parent="Perimetro" unique_id=1704251336]
+[node name="Perimetro126" parent="Perimetro" unique_id=1719587708 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.063915, 186.3498, 8.145347e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro126" unique_id=1734769586]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro126" unique_id=587426625]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro127" type="Node3D" parent="Perimetro" unique_id=1851198043]
+[node name="Perimetro127" parent="Perimetro" unique_id=1972642918 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.217846, 191.8136, 8.387491e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro127" unique_id=1536965833]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro127" unique_id=1731340921]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro128" type="Node3D" parent="Perimetro" unique_id=2126986872]
+[node name="Perimetro128" parent="Perimetro" unique_id=181138227 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.372631, 197.30731, 8.629635e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro128" unique_id=1421325333]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro128" unique_id=1809621874]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro129" type="Node3D" parent="Perimetro" unique_id=349606224]
+[node name="Perimetro129" parent="Perimetro" unique_id=1761623038 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.527065, 202.78955, 8.864328e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro129" unique_id=993133615]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro129" unique_id=531637017]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro130" type="Node3D" parent="Perimetro" unique_id=40584359]
+[node name="Perimetro130" parent="Perimetro" unique_id=662851166 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.681408, 208.26782, 9.110197e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro130" unique_id=1831878861]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro130" unique_id=1038114130]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro131" type="Node3D" parent="Perimetro" unique_id=1170646392]
+[node name="Perimetro131" parent="Perimetro" unique_id=1312991290 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.835094, 213.72388, 9.343028e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro131" unique_id=983878960]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro131" unique_id=998349329]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro132" type="Node3D" parent="Perimetro" unique_id=1121864330]
+[node name="Perimetro132" parent="Perimetro" unique_id=1896507197 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 31.989086, 219.1897, 9.581447e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro132" unique_id=230064952]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro132" unique_id=1898627857]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro133" type="Node3D" parent="Perimetro" unique_id=979831059]
+[node name="Perimetro133" parent="Perimetro" unique_id=780830441 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 32.14358, 224.67395, 9.821728e-06)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro133" unique_id=1958899839]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro133" unique_id=761502887]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro134" type="Node3D" parent="Perimetro" unique_id=362874119]
+[node name="Perimetro134" parent="Perimetro" unique_id=1029082524 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 32.05627, 230.1951, 1.0062009e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro134" unique_id=1517625574]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro134" unique_id=1364476707]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro135" type="Node3D" parent="Perimetro" unique_id=1852604212]
+[node name="Perimetro135" parent="Perimetro" unique_id=1109599360 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 32.2102, 235.65884, 1.0307878e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro135" unique_id=1245270430]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro135" unique_id=1369427862]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro136" type="Node3D" parent="Perimetro" unique_id=1505055494]
+[node name="Perimetro136" parent="Perimetro" unique_id=2004360317 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 32.364986, 241.15259, 1.0546297e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro136" unique_id=1647003687]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro136" unique_id=273224970]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro137" type="Node3D" parent="Perimetro" unique_id=807421321]
+[node name="Perimetro137" parent="Perimetro" unique_id=532850037 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 32.51942, 246.63483, 1.078099e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro137" unique_id=1437478533]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro137" unique_id=1294259611]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro138" type="Node3D" parent="Perimetro" unique_id=441186518]
+[node name="Perimetro138" parent="Perimetro" unique_id=519132248 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 32.673763, 252.1131, 1.1028722e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro138" unique_id=467311182]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro138" unique_id=354514465]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro139" type="Node3D" parent="Perimetro" unique_id=1271723771]
+[node name="Perimetro139" parent="Perimetro" unique_id=780031878 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 32.82745, 257.56915, 1.12671405e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro139" unique_id=702932102]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro139" unique_id=606195933]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro140" type="Node3D" parent="Perimetro" unique_id=2081618653]
+[node name="Perimetro140" parent="Perimetro" unique_id=264315754 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 32.98144, 263.03497, 1.1501834e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro140" unique_id=128398309]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro140" unique_id=627684909]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro141" type="Node3D" parent="Perimetro" unique_id=1472296072]
+[node name="Perimetro141" parent="Perimetro" unique_id=672038 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 33.135937, 268.51923, 1.174584e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro141" unique_id=1403626314]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro141" unique_id=593287915]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro142" type="Node3D" parent="Perimetro" unique_id=342339368]
+[node name="Perimetro142" parent="Perimetro" unique_id=744569909 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 33.103024, 273.95615, 1.1974946e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro142" unique_id=1781723738]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro142" unique_id=1118325449]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro143" type="Node3D" parent="Perimetro" unique_id=148387407]
+[node name="Perimetro143" parent="Perimetro" unique_id=898300375 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 33.093105, 279.4539, 1.2215227e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro143" unique_id=363764379]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro143" unique_id=1980820640]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro144" type="Node3D" parent="Perimetro" unique_id=2095208608]
+[node name="Perimetro144" parent="Perimetro" unique_id=671449878 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 33.247036, 284.9177, 1.2457371e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro144" unique_id=20238813]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro144" unique_id=193710212]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro145" type="Node3D" parent="Perimetro" unique_id=1090077483]
+[node name="Perimetro145" parent="Perimetro" unique_id=1334432542 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 33.40182, 290.4114, 1.2699515e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro145" unique_id=346088310]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro145" unique_id=1065382220]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro146" type="Node3D" parent="Perimetro" unique_id=930893433]
+[node name="Perimetro146" parent="Perimetro" unique_id=1860095500 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 33.556255, 295.89365, 1.2934208e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro146" unique_id=1629077251]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro146" unique_id=1493416300]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro147" type="Node3D" parent="Perimetro" unique_id=1633948065]
+[node name="Perimetro147" parent="Perimetro" unique_id=1577371830 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 33.710598, 301.37192, 1.3176352e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro147" unique_id=2127243227]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro147" unique_id=332824904]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro148" type="Node3D" parent="Perimetro" unique_id=1616251442]
+[node name="Perimetro148" parent="Perimetro" unique_id=1873442379 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 33.864285, 306.82797, 1.3416633e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro148" unique_id=1531825]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro148" unique_id=1183832790]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro149" type="Node3D" parent="Perimetro" unique_id=558867213]
+[node name="Perimetro149" parent="Perimetro" unique_id=1603427740 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 34.018276, 312.2938, 1.3651326e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro149" unique_id=969673713]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro149" unique_id=919605881]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro150" type="Node3D" parent="Perimetro" unique_id=306490649]
+[node name="Perimetro150" parent="Perimetro" unique_id=428754949 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 34.17277, 317.77805, 1.3889745e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro150" unique_id=1229194842]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro150" unique_id=1505791193]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro151" type="Node3D" parent="Perimetro" unique_id=64138202]
+[node name="Perimetro151" parent="Perimetro" unique_id=1775923617 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 34.08546, 323.2992, 1.4131889e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro151" unique_id=96598366]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro151" unique_id=1488297542]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro152" type="Node3D" parent="Perimetro" unique_id=237966194]
+[node name="Perimetro152" parent="Perimetro" unique_id=1718531010 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 34.23939, 328.76294, 1.4377758e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro152" unique_id=851381489]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro152" unique_id=410227487]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro153" type="Node3D" parent="Perimetro" unique_id=1921214857]
+[node name="Perimetro153" parent="Perimetro" unique_id=738897300 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 34.394176, 334.25668, 1.46161765e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro153" unique_id=1084699284]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro153" unique_id=64762027]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro154" type="Node3D" parent="Perimetro" unique_id=395155271]
+[node name="Perimetro154" parent="Perimetro" unique_id=1321313239 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 34.54861, 339.73892, 1.485087e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro154" unique_id=1819232673]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro154" unique_id=789349896]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro155" type="Node3D" parent="Perimetro" unique_id=1398340364]
+[node name="Perimetro155" parent="Perimetro" unique_id=1781785510 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 34.702953, 345.2172, 1.5094876e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro155" unique_id=230217786]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro155" unique_id=1540063158]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro156" type="Node3D" parent="Perimetro" unique_id=1315392397]
+[node name="Perimetro156" parent="Perimetro" unique_id=1819018398 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 34.85664, 350.67325, 1.5333295e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro156" unique_id=894186461]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro156" unique_id=1235306863]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro157" type="Node3D" parent="Perimetro" unique_id=1755502073]
+[node name="Perimetro157" parent="Perimetro" unique_id=811131859 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 35.01063, 356.13907, 1.5577301e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro157" unique_id=1740768816]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro157" unique_id=830626651]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro158" type="Node3D" parent="Perimetro" unique_id=2094045815]
+[node name="Perimetro158" parent="Perimetro" unique_id=704010886 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 35.165127, 361.62332, 1.5811995e-05)
 
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro158" unique_id=1125797388]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro158" unique_id=1213950229]
-mesh = SubResource("ArrayMesh_hhygq")
-
-[node name="Perimetro10" type="Node3D" parent="Perimetro" unique_id=1857575179]
+[node name="Perimetro10" parent="Perimetro" unique_id=1750865025 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1.0735035, 0, 0, 0, 1, 0, 0, 0, 1, -56.638916, 0, 0)
-
-[node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="Perimetro/Perimetro10" unique_id=1425823888]
-mesh = SubResource("ArrayMesh_t5f5p")
-
-[node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="Perimetro/Perimetro10" unique_id=2016159553]
-mesh = SubResource("ArrayMesh_hhygq")
 
 [node name="PuertaPrincipal" parent="Perimetro" unique_id=862817177 instance=ExtResource("70_vg8rj")]
 transform = Transform3D(2, 0, 0, 0, -8.838443e-08, -1.5, 0, 2.022, -6.556708e-08, -103.5244, -1.9776611, -0.017130878)

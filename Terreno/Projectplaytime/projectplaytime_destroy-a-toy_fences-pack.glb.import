@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cjvrqma8k140v"
-path="res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack.glb-ea8c58382f3f7a615e19173a5174a7af.scn"
+path="res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack.glb-0f3c0ee447ea6183ff1d5c826906dcbf.scn"
 
 [deps]
 
-source_file="res://Terreno/projectplaytime_destroy-a-toy_fences-pack.glb"
-dest_files=["res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack.glb-ea8c58382f3f7a615e19173a5174a7af.scn"]
+source_file="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack.glb"
+dest_files=["res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack.glb-0f3c0ee447ea6183ff1d5c826906dcbf.scn"]
 
 [params]
 

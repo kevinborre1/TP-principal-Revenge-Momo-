@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xv4xcb4q066w"
-path.s3tc="res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack_2.png-64a390680538c81b7da670fa74b41176.s3tc.ctex"
+uid="uid://bijchmmqjpdot"
+path.s3tc="res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack_5.png-70ea4ace9e25e144b033aacff085594d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "61afafe32bfeee2d1f3b86b781559223"
+"md5": "e28a8f2b77168a64684c796d756b83b0"
 }
 
 [deps]
 
-source_file="res://Terreno/projectplaytime_destroy-a-toy_fences-pack_2.png"
-dest_files=["res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack_2.png-64a390680538c81b7da670fa74b41176.s3tc.ctex"]
+source_file="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_5.png"
+dest_files=["res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack_5.png-70ea4ace9e25e144b033aacff085594d.s3tc.ctex"]
 
 [params]
 
@@ -25,12 +25,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Terreno/projectplaytime_destroy-a-toy_fences-pack_5.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
