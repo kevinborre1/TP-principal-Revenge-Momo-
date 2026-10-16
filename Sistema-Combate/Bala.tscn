@@ -8,11 +8,10 @@ radius = 0.12890625
 height = 0.47262573
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfkbx"]
-radius = 0.103027344
-height = 0.84681416
+radius = 0.087890625
+height = 0.69035554
 
 [node name="Bala" type="Area3D" unique_id=565648693]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_81lri")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=714715927]
@@ -21,10 +20,10 @@ visible = false
 mesh = SubResource("CapsuleMesh_lfkbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=366785130]
-transform = Transform3D(0.0052329917, -0.99998635, 0, 0.99998635, 0.0052329917, 0, 0, 0, 1, 0.10028178, 0.0027783443, 0.03063035)
+transform = Transform3D(0.0052329917, -0.99998635, 0, 0.99998635, 0.0052329917, 0, 0, 0, 1, 0.030974165, 0.0029187037, 0.01985243)
 shape = SubResource("CapsuleShape3D_lfkbx")
 
 [node name="Sketchfab_Scene" parent="." unique_id=1793540713 instance=ExtResource("2_epie7")]
-transform = Transform3D(-1.1364441e-06, 0, 8.486025, 0, 12.578636, 0, -25.99881, 0, -3.7093594e-07, 10.936613, -0.38014972, 0.022690773)
+transform = Transform3D(-5.7976064e-07, 0, 8.486025, 0, 12.578636, 0, -13.263377, 0, -3.7093594e-07, 10.936613, -0.38014972, 0.022690773)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
