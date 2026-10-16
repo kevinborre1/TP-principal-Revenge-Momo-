@@ -110,6 +110,11 @@ func _ready() -> void:
 		raycast.add_exception(self)
 		
 	actualizar_modo_combate()
+	
+	#Para asegurar que spawnee en lugar correcto
+	if is_multiplayer_authority():
+		await get_tree().create_timer(0.4).timeout
+		SaveAndLoad.solicitar_posicion_guardada_al_servidor()
 
 # 1. FUNCIÓN _INPUT: Solo para cámara y ratón
 func _input(event: InputEvent) -> void:
