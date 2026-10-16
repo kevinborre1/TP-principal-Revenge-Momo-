@@ -3,7 +3,7 @@ class_name Door
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var atraveso_puerta: Area3D = $AtravesoPuerta
-@onready var video_player: VideoStreamPlayer = $"../../VideoVictor" # O la ruta a tu nodo de video
+@onready var video_player: VideoStreamPlayer = $"../../CanvasLayerPapas/VideoVictor"
 @onready var punto_aparicion: Marker3D = $"../../PuntoAparicionDespCinematica"
 
 # 1. Añadimos la referencia al CollisionShape3D que bloquea el paso (ajusta la ruta si tu nodo se llama distinto)
@@ -104,9 +104,12 @@ func cerrar_puerta() -> void:
 
 @rpc("call_local", "any_peer", "reliable")
 func reproducir_cinematica() -> void:
+	# 1. BLOQUEAMOS CONTROLES DE TODOS LOS JUGADORES
+	get_tree().call_group("Jugador", "bloquear_controles", true)
+
 	# Teletransportamos a todos los jugadores cuando empieza el video
 	if punto_aparicion:
-		var jugadores = get_tree().get_nodes_in_group("jugadores")
+		var jugadores = get_tree().get_nodes_in_group("Jugador")
 		for i in range(jugadores.size()):
 			jugadores[i].global_position = punto_aparicion.global_position + Vector3(i * 1.5, 0, 0)
 		
@@ -118,6 +121,9 @@ func reproducir_cinematica() -> void:
 			video_player.visible = false
 			GameManager.papas_atacan = true
 
+	# 2. DESBLOQUEAMOS CONTROLES AL TERMINAR LA CINEMÁTICA
+	get_tree().call_group("Jugador", "bloquear_controles", false)
+		
 func actualizar_estado_boton(id_boton: int, activado: bool) -> void:
 	estado_botones[id_boton] = activado
 	

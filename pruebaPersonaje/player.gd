@@ -482,3 +482,9 @@ func prepare_for_raft() -> void:
 	var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
 	if modelo:
 		modelo.rotation = Vector3(0, PI, 0)
+
+@rpc("any_peer", "call_local", "reliable")
+func bloquear_controles(bloquear: bool) -> void:
+	input_bloqueado = bloquear
+	if bloquear:
+		velocity = Vector3.ZERO # Frena al jugador inmediatamente si venía corriendo

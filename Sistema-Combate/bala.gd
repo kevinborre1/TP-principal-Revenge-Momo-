@@ -24,13 +24,11 @@ func _physics_process(delta: float) -> void:
 
 func _al_colisionar(body: Node3D) -> void:
 	if not golpeo_algo:
-		if body.is_in_group("barriles") or body.has_method("recibir_disparo"):
-			body.recibir_disparo()
-		elif body.has_method("_daniar"):
+		# Si lo que tocó tiene la función _daniar (Papa, Barril, etc.)
+		if body.has_method("_daniar"):
 			body._daniar(DANIO_BALA)
-			
-		golpeo_algo = true
-		queue_free() 
 		
+		golpeo_algo = true
+		queue_free() # Destruye la bala tras impactar
 func _direccion_salida(dir: Vector3) -> void:
 	direccion =dir
