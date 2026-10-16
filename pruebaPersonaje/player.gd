@@ -453,6 +453,10 @@ func actualizar_modo_combate() -> void:
 		
 		print("Arma guardada")
 
+@rpc("any_peer", "call_local", "reliable")
+func mover_a(nueva_pos: Vector3) -> void:
+	velocity = Vector3.ZERO
+	global_position = nueva_pos
 
 # Funcion para la balsa
 func prepare_for_raft() -> void:

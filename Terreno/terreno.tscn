@@ -7044,7 +7044,7 @@ spawn_path = NodePath("..")
 script = ExtResource("57_770lr")
 
 [node name="Area3D" type="Area3D" parent="Guardado VictorBars" unique_id=80616386]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.36386, 0, 1208.1779)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.36386, 0, 1209.0918)
 script = ExtResource("58_5lm5q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Guardado VictorBars/Area3D" unique_id=201497300]
@@ -7203,6 +7203,7 @@ puerta_destino = NodePath("../Puerta")
 [node name="Buttom" parent="VictorBars/Interacciones VictorBars" unique_id=377298075 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1217.951)
 
+
 [node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1362431476]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
@@ -7217,6 +7218,7 @@ shape = SubResource("BoxShape3D_rsdri")
 
 [node name="Buttom2" parent="VictorBars/Interacciones VictorBars" unique_id=2064960827 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1227.7134)
+
 
 [node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1362431476]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
@@ -7252,6 +7254,7 @@ transform = Transform3D(3.1854696, 0, 0, 0, 2.0391526, 0, 0, 0, 3.1385317, 0, 1.
 shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="patato" parent="VictorBars/Enemigos VictorBars/enemigoLider" unique_id=1166769141 instance=ExtResource("16_rpqym")]
+
 
 [node name="Skeleton3D" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato/Арматура" parent_id_path=PackedInt32Array(1166769141, 1445619735) index="0" unique_id=1491749793]
 bones/2/position = Vector3(0, 0.009419135, 0)
@@ -7396,6 +7399,7 @@ bones/65/scale = Vector3(1, 0.99999994, 1)
 bones/66/position = Vector3(8.028e-16, 0.0029200956, -1.9842776e-10)
 bones/66/rotation = Quaternion(0.4866725, -0.4896309, 0.5101597, 0.5129801)
 bones/66/scale = Vector3(0.9999998, 1, 0.9999999)
+
 
 [node name="AnimationPlayer" parent="VictorBars/Enemigos VictorBars/enemigoLider/patato" index="1" unique_id=2010934325]
 autoplay = &"Арматура|Idle"
@@ -8194,18 +8198,23 @@ transform = Transform3D(1, 0, 0, 0, 1.2954012, 0, 0, 0, 1.427239, 32.105522, 0.0
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 
+
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" parent_id_path=PackedInt32Array(790094590, 1707671861) index="0" unique_id=520507754]
+
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1413139031]
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
 shape = SubResource("BoxShape3D_tx3k5")
 
+
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" parent_id_path=PackedInt32Array(790094590, 781242028) index="0" unique_id=1916084811]
+
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=1278852078]
 transform = Transform3D(1, 0, -1.4068746e-12, 0, 1, 0, 0, 0, 1, 0, 1.9506226, 1.009285)
 shape = SubResource("BoxShape3D_fnegy")
+
 
 [node name="AnimationPlayer" parent="VictorBars/Decoraciones VictorBars/Haul de entrada/Puerta5" index="1" unique_id=1852732845]
 autoplay = &"Animation"
