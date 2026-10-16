@@ -80,29 +80,41 @@ func _ready() -> void:
 		collision_shape_3d.disabled = false
 	set_physics_process(true) # Reactiva el _physics_process (gravedad y controles)
 	
-	# PRENDER LA CÁMARA (Si es mi personaje)
+	# PRENDER LA CÁMARA Y UI (Si es mi personaje)
 	var es_mi_personaje = (id_player == multiplayer.get_unique_id())
 	
 	if Global.modo_multijugador == "local":
 		if camara:
 			camara.make_current()
-		if barraStamina:
-			barraStamina.visible = true
+		# En local prendemos la UI de ambos
+		if barraStamina: barraStamina.show()
+		if barraSalud: barraSalud.show()
+		if inventario_manager: inventario_manager.show()
+		if has_node("CanvasLayer"): $CanvasLayer.show()
 		actualizar_barraStamina()
 		
 	elif Global.modo_multijugador == "linea":
 		if es_mi_personaje:
+			# Soy yo: Prendo mi cámara y MI interfaz
 			if camara:
 				camara.make_current()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			
+			if barraStamina: barraStamina.show()
+			if barraSalud: barraSalud.show()
+			if inventario_manager: inventario_manager.show()
+			if has_node("CanvasLayer"): $CanvasLayer.show()
+			
 			actualizar_barraStamina()
-			if barraStamina:
-				barraStamina.visible = true
 		else:
+			# Es el clon del otro jugador por la red: APAGO SU INTERFAZ en mi pantalla
 			if camara:
 				camara.current = false
-			if barraStamina:
-				barraStamina.visible = false
+			
+			if barraStamina: barraStamina.hide()
+			if barraSalud: barraSalud.hide()
+			if inventario_manager: inventario_manager.hide()
+			if has_node("CanvasLayer"): $CanvasLayer.hide()
 	
 	# Hacemos que el RayCast de la cámara ignore al propio jugador para que no colisione con su cuerpo				
 	var raycast: RayCast3D = find_child("RayCastDisparo", true, false)
@@ -269,11 +281,22 @@ func actualizar_barraDeVida():
 	cambioSalud.emit()
 	
 func heridoPorEnemigo(area):
-	saludActual -= 10
+	if Global.modo_multijugador == "linea":
+		# Solo el Host (servidor) tiene derecho a confirmar si hubo un golpe
+		if multiplayer.is_server():
+			# Le manda una orden directa por internet al dueño de este personaje
+			rpc_id(get_multiplayer_authority(), "_recibir_danio_red", 10)
+	else:
+		# Si están jugando en modo local (pantalla dividida), se aplica directo
+		_recibir_danio_red(10)
+
+# Esta es la orden que viaja por la red
+@rpc("any_peer", "call_local", "reliable")
+func _recibir_danio_red(danio: int):
+	saludActual -= danio
 	if saludActual <= 0:
 		saludActual = 0
 		print("¡El jugador ha muerto!")
-		# Aquí puedes agregar lógica de muerte, como reiniciar nivel o hacer ragdoll
 	herido = true
 	actualizar_barraDeVida()
 
