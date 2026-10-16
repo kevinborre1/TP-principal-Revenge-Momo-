@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bd1s4vdttte47"
-path="res://.godot/imported/Walk (1)_5.png-f24ccd334a3010005672a37e451c21db.ctex"
+path="res://.godot/imported/Walk (1)_5.png-1f7198810437b9042cb6a3a4491638e0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -13,8 +13,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://pruebaPersonaje/Walk (1)_5.png"
-dest_files=["res://.godot/imported/Walk (1)_5.png-f24ccd334a3010005672a37e451c21db.ctex"]
+source_file="res://pruebaPersonaje/Assets_personaje/Walk (1)_5.png"
+dest_files=["res://.godot/imported/Walk (1)_5.png-1f7198810437b9042cb6a3a4491638e0.ctex"]
 
 [params]
 
