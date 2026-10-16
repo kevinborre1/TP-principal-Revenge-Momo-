@@ -57,23 +57,27 @@ func _ready() -> void:
 	if has_node("MultiplayerSynchronizer"):
 		$MultiplayerSynchronizer.set_multiplayer_authority(id_player)
 	
-	# Le damos medio segundo a la red para que sincronice todo y al mapa para cargar.
-	await get_tree().create_timer(0.5).timeout
-	
-	# POSICIONAR AL JUGADOR
+	# 1. Asignamos la posición inicial por defecto ANTES del timer (por si es partida nueva)
 	if Global.modo_multijugador == "linea":
-		# Verificamos si estamos en la escena del tutorial
 		if get_tree().current_scene.name == "Tutorial":
-			# Ajusta estas coordenadas "X, Y, Z" a donde quieres que aparezcan dentro de tu laberinto
 			if id_player == 1:
-				global_position = Vector3(-3, 0, -36) # Posición Host en Tutorial
+				global_position = Vector3(-3, 0, -36)
 			else:
-				global_position = Vector3(-3, 0, -33) # Posición Cliente en Tutorial
-		elif SaveAndLoad.rutaUtilizada == "" or not ResourceLoader.exists(SaveAndLoad.rutaUtilizada):
+				global_position = Vector3(-3, 0, -33)
+		else:
 			if id_player == 1:
-				global_position = Vector3(36, 10, 1250) 
+				global_position = Vector3(36, 10, 1250)
 			else:
 				global_position = Vector3(40, 10, 1250)
+
+	# 2. Le damos medio segundo a la red y al mapa para cargar colisiones
+	await get_tree().create_timer(0.5).timeout
+	
+	# 3. Si somos los dueños de este jugador, le pedimos al Host la posición guardada (si existe, pisará la inicial)
+	if is_multiplayer_authority():
+		SaveAndLoad.solicitar_posicion_guardada_al_servidor()
+		# Esperamos un instante mínimo a que llegue el RPC del servidor antes de activar la gravedad
+		await get_tree().create_timer(0.15).timeout
 
 	# PRENDER TODO DE NUEVO
 	if collision_shape_3d:
@@ -86,7 +90,6 @@ func _ready() -> void:
 	if Global.modo_multijugador == "local":
 		if camara:
 			camara.make_current()
-		# En local prendemos la UI de ambos
 		if barraStamina: barraStamina.show()
 		if barraSalud: barraSalud.show()
 		if inventario_manager: inventario_manager.show()
@@ -95,7 +98,6 @@ func _ready() -> void:
 		
 	elif Global.modo_multijugador == "linea":
 		if es_mi_personaje:
-			# Soy yo: Prendo mi cámara y MI interfaz
 			if camara:
 				camara.make_current()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -107,7 +109,6 @@ func _ready() -> void:
 			
 			actualizar_barraStamina()
 		else:
-			# Es el clon del otro jugador por la red: APAGO SU INTERFAZ en mi pantalla
 			if camara:
 				camara.current = false
 			
@@ -116,17 +117,11 @@ func _ready() -> void:
 			if inventario_manager: inventario_manager.hide()
 			if has_node("CanvasLayer"): $CanvasLayer.hide()
 	
-	# Hacemos que el RayCast de la cámara ignore al propio jugador para que no colisione con su cuerpo				
 	var raycast: RayCast3D = find_child("RayCastDisparo", true, false)
 	if raycast:
 		raycast.add_exception(self)
 		
 	actualizar_modo_combate()
-	
-	#Para asegurar que spawnee en lugar correcto
-	if is_multiplayer_authority():
-		await get_tree().create_timer(0.4).timeout
-		SaveAndLoad.solicitar_posicion_guardada_al_servidor()
 
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):

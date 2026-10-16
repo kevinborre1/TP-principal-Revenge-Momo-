@@ -109,8 +109,8 @@ func posicionar_jugador_individual(jugador: Node, data: SaveData = null) -> void
 	var pos_cliente_base = data.pos_cliente if data.pos_cliente != Vector3.ZERO else data.pos_host + Vector3(2, 0, 0)
 	var destino = (data.pos_host if es_host else pos_cliente_base) + offset_altura
 	
-	# Espera que el Cliente termine de inicializar su MultiplayerSynchronizer
-	await get_tree().create_timer(0.25).timeout
+	# Esperamos un poco más (0.5s) para que el Cliente termine de cargar el mapa en su PC
+	await get_tree().create_timer(0.5).timeout
 	if not is_instance_valid(jugador):
 		return
 		
@@ -118,13 +118,16 @@ func posicionar_jugador_individual(jugador: Node, data: SaveData = null) -> void
 		jugador.velocity = Vector3.ZERO
 	jugador.global_position = destino
 	
-	# Obtenemos el ID de red del dueño del personaje (de su nombre o autoridad)
 	var peer_id = jugador.name.to_int() if jugador.name.is_valid_int() else jugador.get_multiplayer_authority()
 	
-	# Enviamos la posición tanto por mover_a como por RPC directo de respaldo
 	if jugador.has_method("mover_a") and peer_id > 0:
 		jugador.mover_a.rpc_id(peer_id, destino)
 	_forzar_posicion_en_todos.rpc(jugador.get_path(), destino)
+	
+	# ¡NUEVO! Cuando un Cliente se une tarde, también le sincronizamos los enemigos muertos a su PC
+	if data.estado_enemigos_guardado and peer_id > 1:
+		_sincronizar_estado_enemigos.rpc_id(peer_id, data.papas_atacan, data.enemigos_vivos)
+
 
 @rpc("any_peer", "call_local", "reliable")
 func _forzar_posicion_en_todos(ruta_jugador: NodePath, nueva_pos: Vector3) -> void:
@@ -134,6 +137,7 @@ func _forzar_posicion_en_todos(ruta_jugador: NodePath, nueva_pos: Vector3) -> vo
 			jugador.velocity = Vector3.ZERO
 		jugador.global_position = nueva_pos
 
+
 @rpc("authority", "call_local", "reliable")
 func _sincronizar_estado_enemigos(atacan: bool, rutas_vivos: Array) -> void:
 	GameManager.papas_atacan = atacan
@@ -141,14 +145,13 @@ func _sincronizar_estado_enemigos(atacan: bool, rutas_vivos: Array) -> void:
 		var ruta = str(enemigo.get_path())
 		if not rutas_vivos.has(ruta):
 			enemigo.queue_free()
-			
 
-# Para asegurar posicionamiento correcto en partida guardada
+
+# Para asegurar posicionamiento y enemigos correctos cuando el Cliente termina de cargar su escena
 func solicitar_posicion_guardada_al_servidor() -> void:
 	_servidor_enviar_posicion_a_jugador.rpc_id(1, multiplayer.get_unique_id())
 
 
-# El Servidor recibe el pedido, lee el archivo de guardado en su PC y le manda la coordenada exacta al Cliente
 @rpc("any_peer", "call_local", "reliable")
 func _servidor_enviar_posicion_a_jugador(peer_id: int) -> void:
 	if not multiplayer.is_server():
@@ -167,12 +170,16 @@ func _servidor_enviar_posicion_a_jugador(peer_id: int) -> void:
 	if peer_id == 1:
 		destino = data.pos_host + offset_altura
 	else:
-		# Si pos_cliente quedó en (0,0,0), lo ponemos al lado del Host sí o sí
 		var base_cliente = data.pos_cliente if data.pos_cliente != Vector3.ZERO else (data.pos_host + Vector3(2, 0, 0))
 		destino = base_cliente + offset_altura
 		
-	print("Servidor enviando posición guardada al jugador ID ", peer_id, " -> ", destino)
+	print("Servidor enviando posición y estado de enemigos al jugador ID ", peer_id, " -> ", destino)
 	_cliente_aplicar_posicion_guardada.rpc_id(peer_id, peer_id, destino)
+	
+	# ¡NUEVO! Le enviamos al Cliente qué enemigos ya están muertos para que se borren en su pantalla también
+	if data.estado_enemigos_guardado:
+		_sincronizar_estado_enemigos.rpc_id(peer_id, data.papas_atacan, data.enemigos_vivos)
+
 
 @rpc("authority", "call_local", "reliable")
 func _cliente_aplicar_posicion_guardada(peer_id: int, nueva_pos: Vector3) -> void:
