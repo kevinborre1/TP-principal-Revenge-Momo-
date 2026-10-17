@@ -42,43 +42,63 @@ func _ready() -> void:
 		
 	elif Global.modo_multijugador == "linea":
 		# MODO EN LÍNEA
-		if not multiplayer.is_server():
-			multiplayer.server_disconnected.connect(_on_servidor_desconectado)
-			return
+		if multiplayer.is_server():
+			# El Host solo crea su propio personaje
+			add_player(1)
+		else:
+			# El Cliente escucha si el servidor se cae
+			NetworkManager.host_cerro_partida.connect(_on_servidor_desconectado)
+			
+		# RED DE SEGURIDAD: Llamamos a la corrutina que evitará perder los paquetes
+		_reclamar_personajes()
 
-		add_player(1)
-		for peer_id in multiplayer.get_peers():
-			add_player(peer_id)
-		multiplayer.peer_connected.connect(add_player)
-		#multiplayer.peer_disconnected.connect(_disconnected_player)
+# 1. El cliente espera a cargar y exige sus personajes
+func _reclamar_personajes() -> void:
+	if multiplayer.is_server(): return
+	
+	# Le damos 1 segundo vital a la PC del cliente para armar todo el nivel
+	await get_tree().create_timer(1.0).timeout
+	rpc_id(1, "solicitar_sincronizacion", multiplayer.get_unique_id())
 
 func add_player(peer_id: int) -> void:
 	var new_player = player_scene.instantiate()
 	new_player.name = str(peer_id)
 	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
-	
 	new_player.add_to_group("jugadores")
-	
 	add_child(new_player)
 
-#func _disconnected_player(peer_id: int) -> void:
-	#var player_deleted = get_node_or_null(str(peer_id))
-	#if player_deleted:
-		#player_deleted.queue_free()
-		
 func _on_servidor_desconectado() -> void:
 	if not is_inside_tree() or get_tree() == null:
 		return
 	print("El host se ha desconectado. Encendiendo pantalla de aviso...")
-	# Pausamos el mundo 3D por completo
 	get_tree().paused = true
-	# Liberamos el ratón para que el jugador pueda hacer clic
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	# Mostramos nuestra pantalla negra de error (tapa la pantalla gris)
 	pantalla_desconexion.show()
 
-# Esta es la función que se conecta al botón "Volver al Menú" de tu nueva pantalla
 func _on_boton_volver_menu_pressed() -> void:
 	get_tree().paused = false
-	# Usa la herramienta "Copiar Ruta" en tu escena del menú para pegar esto exactamente
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
+
+# 2. El Host recibe el aviso del cliente y acciona
+@rpc("any_peer", "call_remote", "reliable")
+func solicitar_sincronizacion(peer_id: int) -> void:
+	if multiplayer.is_server():
+		# Creamos el personaje del cliente si no existe
+		if not has_node(str(peer_id)):
+			add_player(peer_id)
+		
+		# Forzamos al cliente a instanciar al Host y a cualquier otro jugador conectado.
+		# Esto recupera mágicamente los paquetes que se perdieron en la pantalla de carga.
+		for child in get_children():
+			if child.is_in_group("jugadores"):
+				rpc_id(peer_id, "forzar_aparicion", child.name, child.global_position)
+
+# El Cliente obedece y crea los personajes faltantes manualmente
+@rpc("authority", "call_remote", "reliable")
+func forzar_aparicion(nombre_nodo: String, pos: Vector3) -> void:
+	if not has_node(nombre_nodo):
+		var new_player = player_scene.instantiate()
+		new_player.name = nombre_nodo
+		new_player.position = pos
+		new_player.add_to_group("jugadores")
+		add_child(new_player)

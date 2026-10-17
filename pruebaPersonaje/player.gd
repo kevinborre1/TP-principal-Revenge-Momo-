@@ -47,16 +47,61 @@ var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 var item_en_mano: Node3D = null
 
 func _ready() -> void:
-	# APAGAR FÍSICAS Y COLISIONES INMEDIATAMENTE AL NACER
-	set_physics_process(false) # Apaga la gravedad y el movimiento
-	if collision_shape_3d:
-		collision_shape_3d.disabled = true # Evita que colisione con el host si aparecen juntos
-		
 	var id_player = name.to_int()
 	set_multiplayer_authority(id_player)
 	add_to_group("Jugador")
 	if has_node("MultiplayerSynchronizer"):
 		$MultiplayerSynchronizer.set_multiplayer_authority(id_player)
+		
+	var es_mi_personaje = (id_player == multiplayer.get_unique_id())
+	
+	await get_tree().process_frame
+	
+	if Global.modo_multijugador == "local":
+		if camara:
+			camara.make_current()
+		if barraStamina: barraStamina.show()
+		if barraSalud: barraSalud.show()
+		if inventario_manager: inventario_manager.show()
+		if has_node("CanvasLayer"): $CanvasLayer.show()
+		actualizar_barraStamina()	
+	
+	elif Global.modo_multijugador == "linea":
+		if es_mi_personaje:
+			if camara:
+				camara.call_deferred("make_current")
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			
+			if barraStamina: barraStamina.show()
+			if barraSalud: barraSalud.show()
+			if inventario_manager: inventario_manager.show()
+			if has_node("CanvasLayer"): $CanvasLayer.show()
+			actualizar_barraStamina()
+			
+			var terreno = get_tree().current_scene.find_child("Terrain3D", true, false)
+			if terreno != null and camara != null:
+				terreno.set_camera(camara)
+				
+				terreno.set_physics_process(true)
+		else:
+			if camara:
+				camara.current = false
+				
+			if barraStamina: barraStamina.hide()
+			if barraSalud: barraSalud.hide()
+			if inventario_manager: inventario_manager.hide()
+			if has_node("CanvasLayer"): $CanvasLayer.hide()
+		
+	var raycast: RayCast3D = find_child("RayCastDisparo", true, false)
+	if raycast:
+		raycast.add_exception(self)
+		
+	actualizar_modo_combate()
+	
+	# APAGAR FÍSICAS Y COLISIONES INMEDIATAMENTE AL NACER
+	set_physics_process(false) # Apaga la gravedad y el movimiento
+	if collision_shape_3d:
+		collision_shape_3d.disabled = true # Evita que colisione con el host si aparecen juntos
 	
 	# 1. Asignamos la posición inicial por defecto ANTES del timer (por si es partida nueva)
 	if Global.modo_multijugador == "linea":
@@ -67,9 +112,9 @@ func _ready() -> void:
 				global_position = Vector3(-3, 0, -33)
 		else:
 			if id_player == 1:
-				global_position = Vector3(36, 10, 1250)
+				global_position = Vector3(36, 2, 1250)
 			else:
-				global_position = Vector3(40, 10, 1250)
+				global_position = Vector3(40, 2, 1250)
 
 	# 2. Le damos medio segundo a la red y al mapa para cargar colisiones
 	await get_tree().create_timer(0.5).timeout
@@ -84,45 +129,7 @@ func _ready() -> void:
 	if collision_shape_3d:
 		collision_shape_3d.disabled = false
 	set_physics_process(true) # Reactiva el _physics_process (gravedad y controles)
-	
-	# PRENDER LA CÁMARA Y UI (Si es mi personaje)
-	var es_mi_personaje = (id_player == multiplayer.get_unique_id())
-	
-	if Global.modo_multijugador == "local":
-		if camara:
-			camara.make_current()
-		if barraStamina: barraStamina.show()
-		if barraSalud: barraSalud.show()
-		if inventario_manager: inventario_manager.show()
-		if has_node("CanvasLayer"): $CanvasLayer.show()
-		actualizar_barraStamina()
-		
-	elif Global.modo_multijugador == "linea":
-		if es_mi_personaje:
-			if camara:
-				camara.make_current()
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			
-			if barraStamina: barraStamina.show()
-			if barraSalud: barraSalud.show()
-			if inventario_manager: inventario_manager.show()
-			if has_node("CanvasLayer"): $CanvasLayer.show()
-			
-			actualizar_barraStamina()
-		else:
-			if camara:
-				camara.current = false
-			
-			if barraStamina: barraStamina.hide()
-			if barraSalud: barraSalud.hide()
-			if inventario_manager: inventario_manager.hide()
-			if has_node("CanvasLayer"): $CanvasLayer.hide()
-	
-	var raycast: RayCast3D = find_child("RayCastDisparo", true, false)
-	if raycast:
-		raycast.add_exception(self)
-		
-	actualizar_modo_combate()
+
 
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
