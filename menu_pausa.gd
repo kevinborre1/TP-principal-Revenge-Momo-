@@ -2,11 +2,13 @@ extends CanvasLayer
 var codigo = NetworkManager.get_node("TubeClient").session_id
 
 func _ready() -> void:
+	Global.menu_pausa_abierto = false
 	hide()
 	Ponercodigo()
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		visible = not visible
+		Global.menu_pausa_abierto = visible
 		if visible:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:

@@ -154,7 +154,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	# capturar mouse SOLO si el clic no toco un boton del menu
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if not Global.menu_pausa_abierto:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	# logica acciones y gameplay
 	# Activar Ragdoll
