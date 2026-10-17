@@ -62,11 +62,15 @@ offset_bottom = 554.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_avnxn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hh54w")
 
-[node name="Codigo" type="Label" parent="." unique_id=1477420123]
-offset_left = 958.0
-offset_top = 52.0
-offset_right = 1093.0
+[node name="CodigoSesion" type="Label" parent="." unique_id=1477420123]
+offset_left = 960.0
+offset_top = 33.0
+offset_right = 1095.0
 offset_bottom = 88.0
+theme_override_colors/font_color = Color(0.17373818, 0.146086, 0.051999092, 1)
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="SalirMenu" to="." method="_on_salir_menu_pressed"]
 [connection signal="pressed" from="SalirEscritorio" to="." method="_on_salir_escritorio_pressed"]

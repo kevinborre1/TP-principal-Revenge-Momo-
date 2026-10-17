@@ -1,5 +1,6 @@
 extends Area3D
 
+var ya_activado: bool = false
 var puede_guardar: bool = false
 static var posiciones_cargadas_en_escena: bool = false
 
@@ -19,8 +20,12 @@ func _ready() -> void:
 	puede_guardar = true
 
 func _on_body_entered(body: Node3D) -> void:
+	if ya_activado:
+		return
 	if not puede_guardar or not body.is_in_group("Jugador"):
 		return
 		
 	if multiplayer.is_server():
+		ya_activado = true
 		SaveAndLoad.save_game()
+		

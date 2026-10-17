@@ -1,8 +1,9 @@
 extends CanvasLayer
+var codigo = NetworkManager.get_node("TubeClient").session_id
 
 func _ready() -> void:
 	hide()
-	
+	Ponercodigo()
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		visible = not visible
@@ -23,3 +24,6 @@ func _on_salir_escritorio_pressed() -> void:
 	await get_tree().create_timer(0.2).timeout
 	NetworkManager.disconnect_game()
 	get_tree().quit()
+func Ponercodigo() -> void:
+	var cartel = $CodigoSesion
+	cartel.text = codigo
