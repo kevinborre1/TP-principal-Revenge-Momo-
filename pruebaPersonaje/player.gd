@@ -512,7 +512,10 @@ func equipar_para_todos(ruta_escena: String) -> void:
 	if item_en_mano is ItemBase:
 		item_en_mano.set_deferred("monitoring", false)
 		item_en_mano.set_deferred("monitorable", false)
-	
+	# ¡NUEVO! La pasamos a la capa 0 para que no exista en el mundo físico
+		item_en_mano.collision_layer = 0
+		item_en_mano.collision_mask = 0
+		
 	actualizar_modo_combate()
 
 @rpc("any_peer", "call_local", "reliable")
