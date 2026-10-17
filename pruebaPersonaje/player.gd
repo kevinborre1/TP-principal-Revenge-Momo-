@@ -453,7 +453,7 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func actualizar_modo_combate() -> void:
-	arma_equipada = mano.get_child_count() > 0
+	arma_equipada = (item_en_mano != null)
 	
 	if arma_equipada:
 		# 1. Configuramos el SpringArm para tercera persona de combate (detrás de la espalda)
@@ -523,6 +523,7 @@ func desequipar_para_todos() -> void:
 	if item_en_mano != null:
 		item_en_mano.queue_free()
 		item_en_mano = null 
+		
 	actualizar_modo_combate()
 
 @rpc("any_peer", "call_local", "reliable")
