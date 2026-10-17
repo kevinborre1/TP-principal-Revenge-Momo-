@@ -19,17 +19,24 @@ func set_mode(mode: GameMode, max_items: int = 3) -> void:
 
 
 func register_event() -> void:
-	# "recolectar grano" o "recibir golpe", según el modo activo
 	if current_count >= max_count:
 		return
-	
-	current_count += 1
-	count_changed.emit(current_count)
+		
+	if Global.modo_multijugador == "linea":
+		# Como ya configuramos que solo el Host entra aquí, el Host le avisa del nuevo número a todos
+		rpc("_actualizar_conteo_red", current_count + 1)
+	else:
+		_actualizar_conteo_red(current_count + 1)
+
+# Esta función actualiza el HUD y dispara la puerta para AMBOS jugadores al mismo tiempo
+@rpc("call_local", "reliable")
+func _actualizar_conteo_red(nuevo_conteo: int) -> void:
+	current_count = nuevo_conteo
+	count_changed.emit(current_count) # ¡Acá la puerta escucha la señal y se abre sola!
 	
 	if current_count >= max_count:
 		objective_completed.emit(current_mode)
 		_handle_mode_completion()
-
 
 func _handle_mode_completion() -> void:
 	match current_mode:

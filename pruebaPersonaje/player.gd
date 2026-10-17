@@ -422,8 +422,6 @@ func recibir_cura(puntos_cura: int) -> bool:
 	actualizar_barraDeVida()
 	return true
 	
-
-	
 #Funciones de minijuego
 func abrir_minijuego() -> void:
 	if minijuego_instance:
