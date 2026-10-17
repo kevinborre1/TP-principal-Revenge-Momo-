@@ -11,7 +11,7 @@ size = Vector3(0.40200806, 0.28179932, 1)
 script = ExtResource("1_sjkoq")
 nombre_item = "NerfONada"
 icono = ExtResource("2_7c0ja")
-ruta_escena = "C:/Users/Dell/TP-principal-Revenge-Momo-/Sistema-Combate/Arma.tscn"
+ruta_escena = "res://Sistema-Combate/Arma.tscn"
 es_equipable = true
 
 [node name="Sketchfab_Scene" parent="." unique_id=1246241082 instance=ExtResource("2_luj8l")]
