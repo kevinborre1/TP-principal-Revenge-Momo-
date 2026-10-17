@@ -43,38 +43,37 @@ func _ready() -> void:
 	elif Global.modo_multijugador == "linea":
 		# MODO EN LÍNEA
 		if not multiplayer.is_server():
+			multiplayer.server_disconnected.connect(_on_servidor_desconectado)
 			return
 
 		add_player(1)
 		for peer_id in multiplayer.get_peers():
 			add_player(peer_id)
 		multiplayer.peer_connected.connect(add_player)
-		multiplayer.peer_disconnected.connect(_disconnected_player)
+		#multiplayer.peer_disconnected.connect(_disconnected_player)
 
 func add_player(peer_id: int) -> void:
 	var new_player = player_scene.instantiate()
 	new_player.name = str(peer_id)
 	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
 	
+	new_player.add_to_group("jugadores")
+	
 	add_child(new_player)
 
-func _disconnected_player(peer_id: int) -> void:
-	var player_deleted = get_node_or_null(str(peer_id))
-	if player_deleted:
-		player_deleted.queue_free()
+#func _disconnected_player(peer_id: int) -> void:
+	#var player_deleted = get_node_or_null(str(peer_id))
+	#if player_deleted:
+		#player_deleted.queue_free()
 		
 func _on_servidor_desconectado() -> void:
+	if not is_inside_tree() or get_tree() == null:
+		return
 	print("El host se ha desconectado. Encendiendo pantalla de aviso...")
-	
-	# Desconectamos la red para que no siga intentando sincronizar nada
-	multiplayer.multiplayer_peer = null
-	
 	# Pausamos el mundo 3D por completo
 	get_tree().paused = true
-	
 	# Liberamos el ratón para que el jugador pueda hacer clic
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
 	# Mostramos nuestra pantalla negra de error (tapa la pantalla gris)
 	pantalla_desconexion.show()
 
