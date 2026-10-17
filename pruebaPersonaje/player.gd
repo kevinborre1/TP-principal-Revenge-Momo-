@@ -506,8 +506,8 @@ func equipar_para_todos(ruta_escena: String) -> void:
 		item_en_mano = escena_nueva.instantiate()
 		mano.add_child(item_en_mano)
 		
-		#if item_en_mano is Arma:
-			#item_en_mano.desactivar_para_mano()
+		if item_en_mano is Arma:
+			item_en_mano.desactivar_para_mano()
 			
 		actualizar_modo_combate()
 
