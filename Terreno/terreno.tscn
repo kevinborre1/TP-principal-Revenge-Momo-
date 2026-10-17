@@ -7250,7 +7250,7 @@ shape = SubResource("BoxShape3D_rsdri")
 
 [node name="Enemigos VictorBars" type="Node3D" parent="VictorBars" unique_id=322692753]
 
-[node name="enemigoLider" type="CharacterBody3D" parent="VictorBars/Enemigos VictorBars" unique_id=446794919 groups=["Lider"]]
+[node name="enemigoLider" type="CharacterBody3D" parent="VictorBars/Enemigos VictorBars" unique_id=446794919 groups=["lider"]]
 transform = Transform3D(0.052633945, 0, 0.9986139, 0, 1, 0, -0.9986139, 0, 0.052633945, 107.57399, 0.037316322, 1219.8806)
 script = ExtResource("13_yoo2w")
 es_lider = true
