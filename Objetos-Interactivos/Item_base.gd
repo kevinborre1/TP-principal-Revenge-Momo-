@@ -4,6 +4,7 @@ class_name ItemBase
 @export var nombre_item: String = "Pocion"
 @export var icono: Texture2D
 @export var ruta_escena: String = ""
+@export var es_equipable: bool = false # ¡Nueva variable!
 
 # Esta función es llamada por el servidor tras agregarse al inventario
 func ser_recogido() -> void:

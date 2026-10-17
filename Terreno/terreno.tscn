@@ -69,6 +69,7 @@
 [ext_resource type="VideoStream" uid="uid://drxywj2ougg8m" path="res://videos/cinematoVictor.ogv" id="60_lj8x8"]
 [ext_resource type="PackedScene" uid="uid://blibkmsitdbed" path="res://assets/pc_02.glb" id="62_2jws4"]
 [ext_resource type="Script" uid="uid://dqtdwljsqwxij" path="res://Terreno/ahogamiento.gd" id="64_vedoo"]
+[ext_resource type="PackedScene" uid="uid://c6yr2jemw2ntr" path="res://Sistema-Combate/Arma.tscn" id="65_qtcef"]
 [ext_resource type="Texture2D" uid="uid://dwvdr1rjmqtn8" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_0.png" id="65_yeivc"]
 [ext_resource type="Texture2D" uid="uid://hj72jsy4hv4c" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_1.png" id="66_u51io"]
 [ext_resource type="Texture2D" uid="uid://xv4xcb4q066w" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_2.png" id="67_xe5tx"]
@@ -9043,6 +9044,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.55722, 2, -65.24487)
 [node name="BotellaCerveza3" parent="VictorBars/Consumibles" unique_id=554783823 instance=ExtResource("23_byfxw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.855804, 2, -34.490234)
 cantidad_curacion = 40
+
+[node name="Arma" parent="VictorBars/Consumibles" unique_id=628720648 instance=ExtResource("65_qtcef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.787243, 0.67231214, 1219.7255)
 
 [node name="PuntoAparicionDespCinematica" type="Marker3D" parent="VictorBars" unique_id=93465238]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 1221)

@@ -43,7 +43,8 @@ var minijuego_instance: Control = null
 var camera_rotation := Vector2.ZERO
 var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 # Ruta hacia tu BoneAttachment3D de la mano:
-@onready var mano_attachment: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
+@onready var mano: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
+var item_en_mano: Node3D = null
 
 func _ready() -> void:
 	# APAGAR FÍSICAS Y COLISIONES INMEDIATAMENTE AL NACER
@@ -155,11 +156,21 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# inventario
 	if event is InputEventKey and event.pressed and not event.echo:
-		if event.physical_keycode == KEY_1: inventario_manager.seleccionar_slot(0)
-		elif event.physical_keycode == KEY_2: inventario_manager.seleccionar_slot(1)
-		elif event.physical_keycode == KEY_3: inventario_manager.seleccionar_slot(2)
-		elif event.physical_keycode == KEY_4: inventario_manager.seleccionar_slot(3)
-		elif event.physical_keycode == KEY_5: inventario_manager.seleccionar_slot(4)
+		if event.physical_keycode == KEY_1:
+			inventario_manager.seleccionar_slot(0, self)
+			actualizar_modo_combate()
+		elif  event.physical_keycode == KEY_2: 
+			inventario_manager.seleccionar_slot(1, self)
+			actualizar_modo_combate()
+		elif event.physical_keycode == KEY_3: 
+			inventario_manager.seleccionar_slot(2, self)
+			actualizar_modo_combate()
+		elif event.physical_keycode == KEY_4: 
+			inventario_manager.seleccionar_slot(3, self)
+			actualizar_modo_combate()
+		elif event.physical_keycode == KEY_5: 
+			inventario_manager.seleccionar_slot(4, self)
+			actualizar_modo_combate()
 		
 	# disparar y rotar el modelo hacia la camara
 	if event.is_action_pressed("disparar") and arma_equipada:
@@ -355,7 +366,7 @@ func intentar_recoger_item():
 		
 		# 2. Si es un ítem normal del inventario (como las botellas)
 		elif cuerpo is ItemBase:
-			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
+			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena, cuerpo.es_equipable)
 			if exito:
 				cuerpo.ser_recogido()
 				break
@@ -444,7 +455,7 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func actualizar_modo_combate() -> void:
-	arma_equipada = mano_attachment.get_child_count() > 0
+	arma_equipada = mano.get_child_count() > 0
 	
 	if arma_equipada:
 		# 1. Configuramos el SpringArm para tercera persona de combate (detrás de la espalda)
@@ -466,6 +477,52 @@ func actualizar_modo_combate() -> void:
 		punto_de_mira.hide()
 		
 		print("Arma guardada")
+		
+# 1. Tu inventario llamará a esta función cuando elijas el arma
+func solicitar_equipar(ruta_escena: String) -> void:
+	if not is_multiplayer_authority(): 
+		return
+# Le decimos a todos los clientes que te pongan el arma en la mano
+	equipar_para_todos.rpc(ruta_escena)
+
+# 2. Tu inventario llamará a esta cuando la deselecciones
+func solicitar_desequipar() -> void:
+	if not is_multiplayer_authority(): 
+		return
+	desequipar_para_todos.rpc()
+
+# --- FUNCIONES MULTIJUGADOR ---
+@rpc("any_peer", "call_local", "reliable")
+func equipar_para_todos(ruta_escena: String) -> void:
+# Si ya tenías algo en la mano, lo borramos primero
+	if item_en_mano != null:
+		item_en_mano.queue_free()
+		item_en_mano = null
+
+	if ruta_escena == "":
+		return
+# Cargamos el archivo del arma y lo creamos
+
+	var escena_nueva = load(ruta_escena)	
+	if escena_nueva:
+		item_en_mano = escena_nueva.instantiate()
+		mano.add_child(item_en_mano)
+
+# TRUCO CLAVE: Como el arma en la mano hereda de ItemBase (Area3D), 
+# apagamos su detección de colisiones. Así evitamos que tú o tu 
+# amigo puedan "recoger" el arma que ya tienes agarrada.
+	if item_en_mano is ItemBase:
+		item_en_mano.set_deferred("monitoring", false)
+		item_en_mano.set_deferred("monitorable", false)
+	
+	actualizar_modo_combate()
+
+@rpc("any_peer", "call_local", "reliable")
+func desequipar_para_todos() -> void:
+	if item_en_mano != null:
+		item_en_mano.queue_free()
+		item_en_mano = null 
+	actualizar_modo_combate()
 
 @rpc("any_peer", "call_local", "reliable")
 func mover_a(nueva_pos: Vector3) -> void:

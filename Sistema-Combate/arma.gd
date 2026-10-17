@@ -1,10 +1,14 @@
-extends Node3D
+extends ItemBase 
+class_name arma
 
 @export var escena_bala: PackedScene = preload("res://Sistema-Combate/Bala.tscn")
 @onready var punto_de_disparo: Marker3D = $PuntoDeDisparo
 
 @export var cadencia: float = 0.2
 var puede_disparar: bool = true
+
+func ser_recogido() -> void:
+	queue_free()
 
 func _jugador_dueño() -> Player:
 	var nodo: Node = self

@@ -9,20 +9,31 @@ var slot_seleccionado: int = 0
 func _ready() -> void:
 	actualizar_ui_seleccion()
 
-# Cambia el slot activo al presionar 1, 2, 3, 4, 5
-func seleccionar_slot(indice: int) -> void:
+# 1. ACTUALIZADO: Ahora recibe al 'player' para poder decirle que equipe o desequipe el arma
+func seleccionar_slot(indice: int, player: Node3D) -> void:
 	if indice >= 0 and indice < items.size():
 		slot_seleccionado = indice
 		actualizar_ui_seleccion()
 		print("Slot activo: ", slot_seleccionado + 1)
+		
+		# --- NUEVA LÓGICA DE EQUIPAMIENTO ---
+		var item_data = items[slot_seleccionado]
+		
+		# Si el slot tiene un objeto Y además está marcado como equipable
+		if item_data != null and item_data.has("es_equipable") and item_data["es_equipable"] == true:
+			player.solicitar_equipar(item_data["ruta_escena"])
+		else:
+			# Si el slot está vacío, o es un consumible (cerveza), quitamos lo que haya en la mano
+			player.solicitar_desequipar()
 
-# Recibe un ítem del jugador y lo guarda en el primer espacio libre
-func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String) -> bool:
+# 2. ACTUALIZADO: Se agrega 'es_equipable' con un valor por defecto en falso
+func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String, es_equipable: bool = false) -> bool:
 	for i in range(items.size()):
 		if items[i] == null:
 			items[i] = {
 				"nombre": nombre_item,
-				"ruta_escena": ruta
+				"ruta_escena": ruta,
+				"es_equipable": es_equipable # Guardamos si es un arma o no
 			}
 			var icono_visual = slots_ui[i].get_node("icono")
 			if icono_visual:
