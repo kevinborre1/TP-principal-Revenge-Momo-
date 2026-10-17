@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwkdw855fyh6n"
-path.s3tc="res://.godot/imported/building_0.jpg-23c5a8a948f3dc469cceb47cbeba74a2.s3tc.ctex"
+uid="uid://bqkcjw6sn4fdu"
+path.s3tc="res://.godot/imported/building_2.png-e3e0f56dead4ac650065cede3184776c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "4d1d84aae1d4aa124cb33a790b53d1a2"
+"md5": "a06c4241d78922ef0691b9deb5512e62"
 }
 
 [deps]
 
-source_file="res://Terreno/building_0.jpg"
-dest_files=["res://.godot/imported/building_0.jpg-23c5a8a948f3dc469cceb47cbeba74a2.s3tc.ctex"]
+source_file="res://Terreno/Bulding_jpgYpng/building_2.png"
+dest_files=["res://.godot/imported/building_2.png-e3e0f56dead4ac650065cede3184776c.s3tc.ctex"]
 
 [params]
 
