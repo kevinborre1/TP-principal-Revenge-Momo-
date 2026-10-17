@@ -135,3 +135,29 @@ func _cargar_mapa_correspondiente() -> void:
 			get_tree().change_scene_to_file(data.escena_actual)
 			return
 	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+	
+func borrar_guardado(ruta: String) -> bool:
+	# Si no hay ruta o el archivo no existe, no hace nada ni da error
+	if ruta == "" or not FileAccess.file_exists(ruta):
+		print("No hay guardado para borrar en: ", ruta)
+		return false
+	
+	var err := DirAccess.remove_absolute(ruta)
+	if err != OK:
+		push_warning("No se pudo borrar %s (error %d)" % [ruta, err])
+		return false
+	
+	print("Guardado borrado: ", ruta)
+	return true
+
+
+func _on_borrar_guardado_slot_1_pressed() -> void:
+	borrar_guardado(RUTA_SAVE1)
+
+
+func _on_borrar_guardado_slot_2_pressed() -> void:
+	borrar_guardado(RUTA_SAVE2)
+
+
+func _on_borrar_guardado_slot_3_pressed() -> void:
+	borrar_guardado(RUTA_SAVE3)
