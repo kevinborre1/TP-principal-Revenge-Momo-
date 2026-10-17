@@ -7,4 +7,5 @@ func _daniar(danio: int) -> void:
 	if get_parent():
 		get_parent().queue_free()
 	else:
+		SaveAndLoad.sumar_estadistica("barrilesRotos")
 		queue_free()

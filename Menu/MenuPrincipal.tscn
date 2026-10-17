@@ -29,6 +29,7 @@ offset_right = 1156.0
 offset_bottom = 647.0
 texture = ExtResource("2_75c1s")
 expand_mode = 1
+metadata/_edit_group_ = true
 
 [node name="Botones" type="VBoxContainer" parent="." unique_id=972915465]
 layout_mode = 0

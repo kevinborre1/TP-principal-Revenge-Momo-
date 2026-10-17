@@ -1,5 +1,5 @@
 extends Area3D
-
+@export var nombre_logro: String = ""
 var ya_activado: bool = false
 var puede_guardar: bool = false
 static var posiciones_cargadas_en_escena: bool = false
@@ -27,5 +27,10 @@ func _on_body_entered(body: Node3D) -> void:
 		
 	if multiplayer.is_server():
 		ya_activado = true
+		SaveAndLoad.actualizar_logro(nombre_logro)
 		SaveAndLoad.save_game()
+@rpc("authority", "call_local", "reliable")
+func _dar_logro(nombre: String) -> void:
+	if nombre != "":
+		SaveAndLoad.actualizar_logro(nombre)
 		

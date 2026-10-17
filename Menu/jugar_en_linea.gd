@@ -9,7 +9,7 @@ extends Control
 
 # Referencia al AutoLoad NetworkManager
 @onready var tube_client = NetworkManager.get_node("TubeClient")
-
+const LOGROS = "user://logros.tres"
 const RUTA_SAVE1 = "user://partida1.tres"
 const RUTA_SAVE2 = "user://partida2.tres"
 const RUTA_SAVE3 = "user://partida3.tres"
@@ -24,7 +24,6 @@ func _ready() -> void:
 	tube_client.session_created.connect(_on_session_created)
 	tube_client.session_joined.connect(_on_session_joined)
 	tube_client.error_raised.connect(_on_error)
-
 
 func _on_hostear_partida_pressed() -> void:
 	_iniciar_host(RUTA_SAVE1)
@@ -51,10 +50,8 @@ func _iniciar_host(ruta: String) -> void:
 	cartel_error.show()
 	tube_client.create_session()
 
-
 func _on_volver_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
-
 
 func _on_codigo_text_submitted(new_text: String) -> void:
 	var codigo_limpio = new_text.strip_edges()
@@ -80,12 +77,10 @@ func _on_session_created() -> void:
 	print("Sesión creada. Código copiado: ", codigo)
 	_cargar_mapa_correspondiente()
 
-
 func _on_session_joined() -> void:
 	intentos_conexion = 0 # reinicio cuando hay exito
 	print("Unido exitosamente al Host")
 	_cargar_mapa_correspondiente()
-
 
 func _on_error(_code, message) -> void:
 	# verificar si el error es de tracker o fallo al unirse
@@ -111,7 +106,6 @@ func _on_error(_code, message) -> void:
 	cartel_error.text = "Error de conexion: " + str(message)
 	cartel_error.show()
 	_enable_interface()
-
 
 func _set_interface(habilitada: bool) -> void:
 	for boton in [host_button, host_button_2, host_button_3, back_button]:
@@ -153,11 +147,8 @@ func borrar_guardado(ruta: String) -> bool:
 
 func _on_borrar_guardado_slot_1_pressed() -> void:
 	borrar_guardado(RUTA_SAVE1)
-
-
 func _on_borrar_guardado_slot_2_pressed() -> void:
 	borrar_guardado(RUTA_SAVE2)
-
-
 func _on_borrar_guardado_slot_3_pressed() -> void:
 	borrar_guardado(RUTA_SAVE3)
+	

@@ -1,7 +1,8 @@
 extends Node
-
+const RUTA_LOGROS = "user://Logros.tres"
+var logros: DataClassLogros
 @export var rutaUtilizada: String = ""
-
+@export var datos_logros: DataClassLogros = DataClassLogros.new()
 func _es_jugador_host(jugador: Node) -> bool:
 	if jugador.name == "1" or jugador.name == "Host":
 		return true
@@ -108,3 +109,68 @@ func _cliente_aplicar_posicion_guardada(peer_id: int, nueva_pos: Vector3) -> voi
 			if jugador is CharacterBody3D:
 				jugador.velocity = Vector3.ZERO
 			jugador.global_position = nueva_pos
+
+func actualizar_logro(nombre_logro: String) -> void:
+	if logros == null:
+		cargar_logros()
+
+	for propiedad in logros.get_property_list():
+		if propiedad.name == nombre_logro:
+			logros.set(nombre_logro, true)
+			guardar_logros()
+			print("Logro desbloqueado: ", nombre_logro)
+			return
+
+	push_warning("No existe el logro: " + nombre_logro)
+
+func cargar_logros() -> void:
+	if ResourceLoader.exists(RUTA_LOGROS):
+		logros = ResourceLoader.load(
+			RUTA_LOGROS,
+			"",
+			ResourceLoader.CACHE_MODE_IGNORE
+		) as DataClassLogros
+
+	if logros == null:
+		logros = DataClassLogros.new()
+		guardar_logros()
+
+func sumar_estadistica(nombre: String) -> void:
+	if logros == null:
+		cargar_logros()
+
+	# Verificar que exista la estadística
+	var valor_actual = logros.get(nombre)
+
+	if valor_actual == null:
+		push_warning("No existe la estadística: " + nombre)
+		return
+
+	# Incrementar el contador
+	logros.set(nombre, valor_actual + 1)
+
+	# Comprobar si se desbloquea algún logro
+	match nombre:
+		"muertes":
+			if logros.muertes >= 10:
+				actualizar_logro("Moriste10Veces")
+
+		"enemigosAsesinados":
+			if logros.enemigosAsesinados >= 10:
+				actualizar_logro("AsesinasteA10Enemigos")
+
+		"barrilesRotos":
+			if logros.barrilesRotos >= 15:
+				actualizar_logro("Rompiste15Barriles")
+
+	guardar_logros()
+
+func guardar_logros() -> void:
+	
+	if logros == null:
+		return
+
+	var error := ResourceSaver.save(logros, RUTA_LOGROS)
+
+	if error != OK:
+		push_error("No se pudieron guardar los logros.")

@@ -1,5 +1,6 @@
 extends CanvasLayer
 var codigo = NetworkManager.get_node("TubeClient").session_id
+@onready var panel_logros = $"../Logros"
 
 func _ready() -> void:
 	Global.menu_pausa_abierto = false
@@ -12,6 +13,7 @@ func _input(event: InputEvent) -> void:
 		if visible:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
+			panel_logros.hide()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 func _on_salir_menu_pressed() -> void:
@@ -29,3 +31,7 @@ func _on_salir_escritorio_pressed() -> void:
 func Ponercodigo() -> void:
 	var cartel = $CodigoSesion
 	cartel.text = codigo
+
+
+func _on_logros_pressed() -> void:
+	panel_logros.visible = not panel_logros.visible

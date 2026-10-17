@@ -103,6 +103,7 @@ func _daniar(danio: int) -> void:
 	# Aquí puedes agregar efectos visuales, partículas de impacto o sangre en "transformacion_bala.origin"
 	
 	if vida_actual <= 0:
+		SaveAndLoad.sumar_estadistica("enemigosAsesinados")
 		morir()
 
 func morir() -> void:
