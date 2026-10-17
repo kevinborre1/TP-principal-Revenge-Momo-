@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crefucvws2ep4"]
 
-[ext_resource type="Script" uid="uid://cpijd7v4m7hdc" path="res://Terreno/botella_cerveza.gd" id="1_ftwm8"]
+[ext_resource type="Script" uid="uid://cpijd7v4m7hdc" path="res://Objetos-Interactivos/botella_cerveza.gd" id="1_ftwm8"]
 [ext_resource type="Texture2D" uid="uid://bc3icldv1i6an" path="res://vitictorBar/assetsCocina/textures/cerveza.jpg" id="2_g27hx"]
 [ext_resource type="PackedScene" uid="uid://chha660qt0ow1" path="res://vitictorBar/assetsCocina/glb/beer_bottle.glb" id="3_4okmu"]
 
