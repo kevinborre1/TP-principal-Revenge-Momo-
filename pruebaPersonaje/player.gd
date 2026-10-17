@@ -501,22 +501,15 @@ func equipar_para_todos(ruta_escena: String) -> void:
 		return
 # Cargamos el archivo del arma y lo creamos
 
-	var escena_nueva = load(ruta_escena)	
+	var escena_nueva = load(ruta_escena)
 	if escena_nueva:
 		item_en_mano = escena_nueva.instantiate()
 		mano.add_child(item_en_mano)
-
-# TRUCO CLAVE: Como el arma en la mano hereda de ItemBase (Area3D), 
-# apagamos su detección de colisiones. Así evitamos que tú o tu 
-# amigo puedan "recoger" el arma que ya tienes agarrada.
-	if item_en_mano is ItemBase:
-		item_en_mano.set_deferred("monitoring", false)
-		item_en_mano.set_deferred("monitorable", false)
-	# ¡NUEVO! La pasamos a la capa 0 para que no exista en el mundo físico
-		item_en_mano.collision_layer = 0
-		item_en_mano.collision_mask = 0
 		
-	actualizar_modo_combate()
+		#if item_en_mano is Arma:
+			#item_en_mano.desactivar_para_mano()
+			
+		actualizar_modo_combate()
 
 @rpc("any_peer", "call_local", "reliable")
 func desequipar_para_todos() -> void:

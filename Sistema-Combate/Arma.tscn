@@ -7,21 +7,19 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
 size = Vector3(0.40200806, 0.28179932, 1)
 
-[node name="Arma" type="Node3D" unique_id=628720648]
-
-[node name="Area3D" type="Area3D" parent="." unique_id=278812270]
+[node name="Area3D" type="Area3D" unique_id=917328590]
 script = ExtResource("1_sjkoq")
 nombre_item = "NerfONada"
 icono = ExtResource("2_7c0ja")
 ruta_escena = "C:/Users/Dell/TP-principal-Revenge-Momo-/Sistema-Combate/Arma.tscn"
 es_equipable = true
 
-[node name="Sketchfab_Scene" parent="Area3D" unique_id=874161966 instance=ExtResource("2_luj8l")]
+[node name="Sketchfab_Scene" parent="." unique_id=1246241082 instance=ExtResource("2_luj8l")]
 transform = Transform3D(-3.059797e-09, 0, -0.07, -0.0147154415, 0.06843578, 6.4323236e-10, 0.06843578, 0.0147154415, -2.9914229e-09, 0.0060698986, -0.17855796, -0.11655143)
 
-[node name="PuntoDeDisparo" type="Marker3D" parent="Area3D" unique_id=1203174570]
+[node name="PuntoDeDisparo" type="Marker3D" parent="." unique_id=1697104862]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032410584, -0.05801283, 0.21471941)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1337889951]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=215258738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016738892, -0.12124634, 0)
 shape = SubResource("BoxShape3D_lfkbx")

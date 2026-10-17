@@ -1,5 +1,5 @@
 extends ItemBase 
-class_name arma
+class_name Arma
 
 @export var escena_bala: PackedScene = preload("res://Sistema-Combate/Bala.tscn")
 @onready var punto_de_disparo: Marker3D = $PuntoDeDisparo
@@ -8,6 +8,7 @@ class_name arma
 var puede_disparar: bool = true
 
 func ser_recogido() -> void:
+	desactivar_para_mano()
 	queue_free()
 
 func _jugador_dueño() -> Player:
@@ -68,3 +69,14 @@ func generar_bala(posicion_inicial: Vector3, direccion: Vector3) -> void:
 	bala.global_position = posicion_inicial
 	bala._direccion_salida(direccion)
 	get_tree().current_scene.add_child(bala)
+	
+func desactivar_para_mano() -> void:
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+	collision_layer = 0
+	collision_mask = 0
+	
+	# Si tienes un CollisionShape3D hijo, también lo apagamos por seguridad
+	var colision = get_node_or_null("CollisionShape3D")
+	if colision:
+		colision.set_deferred("disabled", true)	
