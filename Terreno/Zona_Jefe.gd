@@ -8,6 +8,7 @@ enum Modo { UNO_AL_AZAR, AMBOS }
 @export var radio: float = 4.0
 @export var dano: int = 30
 
+var _detenida := false
 var jugadores_en_zona: Array = []
 var _timer: Timer
 
@@ -30,7 +31,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if not body.is_in_group("Jugador") or body in jugadores_en_zona:
 		return
 	jugadores_en_zona.append(body)
-	if _timer.is_stopped():
+	if _timer.is_stopped() and not _detenida:
 		_timer.start()
 
 
@@ -65,6 +66,15 @@ func _punto_en_suelo(jugador: Node3D) -> Vector3:
 		return resultado.position
 	return origen
 
+func set_intervalo(nuevo: float) -> void:
+	intervalo = nuevo
+	if _timer:
+		_timer.wait_time = nuevo
+
+func detener() -> void:
+	_detenida = true
+	if _timer:
+		_timer.stop()
 
 @rpc("authority", "call_local", "reliable")
 func lanzar_ataque(pos: Vector3) -> void:
