@@ -2019,3 +2019,9 @@ shape = SubResource("BoxShape3D_1weqr")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=225265740]
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
 spawn_path = NodePath("..")
+
+[node name="BotellaCerveza" parent="." unique_id=1683750601 instance=ExtResource("13_j1fac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.888447, 0.7252264, -15.832955)
+
+[node name="BotellaCerveza2" parent="." unique_id=914954857 instance=ExtResource("13_j1fac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.171358, 0.14579058, -17.620838)
