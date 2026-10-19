@@ -15,15 +15,10 @@ const RUTA_SAVE2 = "user://partida2.tres"
 const RUTA_SAVE3 = "user://partida3.tres"
 
 var ultimo_codigo_ingresado: String = ""
-var intentos_conexion: int = 0
-const MAX_INTENTOS: int = 3
 
 func _ready() -> void:
-	# Si entrás a este menú sin elegir slot (por ejemplo, para unirte), no hay ruta
+	# Si entrás a este menú sin elegir slot, no hay ruta
 	SaveAndLoad.rutaUtilizada = ""
-	tube_client.session_created.connect(_on_session_created)
-	tube_client.session_joined.connect(_on_session_joined)
-	tube_client.error_raised.connect(_on_error)
 
 func _on_hostear_partida_pressed() -> void:
 	_iniciar_host(RUTA_SAVE1)
@@ -37,18 +32,18 @@ func _on_hostear_slot_3_pressed() -> void:
 func _iniciar_host(ruta: String) -> void:
 	print("Slot elegido: ", ruta)
 	_disable_interface()
-	
 	ultimo_codigo_ingresado = ""
-	intentos_conexion = 0
-	
-	SaveAndLoad.rutaUtilizada = ruta  # antes de crear la sesión
+	SaveAndLoad.rutaUtilizada = ruta  
 	
 	if ResourceLoader.exists(ruta):
 		cartel_error.text = "Cargando partida guardada..."
 	else:
-		cartel_error.text = "Creando nueva sesión..."
+		cartel_error.text = "Cargando mapa para crear sesión..."
 	cartel_error.show()
-	tube_client.create_session()
+	
+	# GUARDAMOS LA INTENCIÓN Y CAMBIAMOS DE ESCENA PRIMERO
+	NetworkManager.quiero_ser_host = true
+	_cargar_mapa_correspondiente()
 
 func _on_volver_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
@@ -63,49 +58,14 @@ func _on_codigo_text_submitted(new_text: String) -> void:
 		
 	_disable_interface()
 	ultimo_codigo_ingresado = codigo_limpio
-	intentos_conexion = 0
 	
-	cartel_error.text = "Conectando al Host..."
+	cartel_error.text = "Cargando mapa para conectar..."
 	cartel_error.show()
 	
-	tube_client.join_session(codigo_limpio)
-
-func _on_session_created() -> void:
-	intentos_conexion = 0 # reinicio para cuando hay exito en conectarse
-	var codigo = tube_client.session_id
-	DisplayServer.clipboard_set(codigo)
-	print("Sesión creada. Código copiado: ", codigo)
+	# GUARDAMOS LA INTENCIÓN Y CAMBIAMOS DE ESCENA PRIMERO
+	NetworkManager.quiero_ser_host = false
+	NetworkManager.codigo_para_unirse = codigo_limpio
 	_cargar_mapa_correspondiente()
-
-func _on_session_joined() -> void:
-	intentos_conexion = 0 # reinicio cuando hay exito
-	print("Unido exitosamente al Host")
-	_cargar_mapa_correspondiente()
-
-func _on_error(_code, message) -> void:
-	# verificar si el error es de tracker o fallo al unirse
-	if _code == TubeClient.SessionError.ONLINE_SIGNALING_FAILED or _code == TubeClient.SessionError.JOIN_SESSION_FAILED:
-		if intentos_conexion < MAX_INTENTOS:
-			intentos_conexion += 1
-			cartel_error.text = "Fallo en servidor. Reintentando... (" + str(intentos_conexion) + "/" + str(MAX_INTENTOS) + ")"
-			cartel_error.show()
-			
-			if tube_client.state != TubeClient.State.IDLE:
-				tube_client.leave_session()
-			
-			await get_tree().create_timer(2.0).timeout
-			
-			if ultimo_codigo_ingresado != "":
-				tube_client.join_session(ultimo_codigo_ingresado)
-			else:
-				tube_client.create_session()
-			return
-	
-	# si se terminan los intentos, abortamos
-	intentos_conexion = 0
-	cartel_error.text = "Error de conexion: " + str(message)
-	cartel_error.show()
-	_enable_interface()
 
 func _set_interface(habilitada: bool) -> void:
 	for boton in [host_button, host_button_2, host_button_3, back_button]:
@@ -120,7 +80,6 @@ func _disable_interface() -> void:
 func _enable_interface() -> void:
 	_set_interface(true)
 
-
 func _cargar_mapa_correspondiente() -> void:
 	var ruta = SaveAndLoad.rutaUtilizada
 	if ruta != "" and ResourceLoader.exists(ruta):
@@ -131,7 +90,6 @@ func _cargar_mapa_correspondiente() -> void:
 	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
 	
 func borrar_guardado(ruta: String) -> bool:
-	# Si no hay ruta o el archivo no existe, no hace nada ni da error
 	if ruta == "" or not FileAccess.file_exists(ruta):
 		print("No hay guardado para borrar en: ", ruta)
 		return false
@@ -144,11 +102,9 @@ func borrar_guardado(ruta: String) -> bool:
 	print("Guardado borrado: ", ruta)
 	return true
 
-
 func _on_borrar_guardado_slot_1_pressed() -> void:
 	borrar_guardado(RUTA_SAVE1)
 func _on_borrar_guardado_slot_2_pressed() -> void:
 	borrar_guardado(RUTA_SAVE2)
 func _on_borrar_guardado_slot_3_pressed() -> void:
 	borrar_guardado(RUTA_SAVE3)
-	

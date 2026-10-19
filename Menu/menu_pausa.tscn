@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://caigq85mwv3qk" path="res://menu_pausa.gd" id="1_ab6gj"]
 [ext_resource type="Texture2D" uid="uid://b61dvv6tlyqnk" path="res://assets/MenuPausa.jpeg" id="2_ecdg0"]
+[ext_resource type="Texture2D" uid="uid://dw12hvte76g4e" path="res://Imagenes/logoCopiar.png" id="3_ecdg0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4v7s"]
 
@@ -17,6 +18,8 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5s0fj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avnxn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ab6gj"]
 
 [node name="MenuPausa" type="CanvasLayer" unique_id=405466910]
 script = ExtResource("1_ab6gj")
@@ -72,6 +75,15 @@ theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BotonCopiarCodigo" type="Button" parent="." unique_id=1044772683]
+offset_left = 922.0
+offset_top = 37.0
+offset_right = 962.0
+offset_bottom = 77.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ab6gj")
+icon = ExtResource("3_ecdg0")
+
 [connection signal="pressed" from="Logros" to="." method="_on_logros_pressed"]
 [connection signal="pressed" from="SalirMenu" to="." method="_on_salir_menu_pressed"]
 [connection signal="pressed" from="SalirEscritorio" to="." method="_on_salir_escritorio_pressed"]
+[connection signal="pressed" from="BotonCopiarCodigo" to="." method="_on_boton_copiar_codigo_pressed"]

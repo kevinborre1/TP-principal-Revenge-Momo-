@@ -2,6 +2,9 @@ extends Node3D
 
 signal host_cerro_partida
 
+var quiero_ser_host: bool = false
+var codigo_para_unirse: String = ""
+
 @onready var tube_client: TubeClient = $TubeClient
 
 func _ready() -> void:

@@ -40,25 +40,25 @@ func _ready() -> void:
 		p2.position = Vector3(40, 2, 1250)
 		subviewport2.add_child(p2)
 		
-	elif Global.modo_multijugador == "linea":
+	if Global.modo_multijugador == "linea":
 		# MODO EN LÍNEA
-		if multiplayer.is_server():
-			# El Host solo crea su propio personaje
-			add_player(1)
-		else:
-			# El Cliente escucha si el servidor se cae
-			NetworkManager.host_cerro_partida.connect(_on_servidor_desconectado)
+		if NetworkManager.quiero_ser_host:
+			# El host escucha cuando alguien se conecta para crearle su personaje
+			multiplayer.peer_connected.connect(_on_peer_connected)
 			
-		# RED DE SEGURIDAD: Llamamos a la corrutina que evitará perder los paquetes
-		_reclamar_personajes()
+			# Copiamos el código al portapapeles cuando se crea la sesión
+			NetworkManager.tube_client.session_created.connect(_on_session_created)
+			NetworkManager.tube_client.create_session()
+			
+			add_player(1) 
+		else:
+			NetworkManager.host_cerro_partida.connect(_on_servidor_desconectado)
+			NetworkManager.tube_client.join_session(NetworkManager.codigo_para_unirse)
 
-# 1. El cliente espera a cargar y exige sus personajes
-func _reclamar_personajes() -> void:
-	if multiplayer.is_server(): return
-	
-	# Le damos 1 segundo vital a la PC del cliente para armar todo el nivel
-	await get_tree().create_timer(1.0).timeout
-	rpc_id(1, "solicitar_sincronizacion", multiplayer.get_unique_id())
+# El Host ejecuta esto automáticamente cuando un cliente entra
+func _on_peer_connected(id: int) -> void:
+	if multiplayer.is_server():
+		add_player(id)
 
 func add_player(peer_id: int) -> void:
 	var new_player = player_scene.instantiate()
@@ -66,6 +66,13 @@ func add_player(peer_id: int) -> void:
 	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
 	new_player.add_to_group("jugadores")
 	add_child(new_player)
+
+# Función para que el Host copie el código al portapapeles
+func _on_session_created() -> void:
+	var codigo = NetworkManager.tube_client.session_id
+	DisplayServer.clipboard_set(codigo)
+	print("Sesión creada. Código copiado: ", codigo)
+	NetworkManager.tube_client.session_created.disconnect(_on_session_created)
 
 func _on_servidor_desconectado() -> void:
 	if not is_inside_tree() or get_tree() == null:
@@ -77,28 +84,5 @@ func _on_servidor_desconectado() -> void:
 
 func _on_boton_volver_menu_pressed() -> void:
 	get_tree().paused = false
+	NetworkManager.disconnect_game()
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
-
-# 2. El Host recibe el aviso del cliente y acciona
-@rpc("any_peer", "call_remote", "reliable")
-func solicitar_sincronizacion(peer_id: int) -> void:
-	if multiplayer.is_server():
-		# Creamos el personaje del cliente si no existe
-		if not has_node(str(peer_id)):
-			add_player(peer_id)
-		
-		# Forzamos al cliente a instanciar al Host y a cualquier otro jugador conectado.
-		# Esto recupera mágicamente los paquetes que se perdieron en la pantalla de carga.
-		for child in get_children():
-			if child.is_in_group("jugadores"):
-				rpc_id(peer_id, "forzar_aparicion", child.name, child.global_position)
-
-# El Cliente obedece y crea los personajes faltantes manualmente
-@rpc("authority", "call_remote", "reliable")
-func forzar_aparicion(nombre_nodo: String, pos: Vector3) -> void:
-	if not has_node(nombre_nodo):
-		var new_player = player_scene.instantiate()
-		new_player.name = nombre_nodo
-		new_player.position = pos
-		new_player.add_to_group("jugadores")
-		add_child(new_player)
