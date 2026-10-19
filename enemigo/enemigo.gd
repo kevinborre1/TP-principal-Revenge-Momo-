@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-const SPEED = 3.5
+var velocidad: float = 3.5
+@export var perseguir_siempre: bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var vida_maxima: int = 20
 var vida_actual: int = vida_maxima
@@ -27,9 +28,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	if not GameManager.papas_atacan:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if not GameManager.papas_atacan and not perseguir_siempre:
+		velocity.x = move_toward(velocity.x, 0, velocidad)
+		velocity.z = move_toward(velocity.z, 0, velocidad)
 		move_and_slide()
 		manejar_animaciones() # llamamos a la animacion de quieto
 		return
@@ -44,8 +45,8 @@ func _physics_process(delta: float) -> void:
 			look_at(posicion_mirar, Vector3.UP)
 
 		var direccion_adelante = -global_transform.basis.z
-		velocity.x = direccion_adelante.x * SPEED
-		velocity.z = direccion_adelante.z * SPEED
+		velocity.x = direccion_adelante.x * velocidad
+		velocity.z = direccion_adelante.z * velocidad
 		
 	move_and_slide()
 	_comprobar_colisiones_jugador()

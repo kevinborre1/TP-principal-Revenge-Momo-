@@ -97,6 +97,8 @@ func _aplicar_config(f: int) -> void:
 	
 	if f == Fase.MUERTO:
 		_timer_papas.stop()
+		for p in get_tree().get_nodes_in_group("PapaMomo"):
+			p.queue_free()
 		if zona_ataques:
 			zona_ataques.detener()
 		return
@@ -210,28 +212,29 @@ func _sacar_jugadores_del_campo() -> void:
 func _spawnear_papa() -> void:
 	if not _soy_host() or fase == Fase.MUERTO:
 		return
-	if papa_escena == null:
-		return
-	if contenedor_papas == null:
-		return
-	if puntos_spawn.is_empty():
+	if papa_escena == null or puntos_spawn.is_empty():
 		return
 	if Time.get_ticks_msec() < _pausa_papas_hasta_ms:
 		return
-	if contenedor_papas.get_child_count() >= max_papas:
+	if get_tree().get_nodes_in_group("PapaMomo").size() >= max_papas:
 		return
 	
 	var punto: Marker3D = puntos_spawn.pick_random()
 	if punto == null:
 		return
-	var papa = papa_escena.instantiate()
-	papa.position = punto.global_position
-	if "velocidad" in papa:
-		papa.velocidad = CONFIG[fase]["vel_papas"]
-	contenedor_papas.add_child(papa, true)
 	
+	var raiz := get_tree().current_scene
+	var papa = papa_escena.instantiate()
+	papa.add_to_group("PapaMomo")
+	papa.velocidad = CONFIG[fase]["vel_papas"]
+	papa.perseguir_siempre = true
+	papa.position = raiz.to_local(punto.global_position)
+	raiz.add_child(papa, true)
+	
+	# Se espera un momento a que el cliente tenga su copia y recién ahí se la despierta
+	await get_tree().create_timer(0.5).timeout
 	if is_instance_valid(papa):
-		papa.global_position = punto.global_position
+		papa.activar_enemigo.rpc()
 
 # --- PARA LA ONDA EXPANSIVA (la armamos después) ---
 
