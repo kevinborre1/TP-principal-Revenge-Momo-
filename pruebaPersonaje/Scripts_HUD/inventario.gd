@@ -33,7 +33,6 @@ func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String) -
 			items[i] = {
 				"nombre": nombre_item,
 				"ruta_escena": ruta,
-				"es_equipable": es_equipable # Guardamos si es un arma o no
 			}
 			var icono_visual = slots_ui[i].get_node("icono")
 			if icono_visual:
