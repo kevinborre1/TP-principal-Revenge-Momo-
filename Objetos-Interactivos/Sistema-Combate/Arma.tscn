@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6yr2jemw2ntr"]
 
-[ext_resource type="Script" uid="uid://brpg0t4uudgfw" path="res://Sistema-Combate/arma.gd" id="1_sjkoq"]
+[ext_resource type="Script" uid="uid://brpg0t4uudgfw" path="res://Objetos-Interactivos/Sistema-Combate/arma.gd" id="1_sjkoq"]
 [ext_resource type="Texture2D" uid="uid://d1fnwdt1hn0ow" path="res://NerfONada.png" id="2_7c0ja"]
 [ext_resource type="PackedScene" uid="uid://d0cmagsmnd1dh" path="res://Arma/nerf_retaliator.glb" id="2_luj8l"]
 
@@ -11,8 +11,7 @@ size = Vector3(0.40200806, 0.28179932, 1)
 script = ExtResource("1_sjkoq")
 nombre_item = "NerfONada"
 icono = ExtResource("2_7c0ja")
-ruta_escena = "res://Sistema-Combate/Arma.tscn"
-es_equipable = true
+ruta_escena = "res://Objetos-Interactivos/Sistema-Combate/Arma.tscn"
 activa_mira_combate = true
 modifica_camara = true
 distancia_camara = 3.5

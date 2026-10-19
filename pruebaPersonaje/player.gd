@@ -455,8 +455,9 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 func actualizar_modo_combate() -> void:
 	if item_en_mano is ItemBase:
 		# 1. Activamos o desactivamos la mira según lo que pida el objeto
-		if item_en_mano.activa_mira_combate:
-			punto_de_mira.show()
+		if item_en_mano.activa_mira_combate:punto_de_mira.show()
+		else:punto_de_mira.hide()
+		
 		# 2. Ajustamos la cámara dependiendo de si el objeto la modifica o no
 		if item_en_mano.modifica_camara:
 			ajustar_camara(item_en_mano.distancia_camara, item_en_mano.offset_camara)
@@ -501,7 +502,7 @@ func equipar_para_todos(ruta_escena: String) -> void:
 	if escena_nueva:
 		item_en_mano = escena_nueva.instantiate()
 		mano.add_child(item_en_mano)
-		
+		print("Tengo en la mano"+ruta_escena)
 		if item_en_mano is ItemBase:
 			item_en_mano.desactivar_para_mano()
 			

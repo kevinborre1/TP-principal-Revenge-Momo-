@@ -9,11 +9,11 @@ height = 1.6554726
 radius = 0.1381836
 
 [node name="BotellaCerveza" type="Area3D" unique_id=443974799]
-transform = Transform3D(1.543, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1.543, 8.742278e-08, 0, -1.3489334e-07, -1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_ftwm8")
 nombre_item = "Cerveza"
 icono = ExtResource("2_g27hx")
-ruta_escena = "res://Terreno/botella_cerveza.tscn"
+ruta_escena = "res://Objetos-Interactivos/Botella_cerveza.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1697604349]
 transform = Transform3D(4.329, 0, 0, 0, 1, 0, 0, 0, 4.45, 0, 0, 0)
@@ -21,5 +21,3 @@ shape = SubResource("CylinderShape3D_8w0r3")
 
 [node name="beer_bottle" parent="." unique_id=204858495 instance=ExtResource("3_4okmu")]
 transform = Transform3D(3.4614308, 0, 0, 0, 2.8573425, 0, 0, 0, 1.9329164, 0, 0, 0)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

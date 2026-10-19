@@ -3,7 +3,7 @@ class_name ItemBase
 
 @export var nombre_item: String = "Pocion"
 @export var icono: Texture2D
-@export var ruta_escena: String = ""
+@export var ruta_escena: String
 
 
 #Como maneja la camara el personaje si tiene este item 
@@ -14,6 +14,8 @@ class_name ItemBase
 
 # Esta función es llamada por el servidor tras agregarse al inventario
 func ser_recogido() -> void:
+	if ruta_escena.is_empty():
+		push_warning("El item que se quizo agarran no tiene ruta de escena")
 	destruir_item_rpc.rpc()
 	
 	# Un método "virtual" vacío que los hijos podrán sobrescribir usando polimorfismo
