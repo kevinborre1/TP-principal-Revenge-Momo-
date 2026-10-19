@@ -4,7 +4,7 @@ class_name ItemBase
 @export var nombre_item: String = "Pocion"
 @export var icono: Texture2D
 @export var ruta_escena: String = ""
-@export var es_equipable: bool = false # ¡Nueva variable!
+
 
 #Como maneja la camara el personaje si tiene este item 
 @export var activa_mira_combate: bool = false
