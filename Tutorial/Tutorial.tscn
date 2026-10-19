@@ -907,7 +907,7 @@ shape = SubResource("BoxShape3D_sxovr")
 [node name="Colisiones Arboles" type="Node3D" parent="Laberinto" unique_id=849873660]
 
 [node name="Arbol 1" type="MeshInstance3D" parent="Laberinto/Colisiones Arboles" unique_id=930072612]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.687895, 3.5738525, -28.297697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.045872, 3.5738525, -29.024483)
 visible = false
 mesh = SubResource("CapsuleMesh_jsbho")
 
