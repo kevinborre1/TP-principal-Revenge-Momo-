@@ -20,7 +20,6 @@ enum Fase { UNO, DOS, TRES, MUERTO }
 @export_group("Campo de fuerza (fase 2)")
 @export var campo_fuerza: Node3D          # lo visual: se ve mientras el campo está activo
 @export var duracion_campo_caido: float = 8.0
-
 # Valores de cada fase: editá los números a gusto
 const CONFIG := {
 	Fase.UNO:  {"ladrillazo": 2.0, "papas": false, "cada_papa": 0.0, "vel_papas": 0.0, "vel_onda": 3.0},
@@ -88,7 +87,9 @@ func _fase_segun_vida(v: int) -> int:
 # --- FASES ---
 func _cambiar_fase(nueva: int) -> void:
 	_aplicar_config(nueva)
-	_sincronizar.rpc(vida, nueva, nueva == Fase.DOS)  # el campo aparece al entrar a la fase 2
+	_sincronizar.rpc(vida, nueva, false)
+	if nueva == Fase.DOS:
+		_subir_campo()
 	
 func _aplicar_config(f: int) -> void:
 	_timer_campo.stop()
@@ -156,30 +157,81 @@ func _bajar_campo() -> void:
 
 
 func _subir_campo() -> void:
+	if fase != Fase.DOS:
+		return
+	_sacar_jugadores_del_campo()
+	await get_tree().create_timer(0.3).timeout  # tiempo para que se muevan
 	if fase == Fase.DOS:
 		_sincronizar.rpc(vida, fase, true)
 
+func _forma_del_campo() -> CollisionShape3D:
+	if campo_fuerza is CollisionShape3D:
+		return campo_fuerza
+	var formas := campo_fuerza.find_children("*", "CollisionShape3D", true, false)
+	if formas.is_empty():
+		return null
+	return formas[0] as CollisionShape3D
 
+func _sacar_jugadores_del_campo() -> void:
+	print("Revisando jugadores dentro del campo...")
+	if campo_fuerza == null:
+		print("  -> Campo Fuerza no está asignado en el Inspector de Momo")
+		return
+	var forma := _forma_del_campo()
+	if forma == null or forma.shape == null:
+		print("  -> el campo no tiene una CollisionShape3D con forma")
+		return
+	
+	# Caja que rodea al campo, en coordenadas globales
+	var caja: AABB = forma.global_transform * forma.shape.get_debug_mesh().get_aabb()
+	print("  -> caja del campo: ", caja)
+	
+	for jugador in get_tree().get_nodes_in_group("Jugador"):
+		var p: Vector3 = jugador.global_position
+		var adentro := (
+			p.x > caja.position.x and p.x < caja.end.x
+			and p.z > caja.position.z and p.z < caja.end.z
+			and p.y > caja.position.y - 1.0 and p.y < caja.end.y
+		)
+		print("  -> ", jugador.name, " en ", p, " | adentro: ", adentro)
+		if not adentro:
+			continue
+		
+		# Desplazar al jugador únicamente hacia Z positiva
+		var destino: Vector3 = p
+		destino.z = caja.end.z + 1.5
+		print("Sacando a ", jugador.name, " hacia ", destino)
+		if Global.modo_multijugador == "linea":
+			jugador.mover_a.rpc_id(jugador.get_multiplayer_authority(), destino)
+		else:
+			jugador.global_position = destino
 # --- PAPAS ---
 
 func _spawnear_papa() -> void:
 	if not _soy_host() or fase == Fase.MUERTO:
 		return
-	if papa_escena == null or contenedor_papas == null or puntos_spawn.is_empty():
+	if papa_escena == null:
+		return
+	if contenedor_papas == null:
+		return
+	if puntos_spawn.is_empty():
 		return
 	if Time.get_ticks_msec() < _pausa_papas_hasta_ms:
 		return
 	if contenedor_papas.get_child_count() >= max_papas:
 		return
 	
-	var papa = papa_escena.instantiate()
 	var punto: Marker3D = puntos_spawn.pick_random()
-	papa.position = punto.global_position  # el contenedor tiene que estar en (0, 0, 0)
-	# Cambiá "velocidad" por el nombre de la variable de velocidad de tu papa
+	if punto == null:
+		return
+	var papa = papa_escena.instantiate()
+	papa.position = punto.global_position
 	if "velocidad" in papa:
 		papa.velocidad = CONFIG[fase]["vel_papas"]
 	contenedor_papas.add_child(papa, true)
-
+	
+	if is_instance_valid(papa):
+		papa.global_position = punto.global_position
 
 # --- PARA LA ONDA EXPANSIVA (la armamos después) ---
 

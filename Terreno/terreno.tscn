@@ -9095,7 +9095,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.855804, 2, -34.490234)
 cantidad_curacion = 40
 
 [node name="Arma" parent="VictorBars/Consumibles" unique_id=628720648 instance=ExtResource("65_qtcef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.523838, 0.67231214, 1240.5166)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.223305, 2.4840534, 976.2886)
 
 [node name="PuntoAparicionDespCinematica" type="Marker3D" parent="VictorBars" unique_id=93465238]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 1221)
@@ -10934,6 +10934,7 @@ shape = SubResource("ConcavePolygonShape3D_8mi3b")
 [node name="BotonMomo1" parent="Modulo7/Momo/CampoDeFuerza" unique_id=292063651 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(5, 0, 0, 0, 2.9999998, 0, 0, 0, 1.9999998, -94.89069, 0, -345.48804)
 script = ExtResource("15_bmrm7")
+id_boton = 1
 puerta_destino = NodePath("../..")
 
 [node name="BotonMomo2" parent="Modulo7/Momo/CampoDeFuerza" unique_id=2007378883 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
@@ -10945,7 +10946,7 @@ puerta_destino = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 0.9999994, 0, 0, 0, 0.9999999, -135.55266, 0, -359.24005)
 
 [node name="Marcador1" type="Marker3D" parent="Modulo7/Momo/ContenedorDePapas" unique_id=1421129729]
-transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.9999999, -34.271942, 13.749451, -12.945923)
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.9999999, -34.271942, 13.749453, -11.301636)
 gizmo_extents = 1.0
 
 [node name="Marcador2" type="Marker3D" parent="Modulo7/Momo/ContenedorDePapas" unique_id=1565907978]
@@ -10953,7 +10954,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.9999999, 29.376945, 1
 gizmo_extents = 1.0
 
 [node name="Marcador3" type="Marker3D" parent="Modulo7/Momo/ContenedorDePapas" unique_id=258596143]
-transform = Transform3D(1, 0, 0, 0, 0.9999996, 0, 0, 0, 0.9999999, -1.010498, 13.749451, -6.657654)
+transform = Transform3D(1, 0, 0, 0, 0.9999996, 0, 0, 0, 0.9999999, -1.010498, 13.749453, -4.718994)
 gizmo_extents = 1.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Modulo7/Momo/ContenedorDePapas" unique_id=655655363]
