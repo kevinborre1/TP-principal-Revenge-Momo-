@@ -86,6 +86,7 @@
 [ext_resource type="Texture2D" uid="uid://c4fkxkdeyq1do" path="res://Modulo7/cafeteria_0.png" id="74_4iorf"]
 [ext_resource type="PackedScene" uid="uid://qk64c22avaw2" path="res://Terreno/Reja.tscn" id="74_qbwh1"]
 [ext_resource type="PackedScene" uid="uid://blhbf753ighdm" path="res://assets/football_table_optimized_version.glb" id="75_vedoo"]
+[ext_resource type="Script" uid="uid://dtt82e101btxy" path="res://Terreno/onda_expansiva.gd" id="78_256fb"]
 [ext_resource type="Script" uid="uid://drhsx3nb2c8ci" path="res://Terreno/eliminar_balsa.gd" id="79_vygt8"]
 [ext_resource type="PackedScene" uid="uid://cm6rehwpg7cjp" path="res://EscenaAgua/toxic_metal_barrel.glb" id="80_1cv7w"]
 [ext_resource type="Script" uid="uid://b4i47fnqp7fw6" path="res://EscenaAgua/barril.gd" id="82_3nbgv"]
@@ -10617,6 +10618,9 @@ script = ExtResource("83_usj3h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Momo/Zona Ataques/Area3D" unique_id=1095513897]
 transform = Transform3D(0.9999613, 0, 0, 0, 0.99997103, 0, 0, 0, 0.9999972, 13.357346, 5.380713, -3.5391235)
 shape = SubResource("BoxShape3D_ip032")
+
+[node name="Onda Expansiva" type="Node3D" parent="Modulo7/Momo/Zona Ataques" unique_id=45885112]
+script = ExtResource("78_256fb")
 
 [node name="Fisico" type="Node3D" parent="Modulo7/Momo" unique_id=2021044576]
 

@@ -22,9 +22,9 @@ enum Fase { UNO, DOS, TRES, MUERTO }
 @export var duracion_campo_caido: float = 8.0
 # Valores de cada fase: editá los números a gusto
 const CONFIG := {
-	Fase.UNO:  {"ladrillazo": 2.0, "papas": false, "cada_papa": 0.0, "vel_papas": 0.0, "vel_onda": 3.0},
-	Fase.DOS:  {"ladrillazo": 3.0, "papas": true,  "cada_papa": 6.0, "vel_papas": 3.0, "vel_onda": 3.0},
-	Fase.TRES: {"ladrillazo": 1.5, "papas": true,  "cada_papa": 3.0, "vel_papas": 6.0, "vel_onda": 6.0},
+	Fase.UNO:  {"ladrillazo": 2.0, "papas": false, "cada_papa": 0.0, "vel_papas": 0.0, "vel_onda": 3.0, "cada_onda": 8.0},
+	Fase.DOS:  {"ladrillazo": 3.0, "papas": true,  "cada_papa": 5.0, "vel_papas": 4.0, "vel_onda": 3.0, "cada_onda": 10.0},
+	Fase.TRES: {"ladrillazo": 1.5, "papas": true,  "cada_papa": 3.0, "vel_papas": 6.0, "vel_onda": 6.0, "cada_onda": 5.0},
 }
 
 var vida: int = 0
