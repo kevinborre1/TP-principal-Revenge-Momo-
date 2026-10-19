@@ -6540,6 +6540,9 @@ size = Vector3(20.455387, 5.4658813, 0.6328125)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nt8hf"]
 size = Vector3(11.393982, 8.967651, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwly1"]
+size = Vector3(0.21826172, 7.027466, 14.197998)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6to23"]
 resource_name = "Material.007"
 cull_mode = 2
@@ -10463,7 +10466,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tk8hj")
 shape = SubResource("ConcavePolygonShape3D_fok8c")
 
 [node name="Sketchfab_Scene2" parent="Modulo7/modulo7-p1" unique_id=296524462 instance=ExtResource("57_k37ix")]
-transform = Transform3D(4, 0, -0.00028514862, 0, 3.5809107, 0, 0.00023901463, 0, 4.76596, -105.14719, 6.0800543, -328.59875)
+transform = Transform3D(4, 0, -0.00028514862, 0, 3.5809095, 0, 0.00023901455, 0, 4.765958, -97.54245, 6.080052, -328.15466)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Sketchfab_Scene2" unique_id=1931811914]
 
@@ -10794,6 +10797,17 @@ nombre_logro = "Completo_Campus"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Guardados/Guardado Campus/Completo_Campus" unique_id=1962504921]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26937866, 3.9838257, 0)
 shape = SubResource("BoxShape3D_nt8hf")
+
+[node name="Guardado Modulo7" type="Node" parent="Guardados" unique_id=608746508]
+
+[node name="Completo_Modulo7" type="Area3D" parent="Guardados/Guardado Modulo7" unique_id=46884960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.57974, 2.1556883, 790.75726)
+script = ExtResource("58_5lm5q")
+nombre_logro = "Completo_Modulo7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Guardados/Guardado Modulo7/Completo_Modulo7" unique_id=1299294511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39086914, 3.013733, 3.4019775)
+shape = SubResource("BoxShape3D_wwly1")
 
 [node name="AlRededores" type="Node3D" parent="." unique_id=1801922345]
 
