@@ -46,6 +46,24 @@ func disparar() -> void:
 	
 	var direccion_disparada = Vector3.FORWARD
 	
+	if raycast:
+		# limpiamos reglas anteriores
+		raycast.clear_exceptions()
+		
+		# ignoramos al propio tirador
+		if player is CollisionObject3D:
+			raycast.add_exception(player)
+			
+		for otro in get_tree().get_nodes_in_group("jugadores"):
+			if otro is CollisionObject3D:
+				raycast.add_exception(otro)
+		for otro in get_tree().get_nodes_in_group("Jugador"):
+			if otro is CollisionObject3D:
+				raycast.add_exception(otro)
+				
+		# forzamos al rayo a recalcular la física en este frame exacto con las excepciones aplicadas
+		raycast.force_raycast_update()
+	
 	if raycast and raycast.is_colliding():
 		# Si el rayo de la cámara choca con algo en pantalla, la bala va directo a ese punto 3D
 		var punto_impacto = raycast.get_collision_point()
