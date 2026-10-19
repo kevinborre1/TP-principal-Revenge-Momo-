@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dr0ie81mwqtl1" path="res://pruebaPersonaje/player.gd" id="1_cm308"]
 [ext_resource type="Texture2D" uid="uid://cp51tkl1jrxvy" path="res://pruebaPersonaje/Assets_personaje/Walk (1)_3.png" id="2_cm308"]
 [ext_resource type="Texture2D" uid="uid://um6po6qebank" path="res://pruebaPersonaje/Assets_personaje/Walk (1)_4.png" id="3_iy3o6"]
-[ext_resource type="Texture2D" uid="uid://0qnbe0ocqagm" path="res://assets/checkboxempty.png" id="5_iy3o6"]
 [ext_resource type="AnimationLibrary" uid="uid://eai1q0ciaapr" path="res://pruebaPersonaje/movimientos/Fast Run.fbx" id="5_jvtdh"]
 [ext_resource type="AnimationLibrary" uid="uid://cdxlee432svia" path="res://pruebaPersonaje/movimientos/Jump.fbx" id="6_jwaew"]
 [ext_resource type="Script" uid="uid://jc271k1bd705" path="res://pruebaPersonaje/Scripts_HUD/salud.gd" id="6_xb7yt"]
@@ -1841,10 +1840,10 @@ vertical_alignment = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -214.0
-offset_top = 10.0
-offset_right = -11.0
-offset_bottom = 71.0
+offset_left = -55.0
+offset_top = 12.0
+offset_right = -17.0
+offset_bottom = 38.0
 grow_horizontal = 0
 
 [node name="ObjetivesContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1215996822]
@@ -1854,34 +1853,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="CheckObj1" type="TextureRect" parent="PanelContainer/ObjetivesContainer/Objetivo1" unique_id=984434924]
-custom_minimum_size = Vector2(24, 24)
-custom_maximum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("5_iy3o6")
-
 [node name="TextObj1" type="Label" parent="PanelContainer/ObjetivesContainer/Objetivo1" unique_id=2069316450]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Pepitas de Cafe"
-
-[node name="Objetivo2" type="HBoxContainer" parent="PanelContainer/ObjetivesContainer" unique_id=1358529722]
-layout_mode = 2
-
-[node name="CheckObj2" type="TextureRect" parent="PanelContainer/ObjetivesContainer/Objetivo2" unique_id=915000408]
-custom_minimum_size = Vector2(24, 24)
-custom_maximum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("5_iy3o6")
-
-[node name="TextObj2" type="Label" parent="PanelContainer/ObjetivesContainer/Objetivo2" unique_id=1362155154]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Logros"
+text = "ESC"
 
 [node name="BarraSalud" type="ProgressBar" parent="." unique_id=940692510 node_paths=PackedStringArray("player")]
 anchors_preset = 2
