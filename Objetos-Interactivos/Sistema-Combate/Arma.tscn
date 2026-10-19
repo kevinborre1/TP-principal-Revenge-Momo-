@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://brpg0t4uudgfw" path="res://Objetos-Interactivos/Sistema-Combate/arma.gd" id="1_sjkoq"]
 [ext_resource type="Texture2D" uid="uid://d1fnwdt1hn0ow" path="res://NerfONada.png" id="2_7c0ja"]
-[ext_resource type="PackedScene" uid="uid://d0cmagsmnd1dh" path="res://Arma/nerf_retaliator.glb" id="2_luj8l"]
+[ext_resource type="PackedScene" uid="uid://d0cmagsmnd1dh" path="res://Objetos-Interactivos/Sistema-Combate/Arma/nerf_retaliator.glb" id="2_luj8l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
 size = Vector3(0.40200806, 0.28179932, 1)
 
-[node name="Area3D" type="Area3D" unique_id=917328590]
+[node name="Area3D2" type="Area3D" unique_id=917328590]
 script = ExtResource("1_sjkoq")
 nombre_item = "NerfONada"
 icono = ExtResource("2_7c0ja")

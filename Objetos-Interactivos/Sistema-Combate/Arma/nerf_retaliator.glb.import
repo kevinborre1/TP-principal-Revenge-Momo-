@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dcyf32vf8dccd"
-path="res://.godot/imported/nerf_dartbullet.glb-c8fee17db2aab6d8452602251f67b8f9.scn"
+uid="uid://d0cmagsmnd1dh"
+path="res://.godot/imported/nerf_retaliator.glb-bcb0b4468dedc50dc6b9cfde04d93a50.scn"
 
 [deps]
 
-source_file="res://Arma/nerf_dartbullet.glb"
-dest_files=["res://.godot/imported/nerf_dartbullet.glb-c8fee17db2aab6d8452602251f67b8f9.scn"]
+source_file="res://Objetos-Interactivos/Sistema-Combate/Arma/nerf_retaliator.glb"
+dest_files=["res://.godot/imported/nerf_retaliator.glb-bcb0b4468dedc50dc6b9cfde04d93a50.scn"]
 
 [params]
 
