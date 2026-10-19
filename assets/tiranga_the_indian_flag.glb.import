@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://lyf75kdg6ewn"
-path="res://.godot/imported/bandera_de_argentina_roccasalva_y_carrera.glb-be65fc44fbe6e732a43cfe185794f824.scn"
+uid="uid://dqajno4pku3bw"
+path="res://.godot/imported/tiranga_the_indian_flag.glb-e48a6c43b5545a5188b6d6014762a68d.scn"
 
 [deps]
 
-source_file="res://assets/bandera_de_argentina_roccasalva_y_carrera.glb"
-dest_files=["res://.godot/imported/bandera_de_argentina_roccasalva_y_carrera.glb-be65fc44fbe6e732a43cfe185794f824.scn"]
+source_file="res://assets/tiranga_the_indian_flag.glb"
+dest_files=["res://.godot/imported/tiranga_the_indian_flag.glb-e48a6c43b5545a5188b6d6014762a68d.scn"]
 
 [params]
 
