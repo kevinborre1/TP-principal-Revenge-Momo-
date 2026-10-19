@@ -67,3 +67,6 @@ func _es_jugador(nodo: Node) -> bool:
 
 func _direccion_salida(dir: Vector3) -> void:
 	direccion = dir
+	
+	if dir != Vector3.ZERO:
+		look_at(global_position + dir, Vector3.UP)

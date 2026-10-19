@@ -66,16 +66,17 @@ func disparar() -> void:
 @rpc("call_local", "any_peer", "reliable")
 func generar_bala(posicion_inicial: Vector3, direccion: Vector3) -> void:
 	var bala = escena_bala.instantiate() as Area3D
+	
+	get_tree().current_scene.add_child(bala)
+	
 	bala.global_position = posicion_inicial
 	bala._direccion_salida(direccion)
-	get_tree().current_scene.add_child(bala)
 	
 func desactivar_para_mano() -> void:
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 	collision_layer = 0
 	collision_mask = 0
-	
 	# Si tienes un CollisionShape3D hijo, también lo apagamos por seguridad
 	var colision = get_node_or_null("CollisionShape3D")
 	if colision:
