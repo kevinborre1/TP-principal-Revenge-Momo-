@@ -4,6 +4,7 @@ extends Area3D
 var activada: bool = false
 
 func _ready() -> void:
+	add_to_group("PepitasMapa") # Permite que SaveAndLoad sepa si ya fue recogida
 	visible = false
 	if collision_shape:
 		collision_shape.set_deferred("disabled", true) 
