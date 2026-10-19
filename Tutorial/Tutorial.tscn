@@ -25,6 +25,8 @@
 [ext_resource type="Script" uid="uid://cpa1mmhlh8llg" path="res://Tutorial/Daño.gd" id="18_xobj3"]
 [ext_resource type="PackedScene" uid="uid://cslvsk57vr3gy" path="res://Tutorial/Wooden Sign by iPoly3D - mxyDWLsKer.glb" id="22_1uqyg"]
 [ext_resource type="Script" uid="uid://q7k24kusq6rp" path="res://Tutorial/final_del_tutorial.gd" id="23_f2drb"]
+[ext_resource type="Script" uid="uid://djcu4l6pn0ulq" path="res://Tutorial/SpawnEnemigos.gd" id="26_56pmq"]
+[ext_resource type="PackedScene" uid="uid://dwki634comsxy" path="res://enemigo/enemigo2.tscn" id="27_qpfw8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1weqr"]
 sky_top_color = Color(0.34343228, 0.55091774, 0.726523, 1)
@@ -743,6 +745,9 @@ data = PackedVector3Array(-4.8929996, 0.5, 0.5, 4.8929996, 0.5, 0.5, -4.8929996,
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ect8u"]
 size = Vector3(19.024597, 1, 30.69226)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1weqr"]
+size = Vector3(1.5292969, 7.940674, 8.132629)
 
 [node name="Tutorial" type="Node3D" unique_id=1249852627]
 script = ExtResource("1_1uqyg")
@@ -1989,6 +1994,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.339, 2, -1260)
 
 [node name="BotellaCerveza2" parent="Laberinto/Consumibles" unique_id=1256583128 instance=ExtResource("13_j1fac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.62196, 2, -1260)
+
+[node name="Enemigos" type="Node3D" parent="Laberinto" unique_id=1710000029]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Laberinto/Enemigos" unique_id=1564825008]
+_spawnable_scenes = PackedStringArray("uid://dwki634comsxy")
+spawn_path = NodePath("..")
+
+[node name="Spawn1" type="Marker3D" parent="Laberinto/Enemigos" unique_id=1254983047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6942, 2.124309, 21.232023)
+
+[node name="Spawn2" type="Marker3D" parent="Laberinto/Enemigos" unique_id=715825163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.80995, 2.6306624, 22.766983)
+
+[node name="SpawnEnemigos" type="Area3D" parent="Laberinto/Enemigos" unique_id=1814604805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.663498, 0, 47.184986)
+script = ExtResource("26_56pmq")
+enemigo_escena = ExtResource("27_qpfw8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Enemigos/SpawnEnemigos" unique_id=330991586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4828568, 3.470337, -2.7375793)
+shape = SubResource("BoxShape3D_1weqr")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=225265740]
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
