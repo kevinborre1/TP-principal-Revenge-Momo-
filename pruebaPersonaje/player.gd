@@ -366,7 +366,7 @@ func intentar_recoger_item():
 		
 		# 2. Si es un ítem normal del inventario (como las botellas)
 		elif cuerpo is ItemBase:
-			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena, cuerpo.es_equipable)
+			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
 			if exito:
 				cuerpo.ser_recogido()
 				break

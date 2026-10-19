@@ -27,7 +27,7 @@ func seleccionar_slot(indice: int, player: Node3D) -> void:
 			player.solicitar_desequipar()
 
 # 2. ACTUALIZADO: Se agrega 'es_equipable' con un valor por defecto en falso
-func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String, es_equipable: bool = false) -> bool:
+func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String) -> bool:
 	for i in range(items.size()):
 		if items[i] == null:
 			items[i] = {
