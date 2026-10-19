@@ -871,21 +871,37 @@ physics_material_override = SubResource("PhysicsMaterial_sxovr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -9.536743e-06)
 shape = SubResource("BoxShape3D_sxovr")
 
-[node name="Cartel Recoger recolectable2" parent="Laberinto/Carteles" unique_id=61131434 instance=ExtResource("22_1uqyg")]
+[node name="Cartel Arma" parent="Laberinto/Carteles" unique_id=61131434 instance=ExtResource("22_1uqyg")]
 transform = Transform3D(-0.81814986, 0, 0.57500523, 0, 1, 0, -0.57500523, 0, -0.81814986, -31.859348, -1.1920929e-07, 5.5031395)
 
-[node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Recoger recolectable2" unique_id=567051415]
+[node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Arma" unique_id=567051415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057621002, 1.740379, 0.010122299)
 text = "¡ARMAS!
 Agarrala con \"E\"
 Equipala 
 Dispara con \"Z\""
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Laberinto/Carteles/Cartel Recoger recolectable2" unique_id=136190710]
+[node name="StaticBody3D" type="StaticBody3D" parent="Laberinto/Carteles/Cartel Arma" unique_id=136190710]
 physics_material_override = SubResource("PhysicsMaterial_sxovr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Carteles/Cartel Recoger recolectable2/StaticBody3D" unique_id=331133849]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Carteles/Cartel Arma/StaticBody3D" unique_id=331133849]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -9.536743e-06)
+shape = SubResource("BoxShape3D_sxovr")
+
+[node name="Cartel Arma2" parent="Laberinto/Carteles" unique_id=1090120023 instance=ExtResource("22_1uqyg")]
+transform = Transform3D(0.8949345, 0, -0.44619787, 0, 1, 0, 0.44619787, 0, 0.8949345, -31.859348, -1.1920929e-07, 41.239807)
+
+[node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Arma2" unique_id=996614859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057621002, 1.740379, 0.010122299)
+text = "¡CUIDADO!
+APUNTA Y
+DISPARA"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Laberinto/Carteles/Cartel Arma2" unique_id=955023020]
+physics_material_override = SubResource("PhysicsMaterial_sxovr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Carteles/Cartel Arma2/StaticBody3D" unique_id=1894912983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -7.6293945e-06)
 shape = SubResource("BoxShape3D_sxovr")
 
 [node name="Colisiones Arboles" type="Node3D" parent="Laberinto" unique_id=849873660]
@@ -2015,7 +2031,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.339, 2, -1260)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.62196, 2, -1260)
 
 [node name="Arma" parent="Laberinto/Consumibles" unique_id=917328590 instance=ExtResource("26_wyg2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.721786, 1.7507309, 10.061225)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -29.721786, 1.7507309, 8.055619)
 
 [node name="Enemigos" type="Node3D" parent="Laberinto" unique_id=1710000029]
 
@@ -2024,10 +2040,10 @@ _spawnable_scenes = PackedStringArray("uid://dwki634comsxy")
 spawn_path = NodePath("..")
 
 [node name="Spawn1" type="Marker3D" parent="Laberinto/Enemigos" unique_id=1254983047]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6942, 2.124309, 21.232023)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6942, 2.124309, 32.267536)
 
 [node name="Spawn2" type="Marker3D" parent="Laberinto/Enemigos" unique_id=715825163]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.80995, 2.6306624, 22.766983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.80995, 2.6306624, 29.642532)
 
 [node name="SpawnEnemigos" type="Area3D" parent="Laberinto/Enemigos" unique_id=1814604805]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.663498, 0, 47.184986)
