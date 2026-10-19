@@ -156,6 +156,8 @@ normal_texture = ExtResource("10_lwo2v")
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_k1edr"), SubResource("Terrain3DMeshAsset_vycbi"), SubResource("Terrain3DMeshAsset_nei3j"), SubResource("Terrain3DMeshAsset_krr3c"), SubResource("Terrain3DMeshAsset_rygad"), SubResource("Terrain3DMeshAsset_0gkdn")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gf7y2"), SubResource("Terrain3DTextureAsset_vubg1")])
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_56pmq"]
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sxovr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxovr"]
@@ -759,7 +761,8 @@ compositor = SubResource("Compositor_sxovr")
 data_directory = "res://Terreno"
 material = SubResource("Terrain3DMaterial_a4klu")
 assets = SubResource("Terrain3DAssets_1uqyg")
-collision_mode = 3
+collision_mode = 4
+physics_material = SubResource("PhysicsMaterial_56pmq")
 top_level = true
 metadata/_edit_lock_ = true
 
