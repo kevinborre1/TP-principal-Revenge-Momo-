@@ -20,7 +20,7 @@ func seleccionar_slot(indice: int, player: Node3D) -> void:
 		var item_data = items[slot_seleccionado]
 		
 		# Si el slot tiene un objeto Y además está marcado como equipable
-		if item_data != null and item_data.has("es_equipable") and item_data["es_equipable"] == true:
+		if item_data != null :
 			player.solicitar_equipar(item_data["ruta_escena"])
 		else:
 			# Si el slot está vacío, o es un consumible (cerveza), quitamos lo que haya en la mano
