@@ -7,6 +7,9 @@ extends CharacterBody3D
 
 @onready var zona_cubierta: Area3D = get_node_or_null("ZonaCubierta")
 
+@export var vida_balsa: int = 3
+signal balsa_destruida
+
 var is_controlled = false
 var player_is_near = false
 var player_node: Node3D = null      # jugador que está cerca (para abordar)
@@ -47,11 +50,28 @@ func _physics_process(delta: float) -> void:
 		giro = clampf(giro + turn_input * turn_speed * delta, -limite, limite)
 		rotation.y = _rotacion_inicial + giro
 		velocity = -transform.basis.z * speed
+		
+		# Movemos la balsa
 		move_and_slide()
+		
+		# --- NUEVA LÓGICA DE COLISIÓN (Solo el Host la procesa) ---
+		for i in get_slide_collision_count():
+			var colision = get_slide_collision(i)
+			var collider = colision.get_collider()
+			
+			# Comprobamos si con lo que chocamos es un barril
+			if collider and collider.is_in_group("Barriles"):
+				# Le decimos al barril que lo chocamos (y que se destruya)
+				if collider.has_method("_colision_balsa"):
+					collider._colision_balsa()
+				# Le restamos 1 de vida a la balsa a través de la red
+				rpc("_recibir_danio")
+				
+				# Frenamos el chequeo de colisiones en este frame para evitar choques múltiples con el mismo barril
+				break
 
 	# 3. ARRASTRAR PASAJEROS (corre en todas las PC)
 	_arrastrar_pasajeros()
-
 
 func _arrastrar_pasajeros() -> void:
 	var cambio := global_transform * _transform_previa.affine_inverse()
@@ -128,6 +148,23 @@ func eliminar_balsa() -> void:
 			rpc_eliminar_balsa.rpc()
 	else:
 		rpc_eliminar_balsa()
+
+@rpc("any_peer", "call_local", "reliable")
+func _recibir_danio() -> void:
+	vida_balsa -= 1
+	print("¡La balsa chocó con un barril! Vidas restantes: ", vida_balsa)
+	
+	if vida_balsa <= 0:
+		print("¡La balsa se ha destruido!")
+		balsa_destruida.emit()
+		GameManager.set_mode(GameManager.GameMode.VIDAS_BALSA) # Le avisa al GameManager que perdieron
+		
+		# Usamos la función que ya tenías para eliminarla
+		if Global.modo_multijugador == "linea":
+			if multiplayer.is_server():
+				rpc_eliminar_balsa.rpc()
+		else:
+			rpc_eliminar_balsa()
 
 
 @rpc("any_peer", "call_local", "reliable")
