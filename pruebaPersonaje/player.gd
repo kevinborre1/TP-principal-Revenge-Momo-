@@ -20,8 +20,6 @@ var input_bloqueado: bool = false
 var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
 var minijuego_instance: Control = null
 
-# Estado del arma
-@export var arma_equipada: bool = false
 
 @onready var inventario_manager = $Inventario
 
@@ -39,7 +37,6 @@ var minijuego_instance: Control = null
 # Camara
 @onready var camara: Camera3D = find_child("Camera3D", true, false) as Camera3D
 @export var distancia_camara_normal: float = 2.0
-@export var distancia_camara_combate: float = 3.5 # Más lejos cuando saca el arma
 var camera_rotation := Vector2.ZERO
 var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 # Ruta hacia tu BoneAttachment3D de la mano:
@@ -181,7 +178,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			actualizar_modo_combate()
 		
 	# disparar y rotar el modelo hacia la camara
-	if event.is_action_pressed("disparar") and arma_equipada:
+	if event.is_action_pressed("disparar") and punto_de_mira.is_visible_in_tree() :
 		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
 		if modelo and spring_arm_3d:
 			modelo.rotation.y = spring_arm_3d.rotation.y + PI
@@ -259,13 +256,8 @@ func _physics_process(delta: float) -> void:
 		if modelo:
 			# Calculamos hacia dónde se mueve el personaje respecto a la cámara
 			var target_angle = atan2(-direction.x, -direction.z)
-			
-			if arma_equipada:
-				# Con el arma equipada, el personaje rota hacia el movimiento (ajustado con + PI si caminaba al revés)
-				modelo.rotation.y = lerp_angle(modelo.rotation.y, target_angle + PI, 15.0 * delta)
-			else:
-				# Modo normal de exploración
-				modelo.rotation.y = lerp_angle(modelo.rotation.y, target_angle + PI, 15.0 * delta)
+			#Caminamos hacia donde ve la camara tambien
+			modelo.rotation.y = lerp_angle(modelo.rotation.y, target_angle + PI, 15.0 * delta)
 				
 	else:
 		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
@@ -461,28 +453,24 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func actualizar_modo_combate() -> void:
-	arma_equipada = (item_en_mano != null)
-	
-	if arma_equipada:
-		# 1. Configuramos el SpringArm para tercera persona de combate (detrás de la espalda)
-		spring_arm.spring_length = distancia_camara_combate
-		
-		# Opcional: Desplazarlo ligeramente hacia un hombro (hombro derecho)
-		spring_arm.position = Vector3(0.5, 1.7, 0.0) # Ajusta según tu modelo
-		
-		# 2. Mostramos el punto de mira en pantalla
-		punto_de_mira.show()
-		
-		print("Arma equipada: Modo combate activado")
+	if item_en_mano is ItemBase:
+		# 1. Activamos o desactivamos la mira según lo que pida el objeto
+		if item_en_mano.activa_mira_combate:
+			punto_de_mira.show()
+		# 2. Ajustamos la cámara dependiendo de si el objeto la modifica o no
+		if item_en_mano.modifica_camara:
+			ajustar_camara(item_en_mano.distancia_camara, item_en_mano.offset_camara)
+		else:
+			# Ítem común, cámara normal
+			ajustar_camara(distancia_camara_normal, Vector3(0.0, 1.5, 0.0))
 	else:
-		# Modo normal (cámara más cerca o libre)
-		spring_arm.spring_length = distancia_camara_normal
-		spring_arm.position = Vector3(0.0, 1.5, 0.0)
-		
-		# Ocultamos el punto de mira
+		# Manos vacías: ocultamos mira y cámara normal
 		punto_de_mira.hide()
+		ajustar_camara(distancia_camara_normal, Vector3(0.0, 1.5, 0.0))
 		
-		print("Arma guardada")
+func ajustar_camara(distancia_camara: float, posicion_camara: Vector3):
+		spring_arm.spring_length = distancia_camara
+		spring_arm.position = posicion_camara
 		
 # 1. Tu inventario llamará a esta función cuando elijas el arma
 func solicitar_equipar(ruta_escena: String) -> void:
@@ -514,7 +502,7 @@ func equipar_para_todos(ruta_escena: String) -> void:
 		item_en_mano = escena_nueva.instantiate()
 		mano.add_child(item_en_mano)
 		
-		if item_en_mano is Arma:
+		if item_en_mano is ItemBase:
 			item_en_mano.desactivar_para_mano()
 			
 		actualizar_modo_combate()

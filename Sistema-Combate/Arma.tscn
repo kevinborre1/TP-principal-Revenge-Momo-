@@ -13,6 +13,10 @@ nombre_item = "NerfONada"
 icono = ExtResource("2_7c0ja")
 ruta_escena = "res://Sistema-Combate/Arma.tscn"
 es_equipable = true
+activa_mira_combate = true
+modifica_camara = true
+distancia_camara = 3.5
+offset_camara = Vector3(-0.5, 1.7, 0)
 
 [node name="Sketchfab_Scene" parent="." unique_id=1246241082 instance=ExtResource("2_luj8l")]
 transform = Transform3D(-3.059797e-09, 0, -0.07, -0.0147154415, 0.06843578, 6.4323236e-10, 0.06843578, 0.0147154415, -2.9914229e-09, 0.0060698986, -0.17855796, -0.11655143)
