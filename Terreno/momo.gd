@@ -36,6 +36,12 @@ var _timer_campo: Timer
 var _botones := {1: false, 2: false}
 var _pausa_papas_hasta_ms := 0
 
+@export_group("Onda expansiva")
+@export var punto_onda: Marker3D   # un Marker3D en el piso, debajo de Momo
+@export var dano_onda: int = 15
+@export var radio_max_onda: float = 100.0
+
+var _timer_onda: Timer
 
 func _ready() -> void:
 	vida = vida_max
@@ -51,6 +57,10 @@ func _ready() -> void:
 	_timer_campo.one_shot = true
 	_timer_campo.timeout.connect(_subir_campo)
 	add_child(_timer_campo)
+	
+	_timer_onda = Timer.new()
+	_timer_onda.timeout.connect(_lanzar_onda)
+	add_child(_timer_onda)
 	
 	_aplicar_config(Fase.UNO)
 
@@ -96,14 +106,15 @@ func _aplicar_config(f: int) -> void:
 	_botones = {1: false, 2: false}
 	
 	if f == Fase.MUERTO:
+		_timer_onda.stop()          # acá se frena, no se arranca
 		_timer_papas.stop()
 		for p in get_tree().get_nodes_in_group("PapaMomo"):
 			p.queue_free()
 		if zona_ataques:
 			zona_ataques.detener()
-		return
-	
+			return
 	var cfg: Dictionary = CONFIG[f]
+	_timer_onda.start(cfg["cada_onda"])   # acá se arranca, ya con cfg declarada
 	if zona_ataques:
 		zona_ataques.set_intervalo(cfg["ladrillazo"])
 	if cfg["papas"]:
@@ -237,6 +248,21 @@ func _spawnear_papa() -> void:
 		papa.activar_enemigo.rpc()
 
 # --- PARA LA ONDA EXPANSIVA (la armamos después) ---
+func _lanzar_onda() -> void:
+	if not _soy_host() or fase == Fase.MUERTO:
+		return
+	var centro := punto_onda.global_position if punto_onda else global_position
+	_crear_onda.rpc(centro, CONFIG[fase]["vel_onda"])
+
+
+@rpc("authority", "call_local", "reliable")
+func _crear_onda(centro: Vector3, vel: float) -> void:
+	var onda := OndaExpansiva.new()
+	onda.velocidad = vel
+	onda.dano = dano_onda
+	onda.radio_max = radio_max_onda
+	get_tree().current_scene.add_child(onda)
+	onda.global_position = centro
 
 func velocidad_onda() -> float:
 	if fase == Fase.MUERTO:

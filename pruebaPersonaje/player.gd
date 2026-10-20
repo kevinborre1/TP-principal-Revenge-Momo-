@@ -104,9 +104,9 @@ func _ready() -> void:
 	if Global.modo_multijugador == "linea":
 		if get_tree().current_scene.name == "Tutorial":
 			if id_player == 1:
-				global_position = Vector3(-3, 0, -36)
+				global_position = Vector3(-3, 5, -36)
 			else:
-				global_position = Vector3(-3, 0, -33)
+				global_position = Vector3(-3, 5, -33)
 		else:
 			if id_player == 1:
 				global_position = Vector3(36, 2, 1250)

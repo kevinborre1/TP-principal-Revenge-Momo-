@@ -25,6 +25,10 @@
 [ext_resource type="Script" uid="uid://cpa1mmhlh8llg" path="res://Tutorial/Daño.gd" id="18_xobj3"]
 [ext_resource type="PackedScene" uid="uid://cslvsk57vr3gy" path="res://Tutorial/Wooden Sign by iPoly3D - mxyDWLsKer.glb" id="22_1uqyg"]
 [ext_resource type="Script" uid="uid://q7k24kusq6rp" path="res://Tutorial/final_del_tutorial.gd" id="23_f2drb"]
+[ext_resource type="Script" uid="uid://djcu4l6pn0ulq" path="res://Tutorial/SpawnEnemigos.gd" id="26_56pmq"]
+[ext_resource type="PackedScene" uid="uid://c6yr2jemw2ntr" path="res://Objetos-Interactivos/Sistema-Combate/Arma.tscn" id="26_wyg2x"]
+[ext_resource type="PackedScene" uid="uid://dwki634comsxy" path="res://enemigo/enemigo2.tscn" id="27_qpfw8"]
+[ext_resource type="PackedScene" uid="uid://b44bt33yq56r7" path="res://Menu/menu_pausa.tscn" id="29_c3dwn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1weqr"]
 sky_top_color = Color(0.34343228, 0.55091774, 0.726523, 1)
@@ -155,6 +159,8 @@ normal_texture = ExtResource("10_lwo2v")
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_1uqyg"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_k1edr"), SubResource("Terrain3DMeshAsset_vycbi"), SubResource("Terrain3DMeshAsset_nei3j"), SubResource("Terrain3DMeshAsset_krr3c"), SubResource("Terrain3DMeshAsset_rygad"), SubResource("Terrain3DMeshAsset_0gkdn")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gf7y2"), SubResource("Terrain3DTextureAsset_vubg1")])
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_56pmq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sxovr"]
 
@@ -742,6 +748,9 @@ data = PackedVector3Array(-4.8929996, 0.5, 0.5, 4.8929996, 0.5, 0.5, -4.8929996,
 [sub_resource type="BoxShape3D" id="BoxShape3D_ect8u"]
 size = Vector3(19.024597, 1, 30.69226)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1weqr"]
+size = Vector3(1.5292969, 7.940674, 8.132629)
+
 [node name="Tutorial" type="Node3D" unique_id=1249852627]
 script = ExtResource("1_1uqyg")
 
@@ -759,7 +768,8 @@ compositor = SubResource("Compositor_sxovr")
 data_directory = "res://Terreno"
 material = SubResource("Terrain3DMaterial_a4klu")
 assets = SubResource("Terrain3DAssets_1uqyg")
-collision_mode = 3
+collision_mode = 4
+physics_material = SubResource("PhysicsMaterial_56pmq")
 top_level = true
 metadata/_edit_lock_ = true
 
@@ -861,10 +871,43 @@ physics_material_override = SubResource("PhysicsMaterial_sxovr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -9.536743e-06)
 shape = SubResource("BoxShape3D_sxovr")
 
+[node name="Cartel Arma" parent="Laberinto/Carteles" unique_id=61131434 instance=ExtResource("22_1uqyg")]
+transform = Transform3D(-0.81814986, 0, 0.57500523, 0, 1, 0, -0.57500523, 0, -0.81814986, -31.859348, -1.1920929e-07, 5.5031395)
+
+[node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Arma" unique_id=567051415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057621002, 1.740379, 0.010122299)
+text = "¡ARMAS!
+Agarrala con \"E\"
+Equipala 
+Dispara con \"Z\""
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Laberinto/Carteles/Cartel Arma" unique_id=136190710]
+physics_material_override = SubResource("PhysicsMaterial_sxovr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Carteles/Cartel Arma/StaticBody3D" unique_id=331133849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -9.536743e-06)
+shape = SubResource("BoxShape3D_sxovr")
+
+[node name="Cartel Arma2" parent="Laberinto/Carteles" unique_id=1090120023 instance=ExtResource("22_1uqyg")]
+transform = Transform3D(0.8949345, 0, -0.44619787, 0, 1, 0, 0.44619787, 0, 0.8949345, -31.859348, -1.1920929e-07, 41.239807)
+
+[node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Arma2" unique_id=996614859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057621002, 1.740379, 0.010122299)
+text = "¡CUIDADO!
+APUNTA Y
+DISPARA"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Laberinto/Carteles/Cartel Arma2" unique_id=955023020]
+physics_material_override = SubResource("PhysicsMaterial_sxovr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Carteles/Cartel Arma2/StaticBody3D" unique_id=1894912983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -7.6293945e-06)
+shape = SubResource("BoxShape3D_sxovr")
+
 [node name="Colisiones Arboles" type="Node3D" parent="Laberinto" unique_id=849873660]
 
 [node name="Arbol 1" type="MeshInstance3D" parent="Laberinto/Colisiones Arboles" unique_id=930072612]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.687895, 3.5738525, -28.297697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.045872, 3.5738525, -29.024483)
 visible = false
 mesh = SubResource("CapsuleMesh_jsbho")
 
@@ -1987,6 +2030,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.339, 2, -1260)
 [node name="BotellaCerveza2" parent="Laberinto/Consumibles" unique_id=1256583128 instance=ExtResource("13_j1fac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.62196, 2, -1260)
 
+[node name="Arma" parent="Laberinto/Consumibles" unique_id=917328590 instance=ExtResource("26_wyg2x")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -29.721786, 1.7507309, 8.055619)
+
+[node name="Enemigos" type="Node3D" parent="Laberinto" unique_id=1710000029]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Laberinto/Enemigos" unique_id=1564825008]
+_spawnable_scenes = PackedStringArray("uid://dwki634comsxy")
+spawn_path = NodePath("..")
+
+[node name="Spawn1" type="Marker3D" parent="Laberinto/Enemigos" unique_id=1254983047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6942, 2.124309, 32.267536)
+
+[node name="Spawn2" type="Marker3D" parent="Laberinto/Enemigos" unique_id=715825163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.80995, 2.6306624, 29.642532)
+
+[node name="SpawnEnemigos" type="Area3D" parent="Laberinto/Enemigos" unique_id=1814604805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.663498, 0, 47.184986)
+script = ExtResource("26_56pmq")
+enemigo_escena = ExtResource("27_qpfw8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laberinto/Enemigos/SpawnEnemigos" unique_id=330991586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4828568, 3.470337, -2.7375793)
+shape = SubResource("BoxShape3D_1weqr")
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=225265740]
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
 spawn_path = NodePath("..")
+
+[node name="BotellaCerveza" parent="." unique_id=1683750601 instance=ExtResource("13_j1fac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.66938, 0.7252264, -19.161137)
+
+[node name="BotellaCerveza2" parent="." unique_id=914954857 instance=ExtResource("13_j1fac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.171358, 1.758353, -18.433168)
+
+[node name="MenuPausa" parent="." unique_id=405466910 instance=ExtResource("29_c3dwn")]
