@@ -43,6 +43,8 @@ var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 @onready var mano: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
 var item_en_mano: Node3D = null
 
+var punto_respawn :  Vector3 = Vector3(36, 2, 1250)
+
 func _ready() -> void:
 	var id_player = name.to_int()
 	set_multiplayer_authority(id_player)
@@ -293,12 +295,41 @@ func heridoPorEnemigo(area):
 @rpc("any_peer", "call_local", "reliable")
 func _recibir_danio_red(danio: int):
 	saludActual -= danio
+	herido = true
 	if saludActual <= 0:
 		saludActual = 0
+		actualizar_barraDeVida()
+		respawnear()
 		print("¡El jugador ha muerto!")
-	herido = true
 	actualizar_barraDeVida()
 
+func respawnear():
+	# 1. Apagar la cámara del jugadorD
+	camara.current = false
+	
+	# BUENA PRÁCTICA: Esconder el cuerpo y desactivar físicas para que 
+	# no le sigan disparando o siga cayendo al vacío mientras espera.
+	hide()
+	set_physics_process(false)
+	
+	# 2. Esperar exactamente 2 segundos sin congelar el juego
+	await get_tree().create_timer(2.0).timeout
+	
+	# 3. Restaurar estadísticas y teletransportar
+	velocity = Vector3.ZERO
+	saludActual = 100
+	actualizar_barraDeVida()
+	global_transform.origin = punto_respawn
+	force_update_transform()
+	
+	# 4. Volver a encender todo
+	show()
+	set_physics_process(true)
+	camara.current = true
+	
+func actualizar_respawn(direccion_respawn: Vector3):
+	punto_respawn = direccion_respawn
+	
 func is_moving():
 	return abs(velocity.z) > 0 || abs(velocity.x) > 0
 

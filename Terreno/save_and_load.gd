@@ -39,6 +39,8 @@ func save_game() -> void:
 	for jugador in jugadores:
 		if _es_jugador_host(jugador):
 			data.pos_host = jugador.global_position
+			if jugador.has_method("actualizar_respawn"):
+				jugador.actualizar_respawn(data.pos_host)
 			if jugador.has_node("Inventario"):
 				cache_inventario_host = jugador.get_node("Inventario").items.duplicate(true)
 			break
@@ -159,7 +161,9 @@ func _cliente_aplicar_datos_guardados(
 			if jugador is CharacterBody3D:
 				jugador.velocity = Vector3.ZERO
 			jugador.global_position = nueva_pos
-			
+			if jugador.has_method("actualizar_respawn"):
+				jugador.actualizar_respawn(nueva_pos)
+				
 			if jugador.has_node("Inventario"):
 				jugador.get_node("Inventario").cargar_datos_guardados(inv_guardado, jugador)
 			print("¡Datos, inventario y pepitas (", pepitas_guardadas, ") restaurados para el jugador ", peer_id, "!")

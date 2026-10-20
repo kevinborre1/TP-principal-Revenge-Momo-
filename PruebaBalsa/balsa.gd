@@ -32,8 +32,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# Pon esto temporalmente para ver qué le pasa tras el teletransporte
-	print("Posición de la balsa: ", global_position)
 	# 1. ABORDAR / BAJAR (solo el piloto; el otro jugador sube saltando)
 	if Input.is_action_just_pressed("Abordar"):
 		if is_controlled:
