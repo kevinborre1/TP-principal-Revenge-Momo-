@@ -15,6 +15,17 @@ func _input(event: InputEvent) -> void:
 		else:
 			panel_logros.hide()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			if _jugador_local_en_minijuego():
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _jugador_local_en_minijuego() -> bool:
+	for j in get_tree().get_nodes_in_group("Jugador"):
+		var es_mio = (Global.modo_multijugador != "linea") or j.is_multiplayer_authority()
+		if es_mio and j.get("minijuego_instance") != null:
+			return true
+	return false
 			
 func _on_salir_menu_pressed() -> void:
 	NetworkManager.notify_disconnection()
