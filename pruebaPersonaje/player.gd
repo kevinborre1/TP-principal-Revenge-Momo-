@@ -15,6 +15,7 @@ var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
 var StaminaPerdida= 0 #1.0
 var input_bloqueado: bool = false
+var posicion_inicial_nivel: Vector3 = Vector3.ZERO
 
 #Nodos de minijuego
 var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
@@ -112,10 +113,12 @@ func _ready() -> void:
 				global_position = Vector3(36, 2, 1250)
 			else:
 				global_position = Vector3(40, 2, 1250)
-
+				
+	await get_tree().process_frame # Nos aseguramos de que se haya movido
+	posicion_inicial_nivel = global_position
+	# -----------------------
 	# 2. Le damos medio segundo a la red y al mapa para cargar colisiones
-	await get_tree().create_timer(0.5).timeout
-	
+	await get_tree().create_timer(0.5).timeout	
 	# 3. Si somos los dueños de este jugador, le pedimos al Host la posición guardada (si existe, pisará la inicial)
 	if is_multiplayer_authority():
 		SaveAndLoad.solicitar_posicion_guardada_al_servidor()
@@ -290,15 +293,49 @@ func heridoPorEnemigo(area):
 		_recibir_danio_red(10)
 
 # Esta es la orden que viaja por la red
+# 1. Función de daño: Solo se encarga de la vida
 @rpc("any_peer", "call_local", "reliable")
 func _recibir_danio_red(danio: int):
 	saludActual -= danio
 	if saludActual <= 0:
-		saludActual = 0
-		print("¡El jugador ha muerto!")
-	herido = true
+		respawn()
+	else:
+		herido = true
+		actualizar_barraDeVida()
+# 2. Función Respawn: Solo se encarga de revivir y aplicar efectos
+func respawn() -> void:
+	saludActual = saludMax
+	herido = false
 	actualizar_barraDeVida()
+	print("¡Reapareciendo jugador ", name, "!")
+	
+	if is_multiplayer_authority():
+		var destino = _obtener_posicion_respawn()
+		mover_a.rpc(destino)
+		
+		# Reiniciamos la cámara
+		camera_rotation = Vector2.ZERO
+		if spring_arm_3d:
+			spring_arm_3d.rotation = Vector3.ZERO
 
+# 3. Función Helper: Solo se encarga de decidir MATEMÁTICAMENTE a dónde ir
+func _obtener_posicion_respawn() -> Vector3:
+	var soy_host = (multiplayer.get_unique_id() == 1)
+	var pos_guardada = Vector3.ZERO
+	
+	# Desacople total: Si SaveAndLoad existe y tiene la función, le preguntamos
+	if SaveAndLoad.has_method("obtener_ultimo_checkpoint"):
+		pos_guardada = SaveAndLoad.obtener_ultimo_checkpoint(soy_host)
+		
+	# Si nos devolvió un punto válido, vamos para allá
+	if pos_guardada != Vector3.ZERO:
+		var destino = pos_guardada
+		destino.y += 1.0 # Lo subimos un poco para no enterrarnos en el piso del checkpoint
+		return destino
+		
+	# Si nunca tocaron un checkpoint (Vector3.ZERO), volvemos a donde iniciamos el nivel
+	return posicion_inicial_nivel
+	
 func is_moving():
 	return abs(velocity.z) > 0 || abs(velocity.x) > 0
 
