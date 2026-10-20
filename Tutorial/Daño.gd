@@ -27,3 +27,5 @@ func _on_body_entered(body: Node3D) -> void:
 func _aplicar_dano(jugador: Node3D) -> void:
 	jugador.saludActual = max(jugador.saludActual - dano, 0)
 	jugador.cambioSalud.emit()
+
+#
