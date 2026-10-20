@@ -68,13 +68,19 @@ func _ready() -> void:
 	elif Global.modo_multijugador == "linea":
 		if es_mi_personaje:
 			if camara:
-				camara.call_deferred("make_current")
+				camara.make_current() #camara.call_deferred("make_current")
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 			if barraStamina: barraStamina.show()
 			if barraSalud: barraSalud.show()
 			if inventario_manager: inventario_manager.show()
 			if has_node("CanvasLayer"): $CanvasLayer.show()
+			if has_node("PanelContainer2"): $PanelContainer2.show()
+			if has_node("icon_counter"): $icon_counter.show()
+			if has_node("ContenedorMinijuego"):
+				$ContenedorMinijuego.show()
+				$ContenedorMinijuego.mouse_filter = Control.MOUSE_FILTER_PASS
+			
 			actualizar_barraStamina()
 			
 			var terreno = get_tree().current_scene.find_child("Terrain3D", true, false)
@@ -90,7 +96,11 @@ func _ready() -> void:
 			if barraSalud: barraSalud.hide()
 			if inventario_manager: inventario_manager.hide()
 			if has_node("CanvasLayer"): $CanvasLayer.hide()
-		
+			if has_node("PanelContainer2"): $PanelContainer2.hide()
+			if has_node("icon_counter"): $icon_counter.hide()
+			if has_node("ContenedorMinijuego"):
+				$ContenedorMinijuego.hide()
+				$ContenedorMinijuego.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var raycast: RayCast3D = find_child("RayCastDisparo", true, false)
 	if raycast:
 		raycast.add_exception(self)
@@ -151,10 +161,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
 		return
 	
-	# capturar mouse SOLO si el clic no toco un boton del menu
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if not Global.menu_pausa_abierto:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# Solo volvemos a capturar el mouse si no hay ningún minijuego abierto
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and minijuego_instance == null:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	# logica acciones y gameplay
 	# Activar Ragdoll
@@ -455,9 +464,16 @@ func recibir_cura(puntos_cura: int) -> bool:
 	
 #Funciones de minijuego
 func abrir_minijuego() -> void:
+	#solo abrimos el minijuego si este personaje es el nuestro en esta PC
+	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
+		return
 	if minijuego_instance:
 		return  # ya está abierto, evitar duplicados
+	$ContenedorMinijuego.show()
+	$ContenedorMinijuego.mouse_filter = Control.MOUSE_FILTER_PASS
 	$CanvasLayer/PuntoDeMira.hide()
+	if has_node("PanelContainer2"): $PanelContainer2.hide()
+	if has_node("icon_counter"): $icon_counter.hide()
 	minijuego_instance = minijuego_scene.instantiate()
 	minijuego_instance.nombre_jugador = "Jugador 1" if name == "1" else "Jugador 2"
 	$ContenedorMinijuego.add_child(minijuego_instance)  
@@ -481,6 +497,8 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 	minijuego_instance = null
 	input_bloqueado = false
 	$CanvasLayer/PuntoDeMira.show()
+	if has_node("PanelContainer2"): $PanelContainer2.show()
+	if has_node("icon_counter"): $icon_counter.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func actualizar_modo_combate() -> void:
