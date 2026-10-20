@@ -19,6 +19,9 @@ var _transform_previa: Transform3D
 var _rotacion_inicial: float = 0.0
 var _inicio_marcha_ms: int = 0
 
+@export var punto_spawn: Vector3 = Vector3(76.1418, 0.331, 1198.546)
+@export var tiempo_para_reiniciar: float = 3.0 # Segundos de espera antes de que vuelva sola
+var _tiempo_vacia: float = 0.0
 
 func _ready() -> void:
 	add_to_group("Balsa")
@@ -72,7 +75,22 @@ func _physics_process(delta: float) -> void:
 
 	# 3. ARRASTRAR PASAJEROS (corre en todas las PC)
 	_arrastrar_pasajeros()
-
+	
+	# 4. VERIFICAR SI ESTÁ ABANDONADA PARA REINICIARLA (Solo la autoridad)
+	if is_multiplayer_authority():
+		# Si no hay piloto y el array de pasajeros está vacío
+		if piloto == null and pasajeros.is_empty():
+			# Verificamos que NO esté en el spawn (damos un margen de 1 metro de tolerancia)
+			if global_transform.origin.distance_to(punto_spawn) > 1.0:
+				_tiempo_vacia += delta
+				if _tiempo_vacia >= tiempo_para_reiniciar:
+					_tiempo_vacia = 0.0
+					# la mandamos al inicio
+					rpc_eliminar_balsa.rpc() 
+		else:
+			# Si alguien se sube, el contador vuelve a cero
+			_tiempo_vacia = 0.0
+			
 func _arrastrar_pasajeros() -> void:
 	var cambio := global_transform * _transform_previa.affine_inverse()
 	_transform_previa = global_transform
@@ -195,7 +213,7 @@ func rpc_eliminar_balsa() -> void:
 	velocity = Vector3.ZERO
 
 	# 2. Usamos global_transform.origin. Es más estricto a nivel de motor que global_position.
-	global_transform.origin = Vector3(76.1418, 0.331, 1198.546)
+	global_transform.origin = punto_spawn
 	rotation.y = _rotacion_inicial
 	
 	# 3. ¡EL TRUCO CLAVE! Esta función obliga a Godot a borrar su caché de colisiones 
