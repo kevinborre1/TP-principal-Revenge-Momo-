@@ -250,3 +250,18 @@ func _obtener_pepitas_actuales() -> int:
 func _aplicar_pepitas_en_juego(cantidad: int) -> void:
 	if GameManager.current_mode == GameManager.GameMode.RECOLECCION:
 		GameManager._actualizar_conteo_red(cantidad)
+
+# --- NUEVA FUNCIÓN MODULAR ---
+# Devuelve la posición del último guardado oficial (o Vector3.ZERO si no existe)
+func obtener_ultimo_checkpoint(soy_host: bool) -> Vector3:
+	if rutaUtilizada == "" or not ResourceLoader.exists(rutaUtilizada):
+		return Vector3.ZERO
+		
+	var data = ResourceLoader.load(rutaUtilizada, "", ResourceLoader.CACHE_MODE_IGNORE) as SaveData
+	if data == null or data.pos_host == Vector3.ZERO:
+		return Vector3.ZERO
+		
+	if soy_host:
+		return data.pos_host
+	else:
+		return data.pos_cliente
