@@ -19,14 +19,16 @@ var _transform_previa: Transform3D
 var _rotacion_inicial: float = 0.0
 var _inicio_marcha_ms: int = 0
 
-@export var punto_spawn: Vector3 = Vector3(76.1418, 0.331, 1198.546)
+var punto_spawn: Vector3
 @export var tiempo_para_reiniciar: float = 3.0 # Segundos de espera antes de que vuelva sola
 var _tiempo_vacia: float = 0.0
 
 func _ready() -> void:
 	add_to_group("Balsa")
-	_transform_previa = global_transform
+	punto_spawn = global_transform.origin
 	_rotacion_inicial = rotation.y
+	_transform_previa = global_transform
+	
 	if zona_cubierta:
 		zona_cubierta.body_entered.connect(_on_cubierta_body_entered)
 		zona_cubierta.body_exited.connect(_on_cubierta_body_exited)
