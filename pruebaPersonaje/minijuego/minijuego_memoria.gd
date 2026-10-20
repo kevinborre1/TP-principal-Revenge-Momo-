@@ -35,6 +35,9 @@ func _ready() -> void:
 	input_nombre.max_length = 12
 	input_nombre.text_submitted.connect(_on_nombre_enviado)
 	boton_guardar.pressed.connect(func(): _on_nombre_enviado(input_nombre.text))
+	ScoreManager.puntajes_actualizados.connect(_refrescar_tabla_ranking)
+	ScoreManager.cargar() # Carga inicial local
+	_refrescar_tabla_ranking()
 
 func _process(delta: float) -> void:
 	if juego_terminado:
@@ -43,6 +46,12 @@ func _process(delta: float) -> void:
 	label_timer.text = "%02d:%02d" % [int(tiempo_restante) / 60, int(tiempo_restante) % 60]
 	if tiempo_restante <= 0:
 		_terminar_juego(false)
+
+func _refrescar_tabla_ranking() -> void:
+	# Si el juego ya terminó y el cartel de resultados está abierto, 
+	# actualizamos el texto con la nueva lista sincronizada por la red.
+	if juego_terminado and label_resultado.visible:
+		label_resultado.text = _armar_texto_final(true, puntaje_final, -1)
 
 func _armar_mazo() -> void:
 	var valores: Array[int] = []
@@ -112,17 +121,31 @@ func _terminar_juego(gano: bool) -> void:
 
 func _on_nombre_enviado(texto: String) -> void:
 	if not input_nombre.visible:
-		return  # evita registrar dos veces (Enter + clic en el botón)
+		return  # evita registrar dos veces
 
 	var nombre := texto.strip_edges()
 	if nombre.is_empty():
-		nombre = nombre_jugador  # si lo dejó vacío, usa "Jugador 1/2"
+		nombre = nombre_jugador  # si lo dejó vacío
 
 	input_nombre.hide()
 	boton_guardar.hide()
 
-	var posicion := ScoreManager.registrar(nombre, puntaje_final)
-	label_resultado.text = _armar_texto_final(true, puntaje_final, posicion)
+	# Registramos el puntaje
+	ScoreManager.registrar(nombre, puntaje_final)
+	
+	# Damos un breve respiro para que la red sincronice (especialmente si es el cliente)
+	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
+		await get_tree().create_timer(0.3).timeout
+
+	# Buscamos la posición real examinando el top actual de ScoreManager
+	var posicion_real := -1
+	for i in range(ScoreManager.top.size()):
+		var entrada = ScoreManager.top[i]
+		if entrada["nombre"] == nombre and int(entrada["puntaje"]) == puntaje_final:
+			posicion_real = i + 1
+			break
+
+	label_resultado.text = _armar_texto_final(true, puntaje_final, posicion_real)
 
 	await get_tree().create_timer(5.0).timeout
 	minijuego_terminado.emit(true, puntaje_final)

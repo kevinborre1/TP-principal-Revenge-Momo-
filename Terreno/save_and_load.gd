@@ -7,6 +7,8 @@ var logros: DataClassLogros
 @export var datos_logros: DataClassLogros = DataClassLogros.new()
 var cache_inventario_host: Array = [null, null, null, null, null]
 var cache_inventario_cliente: Array = [null, null, null, null, null]
+var ranking_compartido: Array = []
+signal ranking_actualizado(nuevo_ranking: Array)
 
 func _es_jugador_host(jugador: Node) -> bool:
 	if jugador.name == "1" or jugador.name == "Host":
@@ -265,3 +267,81 @@ func obtener_ultimo_checkpoint(soy_host: bool) -> Vector3:
 		return data.pos_host
 	else:
 		return data.pos_cliente
+		
+func _obtener_ruta_puntajes() -> String:
+	# Default: puntajes.json
+	if rutaUtilizada != "":
+		var base = rutaUtilizada.get_file().get_basename() 
+		return "user://puntajes_" + base + ".json"
+	return "user://puntajes.json"
+
+# Cuando un jugador termina el minijuego
+func registrar_puntaje_minijuego(nombre_jugador: String, puntaje: int) -> void:
+	if Global.modo_multijugador == "linea":
+		rpc_id(1, "_servidor_guardar_puntaje", nombre_jugador, puntaje)
+	else:
+		_servidor_guardar_puntaje(nombre_jugador, puntaje)
+
+# Llamar a esta función al abrir el minijuego para pedir la tabla actualizada al Host
+func solicitar_ranking_minijuego() -> void:
+	if Global.modo_multijugador == "linea":
+		rpc_id(1, "_servidor_enviar_ranking", multiplayer.get_unique_id())
+	else:
+		_servidor_cargar_archivo_puntajes()
+		ranking_actualizado.emit(ranking_compartido)
+
+@rpc("any_peer", "call_local", "reliable")
+func _servidor_guardar_puntaje(nombre_jugador: String, puntaje: int) -> void:
+	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
+		return
+		
+	_servidor_cargar_archivo_puntajes()
+	
+	# Agregamos el nuevo puntaje
+	ranking_compartido.append({
+		"nombre": nombre_jugador,
+		"puntaje": puntaje
+	})
+	
+	# Ordenamos de mayor a menor puntaje 
+	ranking_compartido.sort_custom(func(a, b): return a.get("puntaje", 0) > b.get("puntaje", 0))
+	
+	# Guardamos en el JSON oficial del Host
+	var ruta = _obtener_ruta_puntajes()
+	var file = FileAccess.open(ruta, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(ranking_compartido, "\t"))
+		file.close()
+		
+	# Enviamos la lista unificada a TODOS los jugadores (Host y Cliente)
+	if Global.modo_multijugador == "linea":
+		rpc("_cliente_recibir_ranking", ranking_compartido)
+	else:
+		_cliente_recibir_ranking(ranking_compartido)
+		
+@rpc("any_peer", "call_local", "reliable")
+func _servidor_enviar_ranking(peer_id: int) -> void:
+	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
+		return
+	_servidor_cargar_archivo_puntajes()
+	rpc_id(peer_id, "_cliente_recibir_ranking", ranking_compartido)
+	
+func _servidor_cargar_archivo_puntajes() -> void:
+	var ruta = _obtener_ruta_puntajes()
+	if FileAccess.file_exists(ruta):
+		var file = FileAccess.open(ruta, FileAccess.READ)
+		if file:
+			var parsed = JSON.parse_string(file.get_as_text())
+			if parsed is Array:
+				ranking_compartido = parsed
+			file.close()
+
+@rpc("authority", "call_local", "reliable")
+func _cliente_recibir_ranking(lista_ranking: Array) -> void:
+	ranking_compartido = lista_ranking
+	# También guardamos una copia local en user://puntajes.json por si el cliente quiere tenerlo
+	var file = FileAccess.open("user://puntajes.json", FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(ranking_compartido, "\t"))
+		file.close()
+	ranking_actualizado.emit(ranking_compartido)
