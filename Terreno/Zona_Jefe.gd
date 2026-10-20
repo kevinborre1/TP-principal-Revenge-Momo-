@@ -8,6 +8,8 @@ enum Modo { UNO_AL_AZAR, AMBOS }
 @export var radio: float = 4.0
 @export var dano: int = 30
 
+@export var ataque_ladrillo_escena: PackedScene
+
 var _detenida := false
 var jugadores_en_zona: Array = []
 var _timer: Timer
@@ -76,9 +78,14 @@ func detener() -> void:
 	if _timer:
 		_timer.stop()
 
+
+
+
 @rpc("authority", "call_local", "reliable")
 func lanzar_ataque(pos: Vector3) -> void:
-	var ataque := AtaqueArea.new()
+	if ataque_ladrillo_escena == null:
+		return
+	var ataque = ataque_ladrillo_escena.instantiate()
 	ataque.radio = radio
 	ataque.dano = dano
 	ataque.retraso = retraso_caida
