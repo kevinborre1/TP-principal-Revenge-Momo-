@@ -32,6 +32,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Pon esto temporalmente para ver qué le pasa tras el teletransporte
+	print("Posición de la balsa: ", global_position)
 	# 1. ABORDAR / BAJAR (solo el piloto; el otro jugador sube saltando)
 	if Input.is_action_just_pressed("Abordar"):
 		if is_controlled:
@@ -191,6 +193,13 @@ func rpc_eliminar_balsa() -> void:
 
 	pasajeros.clear()
 	is_controlled = false
+# 1. Matamos la inercia
+	velocity = Vector3.ZERO
 
-	# Eliminar la balsa
-	queue_free()
+	# 2. Usamos global_transform.origin. Es más estricto a nivel de motor que global_position.
+	global_transform.origin = Vector3(76.1418, 0.331, 1198.546)
+	rotation.y = _rotacion_inicial
+	
+	# 3. ¡EL TRUCO CLAVE! Esta función obliga a Godot a borrar su caché de colisiones 
+	# y aceptar inmediatamente que el objeto ahora existe en la nueva coordenada.
+	force_update_transform()

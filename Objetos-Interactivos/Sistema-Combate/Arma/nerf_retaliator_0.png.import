@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc3o05t4rmvun"
-path.s3tc="res://.godot/imported/nerf_retaliator_0.png-0c243ecce9e0712289d1eb0a85493ebd.s3tc.ctex"
+path.s3tc="res://.godot/imported/nerf_retaliator_0.png-807e329609b36fd61eb1d0de267c7c8a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Arma/nerf_retaliator_0.png"
-dest_files=["res://.godot/imported/nerf_retaliator_0.png-0c243ecce9e0712289d1eb0a85493ebd.s3tc.ctex"]
+source_file="res://Objetos-Interactivos/Sistema-Combate/Arma/nerf_retaliator_0.png"
+dest_files=["res://.godot/imported/nerf_retaliator_0.png-807e329609b36fd61eb1d0de267c7c8a.s3tc.ctex"]
 
 [params]
 
