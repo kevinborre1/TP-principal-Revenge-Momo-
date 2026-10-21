@@ -286,19 +286,20 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
 	move_and_slide()
 	# Actualizar HUD del Contrarreloj
-	if Global.modo_de_juego == "contrarreloj" and label_contrarreloj.visible:
-		var minutos = int(GameManager.tiempo_restante) / 60
-		var segundos = int(GameManager.tiempo_restante) % 60
-		
-		# Le da el formato "15:00" agregando un cero a la izquierda si es menor a 10
-		label_contrarreloj.text = "%02d:%02d" % [minutos, segundos]
-		
-		# Opcional: ¡Poner el texto en rojo y parpadeante si queda menos de 1 minuto!
-		if GameManager.tiempo_restante <= 60.0:
-			label_contrarreloj.modulate = Color.RED
+	if Global.modo_de_juego == "contrarreloj" and label_contrarreloj:
+		if Global.menu_pausa_abierto:
+			label_contrarreloj.hide() # Lo ocultamos en el menú
 		else:
-			label_contrarreloj.modulate = Color.WHITE
-	
+			label_contrarreloj.show() # Lo mostramos en el juego
+			
+			var minutos = int(GameManager.tiempo_restante) / 60
+			var segundos = int(GameManager.tiempo_restante) % 60
+			label_contrarreloj.text = "%02d:%02d" % [minutos, segundos]
+			
+			if GameManager.tiempo_restante <= 60.0:
+				label_contrarreloj.modulate = Color.RED
+			else:
+				label_contrarreloj.modulate = Color.WHITE
 func activar_ragdoll():
 	if collision_shape_3d:
 		collision_shape_3d.disabled = true

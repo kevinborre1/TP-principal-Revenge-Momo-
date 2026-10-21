@@ -1289,6 +1289,12 @@ properties/4/replication_mode = 2
 radius = 0.12841797
 height = 0.66796875
 
+[sub_resource type="LabelSettings" id="LabelSettings_ww6v2"]
+font_size = 23
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+
 [node name="Player" type="CharacterBody3D" unique_id=679560290 groups=["jugadores"]]
 script = ExtResource("1_cm308")
 
@@ -2059,7 +2065,9 @@ grow_vertical = 2
 
 [node name="LabelContrarreloj" type="Label" parent="CanvasLayer2" unique_id=1172461086]
 offset_left = 522.0
+offset_top = 70.0
 offset_right = 577.0
-offset_bottom = 23.0
+offset_bottom = 93.0
 scale = Vector2(2.7600012, 2.934446)
 text = "\"15:00\""
+label_settings = SubResource("LabelSettings_ww6v2")

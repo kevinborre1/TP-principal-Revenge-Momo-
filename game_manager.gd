@@ -14,8 +14,8 @@ signal count_changed(current_count: int)
 signal objective_completed(mode: GameMode)
 
 func _process(delta: float) -> void:
-	# El reloj corre para todos en sus PC de forma paralela
-	if Global.modo_de_juego == "contrarreloj" and timer_activo:
+	# El reloj corre para todos, PERO se detiene si el menú de pausa está abierto
+	if Global.modo_de_juego == "contrarreloj" and timer_activo and not Global.menu_pausa_abierto:
 		tiempo_restante -= delta
 		
 		# Solo el Host decide si el tiempo se acabó para evitar desincronizaciones
