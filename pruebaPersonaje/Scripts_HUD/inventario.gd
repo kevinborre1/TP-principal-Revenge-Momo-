@@ -3,6 +3,7 @@ class_name InventarioManager
 
 var items = [null, null, null, null, null] # 5 espacios
 var slot_seleccionado: int = 0
+var slot_actual: int = 0
 
 @onready var slots_ui = get_children()
 
@@ -13,6 +14,7 @@ func _ready() -> void:
 func seleccionar_slot(indice: int, player: Node3D) -> void:
 	if indice >= 0 and indice < items.size():
 		slot_seleccionado = indice
+		slot_actual = indice
 		actualizar_ui_seleccion()
 		print("Slot activo: ", slot_seleccionado + 1)
 		
@@ -27,7 +29,7 @@ func seleccionar_slot(indice: int, player: Node3D) -> void:
 			player.solicitar_desequipar()
 
 # 2. ACTUALIZADO: Se agrega 'es_equipable' con un valor por defecto en falso
-func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String) -> bool:
+func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String, player: Node3D) -> bool:
 	for i in range(items.size()):
 		if items[i] == null:
 			var ruta_tex = textura_icono.resource_path if textura_icono != null else ""
@@ -42,6 +44,9 @@ func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String) -
 			# Si estamos en multijugador, avisamos al servidor nuestro inventario actualizado
 			if has_node("/root/SaveAndLoad"):
 				SaveAndLoad.registrar_inventario_jugador.rpc_id(1, multiplayer.get_unique_id(), items.duplicate(true))
+			if i == slot_actual:
+				var item_recien_agregado = items[i]
+				player.solicitar_equipar(item_recien_agregado["ruta_escena"])
 			return true
 			
 	print("El inventario está lleno")

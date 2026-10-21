@@ -44,10 +44,13 @@ func iniciar_timer_tolerancia() -> void:
 func reiniciar_botones() -> void:
 	estado_botones[1] = false
 	estado_botones[2] = false
+	
 	var botones = get_tree().get_nodes_in_group("BotonesPuerta")
 	for b in botones:
-		if "esta_activado" in b:
-			b.esta_activado = false
+		# (OOP - Encapsulamiento): Verificamos si el botón tiene la capacidad de desactivarse 
+		# y se lo pedimos amablemente, sin tocar sus variables internas.
+		if b.has_method("desactivar_externamente"):
+			b.desactivar_externamente()
 
 func contar_botones_activos() -> int:
 	var activos = 0
@@ -61,10 +64,7 @@ func contar_botones_activos() -> int:
 @rpc("call_local", "any_peer", "reliable")
 func abrir_puerta() -> void:
 	esta_abierta = true
-	
-	if collision_shape:
-		collision_shape.disabled = true
-	
+
 	if animation_player:
 		animation_player.play("Armature|Open")
 	
@@ -101,6 +101,8 @@ func cerrar_puerta() -> void:
 		collision_shape.disabled = false
 	
 	cerrando = false
+	
+	reiniciar_botones()
 
 @rpc("call_local", "any_peer", "reliable")
 func reproducir_cinematica() -> void:

@@ -406,7 +406,7 @@ func intentar_recoger_item():
 		
 		# 2. Si es un ítem normal del inventario (como las botellas)
 		elif cuerpo is ItemBase:
-			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena)
+			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena, self)
 			if exito:
 				cuerpo.ser_recogido()
 				break
@@ -433,21 +433,22 @@ func soltar_item_actual():
 				nuevo_objeto.global_position = global_position + (global_transform.basis.z * -1.5) + Vector3(0, 1, 0)
 
 func consumir_item_actual():
-	var item = inventario_manager.obtener_item_actual()
-	if item != null:
-		var ruta = item["ruta_escena"]
-		var escena_objeto = load(ruta)
+	#var item = inventario_manager.obtener_item_actual()
+	#if item != null:
+		#var ruta = item["ruta_escena"]
+		#var escena_objeto = load(ruta)
 		
-		if escena_objeto:
-			var item_temporal = escena_objeto.instantiate()
-			if item_temporal is ItemBase:
-				var se_uso = item_temporal.usar_item(self)
+		if item_en_mano != null :
+			#var item_temporal = escena_objeto.instantiate()
+			if item_en_mano is ItemBase:
+				var se_uso = item_en_mano.usar_item(self)
 				
 				# Si se pudo usar con éxito, lo borramos del inventario
 				if se_uso == true:
 					inventario_manager.borrar_item_actual()
+					desequipar_para_todos()
 					
-			item_temporal.queue_free()
+			#item_temporal.queue_free()
 
 func recibir_cura(puntos_cura: int) -> bool:
 	
