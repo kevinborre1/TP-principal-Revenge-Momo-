@@ -2054,3 +2054,12 @@ offset_right = -14.0
 offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1155286539]
+
+[node name="LabelContrarreloj" type="Label" parent="CanvasLayer2" unique_id=1172461086]
+offset_left = 522.0
+offset_right = 577.0
+offset_bottom = 23.0
+scale = Vector2(2.7600012, 2.934446)
+text = "\"15:00\""

@@ -42,6 +42,7 @@ var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 # Ruta hacia tu BoneAttachment3D de la mano:
 @onready var mano: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
 var item_en_mano: Node3D = null
+@onready var label_contrarreloj: Label = $CanvasLayer2/LabelContrarreloj
 
 var punto_respawn :  Vector3 = Vector3(36, 2, 1250)
 
@@ -138,6 +139,16 @@ func _ready() -> void:
 	if collision_shape_3d:
 		collision_shape_3d.disabled = false
 	set_physics_process(true) # Reactiva el _physics_process (gravedad y controles)
+	
+	# Arrancar el reloj si el modo es contrarreloj
+	if label_contrarreloj:
+		if Global.modo_de_juego == "contrarreloj":
+			label_contrarreloj.show()
+			# Solo el host da la orden de iniciar para que no arranque 2 veces
+			if is_multiplayer_authority():
+				GameManager.iniciar_timer()
+		else:
+			label_contrarreloj.hide()
 
 
 func _input(event: InputEvent) -> void:
@@ -274,6 +285,19 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
 	move_and_slide()
+	# Actualizar HUD del Contrarreloj
+	if Global.modo_de_juego == "contrarreloj" and label_contrarreloj.visible:
+		var minutos = int(GameManager.tiempo_restante) / 60
+		var segundos = int(GameManager.tiempo_restante) % 60
+		
+		# Le da el formato "15:00" agregando un cero a la izquierda si es menor a 10
+		label_contrarreloj.text = "%02d:%02d" % [minutos, segundos]
+		
+		# Opcional: ¡Poner el texto en rojo y parpadeante si queda menos de 1 minuto!
+		if GameManager.tiempo_restante <= 60.0:
+			label_contrarreloj.modulate = Color.RED
+		else:
+			label_contrarreloj.modulate = Color.WHITE
 	
 func activar_ragdoll():
 	if collision_shape_3d:
