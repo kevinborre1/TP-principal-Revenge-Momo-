@@ -35,15 +35,18 @@ func _iniciar_host(ruta: String) -> void:
 	ultimo_codigo_ingresado = ""
 	SaveAndLoad.rutaUtilizada = ruta  
 	
-	if ResourceLoader.exists(ruta):
+	NetworkManager.quiero_ser_host = true
+	
+	if FileAccess.file_exists(ruta) or ResourceLoader.exists(ruta):
 		cartel_error.text = "Cargando partida guardada..."
+		cartel_error.show()
+		_cargar_mapa_correspondiente()
 	else:
 		cartel_error.text = "Cargando mapa para crear sesión..."
-	cartel_error.show()
-	
-	# GUARDAMOS LA INTENCIÓN Y CAMBIAMOS DE ESCENA PRIMERO
-	NetworkManager.quiero_ser_host = true
-	_cargar_mapa_correspondiente()
+		cartel_error.show()
+		get_tree().change_scene_to_file("res://Menu/MenuSeleccionModo.tscn")
+
+
 
 func _on_volver_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")

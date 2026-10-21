@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwvdr1rjmqtn8"
-path.s3tc="res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack_0.png-8c5b8415637c5f496642b17fada789f5.s3tc.ctex"
+path.s3tc="res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack_0.png-39fd576daa9df604328a9d2cfec6a9b3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Terreno/projectplaytime_destroy-a-toy_fences-pack_0.png"
-dest_files=["res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack_0.png-8c5b8415637c5f496642b17fada789f5.s3tc.ctex"]
+source_file="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_0.png"
+dest_files=["res://.godot/imported/projectplaytime_destroy-a-toy_fences-pack_0.png-39fd576daa9df604328a9d2cfec6a9b3.s3tc.ctex"]
 
 [params]
 
