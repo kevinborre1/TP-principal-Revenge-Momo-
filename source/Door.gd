@@ -65,6 +65,9 @@ func contar_botones_activos() -> int:
 func abrir_puerta() -> void:
 	esta_abierta = true
 
+	if collision_shape:
+		collision_shape.disabled = true
+		
 	if animation_player:
 		animation_player.play("Armature|Open")
 	
