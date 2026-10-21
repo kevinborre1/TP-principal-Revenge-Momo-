@@ -8,8 +8,16 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport1 = $HBoxContainer/SubViewportContainer/SubViewport
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
 @onready var pantalla_desconexion: CanvasLayer = $PantallaDesconexion
+@onready var texto_modo: Label = $Label
 
 func _ready() -> void:
+	if Global.modo_de_juego == "normal":
+		texto_modo.text = "Modo: Normal"
+	elif Global.modo_de_juego == "vida_compartida":
+		texto_modo.text = "Modo: Vida Compartida"
+	elif Global.modo_de_juego == "contrarreloj":
+		texto_modo.text = "Modo: Contrarreloj"
+
 	GameManager.set_mode(GameManager.GameMode.RECOLECCION, 3)
 	
 	# Configurar la UI
