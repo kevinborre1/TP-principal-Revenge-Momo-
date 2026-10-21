@@ -13,7 +13,7 @@ var herido = false
 var StaminaMax = 100.0
 var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
-var StaminaPerdida= 0 #1.0
+var StaminaPerdida= 1.0
 var input_bloqueado: bool = false
 
 #Nodos de minijuego
