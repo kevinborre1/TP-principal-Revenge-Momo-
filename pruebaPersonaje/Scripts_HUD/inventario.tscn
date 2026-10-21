@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cqeg5wem0tjm0"]
+
+[ext_resource type="Script" uid="uid://0lxksclcjhd3" path="res://pruebaPersonaje/Scripts_HUD/inventario.gd" id="1_at5hd"]
+
+[node name="Inventario" type="HBoxContainer" unique_id=881336285]
+anchors_preset = -1
+anchor_left = 0.33900002
+anchor_top = 0.94100004
+anchor_right = 0.63500005
+anchor_bottom = 0.94100004
+offset_left = 0.47198486
+offset_top = -33.768005
+offset_right = -0.52008057
+offset_bottom = 30.231995
+script = ExtResource("1_at5hd")
+
+[node name="Panel" type="Panel" parent="." unique_id=1656270830]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Panel" unique_id=1836919467]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="." unique_id=399068298]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Panel2" unique_id=46584862]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel3" type="Panel" parent="." unique_id=922100137]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Panel3" unique_id=739742798]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel4" type="Panel" parent="." unique_id=1317227832]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Panel4" unique_id=801181517]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel5" type="Panel" parent="." unique_id=942065032]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="icono" type="TextureRect" parent="Panel5" unique_id=978083830]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1

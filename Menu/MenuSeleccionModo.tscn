@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d3r8frtkf4hfq"]
 
 [ext_resource type="Script" uid="uid://e0lwadm2t3nd" path="res://Menu/menu_seleccion_modo.gd" id="1_6fg4y"]
+[ext_resource type="Texture2D" uid="uid://cai556ph3red5" path="res://Imagenes/menu fondo.png" id="2_o5l76"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m3v3u"]
 
@@ -24,6 +25,7 @@ layout_mode = 1
 anchors_preset = -1
 offset_right = 1150.0
 offset_bottom = 647.0
+texture = ExtResource("2_o5l76")
 expand_mode = 1
 
 [node name="Normal" type="Button" parent="." unique_id=1740690659]
