@@ -18,41 +18,36 @@ func _process(delta: float) -> void:
 	if Global.modo_de_juego == "contrarreloj" and timer_activo and not Global.menu_pausa_abierto:
 		tiempo_restante -= delta
 		
-		# Solo el Host decide si el tiempo se acabó para evitar desincronizaciones
-		if tiempo_restante <= 0:
-			tiempo_restante = 0
-			timer_activo = false
-			if Global.modo_multijugador != "linea" or multiplayer.is_server():
-				_tiempo_agotado.rpc()
-
-# --- FUNCIONES DE CONTROL DEL RELOJ (Las usarás en tus cinemáticas) ---
+# --- FUNCIONES DE CONTROL DEL RELOJ ---
 func iniciar_timer() -> void:
 	tiempo_restante = 900.0
 	timer_activo = true
 	if Global.modo_multijugador == "linea" and multiplayer.is_server():
-		_sincronizar_timer.rpc(tiempo_restante, timer_activo)
+		_sincronizar_timer.rpc(tiempo_restante, timer_activo, Global.modo_de_juego)
 
 func pausar_timer() -> void:
 	timer_activo = false
 	if Global.modo_multijugador == "linea" and multiplayer.is_server():
-		_sincronizar_timer.rpc(tiempo_restante, timer_activo)
+		_sincronizar_timer.rpc(tiempo_restante, timer_activo, Global.modo_de_juego)
 
 func reanudar_timer() -> void:
 	timer_activo = true
 	if Global.modo_multijugador == "linea" and multiplayer.is_server():
-		_sincronizar_timer.rpc(tiempo_restante, timer_activo)
+		_sincronizar_timer.rpc(tiempo_restante, timer_activo, Global.modo_de_juego)
 
+# NUEVO: El Cliente llama a esto al entrar para robarse los datos del Host
+@rpc("any_peer", "call_remote", "reliable")
+func _pedir_estado_al_host() -> void:
+	if multiplayer.is_server():
+		var peer_id = multiplayer.get_remote_sender_id()
+		_sincronizar_timer.rpc_id(peer_id, tiempo_restante, timer_activo, Global.modo_de_juego)
+
+# Actualizamos el RPC para que también sincronice la variable del modo de juego
 @rpc("authority", "call_local", "reliable")
-func _sincronizar_timer(tiempo: float, activo: bool) -> void:
+func _sincronizar_timer(tiempo: float, activo: bool, modo: String) -> void:
 	tiempo_restante = tiempo
 	timer_activo = activo
-
-@rpc("call_local", "reliable")
-func _tiempo_agotado() -> void:
-	print("¡Se acabó el tiempo!")
-	# Aquí va tu lógica de perder el nivel (o cargar la escena de Game Over)
-	# get_tree().change_scene_to_file("res://Menu/GameOver.tscn")
-
+	Global.modo_de_juego = modo # ¡Aquí el Cliente se entera de que es Contrarreloj!
 
 func set_mode(mode: GameMode, max_items: int = 3) -> void:
 	current_mode = mode

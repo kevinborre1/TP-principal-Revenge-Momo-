@@ -141,15 +141,17 @@ func _ready() -> void:
 	set_physics_process(true) # Reactiva el _physics_process (gravedad y controles)
 	
 	# Arrancar el reloj si el modo es contrarreloj
-	if label_contrarreloj:
-		if Global.modo_de_juego == "contrarreloj":
-			label_contrarreloj.show()
-			# Solo el host da la orden de iniciar para que no arranque 2 veces
-			if is_multiplayer_authority():
+	if is_multiplayer_authority():
+		if Global.modo_multijugador == "linea":
+			if multiplayer.is_server():
+				if Global.modo_de_juego == "contrarreloj":
+					GameManager.iniciar_timer()
+			else:
+				# El cliente entra y le exige los datos al Host
+				GameManager._pedir_estado_al_host.rpc_id(1)
+		elif Global.modo_multijugador == "local" and name == "1":
+			if Global.modo_de_juego == "contrarreloj":
 				GameManager.iniciar_timer()
-		else:
-			label_contrarreloj.hide()
-
 
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
@@ -221,9 +223,12 @@ func _physics_process(delta: float) -> void:
 	if input_bloqueado:
 		return
 		
+	# SI ESTE PERSONAJE NO ES MÍO, OCULTO SU RELOJ FANTASMA Y CORTO EL CÓDIGO
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
+		if label_contrarreloj:
+			label_contrarreloj.hide()
 		return
-	
+
 	player_animation()
 		
 	var velocidadActual = SPEED
@@ -286,12 +291,9 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
 	move_and_slide()
 	# Actualizar HUD del Contrarreloj
-	if Global.modo_de_juego == "contrarreloj" and label_contrarreloj:
-		if Global.menu_pausa_abierto:
-			label_contrarreloj.hide() # Lo ocultamos en el menú
-		else:
-			label_contrarreloj.show() # Lo mostramos en el juego
-			
+	if label_contrarreloj:
+		if Global.modo_de_juego == "contrarreloj" and not Global.menu_pausa_abierto:
+			label_contrarreloj.show()
 			var minutos = int(GameManager.tiempo_restante) / 60
 			var segundos = int(GameManager.tiempo_restante) % 60
 			label_contrarreloj.text = "%02d:%02d" % [minutos, segundos]
@@ -300,6 +302,9 @@ func _physics_process(delta: float) -> void:
 				label_contrarreloj.modulate = Color.RED
 			else:
 				label_contrarreloj.modulate = Color.WHITE
+		else:
+			label_contrarreloj.hide()
+
 func activar_ragdoll():
 	if collision_shape_3d:
 		collision_shape_3d.disabled = true
