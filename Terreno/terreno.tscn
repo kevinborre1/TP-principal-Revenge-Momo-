@@ -6911,7 +6911,7 @@ transform = Transform3D(-2.6226832e-09, 0, -0.021758815, 0, 0.027035343, 0, 0.06
 script = ExtResource("54_k6sp0")
 
 [node name="Sketchfab_model" type="Node3D" parent="VictorBars/Interacciones VictorBars/Puerta2" unique_id=1966288855]
-transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, 1, 0, -0.99999994, -4.371139e-08, 0, 0, 0)
 
 [node name="ad94433c0d274c9ca7c09eec2d6cc43a_fbx" type="Node3D" parent="VictorBars/Interacciones VictorBars/Puerta2/Sketchfab_model" unique_id=1024570175]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -6970,7 +6970,7 @@ bones/5/rotation = Quaternion(0, 0, 0, 1)
 bones/5/scale = Vector3(1, 1, 1)
 
 [node name="Object_13" type="MeshInstance3D" parent="VictorBars/Interacciones VictorBars/Puerta2/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" unique_id=1282482701]
-transform = Transform3D(0.9999998, -2.1316277e-14, -2.5410982e-21, 9.62965e-35, 0.9999999, -3.5527137e-14, -3.3881318e-21, 3.5527137e-14, 0.9999999, 243.61523, 85.51758, -35.759144)
+transform = Transform3D(-0.9999998, 8.742277e-08, 0, -8.742276e-08, -0.9999999, 0, 0, 0, 0.9999999, 243.61523, 85.51758, -35.759144)
 mesh = SubResource("ArrayMesh_hydun")
 skin = SubResource("Skin_nu474")
 skeleton = NodePath("..")
