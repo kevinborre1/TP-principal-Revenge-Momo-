@@ -130,13 +130,20 @@ func reproducir_cinematica() -> void:
 	get_tree().call_group("Jugador", "bloquear_controles", false)
 		
 func actualizar_estado_boton(id_boton: int, activado: bool) -> void:
+	# 1. TODOS los jugadores actualizan su diccionario local
 	estado_botones[id_boton] = activado
 	
+	# 2. PRINCIPIO DE AUTORIDAD: Cortamos la ejecución aquí para los clientes.
+	# Solo el Servidor (Host) tiene la responsabilidad de pensar qué hacer a continuación.
+	if not multiplayer.is_server():
+		return
+	
+	# De aquí para abajo, SOLO el servidor lo ejecuta.
 	if contar_botones_activos() >= botones_necesarios:
 		if timer_reinicio:
 			timer_reinicio = null
 		if not esta_abierta and not cerrando:
-			abrir_puerta.rpc()
+			abrir_puerta.rpc() # El servidor le avisa a todos que se abre
 	else:
 		if contar_botones_activos() > 0 and not esta_abierta:
-			iniciar_timer_tolerancia()
+			iniciar_timer_tolerancia() # Solo el servidor cuenta el tiempo

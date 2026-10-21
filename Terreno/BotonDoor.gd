@@ -18,19 +18,26 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if jugador_cerca and event.is_action_pressed("interactuar"):
-		presionar_boton()
+		# ¡CAMBIO CLAVE AQUÍ!
+		# En lugar de ejecutarlo solo en esta computadora, le decimos a la red 
+		# que ejecute esta función en las pantallas de TODOS los jugadores.
+		presionar_boton.rpc()
 
+## (Red): any_peer permite que cualquier cliente dispare el botón.
+## call_local asegura que el que lo presiona también vea el cambio inmediatamente.
+@rpc("any_peer", "call_local", "reliable")
 func presionar_boton() -> void:
 	esta_activado = !esta_activado
 	
 	if puerta_destino and puerta_destino.has_method("actualizar_estado_boton"):
 		puerta_destino.actualizar_estado_boton(id_boton, esta_activado)
 		
-	# Delegamos el cambio visual a otra función
+	# Al ejecutarse en todas las PCs, todos verán el cambio visual
 	_actualizar_visual_boton()
 
 ## (SOLID - Responsabilidad Única): El botón es el único responsable de saber 
 ## cómo desactivarse a sí mismo y actualizar sus propios gráficos.
+# ¡ATENCIÓN!: Esta función NO necesita @rpc.
 func desactivar_externamente() -> void:
 	if esta_activado: # Solo actuamos si realmente estaba activado
 		esta_activado = false

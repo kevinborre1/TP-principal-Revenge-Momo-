@@ -204,7 +204,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# consumir con C 
 	if event is InputEventKey and event.physical_keycode == KEY_C and event.pressed and not event.echo:
-		consumir_item_actual()
+		consumir_item_actual.rpc()
 		
 func _physics_process(delta: float) -> void:
 	if input_bloqueado:
@@ -436,6 +436,7 @@ func soltar_item_actual():
 				get_tree().current_scene.add_child(nuevo_objeto)
 				nuevo_objeto.global_position = global_position + (global_transform.basis.z * -1.5) + Vector3(0, 1, 0)
 
+@rpc("any_peer", "call_local", "reliable")
 func consumir_item_actual():
 	#var item = inventario_manager.obtener_item_actual()
 	#if item != null:
