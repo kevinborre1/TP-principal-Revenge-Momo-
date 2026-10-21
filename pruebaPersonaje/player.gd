@@ -5,7 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var multiplicadorDeCarrera = 2
 var mouse_sensitivy := 0.003
-@export var saludMax: int = 100.0
+@export var saludMax: int = 100
 @export var saludActual: int = saludMax
 signal cambioSalud
 signal cambioStamina
@@ -227,7 +227,7 @@ func _physics_process(delta: float) -> void:
 	var act_ade = "Adelante"
 	var act_atr = "Atras"
 	var act_salto = "Salto"
-	var act_correr = "Correr"
+	#var act_correr = "Correr"
 	
 	# Si estamos en local y somos el Jugador 2, cambiamos el nombre de las acciones a leer
 	if Global.modo_multijugador == "local" and name == "2":
@@ -236,12 +236,12 @@ func _physics_process(delta: float) -> void:
 		act_ade = "Adelante_p2"
 		act_atr = "Atras_p2"
 		act_salto = "Salto_p2"
-		act_correr = "Correr_p2"
+		#act_correr = "Correr_p2"
 
 	# Ahora procesamos con las teclas que correspondan a cada uno
 	if Input.is_action_just_pressed(act_salto) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
+	correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 	if Global.modo_multijugador == "local" and name == "2":
 		correr_fisico = Input.is_physical_key_pressed(KEY_P)
 	if correr_fisico and StaminaActual > 0:
@@ -290,7 +290,7 @@ func actualizar_barraDeVida():
 		barraSalud.value = saludActual 
 	cambioSalud.emit()
 	
-func heridoPorEnemigo(area):
+func heridoPorEnemigo():
 	if Global.modo_multijugador == "linea":
 		# Solo el Host (servidor) tiene derecho a confirmar si hubo un golpe
 		if multiplayer.is_server():
@@ -313,28 +313,32 @@ func _recibir_danio_red(danio: int):
 	actualizar_barraDeVida()
 
 func respawnear():
-	# 1. Apagar la cámara del jugadorD
-	camara.current = false
-	
-	# BUENA PRÁCTICA: Esconder el cuerpo y desactivar físicas para que 
-	# no le sigan disparando o siga cayendo al vacío mientras espera.
+	# 1. VISUAL PARA TODOS: Escondemos el cuerpo y apagamos físicas.
+	# Como esto lo ven todos los jugadores, no necesita restricciones.
 	hide()
 	set_physics_process(false)
 	
-	# 2. Esperar exactamente 2 segundos sin congelar el juego
+	# 2. LÓGICA LOCAL: Solo apagamos la cámara si ESTA computadora controla a este jugador
+	if is_multiplayer_authority():
+		camara.current = false
+	
+	# 3. Esperar 2 segundos
 	await get_tree().create_timer(2.0).timeout
 	
-	# 3. Restaurar estadísticas y teletransportar
+	# 4. Restaurar estadísticas y posición en todas las pantallas
 	velocity = Vector3.ZERO
 	saludActual = 100
-	actualizar_barraDeVida()
 	global_transform.origin = punto_respawn
 	force_update_transform()
 	
-	# 4. Volver a encender todo
+	# 5. RESTAURAR LÓGICA LOCAL: Solo el dueño actualiza su cámara (y posiblemente su UI)
+	if is_multiplayer_authority():
+		actualizar_barraDeVida()
+		camara.current = true
+		
+	# 6. VISUAL PARA TODOS: Volvemos a encender todo
 	show()
 	set_physics_process(true)
-	camara.current = true
 	
 func actualizar_respawn(direccion_respawn: Vector3):
 	punto_respawn = direccion_respawn

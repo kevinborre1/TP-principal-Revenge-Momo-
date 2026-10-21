@@ -71,7 +71,7 @@ func _comprobar_colisiones_jugador() -> void:
 			if tiempo_actual - tiempo_ultimo_ataque >= cooldown_ataque:
 				if colisionador.has_method("heridoPorEnemigo"):
 					# Llamamos a la función de daño del Player
-					colisionador.heridoPorEnemigo(self) 
+					colisionador.heridoPorEnemigo() 
 					tiempo_ultimo_ataque = tiempo_actual
 
 # Función para encontrar al jugador más cercano en juegos multijugador
