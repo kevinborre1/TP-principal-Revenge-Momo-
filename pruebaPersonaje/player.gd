@@ -493,6 +493,14 @@ func abrir_minijuego() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
+	if gano and has_node("/root/SaveAndLoad"):
+		if SaveAndLoad.logros == null:
+			SaveAndLoad.cargar_logros()
+		if SaveAndLoad.logros and not SaveAndLoad.logros.JugasteElMinijuego:
+			SaveAndLoad.logros.JugasteElMinijuego = true
+			if SaveAndLoad.has_method("guardar_logros"):
+				SaveAndLoad.guardar_logros()
+	
 	# Desvanece el contenedor 
 	var tween = create_tween()
 	tween.tween_property($ContenedorMinijuego, "modulate:a", 0.0, 0.5)

@@ -9,9 +9,9 @@ const PAPELITOS := {
 	"CompletasteVictors": "Completo_Victor",
 	"CompletasteModulo7": "Completo_Modulo7",
 	"JugasteElMinijuego": "JugasteElMinijuego",
-	"EsterEgg1": "EsterEgg1",
-	"EsterEgg2": "EsterEgg2",
-	"EsterEgg3": "EsterEgg3",
+	"EsterEgg1": "AgarrasteEsterEgg1",
+	"EsterEgg2": "AgarrasteEsterEgg2",
+	"EsterEgg3": "AgarrasteEsterEgg3",
 }
 
 func _ready() -> void:
