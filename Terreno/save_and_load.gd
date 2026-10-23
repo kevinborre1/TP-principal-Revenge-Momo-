@@ -46,6 +46,8 @@ func save_game() -> void:
 			if jugador.has_node("Inventario"):
 				cache_inventario_host = jugador.get_node("Inventario").items.duplicate(true)
 			break
+		else :
+			jugador.actualizar_respawn(data.pos_host)
 			
 	# 2. Guardar posición del Cliente
 	data.pos_cliente = data.pos_host + Vector3(2, 0, 0)

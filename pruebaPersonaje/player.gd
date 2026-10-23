@@ -465,7 +465,8 @@ func soltar_item_actual():
 				var nuevo_objeto = escena_objeto.instantiate()
 				get_tree().current_scene.add_child(nuevo_objeto)
 				nuevo_objeto.global_position = global_position + (global_transform.basis.z * -1.5) + Vector3(0, 1, 0)
-
+				desequipar_para_todos()
+				
 @rpc("any_peer", "call_local", "reliable")
 func consumir_item_actual():
 	#var item = inventario_manager.obtener_item_actual()
