@@ -18,9 +18,17 @@ func _process(delta: float) -> void:
 	if Global.modo_de_juego == "contrarreloj" and timer_activo and not Global.menu_pausa_abierto:
 		tiempo_restante -= delta
 		
+		# --- ESTO ES LO QUE FALTABA: Comprobar si el tiempo llegó a 0 ---
+		if tiempo_restante <= 0:
+			tiempo_restante = 0
+			timer_activo = false
+			
+			# Solo el Host decide si el tiempo se acabó para enviar la orden a todos
+			if Global.modo_multijugador != "linea" or multiplayer.is_server():
+				_tiempo_agotado.rpc()
 # --- FUNCIONES DE CONTROL DEL RELOJ ---
 func iniciar_timer() -> void:
-	tiempo_restante = 900.0
+	tiempo_restante = 240.0
 	timer_activo = true
 	if Global.modo_multijugador == "linea" and multiplayer.is_server():
 		_sincronizar_timer.rpc(tiempo_restante, timer_activo, Global.modo_de_juego)
@@ -84,3 +92,17 @@ func _handle_mode_completion() -> void:
 		GameMode.VIDAS_BALSA:
 			print("Game over - balsa destruida")
 			get_tree().change_scene_to_file("res://ui/game_over.tscn")
+@rpc("call_local", "reliable")
+func _tiempo_agotado() -> void:
+	print("¡Se acabó el tiempo del Contrarreloj!")
+	
+	# Obtenemos todos los jugadores en el mapa
+	var jugadores = get_tree().get_nodes_in_group("Jugador")
+	
+	for jugador in jugadores:
+		# Verificamos si el jugador tiene la función de daño
+		if jugador.has_method("_recibir_danio_red"):
+			# Le enviamos un daño masivo (ej: 999) para asegurar la muerte instantánea.
+			# Usamos call() o la ejecución directa porque _tiempo_agotado ya es un RPC 
+			# que se está ejecutando en todas las máquinas.
+			jugador._recibir_danio_red(999)
