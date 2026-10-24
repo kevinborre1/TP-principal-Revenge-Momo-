@@ -173,19 +173,24 @@ func _cliente_aplicar_datos_guardados(
 ) -> void:
 	_aplicar_pepitas_en_juego(pepitas_guardadas)
 	
-	#Borrar del mapa pepitas ya recogidas
-	if tiene_estado_pepitas:
-		for p in get_tree().get_nodes_in_group("PepitasMapa"):
-			var ruta_p = str(p.get_path())
-			if not pepitas_vivas_mapa.has(ruta_p):
-				p.queue_free()
-	
-	# NUEVO: Borrar items ya recogidos
-	if tiene_estado_items:
-		for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
-			var ruta_item = str(item.get_path())
-			if not items_vivos_mapa.has(ruta_item):
-				item.queue_free()
+	# 1. Aseguramos que solo el servidor elimine los nodos si usas MultiplayerSpawner
+	if multiplayer.is_server():
+		
+		# Borrar pepitas ya recogidas
+		if tiene_estado_pepitas:
+			for p in get_tree().get_nodes_in_group("PepitasMapa"):
+				var ruta_p = str(p.get_path())
+				if not pepitas_vivas_mapa.has(ruta_p):
+					# Usamos call_deferred() para evitar el error del spawner
+					p.queue_free.call_deferred()
+					
+		# Borrar items ya recogidos
+		if tiene_estado_items:
+			for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
+				var ruta_item = str(item.get_path())
+				if not items_vivos_mapa.has(ruta_item):
+					# Usamos call_deferred() para evitar el error del spawner
+					item.queue_free.call_deferred()
 	
 	for jugador in get_tree().get_nodes_in_group("Jugador"):
 		var id_nodo = jugador.name.to_int() if jugador.name.is_valid_int() else jugador.get_multiplayer_authority()
