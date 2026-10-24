@@ -50,6 +50,8 @@ func save_game() -> void:
 		if _es_jugador_host(jugador):
 			# Lógica del Host
 			data.pos_host = posicion_segura_host if posicion_segura_host != Vector3.ZERO else jugador.global_position
+			#Nos aseguramos de que si el host llega solo a un punto importante, si el cliente se une despues, este con el
+			data.pos_cliente = posicion_segura_cliente if posicion_segura_cliente != Vector3.ZERO else jugador.global_position + Vector3(4, 0, 0)
 			
 			if jugador.has_method("actualizar_respawn"):
 				jugador.actualizar_respawn(data.pos_host)
@@ -57,8 +59,6 @@ func save_game() -> void:
 				cache_inventario_host = jugador.get_node("Inventario").items.duplicate(true)
 		else:
 			# Lógica del Cliente
-			data.pos_cliente = posicion_segura_cliente if posicion_segura_cliente != Vector3.ZERO else jugador.global_position
-			
 			if jugador.has_method("actualizar_respawn"):
 				jugador.actualizar_respawn(data.pos_cliente)
 			if jugador.has_node("Inventario"):
@@ -73,8 +73,15 @@ func save_game() -> void:
 	for p in get_tree().get_nodes_in_group("PepitasMapa"):
 		if is_instance_valid(p) and not p.is_queued_for_deletion():
 			data.pepitas_restantes_en_mapa.append(str(p.get_path()))
-
-	# 3. Guardar estado de las oleadas
+	
+	# AQUÍ VA EL PASO 3: Guardar items base del mapa
+	data.estado_items_mapa_guardado = true
+	data.items_restantes_en_mapa.clear()
+	for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
+		if is_instance_valid(item) and not item.is_queued_for_deletion():
+			data.items_restantes_en_mapa.append(str(item.get_path()))
+			
+	# 4. Guardar estado de las oleadas
 	data.papas_atacan = GameManager.papas_atacan
 	var activador = _obtener_activador_oleadas()
 	if activador:
@@ -139,8 +146,11 @@ func _servidor_enviar_posicion_a_jugador(peer_id: int) -> void:
 		inv_jugador,
 		data.cantidad_pepitas,
 		data.estado_pepitas_mapa_guardado,
-		data.pepitas_restantes_en_mapa
-	)
+		data.pepitas_restantes_en_mapa,
+		data.estado_items_mapa_guardado, # NUEVO
+		data.items_restantes_en_mapa     # NUEVO
+		
+)
 	
 	# Sincronizar las oleadas con el jugador que acaba de cargar
 	var activador = _obtener_activador_oleadas()
@@ -157,7 +167,9 @@ func _cliente_aplicar_datos_guardados(
 	inv_guardado: Array, 
 	pepitas_guardadas: int, 
 	tiene_estado_pepitas: bool,
-	pepitas_vivas_mapa: Array
+	pepitas_vivas_mapa: Array,
+	tiene_estado_items: bool, # NUEVO
+	items_vivos_mapa: Array   # NUEVO
 ) -> void:
 	_aplicar_pepitas_en_juego(pepitas_guardadas)
 	
@@ -167,6 +179,13 @@ func _cliente_aplicar_datos_guardados(
 			var ruta_p = str(p.get_path())
 			if not pepitas_vivas_mapa.has(ruta_p):
 				p.queue_free()
+	
+	# NUEVO: Borrar items ya recogidos
+	if tiene_estado_items:
+		for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
+			var ruta_item = str(item.get_path())
+			if not items_vivos_mapa.has(ruta_item):
+				item.queue_free()
 	
 	for jugador in get_tree().get_nodes_in_group("Jugador"):
 		var id_nodo = jugador.name.to_int() if jugador.name.is_valid_int() else jugador.get_multiplayer_authority()

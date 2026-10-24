@@ -12115,13 +12115,13 @@ script = ExtResource("57_770lr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.36386, 0, 1207.6008)
 script = ExtResource("58_5lm5q")
 nombre_logro = "Completo_Victor"
-punto_de_aparicion = NodePath("PuntoAparicionVictorBar")
+punto_de_aparicion = NodePath("P-A_VictorBar")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Guardados/Guardado VictorBars/Completo_Victor" unique_id=201497300]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0510864, 3.0184207, -1.2486572)
 shape = SubResource("BoxShape3D_f3mle")
 
-[node name="PuntoAparicionVictorBar" type="Marker3D" parent="Guardados/Guardado VictorBars/Completo_Victor" unique_id=1590909023]
+[node name="P-A_VictorBar" type="Marker3D" parent="Guardados/Guardado VictorBars/Completo_Victor" unique_id=1590909023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17697144, 0.991148, -3.60083)
 
 [node name="Guardado Campus" type="Node" parent="Guardados" unique_id=1237937172]
@@ -12131,24 +12131,30 @@ script = ExtResource("57_770lr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.5641, 0, 984.0371)
 script = ExtResource("58_5lm5q")
 nombre_logro = "Completo_Campus"
-punto_de_aparicion = NodePath("PuntoAparicionModulo7")
+punto_de_aparicion = NodePath("P-A_Campus")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Guardados/Guardado Campus/Completo_Campus" unique_id=1962504921]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26937866, 3.9838257, 0)
 shape = SubResource("BoxShape3D_nt8hf")
 
-[node name="PuntoAparicionModulo7" type="Marker3D" parent="Guardados/Guardado Campus/Completo_Campus" unique_id=1849274674]
+[node name="P-A_Campus" type="Marker3D" parent="Guardados/Guardado Campus/Completo_Campus" unique_id=1849274674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0545502, 2.3499672, 3.0985107)
 
 [node name="Guardado Modulo7" type="Node" parent="Guardados" unique_id=608746508]
+script = ExtResource("57_770lr")
 
-[node name="Completo_Modulo7" type="Area3D" parent="Guardados/Guardado Modulo7" unique_id=46884960]
+[node name="Completo_Modulo7" type="Area3D" parent="Guardados/Guardado Modulo7" unique_id=46884960 node_paths=PackedStringArray("punto_de_aparicion")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.57974, 2.1556883, 790.75726)
 script = ExtResource("58_5lm5q")
 nombre_logro = "Completo_Modulo7"
+punto_de_aparicion = NodePath("P-A_Modulo7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Guardados/Guardado Modulo7/Completo_Modulo7" unique_id=1299294511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39086914, 3.013733, 3.4019775)
 shape = SubResource("BoxShape3D_wwly1")
+
+[node name="P-A_Modulo7" type="Marker3D" parent="Guardados/Guardado Modulo7/Completo_Modulo7" unique_id=35620636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.354206, 1.2188501, 2.458191)
 
 [node name="AlRededores" type="Node3D" parent="." unique_id=1801922345]
 

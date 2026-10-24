@@ -33,7 +33,10 @@ func _ready() -> void:
 	# 2. Conectamos las señales
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
-
+	
+   #Agregamos al grupo ItemBaseMapa	
+	add_to_group("ItemBaseMapa")
+	
 func _on_area_entered(area: Area3D) -> void:
 	if area.name == "DetectorItems":
 		var jugador = area.get_parent()

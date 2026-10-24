@@ -15,3 +15,5 @@ extends Resource
 @export var inventario_cliente: Array = [null, null, null, null, null]
 @export var estado_pepitas_mapa_guardado: bool = false
 @export var pepitas_restantes_en_mapa: Array[String] = []
+@export var estado_items_mapa_guardado: bool = false
+@export var items_restantes_en_mapa: Array = []
