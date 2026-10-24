@@ -210,7 +210,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# soltar ítem con G
 	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
-		soltar_item_actual()
+		soltar_item_actual.rpc()
 
 	# recoger con E
 	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
@@ -460,25 +460,36 @@ func soltar_item_actual():
 	var item = inventario_manager.obtener_item_actual()
 	if item != null:
 		var ruta = item["ruta_escena"]
-		
-		# Le decimos al inventario que borre el ítem del HUD y del arreglo
 		inventario_manager.borrar_item_actual()
 
-		# Instanciamos el objeto en el mundo
 		if ruta != "":
 			var escena_objeto = load(ruta)
 			if escena_objeto:
 				var nuevo_objeto = escena_objeto.instantiate()
 				get_tree().current_scene.add_child(nuevo_objeto)
 				
-				# 1. Buscamos el nodo del modelo visual (el que realmente rota)
+				# 1. Buscamos el modelo visual y su dirección
 				var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else self))
-				
-				# 2. Obtenemos su vector "hacia adelante" (en Godot el frente es -Z)
 				var direccion_frente = modelo.global_transform.basis.z.normalized()
 				
-				# 3. Lo posicionamos a 1.5 metros en esa dirección y 1 metro hacia arriba
-				nuevo_objeto.global_position = modelo.global_position + (direccion_frente * 1.5) + Vector3(0, 1, 0)
+				# 2. Definimos de dónde sale el ítem (altura del pecho) y hasta dónde queremos que llegue
+				var origen = global_position + Vector3(0, 1.0, 0)
+				var destino = origen + (direccion_frente * 1.5)
+				
+				# 3. Lanzamos un rayo para ver si hay una pared en el medio
+				var espacio_fisico = get_world_3d().direct_space_state
+				var query = PhysicsRayQueryParameters3D.create(origen, destino)
+				query.exclude = [self] # Que el rayo no choque con el propio jugador
+				
+				var resultado = espacio_fisico.intersect_ray(query)
+				
+				# 4. Decidimos la posición final
+				if resultado:
+					# Chocó con una pared: dejamos el ítem un poquito antes del impacto (0.2 metros) para que no se hunda
+					nuevo_objeto.global_position = resultado.position - (direccion_frente * 0.2)
+				else:
+					# Vía libre: lo dejamos a la distancia normal
+					nuevo_objeto.global_position = destino
 				
 				solicitar_desequipar()
 
