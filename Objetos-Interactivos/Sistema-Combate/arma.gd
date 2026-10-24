@@ -7,10 +7,6 @@ class_name Arma
 @export var cadencia: float = 0.2
 var puede_disparar: bool = true
 
-func ser_recogido() -> void:
-	desactivar_para_mano()
-	queue_free()
-
 func _jugador_dueño() -> Player:
 	var nodo: Node = self
 	while nodo and not (nodo is Player):
