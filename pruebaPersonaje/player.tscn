@@ -2063,10 +2063,11 @@ grow_vertical = 2
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1155286539]
 
 [node name="LabelContrarreloj" type="Label" parent="CanvasLayer2" unique_id=1172461086]
-offset_left = 522.0
-offset_top = 70.0
-offset_right = 577.0
-offset_bottom = 93.0
-scale = Vector2(2.7600012, 2.934446)
+offset_left = 488.0
+offset_top = 68.0
+offset_right = 576.0
+offset_bottom = 100.0
+scale = Vector2(2, 2)
+size_flags_vertical = 1
 text = "\"15:00\""
 label_settings = SubResource("LabelSettings_ww6v2")

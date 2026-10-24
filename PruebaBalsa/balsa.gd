@@ -129,6 +129,7 @@ func rpc_abordar_balsa(id_jugador: int, subiendo: bool) -> void:
 			if piloto.has_method("prepare_for_raft"):
 				piloto.prepare_for_raft()
 	else:
+		rotation.y = _rotacion_inicial	
 		is_controlled = false
 		
 		if piloto:
@@ -189,6 +190,8 @@ func _recibir_danio() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_eliminar_balsa() -> void:
+	#Idea para que no haya problemas con la camara 
+	rotation.y = _rotacion_inicial	
 	# Bajar al piloto
 	if is_instance_valid(piloto):
 		piloto.reparent(get_tree().current_scene, true)
@@ -221,3 +224,5 @@ func rpc_eliminar_balsa() -> void:
 	# 3. ¡EL TRUCO CLAVE! Esta función obliga a Godot a borrar su caché de colisiones 
 	# y aceptar inmediatamente que el objeto ahora existe en la nueva coordenada.
 	force_update_transform()
+	# 3 le devolvemos las vidas 
+	vida_balsa = 3

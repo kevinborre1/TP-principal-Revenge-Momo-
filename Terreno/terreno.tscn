@@ -8095,18 +8095,18 @@ mesh = SubResource("PlaneMesh_f3mle")
 transform = Transform3D(-0.061640576, -0.87274545, -10.188248, 0.1488317, 0.25149623, -35.30449, 5.73834, -0.01589766, 0.80623347, -16.5, 70.96175, 7.6293945e-06)
 mesh = SubResource("PlaneMesh_f3mle")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/cartel" unique_id=535789790]
+[node name="CaraCarterVictorVar1" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/cartel" unique_id=535789790]
 transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, -56.41797, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/cartel/StaticBody3D2" unique_id=838423615]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/cartel/CaraCarterVictorVar1" unique_id=838423615]
 transform = Transform3D(0.9659258, 0.258819, 0, -0.25881904, 0.9659259, 0, 0, -8.881784e-16, 1, 36.96875, 59.584324, -0.060394287)
 shape = SubResource("BoxShape3D_lr14e")
 debug_color = Color(0.86235255, 0.000640139, 0.8711823, 0.41960785)
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/cartel" unique_id=468771870]
+[node name="CaraCarterVictorVar2" type="StaticBody3D" parent="VictorBars/Decoraciones VictorBars/cartel" unique_id=468771870]
 transform = Transform3D(-0.9997853, 0, 0.020723982, 0, 1, 0, -0.020723982, 0, -0.9997853, 58.45703, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/cartel/StaticBody3D3" unique_id=1259326260]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Decoraciones VictorBars/cartel/CaraCarterVictorVar2" unique_id=1259326260]
 transform = Transform3D(0.9659258, 0.258819, 0, -0.25881904, 0.9659259, 0, 0, -8.881784e-16, 1, 36.96875, 59.584324, -0.060394287)
 shape = SubResource("BoxShape3D_lr14e")
 debug_color = Color(0.86235255, 0.000640139, 0.8711823, 0.41960785)
