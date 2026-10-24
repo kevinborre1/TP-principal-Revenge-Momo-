@@ -132,6 +132,8 @@ func _ready() -> void:
 	# 3. Si somos los dueños de este jugador, le pedimos al Host la posición guardada (si existe, pisará la inicial)
 	if is_multiplayer_authority():
 		SaveAndLoad.solicitar_posicion_guardada_al_servidor()
+		# NUEVO: Pedimos que se borren los objetos que el host ya agarró
+		SaveAndLoad.solicitar_sincronizacion_mapa_al_servidor()
 		# Esperamos un instante mínimo a que llegue el RPC del servidor antes de activar la gravedad
 		await get_tree().create_timer(0.15).timeout
 

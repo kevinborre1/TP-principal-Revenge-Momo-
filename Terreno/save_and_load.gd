@@ -380,3 +380,40 @@ func _cliente_recibir_ranking(lista_ranking: Array) -> void:
 		file.store_string(JSON.stringify(ranking_compartido, "\t"))
 		file.close()
 	ranking_actualizado.emit(ranking_compartido)
+
+# 1. El jugador nuevo llama a esto al aparecer
+func solicitar_sincronizacion_mapa_al_servidor() -> void:
+	_servidor_enviar_estado_vivo_mapa.rpc_id(1, multiplayer.get_unique_id())
+
+# 2. El servidor revisa qué hay VIVO AHORA MISMO en su mapa
+@rpc("any_peer", "call_local", "reliable")
+func _servidor_enviar_estado_vivo_mapa(peer_id: int) -> void:
+	if not multiplayer.is_server():
+		return
+		
+	var pepitas_vivas: Array = []
+	for p in get_tree().get_nodes_in_group("PepitasMapa"):
+		if is_instance_valid(p) and not p.is_queued_for_deletion():
+			pepitas_vivas.append(str(p.get_path()))
+			
+	var items_vivos: Array = []
+	for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
+		if is_instance_valid(item) and not item.is_queued_for_deletion():
+			items_vivos.append(str(item.get_path()))
+			
+	# Le manda la lista exclusivamente al jugador que acaba de entrar
+	_cliente_sincronizar_mapa_vivo.rpc_id(peer_id, pepitas_vivas, items_vivos)
+
+# 3. El cliente nuevo recibe la lista y destruye lo que sobra
+@rpc("authority", "call_local", "reliable")
+func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array) -> void:
+	# Como son objetos base del mapa (no creados por un Spawner), el cliente DEBE borrarlos localmente
+	for p in get_tree().get_nodes_in_group("PepitasMapa"):
+		if not pepitas_vivas.has(str(p.get_path())):
+			p.queue_free()
+			
+	for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
+		if not items_vivos.has(str(item.get_path())):
+			item.queue_free()
+			
+	print("Mapa sincronizado con el estado en vivo del servidor.")
