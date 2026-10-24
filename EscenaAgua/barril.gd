@@ -13,11 +13,21 @@ func _daniar(danio: int) -> void:
 # Esta es la función que llama la balsa al chocar
 func _colision_balsa() -> void:
 	print("¡Un barril fue chocado por la balsa!")
-	# Si estás en multijugador online, le avisa a todos que se destruya
-	if Global.modo_multijugador == "linea":
-		rpc("_destruir_barril")
-	else:
-		_destruir_barril()
+	# 1. Apagamos la colisión. Usamos set_deferred por seguridad en las físicas de Godot.
+	$CollisionShape3D.set_deferred("disabled", true)
+	
+	# 2. Apagamos el modelo visual (el padre Sketchfab_Sce)
+	var nodo_padre = get_parent()
+	if nodo_padre:
+		nodo_padre.visible = false
+		
+	# 3. Pausamos la ejecución de esta función por 6 segundos sin congelar el juego
+	await get_tree().create_timer(6.0).timeout
+	
+	# 4. Reactivamos la colisión y la visibilidad
+	$CollisionShape3D.set_deferred("disabled", false)
+	if nodo_padre:
+		nodo_padre.visible = true
 
 @rpc("any_peer", "call_local", "reliable")
 func _destruir_barril() -> void:

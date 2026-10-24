@@ -320,13 +320,13 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x47i8"]
-size = Vector3(1, 3.6032715, 9.01123)
+size = Vector3(0.8096924, 3.6032715, 3.0995178)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
 size = Vector3(0.91296387, 5.6449585, 5.9629517)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vicex"]
-size = Vector3(1, 5.61084, 7.6915894)
+size = Vector3(1, 5.61084, 7.868744)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bulcj"]
 albedo_texture = ExtResource("17_rygad")
@@ -7061,7 +7061,7 @@ bones/5/rotation = Quaternion(0, 0, 0, 1)
 bones/5/scale = Vector3(1, 1, 1)
 
 [node name="Object_13" type="MeshInstance3D" parent="VictorBars/Interacciones VictorBars/Puerta2/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" unique_id=1282482701]
-transform = Transform3D(-0.9999998, 8.742277e-08, 0, -8.742276e-08, -0.9999999, 0, 0, 0, 0.9999999, 243.61523, 85.51758, -35.759144)
+transform = Transform3D(-0.9999998, 8.7422784e-08, 2.1175824e-22, -8.742276e-08, -0.99999994, 3.1129017e-22, 0, 1.4054774e-21, 1, 243.61914, 107.187744, -35.759148)
 mesh = SubResource("ArrayMesh_hydun")
 skin = SubResource("Skin_nu474")
 skeleton = NodePath("..")
@@ -7084,11 +7084,15 @@ libraries/ = SubResource("AnimationLibrary_dclg5")
 autoplay = &"Armature|Open"
 
 [node name="AtravesoPuerta" type="Area3D" parent="VictorBars/Interacciones VictorBars/Puerta2" unique_id=1021581871]
-transform = Transform3D(-7.2852316e-07, 0, 16.666668, 0, 36.98862, 0, -45.958385, 0, -2.0089049e-06, -20098.715, -36.487328, 2841.365)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711424e-08, 231.08203, 1.2999954, -246.43848)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/Puerta2/AtravesoPuerta" unique_id=1829698031]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.86395, 1.3016357, 1220.6075)
+editor_description = "64.8
+1.30
+122"
+transform = Transform3D(45, 0, -1.1368684e-12, 0, 45, 0, -1.4779289e-12, 0, 45.000008, -142.16553, 10.358387, 13.246094)
 shape = SubResource("BoxShape3D_x47i8")
+debug_color = Color(0.8265024, 0.001577341, 0.95403486, 0.41960785)
 
 [node name="Puerta" type="AnimatableBody3D" parent="VictorBars/Interacciones VictorBars" unique_id=2014995360]
 transform = Transform3D(-0.039382804, 0, 0.9992242, 0, 1, 0, -0.9992242, 0, -0.039382804, 53.473286, 1.1637187, 1232.6576)
@@ -7099,7 +7103,7 @@ transform = Transform3D(0.99798447, 0, -0.06345871, 0, 1, 0, 0.06345871, 0, 0.99
 shape = SubResource("BoxShape3D_lfkbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VictorBars/Interacciones VictorBars/Puerta/CollisionShape3D" unique_id=127223575]
-transform = Transform3D(0.9999898, 0, -2.2351742e-08, 0, 1, 0, 1.3038516e-07, 0, 0.99999577, 0.00061035156, -0.64701605, 0.26859283)
+transform = Transform3D(0.9999898, 0, -9.49949e-08, 0, 1, 0, 9.49949e-08, 0, 0.99999577, 0.0014648438, -0.64701605, 0.23228455)
 mesh = SubResource("BoxMesh_vicex")
 surface_material_override/0 = SubResource("StandardMaterial3D_bulcj")
 

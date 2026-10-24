@@ -129,19 +129,7 @@ func rpc_abordar_balsa(id_jugador: int, subiendo: bool) -> void:
 			if piloto.has_method("prepare_for_raft"):
 				piloto.prepare_for_raft()
 	else:
-		rotation.y = _rotacion_inicial	
-		is_controlled = false
-		
-		if piloto:
-			piloto.reparent(get_tree().current_scene, false)
-			piloto.set_physics_process(true)
-			
-			if "input_bloqueado" in piloto:
-				piloto.input_bloqueado = false
-			
-			piloto.global_position = global_position + (transform.basis.x * 2.5)
-			piloto = null
-		
+		bajar_piloto()
 		# Recién ahora, con el piloto ya fuera de la balsa, la autoridad vuelve al host
 		set_multiplayer_authority(1)
 
@@ -190,19 +178,8 @@ func _recibir_danio() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_eliminar_balsa() -> void:
-	#Idea para que no haya problemas con la camara 
-	rotation.y = _rotacion_inicial	
 	# Bajar al piloto
-	if is_instance_valid(piloto):
-		piloto.reparent(get_tree().current_scene, true)
-		piloto.set_physics_process(true)
-
-		if "input_bloqueado" in piloto:
-			piloto.input_bloqueado = false
-
-		piloto.global_position = global_position + transform.basis.x * 2.5
-		piloto = null
-
+	bajar_piloto()
 	# Bajar a los pasajeros
 	for pasajero in pasajeros:
 		if not is_instance_valid(pasajero):
@@ -210,7 +187,7 @@ func rpc_eliminar_balsa() -> void:
 
 		# Los pasajeros no son hijos de la balsa,
 		# así que no necesitan reparent().
-		pasajero.global_position = global_position + transform.basis.x * 3.0
+		pasajero.set_deferred("global_position", global_position + transform.basis.x * 3.0)
 
 	pasajeros.clear()
 	is_controlled = false
@@ -226,3 +203,19 @@ func rpc_eliminar_balsa() -> void:
 	force_update_transform()
 	# 3 le devolvemos las vidas 
 	vida_balsa = 3
+	
+func bajar_piloto() :
+		#Roto la balsa a la posicion original para no tener problemas de camara al bajar al piloto	
+		rotation.y = _rotacion_inicial	
+		is_controlled = false
+		
+		if piloto:
+			piloto.reparent(get_tree().current_scene, false)
+			piloto.set_physics_process(true)
+			
+			if "input_bloqueado" in piloto:
+				piloto.input_bloqueado = false
+			
+			piloto.set_deferred("global_position", global_position + transform.basis.x * 2.5)
+			piloto = null
+		

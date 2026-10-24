@@ -451,6 +451,9 @@ func detener_musica_baile():
 		macarena.stop()
 		
 func soltar_item_actual():
+	if not is_multiplayer_authority():
+		return 
+		
 	var item = inventario_manager.obtener_item_actual()
 	if item != null:
 		var ruta = item["ruta_escena"]
