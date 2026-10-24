@@ -9,7 +9,7 @@ var vida_actual: int = vida_maxima
 var activo: bool = false 
 signal murio
 
-@onready var animation_player: AnimationPlayer = $papitas/AnimationPlayer
+@onready var animation_player: AnimationPlayer
 
 # Variables para controlar el daño
 var tiempo_ultimo_ataque: float = 0.0
@@ -20,7 +20,9 @@ func _ready() -> void:
 	visible = false
 	_cambiar_estado_colisiones(true)
 	set_physics_process(false) # apagamos las fisicas de los enemigos al empezar hasta que se activen
-
+	if not es_lider:
+		animation_player = $papitas/AnimationPlayer
+		
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:
 		return

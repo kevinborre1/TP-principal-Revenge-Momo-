@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://0lxksclcjhd3" path="res://pruebaPersonaje/Scripts_HUD/inventario.gd" id="17_xspus"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
-height = 2.6706543
+height = 1.8240662
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riqsh"]
 resource_name = "Ch02_body"
@@ -1286,8 +1286,8 @@ properties/4/spawn = true
 properties/4/replication_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aud2g"]
-radius = 0.12841797
-height = 0.66796875
+radius = 0.65185547
+height = 2.137207
 
 [sub_resource type="LabelSettings" id="LabelSettings_ww6v2"]
 font_size = 23
@@ -1299,7 +1299,7 @@ shadow_size = 4
 script = ExtResource("1_cm308")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=953820401]
-transform = Transform3D(1, 0, 0, 0, 0.6752861, 0, 0, 0, 1, 0, 0.8680498, 0.14012158)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85558337, 0.14012158)
 shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1910096983]
@@ -2023,10 +2023,9 @@ offset_right = 1155.0
 offset_bottom = 642.0
 
 [node name="DetectorItems" type="Area3D" parent="." unique_id=1659537331]
-transform = Transform3D(3.5441399, 0, 0, 0, 3.1686375, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectorItems" unique_id=1955064420]
-transform = Transform3D(1, 0, 0, 0, 0.9999819, 0, 0, 0, 2.8297653, 0.0066881394, 0.27442756, 0.046158075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0066881394, 0.6911756, 0.046158075)
 shape = SubResource("CapsuleShape3D_aud2g")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1864385930]
