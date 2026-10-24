@@ -27,13 +27,15 @@ func _unhandled_input(event: InputEvent) -> void:
 ## call_local asegura que el que lo presiona también vea el cambio inmediatamente.
 @rpc("any_peer", "call_local", "reliable")
 func presionar_boton() -> void:
-	esta_activado = !esta_activado
-	
-	if puerta_destino and puerta_destino.has_method("actualizar_estado_boton"):
-		puerta_destino.actualizar_estado_boton(id_boton, esta_activado)
+	if not esta_activado:
 		
-	# Al ejecutarse en todas las PCs, todos verán el cambio visual
-	_actualizar_visual_boton()
+		esta_activado = true
+		
+		if puerta_destino and puerta_destino.has_method("actualizar_estado_boton"):
+			puerta_destino.actualizar_estado_boton(id_boton, esta_activado)
+			
+		# Al ejecutarse en todas las PCs, todos verán el cambio visual
+		_actualizar_visual_boton()
 
 ## (SOLID - Responsabilidad Única): El botón es el único responsable de saber 
 ## cómo desactivarse a sí mismo y actualizar sus propios gráficos.

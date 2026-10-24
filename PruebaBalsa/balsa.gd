@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 
 	# 2. MOVIMIENTO: avanza sola; el piloto solo puede girar un poco a cada lado
 	var en_marcha := is_controlled and Time.get_ticks_msec() >= _inicio_marcha_ms
-	if is_multiplayer_authority() and en_marcha:
+	if multiplayer.multiplayer_peer and multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED:
 		var turn_input := Input.get_axis("Derecha", "Izquierda")
 		var limite := deg_to_rad(angulo_maximo_giro)
 		var giro := wrapf(rotation.y - _rotacion_inicial, -PI, PI)
@@ -79,7 +79,8 @@ func _physics_process(delta: float) -> void:
 	_arrastrar_pasajeros()
 	
 	# 4. VERIFICAR SI ESTÁ ABANDONADA PARA REINICIARLA (Solo la autoridad)
-	if is_multiplayer_authority():
+	if multiplayer.multiplayer_peer and multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED:
+	# Hacer llamadas a get_unique_id() o gestionar datos de red aquí
 		# Si no hay piloto y el array de pasajeros está vacío
 		if piloto == null and pasajeros.is_empty():
 			# Verificamos que NO esté en el spawn (damos un margen de 1 metro de tolerancia)
