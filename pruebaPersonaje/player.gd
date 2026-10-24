@@ -140,18 +140,17 @@ func _ready() -> void:
 		collision_shape_3d.disabled = false
 	set_physics_process(true) # Reactiva el _physics_process (gravedad y controles)
 	
-	# Arrancar el reloj si el modo es contrarreloj
 	if is_multiplayer_authority():
 		if Global.modo_multijugador == "linea":
 			if multiplayer.is_server():
 				if Global.modo_de_juego == "contrarreloj":
-					GameManager.iniciar_timer()
+					GameManager.contrarreloj.iniciar_timer()
 			else:
 				# El cliente entra y le exige los datos al Host
-				GameManager._pedir_estado_al_host.rpc_id(1)
+				GameManager.contrarreloj._pedir_estado_al_host.rpc_id(1)
 		elif Global.modo_multijugador == "local" and name == "1":
 			if Global.modo_de_juego == "contrarreloj":
-				GameManager.iniciar_timer()
+				GameManager.contrarreloj.iniciar_timer()
 
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
@@ -290,15 +289,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
 	move_and_slide()
-	# Actualizar HUD del Contrarreloj
+	
 	if label_contrarreloj:
 		if Global.modo_de_juego == "contrarreloj" and not Global.menu_pausa_abierto:
 			label_contrarreloj.show()
-			var minutos = int(GameManager.tiempo_restante) / 60
-			var segundos = int(GameManager.tiempo_restante) % 60
+			# Ahora le pedimos el tiempo a GameManager.contrarreloj
+			var minutos = int(GameManager.contrarreloj.tiempo_restante) / 60
+			var segundos = int(GameManager.contrarreloj.tiempo_restante) % 60
 			label_contrarreloj.text = "%02d:%02d" % [minutos, segundos]
 			
-			if GameManager.tiempo_restante <= 60.0:
+			if GameManager.contrarreloj.tiempo_restante <= 60.0:
 				label_contrarreloj.modulate = Color.RED
 			else:
 				label_contrarreloj.modulate = Color.WHITE
