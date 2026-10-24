@@ -12111,26 +12111,33 @@ visible = false
 [node name="Guardado VictorBars" type="Node" parent="Guardados" unique_id=1056565737]
 script = ExtResource("57_770lr")
 
-[node name="Completo_Victor" type="Area3D" parent="Guardados/Guardado VictorBars" unique_id=80616386]
+[node name="Completo_Victor" type="Area3D" parent="Guardados/Guardado VictorBars" unique_id=80616386 node_paths=PackedStringArray("punto_de_aparicion")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.36386, 0, 1207.6008)
 script = ExtResource("58_5lm5q")
 nombre_logro = "Completo_Victor"
+punto_de_aparicion = NodePath("PuntoAparicionVictorBar")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Guardados/Guardado VictorBars/Completo_Victor" unique_id=201497300]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0510864, 3.0184207, -1.2486572)
 shape = SubResource("BoxShape3D_f3mle")
 
+[node name="PuntoAparicionVictorBar" type="Marker3D" parent="Guardados/Guardado VictorBars/Completo_Victor" unique_id=1590909023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17697144, 0.991148, -3.60083)
+
 [node name="Guardado Campus" type="Node" parent="Guardados" unique_id=1237937172]
 script = ExtResource("57_770lr")
 
-[node name="Completo_Campus" type="Area3D" parent="Guardados/Guardado Campus" unique_id=477769602]
+[node name="Completo_Campus" type="Area3D" parent="Guardados/Guardado Campus" unique_id=477769602 node_paths=PackedStringArray("punto_de_aparicion")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.5641, 0, 984.0371)
 script = ExtResource("58_5lm5q")
 nombre_logro = "Completo_Campus"
+punto_de_aparicion = NodePath("PuntoAparicionModulo7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Guardados/Guardado Campus/Completo_Campus" unique_id=1962504921]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26937866, 3.9838257, 0)
 shape = SubResource("BoxShape3D_nt8hf")
+
+[node name="PuntoAparicionModulo7" type="Marker3D" parent="Guardados/Guardado Campus/Completo_Campus" unique_id=1849274674]
 
 [node name="Guardado Modulo7" type="Node" parent="Guardados" unique_id=608746508]
 

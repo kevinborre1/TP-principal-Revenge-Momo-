@@ -16,7 +16,7 @@ var posicion_segura_cliente: Vector3 = Vector3.ZERO
 func establecer_posicion_predeterminada(posicion_base: Vector3) -> void:
 	posicion_segura_host = posicion_base
 	# Le damos un offset al cliente para que no aparezca exactamente dentro del host
-	posicion_segura_cliente = posicion_base + Vector3(2, 0, 0)
+	posicion_segura_cliente = posicion_base + Vector3(4, 0, 0)
 
 func _es_jugador_host(jugador: Node) -> bool:
 	if jugador.name == "1" or jugador.name == "Host":
