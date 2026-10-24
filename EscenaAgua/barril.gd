@@ -11,6 +11,7 @@ func _daniar(danio: int) -> void:
 	_destruir_barril()
 
 # Esta es la función que llama la balsa al chocar
+@rpc("any_peer", "call_local", "reliable")
 func _colision_balsa() -> void:
 	print("¡Un barril fue chocado por la balsa!")
 	# 1. Apagamos la colisión. Usamos set_deferred por seguridad en las físicas de Godot.

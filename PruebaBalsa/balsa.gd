@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 			if collider and collider.is_in_group("Barriles"):
 				# Le decimos al barril que lo chocamos (y que se destruya)
 				if collider.has_method("_colision_balsa"):
-					collider._colision_balsa()
+					collider._colision_balsa.rpc()
 				# Le restamos 1 de vida a la balsa a través de la red
 				rpc("_recibir_danio")
 				
@@ -121,7 +121,7 @@ func rpc_abordar_balsa(id_jugador: int, subiendo: bool) -> void:
 			piloto = jugador_objetivo
 			if "input_bloqueado" in piloto:
 				piloto.input_bloqueado = true
-			
+				
 			piloto.reparent(self, false)
 			piloto.set_physics_process(false)
 			piloto.position = Vector3(0, 1.0, 0)

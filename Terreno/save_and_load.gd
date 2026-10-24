@@ -5,10 +5,18 @@ var logros: DataClassLogros
 
 @export var rutaUtilizada: String = ""
 @export var datos_logros: DataClassLogros = DataClassLogros.new()
-var cache_inventario_host: Array = [null, null, null, null, null]
-var cache_inventario_cliente: Array = [null, null, null, null, null]
+var cache_inventario_host: Array 
+var cache_inventario_cliente: Array 
 var ranking_compartido: Array = []
 signal ranking_actualizado(nuevo_ranking: Array)
+var posicion_segura_host: Vector3 = Vector3.ZERO
+var posicion_segura_cliente: Vector3 = Vector3.ZERO
+
+# Llama a esta función desde el Area3D (Checkpoint) pasándole la posición del Marker3D
+func establecer_posicion_predeterminada(posicion_base: Vector3) -> void:
+	posicion_segura_host = posicion_base
+	# Le damos un offset al cliente para que no aparezca exactamente dentro del host
+	posicion_segura_cliente = posicion_base + Vector3(2, 0, 0)
 
 func _es_jugador_host(jugador: Node) -> bool:
 	if jugador.name == "1" or jugador.name == "Host":
@@ -37,24 +45,24 @@ func save_game() -> void:
 		
 	data.escena_actual = get_tree().current_scene.scene_file_path
 	
-	# 1. Guardar posición del Host
+	# Guardar posiciones del Host y Cliente en un solo bucle (Principio DRY)
 	for jugador in jugadores:
 		if _es_jugador_host(jugador):
-			data.pos_host = jugador.global_position
+			# Lógica del Host
+			data.pos_host = posicion_segura_host if posicion_segura_host != Vector3.ZERO else jugador.global_position
+			
 			if jugador.has_method("actualizar_respawn"):
 				jugador.actualizar_respawn(data.pos_host)
 			if jugador.has_node("Inventario"):
 				cache_inventario_host = jugador.get_node("Inventario").items.duplicate(true)
-			break
-		else :
-			jugador.actualizar_respawn(data.pos_cliente)
+		else:
+			# Lógica del Cliente
+			data.pos_cliente = posicion_segura_cliente if posicion_segura_cliente != Vector3.ZERO else jugador.global_position
 			
-	# 2. Guardar posición del Cliente
-	data.pos_cliente = data.pos_host + Vector3(2, 0, 0)
-	for jugador in jugadores:
-		if not _es_jugador_host(jugador):
-			data.pos_cliente = jugador.global_position
-			break
+			if jugador.has_method("actualizar_respawn"):
+				jugador.actualizar_respawn(data.pos_cliente)
+			if jugador.has_node("Inventario"):
+				cache_inventario_cliente = jugador.get_node("Inventario").items.duplicate(true)
 	
 	data.inventario_host = cache_inventario_host.duplicate(true)
 	data.inventario_cliente = cache_inventario_cliente.duplicate(true)
@@ -86,7 +94,8 @@ func load_game() -> void:
 		return
 	
 	cache_inventario_host = data.inventario_host.duplicate(true)
-	cache_inventario_cliente = data.inventario_cliente.duplicate(true)
+	#Si el cliente se une luego de el juego empezado se le da una copia del inventario del cliente 
+	cache_inventario_cliente = data.inventario_cliente.duplicate(true) if data.inventario_cliente!= null  else data.inventario_host.duplicate(true)
 		
 	var activador = _obtener_activador_oleadas()
 	if activador:

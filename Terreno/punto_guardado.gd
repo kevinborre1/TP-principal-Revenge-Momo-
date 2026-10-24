@@ -29,6 +29,7 @@ func _on_body_entered(body: Node3D) -> void:
 		ya_activado = true
 		SaveAndLoad.actualizar_logro(nombre_logro)
 		SaveAndLoad.save_game()
+		
 @rpc("authority", "call_local", "reliable")
 func _dar_logro(nombre: String) -> void:
 	if nombre != "":
