@@ -48,32 +48,39 @@ func _physics_process(delta: float) -> void:
 
 	# 2. MOVIMIENTO: avanza sola; el piloto solo puede girar un poco a cada lado
 	var en_marcha := is_controlled and Time.get_ticks_msec() >= _inicio_marcha_ms
-	if multiplayer.multiplayer_peer and multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED:
-		var turn_input := Input.get_axis("Derecha", "Izquierda")
-		var limite := deg_to_rad(angulo_maximo_giro)
-		var giro := wrapf(rotation.y - _rotacion_inicial, -PI, PI)
-		giro = clampf(giro + turn_input * turn_speed * delta, -limite, limite)
-		rotation.y = _rotacion_inicial + giro
-		velocity = -transform.basis.z * speed
+	
+	if is_multiplayer_authority():
+		if en_marcha:
+		# solo el conductor que tiene la autoridad puede girar
+			var turn_input := Input.get_axis("Derecha", "Izquierda")
+			var limite := deg_to_rad(angulo_maximo_giro)
+			var giro := wrapf(rotation.y - _rotacion_inicial, -PI, PI)
+			giro = clampf(giro + turn_input * turn_speed * delta, -limite, limite)
+			rotation.y = _rotacion_inicial + giro
+			velocity = -transform.basis.z * speed
+		else:
+			# sin conductor la balsa esta quieta
+			velocity = Vector3.ZERO
 		
 		# Movemos la balsa
 		move_and_slide()
 		
 		# --- NUEVA LÓGICA DE COLISIÓN (Solo el Host la procesa) ---
-		for i in get_slide_collision_count():
-			var colision = get_slide_collision(i)
-			var collider = colision.get_collider()
-			
-			# Comprobamos si con lo que chocamos es un barril
-			if collider and collider.is_in_group("Barriles"):
-				# Le decimos al barril que lo chocamos (y que se destruya)
-				if collider.has_method("_colision_balsa"):
-					collider._colision_balsa.rpc()
-				# Le restamos 1 de vida a la balsa a través de la red
-				rpc("_recibir_danio")
+		if en_marcha:
+			for i in get_slide_collision_count():
+				var colision = get_slide_collision(i)
+				var collider = colision.get_collider()
 				
-				# Frenamos el chequeo de colisiones en este frame para evitar choques múltiples con el mismo barril
-				break
+				# Comprobamos si con lo que chocamos es un barril
+				if collider and collider.is_in_group("Barriles"):
+					# Le decimos al barril que lo chocamos (y que se destruya)
+					if collider.has_method("_colision_balsa"):
+						collider._colision_balsa.rpc()
+					# Le restamos 1 de vida a la balsa a través de la red
+					rpc("_recibir_danio")
+					
+					# Frenamos el chequeo de colisiones en este frame para evitar choques múltiples con el mismo barril
+					break
 
 	# 3. ARRASTRAR PASAJEROS (corre en todas las PC)
 	_arrastrar_pasajeros()
