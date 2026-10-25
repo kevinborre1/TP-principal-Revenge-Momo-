@@ -9,18 +9,25 @@ var mouse_sensitivy := 0.003
 @export var saludActual: int = saludMax
 signal cambioSalud
 signal cambioStamina
+
+# --- NUEVA SEÑAL PARA EL GAMEMANAGER ---
+signal jugador_murio(jugador_nodo)
+
 var herido = false
 var StaminaMax = 100.0
 var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
 var StaminaPerdida= 1.0
 var input_bloqueado: bool = false
+
 #Nodos de minijuego
 var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
 var minijuego_instance: Control = null
 
+
 @onready var inventario_manager = $Inventario
 @onready var fps = $FPS
+
 # Referencias a los nodos
 @onready var barraSalud: ProgressBar = $BarraSalud
 @onready var detector_items = $DetectorItems
@@ -41,9 +48,9 @@ var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 @onready var mano: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
 var item_en_mano: Node3D = null
 @onready var label_contrarreloj: Label = $CanvasLayer2/LabelContrarreloj
-@onready var contenedor_corazones = $CanvasLayer/ContenedorCorazones # Asegúrate de que la ruta sea correcta
+@onready var contenedor_corazones = $CanvasLayer2/ContenedorCorazones 
 
-var punto_respawn :  Vector3 = Vector3(36, 2, 1250)
+var punto_respawn : Vector3 = Vector3(36, 2, 1250)
 
 func _ready() -> void:
 	var id_player = name.to_int()
@@ -68,7 +75,7 @@ func _ready() -> void:
 	elif Global.modo_multijugador == "linea":
 		if es_mi_personaje:
 			if camara:
-				camara.make_current() #camara.call_deferred("make_current")
+				camara.make_current() 
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 			if barraStamina: barraStamina.show()
@@ -86,7 +93,6 @@ func _ready() -> void:
 			var terreno = get_tree().current_scene.find_child("Terrain3D", true, false)
 			if terreno != null and camara != null:
 				terreno.set_camera(camara)
-				
 				terreno.set_physics_process(true)
 		else:
 			if camara:
@@ -98,9 +104,13 @@ func _ready() -> void:
 			if has_node("CanvasLayer"): $CanvasLayer.hide()
 			if has_node("PanelContainer2"): $PanelContainer2.hide()
 			if has_node("icon_counter"): $icon_counter.hide()
+			if has_node("CanvasLayer2"): $CanvasLayer2.hide()
+			if contenedor_corazones:
+				contenedor_corazones.hide()
 			if has_node("ContenedorMinijuego"):
 				$ContenedorMinijuego.hide()
 				$ContenedorMinijuego.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				
 	var raycast: RayCast3D = find_child("RayCastDisparo", true, false)
 	if raycast:
 		raycast.add_exception(self)
@@ -108,11 +118,11 @@ func _ready() -> void:
 	actualizar_modo_combate()
 	
 	# APAGAR FÍSICAS Y COLISIONES INMEDIATAMENTE AL NACER
-	set_physics_process(false) # Apaga la gravedad y el movimiento
+	set_physics_process(false) 
 	if collision_shape_3d:
-		collision_shape_3d.disabled = true # Evita que colisione con el host si aparecen juntos
+		collision_shape_3d.disabled = true 
 	
-	# 1. Asignamos la posición inicial por defecto ANTES del timer (por si es partida nueva)
+	# 1. Asignamos la posición inicial
 	if Global.modo_multijugador == "linea":
 		if get_tree().current_scene.name == "Tutorial":
 			if id_player == 1:
@@ -125,21 +135,16 @@ func _ready() -> void:
 			else:
 				global_position = Vector3(40, 2, 1250)
 
-	# 2. Le damos medio segundo a la red y al mapa para cargar colisiones
 	await get_tree().create_timer(0.5).timeout
 	
-	# 3. Si somos los dueños de este jugador, le pedimos al Host la posición guardada (si existe, pisará la inicial)
 	if is_multiplayer_authority():
 		SaveAndLoad.solicitar_posicion_guardada_al_servidor()
-		# NUEVO: Pedimos que se borren los objetos que el host ya agarró
 		SaveAndLoad.solicitar_sincronizacion_mapa_al_servidor()
-		# Esperamos un instante mínimo a que llegue el RPC del servidor antes de activar la gravedad
 		await get_tree().create_timer(0.15).timeout
 
-	# PRENDER TODO DE NUEVO
 	if collision_shape_3d:
 		collision_shape_3d.disabled = false
-	set_physics_process(true) # Reactiva el _physics_process (gravedad y controles)
+	set_physics_process(true) 
 	
 	# Arrancar modos de juego especiales
 	if is_multiplayer_authority():
@@ -150,28 +155,23 @@ func _ready() -> void:
 				elif Global.modo_de_juego == "vida_compartida":
 					GameManager.vida_compartida.iniciar_modo()
 			else:
-				# El cliente entra y exige los datos al Host dependiendo del modo
-				if Global.modo_de_juego == "contrarreloj":
-					GameManager.contrarreloj._pedir_estado_al_host.rpc_id(1)
-				elif Global.modo_de_juego == "vida_compartida":
-					GameManager.vida_compartida._pedir_estado_al_host.rpc_id(1)
+				GameManager.contrarreloj._pedir_estado_al_host.rpc_id(1)
+				GameManager.vida_compartida._pedir_estado_al_host.rpc_id(1)
+				
 		elif Global.modo_multijugador == "local" and name == "1":
 			if Global.modo_de_juego == "contrarreloj":
 				GameManager.contrarreloj.iniciar_timer()
 			elif Global.modo_de_juego == "vida_compartida":
 				GameManager.vida_compartida.iniciar_modo()
-				
-	if contenedor_corazones:
-		if Global.modo_de_juego == "vida_compartida":
-			contenedor_corazones.show()
-		else:
-			contenedor_corazones.hide()
+
+	# --- NUEVO: REGISTRO MODULAR ---
+	# El jugador se presenta al GameManager apenas termina de cargar
+	GameManager.registrar_jugador(self)
 
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
 		return
 		
-	# logica exclusiva de mirar alrededor
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if Global.modo_multijugador == "local" and name != "1":
 			return
@@ -182,22 +182,16 @@ func _input(event: InputEvent) -> void:
 		spring_arm_3d.rotation.x = camera_rotation.x
 		spring_arm_3d.rotation.y = camera_rotation.y
 		
-
-# FUNCIÓN _UNHANDLED_INPUT: Para acciones y gameplay
 func _unhandled_input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
 		return
 	
-	# Solo volvemos a capturar el mouse si no hay ningún minijuego abierto
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and minijuego_instance == null:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-	# logica acciones y gameplay
-	# Activar Ragdoll
 	if event.is_action_pressed("hacer_ragdoll") and not is_on_floor():
 		activar_ragdoll()
 
-	# inventario
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.physical_keycode == KEY_1:
 			inventario_manager.seleccionar_slot(0, self)
@@ -215,21 +209,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			inventario_manager.seleccionar_slot(4, self)
 			actualizar_modo_combate()
 		
-	# disparar y rotar el modelo hacia la camara
 	if event.is_action_pressed("disparar") and punto_de_mira.is_visible_in_tree() :
 		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
 		if modelo and spring_arm_3d:
 			modelo.rotation.y = spring_arm_3d.rotation.y + PI
 
-	# soltar ítem con G
 	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
 		soltar_item_actual.rpc()
 
-	# recoger con E
 	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
 		intentar_recoger_item()
 
-	# consumir con C 
 	if event is InputEventKey and event.physical_keycode == KEY_C and event.pressed and not event.echo:
 		consumir_item_actual.rpc()
 		
@@ -237,11 +227,11 @@ func _physics_process(delta: float) -> void:
 	if input_bloqueado:
 		return
 		
-	# SI ESTE PERSONAJE NO ES MÍO, OCULTO SU RELOJ FANTASMA Y CORTO EL CÓDIGO
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		if label_contrarreloj:
 			label_contrarreloj.hide()
 		return
+		
 	fps.text = "FPS: " + str(Engine.get_frames_per_second())
 	player_animation()
 		
@@ -251,24 +241,19 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Definimos qué acciones va a leer este script
 	var act_izq = "Izquierda"
 	var act_der = "Derecha"
 	var act_ade = "Adelante"
 	var act_atr = "Atras"
 	var act_salto = "Salto"
-	#var act_correr = "Correr"
 	
-	# Si estamos en local y somos el Jugador 2, cambiamos el nombre de las acciones a leer
 	if Global.modo_multijugador == "local" and name == "2":
 		act_izq = "Izquierda_p2"
 		act_der = "Derecha_p2"
 		act_ade = "Adelante_p2"
 		act_atr = "Atras_p2"
 		act_salto = "Salto_p2"
-		#act_correr = "Correr_p2"
 
-	# Ahora procesamos con las teclas que correspondan a cada uno
 	if Input.is_action_just_pressed(act_salto) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
@@ -284,8 +269,6 @@ func _physics_process(delta: float) -> void:
 		
 	#CAMARA
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
-	
-	# El movimiento vuelve a ser relativo a la cámara (para que WASD responda según tu vista)
 	var move_vector = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, spring_arm_3d.rotation.y)
 	var direction = move_vector.normalized()
 	
@@ -295,9 +278,7 @@ func _physics_process(delta: float) -> void:
 		
 		var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("perso") else null))
 		if modelo:
-			# Calculamos hacia dónde se mueve el personaje respecto a la cámara
 			var target_angle = atan2(-direction.x, -direction.z)
-			#Caminamos hacia donde ve la camara tambien
 			modelo.rotation.y = lerp_angle(modelo.rotation.y, target_angle + PI, 15.0 * delta)
 				
 	else:
@@ -305,10 +286,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
 	move_and_slide()
 	
+	# Actualización visual de HUDs
 	if label_contrarreloj:
 		if Global.modo_de_juego == "contrarreloj" and not Global.menu_pausa_abierto:
 			label_contrarreloj.show()
-			# Ahora le pedimos el tiempo a GameManager.contrarreloj
 			var minutos = int(GameManager.contrarreloj.tiempo_restante) / 60
 			var segundos = int(GameManager.contrarreloj.tiempo_restante) % 60
 			label_contrarreloj.text = "%02d:%02d" % [minutos, segundos]
@@ -319,10 +300,11 @@ func _physics_process(delta: float) -> void:
 				label_contrarreloj.modulate = Color.WHITE
 		else:
 			label_contrarreloj.hide()
-	# Actualizar HUD de Vida Compartida (Automático y a prueba de lag)
+			
 	if contenedor_corazones:
 		if Global.modo_de_juego == "vida_compartida" and not Global.menu_pausa_abierto:
-			contenedor_corazones.show()
+			if not contenedor_corazones.visible:
+				contenedor_corazones.show()
 			
 			var cantidad_restante = GameManager.vida_compartida.corazones_actuales
 			var imagenes_corazones = contenedor_corazones.get_children()
@@ -333,7 +315,8 @@ func _physics_process(delta: float) -> void:
 				else:
 					imagenes_corazones[i].hide()
 		else:
-			contenedor_corazones.hide()
+			if contenedor_corazones.visible:
+				contenedor_corazones.hide()
 
 func activar_ragdoll():
 	if collision_shape_3d:
@@ -352,66 +335,44 @@ func actualizar_barraDeVida():
 	
 func heridoPorEnemigo():
 	if Global.modo_multijugador == "linea":
-		# Solo el Host (servidor) tiene derecho a confirmar si hubo un golpe
 		if multiplayer.is_server():
-			# Le manda una orden directa por internet al dueño de este personaje
 			rpc_id(get_multiplayer_authority(), "_recibir_danio_red", 10)
 	else:
-		# Si están jugando en modo local (pantalla dividida), se aplica directo
 		_recibir_danio_red(10)
 
-# Esta es la orden que viaja por la red
+# --- NUEVO: DELEGACIÓN DE MUERTE LIMPIA ---
 @rpc("any_peer", "call_local", "reliable")
 func _recibir_danio_red(danio: int):
 	saludActual -= danio
 	herido = true
+	
 	if saludActual <= 0:
 		saludActual = 0
 		actualizar_barraDeVida()
+		# El jugador ya no toma decisiones aquí. 
+		# Solo grita al GameManager que murió, y el Manager se encarga del resto.
+		jugador_murio.emit(self)
 		
-		# --- LÓGICA DE MUERTE SEGÚN EL MODO ---
-		if Global.modo_de_juego == "vida_compartida":
-			if is_multiplayer_authority():
-				GameManager.vida_compartida.procesar_muerte_jugador()
-		else:
-			# Si es modo normal o contrarreloj, muere y revive solo
-			respawnear()
-			print("¡El jugador ha muerto!")
-			
-		# Si es contrarreloj, el tiempo se reinicia
-		if Global.modo_de_juego == "contrarreloj" and is_multiplayer_authority():
-			if Global.modo_multijugador == "linea" and multiplayer.is_server():
-				GameManager.contrarreloj.iniciar_timer()
-			elif Global.modo_multijugador == "local" and name == "1":
-				GameManager.contrarreloj.iniciar_timer()
-				
 	actualizar_barraDeVida()
 
 func respawnear():
-	# 1. VISUAL PARA TODOS: Escondemos el cuerpo y apagamos físicas.
-	# Como esto lo ven todos los jugadores, no necesita restricciones.
 	hide()
 	set_physics_process(false)
 	
-	# 2. LÓGICA LOCAL: Solo apagamos la cámara si ESTA computadora controla a este jugador
 	if is_multiplayer_authority():
 		camara.current = false
 	
-	# 3. Esperar 2 segundos
 	await get_tree().create_timer(2.0).timeout
 	
-	# 4. Restaurar estadísticas y posición en todas las pantallas
 	velocity = Vector3.ZERO
 	saludActual = 100
 	global_transform.origin = punto_respawn
 	force_update_transform()
 	
-	# 5. RESTAURAR LÓGICA LOCAL: Solo el dueño actualiza su cámara (y posiblemente su UI)
 	if is_multiplayer_authority():
 		actualizar_barraDeVida()
 		camara.current = true
 		
-	# 6. VISUAL PARA TODOS: Volvemos a encender todo
 	show()
 	set_physics_process(true)
 	
@@ -422,7 +383,6 @@ func is_moving():
 	return abs(velocity.z) > 0 || abs(velocity.x) > 0
 
 func player_animation():
-	# 1. Si está en el aire (Salto)
 	if not is_on_floor():
 		detener_musica_baile()
 		if animation.has_animation("salta"):
@@ -433,16 +393,13 @@ func player_animation():
 	else:
 		animation.speed_scale = 1.0
 
-	# Definir acciones según P1 o P2
 	var act_bailar = "bailar"
 	var act_correr = "Correr"
 	if Global.modo_multijugador == "local" and name == "2":
 		act_bailar = "bailar_p2"
 		act_correr = "Correr_p2"
 
-	# 2. Si presiona la tecla de Baile
 	if Input.is_action_pressed(act_bailar):
-		# Reproducir música si no está sonando ya
 		if macarena and not macarena.playing:
 			macarena.play()
 
@@ -453,10 +410,8 @@ func player_animation():
 			animation.play("baila", 0.3)
 			return
 
-	# Si llegó acá, NO está bailando -> Detener la música
 	detener_musica_baile()
 
-	# 3. Movimiento (Caminar / Correr / Idle)
 	if is_moving():
 		if Input.is_action_pressed(act_correr) and StaminaActual > 0:
 			if animation.has_animation("Fast Run/mixamo_com"):
@@ -478,19 +433,16 @@ func intentar_recoger_item():
 	var cuerpos_cercanos = detector_items.get_overlapping_areas()
 	
 	for cuerpo in cuerpos_cercanos:
-		# 1. Si es una pepita de café (tiene el método ser_recogido y no es un ItemBase)
 		if cuerpo.has_method("ser_recogido") and not (cuerpo is ItemBase):
 			cuerpo.ser_recogido()
 			break
 		
-		# 2. Si es un ítem normal del inventario (como las botellas)
 		elif cuerpo is ItemBase:
 			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena, self)
 			if exito:
 				cuerpo.ser_recogido()
 				break
 				
-# Función auxiliar para frenar la canción
 func detener_musica_baile():
 	if macarena and macarena.playing:
 		macarena.stop()
@@ -511,52 +463,36 @@ func soltar_item_actual():
 				var nuevo_objeto = escena_objeto.instantiate()
 				get_tree().current_scene.add_child(nuevo_objeto)
 				
-				# 1. Buscamos el modelo visual y su dirección
 				var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else self))
 				var direccion_frente = modelo.global_transform.basis.z.normalized()
 				
-				# 2. Definimos de dónde sale el ítem (altura del pecho) y hasta dónde queremos que llegue
 				var origen = global_position + Vector3(0, 1.0, 0)
 				var destino = origen + (direccion_frente * 1.5)
 				
-				# 3. Lanzamos un rayo para ver si hay una pared en el medio
 				var espacio_fisico = get_world_3d().direct_space_state
 				var query = PhysicsRayQueryParameters3D.create(origen, destino)
-				query.exclude = [self] # Que el rayo no choque con el propio jugador
+				query.exclude = [self] 
 				
 				var resultado = espacio_fisico.intersect_ray(query)
 				
-				# 4. Decidimos la posición final
 				if resultado:
-					# Chocó con una pared: dejamos el ítem un poquito antes del impacto (0.2 metros) para que no se hunda
 					nuevo_objeto.global_position = resultado.position - (direccion_frente * 0.2)
 				else:
-					# Vía libre: lo dejamos a la distancia normal
 					nuevo_objeto.global_position = destino
 				
 				solicitar_desequipar()
 
 @rpc("any_peer", "call_local", "reliable")
 func consumir_item_actual():
-	#var item = inventario_manager.obtener_item_actual()
-	#if item != null:
-		#var ruta = item["ruta_escena"]
-		#var escena_objeto = load(ruta)
-		
 		if item_en_mano != null :
-			#var item_temporal = escena_objeto.instantiate()
 			if item_en_mano is ItemBase:
 				var se_uso = item_en_mano.usar_item(self)
 				
-				# Si se pudo usar con éxito, lo borramos del inventario
 				if se_uso == true:
 					inventario_manager.borrar_item_actual()
 					solicitar_desequipar()
 					
-			#item_temporal.queue_free()
-
 func recibir_cura(puntos_cura: int) -> bool:
-	
 	if saludActual >= saludMax:
 		print("Salud llena. No puedes usar la botella.")
 		return false
@@ -568,13 +504,11 @@ func recibir_cura(puntos_cura: int) -> bool:
 	actualizar_barraDeVida()
 	return true
 	
-#Funciones de minijuego
 func abrir_minijuego() -> void:
-	#solo abrimos el minijuego si este personaje es el nuestro en esta PC
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
 	if minijuego_instance:
-		return  # ya está abierto, evitar duplicados
+		return  
 	$ContenedorMinijuego.show()
 	$ContenedorMinijuego.mouse_filter = Control.MOUSE_FILTER_PASS
 	$CanvasLayer/PuntoDeMira.hide()
@@ -585,7 +519,6 @@ func abrir_minijuego() -> void:
 	$ContenedorMinijuego.add_child(minijuego_instance)  
 	minijuego_instance.minijuego_terminado.connect(_on_minijuego_terminado)
 	
-	#Subir opacidad de contenedorMinijuego
 	var tween = create_tween()
 	tween.tween_property($ContenedorMinijuego, "modulate:a", 1.0, 0.5)
 	
@@ -601,10 +534,8 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 			if SaveAndLoad.has_method("guardar_logros"):
 				SaveAndLoad.guardar_logros()
 	
-	# Desvanece el contenedor 
 	var tween = create_tween()
 	tween.tween_property($ContenedorMinijuego, "modulate:a", 0.0, 0.5)
-	# Espera a que la animación del Tween termine antes de borrar el minijuego
 	await tween.finished
 	
 	minijuego_instance.queue_free()
@@ -617,18 +548,14 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 
 func actualizar_modo_combate() -> void:
 	if item_en_mano is ItemBase:
-		# 1. Activamos o desactivamos la mira según lo que pida el objeto
 		if item_en_mano.activa_mira_combate:punto_de_mira.show()
 		else:punto_de_mira.hide()
 		
-		# 2. Ajustamos la cámara dependiendo de si el objeto la modifica o no
 		if item_en_mano.modifica_camara:
 			ajustar_camara(item_en_mano.distancia_camara, item_en_mano.offset_camara)
 		else:
-			# Ítem común, cámara normal
 			ajustar_camara(distancia_camara_normal, Vector3(0.0, 1.5, 0.0))
 	else:
-		# Manos vacías: ocultamos mira y cámara normal
 		punto_de_mira.hide()
 		ajustar_camara(distancia_camara_normal, Vector3(0.0, 1.5, 0.0))
 		
@@ -636,30 +563,24 @@ func ajustar_camara(distancia_camara: float, posicion_camara: Vector3):
 		spring_arm.spring_length = distancia_camara
 		spring_arm.position = posicion_camara
 		
-# 1. Tu inventario llamará a esta función cuando elijas el arma
 func solicitar_equipar(ruta_escena: String) -> void:
 	if not is_multiplayer_authority(): 
 		return
-# Le decimos a todos los clientes que te pongan el arma en la mano
 	equipar_para_todos.rpc(ruta_escena)
 
-# 2. Tu inventario llamará a esta cuando la deselecciones
 func solicitar_desequipar() -> void:
 	if not is_multiplayer_authority(): 
 		return
 	desequipar_para_todos.rpc()
 
-# --- FUNCIONES MULTIJUGADOR ---
 @rpc("any_peer", "call_local", "reliable")
 func equipar_para_todos(ruta_escena: String) -> void:
-# Si ya tenías algo en la mano, lo borramos primero
 	if item_en_mano != null:
 		item_en_mano.queue_free()
 		item_en_mano = null
 
 	if ruta_escena == "":
 		return
-# Cargamos el archivo del arma y lo creamos
 
 	var escena_nueva = load(ruta_escena)
 	if escena_nueva:
@@ -684,16 +605,11 @@ func mover_a(nueva_pos: Vector3) -> void:
 	velocity = Vector3.ZERO
 	global_position = nueva_pos
 
-# Funcion para la balsa
 func prepare_for_raft() -> void:
-	# reiniciar la variable que guarda el movimiento del mouse
 	camera_rotation = Vector2.ZERO
-	# resetea la rotacion del brazo de la camara
 	if spring_arm_3d:
 		spring_arm_3d.rotation = Vector3.ZERO
-	# reiniciamos la rotacion del nodo raiz del jugador
 	rotation = Vector3.ZERO
-	#reiniciamos la rotacion del modelo 3d para que no quede con mala orientacion respecto a la balsa
 	var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
 	if modelo:
 		modelo.rotation = Vector3(0, PI, 0)
@@ -702,4 +618,4 @@ func prepare_for_raft() -> void:
 func bloquear_controles(bloquear: bool) -> void:
 	input_bloqueado = bloquear
 	if bloquear:
-		velocity = Vector3.ZERO # Frena al jugador inmediatamente si venía corriendo
+		velocity = Vector3.ZERO
