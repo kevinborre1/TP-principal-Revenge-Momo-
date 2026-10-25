@@ -17,7 +17,7 @@ func _colision_balsa() -> void:
 	# 1. Apagamos la colisión. Usamos set_deferred por seguridad en las físicas de Godot.
 	$CollisionShape3D.set_deferred("disabled", true)
 	
-	# 2. Apagamos el modelo visual (el padre Sketchfab_Sce)
+	# 2. Apagamos el modelo visual (el padre Sketchfab_Scene)
 	var nodo_padre = get_parent()
 	if nodo_padre:
 		nodo_padre.visible = false
@@ -32,8 +32,18 @@ func _colision_balsa() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func _destruir_barril() -> void:
+	# 1. Desactivamos la colisión para que no choque mientras se encoge
+	$CollisionShape3D.set_deferred("disabled", true)
+
+	# 2. Animar la escala hasta achicarse a 0 en 0.15 segundos
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector3.ZERO, 0.15)
+	
+	# 3. Esperar a que termine la animación del Tween
+	await tween.finished
+
+	# 4. Eliminar el nodo contenedor o el barril
 	if get_parent() and get_parent().name != "Terreno" and get_parent().name != "SceneRoot":
-		# Solo borramos el padre si es el nodo contenedor del barril visual (ej: Sketchfab_Scene)
 		get_parent().queue_free()
 	else:
 		queue_free()
