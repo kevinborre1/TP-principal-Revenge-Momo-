@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://0lxksclcjhd3" path="res://pruebaPersonaje/Scripts_HUD/inventario.gd" id="17_xspus"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
-height = 1.8240662
+height = 1.7507133
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riqsh"]
 resource_name = "Ch02_body"
@@ -1299,7 +1299,7 @@ shadow_size = 4
 script = ExtResource("1_cm308")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=953820401]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85558337, 0.14012158)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8922598, 0.14012158)
 shape = SubResource("CapsuleShape3D_rsdri")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1910096983]
