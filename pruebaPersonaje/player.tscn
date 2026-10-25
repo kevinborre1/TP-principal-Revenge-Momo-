@@ -2091,3 +2091,9 @@ texture = ExtResource("14_xspus")
 [node name="corazon3" type="TextureRect" parent="CanvasLayer2/ContenedorCorazones" unique_id=1431471791]
 layout_mode = 2
 texture = ExtResource("14_xspus")
+
+[node name="FPS" type="Label" parent="." unique_id=755662092]
+offset_left = 500.0
+offset_top = 7.0
+offset_right = 612.0
+offset_bottom = 44.0

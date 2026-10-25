@@ -15,14 +15,12 @@ var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
 var StaminaPerdida= 1.0
 var input_bloqueado: bool = false
-
 #Nodos de minijuego
 var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
 var minijuego_instance: Control = null
 
-
 @onready var inventario_manager = $Inventario
-
+@onready var fps = $FPS
 # Referencias a los nodos
 @onready var barraSalud: ProgressBar = $BarraSalud
 @onready var detector_items = $DetectorItems
@@ -244,7 +242,7 @@ func _physics_process(delta: float) -> void:
 		if label_contrarreloj:
 			label_contrarreloj.hide()
 		return
-
+	fps.text = "FPS: " + str(Engine.get_frames_per_second())
 	player_animation()
 		
 	var velocidadActual = SPEED
