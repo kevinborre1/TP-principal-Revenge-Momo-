@@ -42,7 +42,6 @@ func _physics_process(delta: float) -> void:
 	for j in get_tree().get_nodes_in_group("Jugador"):
 		if j in _ya_golpeados:
 			continue
-		print("Onda golpeó | altura del jugador sobre el centro: ", j.global_position.y - global_position.y)
 		var d := Vector2(j.global_position.x - global_position.x, j.global_position.z - global_position.z).length()
 		var dentro_del_anillo: bool = d <= _radio and d >= _radio - ancho
 		var a_ras_de_piso: bool = j.global_position.y - global_position.y < altura_peligro

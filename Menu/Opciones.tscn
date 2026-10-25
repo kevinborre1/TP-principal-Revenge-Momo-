@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://5ldobgd2xbxo"]
+
+[ext_resource type="Script" uid="uid://dbrh6bihxmp8g" path="res://Menu/opciones.gd" id="1_xe045"]
+[ext_resource type="Texture2D" uid="uid://dq4im5whylt0r" path="res://Imagenes/Opcionesss.png" id="2_lldat"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxovr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr3kr"]
+bg_color = Color(0.9137255, 0.9137255, 0.9137255, 0.5137255)
+
+[node name="Opciones" type="Control" unique_id=322662599]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xe045")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1437545393]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_lldat")
+expand_mode = 1
+
+[node name="Salir" type="Button" parent="." unique_id=1504950874]
+layout_mode = 0
+offset_left = 1021.0
+offset_top = 26.0
+offset_right = 1121.0
+offset_bottom = 94.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
+
+[node name="Controles" type="Button" parent="." unique_id=256848669]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 239.0
+offset_right = 581.0
+offset_bottom = 318.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
+
+[node name="Resolucion" type="Button" parent="." unique_id=1388603426]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 333.0
+offset_right = 578.0
+offset_bottom = 401.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
+
+[node name="Volumen" type="Button" parent="." unique_id=616869166]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 411.0
+offset_right = 573.0
+offset_bottom = 490.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
+
+[node name="Graficos" type="Button" parent="." unique_id=1572997685]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 503.0
+offset_right = 568.0
+offset_bottom = 582.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
+
+[connection signal="pressed" from="Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="Controles" to="." method="_on_controles_pressed"]
+[connection signal="pressed" from="Resolucion" to="." method="_on_resolucion_pressed"]
+[connection signal="pressed" from="Volumen" to="." method="_on_volumen_pressed"]
+[connection signal="pressed" from="Graficos" to="." method="_on_graficos_pressed"]

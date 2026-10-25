@@ -1,6 +1,8 @@
 extends Node
 const RUTA_LOGROS = "user://Logros.tres"
+const RUTA_CONFIGURACION = "user://Configuracion.tres"
 
+var configuracion: DataClassConfiguracion
 var logros: DataClassLogros
 
 @export var rutaUtilizada: String = ""
@@ -12,6 +14,9 @@ signal ranking_actualizado(nuevo_ranking: Array)
 var posicion_segura_host: Vector3 = Vector3.ZERO
 var posicion_segura_cliente: Vector3 = Vector3.ZERO
 
+func _ready() -> void:
+	cargar_configuracion()
+	MenuOpciones.aplicar_guardados()
 # Llama a esta función desde el Area3D (Checkpoint) pasándole la posición del Marker3D
 func establecer_posicion_predeterminada(posicion_base: Vector3) -> void:
 	posicion_segura_host = posicion_base
@@ -417,3 +422,30 @@ func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array) ->
 			item.queue_free()
 			
 	print("Mapa sincronizado con el estado en vivo del servidor.")
+func cargar_configuracion() -> void:
+	if ResourceLoader.exists(RUTA_CONFIGURACION):
+		configuracion = ResourceLoader.load(
+			RUTA_CONFIGURACION,
+			"",
+			ResourceLoader.CACHE_MODE_IGNORE
+		) as DataClassConfiguracion
+
+	if configuracion == null:
+		configuracion = DataClassConfiguracion.new()
+		guardar_configuracion()
+		return
+
+	# Si más adelante agregás acciones nuevas, completa las que falten con los defaults
+	var base := DataClassConfiguracion.new()
+	for accion in base.controles:
+		if not configuracion.controles.has(accion):
+			configuracion.controles[accion] = base.controles[accion]
+
+func guardar_configuracion() -> void:
+	if configuracion == null:
+		return
+
+	var error := ResourceSaver.save(configuracion, RUTA_CONFIGURACION)
+
+	if error != OK:
+		push_error("No se pudo guardar la configuración.")
