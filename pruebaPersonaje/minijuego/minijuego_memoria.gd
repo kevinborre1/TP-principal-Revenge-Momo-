@@ -27,7 +27,7 @@ func _ready() -> void:
 	_armar_mazo()
 	for i in cartas.size():
 		cartas[i].pressed.connect(_on_carta_pressed.bind(i))
-		cartas[i].text = ""  # arranca oculta
+		cartas[i].text = ""  # arranca ocultaS
 	label_resultado.hide()
 	
 	input_nombre.hide()
