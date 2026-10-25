@@ -7,6 +7,7 @@ var max_count: int = 3
 var current_count: int = 0
 
 var contrarreloj: ContrarrelojManager
+var vida_compartida: VidaCompartidaManager
 
 signal mode_changed(new_mode: GameMode, max_count: int)
 signal count_changed(current_count: int)
@@ -17,6 +18,10 @@ func _ready() -> void:
 	contrarreloj = ContrarrelojManager.new()
 	contrarreloj.name = "ContrarrelojManager"
 	add_child(contrarreloj)
+	
+	vida_compartida = VidaCompartidaManager.new()
+	vida_compartida.name = "VidaCompartidaManager"
+	add_child(vida_compartida)
 
 func set_mode(mode: GameMode, max_items: int = 3) -> void:
 	current_mode = mode

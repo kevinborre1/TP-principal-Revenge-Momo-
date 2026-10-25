@@ -43,6 +43,7 @@ var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 @onready var mano: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
 var item_en_mano: Node3D = null
 @onready var label_contrarreloj: Label = $CanvasLayer2/LabelContrarreloj
+@onready var contenedor_corazones = $CanvasLayer/ContenedorCorazones # Asegúrate de que la ruta sea correcta
 
 var punto_respawn :  Vector3 = Vector3(36, 2, 1250)
 
@@ -142,17 +143,31 @@ func _ready() -> void:
 		collision_shape_3d.disabled = false
 	set_physics_process(true) # Reactiva el _physics_process (gravedad y controles)
 	
+	# Arrancar modos de juego especiales
 	if is_multiplayer_authority():
 		if Global.modo_multijugador == "linea":
 			if multiplayer.is_server():
 				if Global.modo_de_juego == "contrarreloj":
 					GameManager.contrarreloj.iniciar_timer()
+				elif Global.modo_de_juego == "vida_compartida":
+					GameManager.vida_compartida.iniciar_modo()
 			else:
-				# El cliente entra y le exige los datos al Host
-				GameManager.contrarreloj._pedir_estado_al_host.rpc_id(1)
+				# El cliente entra y exige los datos al Host dependiendo del modo
+				if Global.modo_de_juego == "contrarreloj":
+					GameManager.contrarreloj._pedir_estado_al_host.rpc_id(1)
+				elif Global.modo_de_juego == "vida_compartida":
+					GameManager.vida_compartida._pedir_estado_al_host.rpc_id(1)
 		elif Global.modo_multijugador == "local" and name == "1":
 			if Global.modo_de_juego == "contrarreloj":
 				GameManager.contrarreloj.iniciar_timer()
+			elif Global.modo_de_juego == "vida_compartida":
+				GameManager.vida_compartida.iniciar_modo()
+				
+	if contenedor_corazones:
+		if Global.modo_de_juego == "vida_compartida":
+			contenedor_corazones.show()
+		else:
+			contenedor_corazones.hide()
 
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
@@ -306,6 +321,21 @@ func _physics_process(delta: float) -> void:
 				label_contrarreloj.modulate = Color.WHITE
 		else:
 			label_contrarreloj.hide()
+	# Actualizar HUD de Vida Compartida (Automático y a prueba de lag)
+	if contenedor_corazones:
+		if Global.modo_de_juego == "vida_compartida" and not Global.menu_pausa_abierto:
+			contenedor_corazones.show()
+			
+			var cantidad_restante = GameManager.vida_compartida.corazones_actuales
+			var imagenes_corazones = contenedor_corazones.get_children()
+			
+			for i in range(imagenes_corazones.size()):
+				if i < cantidad_restante:
+					imagenes_corazones[i].show()
+				else:
+					imagenes_corazones[i].hide()
+		else:
+			contenedor_corazones.hide()
 
 func activar_ragdoll():
 	if collision_shape_3d:
@@ -340,8 +370,23 @@ func _recibir_danio_red(danio: int):
 	if saludActual <= 0:
 		saludActual = 0
 		actualizar_barraDeVida()
-		respawnear()
-		print("¡El jugador ha muerto!")
+		
+		# --- LÓGICA DE MUERTE SEGÚN EL MODO ---
+		if Global.modo_de_juego == "vida_compartida":
+			if is_multiplayer_authority():
+				GameManager.vida_compartida.procesar_muerte_jugador()
+		else:
+			# Si es modo normal o contrarreloj, muere y revive solo
+			respawnear()
+			print("¡El jugador ha muerto!")
+			
+		# Si es contrarreloj, el tiempo se reinicia
+		if Global.modo_de_juego == "contrarreloj" and is_multiplayer_authority():
+			if Global.modo_multijugador == "linea" and multiplayer.is_server():
+				GameManager.contrarreloj.iniciar_timer()
+			elif Global.modo_multijugador == "local" and name == "1":
+				GameManager.contrarreloj.iniciar_timer()
+				
 	actualizar_barraDeVida()
 
 func respawnear():

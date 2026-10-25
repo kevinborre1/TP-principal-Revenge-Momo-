@@ -2071,3 +2071,23 @@ scale = Vector2(2, 2)
 size_flags_vertical = 1
 text = "\"15:00\""
 label_settings = SubResource("LabelSettings_ww6v2")
+
+[node name="ContenedorCorazones" type="BoxContainer" parent="CanvasLayer2" unique_id=1602763001]
+anchors_preset = -1
+offset_left = 7.0
+offset_top = 81.0
+offset_right = 218.0
+offset_bottom = 156.0
+scale = Vector2(1.0400004, 1)
+
+[node name="corazon1" type="TextureRect" parent="CanvasLayer2/ContenedorCorazones" unique_id=290372684]
+layout_mode = 2
+texture = ExtResource("14_xspus")
+
+[node name="corazon2" type="TextureRect" parent="CanvasLayer2/ContenedorCorazones" unique_id=1693891300]
+layout_mode = 2
+texture = ExtResource("14_xspus")
+
+[node name="corazon3" type="TextureRect" parent="CanvasLayer2/ContenedorCorazones" unique_id=1431471791]
+layout_mode = 2
+texture = ExtResource("14_xspus")

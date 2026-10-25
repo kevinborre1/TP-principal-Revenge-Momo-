@@ -10,26 +10,26 @@ signal corazones_actualizados(cantidad)
 func iniciar_modo() -> void:
 	corazones_actuales = corazones_maximos
 	if Global.modo_multijugador == "linea" and multiplayer.is_server():
-		_sincronizar_corazones.rpc(corazones_actuales)
+		_sincronizar_corazones.rpc(corazones_actuales, Global.modo_de_juego)
 
 # --- SINCRONIZACIÓN DE RED ---
 @rpc("any_peer", "call_remote", "reliable")
 func _pedir_estado_al_host() -> void:
 	if multiplayer.is_server():
 		var peer_id = multiplayer.get_remote_sender_id()
-		_sincronizar_corazones.rpc_id(peer_id, corazones_actuales)
+		_sincronizar_corazones.rpc_id(peer_id, corazones_actuales, Global.modo_de_juego)
 
 @rpc("authority", "call_local", "reliable")
-func _sincronizar_corazones(corazones: int) -> void:
+func _sincronizar_corazones(corazones: int, modo: String) -> void:
 	corazones_actuales = corazones
+	Global.modo_de_juego = modo # ¡ESTO FALTABA! Ahora el Cliente sabe a qué está jugando
 	corazones_actualizados.emit(corazones_actuales)
 
 # --- LÓGICA DE MUERTE COMPARTIDA ---
-# El jugador llama a esta función cuando su vida llega a 0
 func procesar_muerte_jugador() -> void:
 	if Global.modo_multijugador == "linea":
-		# Solo el servidor tiene permiso de restar corazones para evitar trampas/bugs
-		rpc_id(1, "_servidor_procesar_muerte")
+		# Sintaxis moderna y segura de Godot 4 para que el Cliente hable con el Host
+		_servidor_procesar_muerte.rpc_id(1)
 	else:
 		_servidor_procesar_muerte()
 
