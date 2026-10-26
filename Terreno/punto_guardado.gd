@@ -26,7 +26,7 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	if not puede_guardar or not body.is_in_group("Jugador"):
 		return
-		
+	body.punto_respawn = punto_de_aparicion.global_position
 	if multiplayer.is_server():
 		ya_activado = true
 		
@@ -34,7 +34,6 @@ func _on_body_entered(body: Node3D) -> void:
 		if punto_de_aparicion != null:
 			# Asumimos que creas esta función en tu Singleton SaveAndLoad
 			SaveAndLoad.establecer_posicion_predeterminada(punto_de_aparicion.global_position)
-		
 		SaveAndLoad.actualizar_logro(nombre_logro)
 		SaveAndLoad.save_game()
 		

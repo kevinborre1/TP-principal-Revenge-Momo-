@@ -54,7 +54,7 @@ var item_en_mano: Node3D = null
 @onready var label_contrarreloj: Label = $CanvasLayer2/LabelContrarreloj
 @onready var contenedor_corazones = $CanvasLayer2/ContenedorCorazones 
 
-var punto_respawn : Vector3 = Vector3(36, 2, 1250)
+@export var punto_respawn : Vector3 = Vector3(36, 2, 1250)
 
 func _ready() -> void:
 	var id_player = name.to_int()

@@ -13387,16 +13387,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wno3s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/modulo7-p1/Aula2/StaticBody3D" unique_id=1598562809]
 shape = SubResource("ConcavePolygonShape3D_d5tnb")
 
-[node name="Sketchfab_Scene4" parent="Modulo7/modulo7-p1/Aula2" unique_id=1436454095 instance=ExtResource("77_rp23r")]
+[node name="Pizarron" parent="Modulo7/modulo7-p1/Aula2" unique_id=1436454095 instance=ExtResource("77_rp23r")]
 transform = Transform3D(-3.3213716e-09, 0, 0.054720584, 0, -0.340967, 0, 0.18631966, 0, 5.865176e-09, -0.9168359, -0.09174788, -0.066185)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Aula2/Sketchfab_Scene4" unique_id=871077730]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Aula2/Pizarron" unique_id=871077730]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/modulo7-p1/Aula2/Sketchfab_Scene4/StaticBody3D" unique_id=136461269]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/modulo7-p1/Aula2/Pizarron/StaticBody3D" unique_id=136461269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028686523, 0.040712833, -0.025289536)
 shape = SubResource("BoxShape3D_ylryf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/modulo7-p1/Aula2/Sketchfab_Scene4" unique_id=1511671976]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/modulo7-p1/Aula2/Pizarron" unique_id=1511671976]
 transform = Transform3D(5.2189674, 0, 0, 0, 3.0797825, 0, 2.842171e-14, 0, 1.7669997, 0, 0, 0.03813553)
 mesh = SubResource("QuadMesh_0exiw")
 surface_material_override/0 = SubResource("StandardMaterial3D_2dkjj")
@@ -16375,6 +16375,8 @@ shape = SubResource("BoxShape3D_fnegy")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Modulo7/Puerta5" unique_id=109715976]
 libraries/ = SubResource("AnimationLibrary_m2yru")
 
+[node name="ZonaJefe" type="Node3D" parent="Modulo7" unique_id=1390789105]
+
 [node name="MenuPausa" parent="." unique_id=405466910 instance=ExtResource("82_t8ije")]
 
 [node name="PantallaDesconexion" parent="." unique_id=1061094305 instance=ExtResource("83_imqhg")]
@@ -16395,7 +16397,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0510864, 3.0184207, -1.2486
 shape = SubResource("BoxShape3D_f3mle")
 
 [node name="P-A_VictorBar" type="Marker3D" parent="Guardados/Guardado VictorBars/Completo_Victor" unique_id=1590909023]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17697144, 0.991148, -3.60083)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.763649, 0.991148, -1.9472656)
 
 [node name="Guardado Campus" type="Node" parent="Guardados" unique_id=1237937172]
 script = ExtResource("57_770lr")
