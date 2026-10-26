@@ -449,3 +449,19 @@ func guardar_configuracion() -> void:
 
 	if error != OK:
 		push_error("No se pudo guardar la configuración.")
+
+func destruir_partida_y_limpiar() -> void:
+	# Borrar el archivo físico si existe
+	if rutaUtilizada != "" and FileAccess.file_exists(rutaUtilizada):
+		var err := DirAccess.remove_absolute(rutaUtilizada)
+		if err == OK:
+			print("Guardado borrado exitosamente: ", rutaUtilizada)
+		else:
+			push_warning("Error al borrar el archivo: ", err)
+			
+	# Limpiar la memoria (para evitar que se mezclen datos)
+	rutaUtilizada = ""
+	cache_inventario_host.clear()
+	cache_inventario_cliente.clear()
+	posicion_segura_host = Vector3.ZERO
+	posicion_segura_cliente = Vector3.ZERO

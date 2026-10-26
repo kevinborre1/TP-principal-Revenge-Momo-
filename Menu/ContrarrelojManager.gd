@@ -1,7 +1,10 @@
 extends Node
 class_name ContrarrelojManager
 
-var tiempo_restante: float = 900.0 # 15 minutos (15 * 60)
+# TIEMPO TOTAL PARA CONTRARRELOJ
+const TIEMPO_TOTAL: float = 10.0
+
+var tiempo_restante: float = TIEMPO_TOTAL
 var timer_activo: bool = false
 
 func _process(delta: float) -> void:
@@ -15,7 +18,7 @@ func _process(delta: float) -> void:
 				_tiempo_agotado.rpc()
 
 func iniciar_timer() -> void:
-	tiempo_restante = 900.0
+	tiempo_restante = TIEMPO_TOTAL
 	timer_activo = true
 	if Global.modo_multijugador == "linea" and multiplayer.is_server():
 		_sincronizar_timer.rpc(tiempo_restante, timer_activo, Global.modo_de_juego)
@@ -47,6 +50,4 @@ func _tiempo_agotado() -> void:
 	print("¡Se acabó el tiempo del Contrarreloj!")
 	var jugadores = get_tree().get_nodes_in_group("Jugador")
 	for jugador in jugadores:
-		if jugador.has_method("_recibir_danio_red"):
-			jugador._recibir_danio_red(999)
-	iniciar_timer()
+		get_tree().change_scene_to_file("res://Menu/derrota_contrarreloj.tscn")

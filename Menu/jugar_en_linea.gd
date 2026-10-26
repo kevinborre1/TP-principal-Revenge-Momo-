@@ -37,7 +37,7 @@ func _iniciar_host(ruta: String) -> void:
 	
 	NetworkManager.quiero_ser_host = true
 	
-	if FileAccess.file_exists(ruta) or ResourceLoader.exists(ruta):
+	if FileAccess.file_exists(ruta):
 		cartel_error.text = "Cargando partida guardada..."
 		cartel_error.show()
 		_cargar_mapa_correspondiente()
