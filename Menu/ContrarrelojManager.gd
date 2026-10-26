@@ -16,6 +16,8 @@ func _process(delta: float) -> void:
 			tiempo_restante = 0
 			timer_activo = false
 			if Global.modo_multijugador != "linea" or multiplayer.is_server():
+				if multiplayer.is_server():
+					SaveAndLoad.destruir_partida_y_limpiar()
 				_tiempo_agotado.rpc()
 
 func iniciar_timer() -> void:
