@@ -33,7 +33,7 @@ var minijuego_instance: Control = null
 @onready var fps = $FPS
 
 # Referencias a los nodos
-@onready var barraSalud: ProgressBar = $BarraSalud
+@onready var barraSalud = $BarraSalud
 @onready var detector_items = $DetectorItems
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
@@ -332,9 +332,6 @@ func actualizar_barraStamina():
 	cambioStamina.emit()
 	
 func actualizar_barraDeVida():
-	if barraSalud:
-		barraSalud.max_value = saludMax
-		barraSalud.value = saludActual 
 	cambioSalud.emit()
 	
 func heridoPorEnemigo():

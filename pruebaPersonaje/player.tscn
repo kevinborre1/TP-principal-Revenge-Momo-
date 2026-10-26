@@ -13,7 +13,10 @@
 [ext_resource type="Script" uid="uid://cq64ums2jdd4k" path="res://pruebaPersonaje/Scripts_HUD/hud.gd" id="11_7fotu"]
 [ext_resource type="Script" uid="uid://cpbrvyfpmv2oi" path="res://pruebaPersonaje/Scripts_HUD/icon_counter.gd" id="12_gpnnl"]
 [ext_resource type="AudioStream" uid="uid://3btbeik6vykv" path="res://pruebaPersonaje/movimientos/macarena.mp3" id="12_jwaew"]
+[ext_resource type="Texture2D" uid="uid://cujwqibovahju" path="res://Imagenes/corazonmedio.png" id="12_w8je7"]
+[ext_resource type="Texture2D" uid="uid://dxns43vou6vgk" path="res://Imagenes/corazonvacio.png" id="13_pec5f"]
 [ext_resource type="Texture2D" uid="uid://b4dkbgu77wug3" path="res://assets/granocafe1.png" id="14_xspus"]
+[ext_resource type="Texture2D" uid="uid://dxrx62xiifj7p" path="res://Imagenes/corazonlleno.png" id="16_xspus"]
 [ext_resource type="Script" uid="uid://0lxksclcjhd3" path="res://pruebaPersonaje/Scripts_HUD/inventario.gd" id="17_xspus"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
@@ -1864,24 +1867,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "ESC"
 
-[node name="BarraSalud" type="ProgressBar" parent="." unique_id=940692510 node_paths=PackedStringArray("player")]
+[node name="BarraSalud" type="HBoxContainer" parent="." unique_id=1131782080 node_paths=PackedStringArray("player")]
+texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -33.0
-offset_right = 100.0
+offset_left = 5.0
+offset_top = -38.0
+offset_right = 105.0
+offset_bottom = -5.0
 grow_vertical = 0
+scale = Vector2(1.2721038, 1.1109171)
 script = ExtResource("6_xb7yt")
 player = NodePath("..")
-
-[node name="LabelSalud" type="Label" parent="." unique_id=1961368356]
-offset_left = 4.0
-offset_top = 580.0
-offset_right = 96.0
-offset_bottom = 617.0
-text = "SALUD"
-horizontal_alignment = 1
-vertical_alignment = 1
+tex_completo = ExtResource("16_xspus")
+tex_medio = ExtResource("12_w8je7")
+tex_vacio = ExtResource("13_pec5f")
 
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=247967191]
 anchors_preset = -1
@@ -2069,28 +2070,9 @@ offset_right = 576.0
 offset_bottom = 100.0
 scale = Vector2(2, 2)
 size_flags_vertical = 1
-text = "\"15:00\""
+text = "temporizador
+"
 label_settings = SubResource("LabelSettings_ww6v2")
-
-[node name="ContenedorCorazones" type="BoxContainer" parent="CanvasLayer2" unique_id=1602763001]
-anchors_preset = -1
-offset_left = 7.0
-offset_top = 81.0
-offset_right = 218.0
-offset_bottom = 156.0
-scale = Vector2(1.0400004, 1)
-
-[node name="corazon1" type="TextureRect" parent="CanvasLayer2/ContenedorCorazones" unique_id=290372684]
-layout_mode = 2
-texture = ExtResource("14_xspus")
-
-[node name="corazon2" type="TextureRect" parent="CanvasLayer2/ContenedorCorazones" unique_id=1693891300]
-layout_mode = 2
-texture = ExtResource("14_xspus")
-
-[node name="corazon3" type="TextureRect" parent="CanvasLayer2/ContenedorCorazones" unique_id=1431471791]
-layout_mode = 2
-texture = ExtResource("14_xspus")
 
 [node name="FPS" type="Label" parent="." unique_id=755662092]
 offset_left = 500.0
