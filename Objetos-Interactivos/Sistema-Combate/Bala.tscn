@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8nvdqb8wsvbc"]
 
 [ext_resource type="Script" uid="uid://b4gfag46vpcq4" path="res://Objetos-Interactivos/Sistema-Combate/bala.gd" id="1_81lri"]
-[ext_resource type="PackedScene" uid="uid://dcyf32vf8dccd" path="res://Arma/nerf_dartbullet.glb" id="2_epie7"]
+[ext_resource type="PackedScene" uid="uid://dcyf32vf8dccd" path="res://Objetos-Interactivos/Sistema-Combate/Arma/nerf_dartbullet.glb" id="2_epie7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfkbx"]
 radius = 0.087890625

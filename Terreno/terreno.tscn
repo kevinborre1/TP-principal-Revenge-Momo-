@@ -6075,9 +6075,6 @@ data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fok8c"]
 data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ystxd"]
-size = Vector3(0.38110352, 4.661255, 5.3808594)
-
 [sub_resource type="BoxMesh" id="BoxMesh_sxovr"]
 size = Vector3(52.747803, 3.3916016, 29.562012)
 
@@ -15146,15 +15143,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tk8hj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/modulo7-p1/Cube_015/StaticBody3D" unique_id=429628266]
 shape = SubResource("ConcavePolygonShape3D_fok8c")
 
-[node name="Sketchfab_Scene2" parent="Modulo7/modulo7-p1" unique_id=296524462 instance=ExtResource("57_k37ix")]
-transform = Transform3D(4, 0, -0.00028514862, 0, 3.5809095, 0, 0.00023901455, 0, 4.765958, -97.54245, 6.080052, -328.15466)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/modulo7-p1/Sketchfab_Scene2" unique_id=1931811914]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/modulo7-p1/Sketchfab_Scene2/StaticBody3D" unique_id=215768756]
-transform = Transform3D(1, 0, 0, 0, 1.0000004, 0, 0, 0, 1, -0.014038086, 1.8306274, 0.04788208)
-shape = SubResource("BoxShape3D_ystxd")
-
 [node name="Piso de Transicion" type="MeshInstance3D" parent="Modulo7/modulo7-p1" unique_id=1403026105]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 172.4945, 4.6504803, 64.56787)
 mesh = SubResource("BoxMesh_sxovr")
@@ -16327,55 +16315,105 @@ transform = Transform3D(-0.22299238, 0, 0.008500051, 0, 0.010613105, 0, -0.00850
 [node name="Object_136" type="MeshInstance3D" parent="Modulo7/Ajedreez/Sketchfab_model/root/GLTF_SceneRootNode/silla_001_49" unique_id=264150271]
 mesh = SubResource("ArrayMesh_lfugs")
 
-[node name="Puerta5" type="Node3D" parent="Modulo7" unique_id=1159998559]
+[node name="PuertaPrincipal" type="Node3D" parent="Modulo7" unique_id=1159998559]
 transform = Transform3D(-1.7484555e-07, 0, 5.708, 0, 7.9999995, 0, -3.9999998, 0, -2.4950458e-07, 267.68436, 0.0021677017, -202.25348)
 script = ExtResource("58_u51io")
 Pepitas_necesarias = 2
 
-[node name="Sketchfab_model" type="Node3D" parent="Modulo7/Puerta5" unique_id=633246391]
+[node name="Sketchfab_model" type="Node3D" parent="Modulo7/PuertaPrincipal" unique_id=633246391]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
 
-[node name="root" type="Node3D" parent="Modulo7/Puerta5/Sketchfab_model" unique_id=2062448720]
+[node name="root" type="Node3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model" unique_id=2062448720]
 
-[node name="GLTF_SceneRootNode" type="Node3D" parent="Modulo7/Puerta5/Sketchfab_model/root" unique_id=576003713]
+[node name="GLTF_SceneRootNode" type="Node3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root" unique_id=576003713]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, -1, 0, 1, 2.220446e-16, 0, 0, 0)
 
-[node name="door l_0" type="Node3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=602477677]
+[node name="door l_0" type="Node3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=602477677]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.005351, 0.08904147, 0, 2.548793)
 
-[node name="Object_4" type="MeshInstance3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" unique_id=2107530497]
+[node name="Object_4" type="MeshInstance3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" unique_id=2107530497]
 transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, -0.04442978)
 mesh = SubResource("ArrayMesh_c5nnd")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" unique_id=266233525]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" unique_id=266233525]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1350534692]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1350534692]
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0.08258057, 1.8715826, -0.9934044)
 shape = SubResource("BoxShape3D_tx3k5")
 
-[node name="frame_1" type="Node3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=1580232373]
+[node name="frame_1" type="Node3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=1580232373]
 
-[node name="Object_6" type="MeshInstance3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/frame_1" unique_id=1026984165]
+[node name="Object_6" type="MeshInstance3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode/frame_1" unique_id=1026984165]
 mesh = SubResource("ArrayMesh_xlhmj")
 
-[node name="door r_2" type="Node3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=969886146]
+[node name="door r_2" type="Node3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=969886146]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.005351, 0.08904147, 0, -2.54879)
 
-[node name="Object_8" type="MeshInstance3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" unique_id=765264312]
+[node name="Object_8" type="MeshInstance3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" unique_id=765264312]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
 mesh = SubResource("ArrayMesh_tij8a")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" unique_id=911485816]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" unique_id=911485816]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=742840424]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/PuertaPrincipal/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=742840424]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0974884, 1.9506227, 1.0309906)
 shape = SubResource("BoxShape3D_fnegy")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Modulo7/Puerta5" unique_id=109715976]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Modulo7/PuertaPrincipal" unique_id=109715976]
 libraries/ = SubResource("AnimationLibrary_m2yru")
 
 [node name="ZonaJefe" type="Node3D" parent="Modulo7" unique_id=1390789105]
+
+[node name="Node3D" type="Node3D" parent="Modulo7" unique_id=275680655]
+
+[node name="Puerta Salida" type="Node3D" parent="Modulo7" unique_id=1840086433]
+transform = Transform3D(-1, 0, -1.7484555e-07, 0, 9, 0, 8.7422755e-08, 0, -1.9999998, -183.61539, -1.5480518, -365.51227)
+script = ExtResource("58_u51io")
+Pepitas_necesarias = 3
+
+[node name="Sketchfab_model" type="Node3D" parent="Modulo7/Puerta Salida" unique_id=1634540922]
+transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
+
+[node name="root" type="Node3D" parent="Modulo7/Puerta Salida/Sketchfab_model" unique_id=1163843286]
+
+[node name="GLTF_SceneRootNode" type="Node3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root" unique_id=734947944]
+transform = Transform3D(1, 0, 0, 0, 2.220446e-16, -1, 0, 1, 2.220446e-16, 0, 0, 0)
+
+[node name="door l_0" type="Node3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=53194485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.005351, 0.08904147, 0, 2.548793)
+
+[node name="Object_4" type="MeshInstance3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" unique_id=100474182]
+transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, -0.04442978)
+mesh = SubResource("ArrayMesh_c5nnd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" unique_id=1846602706]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=871811705]
+transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
+shape = SubResource("BoxShape3D_tx3k5")
+
+[node name="frame_1" type="Node3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=1856561801]
+
+[node name="Object_6" type="MeshInstance3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/frame_1" unique_id=1601336064]
+mesh = SubResource("ArrayMesh_xlhmj")
+
+[node name="door r_2" type="Node3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=116049433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.005351, 0.08904147, 0, -2.54879)
+
+[node name="Object_8" type="MeshInstance3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" unique_id=1031646837]
+transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
+mesh = SubResource("ArrayMesh_tij8a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" unique_id=862878990]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=1068436490]
+transform = Transform3D(1, 0, -1.4068746e-12, 0, 1, 0, 0, 0, 1, 0, 1.9506226, 1.009285)
+shape = SubResource("BoxShape3D_fnegy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Modulo7/Puerta Salida" unique_id=1366861745]
+libraries/ = SubResource("AnimationLibrary_m2yru")
 
 [node name="MenuPausa" parent="." unique_id=405466910 instance=ExtResource("82_t8ije")]
 

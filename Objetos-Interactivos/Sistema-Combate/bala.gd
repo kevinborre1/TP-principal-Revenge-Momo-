@@ -1,6 +1,6 @@
 extends Area3D
 
-const TIEMPO_VIDA: float = 2.0
+const TIEMPO_VIDA: float = 0.4
 const VELOCIDAD_BALA: float = 70.0
 const DANIO_BALA: int = 10
 
