@@ -7,6 +7,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_rsdri"]
 size = Vector3(0.30256653, 0.6185303, 0.67700195)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jwyb0"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Escudo" type="Area3D" unique_id=502743752]
 script = ExtResource("1_jwyb0")
 nombre_item = "escudo"
@@ -19,3 +24,6 @@ transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0.09010708, 0, -0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1522845707]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029044405, 0.01727289, -0.013617754)
 shape = SubResource("BoxShape3D_rsdri")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=688103563]
+replication_config = SubResource("SceneReplicationConfig_jwyb0")

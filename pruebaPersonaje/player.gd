@@ -54,7 +54,7 @@ var item_en_mano: Node3D = null
 @onready var label_contrarreloj: Label = $CanvasLayer2/LabelContrarreloj
 @onready var contenedor_corazones = $CanvasLayer2/ContenedorCorazones 
 
-@export var punto_respawn : Vector3 = Vector3(36, 2, 1250)
+var punto_respawn : Vector3 = Vector3(36, 2, 1250)
 
 func _ready() -> void:
 	var id_player = name.to_int()
@@ -220,7 +220,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			modelo.rotation.y = spring_arm_3d.rotation.y + PI
 
 	if event is InputEventKey and event.physical_keycode == KEY_G and event.pressed and not event.echo:
-		soltar_item_actual.rpc()
+		soltar_item_actual()
 
 	if event is InputEventKey and event.physical_keycode == KEY_E and event.pressed and not event.echo:
 		intentar_recoger_item()
@@ -452,40 +452,36 @@ func detener_musica_baile():
 	if macarena and macarena.playing:
 		macarena.stop()
 		
-@rpc("any_peer", "call_local", "reliable")
+# Ejecutado por el cliente dueño del inventario
 func soltar_item_actual():
-	if not is_multiplayer_authority():
-		return 
-		
+	if not is_multiplayer_authority(): return
 	var item = inventario_manager.obtener_item_actual()
-	if item != null:
+	if item and item["ruta_escena"] != "":
 		var ruta = item["ruta_escena"]
 		inventario_manager.borrar_item_actual()
+		solicitar_desequipar()
+		
+		# Enviar la solicitud de física al Host
+		var modelo = $"Walk (1)" if has_node("Walk (1)") else self
+		var direccion_frente = modelo.global_transform.basis.z.normalized()
+		_servidor_procesar_soltar.rpc_id(1, ruta, global_position, direccion_frente)
 
-		if ruta != "":
-			var escena_objeto = load(ruta)
-			if escena_objeto:
-				var nuevo_objeto = escena_objeto.instantiate()
-				get_tree().current_scene.add_child(nuevo_objeto)
-				
-				var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else self))
-				var direccion_frente = modelo.global_transform.basis.z.normalized()
-				
-				var origen = global_position + Vector3(0, 1.0, 0)
-				var destino = origen + (direccion_frente * 1.5)
-				
-				var espacio_fisico = get_world_3d().direct_space_state
-				var query = PhysicsRayQueryParameters3D.create(origen, destino)
-				query.exclude = [self] 
-				
-				var resultado = espacio_fisico.intersect_ray(query)
-				
-				if resultado:
-					nuevo_objeto.global_position = resultado.position - (direccion_frente * 0.2)
-				else:
-					nuevo_objeto.global_position = destino
-				
-				solicitar_desequipar()
+# Ejecutado ÚNICAMENTE en el Host
+@rpc("any_peer", "call_local", "reliable")
+func _servidor_procesar_soltar(ruta: String, pos_origen: Vector3, direccion: Vector3):
+	if not multiplayer.is_server(): return
+	
+	# Cálculo del RayCast en el servidor
+	var origen = pos_origen + Vector3(0, 1.0, 0)
+	var destino = origen + (direccion * 1.5)
+	var query = PhysicsRayQueryParameters3D.create(origen, destino)
+	var resultado = get_world_3d().direct_space_state.intersect_ray(query)
+	var pos_final = resultado.position - (direccion * 0.2) if resultado else destino
+	
+	# Instanciar y agregar al contenedor (El Spawner lo replicará a todos los clientes)
+	var nuevo_objeto = load(ruta).instantiate()
+	nuevo_objeto.global_position = pos_final
+	get_tree().current_scene.get_node("ContenedorItemsSoltados").add_child(nuevo_objeto)
 
 @rpc("any_peer", "call_local", "reliable")
 func consumir_item_actual():

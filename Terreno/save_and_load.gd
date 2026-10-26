@@ -416,7 +416,7 @@ func _servidor_enviar_estado_vivo_mapa(peer_id: int) -> void:
 			inventarios_vivos[jugador.name] = jugador.get_node("Inventario").items.duplicate(true)
 			
 	# Le manda la lista exclusivamente al jugador que acaba de entrar
-	_cliente_sincronizar_mapa_vivo.rpc_id(peer_id, pepitas_vivas, items_vivos)
+	_cliente_sincronizar_mapa_vivo.rpc_id(peer_id, pepitas_vivas, items_vivos, inventarios_vivos)
 
 # 3. El cliente nuevo recibe la lista y destruye lo que sobra
 @rpc("authority", "call_local", "reliable")

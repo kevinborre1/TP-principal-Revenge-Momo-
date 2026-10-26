@@ -7,6 +7,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
 size = Vector3(0.40200806, 0.28179932, 1)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rnper"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Area3D2" type="Area3D" unique_id=917328590]
 script = ExtResource("1_sjkoq")
 nombre_item = "NerfONada"
@@ -26,3 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032410584, -0.05801283, 0.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=215258738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016738892, -0.12124634, 0)
 shape = SubResource("BoxShape3D_lfkbx")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1037910121]
+replication_config = SubResource("SceneReplicationConfig_rnper")

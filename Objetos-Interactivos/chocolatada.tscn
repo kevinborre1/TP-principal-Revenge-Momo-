@@ -7,6 +7,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_rsdri"]
 size = Vector3(2.4746094, 6.243881, 4.410697)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d7ulk"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Chocolatada" type="Area3D" unique_id=423774176]
 script = ExtResource("1_jxq8g")
 nombre_item = "Choco"
@@ -19,3 +24,6 @@ transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -0.0074964166, -1.19
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=516748160]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0.008851238, 0.23718911, -0.022633974)
 shape = SubResource("BoxShape3D_rsdri")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1495814209]
+replication_config = SubResource("SceneReplicationConfig_d7ulk")
