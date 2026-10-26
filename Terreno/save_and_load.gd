@@ -107,7 +107,10 @@ func load_game() -> void:
 	
 	cache_inventario_host = data.inventario_host.duplicate(true)
 	#Si el cliente se une luego de el juego empezado se le da una copia del inventario del cliente 
-	cache_inventario_cliente = data.inventario_cliente.duplicate(true) if data.inventario_cliente!= null  else data.inventario_host.duplicate(true)
+	if not data.inventario_cliente.is_empty():
+		cache_inventario_cliente = data.inventario_cliente.duplicate(true)
+	else:
+		cache_inventario_cliente = data.inventario_host.duplicate(true)
 		
 	var activador = _obtener_activador_oleadas()
 	if activador:
@@ -406,12 +409,18 @@ func _servidor_enviar_estado_vivo_mapa(peer_id: int) -> void:
 		if is_instance_valid(item) and not item.is_queued_for_deletion():
 			items_vivos.append(str(item.get_path()))
 			
+	# NUEVO: Recopilar el inventario exacto que tienen los jugadores en este momento
+	var inventarios_vivos: Dictionary = {}
+	for jugador in get_tree().get_nodes_in_group("Jugador"):
+		if jugador.has_node("Inventario"):
+			inventarios_vivos[jugador.name] = jugador.get_node("Inventario").items.duplicate(true)
+			
 	# Le manda la lista exclusivamente al jugador que acaba de entrar
 	_cliente_sincronizar_mapa_vivo.rpc_id(peer_id, pepitas_vivas, items_vivos)
 
 # 3. El cliente nuevo recibe la lista y destruye lo que sobra
 @rpc("authority", "call_local", "reliable")
-func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array) -> void:
+func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array, inventarios_vivos: Dictionary) -> void:
 	# Como son objetos base del mapa (no creados por un Spawner), el cliente DEBE borrarlos localmente
 	for p in get_tree().get_nodes_in_group("PepitasMapa"):
 		if not pepitas_vivas.has(str(p.get_path())):
@@ -420,6 +429,13 @@ func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array) ->
 	for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
 		if not items_vivos.has(str(item.get_path())):
 			item.queue_free()
+			
+	# NUEVO: Inyectar los ítems recibidos en los inventarios de los jugadores correspondientes
+	for nombre_jugador in inventarios_vivos.keys():
+		var jugador = get_tree().current_scene.find_child(nombre_jugador, true, false)
+		if jugador and jugador.has_node("Inventario"):
+			var inv_manager = jugador.get_node("Inventario")
+			inv_manager.cargar_datos_guardados(inventarios_vivos[nombre_jugador], jugador)
 			
 	print("Mapa sincronizado con el estado en vivo del servidor.")
 func cargar_configuracion() -> void:
