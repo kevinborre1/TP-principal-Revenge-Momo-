@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdhnnpao1l16i"]
 
-[ext_resource type="Script" uid="uid://d303y2vinod0g" path="res://Menu/derrota_contrarreloj.gd" id="1_2x1wp"]
+[ext_resource type="Script" uid="uid://d303y2vinod0g" path="res://Menu/derrota.gd" id="1_2x1wp"]
 [ext_resource type="Texture2D" uid="uid://cai556ph3red5" path="res://Imagenes/menu fondo.png" id="2_p32m6"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=2042806066]

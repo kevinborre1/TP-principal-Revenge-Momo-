@@ -7,6 +7,7 @@ const TIEMPO_TOTAL: float = 10.0
 var tiempo_restante: float = TIEMPO_TOTAL
 var timer_activo: bool = false
 
+
 func _process(delta: float) -> void:
 	if Global.modo_de_juego == "contrarreloj" and timer_activo and not Global.menu_pausa_abierto:
 		tiempo_restante -= delta
@@ -50,4 +51,7 @@ func _tiempo_agotado() -> void:
 	print("¡Se acabó el tiempo del Contrarreloj!")
 	var jugadores = get_tree().get_nodes_in_group("Jugador")
 	for jugador in jugadores:
-		get_tree().change_scene_to_file("res://Menu/derrota_contrarreloj.tscn")
+		var escena_derrota = preload("res://Menu/derrota.tscn")
+		var instancia_derrota = escena_derrota.instantiate()
+		
+		get_tree().change_scene_to_file("res://Menu/derrota.tscn")
