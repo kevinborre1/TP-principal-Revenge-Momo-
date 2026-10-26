@@ -9,6 +9,7 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
 @onready var pantalla_desconexion: CanvasLayer = $PantallaDesconexion
 @onready var texto_modo: Label = $Label
+@onready var activador_victoria: Area3D = $ActivadorVictoria
 
 func _ready() -> void:
 	if Global.modo_de_juego == "normal":
@@ -62,6 +63,8 @@ func _ready() -> void:
 		else:
 			NetworkManager.host_cerro_partida.connect(_on_servidor_desconectado)
 			NetworkManager.tube_client.join_session(NetworkManager.codigo_para_unirse)
+			
+	activador_victoria.body_entered.connect(_on_activador_victoria_body_entered)
 
 # El Host ejecuta esto automáticamente cuando un cliente entra
 func _on_peer_connected(id: int) -> void:
@@ -94,3 +97,10 @@ func _on_boton_volver_menu_pressed() -> void:
 	get_tree().paused = false
 	NetworkManager.disconnect_game()
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
+	
+func _on_activador_victoria_body_entered(body: Node3D) -> void:
+	# Verificamos si el objeto que entró al área pertenece al grupo 'jugadores'
+	if body.is_in_group("jugadores"):
+		print("¡Jugador tocó la meta! Cambiando a escena de victoria...")
+
+		get_tree().change_scene_to_file("res://Menu/Victoria.tscn")
