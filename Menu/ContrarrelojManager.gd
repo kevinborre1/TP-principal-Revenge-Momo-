@@ -48,10 +48,8 @@ func _sincronizar_timer(tiempo: float, activo: bool, modo: String) -> void:
 
 @rpc("call_local", "reliable")
 func _tiempo_agotado() -> void:
+	Global.motivo_derrota = "Se acabo el tiempo"
 	print("¡Se acabó el tiempo del Contrarreloj!")
 	var jugadores = get_tree().get_nodes_in_group("Jugador")
 	for jugador in jugadores:
-		var escena_derrota = preload("res://Menu/derrota.tscn")
-		var instancia_derrota = escena_derrota.instantiate()
-		
 		get_tree().change_scene_to_file("res://Menu/derrota.tscn")

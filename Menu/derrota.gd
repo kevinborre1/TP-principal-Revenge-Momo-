@@ -4,10 +4,7 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if Global.modo_de_juego == "contrarreloj":
-		motivo_derrota("te quedaste sin tiempo")
-	if Global.modo_de_juego == "vida_compartida":
-		motivo_derrota("Perdieron las tres vidas ")
+	motivo_derrota(Global.motivo_derrota)
 		
 func _on_button_pressed() -> void:
 	# quitamos la pausa antes de irnos
