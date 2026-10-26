@@ -143,6 +143,7 @@ func _ready() -> void:
 	
 	if is_multiplayer_authority():
 		SaveAndLoad.solicitar_posicion_guardada_al_servidor()
+		await get_tree().create_timer(0.5).timeout
 		SaveAndLoad.solicitar_sincronizacion_mapa_al_servidor()
 		await get_tree().create_timer(0.15).timeout
 
