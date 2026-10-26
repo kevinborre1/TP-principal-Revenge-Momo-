@@ -10,6 +10,7 @@ var mouse_sensitivy := 0.003
 signal cambioSalud
 signal cambioStamina
 
+
 # --- NUEVA SEÑAL PARA EL GAMEMANAGER ---
 signal jugador_murio(jugador_nodo)
 
@@ -19,8 +20,9 @@ var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
 var StaminaPerdida= 1.0
 var input_bloqueado: bool = false
-# Variable para controlar si el consumo de estamina está desactivado
+# Variable para controlar si el consumo de estamina está desactivado y el escudo
 var estamina_infinita: bool = false
+var escudo_activo: bool = false
 
 #Nodos de minijuego
 var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
@@ -336,6 +338,8 @@ func actualizar_barraDeVida():
 	cambioSalud.emit()
 	
 func heridoPorEnemigo():
+	if escudo_activo:
+		return
 	if Global.modo_multijugador == "linea":
 		if multiplayer.is_server():
 			rpc_id(get_multiplayer_authority(), "_recibir_danio_red", 10)
@@ -345,9 +349,10 @@ func heridoPorEnemigo():
 # --- NUEVO: DELEGACIÓN DE MUERTE LIMPIA ---
 @rpc("any_peer", "call_local", "reliable")
 func _recibir_danio_red(danio: int):
+	if escudo_activo:
+		return
 	saludActual -= danio
 	herido = true
-	
 	if saludActual <= 0:
 		saludActual = 0
 		actualizar_barraDeVida()
@@ -634,3 +639,14 @@ func activar_estamina_infinita(duracion: float) -> void:
 	estamina_infinita = true
 	await get_tree().create_timer(duracion).timeout
 	estamina_infinita = false
+	
+func recibir_escudo(duracion: float) -> bool:
+	if not escudo_activo:
+		activar_escudo(duracion)
+		return true
+	return false
+
+func activar_escudo(duracion: float) -> void:
+	escudo_activo = true
+	await get_tree().create_timer(duracion).timeout
+	escudo_activo = false

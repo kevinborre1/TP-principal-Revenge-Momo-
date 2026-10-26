@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://76ufee4q4ytu"]
+
+[ext_resource type="PackedScene" uid="uid://cdi2a77iowyi5" path="res://assets/escudo_capitan_america-captain_america.glb" id="1_1glpd"]
+[ext_resource type="Script" uid="uid://b8yc3gq4s3va6" path="res://Objetos-Interactivos/escudo.gd" id="1_jwyb0"]
+[ext_resource type="Texture2D" uid="uid://cxhkgysru1ee3" path="res://Objetos-Interactivos/escudo.png" id="2_texq2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rsdri"]
+size = Vector3(0.30256653, 0.6185303, 0.67700195)
+
+[node name="Escudo" type="Area3D" unique_id=502743752]
+script = ExtResource("1_jwyb0")
+nombre_item = "escudo"
+icono = ExtResource("2_texq2")
+ruta_escena = "res://Objetos-Interactivos/escudo.tscn"
+
+[node name="Sketchfab_Scene" parent="." unique_id=564815555 instance=ExtResource("1_1glpd")]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0.09010708, 0, -0.017023802)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1522845707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029044405, 0.01727289, -0.013617754)
+shape = SubResource("BoxShape3D_rsdri")

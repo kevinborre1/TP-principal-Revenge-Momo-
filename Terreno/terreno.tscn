@@ -70,6 +70,7 @@
 [ext_resource type="PackedScene" uid="uid://blibkmsitdbed" path="res://assets/pc_02.glb" id="62_2jws4"]
 [ext_resource type="PackedScene" uid="uid://cjv45rqeg1pcs" path="res://Objetos-Interactivos/chocolatada.tscn" id="62_vn0xn"]
 [ext_resource type="Script" uid="uid://dqtdwljsqwxij" path="res://Terreno/ahogamiento.gd" id="64_vedoo"]
+[ext_resource type="PackedScene" uid="uid://76ufee4q4ytu" path="res://Objetos-Interactivos/escudo.tscn" id="65_lbu8e"]
 [ext_resource type="PackedScene" uid="uid://c6yr2jemw2ntr" path="res://Objetos-Interactivos/Sistema-Combate/Arma.tscn" id="65_qtcef"]
 [ext_resource type="Texture2D" uid="uid://dwvdr1rjmqtn8" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_0.png" id="65_yeivc"]
 [ext_resource type="Texture2D" uid="uid://hj72jsy4hv4c" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_1.png" id="66_u51io"]
@@ -12551,6 +12552,9 @@ cantidad_curacion = 40
 
 [node name="Arma" parent="VictorBars/Consumibles" unique_id=628720648 instance=ExtResource("65_qtcef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.917, 0.827, 1240.386)
+
+[node name="Escudo" parent="VictorBars/Consumibles" unique_id=502743752 instance=ExtResource("65_lbu8e")]
+transform = Transform3D(-0.99131596, 0, 0.13150156, 0, 1, 0, -0.13150156, 0, -0.99131596, 46.547203, 0.6069056, 1241.9486)
 
 [node name="PuntoAparicionDespCinematica" type="Marker3D" parent="VictorBars" unique_id=93465238]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 1221)
