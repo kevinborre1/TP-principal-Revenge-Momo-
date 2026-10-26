@@ -10,14 +10,25 @@
 [ext_resource type="AnimationLibrary" uid="uid://cy4i6lh10w3tb" path="res://pruebaPersonaje/movimientos/Macarena Dance.fbx" id="7_gpnnl"]
 [ext_resource type="AnimationLibrary" uid="uid://3aoqg7e5syl5" path="res://pruebaPersonaje/movimientos/Standing Idle.fbx" id="8_7fotu"]
 [ext_resource type="Script" uid="uid://b28kyoe3v33c2" path="res://pruebaPersonaje/Scripts_HUD/stamina.gd" id="10_1kskl"]
+[ext_resource type="Texture2D" uid="uid://bk0pv3nanc5bc" path="res://Imagenes/Estamina/estamina0.png" id="10_pewqx"]
 [ext_resource type="Script" uid="uid://cq64ums2jdd4k" path="res://pruebaPersonaje/Scripts_HUD/hud.gd" id="11_7fotu"]
+[ext_resource type="Texture2D" uid="uid://bbt5gdxkq31rj" path="res://Imagenes/Estamina/estamina10.png" id="11_hcfve"]
+[ext_resource type="Texture2D" uid="uid://bt8gfit7mhu8x" path="res://Imagenes/Estamina/estamina20.png" id="12_8kgnt"]
 [ext_resource type="Script" uid="uid://cpbrvyfpmv2oi" path="res://pruebaPersonaje/Scripts_HUD/icon_counter.gd" id="12_gpnnl"]
 [ext_resource type="AudioStream" uid="uid://3btbeik6vykv" path="res://pruebaPersonaje/movimientos/macarena.mp3" id="12_jwaew"]
 [ext_resource type="Texture2D" uid="uid://cujwqibovahju" path="res://Imagenes/corazonmedio.png" id="12_w8je7"]
 [ext_resource type="Texture2D" uid="uid://dxns43vou6vgk" path="res://Imagenes/corazonvacio.png" id="13_pec5f"]
+[ext_resource type="Texture2D" uid="uid://lehelq1s4mr2" path="res://Imagenes/Estamina/estamina30.png" id="13_yf4ho"]
+[ext_resource type="Texture2D" uid="uid://ch4h3dvu6lpj8" path="res://Imagenes/Estamina/estamina40.png" id="14_pi8sm"]
 [ext_resource type="Texture2D" uid="uid://b4dkbgu77wug3" path="res://assets/granocafe1.png" id="14_xspus"]
+[ext_resource type="Texture2D" uid="uid://cyqpjynhcs66b" path="res://Imagenes/Estamina/estamina50.png" id="15_4dshx"]
 [ext_resource type="Texture2D" uid="uid://dxrx62xiifj7p" path="res://Imagenes/corazonlleno.png" id="16_xspus"]
+[ext_resource type="Texture2D" uid="uid://dygqmbkcxvj16" path="res://Imagenes/Estamina/estamina60.png" id="16_y8vk6"]
+[ext_resource type="Texture2D" uid="uid://d1b5s54ccyjhp" path="res://Imagenes/Estamina/estamina70.png" id="17_jh84y"]
 [ext_resource type="Script" uid="uid://0lxksclcjhd3" path="res://pruebaPersonaje/Scripts_HUD/inventario.gd" id="17_xspus"]
+[ext_resource type="Texture2D" uid="uid://buexgpf67bndh" path="res://Imagenes/Estamina/estamina80.png" id="18_h5773"]
+[ext_resource type="Texture2D" uid="uid://d14anjp204fuo" path="res://Imagenes/Estamina/estamina90.png" id="19_rmyj6"]
+[ext_resource type="Texture2D" uid="uid://kmsfet4gvirv" path="res://Imagenes/Estamina/estamina100.png" id="20_m5yyv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
 height = 1.7507133
@@ -1820,7 +1831,7 @@ libraries/Jump = ExtResource("6_jwaew")
 "libraries/Standing Idle" = ExtResource("8_7fotu")
 autoplay = &"Macarena Dance/mixamo_com"
 
-[node name="BarraDeStamina" type="ProgressBar" parent="." unique_id=1225548899 node_paths=PackedStringArray("player")]
+[node name="BarraDeStamina" type="TextureRect" parent="." unique_id=2075523546 node_paths=PackedStringArray("player")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -1832,18 +1843,10 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("10_1kskl")
 player = NodePath("..")
+texturas = Array[Texture2D]([ExtResource("10_pewqx"), ExtResource("11_hcfve"), ExtResource("12_8kgnt"), ExtResource("13_yf4ho"), ExtResource("14_pi8sm"), ExtResource("15_4dshx"), ExtResource("16_y8vk6"), ExtResource("17_jh84y"), ExtResource("18_h5773"), ExtResource("19_rmyj6"), ExtResource("20_m5yyv")])
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1306570859]
 replication_config = SubResource("SceneReplicationConfig_cm308")
-
-[node name="LabelEstamina" type="Label" parent="." unique_id=1815915721]
-offset_left = 908.0
-offset_top = 580.0
-offset_right = 1135.0
-offset_bottom = 615.0
-text = "ESTAMINA"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1629578674]
 anchors_preset = 1
