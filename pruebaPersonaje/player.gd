@@ -648,3 +648,22 @@ func activar_escudo(duracion: float) -> void:
 	escudo_activo = true
 	await get_tree().create_timer(duracion).timeout
 	escudo_activo = false
+	
+func recibir_danio_porcentaje(porcentaje: float) -> bool:
+	if escudo_activo:
+		print("El escudo absorbió el daño de la manzana.")
+		return false
+		
+	# Calcula la cantidad de vida a quitar en base a la salud máxima
+	var danio_calculado : int = int(saludMax * (porcentaje / 100.0))
+	
+	# Si juegas en multijugador online, aplicamos el daño por red
+	if Global.modo_multijugador == "linea":
+		if multiplayer.is_server():
+			rpc_id(get_multiplayer_authority(), "_recibir_danio_red", danio_calculado)
+		else:
+			_recibir_danio_red.rpc_id(1, danio_calculado)
+	else:
+		_recibir_danio_red(danio_calculado)
+		
+	return true

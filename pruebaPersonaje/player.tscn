@@ -1829,7 +1829,7 @@ libraries/ = SubResource("AnimationLibrary_a2kit")
 libraries/Jump = ExtResource("6_jwaew")
 "libraries/Macarena Dance" = ExtResource("7_gpnnl")
 "libraries/Standing Idle" = ExtResource("8_7fotu")
-autoplay = &"Macarena Dance/mixamo_com"
+autoplay = &"apunta/apunta"
 
 [node name="BarraDeStamina" type="TextureRect" parent="." unique_id=2075523546 node_paths=PackedStringArray("player")]
 anchors_preset = 3

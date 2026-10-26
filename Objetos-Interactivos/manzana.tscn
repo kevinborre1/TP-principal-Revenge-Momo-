@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://ccrtuvao4rvtq"]
+
+[ext_resource type="Script" uid="uid://d07u6ng4w246" path="res://Objetos-Interactivos/manzana.gd" id="1_82pst"]
+[ext_resource type="PackedScene" uid="uid://dwfuxi1du3dy3" path="res://assets/sakadung_apple_2.glb" id="2_82pst"]
+[ext_resource type="Texture2D" uid="uid://bmaygdtvgl4av" path="res://Objetos-Interactivos/Manzana.webp" id="2_ffgex"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rsdri"]
+radius = 0.43867958
+
+[node name="Manzana" type="Area3D" unique_id=2098178025]
+script = ExtResource("1_82pst")
+nombre_item = "manzana"
+icono = ExtResource("2_ffgex")
+ruta_escena = "res://Objetos-Interactivos/manzana.tscn"
+
+[node name="Sketchfab_Scene" parent="." unique_id=113685842 instance=ExtResource("2_82pst")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.009417057, 0, 0.085184574)
+
+[node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_72/GLTF_created_0" parent_id_path=PackedInt32Array(113685842, 306076877) index="0" unique_id=886649039]
+bones/1/position = Vector3(2.410598e-16, -0.0035443306, -0.004551233)
+bones/1/scale = Vector3(0.35427892, 0.35427892, 0.35427892)
+bones/3/position = Vector3(6.895744e-09, 0.04949904, 0.11569076)
+bones/3/scale = Vector3(1.6517667, 0.99999976, 0.9999998)
+bones/6/position = Vector3(-4.3593786e-09, 0.08122428, 0.0013463087)
+bones/7/position = Vector3(0.0058477493, 0.07971567, 0.0014862269)
+bones/8/position = Vector3(0.013071449, 0.07791554, 0.0015274361)
+bones/9/position = Vector3(0.019675927, 0.07741347, -0.0137935495)
+bones/10/position = Vector3(-0.0058477577, 0.07971568, 0.0014862679)
+bones/11/position = Vector3(-0.013071456, 0.07791555, 0.0015275124)
+bones/12/position = Vector3(-0.019676017, 0.077413484, -0.013793438)
+bones/14/position = Vector3(-3.9914028e-10, 0.07876551, -0.001686316)
+bones/15/position = Vector3(0.0057101613, 0.075807944, -0.0015350888)
+bones/16/position = Vector3(0.013071455, 0.07360711, -0.0013873503)
+bones/17/position = Vector3(0.019744776, 0.07051412, -0.0007539084)
+bones/18/position = Vector3(-0.0057101613, 0.07580795, -0.0015350394)
+bones/19/position = Vector3(-0.013071454, 0.0736071, -0.0013872655)
+bones/20/position = Vector3(-0.01974477, 0.07051412, -0.00075374916)
+bones/21/position = Vector3(0.050425235, 0.10489308, -0.027083466)
+bones/22/position = Vector3(-0.050425254, 0.10489307, -0.027083287)
+bones/34/position = Vector3(0.011500096, 0.16189334, -0.08588056)
+bones/34/rotation = Quaternion(-0.20869257, -0.56568044, -0.71653455, 0.35075834)
+bones/35/rotation = Quaternion(-0.24487635, 0.0024101548, 0.14274903, 0.9589852)
+bones/36/rotation = Quaternion(-0.039830975, -0.06449625, 0.17036064, 0.98246175)
+bones/37/rotation = Quaternion(-0.08751242, -0.220733, 0.2548902, 0.937363)
+bones/38/position = Vector3(-0.011500285, 0.16189332, -0.0858804)
+bones/38/rotation = Quaternion(-0.20000777, 0.56447315, 0.72082597, 0.3489654)
+bones/39/rotation = Quaternion(-0.24968328, -0.0042175725, -0.08507073, 0.9645743)
+bones/40/rotation = Quaternion(-0.04152307, 0.05017722, -0.1318538, 0.9891273)
+bones/41/rotation = Quaternion(-0.09905718, 0.16208567, -0.15621053, 0.9692855)
+
+[node name="AnimationPlayer" parent="Sketchfab_Scene" index="1" unique_id=862524521]
+autoplay = &"ArmatureAction"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1021655129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3015238, 0.12891883)
+shape = SubResource("SphereShape3D_rsdri")
+
+[editable path="Sketchfab_Scene"]
