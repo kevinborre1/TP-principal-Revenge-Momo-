@@ -19,6 +19,8 @@ var StaminaActual= 100.0
 var StaminaRegeneracion = 0.75
 var StaminaPerdida= 1.0
 var input_bloqueado: bool = false
+# Variable para controlar si el consumo de estamina está desactivado
+var estamina_infinita: bool = false
 
 #Nodos de minijuego
 var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
@@ -261,12 +263,12 @@ func _physics_process(delta: float) -> void:
 		correr_fisico = Input.is_physical_key_pressed(KEY_P)
 	if correr_fisico and StaminaActual > 0:
 		velocidadActual = SPEED * multiplicadorDeCarrera
-		StaminaActual -= StaminaPerdida
+		if not estamina_infinita:
+			StaminaActual -= StaminaPerdida
 		actualizar_barraStamina()
 	elif (StaminaActual < StaminaMax) and not correr_fisico :
 		StaminaActual += StaminaRegeneracion
 		actualizar_barraStamina()
-		
 	#CAMARA
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
 	var move_vector = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, spring_arm_3d.rotation.y)
@@ -619,3 +621,16 @@ func bloquear_controles(bloquear: bool) -> void:
 	input_bloqueado = bloquear
 	if bloquear:
 		velocity = Vector3.ZERO
+
+func recibir_estamina(duracion: float) -> bool:
+	if not estamina_infinita:
+		# 1. Aplicamos el efecto en segundo plano mediante un Timer o método aparte
+		activar_estamina_infinita(duracion)
+		# 2. Retornamos true inmediatamente para que el ítem se consuma sin demoras
+		return true
+	return false
+
+func activar_estamina_infinita(duracion: float) -> void:
+	estamina_infinita = true
+	await get_tree().create_timer(duracion).timeout
+	estamina_infinita = false

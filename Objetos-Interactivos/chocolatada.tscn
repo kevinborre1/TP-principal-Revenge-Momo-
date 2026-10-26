@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cjv45rqeg1pcs"]
+
+[ext_resource type="PackedScene" uid="uid://dlixgujc37jbu" path="res://assets/nesquik_chocolate_milk.glb" id="1_ey8uv"]
+[ext_resource type="Script" uid="uid://deqwp3wos204t" path="res://Objetos-Interactivos/choco.gd" id="1_jxq8g"]
+[ext_resource type="Texture2D" uid="uid://civgop6sh4tdf" path="res://Objetos-Interactivos/Choco.webp" id="2_d7ulk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rsdri"]
+size = Vector3(2.4746094, 6.243881, 4.410697)
+
+[node name="Chocolatada" type="Area3D" unique_id=423774176]
+script = ExtResource("1_jxq8g")
+nombre_item = "Choco"
+icono = ExtResource("2_d7ulk")
+ruta_escena = "res://Objetos-Interactivos/chocolatada.tscn"
+
+[node name="Sketchfab_Scene" parent="." unique_id=1294220849 instance=ExtResource("1_ey8uv")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -0.0074964166, -1.1920929e-07, -0.06126067)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=516748160]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0.008851238, 0.23718911, -0.022633974)
+shape = SubResource("BoxShape3D_rsdri")
