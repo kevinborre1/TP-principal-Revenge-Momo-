@@ -1,15 +1,21 @@
 [gd_scene format=3 uid="uid://d3r8frtkf4hfq"]
 
 [ext_resource type="Script" uid="uid://e0lwadm2t3nd" path="res://Menu/menu_seleccion_modo.gd" id="1_6fg4y"]
-[ext_resource type="Texture2D" uid="uid://cai556ph3red5" path="res://Imagenes/menu fondo.png" id="2_o5l76"]
+[ext_resource type="Texture2D" uid="uid://p1x0ttvgu6rb" path="res://Imagenes/Modos de Juego.png" id="2_o5l76"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m3v3u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyo8q"]
-bg_color = Color(0.8784314, 0.8784314, 0.8784314, 0.16078432)
+bg_color = Color(0.8784314, 0.8784314, 0.8784314, 0.23529412)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5l76"]
 bg_color = Color(0, 0, 0, 0.57254905)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxovr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr3kr"]
+bg_color = Color(0.8901961, 0.8901961, 0.8901961, 0.23921569)
 
 [node name="Control" type="Control" unique_id=924897348]
 layout_mode = 3
@@ -30,36 +36,35 @@ expand_mode = 1
 
 [node name="Normal" type="Button" parent="." unique_id=1740690659]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 296.0
-offset_right = 378.0
-offset_bottom = 351.0
+offset_left = 100.0
+offset_top = 245.0
+offset_right = 403.0
+offset_bottom = 551.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m3v3u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fyo8q")
-text = "Normal
+text = "
 "
 
 [node name="VidaCompartida" type="Button" parent="." unique_id=1084986261]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 351.0
-offset_right = 378.0
-offset_bottom = 406.0
+offset_left = 433.0
+offset_top = 242.0
+offset_right = 723.0
+offset_bottom = 545.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m3v3u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fyo8q")
-text = "Vida compartida
+text = "
 "
 
 [node name="Contrarreloj" type="Button" parent="." unique_id=431166857]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 406.0
-offset_right = 378.0
-offset_bottom = 461.0
+offset_left = 765.0
+offset_top = 248.0
+offset_right = 1053.0
+offset_bottom = 552.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m3v3u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fyo8q")
-text = "Contrarreloj
-
+text = "
 "
 
 [node name="CartelError" type="Label" parent="." unique_id=994214748]
@@ -74,6 +79,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_o5l76")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Atras" type="Button" parent="." unique_id=898801809]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 15.0
+offset_right = 1128.0
+offset_bottom = 87.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
+
 [connection signal="pressed" from="Normal" to="." method="_on_normal_pressed"]
 [connection signal="pressed" from="VidaCompartida" to="." method="_on_vida_compartida_pressed"]
 [connection signal="pressed" from="Contrarreloj" to="." method="_on_contrarreloj_pressed"]
+[connection signal="pressed" from="Atras" to="." method="_on_atras_pressed"]

@@ -1,29 +1,46 @@
 [gd_scene format=3 uid="uid://bd2wghj4ijklk"]
 
 [ext_resource type="Script" uid="uid://dqi1j0mwljmrx" path="res://pantalla_desconexion.gd" id="1_3yvwn"]
+[ext_resource type="Texture2D" uid="uid://2cunf437v125" path="res://Imagenes/Desconexión del host.png" id="2_6valu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxovr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr3kr"]
+bg_color = Color(0.88235295, 0.88235295, 0.88235295, 0.2)
 
 [node name="PantallaDesconexion" type="CanvasLayer" unique_id=1061094305]
 process_mode = 3
 visible = false
 script = ExtResource("1_3yvwn")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=122177775]
+offset_right = 1147.0
+offset_bottom = 646.0
+texture = ExtResource("2_6valu")
+expand_mode = 1
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=980465176]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="." unique_id=868306582]
+visible = false
 offset_left = 482.0
 offset_top = 277.0
 offset_right = 670.0
 offset_bottom = 317.0
 text = "El Host cerro la partida."
 
-[node name="Button" type="Button" parent="." unique_id=440438500]
-offset_left = 415.0
-offset_top = 466.0
-offset_right = 727.0
-offset_bottom = 521.0
-text = "VOLVER AL MENU"
+[node name="Volver" type="Button" parent="." unique_id=440438500]
+offset_left = 309.0
+offset_top = 433.00003
+offset_right = 715.0
+offset_bottom = 542.0
+rotation = -0.04363323
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Volver" to="." method="_on_button_pressed"]

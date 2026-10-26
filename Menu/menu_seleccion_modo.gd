@@ -41,3 +41,7 @@ func _disable_interface() -> void:
 	normal.disabled = true
 	vida_compartida.disabled = true
 	contrarreloj.disabled = true
+
+
+func _on_atras_pressed() -> void:
+	get_tree().change_scene_to_file("res://Menu/JugarEnLinea.tscn")
