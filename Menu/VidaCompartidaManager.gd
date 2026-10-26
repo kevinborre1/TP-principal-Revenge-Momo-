@@ -70,4 +70,5 @@ func _ejecutar_respawn_compartido(corazones_restantes: int) -> void:
 @rpc("call_local", "reliable")
 func _ejecutar_game_over() -> void:
 	print("¡Se acabaron los corazones compartidos! GAME OVER")
+	get_tree().change_scene_to_file("res://Menu/derrota_contrarreloj.tscn")
 	get_tree().change_scene_to_file("res://ui/game_over.tscn")
