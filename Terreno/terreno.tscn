@@ -16399,7 +16399,7 @@ libraries/ = SubResource("AnimationLibrary_m2yru")
 transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999999, -135.45695, 0, -299.23975)
 
 [node name="Pcc" parent="Modulo7/ZonaJefe" unique_id=884351803 instance=ExtResource("79_okn42")]
-transform = Transform3D(4, 0, 0, 0, 6, 0, 0, 0, 1, -0.3411255, 0.92276096, 44.032043)
+transform = Transform3D(4, 0, 0, 0, 6.0000005, 0, 0, 0, 1.0000001, 125.34847, 0.92276096, 44.032043)
 visible = false
 
 [node name="Cube" parent="Modulo7/ZonaJefe/Pcc/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(884351803, 114125227) index="0" unique_id=1327596702]
