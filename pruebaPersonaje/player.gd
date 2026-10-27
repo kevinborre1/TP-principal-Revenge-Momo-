@@ -341,7 +341,10 @@ func heridoPorEnemigo():
 		return
 	if Global.modo_multijugador == "linea":
 		if multiplayer.is_server():
-			rpc_id(get_multiplayer_authority(), "_recibir_danio_red", 10)
+			if Global.modo_de_juego == "vida_compartida":
+				GameManager.vida_compartida.cambiar_salud_compartida(-10)
+			else:
+				rpc_id(get_multiplayer_authority(), "_recibir_danio_red", 10)
 	else:
 		_recibir_danio_red(10)
 
@@ -511,6 +514,12 @@ func recibir_cura(puntos_cura: int) -> bool:
 	if saludActual >= saludMax:
 		print("Salud llena. No puedes usar la botella.")
 		return false
+		
+	if Global.modo_multijugador == "linea" and Global.modo_de_juego == "vida_compartida":
+		if is_multiplayer_authority():
+			GameManager.vida_compartida.cambiar_salud_compartida(puntos_cura)
+		return true
+		
 	saludActual += puntos_cura
 	
 	if saludActual > saludMax:
@@ -676,7 +685,10 @@ func recibir_danio_porcentaje(porcentaje: float) -> bool:
 	
 	# Si juegas en multijugador online, aplicamos el daño por red
 	if Global.modo_multijugador == "linea":
-		if multiplayer.is_server():
+		if Global.modo_de_juego == "vida_compartida":
+			if is_multiplayer_authority():
+				GameManager.vida_compartida.cambiar_salud_compartida(-danio_calculado)
+		elif multiplayer.is_server():
 			rpc_id(get_multiplayer_authority(), "_recibir_danio_red", danio_calculado)
 		else:
 			_recibir_danio_red.rpc_id(1, danio_calculado)

@@ -10559,7 +10559,7 @@ radius = 0.114746094
 height = 9.406494
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
-size = Vector3(1, 18, 10)
+size = Vector3(1, 12, 14)
 
 [node name="Node3D" type="Node3D" unique_id=695447382]
 script = ExtResource("1_bmrm7")
@@ -12502,7 +12502,7 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_l07nc")
 
 [node name="Cube_005" type="MeshInstance3D" parent="VictorBars/Base VictorBars" unique_id=1687644376]
-transform = Transform3D(0, 0.22396322, 0, 0, 0, -4.636499, -12.872833, 0, 0, 64.10678, 4.4084563, 1245.9375)
+transform = Transform3D(0, 0.22396325, 0, 0, 0, -4.6364985, -12.872832, 0, 0, 64.10678, 4.4084563, 1245.9375)
 mesh = SubResource("ArrayMesh_1uvkt")
 surface_material_override/0 = SubResource("StandardMaterial3D_h25n5")
 
@@ -17338,10 +17338,10 @@ offset_right = 709.0
 offset_bottom = 119.0
 
 [node name="ActivadorVictoria" type="Area3D" parent="." unique_id=414781656]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.192398, 0, 1245.8704)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.8076, 2, 794.87036)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActivadorVictoria" unique_id=775333934]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.2, 0.40521622, 0.36697197, 0.5905762)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.405212, 0.36697197, -0.40942383)
 shape = SubResource("BoxShape3D_yf5fn")
 
 [node name="ContenedorItemsSoltados" type="Node3D" parent="." unique_id=1008321350]
