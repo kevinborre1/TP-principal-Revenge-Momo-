@@ -100,19 +100,32 @@ func obtener_jugador_mas_cercano() -> Node3D:
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
+	# En línea solo el host resuelve el daño: las balas existen en todos los peers
+	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
+		return
+	if is_queued_for_deletion():
+		return
 	vida_actual -= danio
 	print("¡El enemigo recibió un disparo! Daño:", danio, " | Vida restante:", vida_actual)
 	
-	# Aquí puedes agregar efectos visuales, partículas de impacto o sangre en "transformacion_bala.origin"
-	
 	if vida_actual <= 0:
-		SaveAndLoad.sumar_estadistica("enemigosAsesinados")
 		morir()
 
 func morir() -> void:
 	if multiplayer.is_server():
 		murio.emit()
 	
+	if Global.modo_multijugador == "linea":
+		_eliminar_en_todos.rpc()
+	else:
+		_eliminar_en_todos()
+
+# El host la llama para borrar la papita en todos los peers
+@rpc("authority", "call_local", "reliable")
+func _eliminar_en_todos() -> void:
+	if is_queued_for_deletion():
+		return
+	SaveAndLoad.sumar_estadistica("enemigosAsesinados")
 	set_physics_process(false)
 	queue_free()
 
