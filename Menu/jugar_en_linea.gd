@@ -19,6 +19,11 @@ var ultimo_codigo_ingresado: String = ""
 func _ready() -> void:
 	# Si entrás a este menú sin elegir slot, no hay ruta
 	SaveAndLoad.rutaUtilizada = ""
+	# Si volvimos acá porque falló la conexión, mostramos el motivo
+	if NetworkManager.mensaje_error_conexion != "":
+		cartel_error.text = NetworkManager.mensaje_error_conexion
+		cartel_error.show()
+		NetworkManager.mensaje_error_conexion = ""
 
 func _on_hostear_partida_pressed() -> void:
 	_iniciar_host(RUTA_SAVE1)
@@ -68,6 +73,7 @@ func _on_codigo_text_submitted(new_text: String) -> void:
 	# GUARDAMOS LA INTENCIÓN Y CAMBIAMOS DE ESCENA PRIMERO
 	NetworkManager.quiero_ser_host = false
 	NetworkManager.codigo_para_unirse = codigo_limpio
+	NetworkManager.escena_menu_en_linea = get_tree().current_scene.scene_file_path
 	_cargar_mapa_correspondiente()
 
 func _set_interface(habilitada: bool) -> void:

@@ -10559,7 +10559,7 @@ radius = 0.114746094
 height = 9.406494
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
-size = Vector3(1, 20, 10)
+size = Vector3(1, 18, 10)
 
 [node name="Node3D" type="Node3D" unique_id=695447382]
 script = ExtResource("1_bmrm7")
@@ -17337,6 +17337,7 @@ offset_bottom = 119.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.192398, 0, 1245.8704)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActivadorVictoria" unique_id=775333934]
+transform = Transform3D(-4.371139e-08, 0, 1.2, 0, 1, 0, -1, 0, -5.2453668e-08, -109.89208, 0.36697197, -259.41113)
 shape = SubResource("BoxShape3D_yf5fn")
 
 [connection signal="pressed" from="Logros/Salir" to="Logros" method="_on_button_pressed"]

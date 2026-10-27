@@ -52,7 +52,7 @@ var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 @onready var mano: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
 var item_en_mano: Node3D = null
 @onready var label_contrarreloj: Label = $CanvasLayer2/LabelContrarreloj
-@onready var contenedor_corazones = $CanvasLayer2/ContenedorCorazones 
+@onready var contenedor_corazones = get_node_or_null("CanvasLayer2/ContenedorCorazones")
 
 var punto_respawn : Vector3 = Vector3(36, 2, 1250)
 

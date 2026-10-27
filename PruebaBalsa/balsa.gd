@@ -37,7 +37,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# 1. ABORDAR / BAJAR (solo el piloto; el otro jugador sube saltando)
+	if Global.modo_multijugador == "linea" and not NetworkManager.red_conectada():
+		return
+	# ABORDAR / BAJAR (solo el piloto; el otro jugador sube saltando)
 	if Input.is_action_just_pressed("Abordar"):
 		if is_controlled:
 			if is_multiplayer_authority():
@@ -82,7 +84,7 @@ func _physics_process(delta: float) -> void:
 					# Frenamos el chequeo de colisiones en este frame para evitar choques múltiples con el mismo barril
 					break
 
-	# 3. ARRASTRAR PASAJEROS (corre en todas las PC)
+	# ARRASTRAR PASAJEROS (corre en todas las PC)
 	_arrastrar_pasajeros()
 	
 	# 4. VERIFICAR SI ESTÁ ABANDONADA PARA REINICIARLA (Solo la autoridad)

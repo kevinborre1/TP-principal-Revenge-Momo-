@@ -11,6 +11,13 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var texto_modo: Label = $Label
 @onready var activador_victoria: Area3D = $ActivadorVictoria
 
+const TIEMPO_MAX_CONEXION := 40.0
+
+var cartel_conexion: Label
+var timer_conexion: Timer
+var conexion_resuelta := false
+var saliendo := false
+
 func _ready() -> void:
 	if Global.modo_de_juego == "normal":
 		texto_modo.text = "Modo: Normal"
@@ -62,6 +69,7 @@ func _ready() -> void:
 			add_player(1) 
 		else:
 			NetworkManager.host_cerro_partida.connect(_on_servidor_desconectado)
+			_iniciar_espera_conexion()
 			NetworkManager.tube_client.join_session(NetworkManager.codigo_para_unirse)
 			
 	activador_victoria.body_entered.connect(_on_activador_victoria_body_entered)
@@ -104,3 +112,65 @@ func _on_activador_victoria_body_entered(body: Node3D) -> void:
 		print("¡Jugador tocó la meta! Cambiando a escena de victoria...")
 
 		get_tree().change_scene_to_file("res://Menu/Victoria.tscn")
+
+# Cliente mientras no aparezca el cliente no hay camara, asi que mostramos un aviso
+func _iniciar_espera_conexion() -> void:
+	cartel_conexion = Label.new()
+	cartel_conexion.text = "Conectando con el host..."
+	cartel_conexion.add_theme_font_size_override("font_size", 32)
+	cartel_conexion.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	add_child(cartel_conexion)
+	
+	timer_conexion = Timer.new()
+	timer_conexion.one_shot = true
+	timer_conexion.wait_time = TIEMPO_MAX_CONEXION
+	timer_conexion.timeout.connect(_on_timeout_conexion)
+	add_child(timer_conexion)
+	timer_conexion.start()
+	
+	child_entered_tree.connect(_on_hijo_agregado)
+	NetworkManager.tube_client.error_raised.connect(_on_error_tube)
+	NetworkManager.escena_distinta_del_host.connect(_on_escena_distinta_del_host)
+	
+# El multiplayerSpawner agrega los jugadores en la raiz cuando llega le nuestro, ya estamos conectados
+func _on_hijo_agregado(nodo: Node) -> void:
+	if conexion_resuelta or not NetworkManager.red_conectada():
+		return
+	if nodo.name == str(multiplayer.get_unique_id()):
+		conexion_resuelta = true
+		timer_conexion.stop()
+		cartel_conexion.hide()
+		child_entered_tree.disconnect(_on_hijo_agregado)
+		print("[Red] Conectado como peer ", multiplayer.get_unique_id(), ". Jugador local listo.")
+
+func _on_timeout_conexion() -> void:
+	if not conexion_resuelta:
+		_abortar_conexion("No se pudo conectar con el host (tiempo agotado).\nRevisá el código o probá con otra red.")
+
+func _on_conexion_fallida() -> void:
+	if not conexion_resuelta:
+		_abortar_conexion.call_deferred("La conexión con el host falló.")
+
+func _on_escena_distinta_del_host(ruta: String) -> void:
+	_abortar_conexion.call_deferred("El host está en otra escena (%s).\nNo se puede unir a esa partida." % ruta)
+
+func _abortar_conexion(mensaje: String) -> void:
+	if saliendo:
+		return
+	saliendo = true
+	timer_conexion.stop()
+	print("[Red] Conexión cancelada: ", mensaje)
+	
+	if NetworkManager.host_cerro_partida.is_connected(_on_servidor_desconectado):
+		NetworkManager.host_cerro_partida.disconnect(_on_servidor_desconectado)
+	NetworkManager.mensaje_error_conexion = mensaje
+	NetworkManager.disconnect_game()
+	var menu := NetworkManager.escena_menu_en_linea
+	if menu == "":
+		menu = "res://Menu/MenuPrincipal.tscn"
+	get_tree().change_scene_to_file(menu)
+
+# Tube se rindió (trackers caídos, falla de WebRTC o código inválido)
+func _on_error_tube(_codigo: int, mensaje: String) -> void:
+	if not conexion_resuelta:
+		_abortar_conexion.call_deferred("No se pudo conectar con el host.\n(" + mensaje + ")")
