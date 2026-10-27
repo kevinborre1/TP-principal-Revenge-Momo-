@@ -18,7 +18,7 @@ func ser_recogido() -> void:
 func usar_item(jugador) -> bool:
 	if GameManager.contrarreloj != null:
 		GameManager.contrarreloj.pausar_timer()
-		GameManager.get_tree().create_timer(5.0).timeout.connect(GameManager.contrarreloj.reanudar_timer)
+		GameManager.get_tree().create_timer(30.0).timeout.connect(GameManager.contrarreloj.reanudar_timer)
 		print("Tiempo pausado con éxito.")
 		return true
 	else:
