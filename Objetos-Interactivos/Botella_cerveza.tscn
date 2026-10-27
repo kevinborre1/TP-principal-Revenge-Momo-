@@ -7,6 +7,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_g0rkf"]
 size = Vector3(0.095581055, 0.10668945, 0.072280884)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w8mu1"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="BotellaCerveza" type="Area3D" unique_id=443974799]
 transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_ftwm8")
@@ -20,3 +25,6 @@ shape = SubResource("BoxShape3D_g0rkf")
 
 [node name="Sketchfab_Scene" parent="." unique_id=644189006 instance=ExtResource("3_w8mu1")]
 transform = Transform3D(-0.079999976, 5.8853753e-09, -3.778344e-09, 0, 0.043219212, 0.067320846, 6.99382e-09, 0.067320846, -0.043219212, -0.115720205, 0.03999858, -0.0055330396)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1838419114]
+replication_config = SubResource("SceneReplicationConfig_w8mu1")

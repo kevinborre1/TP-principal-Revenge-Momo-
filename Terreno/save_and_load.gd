@@ -41,7 +41,7 @@ func save_game() -> void:
 	var jugadores = get_tree().get_nodes_in_group("Jugador")
 	if jugadores.is_empty():
 		return
-
+	
 	var data: SaveData
 	if ResourceLoader.exists(rutaUtilizada):
 		data = ResourceLoader.load(rutaUtilizada, "", ResourceLoader.CACHE_MODE_IGNORE) as SaveData
@@ -99,7 +99,7 @@ func save_game() -> void:
 	if activador:
 		data.ataque_iniciado = activador.ataque_iniciado
 		data.fase_oleada = activador.fase_actual
-
+	
 	var err = ResourceSaver.save(data, rutaUtilizada)
 	if err == OK:
 		print("Guardado exitoso -> Pepitas: ", data.cantidad_pepitas, " | Fase oleada: ", data.fase_oleada)
