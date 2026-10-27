@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c4f6clmjewns1"]
+
+[ext_resource type="Script" uid="uid://bqpc1c0emfg5u" path="res://Objetos-Interactivos/taza.gd" id="1_6s5ai"]
+[ext_resource type="Texture2D" uid="uid://btbnnuodrf6dl" path="res://Objetos-Interactivos/winter_mug.png" id="2_8ceas"]
+[ext_resource type="PackedScene" uid="uid://cs0vu86kxat4h" path="res://Objetos-Interactivos/Winter_Mug.glb" id="2_cub7u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Taza" type="Area3D" unique_id=1974661300]
+script = ExtResource("1_6s5ai")
+icono = ExtResource("2_8ceas")
+
+[node name="Winter_Mug" parent="." unique_id=516916174 instance=ExtResource("2_cub7u")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=442509350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12249753, 0)
+shape = SubResource("BoxShape3D_g4v7s")

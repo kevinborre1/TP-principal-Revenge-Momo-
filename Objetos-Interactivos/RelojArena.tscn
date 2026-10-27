@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://58akf7hnek25"]
+
+[ext_resource type="Script" uid="uid://df7lds78xcx0" path="res://Objetos-Interactivos/reloj_arena.gd" id="1_tphx6"]
+[ext_resource type="PackedScene" uid="uid://rg4qdusa7ijv" path="res://Objetos-Interactivos/hourglass__sand_clock.glb" id="1_ustl3"]
+[ext_resource type="Texture2D" uid="uid://cabwyn63qjqfd" path="res://Objetos-Interactivos/relojArena.png" id="2_jk86e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.5, 0.8, 0.5)
+
+[node name="RelojArena" type="Area3D" unique_id=1847882902]
+script = ExtResource("1_tphx6")
+nombre_item = "RelojArena"
+icono = ExtResource("2_jk86e")
+ruta_escena = "res://Objetos-Interactivos/RelojArena.tscn"
+
+[node name="Sketchfab_Scene" parent="." unique_id=551812017 instance=ExtResource("1_ustl3")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1495287426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2946144, 0)
+shape = SubResource("BoxShape3D_g4v7s")
