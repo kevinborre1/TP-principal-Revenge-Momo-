@@ -1,8 +1,8 @@
 extends Node
 class_name VidaCompartidaManager
 
-var corazones_maximos: int = 3
-var corazones_actuales: int = 3
+var corazones_maximos: int = 1
+var corazones_actuales: int = 1
 var procesando_muerte: bool = false # Evita que se resten 2 vidas si mueren a la vez
 
 var salud_maxima: int = 100
