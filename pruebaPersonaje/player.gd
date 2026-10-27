@@ -477,7 +477,7 @@ func soltar_item_actual():
 
 # Ejecutado ÚNICAMENTE en el Host
 @rpc("any_peer", "call_local", "reliable")
-func _servidor_procesar_soltar(ruta: String, pos_origen: Vector3, direccion: Vector3):
+func _servidor_procesar_soltar(ruta: String, pos_origen: Vector3, direccion: Vector3) -> void:
 	if not multiplayer.is_server(): return
 	
 	var contenedor := _obtener_contenedor_items()
@@ -492,13 +492,37 @@ func _servidor_procesar_soltar(ruta: String, pos_origen: Vector3, direccion: Vec
 	var resultado = get_world_3d().direct_space_state.intersect_ray(query)
 	var pos_final = resultado.position - (direccion * 0.2) if resultado else destino
 	
-	# Instanciar y agregar al contenedor (El Spawner lo replicará a todos los clientes)
 	var nuevo_objeto = load(ruta).instantiate()
 	
-	contenedor.add_child(nuevo_objeto)
-
-# DESPUÉS modificas su posición global (ahora que Godot ya sabe dónde está)
+	# 1. CLAVE: Le seteamos un nombre limpio y único ANTES de agregarlo al árbol
+	var nombre_unico = "Item_" + str(Time.get_ticks_msec()) + "_" + str(randi() % 1000)
+	nuevo_objeto.name = nombre_unico
+	
+	# 2. Le asignamos la posición inicial antes y después del add_child
+	nuevo_objeto.position = pos_final
+	contenedor.add_child(nuevo_objeto, true) # true fuerza a conservar el nombre legible
 	nuevo_objeto.global_position = pos_final
+	
+	# 3. Aseguramos que en los clientes quede en pos_final aunque el ítem no tenga MultiplayerSynchronizer
+	_sincronizar_posicion_item_soltado.rpc(nombre_unico, pos_final)
+
+@rpc("any_peer", "call_local", "reliable")
+func _sincronizar_posicion_item_soltado(nombre_nodo: String, pos_final: Vector3) -> void:
+	var sender = multiplayer.get_remote_sender_id()
+	if sender != 0 and sender != 1:
+		return
+	
+	var contenedor := _obtener_contenedor_items()
+	if contenedor == null:
+		return
+	# Esperamos un frame por si el MultiplayerSpawner del cliente tarda un instante en instanciarlo
+	var intentos := 0
+	while not contenedor.has_node(nombre_nodo) and intentos < 15:
+		await get_tree().process_frame
+		intentos += 1
+		
+	if contenedor.has_node(nombre_nodo):
+		contenedor.get_node(nombre_nodo).global_position = pos_final
 
 @rpc("any_peer", "call_local", "reliable")
 func consumir_item_actual():
