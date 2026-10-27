@@ -13,12 +13,11 @@ height = 1.543457
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8w0r3"]
 height = 3.0737305
 
-[sub_resource type="Animation" id="Animation_vg8rj"]
-resource_name = "pegar"
+[sub_resource type="Animation" id="Animation_d7g0g"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vedoo"]
 _data = {
-&"pegar": SubResource("Animation_vg8rj")
+&"jab": SubResource("Animation_d7g0g")
 }
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d7g0g"]
@@ -53,7 +52,7 @@ mesh = SubResource("CapsuleMesh_8w0r3")
 [node name="papitas" parent="." unique_id=945739531 instance=ExtResource("2_ip8am")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.8249779, -0.5619979, -0.3638916)
 
-[node name="Skeleton3D" parent="papitas" index="0" unique_id=1701094189]
+[node name="Skeleton3D" parent="papitas" index="0" unique_id=1181592842]
 bones/1/position = Vector3(0, 0, 0.9160626)
 bones/1/rotation = Quaternion(0.63675684, 0.043005437, -0.043547984, 0.76863176)
 bones/2/position = Vector3(-1.4835991e-08, 2.2711933e-07, 2.8381027e-08)
@@ -295,7 +294,7 @@ bones/82/position = Vector3(2.9491146e-08, 0.0068809628, 9.9838566e-08)
 bones/82/rotation = Quaternion(-2.1384981e-08, -1.1897133e-09, -4.5226256e-10, 1)
 bones/82/scale = Vector3(1.0000002, 1.0000004, 1)
 
-[node name="AnimationPlayer" parent="papitas" index="1" unique_id=140344022]
+[node name="AnimationPlayer" parent="papitas" index="1" unique_id=1021435969]
 libraries/Pega = SubResource("AnimationLibrary_vedoo")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1522896823]

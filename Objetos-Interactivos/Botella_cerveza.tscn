@@ -1,31 +1,22 @@
 [gd_scene format=3 uid="uid://crefucvws2ep4"]
 
 [ext_resource type="Script" uid="uid://cpijd7v4m7hdc" path="res://Objetos-Interactivos/botella_cerveza.gd" id="1_ftwm8"]
-[ext_resource type="Texture2D" uid="uid://bc3icldv1i6an" path="res://vitictorBar/assetsCocina/textures/cerveza.jpg" id="2_g27hx"]
-[ext_resource type="PackedScene" uid="uid://chha660qt0ow1" path="res://vitictorBar/assetsCocina/glb/beer_bottle.glb" id="3_4okmu"]
+[ext_resource type="Texture2D" uid="uid://cx4lhenyva58g" path="res://Objetos-Interactivos/first aid.webp" id="2_w8mu1"]
+[ext_resource type="PackedScene" uid="uid://bocip4hda8hm8" path="res://assets/first_aid_kit.glb" id="3_w8mu1"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_8w0r3"]
-height = 0.29057717
-radius = 0.1381836
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w8mu1"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0rkf"]
+size = Vector3(0.095581055, 0.10668945, 0.072280884)
 
 [node name="BotellaCerveza" type="Area3D" unique_id=443974799]
 transform = Transform3D(-1, 1.509958e-07, 0, -1.509958e-07, -1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_ftwm8")
 nombre_item = "Cerveza"
-icono = ExtResource("2_g27hx")
+icono = ExtResource("2_w8mu1")
 ruta_escena = "res://Objetos-Interactivos/Botella_cerveza.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1697604349]
-transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 1.0658141e-14, -0.20972693, 0)
-shape = SubResource("CylinderShape3D_8w0r3")
+transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, -0.1223061, -0.045144495, 0.05491233)
+shape = SubResource("BoxShape3D_g0rkf")
 
-[node name="beer_bottle" parent="." unique_id=204858495 instance=ExtResource("3_4okmu")]
-transform = Transform3D(3.4614308, 0, 0, 0, 2.8573425, 0, 0, 0, 1.9329164, 0, 0, 0)
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1143850805]
-replication_config = SubResource("SceneReplicationConfig_w8mu1")
+[node name="Sketchfab_Scene" parent="." unique_id=644189006 instance=ExtResource("3_w8mu1")]
+transform = Transform3D(-0.079999976, 5.8853753e-09, -3.778344e-09, 0, 0.043219212, 0.067320846, 6.99382e-09, 0.067320846, -0.043219212, -0.115720205, 0.03999858, -0.0055330396)

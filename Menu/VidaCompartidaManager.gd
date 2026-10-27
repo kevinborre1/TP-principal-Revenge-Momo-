@@ -51,6 +51,8 @@ func _servidor_procesar_muerte() -> void:
 		await get_tree().create_timer(2.0).timeout
 		procesando_muerte = false
 	else:
+		if multiplayer.is_server():
+			SaveAndLoad.destruir_partida_y_limpiar()
 		_ejecutar_game_over.rpc()
 
 @rpc("call_local", "reliable")

@@ -106,13 +106,13 @@ func _aplicar_config(f: int) -> void:
 	_botones = {1: false, 2: false}
 	
 	if f == Fase.MUERTO:
-		_timer_onda.stop()          # acá se frena, no se arranca
+		_timer_onda.stop()
 		_timer_papas.stop()
 		for p in get_tree().get_nodes_in_group("PapaMomo"):
 			p.queue_free()
 		if zona_ataques:
 			zona_ataques.detener()
-			return
+		return
 	var cfg: Dictionary = CONFIG[f]
 	_timer_onda.start(cfg["cada_onda"])   # acá se arranca, ya con cfg declarada
 	if zona_ataques:
@@ -136,6 +136,7 @@ func _sincronizar(vida_nueva: int, fase_nueva: int, campo: bool) -> void:
 	if fase != fase_anterior:
 		fase_cambiada.emit(fase)
 		if fase == Fase.MUERTO:
+			_desaparecer()   # <-- NUEVO
 			derrotado.emit()
 
 
@@ -268,3 +269,18 @@ func velocidad_onda() -> float:
 	if fase == Fase.MUERTO:
 		return 0.0
 	return CONFIG[fase]["vel_onda"]
+	
+func _desaparecer() -> void:
+	# Oculta a Momo y a todo lo que cuelga de él
+	visible = false
+	
+	# Apaga todas las formas de colisión
+	for c in find_children("*", "CollisionShape3D", true, false):
+		c.set_deferred("disabled", true)
+	for c in find_children("*", "CollisionPolygon3D", true, false):
+		c.set_deferred("disabled", true)
+	
+	# Por las dudas, también saca las capas/máscaras de los cuerpos y áreas
+	for c in find_children("*", "CollisionObject3D", true, false):
+		c.set_deferred("collision_layer", 0)
+		c.set_deferred("collision_mask", 0)
