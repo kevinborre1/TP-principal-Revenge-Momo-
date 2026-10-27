@@ -12724,7 +12724,7 @@ ruta_escena = "res://Objetos-Interactivos/taza.tscn"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.24275, 1.0642643, 1246.5471)
 
 [node name="Area3D2" parent="VictorBars/Consumibles" unique_id=917328590 instance=ExtResource("65_qtcef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.452583, 1.2222517, 1238.3325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.734024, 1.2222517, 1238.3325)
 
 [node name="PuntoAparicionDespCinematica" type="Marker3D" parent="VictorBars" unique_id=93465238]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 1221)
@@ -17341,7 +17341,7 @@ offset_bottom = 119.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.192398, 0, 1245.8704)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActivadorVictoria" unique_id=775333934]
-transform = Transform3D(-4.371139e-08, 0, 1.2, 0, 1, 0, -1, 0, -5.2453668e-08, -109.89208, 0.36697197, -259.41113)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.2, 0.40521622, 0.36697197, 0.5905762)
 shape = SubResource("BoxShape3D_yf5fn")
 
 [node name="ContenedorItemsSoltados" type="Node3D" parent="." unique_id=1008321350]
