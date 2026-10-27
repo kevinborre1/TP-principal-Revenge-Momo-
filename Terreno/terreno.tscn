@@ -10610,6 +10610,7 @@ render_target_update_mode = 4
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=274023316]
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
 spawn_path = NodePath("..")
+spawn_limit = 2
 
 [node name="VictorBars" type="Node3D" parent="." unique_id=269486619]
 
@@ -12721,6 +12722,9 @@ ruta_escena = "res://Objetos-Interactivos/taza.tscn"
 
 [node name="RelojArena" parent="VictorBars/Consumibles" unique_id=1847882902 instance=ExtResource("68_xx8as")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.24275, 1.0642643, 1246.5471)
+
+[node name="Area3D2" parent="VictorBars/Consumibles" unique_id=917328590 instance=ExtResource("65_qtcef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.452583, 1.2222517, 1238.3325)
 
 [node name="PuntoAparicionDespCinematica" type="Marker3D" parent="VictorBars" unique_id=93465238]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 1221)
@@ -17339,6 +17343,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.192398, 0, 1245.8704)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActivadorVictoria" unique_id=775333934]
 transform = Transform3D(-4.371139e-08, 0, 1.2, 0, 1, 0, -1, 0, -5.2453668e-08, -109.89208, 0.36697197, -259.41113)
 shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="ContenedorItemsSoltados" type="Node3D" parent="." unique_id=1008321350]
+
+[node name="MultiplayerSpawnerItems" type="MultiplayerSpawner" parent="." unique_id=172523844]
+_spawnable_scenes = PackedStringArray("uid://c6yr2jemw2ntr", "uid://crefucvws2ep4", "uid://cjv45rqeg1pcs", "uid://76ufee4q4ytu", "uid://ccrtuvao4rvtq", "uid://58akf7hnek25", "uid://c4f6clmjewns1", "")
+spawn_path = NodePath("../ContenedorItemsSoltados")
 
 [connection signal="pressed" from="Logros/Salir" to="Logros" method="_on_button_pressed"]
 

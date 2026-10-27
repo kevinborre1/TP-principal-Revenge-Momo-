@@ -457,6 +457,10 @@ func detener_musica_baile():
 # Ejecutado por el cliente dueño del inventario
 func soltar_item_actual():
 	if not is_multiplayer_authority(): return
+	
+	if _obtener_contenedor_items() == null:
+		push_warning("No se puede soltar: falta 'ContenedorItemsSoltados' en la escena '%s'" % get_tree().current_scene.name)
+		return
 	var item = inventario_manager.obtener_item_actual()
 	if item and item["ruta_escena"] != "":
 		var ruta = item["ruta_escena"]
@@ -473,6 +477,11 @@ func soltar_item_actual():
 func _servidor_procesar_soltar(ruta: String, pos_origen: Vector3, direccion: Vector3):
 	if not multiplayer.is_server(): return
 	
+	var contenedor := _obtener_contenedor_items()
+	if contenedor == null:
+		push_error("Falta 'ContenedorItemsSoltados' en la escena del host: no se pudo soltar " + ruta)
+		return
+	
 	# Cálculo del RayCast en el servidor
 	var origen = pos_origen + Vector3(0, 1.0, 0)
 	var destino = origen + (direccion * 1.5)
@@ -482,10 +491,10 @@ func _servidor_procesar_soltar(ruta: String, pos_origen: Vector3, direccion: Vec
 	
 	# Instanciar y agregar al contenedor (El Spawner lo replicará a todos los clientes)
 	var nuevo_objeto = load(ruta).instantiate()
-	# 1. PRIMERO agregas el objeto al árbol de escenas
-	get_tree().current_scene.get_node("ContenedorItemsSoltados").add_child(nuevo_objeto)
+	
+	contenedor.add_child(nuevo_objeto)
 
-# 2. DESPUÉS modificas su posición global (ahora que Godot ya sabe dónde está)
+# DESPUÉS modificas su posición global (ahora que Godot ya sabe dónde está)
 	nuevo_objeto.global_position = pos_final
 
 @rpc("any_peer", "call_local", "reliable")
@@ -675,3 +684,9 @@ func recibir_danio_porcentaje(porcentaje: float) -> bool:
 		_recibir_danio_red(danio_calculado)
 		
 	return true
+	
+func _obtener_contenedor_items() -> Node:
+	var escena := get_tree().current_scene
+	if escena == null:
+		return null
+	return escena.find_child("ContenedorItemsSoltados", true, false)
