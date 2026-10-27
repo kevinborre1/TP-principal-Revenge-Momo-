@@ -34,6 +34,7 @@ func _on_body_entered(body: Node3D) -> void:
 		if punto_de_aparicion != null:
 			# Asumimos que creas esta función en tu Singleton SaveAndLoad
 			SaveAndLoad.establecer_posicion_predeterminada(punto_de_aparicion.global_position)
+			print("guardando")
 		SaveAndLoad.actualizar_logro(nombre_logro)
 		SaveAndLoad.save_game()
 		

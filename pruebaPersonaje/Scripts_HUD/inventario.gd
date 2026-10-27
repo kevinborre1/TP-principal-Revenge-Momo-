@@ -1,6 +1,8 @@
 extends BoxContainer
 class_name InventarioManager
 
+@export var player: Player
+
 var items = [null, null, null, null, null] # 5 espacios
 var slot_seleccionado: int = 0
 var slot_actual: int = 0
@@ -9,7 +11,6 @@ var slot_actual: int = 0
 
 func _ready() -> void:
 	actualizar_ui_seleccion()
-
 # 1. ACTUALIZADO: Ahora recibe al 'player' para poder decirle que equipe o desequipe el arma
 func seleccionar_slot(indice: int, player: Node3D) -> void:
 	if indice >= 0 and indice < items.size():
@@ -29,6 +30,7 @@ func seleccionar_slot(indice: int, player: Node3D) -> void:
 			player.solicitar_desequipar()
 
 # 2. ACTUALIZADO: Se agrega 'es_equipable' con un valor por defecto en falso
+
 func agregar_item(nombre_item: String, textura_icono: Texture2D, ruta: String, player: Node3D) -> bool:
 	for i in range(items.size()):
 		if items[i] == null:

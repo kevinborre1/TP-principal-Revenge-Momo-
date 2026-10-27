@@ -79,3 +79,7 @@ func desactivar_para_mano() -> void:
 	# Si lo agarramos en la mano, apagamos el cartelito definitivamente
 	if label_3d:
 		label_3d.queue_free()
+		
+	var sincronizador = get_node_or_null("MultiplayerSynchronizer")
+	if sincronizador:
+		sincronizador.queue_free()
