@@ -54,8 +54,6 @@ func _handle_mode_completion() -> void:
 			print("Game over - balsa destruida")
 			get_tree().change_scene_to_file("res://ui/game_over.tscn")
 
-# --- NUEVO: SISTEMA MODULAR DE JUGADORES ---
-
 # El jugador llama a esta función apenas nace en el mundo
 func registrar_jugador(jugador: Node) -> void:
 	# Nos aseguramos de no conectarlo dos veces por error
@@ -73,12 +71,6 @@ func _on_jugador_murio(jugador_afectado: Node) -> void:
 		"contrarreloj":
 			jugador_afectado.respawnear()
 			print("¡El jugador ha muerto en contrarreloj!")
-			# Reiniciamos el tiempo si corresponde
-			if jugador_afectado.is_multiplayer_authority():
-				if Global.modo_multijugador == "linea" and multiplayer.is_server():
-					contrarreloj.iniciar_timer()
-				elif Global.modo_multijugador == "local" and jugador_afectado.name == "1":
-					contrarreloj.iniciar_timer()
 					
 		_: # Modo Normal (por defecto)
 			jugador_afectado.respawnear()

@@ -2,7 +2,7 @@ extends Node
 class_name ContrarrelojManager
 
 # TIEMPO TOTAL PARA CONTRARRELOJ
-const TIEMPO_TOTAL: float = 10.0
+const TIEMPO_TOTAL: float = 900.0
 
 var tiempo_restante: float = TIEMPO_TOTAL
 var timer_activo: bool = false
