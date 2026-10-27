@@ -3,8 +3,8 @@ class_name Door
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var atraveso_puerta: Area3D = $AtravesoPuerta
-@onready var video_player: VideoStreamPlayer = $"../../CanvasLayerPapas/VideoVictor"
-@onready var punto_aparicion: Marker3D = $"../../PuntoAparicionDespCinematica"
+@export var video_player: VideoStreamPlayer
+@export var punto_aparicion: Marker3D
 
 # 1. Añadimos la referencia al CollisionShape3D que bloquea el paso (ajusta la ruta si tu nodo se llama distinto)
 @onready var collision_shape: CollisionShape3D = $Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/Object_13/StaticBody3D/CollisionShape3D
@@ -117,7 +117,7 @@ func reproducir_cinematica() -> void:
 		var jugadores = get_tree().get_nodes_in_group("Jugador")
 		for i in range(jugadores.size()):
 			jugadores[i].global_position = punto_aparicion.global_position + Vector3(i * 1.5, 0, 0)
-		
+			jugadores[i].punto_respawn = punto_aparicion.global_position + Vector3(i * 1.5, 0, 0)
 		if video_player:
 			video_player.visible = true
 			video_player.play()
