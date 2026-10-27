@@ -368,7 +368,7 @@ func respawnear():
 	hide()
 	set_physics_process(false)
 	
-	if is_multiplayer_authority():
+	if is_multiplayer_authority() and Global.modo_multijugador == "local":
 		camara.current = false
 	
 	await get_tree().create_timer(2.0).timeout

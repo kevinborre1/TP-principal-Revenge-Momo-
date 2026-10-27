@@ -2073,8 +2073,6 @@ offset_right = 576.0
 offset_bottom = 100.0
 scale = Vector2(2, 2)
 size_flags_vertical = 1
-text = "temporizador
-"
 label_settings = SubResource("LabelSettings_ww6v2")
 
 [node name="FPS" type="Label" parent="." unique_id=755662092]
