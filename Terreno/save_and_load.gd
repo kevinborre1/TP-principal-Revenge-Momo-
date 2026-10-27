@@ -84,7 +84,15 @@ func save_game() -> void:
 	for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
 		if is_instance_valid(item) and not item.is_queued_for_deletion():
 			data.items_restantes_en_mapa.append(str(item.get_path()))
-			
+	
+	#Guardamos los objetos que fueron soltados en otra zona del mapa
+	data.items_soltados.clear()
+	for item in get_tree().get_nodes_in_group("ItemsSoltadosGuardables"):
+		if is_instance_valid(item):
+			data.items_soltados.append({
+				"ruta": item.scene_file_path,
+				"pos": item.global_position
+		})		
 	# 4. Guardar estado de las oleadas
 	data.papas_atacan = GameManager.papas_atacan
 	var activador = _obtener_activador_oleadas()
@@ -114,7 +122,14 @@ func load_game() -> void:
 	var activador = _obtener_activador_oleadas()
 	if activador:
 		activador.restaurar_oleada_guardada.rpc(data.ataque_iniciado, data.fase_oleada, data.papas_atacan)
-
+	# Dentro de load_game(), exclusivo del Host
+	var contenedor = get_tree().current_scene.get_node_or_null("ContenedorItemsSoltados")
+	if contenedor:
+		for item_data in data.items_soltados:
+			var nuevo_item = load(item_data["ruta"]).instantiate()
+			nuevo_item.global_position = item_data["pos"]
+			contenedor.add_child(nuevo_item)
+		
 # Llamado por cada jugador al terminar su _ready() en player.gd
 func solicitar_posicion_guardada_al_servidor() -> void:
 	_servidor_enviar_posicion_a_jugador.rpc_id(1, multiplayer.get_unique_id())
