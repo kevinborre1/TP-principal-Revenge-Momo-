@@ -172,7 +172,8 @@ func _ready() -> void:
 	# --- NUEVO: REGISTRO MODULAR ---
 	# El jugador se presenta al GameManager apenas termina de cargar
 	GameManager.registrar_jugador(self)
-
+	inventario_manager.seleccionar_slot(0, self)
+	
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
 		return
@@ -430,6 +431,7 @@ func player_animation():
 	else:
 		animation.play("Standing Idle/mixamo_com", 0.3)
 
+
 func intentar_recoger_item():
 	if not is_multiplayer_authority(): return
 	
@@ -480,8 +482,11 @@ func _servidor_procesar_soltar(ruta: String, pos_origen: Vector3, direccion: Vec
 	
 	# Instanciar y agregar al contenedor (El Spawner lo replicará a todos los clientes)
 	var nuevo_objeto = load(ruta).instantiate()
-	nuevo_objeto.global_position = pos_final
+	# 1. PRIMERO agregas el objeto al árbol de escenas
 	get_tree().current_scene.get_node("ContenedorItemsSoltados").add_child(nuevo_objeto)
+
+# 2. DESPUÉS modificas su posición global (ahora que Godot ya sabe dónde está)
+	nuevo_objeto.global_position = pos_final
 
 @rpc("any_peer", "call_local", "reliable")
 func consumir_item_actual():
@@ -577,6 +582,8 @@ func solicitar_desequipar() -> void:
 @rpc("any_peer", "call_local", "reliable")
 func equipar_para_todos(ruta_escena: String) -> void:
 	if item_en_mano != null:
+		# 1. Lo quitamos del árbol inmediatamente para liberar el nombre en ese mismo frame
+		mano.remove_child(item_en_mano)
 		item_en_mano.queue_free()
 		item_en_mano = null
 
@@ -586,8 +593,13 @@ func equipar_para_todos(ruta_escena: String) -> void:
 	var escena_nueva = load(ruta_escena)
 	if escena_nueva:
 		item_en_mano = escena_nueva.instantiate()
+		
+		# 2. CLAVE: Forzamos el mismo nombre estático en el Host y en los Clientes
+		item_en_mano.name = "ItemEquipado"
+		
 		mano.add_child(item_en_mano)
-		print("Tengo en la mano"+ruta_escena)
+		print("Tengo en la mano " + ruta_escena)
+		
 		if item_en_mano is ItemBase:
 			item_en_mano.desactivar_para_mano()
 			

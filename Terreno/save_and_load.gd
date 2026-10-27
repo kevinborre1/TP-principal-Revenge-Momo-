@@ -7,8 +7,8 @@ var logros: DataClassLogros
 
 @export var rutaUtilizada: String = ""
 @export var datos_logros: DataClassLogros = DataClassLogros.new()
-var cache_inventario_host: Array 
-var cache_inventario_cliente: Array 
+var cache_inventario_host: Array = [null, null, null, null, null]
+var cache_inventario_cliente: Array = [null, null, null, null, null]
 var ranking_compartido: Array = []
 signal ranking_actualizado(nuevo_ranking: Array)
 var posicion_segura_host: Vector3 = Vector3.ZERO
@@ -63,12 +63,11 @@ func save_game() -> void:
 			if jugador.has_node("Inventario"):
 				cache_inventario_host = jugador.get_node("Inventario").items.duplicate(true)
 		else:
+			print("Guardando cliente")
 			# Lógica del Cliente
 			if jugador.has_method("actualizar_respawn"):
 				jugador.actualizar_respawn(data.pos_cliente)
-			if jugador.has_node("Inventario"):
-				cache_inventario_cliente = jugador.get_node("Inventario").items.duplicate(true)
-	
+			
 	data.inventario_host = cache_inventario_host.duplicate(true)
 	data.inventario_cliente = cache_inventario_cliente.duplicate(true)
 	data.cantidad_pepitas = _obtener_pepitas_actuales()
@@ -409,13 +408,13 @@ func _servidor_enviar_estado_vivo_mapa(peer_id: int) -> void:
 		if is_instance_valid(item) and not item.is_queued_for_deletion():
 			items_vivos.append(str(item.get_path()))
 			
-	# NUEVO: Recopilar el inventario exacto que tienen los jugadores en este momento
+	 #NUEVO: Recopilar el inventario exacto que tienen los jugadores en este momento
 	var inventarios_vivos: Dictionary = {}
 	for jugador in get_tree().get_nodes_in_group("Jugador"):
-		if jugador.has_node("Inventario"):
+		if jugador.has_node("Inventario") and int(jugador.get_multiplayer_authority()) != peer_id :
 			inventarios_vivos[jugador.name] = jugador.get_node("Inventario").items.duplicate(true)
-			
-	# Le manda la lista exclusivamente al jugador que acaba de entrar
+			print("Linea 417 save_and_load.gb El nombre del jugador en el mapa vivo es: "+jugador.name +" y el id: "+ str(peer_id))
+	 #Le manda la lista exclusivamente al jugador que acaba de entrar
 	_cliente_sincronizar_mapa_vivo.rpc_id(peer_id, pepitas_vivas, items_vivos, inventarios_vivos)
 
 # 3. El cliente nuevo recibe la lista y destruye lo que sobra
@@ -430,12 +429,12 @@ func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array, in
 		if not items_vivos.has(str(item.get_path())):
 			item.queue_free()
 			
-	# NUEVO: Inyectar los ítems recibidos en los inventarios de los jugadores correspondientes
+	 #NUEVO: Inyectar los ítems recibidos en los inventarios de los jugadores correspondientes
 	for nombre_jugador in inventarios_vivos.keys():
 		var jugador = get_tree().current_scene.find_child(nombre_jugador, true, false)
 		if jugador and jugador.has_node("Inventario"):
 			var inv_manager = jugador.get_node("Inventario")
-			inv_manager.cargar_datos_guardados(inventarios_vivos[nombre_jugador], jugador)
+			#inv_manager.cargar_datos_guardados(inventarios_vivos[nombre_jugador], jugador)
 			
 	print("Mapa sincronizado con el estado en vivo del servidor.")
 func cargar_configuracion() -> void:
