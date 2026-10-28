@@ -10,5 +10,6 @@ script = ExtResource("1_2w4h5")
 [node name="TubeClient" type="Node" parent="." unique_id=1688814142]
 script = ExtResource("1_n6af1")
 context = ExtResource("2_2w4h5")
-peer_signaling_timeout = 5.0
+peer_signaling_timeout = 10.0
+peer_signaling_max_attempts = 5
 metadata/_custom_type_script = "uid://cy006uvidc4y"
