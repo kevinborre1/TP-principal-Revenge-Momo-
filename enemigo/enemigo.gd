@@ -7,6 +7,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var vida_actual: int = vida_maxima
 @export var es_lider: bool = false
 var activo: bool = false 
+const ANIM_CAMINAR = "mixamo_com"
+const ANIM_ATAQUE = "papa_ataque/mixamo_com"
+const ANIM_MUERTE = "papa_muerte/mixamo_com"
+var muriendo: bool = false
 signal murio
 
 @onready var animation_player: AnimationPlayer
@@ -75,6 +79,11 @@ func _comprobar_colisiones_jugador() -> void:
 					# Llamamos a la función de daño del Player
 					colisionador.heridoPorEnemigo() 
 					tiempo_ultimo_ataque = tiempo_actual
+				if colisionador.has_method("heridoPorEnemigo"):
+					# Llamamos a la función de daño del Player
+					colisionador.heridoPorEnemigo() 
+					tiempo_ultimo_ataque = tiempo_actual
+					_reproducir_ataque()
 
 # Función para encontrar al jugador más cercano en juegos multijugador
 func obtener_jugador_mas_cercano() -> Node3D:
@@ -100,6 +109,8 @@ func obtener_jugador_mas_cercano() -> Node3D:
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
+	if muriendo:
+		return
 	# En línea solo el host resuelve el daño: las balas existen en todos los peers
 	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
 		return
@@ -123,21 +134,32 @@ func morir() -> void:
 # El host la llama para borrar la papita en todos los peers
 @rpc("authority", "call_local", "reliable")
 func _eliminar_en_todos() -> void:
-	if is_queued_for_deletion():
+	if muriendo or is_queued_for_deletion():
 		return
+	muriendo = true
 	SaveAndLoad.sumar_estadistica("enemigosAsesinados")
 	set_physics_process(false)
+	_cambiar_estado_colisiones(true)  # las balas y el jugador ya no chocan con ella
+	if animation_player and animation_player.has_animation(ANIM_MUERTE):
+		animation_player.play(ANIM_MUERTE, 0.1)
+		await get_tree().create_timer(animation_player.current_animation_length).timeout
 	queue_free()
 
+func _reproducir_ataque() -> void:
+	if animation_player and animation_player.has_animation(ANIM_ATAQUE):
+		animation_player.play(ANIM_ATAQUE, 0.1)
+
 func manejar_animaciones() -> void:
-	# Comprobamos si el enemigo se está moviendo en el plano horizontal (X, Z)
-	if not animation_player or not is_instance_valid(animation_player):
+	if not animation_player or not is_instance_valid(animation_player) or muriendo:
 		return
-		
+	# No cortar el golpe a la mitad
+	if animation_player.current_animation == ANIM_ATAQUE and animation_player.is_playing():
+		return
+	
 	var velocidad_horizontal = Vector2(velocity.x, velocity.z).length()
 	
 	if velocidad_horizontal > 0.1:
-		animation_player.play("2165105689072_TempMotion") 
+		animation_player.play(ANIM_CAMINAR, 0.2)
 	else:
 		animation_player.stop()
 

@@ -43,7 +43,7 @@ func iniciar_fase(fase: int) -> void:
 	enemigos_restantes = 0
 	
 	for enemigo in enemigos:
-		if is_instance_valid(enemigo) and not enemigo.is_queued_for_deletion():
+		if is_instance_valid(enemigo) and not enemigo.is_queued_for_deletion() and enemigo.get("muriendo") != true:
 			if not enemigo.murio.is_connected(_on_enemigo_muerto):
 				enemigo.murio.connect(_on_enemigo_muerto)
 				
