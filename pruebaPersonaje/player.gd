@@ -10,6 +10,8 @@ var mouse_sensitivy := 0.003
 signal cambioSalud
 signal cambioStamina
 
+const MINIMAPA = preload("res://Menu/minimapa.tscn")
+const MAPA = preload("res://Menu/mapa.tscn")
 
 # --- NUEVA SEÑAL PARA EL GAMEMANAGER ---
 signal jugador_murio(jugador_nodo)
@@ -120,6 +122,19 @@ func _ready() -> void:
 		raycast.add_exception(self)
 		
 	actualizar_modo_combate()
+	
+	if is_multiplayer_authority():
+		var minimapa = MINIMAPA.instantiate()
+		minimapa.objetivo = self
+		add_child(minimapa)
+		
+	if is_multiplayer_authority():
+		var minimapa = MINIMAPA.instantiate()
+		minimapa.objetivo = self
+		add_child(minimapa)
+		var mapa = MAPA.instantiate()
+		mapa.objetivo = self
+		add_child(mapa)
 	
 	# APAGAR FÍSICAS Y COLISIONES INMEDIATAMENTE AL NACER
 	set_physics_process(false) 
