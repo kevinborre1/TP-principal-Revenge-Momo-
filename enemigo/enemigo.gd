@@ -7,9 +7,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var vida_actual: int = vida_maxima
 @export var es_lider: bool = false
 var activo: bool = false 
-const ANIM_CAMINAR = "mixamo_com"
-const ANIM_ATAQUE = "papa_ataque/mixamo_com"
-const ANIM_MUERTE = "papa_muerte/mixamo_com"
+var ANIM_CAMINAR = "mixamo_com"
+var ANIM_ATAQUE = "papa_ataque/mixamo_com"
+var ANIM_MUERTE = "papa_muerte/mixamo_com"
 var muriendo: bool = false
 signal murio
 
@@ -24,8 +24,13 @@ func _ready() -> void:
 	visible = false
 	_cambiar_estado_colisiones(true)
 	set_physics_process(false) # apagamos las fisicas de los enemigos al empezar hasta que se activen
-	if not es_lider:
+	if es_lider:
+		animation_player = $patato/AnimationPlayer
+		ANIM_ATAQUE = "lider_ataque/mixamo_com"
+		ANIM_MUERTE = "lider_muerte/mixamo_com"
+	else:
 		animation_player = $papitas/AnimationPlayer
+		
 		
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:
@@ -75,10 +80,6 @@ func _comprobar_colisiones_jugador() -> void:
 			
 			# Comprobamos si ya pasó el tiempo de cooldown
 			if tiempo_actual - tiempo_ultimo_ataque >= cooldown_ataque:
-				if colisionador.has_method("heridoPorEnemigo"):
-					# Llamamos a la función de daño del Player
-					colisionador.heridoPorEnemigo() 
-					tiempo_ultimo_ataque = tiempo_actual
 				if colisionador.has_method("heridoPorEnemigo"):
 					# Llamamos a la función de daño del Player
 					colisionador.heridoPorEnemigo() 
