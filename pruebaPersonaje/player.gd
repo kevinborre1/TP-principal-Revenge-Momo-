@@ -42,6 +42,10 @@ var minijuego_instance: Control = null
 @onready var skeleton_3d: Skeleton3D = find_child("Skeleton3D", true, false) as Skeleton3D
 @onready var barraStamina = $BarraDeStamina
 @onready var animation = $"Walk (1)/AnimationPlayer"
+@onready var colision_agachado: CollisionShape3D = $ColisionAgachado
+@onready var techo_arriba: RayCast3D = $TechoArriba
+var agachado: bool = false
+var multiplicadorAgachado: float = 0.5
 @onready var macarena: AudioStreamPlayer = $musicaBaile2
 @onready var spring_arm: SpringArm3D = $SpringArm3D
 @onready var punto_de_mira: Control = $CanvasLayer/PuntoDeMira # Ajusta la ruta de tu UI
@@ -122,11 +126,6 @@ func _ready() -> void:
 		raycast.add_exception(self)
 		
 	actualizar_modo_combate()
-	
-	if is_multiplayer_authority():
-		var minimapa = MINIMAPA.instantiate()
-		minimapa.objetivo = self
-		add_child(minimapa)
 		
 	if is_multiplayer_authority():
 		var minimapa = MINIMAPA.instantiate()
@@ -275,7 +274,7 @@ func _physics_process(delta: float) -> void:
 		act_atr = "Atras_p2"
 		act_salto = "Salto_p2"
 
-	if Input.is_action_just_pressed(act_salto) and is_on_floor():
+	if Input.is_action_just_pressed(act_salto) and is_on_floor() and not agachado:
 		velocity.y = JUMP_VELOCITY
 	correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 	if Global.modo_multijugador == "local" and name == "2":
@@ -288,6 +287,16 @@ func _physics_process(delta: float) -> void:
 	elif (StaminaActual < StaminaMax) and not correr_fisico :
 		StaminaActual += StaminaRegeneracion
 		actualizar_barraStamina()
+		
+		# Agacharse (en modo local solo el jugador 1)
+	var puede_agacharse = not (Global.modo_multijugador == "local" and name == "2")
+	if puede_agacharse and Input.is_action_pressed("Agacharse") and is_on_floor():
+		_set_agachado(true)
+	elif agachado and not techo_arriba.is_colliding():
+		_set_agachado(false)  # solo se para si no hay nada encima
+	if agachado:
+		velocidadActual = SPEED * multiplicadorAgachado
+		
 	#CAMARA
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
 	var move_vector = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, spring_arm_3d.rotation.y)
@@ -339,7 +348,16 @@ func _physics_process(delta: float) -> void:
 			if contenedor_corazones.visible:
 				contenedor_corazones.hide()
 
+func _set_agachado(valor: bool) -> void:
+	if agachado == valor:
+		return
+	agachado = valor
+	collision_shape_3d.disabled = valor
+	colision_agachado.disabled = not valor
+
 func activar_ragdoll():
+	if colision_agachado:
+		colision_agachado.disabled = true
 	if collision_shape_3d:
 		collision_shape_3d.disabled = true
 	if skeleton_3d:
@@ -435,6 +453,13 @@ func player_animation():
 			return
 
 	detener_musica_baile()
+	
+	if agachado:
+		if is_moving():
+			animation.play("Sneaking Forward/mixamo_com", 0.2)
+		else:
+			animation.play("Crouching Idle/mixamo_com", 0.2)
+		return
 
 	if is_moving():
 		if Input.is_action_pressed(act_correr) and StaminaActual > 0:
