@@ -46,6 +46,7 @@ var minijuego_instance: Control = null
 @onready var techo_arriba: RayCast3D = $TechoArriba
 var agachado: bool = false
 var multiplicadorAgachado: float = 0.5
+@export var altura_sentado: float = -0.4
 @onready var macarena: AudioStreamPlayer = $musicaBaile2
 @onready var spring_arm: SpringArm3D = $SpringArm3D
 @onready var punto_de_mira: Control = $CanvasLayer/PuntoDeMira # Ajusta la ruta de tu UI
@@ -708,6 +709,15 @@ func prepare_for_raft() -> void:
 	var modelo = $"Walk (1)" if has_node("Walk (1)") else ($perso if has_node("perso") else ($personaje if has_node("personaje") else null))
 	if modelo:
 		modelo.rotation = Vector3(0, PI, 0)
+		modelo.position.y = altura_sentado
+	
+	if animation and animation.has_animation("Sitting Pose/mixamo_com"):
+		animation.play("Sitting Pose/mixamo_com", 0,3)
+		
+func salir_de_balsa() -> void:
+	var modelo = $"Walk (1)" if has_node("Walk (1)") else null
+	if modelo:
+		modelo.position.y = 0.0
 
 @rpc("any_peer", "call_local", "reliable")
 func bloquear_controles(bloquear: bool) -> void:

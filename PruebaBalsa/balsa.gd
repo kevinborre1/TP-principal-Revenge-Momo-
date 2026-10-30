@@ -223,6 +223,9 @@ func bajar_piloto() :
 			piloto.reparent(get_tree().current_scene, false)
 			piloto.set_physics_process(true)
 			
+			if piloto.has_method("salir_de_balsa"):
+				piloto.salir_de_balsa()
+			
 			if "input_bloqueado" in piloto:
 				piloto.input_bloqueado = false
 			
