@@ -10613,11 +10613,6 @@ albedo_texture = ExtResource("71_vedoo")
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_gojle")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxovr"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr3kr"]
-
 [sub_resource type="QuadMesh" id="QuadMesh_rsdri"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5bdw"]
@@ -10638,6 +10633,11 @@ height = 9.406494
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
 size = Vector3(1, 12, 14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxovr"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr3kr"]
 
 [node name="Node3D" type="Node3D" unique_id=695447382]
 script = ExtResource("1_bmrm7")
@@ -16623,10 +16623,6 @@ shape = SubResource("BoxShape3D_fnegy")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Modulo7/Puerta Salida" unique_id=1366861745]
 libraries/ = SubResource("AnimationLibrary_m2yru")
 
-[node name="MenuPausa" parent="." unique_id=405466910 instance=ExtResource("82_t8ije")]
-
-[node name="PantallaDesconexion" parent="." unique_id=1061094305 instance=ExtResource("83_imqhg")]
-
 [node name="Guardados" type="Node" parent="." unique_id=569926142]
 
 [node name="Guardado VictorBars" type="Node" parent="Guardados" unique_id=1056565737]
@@ -17449,136 +17445,31 @@ mesh = SubResource("PlaneMesh_rsdri")
 transform = Transform3D(-4.219626, 0.00018274203, 0.026300367, 0, 0.99994236, -0.0070143454, -0.1104948, -0.006978636, -1.0043703, -47.32619, 0.30981445, 5.0645065)
 mesh = SubResource("PlaneMesh_rsdri")
 
-[node name="Logros" type="CanvasLayer" parent="." unique_id=137314974]
-script = ExtResource("88_elqb5")
-
-[node name="Fondo" type="TextureRect" parent="Logros" unique_id=1045271869]
-offset_right = 1153.0
-offset_bottom = 649.0
-texture = ExtResource("89_5u7kc")
-expand_mode = 1
-
-[node name="Rompiste15Barriles" type="TextureRect" parent="Logros" unique_id=678222116]
-offset_left = 42.0
-offset_top = 181.0
-offset_right = 260.0
-offset_bottom = 396.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="JugasteElMinijuego" type="TextureRect" parent="Logros" unique_id=308942433]
-offset_left = 265.0
-offset_top = 183.0
-offset_right = 478.0
-offset_bottom = 398.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="Mataste10Enemigos" type="TextureRect" parent="Logros" unique_id=277183467]
-offset_left = 482.0
-offset_top = 182.0
-offset_right = 702.0
-offset_bottom = 397.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="Muere10Veces" type="TextureRect" parent="Logros" unique_id=1723445554]
-offset_left = 702.0
-offset_top = 182.0
-offset_right = 927.0
-offset_bottom = 397.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="EsterEgg1" type="TextureRect" parent="Logros" unique_id=773040731]
-offset_left = 924.0
-offset_top = 184.0
-offset_right = 1149.0
-offset_bottom = 399.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="EsterEgg3" type="TextureRect" parent="Logros" unique_id=627747812]
-offset_left = 927.0
-offset_top = 398.0
-offset_right = 1152.0
-offset_bottom = 613.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="EsterEgg2" type="TextureRect" parent="Logros" unique_id=1209396417]
-offset_left = 705.0
-offset_top = 399.0
-offset_right = 930.0
-offset_bottom = 614.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="CompletasteModulo7" type="TextureRect" parent="Logros" unique_id=503868087]
-offset_left = 476.0
-offset_top = 396.0
-offset_right = 701.0
-offset_bottom = 611.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="CompletasteCampus" type="TextureRect" parent="Logros" unique_id=2005631656]
-offset_left = 254.0
-offset_top = 396.0
-offset_right = 479.0
-offset_bottom = 611.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="CompletasteVictors" type="TextureRect" parent="Logros" unique_id=1983712578]
-offset_left = 34.0
-offset_top = 400.0
-offset_right = 259.0
-offset_bottom = 615.0
-texture = ExtResource("90_7aiv5")
-expand_mode = 1
-
-[node name="Salir" type="Button" parent="Logros" unique_id=1432826824]
-offset_left = 1063.0
-offset_top = 5.0
-offset_right = 1138.0
-offset_bottom = 56.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
-text = "ESC
-"
-
-[node name="Sketchfab_Scene" parent="." unique_id=1248399384 instance=ExtResource("96_s5bdw")]
+[node name="Sketchfab_Scene" parent="AlRededores" unique_id=1248399384 instance=ExtResource("96_s5bdw")]
 transform = Transform3D(-8.373581e-08, 0.71803, 0, -1.915652, -3.1386087e-08, 0, 0, 0, 1, 57.765186, 5.7055864, 934.3451)
 
-[node name="Sketchfab_Scene2" parent="." unique_id=1088980212 instance=ExtResource("97_31uwi")]
+[node name="Sketchfab_Scene2" parent="AlRededores" unique_id=1088980212 instance=ExtResource("97_31uwi")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -10.063427, 0.008672237, 1187.3125)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Sketchfab_Scene2" unique_id=2052144431]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AlRededores/Sketchfab_Scene2" unique_id=2052144431]
 transform = Transform3D(3.0101788, 0, 0, 0, 1.9833801, 0, 0, 0, 0.99999976, 1.8274317, 8.611998, 0.009033203)
 mesh = SubResource("QuadMesh_rsdri")
 surface_material_override/0 = SubResource("StandardMaterial3D_s5bdw")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Sketchfab_Scene2" unique_id=1770593629]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="AlRededores/Sketchfab_Scene2" unique_id=1770593629]
 transform = Transform3D(-3.0327094, 0, -8.742273e-08, 0, 2.008715, 0, 2.6512782e-07, 0, -0.99999976, 1.827229, 8.615933, -0.009155273)
 mesh = SubResource("QuadMesh_f3mle")
 surface_material_override/0 = SubResource("StandardMaterial3D_jlg66")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene2" unique_id=130345888]
+[node name="StaticBody3D" type="StaticBody3D" parent="AlRededores/Sketchfab_Scene2" unique_id=130345888]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene2/StaticBody3D" unique_id=1702958895]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AlRededores/Sketchfab_Scene2/StaticBody3D" unique_id=1702958895]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.062011696, 0)
 shape = SubResource("CylinderShape3D_f3mle")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Sketchfab_Scene2/StaticBody3D" unique_id=1888366423]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="AlRededores/Sketchfab_Scene2/StaticBody3D" unique_id=1888366423]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.0023679733, 5.604914, -0.005004883)
 shape = SubResource("CapsuleShape3D_f3mle")
-
-[node name="Label" type="Label" parent="." unique_id=361235681]
-offset_left = 481.0
-offset_top = 20.0
-offset_right = 709.0
-offset_bottom = 119.0
 
 [node name="ActivadorVictoria" type="Area3D" parent="." unique_id=414781656]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.8076, 2, 794.87036)
@@ -17597,7 +17488,385 @@ spawn_path = NodePath("../ContenedorItemsSoltados")
 visible = false
 occluder = ExtResource("128_wtxyr")
 
-[connection signal="pressed" from="Logros/Salir" to="Logros" method="_on_button_pressed"]
+[node name="Recorrido final" type="Node3D" parent="." unique_id=466697413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.14346, 0, 796.1123)
+
+[node name="Perimetro2" parent="Recorrido final" unique_id=1294982970 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -7.4138336, 9.958533, -9.888306)
+
+[node name="Perimetro3" parent="Recorrido final" unique_id=1863624389 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -18.513428, 9.958533, -9.888306)
+
+[node name="Perimetro4" parent="Recorrido final" unique_id=221496020 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 0.9081421)
+
+[node name="Perimetro5" parent="Recorrido final" unique_id=1136391322 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 12.02002)
+
+[node name="Perimetro6" parent="Recorrido final" unique_id=1298940030 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 23.105469)
+
+[node name="Perimetro7" parent="Recorrido final" unique_id=706839453 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 34.180115)
+
+[node name="Perimetro8" parent="Recorrido final" unique_id=112239816 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 45.124084)
+
+[node name="Perimetro9" parent="Recorrido final" unique_id=877290893 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 56.00055)
+
+[node name="Perimetro10" parent="Recorrido final" unique_id=1617177113 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 66.915344)
+
+[node name="Perimetro11" parent="Recorrido final" unique_id=580617776 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 78.03638)
+
+[node name="Perimetro12" parent="Recorrido final" unique_id=1182030227 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 89.14368)
+
+[node name="Perimetro13" parent="Recorrido final" unique_id=1598536237 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 99.91864)
+
+[node name="Perimetro14" parent="Recorrido final" unique_id=1890239789 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 110.75043)
+
+[node name="Perimetro15" parent="Recorrido final" unique_id=612928250 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 121.73279)
+
+[node name="Perimetro16" parent="Recorrido final" unique_id=201770369 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 132.65448)
+
+[node name="Perimetro17" parent="Recorrido final" unique_id=1282512127 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 143.64178)
+
+[node name="Perimetro18" parent="Recorrido final" unique_id=1116260832 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 154.25067)
+
+[node name="Perimetro19" parent="Recorrido final" unique_id=925708154 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 165.26373)
+
+[node name="Perimetro20" parent="Recorrido final" unique_id=6503075 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 176.3628)
+
+[node name="Perimetro21" parent="Recorrido final" unique_id=258569243 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 187.2237)
+
+[node name="Perimetro22" parent="Recorrido final" unique_id=1629522437 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 198.21802)
+
+[node name="Perimetro23" parent="Recorrido final" unique_id=572217657 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 209.39807)
+
+[node name="Perimetro24" parent="Recorrido final" unique_id=1768674341 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -18.408302, 9.958533, 209.56921)
+
+[node name="Perimetro25" parent="Recorrido final" unique_id=799362400 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -7.4252853, 9.958533, 209.56921)
+
+[node name="Perimetro26" parent="Recorrido final" unique_id=710805732 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 3.6840286, 9.958533, 209.56921)
+
+[node name="Perimetro27" parent="Recorrido final" unique_id=868398681 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 14.543964, 9.958533, 209.56921)
+
+[node name="Perimetro28" parent="Recorrido final" unique_id=1076254314 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 25.42971, 9.958533, 209.56921)
+
+[node name="Perimetro29" parent="Recorrido final" unique_id=1465584835 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 36.454487, 9.958533, 209.56921)
+
+[node name="Perimetro30" parent="Recorrido final" unique_id=420762714 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 358.7439)
+
+[node name="Perimetro31" parent="Recorrido final" unique_id=907801618 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -19.101692, 9.958533, 347.67163)
+
+[node name="Perimetro32" parent="Recorrido final" unique_id=374396210 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 369.53687)
+
+[node name="Perimetro33" parent="Recorrido final" unique_id=1145120399 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 380.4879)
+
+[node name="Perimetro34" parent="Recorrido final" unique_id=387770454 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 391.52222)
+
+[node name="Perimetro35" parent="Recorrido final" unique_id=1157866994 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 402.3916)
+
+[node name="Perimetro36" parent="Recorrido final" unique_id=967108819 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 413.28735)
+
+[node name="Perimetro37" parent="Recorrido final" unique_id=629451789 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 424.4026)
+
+[node name="Perimetro38" parent="Recorrido final" unique_id=1406421100 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 435.42346)
+
+[node name="Perimetro39" parent="Recorrido final" unique_id=1026471668 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 446.27576)
+
+[node name="Perimetro40" parent="Recorrido final" unique_id=171296349 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 457.16406)
+
+[node name="Perimetro41" parent="Recorrido final" unique_id=402440751 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 468.30774)
+
+[node name="Perimetro42" parent="Recorrido final" unique_id=1051040640 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 479.24744)
+
+[node name="Perimetro43" parent="Recorrido final" unique_id=883343174 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 490.38965)
+
+[node name="Perimetro44" parent="Recorrido final" unique_id=1883863030 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -19.101692, 9.958533, 347.67163)
+
+[node name="Perimetro45" parent="Recorrido final" unique_id=1931677914 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -8.132881, 9.958533, 347.67163)
+
+[node name="Perimetro46" parent="Recorrido final" unique_id=398124053 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 2.917389, 9.958533, 347.67163)
+
+[node name="Perimetro47" parent="Recorrido final" unique_id=405069176 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 13.9282875, 9.958533, 347.67163)
+
+[node name="Perimetro48" parent="Recorrido final" unique_id=1940041316 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 25.117805, 9.958533, 347.67163)
+
+[node name="Perimetro49" parent="Recorrido final" unique_id=247745045 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 36.308514, 9.958533, 347.67163)
+
+[node name="Perimetro50" parent="Recorrido final" unique_id=1415001328 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 79.8583, 9.958533, 347.67163)
+
+[node name="Perimetro51" parent="Recorrido final" unique_id=1207118900 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 90.94949, 9.958533, 347.67163)
+
+[node name="Perimetro52" parent="Recorrido final" unique_id=918908217 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 358.79858)
+
+[node name="Perimetro53" parent="Recorrido final" unique_id=466734438 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 369.81116)
+
+[node name="Perimetro54" parent="Recorrido final" unique_id=977092266 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 380.91248)
+
+[node name="Perimetro55" parent="Recorrido final" unique_id=1442435904 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-6.338151e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1.45, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 388.89026)
+
+[node name="Perimetro56" parent="Recorrido final" unique_id=1572728720 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 112.7985, 9.958533, 400.1494)
+
+[node name="Perimetro57" parent="Recorrido final" unique_id=926789841 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 112.69141, 9.958533, 400.12036)
+
+[node name="Perimetro58" parent="Recorrido final" unique_id=528444856 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 123.55812, 9.958533, 411.1305)
+
+[node name="Perimetro59" parent="Recorrido final" unique_id=1617397823 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 101.93587, 9.958533, 389.06213)
+
+[node name="Perimetro60" parent="Recorrido final" unique_id=1151741953 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 129.98535, 9.958533, 474.1532)
+
+[node name="Perimetro61" parent="Recorrido final" unique_id=1991226578 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 130.05359, 9.958533, 485.17664)
+
+[node name="Perimetro62" parent="Recorrido final" unique_id=515006074 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-4.371139e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1, -8.742278e-08, 3.821371e-15, 130.14168, 9.958533, 490.70483)
+
+[node name="Perimetro63" parent="Recorrido final" unique_id=816323869 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 347.67163)
+
+[node name="Perimetro64" parent="Recorrido final" unique_id=883517616 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 336.72754)
+
+[node name="Perimetro65" parent="Recorrido final" unique_id=1206975199 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 325.6798)
+
+[node name="Perimetro66" parent="Recorrido final" unique_id=1855646657 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 314.5946)
+
+[node name="Perimetro67" parent="Recorrido final" unique_id=1736917867 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 303.41187)
+
+[node name="Perimetro68" parent="Recorrido final" unique_id=1400585451 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 292.2566)
+
+[node name="Perimetro69" parent="Recorrido final" unique_id=1683847507 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 281.349)
+
+[node name="Perimetro70" parent="Recorrido final" unique_id=1061607885 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 270.2788)
+
+[node name="Perimetro71" parent="Recorrido final" unique_id=1238236730 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 259.23535)
+
+[node name="Perimetro72" parent="Recorrido final" unique_id=1986761969 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 248.18909)
+
+[node name="Perimetro73" parent="Recorrido final" unique_id=1204875929 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 237.03174)
+
+[node name="Perimetro74" parent="Recorrido final" unique_id=1790901443 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 225.95703)
+
+[node name="Perimetro75" parent="Recorrido final" unique_id=686343564 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 214.78552)
+
+[node name="Perimetro76" parent="Recorrido final" unique_id=223363389 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-1.09278474e-07, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2.5, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 203.85846)
+
+[node name="Perimetro77" parent="Recorrido final" unique_id=1082441028 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 347.67163)
+
+[node name="Perimetro78" parent="Recorrido final" unique_id=704640539 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 336.72754)
+
+[node name="Perimetro79" parent="Recorrido final" unique_id=1518053082 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 325.6798)
+
+[node name="Perimetro80" parent="Recorrido final" unique_id=284020316 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 314.5946)
+
+[node name="Perimetro81" parent="Recorrido final" unique_id=2143691196 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 303.41187)
+
+[node name="Perimetro82" parent="Recorrido final" unique_id=856718055 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 292.2566)
+
+[node name="Perimetro83" parent="Recorrido final" unique_id=2091073769 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 281.349)
+
+[node name="Perimetro84" parent="Recorrido final" unique_id=1456284521 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 270.2788)
+
+[node name="Perimetro85" parent="Recorrido final" unique_id=1952107452 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 259.23535)
+
+[node name="Perimetro86" parent="Recorrido final" unique_id=1024303113 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 248.18909)
+
+[node name="Perimetro87" parent="Recorrido final" unique_id=393576776 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 237.03174)
+
+[node name="Perimetro88" parent="Recorrido final" unique_id=191436119 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 225.95703)
+
+[node name="Perimetro89" parent="Recorrido final" unique_id=1840271884 instance=ExtResource("74_qbwh1")]
+transform = Transform3D(-4.371139e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 214.78552)
+
+[node name="Pantallas" type="Node3D" parent="." unique_id=1258867666]
+
+[node name="Label" type="Label" parent="Pantallas" unique_id=361235681]
+offset_left = 481.0
+offset_top = 20.0
+offset_right = 709.0
+offset_bottom = 119.0
+
+[node name="MenuPausa" parent="Pantallas" unique_id=405466910 instance=ExtResource("82_t8ije")]
+
+[node name="Logros" type="CanvasLayer" parent="Pantallas" unique_id=137314974]
+script = ExtResource("88_elqb5")
+
+[node name="Fondo" type="TextureRect" parent="Pantallas/Logros" unique_id=1045271869]
+offset_right = 1153.0
+offset_bottom = 649.0
+texture = ExtResource("89_5u7kc")
+expand_mode = 1
+
+[node name="Rompiste15Barriles" type="TextureRect" parent="Pantallas/Logros" unique_id=678222116]
+offset_left = 42.0
+offset_top = 181.0
+offset_right = 260.0
+offset_bottom = 396.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="JugasteElMinijuego" type="TextureRect" parent="Pantallas/Logros" unique_id=308942433]
+offset_left = 265.0
+offset_top = 183.0
+offset_right = 478.0
+offset_bottom = 398.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="Mataste10Enemigos" type="TextureRect" parent="Pantallas/Logros" unique_id=277183467]
+offset_left = 482.0
+offset_top = 182.0
+offset_right = 702.0
+offset_bottom = 397.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="Muere10Veces" type="TextureRect" parent="Pantallas/Logros" unique_id=1723445554]
+offset_left = 702.0
+offset_top = 182.0
+offset_right = 927.0
+offset_bottom = 397.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="EsterEgg1" type="TextureRect" parent="Pantallas/Logros" unique_id=773040731]
+offset_left = 924.0
+offset_top = 184.0
+offset_right = 1149.0
+offset_bottom = 399.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="EsterEgg3" type="TextureRect" parent="Pantallas/Logros" unique_id=627747812]
+offset_left = 927.0
+offset_top = 398.0
+offset_right = 1152.0
+offset_bottom = 613.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="EsterEgg2" type="TextureRect" parent="Pantallas/Logros" unique_id=1209396417]
+offset_left = 705.0
+offset_top = 399.0
+offset_right = 930.0
+offset_bottom = 614.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="CompletasteModulo7" type="TextureRect" parent="Pantallas/Logros" unique_id=503868087]
+offset_left = 476.0
+offset_top = 396.0
+offset_right = 701.0
+offset_bottom = 611.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="CompletasteCampus" type="TextureRect" parent="Pantallas/Logros" unique_id=2005631656]
+offset_left = 254.0
+offset_top = 396.0
+offset_right = 479.0
+offset_bottom = 611.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="CompletasteVictors" type="TextureRect" parent="Pantallas/Logros" unique_id=1983712578]
+offset_left = 34.0
+offset_top = 400.0
+offset_right = 259.0
+offset_bottom = 615.0
+texture = ExtResource("90_7aiv5")
+expand_mode = 1
+
+[node name="Salir" type="Button" parent="Pantallas/Logros" unique_id=1432826824]
+offset_left = 1063.0
+offset_top = 5.0
+offset_right = 1138.0
+offset_bottom = 56.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sxovr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tr3kr")
+text = "ESC
+"
+
+[node name="PantallaDesconexion" parent="Pantallas" unique_id=1061094305 instance=ExtResource("83_imqhg")]
+
+[connection signal="pressed" from="Pantallas/Logros/Salir" to="Pantallas/Logros" method="_on_button_pressed"]
 
 [editable path="VictorBars/Interacciones VictorBars/Buttom"]
 [editable path="VictorBars/Interacciones VictorBars/Buttom2"]
