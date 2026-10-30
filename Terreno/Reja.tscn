@@ -98,9 +98,11 @@ data = PackedVector3Array(3.085, -0.059299998, 0.18789999, 2.4503999, -0.0356, 0
 [node name="Reja" type="Node3D" unique_id=490232052]
 
 [node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="." unique_id=231711150]
+visibility_range_end = 150.0
 mesh = SubResource("ArrayMesh_mi7yp")
 
 [node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="." unique_id=900366231]
+visibility_range_end = 150.0
 mesh = SubResource("ArrayMesh_tyq5b")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="M_Fence_4x6_B_mo_Material_064_0" unique_id=78334492]
