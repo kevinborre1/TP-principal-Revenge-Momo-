@@ -20,11 +20,14 @@ const ACCIONES := {
 	"interactuar": "Interaccion"
 }
 
+const OPCIONES_FPS: Array[int] = [30, 60, 75, 144, 250]
+const NOMBRES_FPS: Array[String] = ["30 FPS", "60 FPS", "75 FPS", "144 FPS", "250 FPS"]
+
 var _panel: PanelContainer
 var _contenido: VBoxContainer
 var _accion_esperando := ""
 var _boton_esperando: Button = null
-
+var _boton_vsync: CheckButton = null
 
 # Atajo a la configuración que vive en el autoload
 static func _cfg() -> DataClassConfiguracion:
@@ -136,11 +139,16 @@ func _on_volumen_pressed() -> void:
 func _on_graficos_pressed() -> void:
 	_nueva_pagina("Gráficos")
 
-	var vsync := CheckButton.new()
-	vsync.text = "Sincronización vertical (VSync)"
-	vsync.button_pressed = _cfg().vsync
-	vsync.toggled.connect(_cambiar_vsync)
-	_contenido.add_child(vsync)
+	_boton_vsync = CheckButton.new()
+	_boton_vsync.text = "Sincronización vertical (VSync)"
+	_boton_vsync.button_pressed = _cfg().vsync
+	_boton_vsync.toggled.connect(_cambiar_vsync)
+	_contenido.add_child(_boton_vsync)
+
+	var idx_fps := OPCIONES_FPS.find(_cfg().max_fps if "max_fps" in _cfg() else 60)
+	if idx_fps == -1:
+		idx_fps = 1 # 60 FPS por defecto
+	_contenido.add_child(_fila_opciones("Límite de FPS", NOMBRES_FPS, idx_fps, _cambiar_fps))
 
 	_contenido.add_child(_fila_opciones("Suavizado de bordes (MSAA)", NOMBRES_MSAA, _cfg().msaa, _cambiar_msaa))
 	_contenido.add_child(_fila_opciones("Calidad 3D", NOMBRES_CALIDAD, _cfg().calidad_graficos, _cambiar_escala))
@@ -340,7 +348,20 @@ func _cambiar_volumen(valor: float, etiqueta: Label) -> void:
 
 func _cambiar_vsync(activo: bool) -> void:
 	_cfg().vsync = activo
-	SaveAndLoad.guardar_configuracion()  # SAVE
+	SaveAndLoad.guardar_configuracion() # SAVE
+	_aplicar_graficos()
+
+func _cambiar_fps(indice_o_valor: int) -> void:
+	var fps_elegido: int = OPCIONES_FPS[indice_o_valor] if indice_o_valor < OPCIONES_FPS.size() else indice_o_valor
+	_cfg().max_fps = fps_elegido
+	
+	# Si elige más de 60 FPS (75, 144, 250), apagamos V-Sync para no bloquear en 60 Hz
+	if fps_elegido > 60:
+		_cfg().vsync = false
+		if _boton_vsync and is_instance_valid(_boton_vsync):
+			_boton_vsync.set_pressed_no_signal(false)
+		
+	SaveAndLoad.guardar_configuracion() # SAVE
 	_aplicar_graficos()
 
 
@@ -385,7 +406,7 @@ static func _aplicar_graficos() -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if cfg.vsync else DisplayServer.VSYNC_DISABLED)
 	ventana.msaa_3d = [Viewport.MSAA_DISABLED, Viewport.MSAA_2X, Viewport.MSAA_4X][cfg.msaa]
 	ventana.scaling_3d_scale = ESCALAS_3D[cfg.calidad_graficos]
-
+	Engine.max_fps = cfg.max_fps if "max_fps" in cfg else 60
 
 # ---------- CARGAR AL ARRANCAR ----------
 

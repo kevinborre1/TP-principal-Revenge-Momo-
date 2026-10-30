@@ -26,3 +26,4 @@ const NOMBRES_CALIDAD := ["Baja", "Media", "Alta"]
 @export var vsync: bool = true
 @export var msaa: int = 0
 @export var calidad_graficos: int = 2
+@export var max_fps: int = 60
