@@ -407,6 +407,7 @@ func respawnear():
 	
 	await get_tree().create_timer(2.0).timeout
 	
+	SaveAndLoad.sumar_estadistica("muertes")
 	velocity = Vector3.ZERO
 	saludActual = 100
 	global_transform.origin = punto_respawn

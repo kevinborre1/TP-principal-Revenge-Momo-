@@ -269,15 +269,15 @@ func sumar_estadistica(nombre: String) -> void:
 	# Comprobar si se desbloquea algún logro
 	match nombre:
 		"muertes":
-			if logros.muertes >= 10:
+			if logros.muertes == 10:
 				actualizar_logro("Moriste10Veces")
 
 		"enemigosAsesinados":
-			if logros.enemigosAsesinados >= 10:
+			if logros.enemigosAsesinados == 10:
 				actualizar_logro("AsesinasteA10Enemigos")
 
 		"barrilesRotos":
-			if logros.barrilesRotos >= 15:
+			if logros.barrilesRotos == 15:
 				actualizar_logro("Rompiste15Barriles")
 
 	guardar_logros()
