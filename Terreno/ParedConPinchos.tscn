@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dlpyhv57mdby2"]
+
+[ext_resource type="Script" uid="uid://ib42s3etslt1" path="res://Terreno/pared_con_pinchos.gd" id="1_6yhpd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sxovr"]
+size = Vector3(0.3887329, 6.9522705, 13.460846)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sxovr"]
+size = Vector3(0.46929932, 6.7998047, 13.378326)
+
+[node name="ParedConPinchos" type="Node3D" unique_id=1414089517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3841858e-07, 0)
+script = ExtResource("1_6yhpd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092788253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30563354, 2.9761353, -2.2120514)
+mesh = SubResource("BoxMesh_sxovr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=716108659]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=684845160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013885498, 0.06298852, 0.048599243)
+shape = SubResource("BoxShape3D_sxovr")

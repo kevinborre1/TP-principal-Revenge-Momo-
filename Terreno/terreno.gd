@@ -7,8 +7,8 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport_container2 = $HBoxContainer/SubViewportContainer2
 @onready var subviewport1 = $HBoxContainer/SubViewportContainer/SubViewport
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
-@onready var pantalla_desconexion: CanvasLayer = $PantallaDesconexion
-@onready var texto_modo: Label = $Label
+@onready var pantalla_desconexion: CanvasLayer = $Pantallas/PantallaDesconexion
+@onready var texto_modo: Label = $Pantallas/Label
 @onready var activador_victoria: Area3D = $ActivadorVictoria
 
 const TIEMPO_MAX_CONEXION := 40.0
