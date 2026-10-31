@@ -26,6 +26,16 @@ properties/2/path = NodePath("papitas/AnimationPlayer:current_animation")
 properties/2/spawn = true
 properties/2/replication_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.41960785, 1, 1, 0.15686275)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_yf5fn")
+radius = 0.9
+height = 1.8
+
 [node name="enemigo2" type="CharacterBody3D" unique_id=485862913 groups=["papitas"]]
 transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 0, 0, 0)
 script = ExtResource("1_d7g0g")
@@ -50,7 +60,7 @@ replication_config = SubResource("SceneReplicationConfig_d7g0g")
 [node name="papitas" parent="." unique_id=312352333 instance=ExtResource("2_rcyi7")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="papitas" index="0" unique_id=413316269]
+[node name="Skeleton3D" parent="papitas" index="0" unique_id=87465947]
 bones/0/position = Vector3(-0.078020066, 0.00019706726, 0.017334672)
 bones/0/rotation = Quaternion(-0.7020211, 0.021480424, 0.010069149, 0.7117609)
 bones/1/rotation = Quaternion(0.65358603, 0.03587441, -0.055099733, 0.75399095)
@@ -282,8 +292,12 @@ bones/82/position = Vector3(2.9491146e-08, 0.0068809628, 9.9838566e-08)
 bones/82/rotation = Quaternion(-2.1384981e-08, -1.1897133e-09, -4.5226256e-10, 1)
 bones/82/scale = Vector3(1.0000002, 1.0000004, 1)
 
-[node name="AnimationPlayer" parent="papitas" index="1" unique_id=1060125273]
+[node name="AnimationPlayer" parent="papitas" index="1" unique_id=2078868508]
 libraries/papa_ataque = ExtResource("3_qdr5y")
 libraries/papa_muerte = ExtResource("4_3b2ec")
+
+[node name="Escudo" type="MeshInstance3D" parent="." unique_id=533115091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0007801867, 0.8595643, 0.011880081)
+mesh = SubResource("SphereMesh_g4v7s")
 
 [editable path="papitas"]

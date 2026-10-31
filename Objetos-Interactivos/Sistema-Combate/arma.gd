@@ -72,19 +72,20 @@ func disparar() -> void:
 		else:
 			direccion_disparada = -global_transform.basis.z.normalized()
 			
-	generar_bala.rpc(punto_de_disparo.global_position, direccion_disparada)
+	generar_bala.rpc(punto_de_disparo.global_position, direccion_disparada, player.rol)
 	
 	await get_tree().create_timer(cadencia).timeout
 	puede_disparar = true
 
 @rpc("call_local", "any_peer", "reliable")
-func generar_bala(posicion_inicial: Vector3, direccion: Vector3) -> void:
+func generar_bala(posicion_inicial: Vector3, direccion: Vector3, tipo: String = "ambos") -> void:
 	var bala = escena_bala.instantiate() as Area3D
 	
 	get_tree().current_scene.add_child(bala)
 	
 	bala.global_position = posicion_inicial
 	bala._direccion_salida(direccion)
+	bala.set_tipo(tipo)
 	
 func desactivar_para_mano() -> void:
 	set_deferred("monitoring", false)

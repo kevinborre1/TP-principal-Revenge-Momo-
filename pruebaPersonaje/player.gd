@@ -26,6 +26,15 @@ var input_bloqueado: bool = false
 var estamina_infinita: bool = false
 var escudo_activo: bool = false
 
+@onready var label_rol: Label = get_node_or_null("CanvasLayer2/LabelRol")
+@onready var mira_rect: Control = get_node_or_null("CanvasLayer/PuntoDeMira/Cruz")
+
+const COLOR_MIRA_NORMAL = Color.WHITE
+const COLOR_ROMPE_ESCUDO = Color(0.3, 0.7, 1.0)
+const COLOR_LETAL = Color(1.0, 0.25, 0.2)
+
+@export_enum("ambos", "rompe_escudo", "letal") var rol: String = "ambos"
+
 #Nodos de minijuego
 var minijuego_scene = preload("res://pruebaPersonaje/minijuego/memotest.tscn")
 var minijuego_instance: Control = null
@@ -720,6 +729,37 @@ func prepare_for_raft() -> void:
 	
 	if animation and animation.has_animation("Sitting Pose/mixamo_com"):
 		animation.play("Sitting Pose/mixamo_com", 0,3)
+		
+@rpc("any_peer", "call_local", "reliable")
+func asignar_rol(nuevo_rol: String) -> void:
+	var cambio = rol != nuevo_rol
+	rol = nuevo_rol
+	print("[Roles] Jugador ", name, " ahora es: ", rol)
+	_actualizar_hud_rol(cambio)
+
+func _actualizar_hud_rol(animar: bool) -> void:
+	var color = COLOR_MIRA_NORMAL
+	var texto = ""
+	if rol == "rompe_escudo":
+		color = COLOR_ROMPE_ESCUDO
+		texto = "ROMPE ESCUDOS"
+	elif rol == "letal":
+		color = COLOR_LETAL
+		texto = "LETAL"
+	
+	if mira_rect:
+		mira_rect.modulate = color
+	
+	if label_rol:
+		label_rol.visible = texto != ""
+		label_rol.text = texto
+		label_rol.modulate = color
+		# "Pop" para avisar que el rol cambió
+		if animar and texto != "":
+			label_rol.pivot_offset = label_rol.size / 2
+			label_rol.scale = Vector2(1.6, 1.6)
+			var tween = create_tween()
+			tween.tween_property(label_rol, "scale", Vector2.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		
 func salir_de_balsa() -> void:
 	var modelo = $"Walk (1)" if has_node("Walk (1)") else null

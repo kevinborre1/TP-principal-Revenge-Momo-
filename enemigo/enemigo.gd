@@ -11,6 +11,12 @@ var ANIM_CAMINAR = "mixamo_com"
 var ANIM_ATAQUE = "papa_ataque/mixamo_com"
 var ANIM_MUERTE = "papa_muerte/mixamo_com"
 var muriendo: bool = false
+@export var tiene_escudo: bool = true
+@export var tiempo_regeneracion_escudo: float = 3.0
+var escudo_activo: bool = false
+var _timer_escudo: Timer
+@onready var malla_escudo: Node3D = get_node_or_null("Escudo")
+
 signal murio
 
 @onready var animation_player: AnimationPlayer
@@ -30,7 +36,14 @@ func _ready() -> void:
 		ANIM_MUERTE = "lider_muerte/mixamo_com"
 	else:
 		animation_player = $papitas/AnimationPlayer
-		
+	
+	# El escudo es solo para las papitas chicas
+	_timer_escudo = Timer.new()
+	_timer_escudo.one_shot = true
+	_timer_escudo.wait_time = tiempo_regeneracion_escudo
+	_timer_escudo.timeout.connect(_regenerar_escudo)
+	add_child(_timer_escudo)
+	_set_escudo(tiene_escudo and not es_lider)
 		
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:
@@ -107,6 +120,18 @@ func obtener_jugador_mas_cercano() -> Node3D:
 				
 	return jugador_cercano
 
+# Las balas de jugador entran por acá: el tipo decide si rompe el escudo o hace daño
+func recibir_bala(danio: int, tipo: String) -> void:
+	if muriendo or is_queued_for_deletion():
+		return
+	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
+		return
+	if escudo_activo:
+		if tipo != "letal":
+			_romper_escudo()
+		return
+	if tipo != "rompe_escudo":
+		_daniar(danio)
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
@@ -116,6 +141,9 @@ func _daniar(danio: int) -> void:
 	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
 		return
 	if is_queued_for_deletion():
+		return
+	if escudo_activo:
+		_romper_escudo()
 		return
 	vida_actual -= danio
 	print("¡El enemigo recibió un disparo! Daño:", danio, " | Vida restante:", vida_actual)
@@ -171,3 +199,19 @@ func activar_enemigo() -> void:
 	visible = true
 	_cambiar_estado_colisiones(false)
 	set_physics_process(true)
+	
+# Solo el host llega acá (en línea _daniar corta antes en los clientes)
+func _romper_escudo() -> void:
+	_set_escudo.rpc(false)
+	_timer_escudo.start()
+
+func _regenerar_escudo() -> void:
+	if muriendo:
+		return
+	_set_escudo.rpc(true)
+
+@rpc("authority", "call_local", "reliable")
+func _set_escudo(valor: bool) -> void:
+	escudo_activo = valor
+	if malla_escudo:
+		malla_escudo.visible = valor

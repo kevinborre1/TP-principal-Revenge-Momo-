@@ -8,11 +8,22 @@ var fase_actual: int = 0
 var enemigos_restantes: int = 0
 var ataque_iniciado: bool = false
 
+@export var intervalo_roles: float = 5.0
+# Para testear solo: con un único jugador, tiene los dos roles
+@export var permitir_un_jugador: bool = true
+
+var _timer_roles: Timer
+
 func _ready() -> void:
 	add_to_group("ActivadorOleadas")
 	body_entered.connect(_on_puerta_cruzada)
 	# el host le reenvia el estado de las oleadas a quien se une tarde
 	multiplayer.peer_connected.connect(_on_peer_connected)
+	
+	_timer_roles = Timer.new()
+	_timer_roles.wait_time = intervalo_roles
+	_timer_roles.timeout.connect(_sortear_roles)
+	add_child(_timer_roles)
 	
 func _on_puerta_cruzada(body: Node3D) -> void:
 	if not multiplayer.is_server() or ataque_iniciado:
@@ -22,6 +33,7 @@ func _on_puerta_cruzada(body: Node3D) -> void:
 		ataque_iniciado = true
 		GameManager.papas_atacan = true # Asegura que puedan moverse y atacar
 		print("El jugador activó el ataque enemigo")
+		_iniciar_roles()
 		iniciar_fase(1)
 	
 func iniciar_fase(fase: int) -> void:
@@ -38,6 +50,7 @@ func iniciar_fase(fase: int) -> void:
 	else:
 		# Fase 4: Ya murieron las 2 oleadas y el jefe
 		print("¡Todas las oleadas y el jefe fueron derrotados!")
+		_terminar_roles()
 		return
 	
 	enemigos_restantes = 0
@@ -81,6 +94,7 @@ func restaurar_oleada_guardada(iniciado: bool, fase_guardada: int, atacan: bool)
 		
 	# 2. Si el combate seguía en curso (fases 1, 2 o 3), el Servidor reactiva la fase actual
 	if multiplayer.is_server() and fase_guardada >= 1 and fase_guardada <= 3:
+		_iniciar_roles()
 		iniciar_fase(fase_guardada)
 
 # host: el cliente que entra tarde no recibio los activar enemigos rpc anteriores
@@ -124,3 +138,40 @@ func _enemigos_de_fase(fase: int) -> Array:
 	elif fase == 3 and is_instance_valid(jefe):
 		return [jefe]
 	return []
+
+# ---- Roles cooperativos (solo el host sortea) ----
+func _iniciar_roles() -> void:
+	if not multiplayer.is_server():
+		return
+	_sortear_roles()
+	_timer_roles.start()
+
+func _terminar_roles() -> void:
+	_timer_roles.stop()
+	for jugador in _jugadores():
+		jugador.asignar_rol.rpc("ambos")
+
+func _sortear_roles() -> void:
+	var jugadores := _jugadores()
+	if jugadores.is_empty():
+		return
+	
+	if jugadores.size() == 1:
+		if permitir_un_jugador:
+			jugadores[0].asignar_rol.rpc("ambos")
+		else:
+			# Solo no se puede ganar: le toca un rol solo
+			jugadores[0].asignar_rol.rpc(["rompe_escudo", "letal"].pick_random())
+		return
+	
+	var roles := ["rompe_escudo", "letal"]
+	roles.shuffle()
+	for i in jugadores.size():
+		jugadores[i].asignar_rol.rpc(roles[i % 2])
+
+func _jugadores() -> Array:
+	var lista := []
+	for nodo in get_tree().get_nodes_in_group("Jugador"):
+		if nodo is Player and not lista.has(nodo):
+			lista.append(nodo)
+	return lista
