@@ -463,6 +463,8 @@ func player_animation():
 			animation.play("Crouching Idle/mixamo_com", 0.2)
 		return
 
+	var armado = item_en_mano is ItemBase and item_en_mano.activa_mira_combate
+
 	if is_moving():
 		if Input.is_action_pressed(act_correr) and StaminaActual > 0:
 			if animation.has_animation("Fast Run/mixamo_com"):
@@ -471,8 +473,12 @@ func player_animation():
 				animation.play("Fast Run/mixamo_com", 0.2)
 			else:
 				animation.play("camina", 0.2, 1.8)
+		elif armado and animation.has_animation("Pistol Walk/mixamo_com"):
+			animation.play("Pistol Walk/mixamo_com", 0.2)
 		else:
 			animation.play("camina", 0.3)
+	elif armado and animation.has_animation("Pistol Idle/mixamo_com"):
+		animation.play("Pistol Idle/mixamo_com", 0.3)
 	else:
 		animation.play("Standing Idle/mixamo_com", 0.3)
 

@@ -10,6 +10,9 @@ class_name ItemBase
 @export var distancia_camara: float = 2.0
 @export var offset_camara: Vector3 = Vector3(0.0, 1.5, 0.0)
 
+@export var posicion_en_mano: Vector3 = Vector3.ZERO
+@export var rotacion_en_mano: Vector3 = Vector3.ZERO # en grados
+
 # --- NUEVO ---
 @export var texto_interaccion: String = "Presiona [E]"
 var label_3d: Label3D = null # Guardamos la referencia para prenderlo/apagarlo rápido
@@ -68,6 +71,8 @@ func destruir_item_rpc() -> void:
 	queue_free()
 	
 func desactivar_para_mano() -> void:
+	position = posicion_en_mano
+	rotation_degrees = rotacion_en_mano
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 	collision_layer = 0
