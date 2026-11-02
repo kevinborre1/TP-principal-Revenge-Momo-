@@ -40,8 +40,6 @@ func disparar() -> void:
 	#var bala = escena_bala.instantiate() as Area3D
 	#bala.global_position = punto_de_disparo.global_position
 	
-	var direccion_disparada = Vector3.FORWARD
-	
 	if raycast:
 		# limpiamos reglas anteriores
 		raycast.clear_exceptions()
@@ -59,16 +57,30 @@ func disparar() -> void:
 				
 		# forzamos al rayo a recalcular la física en este frame exacto con las excepciones aplicadas
 		raycast.force_raycast_update()
+		
+	var direccion_disparada = Vector3.FORWARD
+	var apuntando_a_enemigo = false
 	
 	if raycast and raycast.is_colliding():
-		# Si el rayo de la cámara choca con algo en pantalla, la bala va directo a ese punto 3D
-		var punto_impacto = raycast.get_collision_point()
-		direccion_disparada = (punto_impacto - punto_de_disparo.global_position).normalized()
-	else:
-		# Si no choca con nada, sale disparada exactamente hacia donde mira la cámara
+		var objeto_colisionado = raycast.get_collider()
+		
+		# Verifica si el objeto tocado es un enemigo (asegúrate de usar tu nombre de grupo exacto)
+		if objeto_colisionado and objeto_colisionado.is_in_group("Enemigo"):
+			var punto_impacto = raycast.get_collision_point()
+			direccion_disparada = (punto_impacto - punto_de_disparo.global_position).normalized()
+			apuntando_a_enemigo = true
+			
+	# Si tocó una pared, el piso, o no chocó con nada, dispara paralelo a la cámara
+	# Si no choca con un enemigo, hacemos que la bala converja hacia la cruceta
+	if not apuntando_a_enemigo:
 		var camara: Camera3D = player.find_child("Camera3D", true, false)
 		if camara:
-			direccion_disparada = -camara.global_transform.basis.z.normalized()
+			# Proyectamos un punto a 100 metros de distancia exactamente en el centro de la pantalla
+			var distancia_convergencia = 50.0
+			var punto_lejano = camara.global_position - (camara.global_transform.basis.z.normalized() * distancia_convergencia)
+			
+			# Trazamos la dirección desde el arma hacia ese punto central lejano
+			direccion_disparada = (punto_lejano - punto_de_disparo.global_position).normalized()
 		else:
 			direccion_disparada = -global_transform.basis.z.normalized()
 			
