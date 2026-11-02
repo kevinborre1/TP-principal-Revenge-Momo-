@@ -140,4 +140,5 @@ Agacharse={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+scaling_3d/scale=0.75
 occlusion_culling/use_occlusion_culling=true
