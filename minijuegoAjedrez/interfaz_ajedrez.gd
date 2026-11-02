@@ -17,20 +17,20 @@ var pos_en_coronacion: Vector2 = Vector2(-1, -1) # Para guardar dónde está el 
 # Tu diccionario de texturas 
 var texturas = {
 	PiezaAjedrez.ColorPieza.BLANCO: {
-		PiezaAjedrez.Tipo.PEON: preload("res://minijuegoAjedrez/assets/chess_piece_2_white_pawn.png"),
-		PiezaAjedrez.Tipo.TORRE: preload("res://minijuegoAjedrez/assets/chess_piece_2_white_rook.png"),
-		PiezaAjedrez.Tipo.CABALLO: preload("res://minijuegoAjedrez/assets/chess_piece_2_white_knight.png"),
-		PiezaAjedrez.Tipo.ALFIL: preload("res://minijuegoAjedrez/assets/chess_piece_2_white_bishop.png"),
-		PiezaAjedrez.Tipo.REINA: preload("res://minijuegoAjedrez/assets/chess_piece_2_white_king.png"),
-		PiezaAjedrez.Tipo.REY: preload("res://minijuegoAjedrez/assets/chess_piece_2_white_queen.png")
+		PiezaAjedrez.Tipo.PEON: preload("res://minijuegoAjedrez/assets/w_Pawn.png"),
+		PiezaAjedrez.Tipo.TORRE: preload("res://minijuegoAjedrez/assets/w_Rook.png"),
+		PiezaAjedrez.Tipo.CABALLO: preload("res://minijuegoAjedrez/assets/w_Knight.png"),
+		PiezaAjedrez.Tipo.ALFIL: preload("res://minijuegoAjedrez/assets/w_Bishop.png"),
+		PiezaAjedrez.Tipo.REINA: preload("res://minijuegoAjedrez/assets/w_Queen.png"),
+		PiezaAjedrez.Tipo.REY: preload("res://minijuegoAjedrez/assets/w_King.png")
 	},
 	PiezaAjedrez.ColorPieza.NEGRO: {
-		PiezaAjedrez.Tipo.PEON: preload("res://minijuegoAjedrez/assets/chess_piece_2_black_pawn.png"),
-		PiezaAjedrez.Tipo.TORRE: preload("res://minijuegoAjedrez/assets/chess_piece_2_black_rook.png"),
-		PiezaAjedrez.Tipo.CABALLO: preload("res://minijuegoAjedrez/assets/chess_piece_2_black_knight.png"),
-		PiezaAjedrez.Tipo.ALFIL: preload("res://minijuegoAjedrez/assets/chess_piece_2_black_bishop.png"),
-		PiezaAjedrez.Tipo.REINA: preload("res://minijuegoAjedrez/assets/chess_piece_2_black_king.png"),
-		PiezaAjedrez.Tipo.REY: preload("res://minijuegoAjedrez/assets/chess_piece_2_black_queen.png")
+		PiezaAjedrez.Tipo.PEON: preload("res://minijuegoAjedrez/assets/b_Pawn.png"),
+		PiezaAjedrez.Tipo.TORRE: preload("res://minijuegoAjedrez/assets/b_Rook.png"),
+		PiezaAjedrez.Tipo.CABALLO: preload("res://minijuegoAjedrez/assets/b_Knight.png"),
+		PiezaAjedrez.Tipo.ALFIL: preload("res://minijuegoAjedrez/assets/b_Bishop.png"),
+		PiezaAjedrez.Tipo.REINA: preload("res://minijuegoAjedrez/assets/b_Queen.png"),
+		PiezaAjedrez.Tipo.REY: preload("res://minijuegoAjedrez/assets/b_King.png")
 	}
 }
 
