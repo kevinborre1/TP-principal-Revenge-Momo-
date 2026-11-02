@@ -19,6 +19,7 @@ var _timer_escudo: Timer
 
 signal murio
 
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var animation_player: AnimationPlayer
 
 # Variables para controlar el daño
@@ -44,6 +45,12 @@ func _ready() -> void:
 	_timer_escudo.timeout.connect(_regenerar_escudo)
 	add_child(_timer_escudo)
 	_set_escudo(tiene_escudo and not es_lider)
+	
+	# NUEVO: Asignar la capa de navegación correcta según el tamaño
+	if es_lider:
+		nav_agent.navigation_layers = 2 # Lee el mapa donde NO cabe debajo de la mesa
+	else:
+		nav_agent.navigation_layers = 1 # Lee el mapa normal
 		
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:
@@ -63,14 +70,23 @@ func _physics_process(delta: float) -> void:
 	var jugador_objetivo = obtener_jugador_mas_cercano()
 	
 	# Perseguir al jugador si existe
+	# Perseguir al jugador si existe usando NavigationAgent3D
 	if jugador_objetivo:
-		var posicion_mirar = Vector3(jugador_objetivo.global_position.x, global_position.y, jugador_objetivo.global_position.z)
+		# 1. Le decimos al agente cuál es el destino final (el jugador)
+		nav_agent.target_position = jugador_objetivo.global_position
+		
+		# 2. Obtenemos el siguiente paso en la ruta trazada por el NavMesh
+		var siguiente_posicion = nav_agent.get_next_path_position()
+		
+		# 3. Orientamos al enemigo hacia ese siguiente paso (ignorando el eje Y)
+		var posicion_mirar = Vector3(siguiente_posicion.x, global_position.y, siguiente_posicion.z)
 		if global_position.distance_to(posicion_mirar) > 0.1:
 			look_at(posicion_mirar, Vector3.UP)
 
-		var direccion_adelante = -global_transform.basis.z
-		velocity.x = direccion_adelante.x * velocidad
-		velocity.z = direccion_adelante.z * velocidad
+		# 4. Calculamos la dirección y aplicamos la velocidad
+		var direccion = global_position.direction_to(siguiente_posicion)
+		velocity.x = direccion.x * velocidad
+		velocity.z = direccion.z * velocidad
 		
 	move_and_slide()
 	_comprobar_colisiones_jugador()

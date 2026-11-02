@@ -38,7 +38,7 @@ es_lider = true
 [node name="patato" parent="." unique_id=1464567162 instance=ExtResource("2_78f42")]
 transform = Transform3D(-1.1, 0, -9.685755e-08, 0, 1.2, 0, 9.685755e-08, 0, -1.1, 0.18301286, 0, 0.15189855)
 
-[node name="Skeleton3D" parent="patato/Armature" parent_id_path=PackedInt32Array(1464567162, 837216548) index="0" unique_id=1221827811]
+[node name="Skeleton3D" parent="patato/Armature" parent_id_path=PackedInt32Array(1464567162, 1265821966) index="0" unique_id=1883166066]
 bones/0/position = Vector3(0.1427542, 0.78743666, -0.1126373)
 bones/0/rotation = Quaternion(0.02665045, 0.0047646486, 0.025775282, 0.99930114)
 bones/1/rotation = Quaternion(0.061731413, 0.02287704, 0.0034570538, 0.99782467)
@@ -87,19 +87,19 @@ bones/53/rotation = Quaternion(-0.74686205, 0.0423107, -0.18118642, 0.63841873)
 bones/54/rotation = Quaternion(0.8185483, 0.19969752, 0.20307598, 0.49885842)
 bones/55/rotation = Quaternion(0.30840632, 0.2644463, -0.08507123, 0.90978944)
 
-[node name="Икосфера" parent="patato/Armature/Skeleton3D" index="0" unique_id=1837222572]
+[node name="Икосфера" parent="patato/Armature/Skeleton3D" index="0" unique_id=2127695526]
 surface_material_override/0 = SubResource("StandardMaterial3D_wtxyr")
 
-[node name="AnimationPlayer" parent="patato" index="1" unique_id=391855528]
+[node name="AnimationPlayer" parent="patato" index="1" unique_id=1326802126]
 libraries/lider_ataque = ExtResource("3_76ta6")
 libraries/lider_muerte = ExtResource("4_nj4ql")
 
 [node name="BrazoDer" type="CollisionShape3D" parent="." unique_id=211834963]
-transform = Transform3D(-0.80407655, 0.5868743, 0.0950876, -0.58687246, -0.8090905, 0.030932318, 0.09508762, -0.030932397, 0.99499124, 1.4858848, 1.2205613, -0.07836204)
+transform = Transform3D(-0.80407655, 0.5868743, 0.0950876, -0.58687246, -0.8090905, 0.030932318, 0.09508762, -0.030932397, 0.99499124, 0.15985413, 1.2205613, -0.008470943)
 shape = SubResource("CapsuleShape3D_aui74")
 
 [node name="BrazoIzq" type="CollisionShape3D" parent="." unique_id=477946893]
-transform = Transform3D(0.82639784, 0.5630126, 0.00915008, -0.5630124, 0.8259158, 0.029674686, 0.009150054, -0.029674707, 0.9995183, -1.340433, 1.4314506, 0.0706006)
+transform = Transform3D(0.82639784, 0.5630126, 0.00915008, -0.5630124, 0.8259158, 0.029674686, 0.009150054, -0.029674707, 0.9995183, -0.21879636, 1.4314506, 0.011482483)
 shape = SubResource("CapsuleShape3D_aui74")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=2068757052]
@@ -113,5 +113,7 @@ mesh = SubResource("CapsuleMesh_8w0r3")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=157765879]
 replication_config = SubResource("SceneReplicationConfig_vg8rj")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1004225939]
 
 [editable path="patato"]
