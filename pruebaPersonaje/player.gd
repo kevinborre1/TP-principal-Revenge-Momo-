@@ -16,6 +16,7 @@ const MAPA = preload("res://Menu/mapa.tscn")
 # --- NUEVA SEÑAL PARA EL GAMEMANAGER ---
 signal jugador_murio(jugador_nodo)
 
+var muerto = false
 var herido = false
 var StaminaMax = 100.0
 var StaminaActual= 100.0
@@ -199,7 +200,7 @@ func _ready() -> void:
 	inventario_manager.seleccionar_slot(0, self)
 	
 func _input(event: InputEvent) -> void:
-	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
+	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()) or muerto:
 		return
 		
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -213,7 +214,7 @@ func _input(event: InputEvent) -> void:
 		spring_arm_3d.rotation.y = camera_rotation.y
 		
 func _unhandled_input(event: InputEvent) -> void:
-	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()):
+	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()) or muerto:
 		return
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and minijuego_instance == null:
@@ -254,7 +255,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		consumir_item_actual.rpc()
 		
 func _physics_process(delta: float) -> void:
-	if input_bloqueado:
+	if input_bloqueado or muerto:
 		return
 		
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
@@ -399,6 +400,7 @@ func _recibir_danio_red(danio: int):
 	saludActual -= danio
 	herido = true
 	if saludActual <= 0:
+		muerto = true
 		saludActual = 0
 		actualizar_barraDeVida()
 		# El jugador ya no toma decisiones aquí. 
@@ -428,6 +430,7 @@ func respawnear():
 		
 	show()
 	set_physics_process(true)
+	muerto = false
 	
 func actualizar_respawn(direccion_respawn: Vector3):
 	punto_respawn = direccion_respawn

@@ -15,7 +15,7 @@ func _jugador_dueño() -> Player:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var jugador := _jugador_dueño()
-	if jugador == null or jugador.input_bloqueado:
+	if jugador == null or jugador.input_bloqueado or jugador.muerto:
 		return
 	# evita que un jugador dispare el arma de otro
 	if not jugador.is_multiplayer_authority():
