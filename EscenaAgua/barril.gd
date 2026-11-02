@@ -1,18 +1,36 @@
 extends StaticBody3D
 
+var _destruido: bool = false
+
 func _ready() -> void:
 	# Añadimos todos los barriles al grupo para que la balsa los reconozca
 	add_to_group("Barriles")
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
+	if _destruido:
+		return
 	print("¡El barril recibió un disparo!")
-	SaveAndLoad.sumar_estadistica("barrilesRotos")
-	_destruir_barril()
+	
+	var sender_id = multiplayer.get_remote_sender_id()
+	if sender_id == 0 or sender_id == multiplayer.get_unique_id():
+		SaveAndLoad.sumar_estadistica("barrilesRotos")
+	
+	# 2. Propagamos la destrucción a TODOS los jugadores por red
+	if Global.modo_multijugador == "linea" and sender_id == 0:
+		_destruir_barril.rpc()
+	else:
+		_destruir_barril()
 
 # Esta es la función que llama la balsa al chocar
-@rpc("any_peer", "call_local", "reliable")
 func _colision_balsa() -> void:
+	if Global.modo_multijugador == "linea":
+		_sincronizar_colision_balsa.rpc()
+	else:
+		_sincronizar_colision_balsa()
+
+@rpc("any_peer", "call_local", "reliable")
+func _sincronizar_colision_balsa() -> void:
 	print("¡Un barril fue chocado por la balsa!")
 	# 1. Apagamos la colisión. Usamos set_deferred por seguridad en las físicas de Godot.
 	$CollisionShape3D.set_deferred("disabled", true)
@@ -32,6 +50,10 @@ func _colision_balsa() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func _destruir_barril() -> void:
+	if _destruido:
+		return
+	_destruido = true
+	
 	# 1. Desactivamos la colisión para que no choque mientras se encoge
 	$CollisionShape3D.set_deferred("disabled", true)
 
