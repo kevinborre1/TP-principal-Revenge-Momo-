@@ -1,20 +1,23 @@
 extends CanvasLayer
 
+# --- NUEVAS VARIABLES DE RED ---
+signal movimiento_realizado(desde: Vector2, hasta: Vector2, tipo_coronacion: int)
+var mi_color: int = -1 # -1: Local, 0: Blancas, 1: Negras
+var origen_coronacion: Vector2 = Vector2(-1, -1)
+
 @onready var grid = $GridContainer
 
 var color_claro = Color("F0D9B5")
 var color_oscuro = Color("B58863")
 var color_resaltado = Color("8CA252") 
-var color_movimiento = Color("A3B568") # ¡NUEVO! Un verde un poco distinto para los posibles destinos
-var color_jaque = Color("E06666") # ¡NUEVO! Color rojo suave para el jaque
+var color_movimiento = Color("A3B568") 
+var color_jaque = Color("E06666") 
 
 var juego_logico: JuegoAjedrez
 var coordenada_seleccionada: Vector2 = Vector2(-1, -1)
-var movimientos_resaltados: Array[Vector2] = [] # ¡NUEVO! Guardará las casillas que pintamos para poder borrarlas luego
+var movimientos_resaltados: Array[Vector2] = [] 
+var pos_en_coronacion: Vector2 = Vector2(-1, -1) 
 
-var pos_en_coronacion: Vector2 = Vector2(-1, -1) # Para guardar dónde está el peón esperando
-
-# Tu diccionario de texturas 
 var texturas = {
 	PiezaAjedrez.ColorPieza.BLANCO: {
 		PiezaAjedrez.Tipo.PEON: preload("res://minijuegoAjedrez/assets/w_Pawn.png"),
@@ -36,16 +39,22 @@ var texturas = {
 
 func _ready() -> void:
 	generar_tablero_visual()
-	
 	juego_logico = JuegoAjedrez.new()
 	add_child(juego_logico)
 	juego_logico.iniciar_partida()
-	
 	actualizar_vista_completa()
 
 func generar_tablero_visual() -> void:
-	for fila in range(8):
-		for columna in range(8):
+	var rango_filas = range(8)
+	var rango_columnas = range(8)
+	
+	# Si soy el jugador de las Negras, invertimos el orden visual del tablero
+	if mi_color == 1:
+		rango_filas = range(7, -1, -1)
+		rango_columnas = range(7, -1, -1)
+		
+	for fila in rango_filas:
+		for columna in rango_columnas:
 			var casilla = ColorRect.new()
 			casilla.custom_minimum_size = Vector2(75, 75) 
 			
@@ -57,16 +66,18 @@ func generar_tablero_visual() -> void:
 			casilla.name = str(fila) + "_" + str(columna)
 			casilla.gui_input.connect(_on_casilla_clic.bind(columna, fila))
 			grid.add_child(casilla)
-
+			
 # --- LÓGICA DE INTERACCIÓN ---
-
 func _on_casilla_clic(event: InputEvent, x: int, y: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		manejar_seleccion(Vector2(x, y))
 
 func manejar_seleccion(coord_click: Vector2) -> void:
-	# Si hay una coronación abierta, ignoramos clics comunes hasta que elija una pieza
 	if pos_en_coronacion != Vector2(-1, -1):
+		return
+
+	# ¡FILTRO DE MULTIJUGADOR! Si no es mi turno, no puedo hacer nada.
+	if mi_color != -1 and mi_color != juego_logico.turno_actual:
 		return
 
 	var pieza_clickeada = juego_logico.tablero.obtener_pieza(coord_click.x, coord_click.y)
@@ -86,22 +97,24 @@ func manejar_seleccion(coord_click: Vector2) -> void:
 			coordenada_seleccionada = Vector2(-1, -1)
 			
 		elif coord_click in movimientos_resaltados:
-			juego_logico.tablero.mover_pieza(coordenada_seleccionada, coord_click)
+			var origen = coordenada_seleccionada
+			juego_logico.tablero.mover_pieza(origen, coord_click)
 			
-			resaltar_casilla(coordenada_seleccionada, false)
+			resaltar_casilla(origen, false)
 			dibujar_movimientos_legales(movimientos_resaltados, false) 
 			movimientos_resaltados.clear()
 			
-			# --- ¡NUEVO! COMPROBAR CORONACIÓN ---
 			if juego_logico.tablero.es_coronacion(coord_click):
 				pos_en_coronacion = coord_click
+				origen_coronacion = origen
 				mostrar_menu_coronacion(juego_logico.turno_actual)
+				coordenada_seleccionada = Vector2(-1, -1)
 			else:
-				# Si no corona, cambia el turno normalmente
 				cambiar_turno()
-				
-			coordenada_seleccionada = Vector2(-1, -1)
-			actualizar_vista_completa()
+				coordenada_seleccionada = Vector2(-1, -1)
+				actualizar_vista_completa()
+				# Enviar movimiento por red
+				movimiento_realizado.emit(origen, coord_click, -1) 
 			
 		elif pieza_clickeada != null and pieza_clickeada.color == juego_logico.turno_actual:
 			resaltar_casilla(coordenada_seleccionada, false)
@@ -117,6 +130,23 @@ func cambiar_turno() -> void:
 	else:
 		juego_logico.turno_actual = PiezaAjedrez.ColorPieza.BLANCO
 
+# --- NUEVO: FUNCIÓN PARA RECIBIR MOVIMIENTOS DEL RIVAL ---
+func aplicar_movimiento_red(desde: Vector2, hasta: Vector2, tipo_coronacion: int) -> void:
+	juego_logico.tablero.mover_pieza(desde, hasta)
+	
+	if tipo_coronacion != -1:
+		juego_logico.tablero.coronar_peon(hasta, tipo_coronacion as PiezaAjedrez.Tipo)
+		
+	cambiar_turno()
+	
+	# Limpia visuales locales por si estabas tocando una pieza enemiga
+	coordenada_seleccionada = Vector2(-1, -1)
+	dibujar_movimientos_legales(movimientos_resaltados, false)
+	movimientos_resaltados.clear()
+	
+	actualizar_vista_completa()
+
+
 func actualizar_vista_completa() -> void:
 	for fila in range(8):
 		for columna in range(8):
@@ -124,7 +154,6 @@ func actualizar_vista_completa() -> void:
 			for hijo in casilla_visual.get_children():
 				hijo.queue_free()
 				
-			# Evaluamos el color base y si amerita pintarse de rojo
 			repintar_casilla_base(casilla_visual, columna, fila)
 				
 			var pieza_logica = juego_logico.tablero.obtener_pieza(columna, fila)
@@ -138,10 +167,8 @@ func actualizar_vista_completa() -> void:
 				casilla_visual.add_child(textura_pieza)
 
 func resaltar_casilla(coord: Vector2, activar: bool) -> void:
-	# Si la coordenada es (-1, -1), salimos de la función para evitar errores
 	if coord.x < 0 or coord.y < 0:
 		return
-		
 	var casilla = grid.get_node(str(int(coord.y)) + "_" + str(int(coord.x)))
 	if activar:
 		casilla.color = color_resaltado
@@ -157,13 +184,11 @@ func dibujar_movimientos_legales(movimientos: Array[Vector2], mostrar: bool) -> 
 			repintar_casilla_base(casilla, int(mov.x), int(mov.y))
 
 func repintar_casilla_base(casilla: ColorRect, x: int, y: int) -> void:
-	# 1. Pintamos el color claro u oscuro tradicional
 	if (x + y) % 2 == 0:
 		casilla.color = color_claro
 	else:
 		casilla.color = color_oscuro
 		
-	# 2. Si resulta que aquí hay un Rey, verificamos si está en jaque para ponerlo rojo
 	var pieza = juego_logico.tablero.obtener_pieza(x, y)
 	if pieza != null and pieza.tipo == PiezaAjedrez.Tipo.REY:
 		if juego_logico.esta_en_jaque(pieza.color):
@@ -181,7 +206,6 @@ func mostrar_menu_coronacion(color: PiezaAjedrez.ColorPieza) -> void:
 	titulo.text = "¡Elige coronación!"
 	vbox.add_child(titulo)
 	
-	# Opciones disponibles
 	var opciones = [
 		{"tipo": PiezaAjedrez.Tipo.REINA, "nombre": "Reina"},
 		{"tipo": PiezaAjedrez.Tipo.TORRE, "nombre": "Torre"},
@@ -198,11 +222,16 @@ func mostrar_menu_coronacion(color: PiezaAjedrez.ColorPieza) -> void:
 	add_child(panel)
 
 func _on_pieza_coronada_seleccionada(tipo: PiezaAjedrez.Tipo, panel: PanelContainer) -> void:
-	# Aplicamos el cambio en la lógica
 	juego_logico.tablero.coronar_peon(pos_en_coronacion, tipo)
-	
-	# Cerramos el menú y cambiamos el turno
 	panel.queue_free()
+	
+	var hasta = pos_en_coronacion
+	var desde = origen_coronacion
 	pos_en_coronacion = Vector2(-1, -1)
+	origen_coronacion = Vector2(-1, -1)
+	
 	cambiar_turno()
 	actualizar_vista_completa()
+	
+	# Enviar movimiento de coronación por red
+	movimiento_realizado.emit(desde, hasta, tipo)

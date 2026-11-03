@@ -1,13 +1,4 @@
-
 extends Area3D
-## Zona de la mesa de ajedrez.
-## - Al entrar el jugador muestra "Presiona E".
-## - E abre el minijuego 2D de ajedrez.
-## - Escape lo cierra.
-##
-## Requisitos:
-##  * El jugador debe estar en el grupo "player" (Nodo > Grupos).
-##  * Este script va en un Area3D con un CollisionShape3D (BoxShape3D).
 
 const ESCENA_MINIJUEGO := preload("res://minijuegoAjedrez/InterfazAjedrez.tscn")
 const GRUPO_JUGADOR := "jugadores"
@@ -19,15 +10,19 @@ var capa: CanvasLayer
 var etiqueta: Label
 var modo_mouse_previo: Input.MouseMode = Input.MOUSE_MODE_VISIBLE
 
+# --- VARIABLES MULTIJUGADOR ---
+var jugador_blancas: int = 0
+var jugador_negras: int = 0
 
 func _ready() -> void:
-	# Necesario para seguir recibiendo input (Escape) mientras el juego esta pausado.
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	
+	# Detectar si alguien se desconecta bruscamente para liberar su asiento
+	if multiplayer.has_multiplayer_peer():
+		multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 
-	# Capa 2D por encima del mundo 3D: aca van el label y el minijuego.
 	capa = CanvasLayer.new()
 	capa.layer = 10
 	add_child(capa)
@@ -51,7 +46,6 @@ func _on_body_entered(body: Node3D) -> void:
 		jugador_dentro = true
 		_actualizar_etiqueta()
 
-
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group(GRUPO_JUGADOR):
 		jugador_dentro = false
@@ -63,21 +57,89 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.keycode == KEY_E and jugador_dentro and minijuego == null:
-		_abrir_minijuego()
-		get_tree().call_group("ocultar_en_minijuego", "hide")
+		if _estoy_en_red():
+			# Pide asiento al servidor
+			rpc_id(1, "solicitar_sentarse", multiplayer.get_unique_id())
+		else:
+			# Juega localmente offline (Controla ambos colores)
+			_abrir_minijuego(-1) 
+			
 		get_viewport().set_input_as_handled()
+		
 	elif event.keycode == KEY_ESCAPE and minijuego != null:
 		_cerrar_minijuego()
-		get_tree().call_group("ocultar_en_minijuego", "show")
+		if _estoy_en_red():
+			# Libera el asiento al servidor
+			rpc_id(1, "solicitar_levantarse", multiplayer.get_unique_id())
 		get_viewport().set_input_as_handled()
 
 
-func _abrir_minijuego() -> void:
-	minijuego = ESCENA_MINIJUEGO.instantiate()
-	capa.add_child(minijuego)
+func _estoy_en_red() -> bool:
+	return multiplayer.has_multiplayer_peer() and multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED
 
-	# Pausa el mundo 3D (jugador, enemigos) y libera el mouse para jugar.
-	get_tree().paused = true
+
+# --- LÓGICA DE ASIENTOS (SERVIDOR) ---
+@rpc("any_peer", "call_local", "reliable")
+func solicitar_sentarse(id_jugador: int) -> void:
+	if not multiplayer.is_server(): return
+	
+	if jugador_blancas == 0:
+		jugador_blancas = id_jugador
+	elif jugador_negras == 0 and jugador_blancas != id_jugador:
+		jugador_negras = id_jugador
+	else:
+		return # Mesa llena
+		
+	rpc("sync_asientos", jugador_blancas, jugador_negras)
+
+@rpc("any_peer", "call_local", "reliable")
+func solicitar_levantarse(id_jugador: int) -> void:
+	if not multiplayer.is_server(): return
+	
+	if jugador_blancas == id_jugador:
+		jugador_blancas = 0
+	elif jugador_negras == id_jugador:
+		jugador_negras = 0
+		
+	rpc("sync_asientos", jugador_blancas, jugador_negras)
+
+func _on_peer_disconnected(id: int) -> void:
+	if multiplayer.is_server():
+		solicitar_levantarse(id) # Si alguien se cae del server, libera su silla
+
+
+# --- LÓGICA DE ASIENTOS (CLIENTES) ---
+@rpc("authority", "call_local", "reliable")
+func sync_asientos(blancas: int, negras: int) -> void:
+	jugador_blancas = blancas
+	jugador_negras = negras
+	
+	var mi_id = multiplayer.get_unique_id() if _estoy_en_red() else 0
+	
+	if minijuego == null:
+		if mi_id == blancas:
+			_abrir_minijuego(0) # 0 = BLANCAS
+		elif mi_id == negras:
+			_abrir_minijuego(1) # 1 = NEGRAS
+
+
+# --- INSTANCIA DEL JUEGO ---
+func _abrir_minijuego(mi_color_asignado: int) -> void:
+	minijuego = ESCENA_MINIJUEGO.instantiate()
+	
+	# Le pasamos a la interfaz qué color maneja este jugador
+	minijuego.mi_color = mi_color_asignado
+	
+	# Escuchamos cuando este jugador mueva una pieza para enviarlo por red
+	minijuego.movimiento_realizado.connect(_on_jugador_movio_pieza)
+	
+	capa.add_child(minijuego)
+	get_tree().call_group("ocultar_en_minijuego", "hide")
+
+	# Si es local pausamos el mundo. Si es online, NO pausamos para no romperle el juego al otro
+	if not _estoy_en_red():
+		get_tree().paused = true
+		
 	modo_mouse_previo = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_actualizar_etiqueta()
@@ -88,10 +150,24 @@ func _cerrar_minijuego() -> void:
 		minijuego.queue_free()
 	minijuego = null
 
-	get_tree().paused = false
+	get_tree().call_group("ocultar_en_minijuego", "show")
+	
+	if get_tree().paused:
+		get_tree().paused = false
+		
 	Input.mouse_mode = modo_mouse_previo
 	_actualizar_etiqueta()
-
-
+	
 func _actualizar_etiqueta() -> void:
 	etiqueta.visible = jugador_dentro and minijuego == null
+
+
+# --- SINCRONIZACIÓN DE MOVIMIENTOS ---
+func _on_jugador_movio_pieza(desde: Vector2, hasta: Vector2, tipo_coronacion: int) -> void:
+	if _estoy_en_red():
+		rpc("sync_movimiento", desde, hasta, tipo_coronacion)
+
+@rpc("any_peer", "call_remote", "reliable")
+func sync_movimiento(desde: Vector2, hasta: Vector2, tipo_coronacion: int) -> void:
+	if minijuego != null:
+		minijuego.aplicar_movimiento_red(desde, hasta, tipo_coronacion)
