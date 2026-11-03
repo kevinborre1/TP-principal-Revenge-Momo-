@@ -133,6 +133,8 @@
 [ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="131_idtyf"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
+tonemap_mode = 2
+tonemap_exposure = 0.4
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.6550154, 0.68604404, 0.7343105, 1)
@@ -4676,70 +4678,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jyixa")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjdo5"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_khv6u"]
-_surfaces = [{
-"aabb": AABB(-29.893753, -21.353388, 0.18347168, 24.698761, 1.2338219, 1e-05),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAABAAIAAAACAAMA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAAAAAAD//wAAAAAAAP////8AAAAAAAD//wAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_oeyur"]
-resource_name = "modulo7-p1_Cube_180"
-_surfaces = [{
-"aabb": AABB(-29.893753, -21.353388, 0.18347168, 24.698761, 1.2338219, 1e-05),
-"attribute_data": PackedByteArray("/1//v/9f/3//n/9//5//vw=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAABAAIAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_tjdo5"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAAAA/////wAAAAD///////8AAP//AAD//wAA////v/+//7//v/+//7//v/+/")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_khv6u")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcd7u"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_xvqku"]
-_surfaces = [{
-"aabb": AABB(-5.194992, -21.353388, 0.18347168, 1e-05, 1.2338219, 50.093414),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAABAAIAAAACAAMA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAA//8AAAAA/////wAAAAD//wAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ifabs"]
-resource_name = "modulo7-p1_Cube_181"
-_surfaces = [{
-"aabb": AABB(-5.194992, -21.353388, 0.18347168, 1e-05, 1.2338219, 50.093414),
-"attribute_data": PackedByteArray("/1//f/9f/z//n/8//5//fw=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAABAAIAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_kcd7u"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAAAAVNUAAAAA//9U1QAA/////1TVAAD//wAAVNWqKqoqqiqqKqoqqiqqKqoq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_xvqku")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcbiy"]
 
@@ -14882,14 +14820,6 @@ mesh = SubResource("ArrayMesh_3a54o")
 [node name="Cube_135" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=226832201]
 transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504534, 0, -0.01111077, 0, -0.9999383, 183.01334, 10.570522, -0.7030382)
 mesh = SubResource("ArrayMesh_mq34m")
-
-[node name="Cube_138" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=389767012]
-transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504534, 0, -0.01111077, 0, -0.9999383, 183.01334, 10.570522, -0.7030382)
-mesh = SubResource("ArrayMesh_oeyur")
-
-[node name="Cube_139" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=769613652]
-transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504534, 0, -0.01111077, 0, -0.9999383, 183.01334, 10.570522, -0.7030382)
-mesh = SubResource("ArrayMesh_ifabs")
 
 [node name="Cube_016" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=457149280]
 transform = Transform3D(-3.0615938e-06, 0, 60.163116, 0, 0.9999998, 0, -70.04108, 0, -2.6298126e-06, 151.66873, 5.3581014, -18.720947)
