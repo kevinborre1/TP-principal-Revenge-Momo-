@@ -130,6 +130,7 @@
 [ext_resource type="Texture2D" uid="uid://bsdj8ebaf64rl" path="res://Terreno/door/low_poly_door_-_game_ready_2.png" id="104_6tfkg"]
 [ext_resource type="ArrayOccluder3D" uid="uid://b8podsok8n2hg" path="res://Terreno/terreno.occ" id="128_wtxyr"]
 [ext_resource type="Script" uid="uid://bybbxkgmoqreb" path="res://Terreno/zonaAjedrez.gd" id="129_xx8as"]
+[ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="131_idtyf"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 fog_enabled = true
@@ -17780,6 +17781,18 @@ text = "ESC
 "
 
 [node name="PantallaDesconexion" parent="Pantallas" unique_id=1061094305 instance=ExtResource("83_imqhg")]
+
+[node name="PantallaConexion" type="CanvasLayer" parent="Pantallas" unique_id=1379698489]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Pantallas/PantallaConexion" unique_id=548659009]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("131_idtyf")
+expand_mode = 1
 
 [connection signal="body_entered" from="Modulo7/Ajedreez/areaAjedreez" to="Modulo7/Ajedreez/areaAjedreez" method="_on_body_entered"]
 [connection signal="body_exited" from="Modulo7/Ajedreez/areaAjedreez" to="Modulo7/Ajedreez/areaAjedreez" method="_on_body_exited"]
