@@ -57,6 +57,10 @@ func _ready() -> void:
 		subviewport2.add_child(p2)
 		
 	if Global.modo_multijugador == "linea":
+		#LO AGREGUE PARA VER ALGO DE LA OPTIMIZACION, SI ROMPE ALGO SE SACA
+		subviewport1.render_target_update_mode = SubViewport.UPDATE_DISABLED
+		subviewport2.render_target_update_mode = SubViewport.UPDATE_DISABLED
+		#---------------------------------------------------------------
 		# MODO EN LÍNEA
 		if NetworkManager.quiero_ser_host:
 			# El host escucha cuando alguien se conecta para crearle su personaje

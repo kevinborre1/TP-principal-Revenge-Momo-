@@ -9225,6 +9225,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yqtv4")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0ile7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u3qxy"]
+size = Vector3(7.858795, 2.0407562, 3.3674316)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33jkm"]
 resource_name = "Material.037"
 cull_mode = 2
@@ -16789,6 +16794,13 @@ mesh = SubResource("ArrayMesh_8r8xw")
 visibility_range_end = 100.0
 visibility_range_end_margin = 5.0
 mesh = SubResource("ArrayMesh_n2rd3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="AlRededores/Modulo 1" unique_id=267967418]
+physics_material_override = SubResource("PhysicsMaterial_0ile7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AlRededores/Modulo 1/StaticBody3D" unique_id=319799570]
+transform = Transform3D(1, 0, 0, 0, 1, -2.5179118e-20, 0, -2.5179118e-20, 1, 2.9466705, -0.010223389, -1.1837159)
+shape = SubResource("BoxShape3D_u3qxy")
 
 [node name="Perimetro" type="Node3D" parent="AlRededores" unique_id=1227957094]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 91.67982, 0.034261584, 1286.802)
