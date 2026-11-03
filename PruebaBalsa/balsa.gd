@@ -7,14 +7,11 @@ extends CharacterBody3D
 
 @onready var zona_cubierta: Area3D = get_node_or_null("ZonaCubierta")
 
-@export var vida_balsa: int = 3
-signal balsa_destruida
-
 var is_controlled = false
 var player_is_near = false
-var player_node: Node3D = null      # jugador que está cerca (para abordar)
-var piloto: Node3D = null           # jugador que la maneja
-var pasajeros: Array[Node3D] = []   # jugadores parados sobre la cubierta
+var player_node: Node3D = null     # jugador que está cerca (para abordar)
+var piloto: Node3D = null          # jugador que la maneja
+var pasajeros: Array[Node3D] = []  # jugadores parados sobre la cubierta
 var _transform_previa: Transform3D
 var _rotacion_inicial: float = 0.0
 var _inicio_marcha_ms: int = 0
@@ -53,7 +50,6 @@ func _physics_process(delta: float) -> void:
 	
 	if is_multiplayer_authority():
 		if en_marcha:
-		# solo el conductor que tiene la autoridad puede girar
 			var turn_input := Input.get_axis("Derecha", "Izquierda")
 			var limite := deg_to_rad(angulo_maximo_giro)
 			var giro := wrapf(rotation.y - _rotacion_inicial, -PI, PI)
@@ -61,48 +57,41 @@ func _physics_process(delta: float) -> void:
 			rotation.y = _rotacion_inicial + giro
 			velocity = -transform.basis.z * speed
 		else:
-			# sin conductor la balsa esta quieta
 			velocity = Vector3.ZERO
 		
-		# Movemos la balsa
 		move_and_slide()
 		
-		# --- NUEVA LÓGICA DE COLISIÓN (Solo el Host la procesa) ---
+		# LÓGICA DE COLISIÓN
 		if en_marcha:
 			for i in get_slide_collision_count():
 				var colision = get_slide_collision(i)
 				var collider = colision.get_collider()
 				
-				# Comprobamos si con lo que chocamos es un barril
 				if collider and collider.is_in_group("Barriles"):
-					# Le decimos al barril que lo chocamos (y que se destruya)
 					if collider.has_method("_colision_balsa"):
-						collider._colision_balsa.rpc()
-					# Le restamos 1 de vida a la balsa a través de la red
-					rpc("_recibir_danio")
+						collider._colision_balsa()
 					
-					# Frenamos el chequeo de colisiones en este frame para evitar choques múltiples con el mismo barril
-					break
+					# Un solo choque devuelve la balsa y a ambos jugadores a la esquina del río
+					if Global.modo_multijugador == "linea":
+						rpc_chocar_balsa.rpc()
+					else:
+						rpc_chocar_balsa()
+					return # Cortamos el frame acá para que _arrastrar_pasajeros no los mueva
 
-	# ARRASTRAR PASAJEROS (corre en todas las PC)
 	_arrastrar_pasajeros()
 	
-	# 4. VERIFICAR SI ESTÁ ABANDONADA PARA REINICIARLA (Solo la autoridad)
+	# 4. VERIFICAR SI ESTÁ ABANDONADA PARA REINICIARLA
 	if multiplayer.multiplayer_peer and multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED:
-	# Hacer llamadas a get_unique_id() o gestionar datos de red aquí
-		# Si no hay piloto y el array de pasajeros está vacío
 		if piloto == null and pasajeros.is_empty():
-			# Verificamos que NO esté en el spawn (damos un margen de 1 metro de tolerancia)
 			if global_transform.origin.distance_to(punto_spawn) > 1.0:
 				_tiempo_vacia += delta
 				if _tiempo_vacia >= tiempo_para_reiniciar:
 					_tiempo_vacia = 0.0
-					# la mandamos al inicio
-					rpc_eliminar_balsa.rpc() 
+					rpc_eliminar_balsa.rpc()
 		else:
-			# Si alguien se sube, el contador vuelve a cero
 			_tiempo_vacia = 0.0
-			
+
+
 func _arrastrar_pasajeros() -> void:
 	var cambio := global_transform * _transform_previa.affine_inverse()
 	_transform_previa = global_transform
@@ -140,7 +129,6 @@ func rpc_abordar_balsa(id_jugador: int, subiendo: bool) -> void:
 				piloto.prepare_for_raft()
 	else:
 		bajar_piloto()
-		# Recién ahora, con el piloto ya fuera de la balsa, la autoridad vuelve al host
 		set_multiplayer_authority(1)
 
 
@@ -153,14 +141,14 @@ func _on_zona_abordaje_body_exited(body: Node3D) -> void:
 	if body == player_node:
 		player_is_near = false
 
-
 func _on_cubierta_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Jugador") and body not in pasajeros:
 		pasajeros.append(body)
 
 func _on_cubierta_body_exited(body: Node3D) -> void:
 	pasajeros.erase(body)
-	
+
+
 func eliminar_balsa() -> void:
 	if Global.modo_multijugador == "linea":
 		if multiplayer.is_server():
@@ -168,67 +156,73 @@ func eliminar_balsa() -> void:
 	else:
 		rpc_eliminar_balsa()
 
+
+# Devuelve la balsa y a AMBOS jugadores al inicio al chocar
 @rpc("any_peer", "call_local", "reliable")
-func _recibir_danio() -> void:
-	vida_balsa -= 1
-	print("¡La balsa chocó con un barril! Vidas restantes: ", vida_balsa)
+func rpc_chocar_balsa() -> void:
+	bajar_piloto(false)
+	pasajeros.clear()
+	is_controlled = false
+	set_multiplayer_authority(1)
 	
-	if vida_balsa <= 0:
-		print("¡La balsa se ha destruido!")
-		balsa_destruida.emit()
-		GameManager.set_mode(GameManager.GameMode.VIDAS_BALSA) # Le avisa al GameManager que perdieron
-		
-		# Usamos la función que ya tenías para eliminarla
-		if Global.modo_multijugador == "linea":
-			if multiplayer.is_server():
-				rpc_eliminar_balsa.rpc()
-		else:
-			rpc_eliminar_balsa()
+	# Devolvemos la balsa a su punto de origen
+	velocity = Vector3.ZERO
+	global_transform.origin = punto_spawn
+	rotation.y = _rotacion_inicial
+	force_update_transform()
+	_transform_previa = global_transform
+	
+	# Teletransportar a jugadores a punto_respawn
+	var jugadores = get_tree().get_nodes_in_group("Jugador")
+	for i in range(jugadores.size()):
+		var j = jugadores[i]
+		if is_instance_valid(j):
+			j.velocity = Vector3.ZERO
+			# Tomamos el punto_respawn (esquina del río) del jugador y los separamos 1.2m para que no se traben entre sí
+			var esquina_rio: Vector3 = j.punto_respawn if "punto_respawn" in j else (punto_spawn + transform.basis.x * 8.0)
+			j.global_position = esquina_rio + Vector3(float(i) * 1.2, 0.2, 0.0)
+			j.force_update_transform()
+
 
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_eliminar_balsa() -> void:
-	# Bajar al piloto
-	bajar_piloto()
-	# Bajar a los pasajeros
+	bajar_piloto(false)
 	for pasajero in pasajeros:
 		if not is_instance_valid(pasajero):
 			continue
-
-		# Los pasajeros no son hijos de la balsa,
-		# así que no necesitan reparent().
-		pasajero.set_deferred("global_position", global_position + transform.basis.x * 3.0)
+		if "punto_respawn" in pasajero:
+			pasajero.global_position = pasajero.punto_respawn
+			pasajero.force_update_transform()
 
 	pasajeros.clear()
 	is_controlled = false
-# 1. Matamos la inercia
-	velocity = Vector3.ZERO
+	set_multiplayer_authority(1)
 
-	# 2. Usamos global_transform.origin. Es más estricto a nivel de motor que global_position.
+	velocity = Vector3.ZERO
 	global_transform.origin = punto_spawn
 	rotation.y = _rotacion_inicial
-	
-	# 3. ¡EL TRUCO CLAVE! Esta función obliga a Godot a borrar su caché de colisiones 
-	# y aceptar inmediatamente que el objeto ahora existe en la nueva coordenada.
 	force_update_transform()
-	# 3 le devolvemos las vidas 
-	vida_balsa = 3
+	_transform_previa = global_transform
+
+
+func bajar_piloto(mover_al_costado: bool = true) -> void:
+	rotation.y = _rotacion_inicial	
+	is_controlled = false
 	
-func bajar_piloto() :
-		#Roto la balsa a la posicion original para no tener problemas de camara al bajar al piloto	
-		rotation.y = _rotacion_inicial	
-		is_controlled = false
+	if piloto:
+		piloto.reparent(get_tree().current_scene, false)
+		piloto.set_physics_process(true)
 		
-		if piloto:
-			piloto.reparent(get_tree().current_scene, false)
-			piloto.set_physics_process(true)
-			
-			if piloto.has_method("salir_de_balsa"):
-				piloto.salir_de_balsa()
-			
-			if "input_bloqueado" in piloto:
-				piloto.input_bloqueado = false
-			
-			piloto.set_deferred("global_position", global_position + transform.basis.x * 2.5)
-			piloto = null
+		if piloto.has_method("salir_de_balsa"):
+			piloto.salir_de_balsa()
 		
+		if "input_bloqueado" in piloto:
+			piloto.input_bloqueado = false
+		
+		
+		if mover_al_costado:
+			piloto.global_position = global_position + transform.basis.x * 2.5
+			piloto.force_update_transform()
+			
+		piloto = null
