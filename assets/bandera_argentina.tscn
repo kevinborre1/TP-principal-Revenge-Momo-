@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://7y3f3n46anpp"]
+
+[ext_resource type="PackedScene" uid="uid://dqajno4pku3bw" path="res://assets/tiranga_the_indian_flag.glb" id="1_mhr0j"]
+[ext_resource type="Shader" uid="uid://c38vrsvp48sn3" path="res://assets/bandera_argentina.gdshader" id="2_yc823"]
+[ext_resource type="Texture2D" uid="uid://bws65rm1x2qea" path="res://assets/bandera.jpg" id="3_hmgoc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+render_priority = 0
+shader = ExtResource("2_yc823")
+shader_parameter/usar_textura = true
+shader_parameter/textura = ExtResource("3_hmgoc")
+shader_parameter/ancho = 3.5
+shader_parameter/alto = 2.1
+shader_parameter/amplitud = 0.18
+shader_parameter/ondas = 1.6
+shader_parameter/velocidad = 8.0
+shader_parameter/caida = 0.2
+shader_parameter/desfase = 0.0
+shader_parameter/celeste = Color(0.455, 0.675, 0.875, 1)
+shader_parameter/color_sol = Color(0.965, 0.706, 0.055, 1)
+shader_parameter/borde_sol = Color(0.52, 0.2, 0.04, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+size = Vector2(3.5, 2.1)
+subdivide_width = 32
+subdivide_depth = 16
+orientation = 2
+
+[node name="BanderaArgentina" type="Node3D" unique_id=229400588]
+
+[node name="Sketchfab_Scene" parent="." unique_id=321796794 instance=ExtResource("1_mhr0j")]
+
+[node name="Tricolor" parent="Sketchfab_Scene/Sketchfab_model/5c8131552247499b9e57e78e170b170a_fbx/RootNode" parent_id_path=PackedInt32Array(321796794, 2059754895) index="2" unique_id=310800816]
+visible = false
+
+[node name="Tela" type="MeshInstance3D" parent="." unique_id=336951881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0049927, 8.562597, 0)
+material_override = SubResource("ShaderMaterial_yf5fn")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[editable path="Sketchfab_Scene"]
