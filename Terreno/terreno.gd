@@ -7,13 +7,13 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var subviewport_container2 = $HBoxContainer/SubViewportContainer2
 @onready var subviewport1 = $HBoxContainer/SubViewportContainer/SubViewport
 @onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
+@onready var cartel_conexion: CanvasLayer = $Pantallas/PantallaConexion
 @onready var pantalla_desconexion: CanvasLayer = $Pantallas/PantallaDesconexion
 @onready var texto_modo: Label = $Pantallas/Label
 @onready var activador_victoria: Area3D = $ActivadorVictoria
 
 const TIEMPO_MAX_CONEXION := 40.0
 
-var cartel_conexion: Label
 var timer_conexion: Timer
 var conexion_resuelta := false
 var saliendo := false
@@ -57,6 +57,10 @@ func _ready() -> void:
 		subviewport2.add_child(p2)
 		
 	if Global.modo_multijugador == "linea":
+		#LO AGREGUE PARA VER ALGO DE LA OPTIMIZACION, SI ROMPE ALGO SE SACA
+		subviewport1.render_target_update_mode = SubViewport.UPDATE_DISABLED
+		subviewport2.render_target_update_mode = SubViewport.UPDATE_DISABLED
+		#---------------------------------------------------------------
 		# MODO EN LÍNEA
 		if NetworkManager.quiero_ser_host:
 			# El host escucha cuando alguien se conecta para crearle su personaje
@@ -115,11 +119,7 @@ func _on_activador_victoria_body_entered(body: Node3D) -> void:
 
 # Cliente mientras no aparezca el cliente no hay camara, asi que mostramos un aviso
 func _iniciar_espera_conexion() -> void:
-	cartel_conexion = Label.new()
-	cartel_conexion.text = "Conectando con el host..."
-	cartel_conexion.add_theme_font_size_override("font_size", 32)
-	cartel_conexion.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	add_child(cartel_conexion)
+	cartel_conexion.show()
 	
 	timer_conexion = Timer.new()
 	timer_conexion.one_shot = true
