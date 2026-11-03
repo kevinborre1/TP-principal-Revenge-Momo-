@@ -9,10 +9,10 @@ corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=1854554906]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1854554906 groups=["ocultar_en_minijuego"]]
 script = ExtResource("1_alvpw")
 
-[node name="Marco" type="Panel" parent="." unique_id=1416729889]
+[node name="Marco" type="Panel" parent="." unique_id=1416729889 groups=["ocultar_en_minijuego"]]
 clip_children = 2
 offset_left = 960.0
 offset_top = 42.0

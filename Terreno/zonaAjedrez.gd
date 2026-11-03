@@ -64,9 +64,11 @@ func _input(event: InputEvent) -> void:
 
 	if event.keycode == KEY_E and jugador_dentro and minijuego == null:
 		_abrir_minijuego()
+		get_tree().call_group("ocultar_en_minijuego", "hide")
 		get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_ESCAPE and minijuego != null:
 		_cerrar_minijuego()
+		get_tree().call_group("ocultar_en_minijuego", "show")
 		get_viewport().set_input_as_handled()
 
 

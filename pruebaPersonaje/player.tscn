@@ -2059,7 +2059,7 @@ offset_bottom = 642.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0066881394, 0.6911756, 0.046158075)
 shape = SubResource("CapsuleShape3D_aud2g")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1864385930]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1864385930 groups=["ocultar_en_minijuego"]]
 
 [node name="PuntoDeMira" type="Control" parent="CanvasLayer" unique_id=501277100]
 visible = false

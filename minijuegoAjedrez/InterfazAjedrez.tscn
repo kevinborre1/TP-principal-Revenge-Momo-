@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5882353)
+color = Color(0, 0, 0, 0.9411765)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1795160293]
 anchors_preset = 15
@@ -25,8 +25,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=2017649256]
-offset_left = 296.0
-offset_top = 23.0
-offset_right = 896.0
-offset_bottom = 623.0
+offset_left = 302.0
+offset_top = 11.0
+offset_right = 902.0
+offset_bottom = 611.0
 columns = 8
