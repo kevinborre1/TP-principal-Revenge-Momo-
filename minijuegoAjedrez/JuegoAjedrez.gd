@@ -4,26 +4,59 @@ extends Node
 var tablero: TableroAjedrez
 var turno_actual: PiezaAjedrez.ColorPieza = PiezaAjedrez.ColorPieza.BLANCO
 
+# --- ¡NUEVO! Variable para rastrear la captura al paso ---
+var casilla_en_passant: Vector2 = Vector2(-1, -1)
+
 func iniciar_partida():
 	tablero = TableroAjedrez.new()
 	tablero.inicializar_tablero_clasico()
+	casilla_en_passant = Vector2(-1, -1)
+	turno_actual = PiezaAjedrez.ColorPieza.BLANCO
+
+# --- ¡NUEVO! Función centralizada que ejecuta el movimiento y detecta el En Passant ---
+func ejecutar_movimiento(desde: Vector2, hasta: Vector2) -> void:
+	var pieza = tablero.obtener_pieza(desde.x, desde.y)
+	var es_salto_doble = false
+	
+	if pieza != null and pieza.tipo == PiezaAjedrez.Tipo.PEON:
+		if abs(desde.y - hasta.y) == 2:
+			es_salto_doble = true
+		# Si se mueve en diagonal hacia una casilla vacía, es captura al paso
+		elif desde.x != hasta.x and tablero.obtener_pieza(hasta.x, hasta.y) == null:
+			tablero.casillas[desde.y][hasta.x] = null # Borramos el peón rival
+			
+	tablero.mover_pieza(desde, hasta)
+	
+	# Guardar la casilla vulnerable para el siguiente turno
+	if es_salto_doble:
+		casilla_en_passant = Vector2(desde.x, (desde.y + hasta.y) / 2.0)
+	else:
+		casilla_en_passant = Vector2(-1, -1)
 
 func obtener_movimientos_legales(pos_pieza: Vector2) -> Array[Vector2]:
 	var pieza = tablero.obtener_pieza(pos_pieza.x, pos_pieza.y)
+	if pieza == null:
+		return []
+		
 	var teoricos = pieza.obtener_movimientos_teoricos(pos_pieza, tablero)
 	var legales: Array[Vector2] = []
+	
+	# --- Añadir movimiento teórico de En Passant ---
+	if pieza.tipo == PiezaAjedrez.Tipo.PEON and casilla_en_passant != Vector2(-1, -1):
+		var dir = -1 if pieza.color == PiezaAjedrez.ColorPieza.BLANCO else 1
+		var fila_valida = 3 if pieza.color == PiezaAjedrez.ColorPieza.BLANCO else 4
+		if int(pos_pieza.y) == fila_valida:
+			if abs(pos_pieza.x - casilla_en_passant.x) == 1 and (pos_pieza.y + dir) == casilla_en_passant.y:
+				teoricos.append(casilla_en_passant)
 	
 	for mov in teoricos:
 		if not deja_rey_en_jaque(pos_pieza, mov, pieza.color):
 			legales.append(mov)
 			
-	# Enroque para Rey estándar (columna 4)
 	if pieza.tipo == PiezaAjedrez.Tipo.REY and not pieza.ya_se_movio:
 		if not deja_rey_en_jaque(pos_pieza, pos_pieza, pieza.color):
 			var y = int(pos_pieza.y)
-			# Enroque corto a la derecha (casillas 5 y 6 vacías)
 			_verificar_enroque(pieza, pos_pieza, Vector2(7, y), [Vector2(5, y), Vector2(6, y)], legales)
-			# Enroque largo a la izquierda (casillas 1, 2 y 3 vacías)
 			_verificar_enroque(pieza, pos_pieza, Vector2(0, y), [Vector2(1, y), Vector2(2, y), Vector2(3, y)], legales)
 			
 	return legales
@@ -56,39 +89,29 @@ func deja_rey_en_jaque(desde: Vector2, hasta: Vector2, color_aliado: int) -> boo
 	var pieza_movida = tablero.casillas[desde.y][desde.x]
 	var pieza_capturada = tablero.casillas[hasta.y][hasta.x]
 	
+	# Simulación especial si es captura al paso
+	var peon_ep_capturado = null
+	var pos_ep = Vector2(-1, -1)
+	if pieza_movida != null and pieza_movida.tipo == PiezaAjedrez.Tipo.PEON and hasta == casilla_en_passant and pieza_capturada == null:
+		pos_ep = Vector2(hasta.x, desde.y)
+		peon_ep_capturado = tablero.casillas[pos_ep.y][pos_ep.x]
+		tablero.casillas[pos_ep.y][pos_ep.x] = null
+		
 	tablero.casillas[hasta.y][hasta.x] = pieza_movida
 	tablero.casillas[desde.y][desde.x] = null
 	
-	var pos_rey = Vector2(-1, -1)
-	for y in range(8):
-		for x in range(8):
-			var p = tablero.casillas[y][x]
-			if p != null and p.tipo == PiezaAjedrez.Tipo.REY and p.color == color_aliado:
-				pos_rey = Vector2(x, y)
-				break
-		if pos_rey.x != -1: break
-		
-	var en_jaque = false
-	if pos_rey.x != -1:
-		for y in range(8):
-			for x in range(8):
-				var enemiga = tablero.casillas[y][x]
-				if enemiga != null and enemiga.color != color_aliado:
-					var teoricos = enemiga.obtener_movimientos_teoricos(Vector2(x, y), tablero)
-					if pos_rey in teoricos:
-						en_jaque = true
-						break
-			if en_jaque: break
-			
+	var en_jaque = esta_en_jaque(color_aliado)
+	
+	# Revertir el tablero a la normalidad
 	tablero.casillas[desde.y][desde.x] = pieza_movida
 	tablero.casillas[hasta.y][hasta.x] = pieza_capturada
-	
+	if peon_ep_capturado != null:
+		tablero.casillas[pos_ep.y][pos_ep.x] = peon_ep_capturado
+		
 	return en_jaque
-	
+
 func esta_en_jaque(color_aliado: int) -> bool:
 	var pos_rey = Vector2(-1, -1)
-	
-	# 1. Buscamos dónde está el Rey de este color
 	for y in range(8):
 		for x in range(8):
 			var p = tablero.casillas[y][x]
@@ -97,7 +120,6 @@ func esta_en_jaque(color_aliado: int) -> bool:
 				break
 		if pos_rey.x != -1: break
 		
-	# 2. Verificamos si algún enemigo puede caer en la casilla del Rey
 	if pos_rey.x != -1:
 		for y in range(8):
 			for x in range(8):
@@ -107,7 +129,7 @@ func esta_en_jaque(color_aliado: int) -> bool:
 					if pos_rey in teoricos:
 						return true
 	return false
-	# Revisa si el jugador de un color tiene al menos UN movimiento legal en todo el tablero
+
 func tiene_movimientos_disponibles(color: PiezaAjedrez.ColorPieza) -> bool:
 	for y in range(8):
 		for x in range(8):
@@ -115,9 +137,8 @@ func tiene_movimientos_disponibles(color: PiezaAjedrez.ColorPieza) -> bool:
 			if p != null and p.color == color:
 				var legales = obtener_movimientos_legales(Vector2(x, y))
 				if legales.size() > 0:
-					return true # Encontró al menos un movimiento válido
+					return true
 	return false
 
-# Verifica si es jaque mate para el color indicado
 func es_jaque_mate(color: PiezaAjedrez.ColorPieza) -> bool:
 	return esta_en_jaque(color) and not tiene_movimientos_disponibles(color)

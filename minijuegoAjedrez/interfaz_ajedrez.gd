@@ -75,8 +75,6 @@ func _on_casilla_clic(event: InputEvent, x: int, y: int) -> void:
 func manejar_seleccion(coord_click: Vector2) -> void:
 	if pos_en_coronacion != Vector2(-1, -1):
 		return
-
-	# ¡FILTRO DE MULTIJUGADOR! Si no es mi turno, no puedo hacer nada.
 	if mi_color != -1 and mi_color != juego_logico.turno_actual:
 		return
 
@@ -98,7 +96,8 @@ func manejar_seleccion(coord_click: Vector2) -> void:
 			
 		elif coord_click in movimientos_resaltados:
 			var origen = coordenada_seleccionada
-			juego_logico.tablero.mover_pieza(origen, coord_click)
+			# --- ACTUALIZADO: Usa la función que gestiona el En Passant ---
+			juego_logico.ejecutar_movimiento(origen, coord_click)
 			
 			resaltar_casilla(origen, false)
 			dibujar_movimientos_legales(movimientos_resaltados, false) 
@@ -111,9 +110,10 @@ func manejar_seleccion(coord_click: Vector2) -> void:
 				coordenada_seleccionada = Vector2(-1, -1)
 			else:
 				cambiar_turno()
+				verificar_fin_partida() # Comprueba si alguien ganó
+				
 				coordenada_seleccionada = Vector2(-1, -1)
 				actualizar_vista_completa()
-				# Enviar movimiento por red
 				movimiento_realizado.emit(origen, coord_click, -1) 
 			
 		elif pieza_clickeada != null and pieza_clickeada.color == juego_logico.turno_actual:
@@ -132,20 +132,19 @@ func cambiar_turno() -> void:
 
 # --- NUEVO: FUNCIÓN PARA RECIBIR MOVIMIENTOS DEL RIVAL ---
 func aplicar_movimiento_red(desde: Vector2, hasta: Vector2, tipo_coronacion: int) -> void:
-	juego_logico.tablero.mover_pieza(desde, hasta)
+	juego_logico.ejecutar_movimiento(desde, hasta) # --- ACTUALIZADO ---
 	
 	if tipo_coronacion != -1:
 		juego_logico.tablero.coronar_peon(hasta, tipo_coronacion as PiezaAjedrez.Tipo)
 		
 	cambiar_turno()
+	verificar_fin_partida() # Comprueba si alguien ganó
 	
-	# Limpia visuales locales por si estabas tocando una pieza enemiga
 	coordenada_seleccionada = Vector2(-1, -1)
 	dibujar_movimientos_legales(movimientos_resaltados, false)
 	movimientos_resaltados.clear()
 	
 	actualizar_vista_completa()
-
 
 func actualizar_vista_completa() -> void:
 	for fila in range(8):
@@ -231,7 +230,65 @@ func _on_pieza_coronada_seleccionada(tipo: PiezaAjedrez.Tipo, panel: PanelContai
 	origen_coronacion = Vector2(-1, -1)
 	
 	cambiar_turno()
-	actualizar_vista_completa()
+	verificar_fin_partida() # Comprueba si alguien ganó
 	
-	# Enviar movimiento de coronación por red
+	actualizar_vista_completa()
 	movimiento_realizado.emit(desde, hasta, tipo)
+
+func verificar_fin_partida() -> void:
+	if juego_logico.es_jaque_mate(juego_logico.turno_actual):
+		var ganador = "Blancas" if juego_logico.turno_actual == PiezaAjedrez.ColorPieza.NEGRO else "Negras"
+		mostrar_cartel_final("¡JAQUE MATE!\nGanaron las " + ganador)
+
+func mostrar_cartel_final(mensaje: String) -> void:
+	# 1. Usamos un CenterContainer que ocupe toda la pantalla para un centrado absoluto
+	var center = CenterContainer.new()
+	center.name = "CartelVictoria"
+	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	
+	var panel = PanelContainer.new()
+	center.add_child(panel)
+	
+	var margin = MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 40)
+	margin.add_theme_constant_override("margin_right", 40)
+	margin.add_theme_constant_override("margin_top", 30)
+	margin.add_theme_constant_override("margin_bottom", 30)
+	panel.add_child(margin)
+	
+	var vbox = VBoxContainer.new()
+	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	margin.add_child(vbox)
+	
+	var label = Label.new()
+	label.text = mensaje
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", 40)
+	label.add_theme_color_override("font_color", Color("E06666"))
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
+	label.add_theme_constant_override("outline_size", 8)
+	vbox.add_child(label)
+	
+	# Espaciador para separar el texto del botón
+	var spacer = Control.new()
+	spacer.custom_minimum_size = Vector2(0, 20)
+	vbox.add_child(spacer)
+	
+	var btn = Button.new()
+	btn.text = "Aceptar y Salir"
+	btn.custom_minimum_size = Vector2(200, 50)
+	
+	# 2. Conectamos el botón a nuestra nueva función de salida
+	btn.pressed.connect(_on_boton_aceptar_victoria)
+	
+	vbox.add_child(btn)
+	add_child(center)
+
+func _on_boton_aceptar_victoria() -> void:
+	# Simulamos por código que el jugador presionó la tecla ESC.
+	# Esto hará que zonaAjedrez.gd capture la tecla, cierre la interfaz, 
+	# devuelva el control al jugador y avise al servidor si estabas online.
+	var ev = InputEventKey.new()
+	ev.keycode = KEY_ESCAPE
+	ev.pressed = true
+	Input.parse_input_event(ev)
