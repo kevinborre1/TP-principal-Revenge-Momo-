@@ -2535,6 +2535,8 @@ shadow_mesh = SubResource("ArrayMesh_h57ch")
 [sub_resource type="BoxShape3D" id="BoxShape3D_rblst"]
 size = Vector3(1.1825562, 1, 1.9343872)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8jko8"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmxxs"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_unlad"]
@@ -4724,6 +4726,8 @@ shadow_mesh = SubResource("ArrayMesh_ishpf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nkoh7"]
 size = Vector3(1.546875, 1, 5.3485107)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jxvtg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t753u"]
 
@@ -12999,6 +13003,7 @@ script = ExtResource("30_v7i46")
 oleada_1 = [NodePath("../enemigo2"), NodePath("../enemigo3"), NodePath("../enemigo4"), NodePath("../enemigo5"), NodePath("../enemigo6")]
 oleada_2 = [NodePath("../enemigo7"), NodePath("../enemigo8"), NodePath("../enemigo9"), NodePath("../enemigo10"), NodePath("../enemigo11")]
 jefe = NodePath("../enemigoLider")
+permitir_un_jugador = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Enemigos VictorBars/PuntoActivacionOleadas" unique_id=1320325886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -13611,6 +13616,18 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tw80j")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026/StaticBody3D" unique_id=889366058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26913452, 0, 0.021879196)
 shape = SubResource("BoxShape3D_rblst")
+
+[node name="ConsejoMomo" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026" unique_id=53852583]
+transform = Transform3D(-1.36, 0, 0, 0, 1.985, 0, 0, 0, 0.085, -0.2348603, 0.7296888, 0.89603806)
+script = ExtResource("46_idtyf")
+mensaje = "¡Cuidado con Momo!
+
+Si te quedas quieto, te lanzará ladrillos. 
+
+Su escudo, que lo mantiene inmune, solo puede ser desactivado mediante 2 botones verdes."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026/ConsejoMomo" unique_id=33077025]
+shape = SubResource("BoxShape3D_8jko8")
 
 [node name="Cube_027" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1305720288]
 transform = Transform3D(121.501656, 0, 0, 0, 8.902342, 0, 0, 0, 54.028698, 14.561375, 13.350308, 1.5532211)
@@ -14880,6 +14897,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0gkdn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_016/StaticBody3D" unique_id=1553101415]
 transform = Transform3D(0.99999976, 0, -7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -0.2734375, 0, -1.6279907)
 shape = SubResource("BoxShape3D_nkoh7")
+
+[node name="ConsejoAjedrez" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_016" unique_id=1414561467]
+transform = Transform3D(0.385, 0, -6.217249e-15, 0, 1.035, 0, 1.5987212e-14, 0, 0.20499998, -0.34561157, 0.94912136, 0.4685843)
+script = ExtResource("46_idtyf")
+mensaje = "Si prefieres algo más clásico, intenta interactuando con el tablero de ajedrez..."
+duracion = 6.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_016/ConsejoAjedrez" unique_id=1347477982]
+shape = SubResource("BoxShape3D_jxvtg")
 
 [node name="Cube_017" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=425309913]
 transform = Transform3D(-3.0615938e-06, 0, 63.68787, 0, 1, 0, -70.0411, 0, -2.783885e-06, 36.320824, 5.358103, -19.008545)
