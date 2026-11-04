@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhn7o6xp0ioft"]
 
-[ext_resource type="Texture2D" uid="uid://cai556ph3red5" path="res://Imagenes/menu fondo.png" id="1_b6vp1"]
 [ext_resource type="Script" uid="uid://xr5r8dc00epk" path="res://Menu/victoria.gd" id="1_my38n"]
+[ext_resource type="Texture2D" uid="uid://k73olqmna78k" path="res://Imagenes/victoria.png" id="2_my38n"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1426188231]
 script = ExtResource("1_my38n")
@@ -11,24 +11,18 @@ offset_left = -2.0
 offset_top = -1.0
 offset_right = 1154.0
 offset_bottom = 650.0
-texture = ExtResource("1_b6vp1")
+texture = ExtResource("2_my38n")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="." unique_id=765115005]
-offset_left = 471.0
-offset_top = 360.0
-offset_right = 699.0
-offset_bottom = 501.0
-pivot_offset = Vector2(183, 24)
-theme_override_font_sizes/font_size = 50
-text = "ganaste
-"
-
 [node name="Button" type="Button" parent="." unique_id=1772506631]
-offset_left = 456.0
-offset_top = 445.0
-offset_right = 673.0
-offset_bottom = 506.0
-text = "Ir al menu"
+offset_left = 435.0
+offset_top = 495.0
+offset_right = 771.0
+offset_bottom = 599.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.9852281, 0.88307387, 1.540184e-06, 1)
+theme_override_font_sizes/font_size = 42
+text = "Volver al menú"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
