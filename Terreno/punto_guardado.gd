@@ -2,6 +2,7 @@ extends Area3D
 @export var nombre_logro: String = ""
 # NUEVO: Referencia modular al punto donde queremos que reaparezca el jugador.
 @export var punto_de_aparicion: Marker3D
+@export var muertoMomo: bool
 var ya_activado: bool = false
 var puede_guardar: bool = false
 static var posiciones_cargadas_en_escena: bool = false
@@ -32,7 +33,7 @@ func _on_body_entered(body: Node3D) -> void:
 		
 		# NUEVO: Le pasamos la posición predeterminada a nuestro sistema de guardado
 		if punto_de_aparicion != null:
-			# Asumimos que creas esta función en tu Singleton SaveAndLoad
+			SaveAndLoad.guardarEstadoMomo(muertoMomo)
 			SaveAndLoad.establecer_posicion_predeterminada(punto_de_aparicion.global_position)
 			print("guardando")
 		SaveAndLoad.actualizar_logro(nombre_logro)

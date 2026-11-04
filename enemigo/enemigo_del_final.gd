@@ -13,11 +13,12 @@ var muriendo: bool = false
 @onready var animation_player: AnimationPlayer
 
 func _ready() -> void:
-	visible = false
+	visible = true
 	_cambiar_estado_colisiones(true)
-	set_physics_process(false) # apagamos las fisicas de los enemigos al empezar hasta que se activen
+	set_physics_process(true) # apagamos las fisicas de los enemigos al empezar hasta que se activen
 	animation_player = $Walking/AnimationPlayer
 func _physics_process(delta: float) -> void:
+	print(global_position)
 	if not multiplayer.is_server() or not activo:
 		return
 # Aplicar gravedad para que no flote

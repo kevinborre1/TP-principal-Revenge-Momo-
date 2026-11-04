@@ -18,3 +18,5 @@ extends Resource
 @export var estado_items_mapa_guardado: bool = false
 @export var items_restantes_en_mapa: Array = []
 @export var items_soltados: Array[Dictionary] = []
+
+@export var momoMuerto: bool = false

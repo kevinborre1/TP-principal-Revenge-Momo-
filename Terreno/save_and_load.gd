@@ -495,3 +495,32 @@ func destruir_partida_y_limpiar() -> void:
 	cache_inventario_cliente.clear()
 	posicion_segura_host = Vector3.ZERO
 	posicion_segura_cliente = Vector3.ZERO
+func guardarEstadoMomo(muerto: bool) -> void:
+	if not multiplayer.is_server() or rutaUtilizada == "":
+		return
+	# Se carga lo que ya había para no perder posiciones ni logros
+	var data: SaveData = null
+	if ResourceLoader.exists(rutaUtilizada):
+		data = ResourceLoader.load(rutaUtilizada, "", ResourceLoader.CACHE_MODE_IGNORE) as SaveData
+	if data == null:
+		data = SaveData.new()
+	data.momoMuerto = muerto
+	if data.escena_actual == "":
+		data.escena_actual = get_tree().current_scene.scene_file_path
+	
+	var err := ResourceSaver.save(data, rutaUtilizada)
+	if err != OK:
+		push_warning("No se pudo guardar el estado de Momo (error %d)" % err)
+func momoMuerto() -> bool:
+	var muerto = false
+	if not multiplayer.is_server() or rutaUtilizada == "":
+		return muerto
+	var data: SaveData = null
+	if ResourceLoader.exists(rutaUtilizada):
+		data = ResourceLoader.load(rutaUtilizada, "", ResourceLoader.CACHE_MODE_IGNORE) as SaveData
+	if data == null:
+		data = SaveData.new()
+	muerto = data.momoMuerto
+	if data.escena_actual == "":
+		data.escena_actual = get_tree().current_scene.scene_file_path
+	return muerto
