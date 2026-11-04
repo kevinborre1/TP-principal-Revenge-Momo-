@@ -8969,6 +8969,12 @@ size = Vector3(33.098724, 40.944977, 1)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fk4yt"]
 data = PackedVector3Array(-16.5494, 20.4725, 0.5, 16.5494, 20.4725, 0.5, -16.5494, -20.4725, 0.5, 16.5494, 20.4725, 0.5, 16.5494, -20.4725, 0.5, -16.5494, -20.4725, 0.5, 16.5494, 20.4725, -0.5, -16.5494, 20.4725, -0.5, 16.5494, -20.4725, -0.5, -16.5494, 20.4725, -0.5, -16.5494, -20.4725, -0.5, 16.5494, -20.4725, -0.5, 16.5494, 20.4725, 0.5, 16.5494, 20.4725, -0.5, 16.5494, -20.4725, 0.5, 16.5494, 20.4725, -0.5, 16.5494, -20.4725, -0.5, 16.5494, -20.4725, 0.5, -16.5494, 20.4725, -0.5, -16.5494, 20.4725, 0.5, -16.5494, -20.4725, -0.5, -16.5494, 20.4725, 0.5, -16.5494, -20.4725, 0.5, -16.5494, -20.4725, -0.5, 16.5494, 20.4725, 0.5, -16.5494, 20.4725, 0.5, 16.5494, 20.4725, -0.5, -16.5494, 20.4725, 0.5, -16.5494, 20.4725, -0.5, 16.5494, 20.4725, -0.5, -16.5494, -20.4725, 0.5, 16.5494, -20.4725, 0.5, -16.5494, -20.4725, -0.5, 16.5494, -20.4725, 0.5, 16.5494, -20.4725, -0.5, -16.5494, -20.4725, -0.5)
 
+[sub_resource type="BoxMesh" id="BoxMesh_vrlqc"]
+size = Vector3(16.180908, 5.956543, 11.551086)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i635x"]
+size = Vector3(16.180908, 8.433594, 11.551086)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3mle"]
 size = Vector3(20.455387, 5.4658813, 0.6328125)
 
@@ -16648,6 +16654,15 @@ shape = SubResource("BoxShape3D_fnegy")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Modulo7/Puerta Salida" unique_id=1366861745]
 libraries/ = SubResource("AnimationLibrary_m2yru")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7" unique_id=212018152]
+transform = Transform3D(1, 0, 0, 0, 0.9999984, 0, 0, 0, 0.9999999, -190.9614, -4.955311, -365.95245)
+mesh = SubResource("BoxMesh_vrlqc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/MeshInstance3D" unique_id=243379224]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/MeshInstance3D/StaticBody3D" unique_id=1246366149]
+shape = SubResource("BoxShape3D_i635x")
+
 [node name="Guardados" type="Node" parent="." unique_id=569926142]
 
 [node name="Guardado VictorBars" type="Node" parent="Guardados" unique_id=1056565737]
@@ -17503,7 +17518,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.14346, 0, 796.1123)
 
 [node name="EnemigoDelFinal" parent="Recorrido final" unique_id=1015264731 instance=ExtResource("125_i635x")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -7.1653976, 0, -6.7107544)
-perseguir_siempre = true
 
 [node name="Perimetro2" parent="Recorrido final" unique_id=1294982970 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -7.4138336, 9.958533, -9.888306)
