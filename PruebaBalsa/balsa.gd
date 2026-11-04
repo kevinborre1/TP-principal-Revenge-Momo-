@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 signal llego_al_final
 
-@export var speed: float = 5.0
+@export var speed: float = 8.0
 @export var turn_speed: float = 2.5
 @export var angulo_maximo_giro: float = 45.0    # grados a cada lado del rumbo inicial
 @export var retraso_inicio: float = 1.0         # segundos hasta que arranca después de subirse
