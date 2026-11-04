@@ -13,6 +13,11 @@ class_name Door
 @export var tiempo_espera_maximo: float = 10.0 # Tiempo máxima abierta si nadie pasa
 @export var tiempo_limite_botones: float = 5.0 # Margen para apretar el segundo botón en solitario
 
+signal cinematica_terminada
+
+var cinematica_activa: bool = false
+var boton_saltear: Button = null
+
 var estado_botones: Dictionary = {
 	1: false,
 	2: false
@@ -33,6 +38,10 @@ func _ready() -> void:
 			atraveso_puerta.body_entered.connect(_on_atraveso_puerta_body_entered)
 	else:
 		print("ERROR: El nodo 'AtravesoPuerta' debe ser un Area3D hijo de la puerta.")
+		
+	_crear_boton_saltear()
+	if video_player and not video_player.finished.is_connected(_on_video_finished):
+		video_player.finished.connect(_on_video_finished)
 		
 func iniciar_timer_tolerancia() -> void:
 	timer_reinicio = get_tree().create_timer(tiempo_limite_botones)
@@ -109,24 +118,34 @@ func cerrar_puerta() -> void:
 
 @rpc("call_local", "any_peer", "reliable")
 func reproducir_cinematica() -> void:
-	# 1. BLOQUEAMOS CONTROLES DE TODOS LOS JUGADORES
+	# 1. Bloqueamos controles de todos los jugadores
 	get_tree().call_group("Jugador", "bloquear_controles", true)
 
-	# Teletransportamos a todos los jugadores cuando empieza el video
 	if punto_aparicion:
 		var jugadores = get_tree().get_nodes_in_group("Jugador")
 		for i in range(jugadores.size()):
 			jugadores[i].global_position = punto_aparicion.global_position + Vector3(i * 1.5, 0, 0)
 			jugadores[i].punto_respawn = punto_aparicion.global_position + Vector3(i * 1.5, 0, 0)
+
 		if video_player:
+			cinematica_activa = true
 			video_player.visible = true
 			video_player.play()
-		
-			await video_player.finished
-			video_player.visible = false
-			GameManager.papas_atacan = true
+			if boton_saltear:
+				boton_saltear.show()
+				_reposicionar_boton()
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE   # para poder clickear el botón
 
-	# 2. DESBLOQUEAMOS CONTROLES AL TERMINAR LA CINEMÁTICA
+			await cinematica_terminada   # termina solo o por el botón
+
+			cinematica_activa = false
+			video_player.visible = false
+			if boton_saltear:
+				boton_saltear.hide()
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			GameManager.papas_atacan = true
+ 
+	# 2. Desbloqueamos controles al terminar
 	get_tree().call_group("Jugador", "bloquear_controles", false)
 		
 func actualizar_estado_boton(id_boton: int, activado: bool) -> void:
@@ -147,3 +166,56 @@ func actualizar_estado_boton(id_boton: int, activado: bool) -> void:
 	else:
 		if contar_botones_activos() > 0 and not esta_abierta:
 			iniciar_timer_tolerancia() # Solo el servidor cuenta el tiempo
+			
+func _crear_boton_saltear() -> void:
+	if boton_saltear or not video_player:
+		return
+	boton_saltear = Button.new()
+	boton_saltear.text = "Saltar"
+	boton_saltear.custom_minimum_size = Vector2(110, 40)
+	boton_saltear.focus_mode = Control.FOCUS_NONE
+	boton_saltear.visible = false
+	boton_saltear.pressed.connect(_on_saltear_pressed)
+
+	# Estilo visible sobre cualquier fondo
+	var normal := StyleBoxFlat.new()
+	normal.bg_color = Color(0, 0, 0, 0.65)
+	normal.border_color = Color.WHITE
+	normal.set_border_width_all(2)
+	normal.set_corner_radius_all(8)
+	var hover := normal.duplicate() as StyleBoxFlat
+	hover.bg_color = Color(0.25, 0.25, 0.25, 0.85)
+
+	boton_saltear.add_theme_stylebox_override("normal", normal)
+	boton_saltear.add_theme_stylebox_override("hover", hover)
+	boton_saltear.add_theme_stylebox_override("pressed", hover)
+	boton_saltear.add_theme_color_override("font_color", Color.WHITE)
+	boton_saltear.add_theme_color_override("font_hover_color", Color.WHITE)
+	boton_saltear.add_theme_font_size_override("font_size", 18)
+
+	video_player.get_parent().add_child(boton_saltear)   # hijo del CanvasLayer, no del video
+	boton_saltear.z_index = 10
+	get_viewport().size_changed.connect(_reposicionar_boton)
+	_reposicionar_boton()
+	
+func _on_video_finished() -> void:
+	if cinematica_activa:
+		cinematica_terminada.emit()
+
+func _on_saltear_pressed() -> void:
+	saltear_cinematica.rpc()   # lo saltean todos a la vez, nadie queda trabado
+
+@rpc("call_local", "any_peer", "reliable")
+func saltear_cinematica() -> void:
+	if not cinematica_activa:
+		return
+	if video_player:
+		video_player.stop()
+	cinematica_terminada.emit()
+
+func _reposicionar_boton() -> void:
+	if not boton_saltear:
+		return
+	var tam_ventana := get_viewport().get_visible_rect().size
+	boton_saltear.size = boton_saltear.get_combined_minimum_size()
+	boton_saltear.position = tam_ventana - boton_saltear.size - Vector2(40, 40)

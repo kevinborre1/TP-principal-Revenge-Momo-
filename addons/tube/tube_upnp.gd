@@ -209,5 +209,5 @@ func _notification(what):
 					"error": error_string(error)
 				}))
 				return
-		
+		 
 		task_ids.clear()
