@@ -13,6 +13,9 @@ var color_resaltado = Color("8CA252")
 var color_movimiento = Color("A3B568") 
 var color_jaque = Color("E06666") 
 
+var ambos_conectados: bool = true
+var cartel_espera: Label = null
+
 var juego_logico: JuegoAjedrez
 var coordenada_seleccionada: Vector2 = Vector2(-1, -1)
 var movimientos_resaltados: Array[Vector2] = [] 
@@ -38,6 +41,19 @@ var texturas = {
 }
 
 func _ready() -> void:
+	
+	cartel_espera = Label.new()
+	cartel_espera.text = "Esperando a que se una el rival..."
+	cartel_espera.add_theme_font_size_override("font_size", 30)
+	cartel_espera.add_theme_color_override("font_color", Color.YELLOW)
+	cartel_espera.add_theme_color_override("font_outline_color", Color.BLACK)
+	cartel_espera.add_theme_constant_override("outline_size", 6)
+	cartel_espera.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	cartel_espera.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	cartel_espera.offset_top = 20 # Un poco separado del borde
+	add_child(cartel_espera)
+	
+	actualizar_estado_rival(ambos_conectados) # Chequeo inicial
 	generar_tablero_visual()
 	juego_logico = JuegoAjedrez.new()
 	add_child(juego_logico)
@@ -73,6 +89,8 @@ func _on_casilla_clic(event: InputEvent, x: int, y: int) -> void:
 		manejar_seleccion(Vector2(x, y))
 
 func manejar_seleccion(coord_click: Vector2) -> void:
+	if not ambos_conectados:
+		return
 	if pos_en_coronacion != Vector2(-1, -1):
 		return
 	if mi_color != -1 and mi_color != juego_logico.turno_actual:
@@ -173,6 +191,11 @@ func resaltar_casilla(coord: Vector2, activar: bool) -> void:
 		casilla.color = color_resaltado
 	else:
 		repintar_casilla_base(casilla, int(coord.x), int(coord.y))
+
+func actualizar_estado_rival(estan_los_dos: bool) -> void:
+	ambos_conectados = estan_los_dos
+	if cartel_espera != null:
+		cartel_espera.visible = not ambos_conectados
 
 func dibujar_movimientos_legales(movimientos: Array[Vector2], mostrar: bool) -> void:
 	for mov in movimientos:

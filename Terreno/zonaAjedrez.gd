@@ -47,20 +47,19 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group(GRUPO_JUGADOR):
-		jugador_dentro = true
-		
-		# Identificamos si este cuerpo es NUESTRO jugador (funciona offline y online)
-		if body.get_multiplayer_authority() == multiplayer.get_unique_id():
+		# ¡NUEVO! Solo reacciona si el personaje que entró es el tuyo (o si juegas offline)
+		if not _estoy_en_red() or body.get_multiplayer_authority() == multiplayer.get_unique_id():
+			jugador_dentro = true
 			jugador_local = body
-			
-		_actualizar_etiqueta()
+			_actualizar_etiqueta()
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group(GRUPO_JUGADOR):
-		jugador_dentro = false
-		if body == jugador_local:
+		# Solo reacciona si tu personaje es el que salió
+		if not _estoy_en_red() or body.get_multiplayer_authority() == multiplayer.get_unique_id():
+			jugador_dentro = false
 			jugador_local = null
-		_actualizar_etiqueta()
+			_actualizar_etiqueta()
 
 
 func _input(event: InputEvent) -> void:
@@ -132,25 +131,31 @@ func sync_asientos(blancas: int, negras: int) -> void:
 			_abrir_minijuego(0) # 0 = BLANCAS
 		elif mi_id == negras:
 			_abrir_minijuego(1) # 1 = NEGRAS
-
+			
+	# --- ¡NUEVO! Le avisamos a la interfaz en tiempo real si están ambos sentados ---
+	if minijuego != null:
+		minijuego.actualizar_estado_rival(jugador_blancas != 0 and jugador_negras != 0)
 
 # --- INSTANCIA DEL JUEGO ---
 func _abrir_minijuego(mi_color_asignado: int) -> void:
 	minijuego = ESCENA_MINIJUEGO.instantiate()
 	minijuego.mi_color = mi_color_asignado
+	
+	# --- ¡NUEVO! Validamos al instante si se puede empezar ---
+	if not _estoy_en_red():
+		minijuego.actualizar_estado_rival(true) # Si juegas offline, puedes mover de inmediato
+	else:
+		minijuego.actualizar_estado_rival(jugador_blancas != 0 and jugador_negras != 0)
+	
 	minijuego.movimiento_realizado.connect(_on_jugador_movio_pieza)
 	capa.add_child(minijuego)
 	get_tree().call_group("ocultar_en_minijuego", "hide")
 
-	# --- ¡NUEVO! CONGELAR SOLO A TU JUGADOR ---
 	if is_instance_valid(jugador_local):
 		jugador_local.set_physics_process(false)
-		jugador_local.set_process_unhandled_input(false) # Apaga el movimiento de cámara
+		jugador_local.set_process_unhandled_input(false)
 		
-	# Creamos una etiqueta global para avisarle al Menú de Opciones que no se abra
 	add_to_group("jugando_ajedrez")
-	# ------------------------------------------
-
 	modo_mouse_previo = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_actualizar_etiqueta()
