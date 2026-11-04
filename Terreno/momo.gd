@@ -61,7 +61,9 @@ func _ready() -> void:
 	_timer_onda = Timer.new()
 	_timer_onda.timeout.connect(_lanzar_onda)
 	add_child(_timer_onda)
-	
+	if SaveAndLoad.momoMuerto():
+		_cargar_muerte()
+		return
 	_aplicar_config(Fase.UNO)
 
 
@@ -284,3 +286,24 @@ func _desaparecer() -> void:
 	for c in find_children("*", "CollisionObject3D", true, false):
 		c.set_deferred("collision_layer", 0)
 		c.set_deferred("collision_mask", 0)
+		
+func _cargar_muerte() -> void:
+	# En el host se marca ya mismo, así no acepta daño mientras tanto
+	fase = Fase.MUERTO
+	vida = 0
+	_desaparecer()
+	# Se espera un momento para que el cliente ya tenga la escena cargada
+	await get_tree().create_timer(1.0).timeout
+	_aplicar_muerte_guardada.rpc()
+
+
+@rpc("authority", "call_local", "reliable")
+func _aplicar_muerte_guardada() -> void:
+	fase = Fase.MUERTO
+	vida = 0
+	if zona_ataques:
+		zona_ataques.detener()
+	_desaparecer()
+	vida_cambiada.emit(vida, vida_max)
+	fase_cambiada.emit(fase)
+	derrotado.emit()
