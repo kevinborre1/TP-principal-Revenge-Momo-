@@ -10,6 +10,9 @@ var capa: CanvasLayer
 var etiqueta: Label
 var modo_mouse_previo: Input.MouseMode = Input.MOUSE_MODE_VISIBLE
 
+var jugador_local: Node3D = null
+var menu_abierto := false
+
 # --- VARIABLES MULTIJUGADOR ---
 var jugador_blancas: int = 0
 var jugador_negras: int = 0
@@ -39,16 +42,24 @@ func _ready() -> void:
 	capa.add_child(etiqueta)
 	etiqueta.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	etiqueta.offset_bottom = -80.0
+	add_to_group("zonas_interactivas")
 
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group(GRUPO_JUGADOR):
 		jugador_dentro = true
+		
+		# Identificamos si este cuerpo es NUESTRO jugador (funciona offline y online)
+		if body.get_multiplayer_authority() == multiplayer.get_unique_id():
+			jugador_local = body
+			
 		_actualizar_etiqueta()
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group(GRUPO_JUGADOR):
 		jugador_dentro = false
+		if body == jugador_local:
+			jugador_local = null
 		_actualizar_etiqueta()
 
 
@@ -126,41 +137,48 @@ func sync_asientos(blancas: int, negras: int) -> void:
 # --- INSTANCIA DEL JUEGO ---
 func _abrir_minijuego(mi_color_asignado: int) -> void:
 	minijuego = ESCENA_MINIJUEGO.instantiate()
-	
-	# Le pasamos a la interfaz qué color maneja este jugador
 	minijuego.mi_color = mi_color_asignado
-	
-	# Escuchamos cuando este jugador mueva una pieza para enviarlo por red
 	minijuego.movimiento_realizado.connect(_on_jugador_movio_pieza)
-	
 	capa.add_child(minijuego)
 	get_tree().call_group("ocultar_en_minijuego", "hide")
 
-	# Si es local pausamos el mundo. Si es online, NO pausamos para no romperle el juego al otro
-	if not _estoy_en_red():
-		get_tree().paused = true
+	# --- ¡NUEVO! CONGELAR SOLO A TU JUGADOR ---
+	if is_instance_valid(jugador_local):
+		jugador_local.set_physics_process(false)
+		jugador_local.set_process_unhandled_input(false) # Apaga el movimiento de cámara
 		
+	# Creamos una etiqueta global para avisarle al Menú de Opciones que no se abra
+	add_to_group("jugando_ajedrez")
+	# ------------------------------------------
+
 	modo_mouse_previo = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_actualizar_etiqueta()
-
 
 func _cerrar_minijuego() -> void:
 	if is_instance_valid(minijuego):
 		minijuego.queue_free()
 	minijuego = null
-
 	get_tree().call_group("ocultar_en_minijuego", "show")
 	
-	if get_tree().paused:
-		get_tree().paused = false
+	# --- ¡NUEVO! DESCONGELAR A TU JUGADOR ---
+	if is_instance_valid(jugador_local):
+		jugador_local.set_physics_process(true)
+		jugador_local.set_process_unhandled_input(true)
+		
+	if is_in_group("jugando_ajedrez"):
+		remove_from_group("jugando_ajedrez")
+	# ----------------------------------------
 		
 	Input.mouse_mode = modo_mouse_previo
 	_actualizar_etiqueta()
-	
-func _actualizar_etiqueta() -> void:
-	etiqueta.visible = jugador_dentro and minijuego == null
 
+func _actualizar_etiqueta() -> void:
+	etiqueta.visible = jugador_dentro and minijuego == null and not menu_abierto
+
+func set_menu_abierto(estado: bool) -> void:
+	menu_abierto = estado
+	_actualizar_etiqueta()
 
 # --- SINCRONIZACIÓN DE MOVIMIENTOS ---
 func _on_jugador_movio_pieza(desde: Vector2, hasta: Vector2, tipo_coronacion: int) -> void:

@@ -6,11 +6,15 @@ func _ready() -> void:
 	hide()
 
 func _input(event: InputEvent) -> void:
+	if get_tree().has_group("jugando_ajedrez"):
+		return
+
 	if event.is_action_pressed("ui_cancel"):
 		visible = not visible
 		Global.menu_pausa_abierto = visible
 		if visible:
 			Ponercodigo()
+			get_tree().call_group("zonas_interactivas", "set_menu_abierto", true)
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			panel_logros.hide()
@@ -19,6 +23,7 @@ func _input(event: InputEvent) -> void:
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			else:
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+				get_tree().call_group("zonas_interactivas", "set_menu_abierto", false)
 
 func _jugador_local_en_minijuego() -> bool:
 	for j in get_tree().get_nodes_in_group("Jugador"):
