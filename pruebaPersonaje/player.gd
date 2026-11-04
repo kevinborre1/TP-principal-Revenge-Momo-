@@ -661,6 +661,8 @@ func _on_minijuego_terminado(gano: bool, puntaje: int) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func actualizar_modo_combate() -> void:
+	if not is_multiplayer_authority():
+		return
 	if item_en_mano is ItemBase:
 		if item_en_mano.activa_mira_combate:punto_de_mira.show()
 		else:punto_de_mira.hide()
