@@ -132,10 +132,15 @@ func sync_asientos(blancas: int, negras: int) -> void:
 		elif mi_id == negras:
 			_abrir_minijuego(1) # 1 = NEGRAS
 			
-	# --- ¡NUEVO! Le avisamos a la interfaz en tiempo real si están ambos sentados ---
+	# --- ¡MODIFICADO! Detectar si el rival se desconectó/salió ---
 	if minijuego != null:
-		minijuego.actualizar_estado_rival(jugador_blancas != 0 and jugador_negras != 0)
-
+		var estan_los_dos_ahora = (jugador_blancas != 0 and jugador_negras != 0)
+		
+		# Si antes estábamos los dos jugando, y ahora falta alguien: abandonó
+		if minijuego.ambos_conectados and not estan_los_dos_ahora:
+			minijuego.mostrar_cartel_abandono()
+		else:
+			minijuego.actualizar_estado_rival(estan_los_dos_ahora)
 # --- INSTANCIA DEL JUEGO ---
 func _abrir_minijuego(mi_color_asignado: int) -> void:
 	minijuego = ESCENA_MINIJUEGO.instantiate()

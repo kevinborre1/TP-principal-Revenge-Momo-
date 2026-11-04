@@ -315,3 +315,53 @@ func _on_boton_aceptar_victoria() -> void:
 	ev.keycode = KEY_ESCAPE
 	ev.pressed = true
 	Input.parse_input_event(ev)
+
+# --- ¡NUEVO! CARTEL DE DESCONEXIÓN DEL RIVAL ---
+func mostrar_cartel_abandono() -> void:
+	# Bloqueamos el tablero para que no se puedan mover más piezas
+	ambos_conectados = false 
+	
+	# Ocultamos el cartel amarillo pequeño de espera para que no moleste
+	if cartel_espera != null:
+		cartel_espera.visible = false
+		
+	var center = CenterContainer.new()
+	center.name = "CartelAbandono"
+	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	
+	var panel = PanelContainer.new()
+	center.add_child(panel)
+	
+	var margin = MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 40)
+	margin.add_theme_constant_override("margin_right", 40)
+	margin.add_theme_constant_override("margin_top", 30)
+	margin.add_theme_constant_override("margin_bottom", 30)
+	panel.add_child(margin)
+	
+	var vbox = VBoxContainer.new()
+	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	margin.add_child(vbox)
+	
+	var label = Label.new()
+	label.text = "¡El otro jugador se desconectó!\nLa partida ha terminado."
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", 30)
+	label.add_theme_color_override("font_color", Color("E06666"))
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
+	label.add_theme_constant_override("outline_size", 6)
+	vbox.add_child(label)
+	
+	var spacer = Control.new()
+	spacer.custom_minimum_size = Vector2(0, 20)
+	vbox.add_child(spacer)
+	
+	var btn = Button.new()
+	btn.text = "Salir de la mesa"
+	btn.custom_minimum_size = Vector2(200, 50)
+	
+	# Reutilizamos la función que simula el "ESC" para salir limpiamente
+	btn.pressed.connect(_on_boton_aceptar_victoria)
+	
+	vbox.add_child(btn)
+	add_child(center)
