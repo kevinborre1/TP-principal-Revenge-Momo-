@@ -1,6 +1,6 @@
 extends Node3D
 
-var radio: float = 4.0
+var radio: float = 3.0
 var dano: int = 30
 var retraso: float = 2.0
 

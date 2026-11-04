@@ -2087,7 +2087,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4rhgp")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cce24"]
-size = Vector3(1.4829102, 1, 2.5248413)
+size = Vector3(1.4829102, 2.0389404, 2.5248413)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wchn"]
 
@@ -2533,7 +2533,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_h57ch")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rblst"]
-size = Vector3(1.1825562, 1, 1.9343872)
+size = Vector3(1.1825562, 6.4973145, 1.9343872)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8jko8"]
 
@@ -4725,7 +4725,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ishpf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nkoh7"]
-size = Vector3(1.546875, 1, 5.3485107)
+size = Vector3(1.546875, 1.3848572, 5.3485107)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jxvtg"]
 
@@ -13493,14 +13493,14 @@ transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504534, 0, -0.01111077,
 mesh = SubResource("ArrayMesh_8pg7l")
 
 [node name="Cube_001" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=871989993]
-transform = Transform3D(-3.0615938e-06, 0, 126.871315, 0, 1, 0, -70.0411, 0, -5.5457213e-06, 28.946613, 4.961996, -15.885132)
+transform = Transform3D(-3.0615938e-06, 0, 126.871315, 0, 1, 0, -70.0411, 0, -5.5457213e-06, 28.946613, 4.961996, -18.690796)
 mesh = SubResource("ArrayMesh_depym")
 surface_material_override/0 = SubResource("StandardMaterial3D_0gkdn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_001" unique_id=2081580690]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_001/StaticBody3D" unique_id=17446271]
-transform = Transform3D(1.0000004, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.24145508, 0, 0.19528209)
+transform = Transform3D(1.0000004, 0, -2.1316282e-14, 0, 1, 0, -1.0125234e-13, 0, 1, -0.24145126, 0.5194704, 0.19528233)
 shape = SubResource("BoxShape3D_cce24")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1626048438]
@@ -13607,14 +13607,14 @@ mesh = SubResource("ArrayMesh_2i1lf")
 surface_material_override/0 = SubResource("StandardMaterial3D_wno3s")
 
 [node name="Cube_026" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1701764612]
-transform = Transform3D(51.041508, 0, 0, 0, 1, 0, 0, 0, 163.35414, -55.016613, 4.888055, -207.74512)
+transform = Transform3D(51.041508, 0, 0, 0, 1, 0, 0, 0, 163.35414, -54.67579, 4.888055, -207.74548)
 mesh = SubResource("ArrayMesh_8nj1h")
 surface_material_override/0 = SubResource("StandardMaterial3D_tw80j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026" unique_id=976570549]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026/StaticBody3D" unique_id=889366058]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26913452, 0, 0.021879196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.2691345, -2.1949465, 0.021879196)
 shape = SubResource("BoxShape3D_rblst")
 
 [node name="ConsejoMomo" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026" unique_id=53852583]
@@ -14888,14 +14888,14 @@ transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504534, 0, -0.01111077,
 mesh = SubResource("ArrayMesh_mq34m")
 
 [node name="Cube_016" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=457149280]
-transform = Transform3D(-3.0615938e-06, 0, 60.163116, 0, 0.9999998, 0, -70.04108, 0, -2.6298126e-06, 151.66873, 5.3581014, -18.720947)
+transform = Transform3D(-3.0615938e-06, 0, 60.163116, 0, 0.9999998, 0, -70.04108, 0, -2.6298126e-06, 151.66873, 5.358101, -18.97705)
 mesh = SubResource("ArrayMesh_8mi3b")
 surface_material_override/0 = SubResource("StandardMaterial3D_0gkdn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_016" unique_id=751462266]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_016/StaticBody3D" unique_id=1553101415]
-transform = Transform3D(0.99999976, 0, -7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -0.2734375, 0, -1.6279907)
+transform = Transform3D(0.99999976, 0, 3.5527137e-15, 0, 1, 0, -7.1054274e-15, 0, 0.9999903, -0.2734375, 0.19242823, -1.6279904)
 shape = SubResource("BoxShape3D_nkoh7")
 
 [node name="ConsejoAjedrez" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_016" unique_id=1414561467]
@@ -14989,7 +14989,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tk8hj")
 physics_material_override = SubResource("PhysicsMaterial_w487l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Piso de Transicion/StaticBody3D" unique_id=656950450]
-transform = Transform3D(1, 0, 0, 0, 0.99999607, 0, 0, 0, 0.99999607, 0.92251587, 0.35494232, 1.5161133)
+transform = Transform3D(1, 0, 0, 0, 0.99999607, 0, 0, 0, 0.99999607, 0.92251587, 0.35494226, 1.5161133)
 shape = SubResource("BoxShape3D_dufpk")
 
 [node name="ZonaFrenadoBalsa" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Piso de Transicion" unique_id=692547283]
@@ -15368,7 +15368,7 @@ mesh = SubResource("BoxMesh_d0de0")
 shape = SubResource("ConcavePolygonShape3D_2ror4")
 
 [node name="Pared 5" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/Obstaculos" unique_id=243881443]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 16.159622, 18.361572, 17.107605)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 16.149506, 18.344963, 17.110596)
 mesh = SubResource("BoxMesh_kl8fx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/Obstaculos/Pared 5" unique_id=1464468267]
