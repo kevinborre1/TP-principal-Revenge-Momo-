@@ -27,6 +27,8 @@ var input_bloqueado: bool = false
 var estamina_infinita: bool = false
 var escudo_activo: bool = false
 
+var esta_corriendo: bool = false
+	
 @onready var label_rol: Label = get_node_or_null("CanvasLayer2/LabelRol")
 @onready var mira_rect: Control = get_node_or_null("CanvasLayer/PuntoDeMira/Cruz")
 
@@ -290,12 +292,17 @@ func _physics_process(delta: float) -> void:
 	correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 	if Global.modo_multijugador == "local" and name == "2":
 		correr_fisico = Input.is_physical_key_pressed(KEY_P)
-	if correr_fisico and StaminaActual > 0:
+
+	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
+	var esta_moviendose: bool = input_dir.length() > 0.0
+	esta_corriendo = correr_fisico and esta_moviendose and StaminaActual > 0
+
+	if esta_corriendo:
 		velocidadActual = SPEED * multiplicadorDeCarrera
 		if not estamina_infinita:
 			StaminaActual -= StaminaPerdida
 		actualizar_barraStamina()
-	elif (StaminaActual < StaminaMax) and not correr_fisico :
+	elif StaminaActual < StaminaMax:
 		StaminaActual += StaminaRegeneracion
 		actualizar_barraStamina()
 		
@@ -309,7 +316,6 @@ func _physics_process(delta: float) -> void:
 		velocidadActual = SPEED * multiplicadorAgachado
 		
 	#CAMARA
-	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
 	var move_vector = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, spring_arm_3d.rotation.y)
 	var direction = move_vector.normalized()
 	
@@ -478,7 +484,7 @@ func player_animation():
 	var armado = item_en_mano is ItemBase and item_en_mano.activa_mira_combate
 
 	if is_moving():
-		if Input.is_action_pressed(act_correr) and StaminaActual > 0:
+		if esta_corriendo:
 			if animation.has_animation("Fast Run/mixamo_com"):
 				animation.play("Fast Run/mixamo_com", 0.2)
 			elif animation.has_animation("correr"):
