@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://b8nvdqb8wsvbc"]
 
 [ext_resource type="Script" uid="uid://b4gfag46vpcq4" path="res://Objetos-Interactivos/Sistema-Combate/bala.gd" id="1_81lri"]
-[ext_resource type="PackedScene" uid="uid://dcyf32vf8dccd" path="res://Objetos-Interactivos/Sistema-Combate/Arma/nerf_dartbullet.glb" id="2_epie7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfkbx"]
 radius = 0.087890625
 height = 0.69035554
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+radius = 0.08
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+shading_mode = 0
+albedo_color = Color(0.48761016, 0.24168018, 0.03355883, 1)
 
 [node name="Bala" type="Area3D" unique_id=565648693]
 script = ExtResource("1_81lri")
@@ -14,7 +21,10 @@ script = ExtResource("1_81lri")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_lfkbx")
 
-[node name="Sketchfab_Scene" parent="." unique_id=1793540713 instance=ExtResource("2_epie7")]
-transform = Transform3D(12.999998, 0, -7.1525574e-07, 0, 13.000001, 0, 7.1525574e-07, 0, 12.999998, -0.0005097389, -0.38802373, 16.686483)
+[node name="Visual" type="MeshInstance3D" parent="." unique_id=324365089]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_g4v7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
