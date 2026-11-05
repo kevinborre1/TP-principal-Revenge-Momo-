@@ -266,7 +266,6 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	fps.text = "FPS: " + str(Engine.get_frames_per_second())
-	player_animation()
 		
 	var velocidadActual = SPEED
 	actualizar_barraStamina()
@@ -295,15 +294,23 @@ func _physics_process(delta: float) -> void:
 
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
 	var esta_moviendose: bool = input_dir.length() > 0.0
-	esta_corriendo = correr_fisico and esta_moviendose and StaminaActual > 0
+	
+	esta_corriendo = (
+	correr_fisico
+	and esta_moviendose
+	and (StaminaActual > 0 or estamina_infinita)
+	and not agachado
+)
 
 	if esta_corriendo:
 		velocidadActual = SPEED * multiplicadorDeCarrera
+
 		if not estamina_infinita:
-			StaminaActual -= StaminaPerdida
+			StaminaActual = max(0.0, StaminaActual - StaminaPerdida)
 		actualizar_barraStamina()
+
 	elif StaminaActual < StaminaMax:
-		StaminaActual += StaminaRegeneracion
+		StaminaActual = min(StaminaMax, StaminaActual + StaminaRegeneracion)
 		actualizar_barraStamina()
 		
 		# Agacharse (en modo local solo el jugador 1)
@@ -332,6 +339,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
 	move_and_slide()
+	player_animation()
 	
 	# Actualización visual de HUDs
 	if label_contrarreloj:
@@ -484,17 +492,19 @@ func player_animation():
 	var armado = item_en_mano is ItemBase and item_en_mano.activa_mira_combate
 
 	if is_moving():
-		if esta_corriendo:
+		if esta_corriendo and (StaminaActual > 0 or estamina_infinita) and not agachado:
 			if animation.has_animation("Fast Run/mixamo_com"):
 				animation.play("Fast Run/mixamo_com", 0.2)
 			elif animation.has_animation("correr"):
-				animation.play("Fast Run/mixamo_com", 0.2)
+				animation.play("correr", 0.2)
 			else:
-				animation.play("camina", 0.2, 1.8)
+				animation.play("camina", 0.2, 1.0)
+
 		elif armado and animation.has_animation("Pistol Walk/mixamo_com"):
 			animation.play("Pistol Walk/mixamo_com", 0.2)
 		else:
 			animation.play("camina", 0.3)
+
 	elif armado and animation.has_animation("Pistol Idle/mixamo_com"):
 		animation.play("Pistol Idle/mixamo_com", 0.3)
 	else:

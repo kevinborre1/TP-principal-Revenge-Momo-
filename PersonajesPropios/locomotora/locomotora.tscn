@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cmkbsvwnicgad" path="res://PersonajesPropios/locomotora/Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation.fbx" id="1_gbiqw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
-height = 1.9833984
+radius = 0.28320313
+height = 1.8847656
 
 [node name="Locomotora" type="CharacterBody3D" unique_id=442515351]
 
@@ -82,7 +83,7 @@ bones/65/rotation = Quaternion(0.783132, -0.6138447, -0.09911005, 0.008732364)
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation" unique_id=1655194207]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation/StaticBody3D" unique_id=943284136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028600425, 0.8478657, -0.0010385513)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039597392, 0.8971821, -0.0010385513)
 shape = SubResource("CapsuleShape3D_rsdri")
 
 [editable path="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation"]
