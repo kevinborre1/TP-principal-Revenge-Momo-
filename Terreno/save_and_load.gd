@@ -154,20 +154,17 @@ func _servidor_enviar_posicion_a_jugador(peer_id: int) -> void:
 	if data == null or data.pos_host == Vector3.ZERO:
 		return
 		
-	cache_inventario_host = data.inventario_host.duplicate(true)
-	cache_inventario_cliente = data.inventario_cliente.duplicate(true)
-		
 	var offset_altura = Vector3(0, 0.5, 0)
 	var destino: Vector3
 	var inv_jugador: Array
 	
 	if peer_id == 1:
 		destino = data.pos_host + offset_altura
-		inv_jugador = data.inventario_host
+		inv_jugador = cache_inventario_host
 	else:
 		var base_cliente = data.pos_cliente if data.pos_cliente != Vector3.ZERO else (data.pos_host + Vector3(2, 0, 0))
 		destino = base_cliente + offset_altura
-		inv_jugador = data.inventario_cliente
+		inv_jugador = cache_inventario_cliente
 		
 	_cliente_aplicar_datos_guardados.rpc_id(
 		peer_id,
