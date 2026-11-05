@@ -423,11 +423,6 @@ static func aplicar_calidad_terreno(terreno: Node) -> void:
 		if mesh_asset != null and mesh_asset.name in PLANTAS_CALIDAD_BAJA:
 			mesh_asset.set_enabled(mostrar_plantas)
 
-# En "Baja" apaga las sombras del sol
-static func aplicar_calidad_sombras(luz: Node) -> void:
-	if luz is DirectionalLight3D:
-		luz.shadow_enabled = _cfg().calidad_graficos > 0
-		
 # ---------- CARGAR AL ARRANCAR ----------
 
 # LOAD: lo llama el _ready() del autoload DataAndLoad una sola vez al iniciar el juego

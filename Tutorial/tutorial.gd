@@ -4,7 +4,6 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 
 func _ready() -> void:
 	MenuOpciones.aplicar_calidad_terreno(get_node_or_null("Entorno/Terrain3D"))
-	MenuOpciones.aplicar_calidad_sombras(get_node_or_null("Entorno/DirectionalLight3D"))
 
 	if Global.modo_multijugador == "linea":
 		if not multiplayer.is_server():
