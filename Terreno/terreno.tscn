@@ -133,6 +133,7 @@
 [ext_resource type="Script" uid="uid://bybbxkgmoqreb" path="res://Terreno/zonaAjedrez.gd" id="129_xx8as"]
 [ext_resource type="PackedScene" uid="uid://7y3f3n46anpp" path="res://assets/bandera_argentina.tscn" id="130_3h8wr"]
 [ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="131_idtyf"]
+[ext_resource type="PackedScene" uid="uid://dodptykxsjo0s" path="res://PersonajesPropios/locomotora/locomotora.tscn" id="134_4igdq"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 tonemap_mode = 2
@@ -13699,6 +13700,7 @@ shape = SubResource("BoxShape3D_iaoe2")
 
 [node name="Cube_014" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1748701883]
 transform = Transform3D(113.0401, 0, 0, 0, -0.8122618, 0, 0, 0, 51.583946, 9.105843, 21.256674, 0.7302246)
+visible = false
 mesh = SubResource("ArrayMesh_a475y")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
 
@@ -17932,6 +17934,9 @@ expand_mode = 1
 
 [node name="BanderaArgentina" parent="." unique_id=229400588 instance=ExtResource("130_3h8wr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.659478, 0, 1189.016)
+
+[node name="Locomotora" parent="." unique_id=442515351 instance=ExtResource("134_4igdq")]
+transform = Transform3D(-0.73393697, 0, 2.3898404, 0, 2.5, 0, -2.3898404, 0, -0.73393697, -31.8992, 1.1225553, 978.3869)
 
 [connection signal="body_entered" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_entered"]
 [connection signal="body_exited" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_exited"]
