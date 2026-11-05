@@ -4,7 +4,7 @@ var _destruido: bool = false
 
 func _ready() -> void:
 	# Añadimos todos los barriles al grupo para que la balsa los reconozca
-	add_to_group("Barriles")
+	add_to_group("BarrilesMapa")
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
