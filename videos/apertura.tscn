@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bemnhgfu0apwf"]
+
+[ext_resource type="VideoStream" uid="uid://cmsim2d7vbm78" path="res://videos/cinematoApertura.ogv" id="1_261me"]
+[ext_resource type="Script" uid="uid://bmgdkaifg0qfq" path="res://videos/apertura.gd" id="2_i1w8t"]
+
+[node name="Apertura" type="VideoStreamPlayer" unique_id=644393208]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.799
+offset_bottom = 133.24799
+stream = ExtResource("1_261me")
+autoplay = true
+expand = true
+script = ExtResource("2_i1w8t")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

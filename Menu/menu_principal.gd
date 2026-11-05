@@ -1,9 +1,21 @@
 extends Control
+
+@onready var video_stream_player: VideoStreamPlayer = $VideoStreamPlayer 
+
 func _on_jugar_local_pressed() -> void:
 	Global.modo_multijugador = "local"
 	Global.mapa_seleccionado = "terreno"
-	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+	
+	if Global.es_partida_nueva:
+		Global.es_partida_nueva = false
+		
+		video_stream_player.visible = true
+		video_stream_player.play()
+		
+		await video_stream_player.finished
 
+	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+	
 func _on_jugar_en_linea_pressed() -> void:
 	Global.modo_multijugador = "linea"
 	Global.mapa_seleccionado = "terreno"

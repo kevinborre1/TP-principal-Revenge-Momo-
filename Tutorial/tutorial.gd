@@ -54,9 +54,16 @@ func ir_al_juego_principal() -> void:
 		return
 	_cambiando_escena = true
 	
-	# Restauramos "local" o "linea" antes de entrar a terreno.tscn
+	# Restauramos "local" o "linea" antes de cambiar de escena
 	Global.modo_multijugador = _modo_multijugador_original
-	get_tree().change_scene_to_file(ESCENA_DESTINO)
+	
+	# Si es partida nueva, mostramos el video de apertura primero
+	if Global.es_partida_nueva:
+		Global.es_partida_nueva = false
+		get_tree().change_scene_to_file("res://videos/apertura.tscn") # Ajusta la ruta si tu escena se llama distinto
+	else:
+		# Si ya no es partida nueva, salteamos el video y vamos directo al terreno
+		get_tree().change_scene_to_file(ESCENA_DESTINO)
 
 func _crear_ui_saltar() -> void:
 	var canvas := CanvasLayer.new()
