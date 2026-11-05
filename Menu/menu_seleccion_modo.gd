@@ -1,5 +1,8 @@
 extends Control
 
+const RUTA_TERRENO := "res://Terreno/terreno.tscn"
+const RUTA_TUTORIAL := "res://Tutorial/Tutorial.tscn" # Asegurate de que coincida con la ruta real de tu archivo
+
 @onready var cartel_error: Label = $CartelError
 # Botones
 @onready var normal: Button = $Normal
@@ -22,15 +25,21 @@ func _iniciar_modo(modo: String) -> void:
 	print("Modo elegido: ", modo)
 	_disable_interface()
 	
-	cartel_error.text = "Cargando mapa para crear sesión..."
-	cartel_error.show()
-	
 	Global.modo_de_juego = modo
+	
+	if modo == "normal":
+		cartel_error.text = "Cargando tutorial..."
+	else:
+		cartel_error.text = "Cargando mapa para crear sesión..."
+	cartel_error.show()
 	
 	_cargar_mapa_correspondiente()
 
 func _cargar_mapa_correspondiente() -> void:
-	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+	if Global.modo_de_juego == "normal":
+		get_tree().change_scene_to_file(RUTA_TUTORIAL)
+	else:
+		get_tree().change_scene_to_file(RUTA_TERRENO)
 
 func _enable_interface() -> void:
 	normal.disabled = false
@@ -41,7 +50,6 @@ func _disable_interface() -> void:
 	normal.disabled = true
 	vida_compartida.disabled = true
 	contrarreloj.disabled = true
-
 
 func _on_atras_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/JugarEnLinea.tscn")
