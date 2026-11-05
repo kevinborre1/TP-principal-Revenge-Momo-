@@ -20,8 +20,11 @@ const ACCIONES := {
 	"interactuar": "Interaccion"
 }
 
-const OPCIONES_FPS: Array[int] = [30, 60, 75, 144, 250]
-const NOMBRES_FPS: Array[String] = ["30 FPS", "60 FPS", "75 FPS", "144 FPS", "250 FPS"]
+
+# Plantas chicas de Terrain3D que se ocultan en calidad "Baja" 
+const PLANTAS_CALIDAD_BAJA := ["Forest_Grass_1", "Woodruff_Cluster_1", "Brown_Mushrooms_Cluster_1"]
+const OPCIONES_FPS: Array[int] = [30, 60, 75, 144, 250, 0]
+const NOMBRES_FPS: Array[String] = ["30 FPS", "60 FPS", "75 FPS", "144 FPS", "250 FPS", "Sin límite"]
 
 var _panel: PanelContainer
 var _contenido: VBoxContainer
@@ -356,7 +359,7 @@ func _cambiar_fps(indice_o_valor: int) -> void:
 	_cfg().max_fps = fps_elegido
 	
 	# Si elige más de 60 FPS (75, 144, 250), apagamos V-Sync para no bloquear en 60 Hz
-	if fps_elegido > 60:
+	if fps_elegido == 0 or fps_elegido > 60:
 		_cfg().vsync = false
 		if _boton_vsync and is_instance_valid(_boton_vsync):
 			_boton_vsync.set_pressed_no_signal(false)
@@ -408,6 +411,23 @@ static func _aplicar_graficos() -> void:
 	ventana.scaling_3d_scale = ESCALAS_3D[cfg.calidad_graficos]
 	Engine.max_fps = cfg.max_fps if "max_fps" in cfg else 60
 
+
+# En "Baja" apaga el pasto y las plantas chicas de Terrain3D
+static func aplicar_calidad_terreno(terreno: Node) -> void:
+	if terreno == null or terreno.get("assets") == null:
+		return
+	var mostrar_plantas: bool = _cfg().calidad_graficos > 0
+	var assets = terreno.assets
+	for i in assets.get_mesh_count():
+		var mesh_asset = assets.get_mesh_asset(i)
+		if mesh_asset != null and mesh_asset.name in PLANTAS_CALIDAD_BAJA:
+			mesh_asset.set_enabled(mostrar_plantas)
+
+# En "Baja" apaga las sombras del sol
+static func aplicar_calidad_sombras(luz: Node) -> void:
+	if luz is DirectionalLight3D:
+		luz.shadow_enabled = _cfg().calidad_graficos > 0
+		
 # ---------- CARGAR AL ARRANCAR ----------
 
 # LOAD: lo llama el _ready() del autoload DataAndLoad una sola vez al iniciar el juego

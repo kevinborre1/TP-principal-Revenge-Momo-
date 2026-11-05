@@ -19,6 +19,9 @@ var conexion_resuelta := false
 var saliendo := false
 
 func _ready() -> void:
+	MenuOpciones.aplicar_calidad_terreno(get_node_or_null("Terrain3D"))
+	MenuOpciones.aplicar_calidad_sombras(get_node_or_null("DirectionalLight3D"))
+	
 	if Global.modo_de_juego == "normal":
 		texto_modo.text = "Modo: Normal"
 	elif Global.modo_de_juego == "vida_compartida":
