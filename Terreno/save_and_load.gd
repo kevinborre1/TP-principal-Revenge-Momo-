@@ -93,6 +93,14 @@ func save_game() -> void:
 				"ruta": item.scene_file_path,
 				"pos": item.global_position
 		})		
+	# Guardar estado de los barriles
+	data.estado_barriles_guardado = true
+	data.barriles_restantes_en_mapa.clear()
+	# Usa "BarrilesMapa" si les pusiste grupo, o busca el nodo padre y usa sus hijos
+	for b in get_tree().get_nodes_in_group("BarrilesMapa"):
+		if is_instance_valid(b) and not b.is_queued_for_deletion():
+			data.barriles_restantes_en_mapa.append(str(b.get_path()))
+			
 	# 4. Guardar estado de las oleadas
 	data.papas_atacan = GameManager.papas_atacan
 	var activador = _obtener_activador_oleadas()
@@ -170,7 +178,9 @@ func _servidor_enviar_posicion_a_jugador(peer_id: int) -> void:
 		data.estado_pepitas_mapa_guardado,
 		data.pepitas_restantes_en_mapa,
 		data.estado_items_mapa_guardado, # NUEVO
-		data.items_restantes_en_mapa     # NUEVO
+		data.items_restantes_en_mapa,
+		data.estado_barriles_guardado, # NUEVO
+		data.barriles_restantes_en_mapa     # NUEVO
 		
 )
 	
@@ -191,7 +201,9 @@ func _cliente_aplicar_datos_guardados(
 	tiene_estado_pepitas: bool,
 	pepitas_vivas_mapa: Array,
 	tiene_estado_items: bool, # NUEVO
-	items_vivos_mapa: Array   # NUEVO
+	items_vivos_mapa: Array,   # NUEVO
+	tiene_barriles_guardado: bool,
+	barriles_vivos_mapa: Array 
 ) -> void:
 	_aplicar_pepitas_en_juego(pepitas_guardadas)
 	
@@ -211,6 +223,13 @@ func _cliente_aplicar_datos_guardados(
 			for item in get_tree().get_nodes_in_group("ItemBaseMapa"):
 				var ruta_item = str(item.get_path())
 				if not items_vivos_mapa.has(ruta_item):
+					# Usamos call_deferred() para evitar el error del spawner
+					item.queue_free.call_deferred()
+		
+		if tiene_barriles_guardado:
+			for item in get_tree().get_nodes_in_group("BarrilesMapa"):
+				var ruta_item = str(item.get_path())
+				if not barriles_vivos_mapa.has(ruta_item):
 					# Usamos call_deferred() para evitar el error del spawner
 					item.queue_free.call_deferred()
 	
@@ -430,11 +449,17 @@ func _servidor_enviar_estado_vivo_mapa(peer_id: int) -> void:
 			inventarios_vivos[jugador.name] = jugador.get_node("Inventario").items.duplicate(true)
 			print("Linea 417 save_and_load.gb El nombre del jugador en el mapa vivo es: "+jugador.name +" y el id: "+ str(peer_id))
 	 #Le manda la lista exclusivamente al jugador que acaba de entrar
-	_cliente_sincronizar_mapa_vivo.rpc_id(peer_id, pepitas_vivas, items_vivos, inventarios_vivos)
+	var barriles_vivos: Array = []
+	for b in get_tree().get_nodes_in_group("BarrilesMapa"):
+		if is_instance_valid(b) and not b.is_queued_for_deletion():
+			barriles_vivos.append(str(b.get_path()))
+			
+	# Actualiza la llamada RPC para incluir los barriles
+	_cliente_sincronizar_mapa_vivo.rpc_id(peer_id, pepitas_vivas, items_vivos, inventarios_vivos, barriles_vivos)
 
 # 3. El cliente nuevo recibe la lista y destruye lo que sobra
 @rpc("authority", "call_local", "reliable")
-func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array, inventarios_vivos: Dictionary) -> void:
+func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array, inventarios_vivos: Dictionary, barriles_vivos: Array = []) -> void:
 	# Como son objetos base del mapa (no creados por un Spawner), el cliente DEBE borrarlos localmente
 	for p in get_tree().get_nodes_in_group("PepitasMapa"):
 		if not pepitas_vivas.has(str(p.get_path())):
@@ -450,6 +475,10 @@ func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array, in
 		if jugador and jugador.has_node("Inventario"):
 			var inv_manager = jugador.get_node("Inventario")
 			#inv_manager.cargar_datos_guardados(inventarios_vivos[nombre_jugador], jugador)
+			
+	for b in get_tree().get_nodes_in_group("BarrilesMapa"):
+		if not barriles_vivos.has(str(b.get_path())):
+			b.queue_free()		
 			
 	print("Mapa sincronizado con el estado en vivo del servidor.")
 func cargar_configuracion() -> void:
