@@ -13,6 +13,7 @@ var player_scene = preload("res://pruebaPersonaje/player.tscn")
 @onready var activador_victoria: Area3D = $ActivadorVictoria
 
 const TIEMPO_MAX_CONEXION := 40.0
+const MAX_JUGADORES := 2 # host + 1 cliente
 
 var timer_conexion: Timer
 var conexion_resuelta := false
@@ -82,8 +83,16 @@ func _ready() -> void:
 
 # El Host ejecuta esto automáticamente cuando un cliente entra
 func _on_peer_connected(id: int) -> void:
-	if multiplayer.is_server():
-		add_player(id)
+	if not multiplayer.is_server():
+		return
+	# get_peers() no incluye al host, por eso se suma 1
+	if multiplayer.get_peers().size() + 1 > MAX_JUGADORES:
+		print("[Red] Sala llena, expulsando al peer ", id)
+		NetworkManager.tube_client.kick_peer(id)
+		return
+	add_player(id)
+	if multiplayer.get_peers().size() + 1 >= MAX_JUGADORES:
+		NetworkManager.tube_client.refuse_new_connections = true # cerramos la sala
 
 func add_player(peer_id: int) -> void:
 	var new_player = player_scene.instantiate()
