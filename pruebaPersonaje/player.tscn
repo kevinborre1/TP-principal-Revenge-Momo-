@@ -1343,7 +1343,7 @@ spring_length = 1.55
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=9406401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6198035e-08, 0, -0.41405725)
-far = 550.0
+far = 120.0
 
 [node name="RayCastDisparo" type="RayCast3D" parent="SpringArm3D/Camera3D" unique_id=1505029151]
 target_position = Vector3(0, 0, -100)
@@ -1872,6 +1872,8 @@ player = NodePath("..")
 texturas = Array[Texture2D]([ExtResource("10_pewqx"), ExtResource("11_hcfve"), ExtResource("12_8kgnt"), ExtResource("13_yf4ho"), ExtResource("14_pi8sm"), ExtResource("15_4dshx"), ExtResource("16_y8vk6"), ExtResource("17_jh84y"), ExtResource("18_h5773"), ExtResource("19_rmyj6"), ExtResource("20_m5yyv")])
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1306570859]
+replication_interval = 0.033
+delta_interval = 0.05
 replication_config = SubResource("SceneReplicationConfig_cm308")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1629578674]

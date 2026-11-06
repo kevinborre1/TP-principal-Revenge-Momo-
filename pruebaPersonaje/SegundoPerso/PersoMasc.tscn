@@ -64,10 +64,10 @@ metadata/_custom_type_script = "uid://dr0ie81mwqtl1"
 
 [node name="Sketchfab_Scene" parent="." unique_id=876729914 instance=ExtResource("2_low1q")]
 
-[node name="Sketchfab_model" parent="Sketchfab_Scene" index="0" unique_id=1284306633]
+[node name="Sketchfab_model" parent="Sketchfab_Scene" index="0" unique_id=414669912]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.061112165, 0)
 
-[node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0" parent_id_path=PackedInt32Array(876729914, 1179095652) index="0" unique_id=497285783]
+[node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0" parent_id_path=PackedInt32Array(876729914, 110536269) index="0" unique_id=1315364566]
 bones/1/position = Vector3(-0.00047714525, 0.965722, 0.009757437)
 bones/1/rotation = Quaternion(-0.02420275, -0.27226484, 0.008663164, 0.9618789)
 bones/2/rotation = Quaternion(0.0034017984, 0.007193422, -0.018277345, 0.99980134)
@@ -120,13 +120,13 @@ bones/51/rotation = Quaternion(-0.16829617, -0.032898992, 0.9828058, 0.06846127)
 bones/52/rotation = Quaternion(-0.091043934, 0.01688643, -0.0002612331, 0.99570364)
 bones/53/rotation = Quaternion(0.59086657, 0.031875964, 0.05005837, 0.80458367)
 
-[node name="Object_9" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="1" unique_id=340070286]
+[node name="Object_9" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="1" unique_id=439899165]
 blend_shapes/morph_0 = 0.31
 blend_shapes/morph_1 = 0.31
 blend_shapes/morph_4 = 0.064590864
 blend_shapes/morph_5 = 0.014353524
 
-[node name="Object_11" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="2" unique_id=1762661839]
+[node name="Object_11" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="2" unique_id=176707962]
 blend_shapes/morph_0 = 0.04
 blend_shapes/morph_1 = 0.04
 blend_shapes/morph_2 = 0.05
@@ -145,7 +145,7 @@ blend_shapes/morph_24 = 0.014353524
 blend_shapes/morph_27 = 0.86
 blend_shapes/morph_28 = 0.86
 
-[node name="Object_13" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="3" unique_id=670744046]
+[node name="Object_13" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="3" unique_id=53732419]
 blend_shapes/morph_0 = 0.04
 blend_shapes/morph_1 = 0.04
 blend_shapes/morph_2 = 0.05
@@ -165,7 +165,7 @@ blend_shapes/morph_28 = 0.01
 blend_shapes/morph_29 = 0.01
 blend_shapes/morph_30 = 0.01
 
-[node name="Object_15" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="4" unique_id=885942792]
+[node name="Object_15" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="4" unique_id=196897708]
 blend_shapes/morph_7 = 0.31
 blend_shapes/morph_8 = 0.31
 blend_shapes/morph_11 = 0.064590864
@@ -203,15 +203,15 @@ blend_shapes/morph_67 = 0.04
 blend_shapes/morph_68 = 0.04
 blend_shapes/morph_69 = 0.05
 
-[node name="Object_17" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="5" unique_id=577236469]
+[node name="Object_17" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="5" unique_id=888405784]
 blend_shapes/morph_16 = 0.02
 blend_shapes/morph_17 = 0.01
 
-[node name="Object_19" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="6" unique_id=1976322615]
+[node name="Object_19" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_65/GLTF_created_0/Skeleton3D" index="6" unique_id=1023927629]
 blend_shapes/morph_16 = 0.02
 blend_shapes/morph_17 = 0.01
 
-[node name="AnimationPlayer" parent="Sketchfab_Scene" index="1" unique_id=1422617781]
+[node name="AnimationPlayer" parent="Sketchfab_Scene" index="1" unique_id=801600137]
 autoplay = &"Jump/mixamo_com"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=846570448]
@@ -235,7 +235,7 @@ spring_length = 1.55
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1942510562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6198035e-08, 0, -0.41405725)
 current = true
-far = 550.0
+far = 120.0
 
 [node name="RayCastDisparo" type="RayCast3D" parent="SpringArm3D/Camera3D" unique_id=2104515943]
 target_position = Vector3(0, 0, -100)
