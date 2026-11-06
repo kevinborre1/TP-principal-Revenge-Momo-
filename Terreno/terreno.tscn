@@ -16379,6 +16379,7 @@ transform = Transform3D(-4.371139e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -
 
 [node name="Piso1" type="MeshInstance3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1749046416]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22876, 0, 100.15808)
+visible = false
 mesh = SubResource("BoxMesh_w487l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final/Piso1" unique_id=484510904]
