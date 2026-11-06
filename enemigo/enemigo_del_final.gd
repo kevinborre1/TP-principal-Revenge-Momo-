@@ -4,6 +4,8 @@ extends CharacterBody3D
 @export var perseguir_siempre: bool = true
 ## false = arranca apagado y lo activa la zona (Area3D). true = arranca activo (para probar)
 @export var activo_al_inicio: bool = false
+## Daño que le hace al jugador en cada golpe
+@export var danio: float = 100.0
 ## Distancia a la que el enemigo frena junto al jugador
 @export var distancia_parada: float = 1.2
 ## Distancia a la que el enemigo "toca" al jugador (tiene que ser mayor que distancia_parada)
@@ -28,24 +30,40 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var activo: bool = false
 var caminando: bool = false
 var tiempo_ultimo_ataque: float = 0.0
+var _transform_inicial: Transform3D
 var _tiempo_debug: float = 0.0
 
 
 func _ready() -> void:
 	# La zona Area3D busca a los enemigos de este grupo
 	add_to_group("EnemigoDelFinal")
+	# Posición y rotación donde está colocado en el mapa: a donde vuelve al reiniciar
+	_transform_inicial = global_transform
 	if region_navegacion:
 		nav_agent.navigation_layers = region_navegacion.navigation_layers
 	_aplicar_estado(activo_al_inicio)
 
 
 # ---------------------------------------------------------------
-# Activación (la llama la zona en cada peer, o se puede llamar con .rpc() desde el servidor)
+# Activación / desactivación (las llama la zona en cada peer)
 # ---------------------------------------------------------------
 
 @rpc("authority", "call_local", "reliable")
 func activar_enemigo() -> void:
 	_aplicar_estado(true)
+
+
+## Lo deja invisible, sin colisión y de vuelta en su lugar inicial
+@rpc("authority", "call_local", "reliable")
+func desactivar_enemigo() -> void:
+	_aplicar_estado(false)
+	global_transform = _transform_inicial
+	velocity = Vector3.ZERO
+	caminando = false
+	tiempo_ultimo_ataque = 0.0
+	if animation_player:
+		animation_player.stop()
+	nav_agent.target_position = global_position
 
 
 func _aplicar_estado(valor: bool) -> void:
@@ -147,16 +165,19 @@ func _comprobar_colisiones_jugador() -> void:
 		if Vector2(d.x, d.z).length() <= radio_contacto and absf(d.y) <= 1.5:
 			tiempo_ultimo_ataque = ahora
 			_rpc_ataque.rpc()
-			_rpc_golpear_jugador.rpc_id(j.get_multiplayer_authority(), j.get_path())
+			_rpc_golpear_jugador.rpc_id(j.get_multiplayer_authority(), j.get_path(), danio)
+			# Después de herir: la zona manda a AMBOS jugadores al marker y apaga a TODOS los
+			# enemigos en todos los peers. Es diferido para no cambiar la física en pleno frame.
+			get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED, "ZonaFinal", "reiniciar_recorrido")
 			break
 
 
 ## Se ejecuta SOLO en el peer dueño del jugador golpeado
 @rpc("authority", "call_local", "reliable")
-func _rpc_golpear_jugador(ruta_jugador: NodePath) -> void:
+func _rpc_golpear_jugador(ruta_jugador: NodePath, danio_recibido: float) -> void:
 	var jugador := get_node_or_null(ruta_jugador)
 	if jugador and jugador.has_method("heridoPorEnemigo"):
-		jugador.heridoPorEnemigo()
+		jugador.heridoPorEnemigo(danio_recibido)
 
 
 # Jugador más cercano (multijugador)

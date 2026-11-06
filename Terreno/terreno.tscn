@@ -9288,7 +9288,7 @@ size = Vector3(33.114975, 1, 160.11136)
 size = Vector3(33.114975, 1, 160.11136)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vwjq2"]
-size = Vector3(1, 10.560974, 14.657227)
+size = Vector3(1, 10.560974, 22.773193)
 
 [node name="Node3D" type="Node3D" unique_id=695447382]
 script = ExtResource("1_bmrm7")
@@ -15166,7 +15166,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39086914, 3.013733, 3.4019
 shape = SubResource("BoxShape3D_wwly1")
 
 [node name="P-A_Modulo7" type="Marker3D" parent="Guardados/Guardado Modulo7/Completo_Modulo7" unique_id=35620636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.354206, 1.2188501, 2.458191)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.710773, 1.2188501, 2.458191)
 
 [node name="AlRededores" type="Node3D" parent="." unique_id=1801922345]
 
@@ -16096,323 +16096,323 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.659478, 0, 1189.016)
 [node name="Locomotora" parent="." unique_id=442515351 instance=ExtResource("134_4igdq")]
 transform = Transform3D(-0.73393697, 0, 2.3898404, 0, 2.5, 0, -2.3898404, 0, -0.73393697, -31.8992, 1.1225553, 978.3869)
 
-[node name="Final" type="Node3D" parent="." unique_id=967038656]
+[node name="ZonaFinal" type="Node3D" parent="." unique_id=967038656]
 
-[node name="EnemigoDelFinal3" parent="Final" unique_id=1142631827 instance=ExtResource("125_i635x")]
+[node name="EnemigoDelFinal3" parent="ZonaFinal" unique_id=1142631827 instance=ExtResource("125_i635x")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -82.33314, 2.5818872, 790.1521)
 
-[node name="EnemigoDelFinal2" parent="Final" unique_id=1787814824 instance=ExtResource("125_i635x")]
+[node name="EnemigoDelFinal2" parent="ZonaFinal" unique_id=1787814824 instance=ExtResource("125_i635x")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -67.54369, 2.5869155, 789.4826)
 
-[node name="EnemigoDelFinal" parent="Final" unique_id=2081187540 instance=ExtResource("125_i635x")]
+[node name="EnemigoDelFinal" parent="ZonaFinal" unique_id=2081187540 instance=ExtResource("125_i635x")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -74.30886, 2.9054365, 792.5659)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Final" unique_id=58799355]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="ZonaFinal" unique_id=58799355]
 navigation_mesh = SubResource("NavigationMesh_tr3kr")
 
-[node name="Recorrido final" type="Node3D" parent="Final/NavigationRegion3D" unique_id=718019249]
+[node name="Recorrido final" type="Node3D" parent="ZonaFinal/NavigationRegion3D" unique_id=718019249]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.14346, 0, 796.1123)
 
-[node name="Perimetro2" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1744007409 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro2" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1744007409 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -7.4138336, 9.958533, -9.888306)
 
-[node name="Perimetro3" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1262775089 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro3" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1262775089 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -18.513428, 9.958533, -9.888306)
 
-[node name="Perimetro4" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1933127292 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro4" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1933127292 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 0.9081421)
 
-[node name="Perimetro5" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2143982293 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro5" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=2143982293 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 12.02002)
 
-[node name="Perimetro6" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1361769599 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro6" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1361769599 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 23.105469)
 
-[node name="Perimetro7" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1708966974 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro7" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1708966974 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 34.180115)
 
-[node name="Perimetro8" parent="Final/NavigationRegion3D/Recorrido final" unique_id=28003799 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro8" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=28003799 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 45.124084)
 
-[node name="Perimetro9" parent="Final/NavigationRegion3D/Recorrido final" unique_id=96873460 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro9" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=96873460 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 56.00055)
 
-[node name="Perimetro10" parent="Final/NavigationRegion3D/Recorrido final" unique_id=504967153 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro10" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=504967153 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 66.915344)
 
-[node name="Perimetro11" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1561509022 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro11" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1561509022 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 78.03638)
 
-[node name="Perimetro12" parent="Final/NavigationRegion3D/Recorrido final" unique_id=913252803 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro12" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=913252803 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 89.14368)
 
-[node name="Perimetro13" parent="Final/NavigationRegion3D/Recorrido final" unique_id=615225274 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro13" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=615225274 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 99.91864)
 
-[node name="Perimetro14" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1974907770 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro14" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1974907770 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 110.75043)
 
-[node name="Perimetro15" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1429944700 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro15" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1429944700 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 121.73279)
 
-[node name="Perimetro16" parent="Final/NavigationRegion3D/Recorrido final" unique_id=995158552 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro16" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=995158552 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 132.65448)
 
-[node name="Perimetro17" parent="Final/NavigationRegion3D/Recorrido final" unique_id=841298443 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro17" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=841298443 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 143.64178)
 
-[node name="Perimetro18" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1855696344 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro18" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1855696344 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 154.25067)
 
-[node name="Perimetro19" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1830054717 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro19" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1830054717 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 165.26373)
 
-[node name="Perimetro20" parent="Final/NavigationRegion3D/Recorrido final" unique_id=974049195 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro20" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=974049195 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 176.3628)
 
-[node name="Perimetro21" parent="Final/NavigationRegion3D/Recorrido final" unique_id=571561273 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro21" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=571561273 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 187.2237)
 
-[node name="Perimetro22" parent="Final/NavigationRegion3D/Recorrido final" unique_id=750978870 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro22" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=750978870 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 198.21802)
 
-[node name="Perimetro23" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1187111046 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro23" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1187111046 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 209.39807)
 
-[node name="Perimetro24" parent="Final/NavigationRegion3D/Recorrido final" unique_id=71829252 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro24" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=71829252 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -18.408302, 9.958533, 209.56921)
 
-[node name="Perimetro25" parent="Final/NavigationRegion3D/Recorrido final" unique_id=707183667 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro25" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=707183667 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -7.4252853, 9.958533, 209.56921)
 
-[node name="Perimetro26" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1475199104 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro26" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1475199104 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 3.6840286, 9.958533, 209.56921)
 
-[node name="Perimetro27" parent="Final/NavigationRegion3D/Recorrido final" unique_id=361675862 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro27" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=361675862 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 14.543964, 9.958533, 209.56921)
 
-[node name="Perimetro28" parent="Final/NavigationRegion3D/Recorrido final" unique_id=712865519 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro28" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=712865519 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 25.42971, 9.958533, 209.56921)
 
-[node name="Perimetro29" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1869002534 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro29" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1869002534 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 36.454487, 9.958533, 209.56921)
 
-[node name="Perimetro30" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2057349410 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro30" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=2057349410 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 358.7439)
 
-[node name="Perimetro31" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1050857103 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro31" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1050857103 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -19.101692, 9.958533, 347.67163)
 
-[node name="Perimetro32" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1865172534 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro32" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1865172534 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 369.53687)
 
-[node name="Perimetro33" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1756087502 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro33" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1756087502 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 380.4879)
 
-[node name="Perimetro34" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1437558661 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro34" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1437558661 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 391.52222)
 
-[node name="Perimetro35" parent="Final/NavigationRegion3D/Recorrido final" unique_id=787501324 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro35" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=787501324 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 402.3916)
 
-[node name="Perimetro36" parent="Final/NavigationRegion3D/Recorrido final" unique_id=283780675 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro36" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=283780675 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 413.28735)
 
-[node name="Perimetro37" parent="Final/NavigationRegion3D/Recorrido final" unique_id=324758263 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro37" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=324758263 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 424.4026)
 
-[node name="Perimetro38" parent="Final/NavigationRegion3D/Recorrido final" unique_id=614995347 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro38" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=614995347 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 435.42346)
 
-[node name="Perimetro39" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1650411539 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro39" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1650411539 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 446.27576)
 
-[node name="Perimetro40" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2072964683 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro40" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=2072964683 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 457.16406)
 
-[node name="Perimetro41" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1842136073 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro41" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1842136073 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 468.30774)
 
-[node name="Perimetro42" parent="Final/NavigationRegion3D/Recorrido final" unique_id=307674291 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro42" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=307674291 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 479.24744)
 
-[node name="Perimetro43" parent="Final/NavigationRegion3D/Recorrido final" unique_id=447591851 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro43" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=447591851 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 490.38965)
 
-[node name="Perimetro44" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1813041644 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro44" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1813041644 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -19.101692, 9.958533, 347.67163)
 
-[node name="Perimetro45" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2082552442 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro45" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=2082552442 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -8.132881, 9.958533, 347.67163)
 
-[node name="Perimetro46" parent="Final/NavigationRegion3D/Recorrido final" unique_id=240671479 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro46" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=240671479 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 2.917389, 9.958533, 347.67163)
 
-[node name="Perimetro47" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1582105059 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro47" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1582105059 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 13.9282875, 9.958533, 347.67163)
 
-[node name="Perimetro48" parent="Final/NavigationRegion3D/Recorrido final" unique_id=582738986 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro48" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=582738986 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 25.117805, 9.958533, 347.67163)
 
-[node name="Perimetro49" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1408501327 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro49" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1408501327 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 36.308514, 9.958533, 347.67163)
 
-[node name="Perimetro50" parent="Final/NavigationRegion3D/Recorrido final" unique_id=384576443 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro50" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=384576443 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 79.8583, 9.958533, 347.67163)
 
-[node name="Perimetro51" parent="Final/NavigationRegion3D/Recorrido final" unique_id=82151114 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro51" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=82151114 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 90.94949, 9.958533, 347.67163)
 
-[node name="Perimetro52" parent="Final/NavigationRegion3D/Recorrido final" unique_id=839385789 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro52" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=839385789 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 358.79858)
 
-[node name="Perimetro53" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1754408727 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro53" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1754408727 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 369.81116)
 
-[node name="Perimetro54" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1660197974 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro54" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1660197974 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 380.91248)
 
-[node name="Perimetro55" parent="Final/NavigationRegion3D/Recorrido final" unique_id=619066533 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro55" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=619066533 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-6.338151e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1.45, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 388.89026)
 
-[node name="Perimetro56" parent="Final/NavigationRegion3D/Recorrido final" unique_id=185464254 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro56" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=185464254 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 112.7985, 9.958533, 400.1494)
 
-[node name="Perimetro57" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1714016423 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro57" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1714016423 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 112.69141, 9.958533, 400.12036)
 
-[node name="Perimetro58" parent="Final/NavigationRegion3D/Recorrido final" unique_id=421890676 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro58" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=421890676 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 123.55812, 9.958533, 411.1305)
 
-[node name="Perimetro59" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1171881914 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro59" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1171881914 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 101.93587, 9.958533, 389.06213)
 
-[node name="Perimetro60" parent="Final/NavigationRegion3D/Recorrido final" unique_id=877526515 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro60" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=877526515 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 129.98535, 9.958533, 474.1532)
 
-[node name="Perimetro61" parent="Final/NavigationRegion3D/Recorrido final" unique_id=53905385 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro61" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=53905385 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 130.05359, 9.958533, 485.17664)
 
-[node name="Perimetro62" parent="Final/NavigationRegion3D/Recorrido final" unique_id=159108090 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro62" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=159108090 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1, -8.742278e-08, 3.821371e-15, 130.14168, 9.958533, 490.70483)
 
-[node name="Perimetro63" parent="Final/NavigationRegion3D/Recorrido final" unique_id=222159872 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro63" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=222159872 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 347.67163)
 
-[node name="Perimetro64" parent="Final/NavigationRegion3D/Recorrido final" unique_id=901251975 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro64" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=901251975 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 336.72754)
 
-[node name="Perimetro65" parent="Final/NavigationRegion3D/Recorrido final" unique_id=772721875 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro65" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=772721875 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 325.6798)
 
-[node name="Perimetro66" parent="Final/NavigationRegion3D/Recorrido final" unique_id=645552763 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro66" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=645552763 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 314.5946)
 
-[node name="Perimetro67" parent="Final/NavigationRegion3D/Recorrido final" unique_id=7092489 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro67" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=7092489 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 303.41187)
 
-[node name="Perimetro68" parent="Final/NavigationRegion3D/Recorrido final" unique_id=759982975 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro68" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=759982975 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 292.2566)
 
-[node name="Perimetro69" parent="Final/NavigationRegion3D/Recorrido final" unique_id=408201409 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro69" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=408201409 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 281.349)
 
-[node name="Perimetro70" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1748546264 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro70" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1748546264 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 270.2788)
 
-[node name="Perimetro71" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2085088920 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro71" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=2085088920 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 259.23535)
 
-[node name="Perimetro72" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1579241583 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro72" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1579241583 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 248.18909)
 
-[node name="Perimetro73" parent="Final/NavigationRegion3D/Recorrido final" unique_id=332390577 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro73" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=332390577 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 237.03174)
 
-[node name="Perimetro74" parent="Final/NavigationRegion3D/Recorrido final" unique_id=707767540 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro74" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=707767540 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 225.95703)
 
-[node name="Perimetro75" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1869627499 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro75" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1869627499 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 214.78552)
 
-[node name="Perimetro76" parent="Final/NavigationRegion3D/Recorrido final" unique_id=964845629 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro76" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=964845629 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-1.09278474e-07, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2.5, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 203.85846)
 
-[node name="Perimetro77" parent="Final/NavigationRegion3D/Recorrido final" unique_id=994082410 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro77" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=994082410 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 347.67163)
 
-[node name="Perimetro78" parent="Final/NavigationRegion3D/Recorrido final" unique_id=279247301 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro78" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=279247301 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 336.72754)
 
-[node name="Perimetro79" parent="Final/NavigationRegion3D/Recorrido final" unique_id=730505583 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro79" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=730505583 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 325.6798)
 
-[node name="Perimetro80" parent="Final/NavigationRegion3D/Recorrido final" unique_id=8644492 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro80" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=8644492 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 314.5946)
 
-[node name="Perimetro81" parent="Final/NavigationRegion3D/Recorrido final" unique_id=501402002 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro81" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=501402002 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 303.41187)
 
-[node name="Perimetro82" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1244714769 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro82" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1244714769 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 292.2566)
 
-[node name="Perimetro83" parent="Final/NavigationRegion3D/Recorrido final" unique_id=867978715 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro83" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=867978715 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 281.349)
 
-[node name="Perimetro84" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2098045904 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro84" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=2098045904 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 270.2788)
 
-[node name="Perimetro85" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2102098786 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro85" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=2102098786 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 259.23535)
 
-[node name="Perimetro86" parent="Final/NavigationRegion3D/Recorrido final" unique_id=859719887 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro86" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=859719887 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 248.18909)
 
-[node name="Perimetro87" parent="Final/NavigationRegion3D/Recorrido final" unique_id=687956563 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro87" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=687956563 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 237.03174)
 
-[node name="Perimetro88" parent="Final/NavigationRegion3D/Recorrido final" unique_id=176933019 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro88" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=176933019 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 225.95703)
 
-[node name="Perimetro89" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1926729641 instance=ExtResource("74_qbwh1")]
+[node name="Perimetro89" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1926729641 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 214.78552)
 
-[node name="Piso1" type="MeshInstance3D" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1749046416]
+[node name="Piso1" type="MeshInstance3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1749046416]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22876, 0, 100.15808)
 mesh = SubResource("BoxMesh_w487l")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Final/NavigationRegion3D/Recorrido final/Piso1" unique_id=484510904]
+[node name="StaticBody3D" type="StaticBody3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final/Piso1" unique_id=484510904]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Final/NavigationRegion3D/Recorrido final/Piso1/StaticBody3D" unique_id=1656830343]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final/Piso1/StaticBody3D" unique_id=1656830343]
 shape = SubResource("BoxShape3D_4igdq")
 
-[node name="Piso 2" type="MeshInstance3D" parent="Final/NavigationRegion3D/Recorrido final" unique_id=754923116]
+[node name="Piso 2" type="MeshInstance3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=754923116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.542908, 0, 199.93121)
 visible = false
 mesh = SubResource("BoxMesh_dufpk")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Final/NavigationRegion3D/Recorrido final/Piso 2" unique_id=406107145]
+[node name="StaticBody3D" type="StaticBody3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final/Piso 2" unique_id=406107145]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Final/NavigationRegion3D/Recorrido final/Piso 2/StaticBody3D" unique_id=2146634454]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final/Piso 2/StaticBody3D" unique_id=2146634454]
 shape = SubResource("BoxShape3D_10eeh")
 
-[node name="Piso 3" type="MeshInstance3D" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1485171473]
+[node name="Piso 3" type="MeshInstance3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final" unique_id=1485171473]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.99424, 0, 269.12463)
 visible = false
 mesh = SubResource("BoxMesh_vl2st")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Final/NavigationRegion3D/Recorrido final/Piso 3" unique_id=1500316014]
+[node name="StaticBody3D" type="StaticBody3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final/Piso 3" unique_id=1500316014]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Final/NavigationRegion3D/Recorrido final/Piso 3/StaticBody3D" unique_id=623288004]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonaFinal/NavigationRegion3D/Recorrido final/Piso 3/StaticBody3D" unique_id=623288004]
 shape = SubResource("BoxShape3D_sdpww")
 
-[node name="Area3D" type="Area3D" parent="Final" unique_id=1682504102 node_paths=PackedStringArray("enemigos")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.96639, 0, 800.3928)
+[node name="Activacion Enemigos" type="Area3D" parent="ZonaFinal" unique_id=1682504102 node_paths=PackedStringArray("enemigos")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -65.13571, 0, 803.77435)
 script = ExtResource("137_o2qs7")
 enemigos = [NodePath("../EnemigoDelFinal"), NodePath("../EnemigoDelFinal2"), NodePath("../EnemigoDelFinal3")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Final/Area3D" unique_id=1970300065]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.734334, -6.8286133)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonaFinal/Activacion Enemigos" unique_id=1970300065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.734334, -9.747681)
 shape = SubResource("BoxShape3D_vwjq2")
 
 [connection signal="body_entered" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_entered"]

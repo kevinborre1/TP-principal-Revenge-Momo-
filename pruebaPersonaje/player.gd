@@ -435,7 +435,6 @@ func _avisar_muerte_al_host() -> void:
 func respawnear():
 	hide()
 	set_physics_process(false)
-	
 	if is_multiplayer_authority() and Global.modo_multijugador == "local":
 		camara.current = false
 	
@@ -454,7 +453,6 @@ func respawnear():
 	show()
 	set_physics_process(true)
 	muerto = false
-	
 func actualizar_respawn(direccion_respawn: Vector3):
 	punto_respawn = direccion_respawn
 	
