@@ -1,6 +1,7 @@
 extends Node3D
 
-var player_scene = preload("res://pruebaPersonaje/player.tscn")
+@export var escena_personaje_host = preload("res://pruebaPersonaje/player.tscn")
+@export var escena_personaje_cliente = preload("res://pruebaPersonaje/player2.tscn")
 
 @onready var contenedor_principal = $HBoxContainer
 @onready var subviewport_container1 = $HBoxContainer/SubViewportContainer
@@ -48,12 +49,12 @@ func _ready() -> void:
 		subviewport_container2.show()
 		subviewport2.world_3d = subviewport1.world_3d
 		
-		var p1 = player_scene.instantiate()
+		var p1= escena_personaje_host.instantiate()
 		p1.name = "1"
 		p1.position = Vector3(36, 2, 1250)
 		subviewport1.add_child(p1)
 		
-		var p2 = player_scene.instantiate()
+		var p2 = escena_personaje_cliente.instantiate()
 		p2.name = "2" 
 		p2.position = Vector3(40, 2, 1250)
 		subviewport2.add_child(p2)
@@ -86,13 +87,23 @@ func _on_peer_connected(id: int) -> void:
 		add_player(id)
 
 func add_player(peer_id: int) -> void:
-	var new_player = player_scene.instantiate()
+	var new_player: Node3D
+	
+	# El ID 1 siempre representa al Host/Servidor
+	if peer_id == 1:
+		new_player = escena_personaje_host.instantiate()
+	else:
+		# Cualquier ID diferente corresponde a un cliente
+		new_player = escena_personaje_cliente.instantiate()
+		
+	# Es obligatorio asignar el ID como nombre para que el set_multiplayer_authority del player.gd funcione
 	new_player.name = str(peer_id)
 	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
 	new_player.add_to_group("jugadores")
-	add_child(new_player)
+	
+	# Lo agregamos al árbol. Si usas un MultiplayerSpawner, debes agregarlo al nodo que el spawner está vigilando.
+	add_child(new_player, true)
 
-# Función para que el Host copie el código al portapapeles
 func _on_session_created() -> void:
 	var codigo = NetworkManager.tube_client.session_id
 	DisplayServer.clipboard_set(codigo)
