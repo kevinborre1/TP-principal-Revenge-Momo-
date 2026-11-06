@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bdhnnpao1l16i"]
+
+[ext_resource type="Script" uid="uid://d303y2vinod0g" path="res://Menu/derrota.gd" id="1_nnbp1"]
+[ext_resource type="Texture2D" uid="uid://bihs5y1jc2fg8" path="res://Imagenes/derrotacontrarreloj.png" id="2_3x58x"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=2042806066]
+process_mode = 3
+script = ExtResource("1_nnbp1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2091850144]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_3x58x")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1298330604]
+offset_left = 433.0
+offset_top = 517.0
+offset_right = 733.0
+offset_bottom = 587.0
+theme_override_colors/font_color = Color(0.8392157, 0, 0.05882353, 1)
+theme_override_font_sizes/font_size = 34
+text = "Volver al menú"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
