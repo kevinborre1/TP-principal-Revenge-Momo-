@@ -6,6 +6,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var vida_maxima: int = 20
 var vida_actual: int = vida_maxima
 @export var es_lider: bool = false
+@export var danio_golpe: int = 10
+@export var alcance_furia: float = 6.0 # en furia pega a esta distancia aunque no toque al jugador
 var activo: bool = false 
 var ANIM_CAMINAR = "mixamo_com"
 var ANIM_ATAQUE = "papa_ataque/mixamo_com"
@@ -17,6 +19,9 @@ var escudo_activo: bool = false
 var _timer_escudo: Timer
 @onready var malla_escudo: Node3D = get_node_or_null("Escudo")
 
+
+signal activado
+@export var solo_danio_por_pantallas: bool = false # el líder del bar solo muere con el minijuego de colores
 signal murio
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
@@ -25,9 +30,16 @@ signal murio
 # Variables para controlar el daño
 var tiempo_ultimo_ataque: float = 0.0
 var cooldown_ataque: float = 1.0 # El enemigo hace daño cada 1 segundo
+var en_furia: bool = false
+var _velocidad_normal: float
+var _danio_normal: int
+var _cooldown_normal: float
 
 
 func _ready() -> void:
+	_velocidad_normal = velocidad
+	_danio_normal = danio_golpe
+	_cooldown_normal = cooldown_ataque
 	visible = false
 	_cambiar_estado_colisiones(true)
 	set_physics_process(false) # apagamos las fisicas de los enemigos al empezar hasta que se activen
@@ -48,9 +60,9 @@ func _ready() -> void:
 	
 	# NUEVO: Asignar la capa de navegación correcta según el tamaño
 	if es_lider:
-		nav_agent.navigation_layers = 2 # Lee el mapa donde NO cabe debajo de la mesa
+		nav_agent.navigation_layers = 1 # Lee el mapa donde NO cabe debajo de la mesa
 	else:
-		nav_agent.navigation_layers = 1 # Lee el mapa normal
+		nav_agent.navigation_layers = 2 # Lee el mapa normal
 		
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:
@@ -64,6 +76,13 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, velocidad)
 		move_and_slide()
 		manejar_animaciones() # llamamos a la animacion de quieto
+		return
+		
+	# Mientras pega, se queda quieto hasta que termina la animación del golpe
+	if animation_player and animation_player.current_animation == ANIM_ATAQUE and animation_player.is_playing():
+		velocity.x = 0.0
+		velocity.z = 0.0
+		move_and_slide() # sigue aplicando la gravedad
 		return
 
 	# Buscar al jugador más cercano
@@ -90,6 +109,7 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	_comprobar_colisiones_jugador()
+	_ataque_a_distancia(jugador_objetivo)
 	manejar_animaciones()
 
 func _cambiar_estado_colisiones(desactivado: bool) -> void:
@@ -111,7 +131,7 @@ func _comprobar_colisiones_jugador() -> void:
 			if tiempo_actual - tiempo_ultimo_ataque >= cooldown_ataque:
 				if colisionador.has_method("heridoPorEnemigo"):
 					# Llamamos a la función de daño del Player
-					colisionador.heridoPorEnemigo() 
+					colisionador.heridoPorEnemigo(danio_golpe)
 					tiempo_ultimo_ataque = tiempo_actual
 					_reproducir_ataque()
 
@@ -138,6 +158,8 @@ func obtener_jugador_mas_cercano() -> Node3D:
 
 # Las balas de jugador entran por acá: el tipo decide si rompe el escudo o hace daño
 func recibir_bala(danio: int, tipo: String) -> void:
+	if solo_danio_por_pantallas:
+		return
 	if muriendo or is_queued_for_deletion():
 		return
 	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
@@ -215,6 +237,7 @@ func activar_enemigo() -> void:
 	visible = true
 	_cambiar_estado_colisiones(false)
 	set_physics_process(true)
+	activado.emit()
 	
 # Solo el host llega acá (en línea _daniar corta antes en los clientes)
 func _romper_escudo() -> void:
@@ -231,3 +254,34 @@ func _set_escudo(valor: bool) -> void:
 	escudo_activo = valor
 	if malla_escudo:
 		malla_escudo.visible = valor
+
+# El minijuego de colores pone al líder en furia: más rápido y pega más seguido
+@rpc("authority", "call_local", "reliable")
+func set_furia(activa: bool, multiplicador_velocidad: float = 2.5, cooldown_furia: float = 0.3) -> void:
+	en_furia = activa
+	velocidad = _velocidad_normal * multiplicador_velocidad if activa else _velocidad_normal
+	danio_golpe = _danio_normal * 3 if activa else _danio_normal
+	cooldown_ataque = cooldown_furia if activa else _cooldown_normal
+	if animation_player:
+		animation_player.speed_scale = 3.0 if activa else 1.0
+
+# En furia golpea a los jugadores cercanos aunque no los toque (por ejemplo, escondidos bajo una mesa)
+func _ataque_a_distancia(objetivo: Node3D) -> void:
+	if not en_furia or objetivo == null or not is_instance_valid(objetivo):
+		return
+	if objetivo.get("muerto") == true:
+		return
+	var diferencia := objetivo.global_position - global_position
+	if absf(diferencia.y) > 3.0: # no pegar a través de pisos
+		return
+	var distancia := Vector2(diferencia.x, diferencia.z).length()
+	if distancia > alcance_furia or distancia < 0.1:
+		return
+	var tiempo_actual := Time.get_ticks_msec() / 1000.0
+	if tiempo_actual - tiempo_ultimo_ataque < cooldown_ataque:
+		return
+	if objetivo.has_method("heridoPorEnemigo"):
+		look_at(Vector3(objetivo.global_position.x, global_position.y, objetivo.global_position.z), Vector3.UP)
+		objetivo.heridoPorEnemigo(danio_golpe)
+		tiempo_ultimo_ataque = tiempo_actual
+		_reproducir_ataque()

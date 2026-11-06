@@ -27,6 +27,8 @@ var estamina_infinita: bool = false
 var escudo_activo: bool = false
 
 var esta_corriendo: bool = false
+var agotado: bool = false # se queda sin estamina: no puede correr hasta recuperar un mínimo
+const ESTAMINA_PARA_VOLVER_A_CORRER = 25.0
 	
 @onready var label_rol: Label = get_node_or_null("CanvasLayer2/LabelRol")
 @onready var mira_rect: Control = get_node_or_null("CanvasLayer/PuntoDeMira/Cruz")
@@ -291,10 +293,13 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector(act_izq, act_der, act_ade, act_atr)
 	var esta_moviendose: bool = input_dir.length() > 0.0
 	
+	if agotado and StaminaActual >= ESTAMINA_PARA_VOLVER_A_CORRER:
+		agotado = false
+
 	esta_corriendo = (
 	correr_fisico
 	and esta_moviendose
-	and (StaminaActual > 0 or estamina_infinita)
+	and (not agotado or estamina_infinita)
 	and not agachado
 )
 
@@ -303,6 +308,8 @@ func _physics_process(delta: float) -> void:
 
 		if not estamina_infinita:
 			StaminaActual = max(0.0, StaminaActual - StaminaPerdida)
+			if StaminaActual <= 0.0:
+				agotado = true
 		actualizar_barraStamina()
 
 	elif StaminaActual < StaminaMax:
@@ -390,17 +397,17 @@ func actualizar_barraStamina():
 func actualizar_barraDeVida():
 	cambioSalud.emit()
 	
-func heridoPorEnemigo():
+func heridoPorEnemigo(danio: int = 10):
 	if escudo_activo:
 		return
 	if Global.modo_multijugador == "linea":
 		if multiplayer.is_server():
 			if Global.modo_de_juego == "vida_compartida":
-				GameManager.vida_compartida.cambiar_salud_compartida(-10)
+				GameManager.vida_compartida.cambiar_salud_compartida(-danio)
 			else:
-				rpc_id(get_multiplayer_authority(), "_recibir_danio_red", 10)
+				rpc_id(get_multiplayer_authority(), "_recibir_danio_red", danio)
 	else:
-		_recibir_danio_red(10)
+		_recibir_danio_red(danio)
 
 # --- NUEVO: DELEGACIÓN DE MUERTE LIMPIA ---
 @rpc("any_peer", "call_local", "reliable")
@@ -416,8 +423,17 @@ func _recibir_danio_red(danio: int):
 		# El jugador ya no toma decisiones aquí. 
 		# Solo grita al GameManager que murió, y el Manager se encarga del resto.
 		jugador_murio.emit(self)
+		# Avisamos al host que este jugador murió (lo usa el líder en furia)
+		if Global.modo_multijugador == "linea" and not multiplayer.is_server():
+			_avisar_muerte_al_host.rpc_id(1)
+		else:
+			GameManager.jugador_caido.emit(self)
 		
 	actualizar_barraDeVida()
+
+@rpc("any_peer", "reliable")
+func _avisar_muerte_al_host() -> void:
+	GameManager.jugador_caido.emit(self)
 
 func respawnear():
 	hide()

@@ -12,6 +12,7 @@ var vida_compartida: VidaCompartidaManager
 signal mode_changed(new_mode: GameMode, max_count: int)
 signal count_changed(current_count: int)
 signal objective_completed(mode: GameMode)
+signal jugador_caido(jugador: Node) # solo se emite en el host: lo usa el minijuego de colores del líder
 
 func _ready() -> void:
 	contrarreloj = ContrarrelojManager.new()
