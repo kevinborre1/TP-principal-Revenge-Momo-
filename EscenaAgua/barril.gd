@@ -5,6 +5,7 @@ var _destruido: bool = false
 func _ready() -> void:
 	# Añadimos todos los barriles al grupo para que la balsa los reconozca
 	add_to_group("BarrilesMapa")
+	add_to_group("Barriles")
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
@@ -23,6 +24,7 @@ func _daniar(danio: int) -> void:
 		_destruir_barril()
 
 # Esta es la función que llama la balsa al chocar
+@rpc("any_peer", "call_local", "reliable")
 func _colision_balsa() -> void:
 	if Global.modo_multijugador == "linea":
 		_sincronizar_colision_balsa.rpc()

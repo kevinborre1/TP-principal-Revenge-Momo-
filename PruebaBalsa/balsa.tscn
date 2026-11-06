@@ -36,6 +36,8 @@ debug_color = Color(0.92163557, 5.4002703e-05, 0.6923658, 0.41960785)
 transform = Transform3D(6, 0, 0, 0, 6.057, 0, 0, 0, 6.057, 4.7493153, -0.20939791, -0.11248028)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1178173005]
+replication_interval = 0.033
+delta_interval = 0.05
 replication_config = SubResource("SceneReplicationConfig_af6np")
 
 [connection signal="body_entered" from="ZonaAbordaje" to="." method="_on_zona_abordaje_body_entered"]

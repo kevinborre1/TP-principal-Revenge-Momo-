@@ -1,200 +1,128 @@
-class_name Enemigo
 extends CharacterBody3D
 
-@export var velocidad: float = 3.5
+var velocidad: float = 1
 @export var perseguir_siempre: bool = true
-## true = arranca activo (útil para probar). false = espera a activar_enemigo.rpc()
-@export var activo_al_inicio: bool = true
-@export var cooldown_danio: float = 1.0
-## Distancia a la que el enemigo "toca" al jugador
-@export var radio_contacto: float = 1.2
-@export var anim_caminar: StringName = &"mixamo_com"
-@export var anim_ataque: StringName = &""
-## Marker3D en el centro de cada curva del camino
-@export var esquinas: Array[Marker3D] = []
-## Capa de colisión donde están las paredes (no el suelo)
-@export_flags_3d_physics var mascara_paredes: int = 2
-
-@onready var animation_player: AnimationPlayer = $Walking/AnimationPlayer
-
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var activo: bool = false
-var caminando: bool = false
-var _puede_danar: bool = true
-var _destino: Vector3
-var _tiempo_ruta: float = 0.0
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var activo: bool = true 
+var ANIM_CAMINAR = ""
+var ANIM_ATAQUE = ""
+@onready var nav_region: NavigationRegion3D = $"../NavigationRegion3D"
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var animation_player: AnimationPlayer
+var tiempo_ultimo_ataque: float = 0.0
+var cooldown_ataque: float = 1.0 # El enemigo hace daño cada 1 segundo
 
 
 func _ready() -> void:
-	floor_snap_length = 0.5
-	_destino = global_position
-	_aplicar_estado(activo_al_inicio)
-	print(name, " | activo=", activo, " | visible=", visible)
-
-
-# ---------------------------------------------------------------
-# RPC (solo el servidor los llama; se ejecutan en todos los peers)
-# ---------------------------------------------------------------
-
-## Llamar desde el servidor: enemigo.activar_enemigo.rpc()
-@rpc("authority", "call_local", "reliable")
-func activar_enemigo() -> void:
-	_aplicar_estado(true)
-
-
-@rpc("authority", "call_local", "reliable")
-func _rpc_caminando(valor: bool) -> void:
-	caminando = valor
-	_actualizar_animacion()
-
-
-@rpc("authority", "call_local", "reliable")
-func _rpc_ataque() -> void:
-	if anim_ataque != &"" and animation_player.has_animation(anim_ataque):
-		animation_player.play(anim_ataque, 0.1)
-
-
-## Se ejecuta SOLO en el peer dueño del jugador golpeado
-@rpc("authority", "call_local", "reliable")
-func _rpc_golpear_jugador(ruta_jugador: NodePath) -> void:
-	var jugador := get_node_or_null(ruta_jugador)
-	if jugador and jugador.has_method("heridoPorEnemigo"):
-		jugador.heridoPorEnemigo()
-
-
-# ---------------------------------------------------------------
-# Estado
-# ---------------------------------------------------------------
-
-func _aplicar_estado(valor: bool) -> void:
-	activo = valor
-	visible = activo
-	for hijo in get_children():
-		if hijo is CollisionShape3D:
-			hijo.set_deferred("disabled", not activo)
-	# La lógica corre solo en el servidor; los clientes reciben position/rotation
-	set_physics_process(activo and multiplayer.is_server())
-
-
-# ---------------------------------------------------------------
-# Movimiento (solo servidor; position y rotation las replica el MultiplayerSynchronizer)
-# ---------------------------------------------------------------
+	visible = true
+	_cambiar_estado_colisiones(false)
+	set_physics_process(true) 
+	animation_player = $momo_chicken/AnimationPlayer
 
 func _physics_process(delta: float) -> void:
-	_tiempo_ruta -= delta
-	if _tiempo_ruta <= 0.0:
-		_tiempo_ruta = 0.2
-		_actualizar_objetivo()
-
+	if not multiplayer.is_server() or not activo:
+		return
+# Aplicar gravedad para que no flote
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	var persigue := GameManager.papas_atacan or perseguir_siempre
-	var direccion := _destino - global_position
-	direccion.y = 0.0
+	if not GameManager.papas_atacan and not perseguir_siempre:
+		velocity.x = move_toward(velocity.x, 0, velocidad)
+		velocity.z = move_toward(velocity.z, 0, velocidad)
+		move_and_slide()
+		manejar_animaciones() # llamamos a la animacion de quieto
+		return
 
-	if persigue and direccion.length() > 0.3:
-		direccion = direccion.normalized()
+	# Buscar al jugador más cercano
+	var jugador_objetivo = obtener_jugador_mas_cercano()
+	if jugador_objetivo:
+		# 1. Le decimos al agente cuál es el destino final (el jugador)
+		nav_agent.target_position = jugador_objetivo.global_position
+		
+		# 2. Obtenemos el siguiente paso en la ruta trazada por el NavMesh
+		var siguiente_posicion = nav_agent.get_next_path_position()
+		
+		# 3. Orientamos al enemigo hacia ese siguiente paso (ignorando el eje Y)
+		var posicion_mirar = Vector3(siguiente_posicion.x, global_position.y, siguiente_posicion.z)
+		if global_position.distance_to(posicion_mirar) > 0.1:
+			look_at(posicion_mirar, Vector3.UP)
+
+		# 4. Calculamos la dirección y aplicamos la velocidad
+		var direccion = global_position.direction_to(siguiente_posicion)
 		velocity.x = direccion.x * velocidad
 		velocity.z = direccion.z * velocidad
-		# Si tu modelo mira hacia +Z, usá atan2(direccion.x, direccion.z)
-		rotation.y = lerp_angle(rotation.y, atan2(-direccion.x, -direccion.z), delta * 8.0)
-	else:
-		velocity.x = move_toward(velocity.x, 0.0, velocidad)
-		velocity.z = move_toward(velocity.z, 0.0, velocidad)
-
+		
 	move_and_slide()
+	_comprobar_colisiones_jugador()
+	manejar_animaciones()
 
-	var se_mueve := Vector2(velocity.x, velocity.z).length() > 0.1
-	if se_mueve != caminando:
-		_rpc_caminando.rpc(se_mueve)
-
-	_comprobar_danio()
-
-
-func _actualizar_objetivo() -> void:
-	var objetivo := _jugador_mas_cercano()
-	if objetivo == null:
-		return
-
-	# 1) Si lo ve, va directo hacia él
-	if _hay_vista(objetivo.global_position):
-		_destino = objetivo.global_position
-		return
-
-	# 2) Si no lo ve, va a la esquina visible más cercana al jugador
-	var mejor: Marker3D = null
-	var mejor_dist := INF
-	for esquina in esquinas:
-		# Ignora la esquina en la que ya está parado
-		if esquina.global_position.distance_to(global_position) < 1.0:
-			continue
-		if not _hay_vista(esquina.global_position):
-			continue
-		var d := esquina.global_position.distance_squared_to(objetivo.global_position)
-		if d < mejor_dist:
-			mejor_dist = d
-			mejor = esquina
-	if mejor:
-		_destino = mejor.global_position
+func _cambiar_estado_colisiones(desactivado: bool) -> void:
+	for hijo in get_children():
+		if hijo is CollisionShape3D:
+			hijo.disabled = desactivado
 
 
-func _hay_vista(punto: Vector3) -> bool:
-	var altura := Vector3.UP * 0.8
-	var consulta := PhysicsRayQueryParameters3D.create(
-		global_position + altura, punto + altura, mascara_paredes, [get_rid()]
-	)
-	return get_world_3d().direct_space_state.intersect_ray(consulta).is_empty()
+func _comprobar_colisiones_jugador() -> void:
+	for i in get_slide_collision_count():
+		var colision = get_slide_collision(i)
+		var colisionador = colision.get_collider()
+		
+		# Comprobamos si con lo que chocamos es el Player (por clase o grupo)
+		if colisionador is Player or colisionador.is_in_group("Jugador"):
+			var tiempo_actual = Time.get_ticks_msec() / 1000.0
+			
+			# Comprobamos si ya pasó el tiempo de cooldown
+			if tiempo_actual - tiempo_ultimo_ataque >= cooldown_ataque:
+				if colisionador.has_method("heridoPorEnemigo"):
+					# Llamamos a la función de daño del Player
+					colisionador.heridoPorEnemigo() 
+					tiempo_ultimo_ataque = tiempo_actual
+					_reproducir_ataque()
 
+# Función para encontrar al jugador más cercano en juegos multijugador
+func obtener_jugador_mas_cercano() -> Node3D:
+	# Obtenemos todos los nodos que asignamos al grupo "jugadores"
+	var jugadores = get_tree().get_nodes_in_group("Jugador") # ¡OJO AQUÍ! Lo cambié a "Jugador" con mayúscula porque así lo tienes en el _ready de tu script Player
+	
+	if jugadores.is_empty():
+		return null
+		
+	var jugador_cercano = null
+	var distancia_minima = INF
+	
+	# Comparamos la distancia con cada jugador en el mapa
+	for j in jugadores:
+		if is_instance_valid(j):
+			var distancia = global_position.distance_to(j.global_position)
+			if distancia < distancia_minima:
+				distancia_minima = distancia
+				jugador_cercano = j
+				
+	return jugador_cercano
 
-func _jugador_mas_cercano() -> Node3D:
-	var cercano: Node3D = null
-	var dist_min := INF
-	for j in get_tree().get_nodes_in_group("Jugador"):
-		if not is_instance_valid(j):
-			continue
-		var d := global_position.distance_squared_to(j.global_position)
-		if d < dist_min:
-			dist_min = d
-			cercano = j
-	return cercano
+func _reproducir_ataque() -> void:
+	if animation_player and animation_player.has_animation(ANIM_ATAQUE):
+		animation_player.play(ANIM_ATAQUE, 0.1)
 
-
-# ---------------------------------------------------------------
-# Daño por contacto (el servidor detecta, el dueño del jugador lo recibe)
-# ---------------------------------------------------------------
-
-func _comprobar_danio() -> void:
-	if not _puede_danar:
-		return
-	for jugador in get_tree().get_nodes_in_group("Jugador"):
-		if not is_instance_valid(jugador):
-			continue
-		var diff: Vector3 = jugador.global_position - global_position
-		# Distancia horizontal, y que no esté a otra altura
-		if Vector2(diff.x, diff.z).length() > radio_contacto or absf(diff.y) > 1.5:
-			continue
-		_puede_danar = false
-		_rpc_ataque.rpc()
-		_rpc_golpear_jugador.rpc_id(jugador.get_multiplayer_authority(), jugador.get_path())
-		get_tree().create_timer(cooldown_danio).timeout.connect(
-			func(): _puede_danar = true
-		)
-		break
-
-
-# ---------------------------------------------------------------
-# Animación (corre en todos los peers)
-# ---------------------------------------------------------------
-
-func _actualizar_animacion() -> void:
-	if not is_instance_valid(animation_player):
+func manejar_animaciones() -> void:
+	if not animation_player or not is_instance_valid(animation_player):
 		return
 	# No cortar el golpe a la mitad
-	if anim_ataque != &"" and animation_player.current_animation == anim_ataque \
-			and animation_player.is_playing():
+	if animation_player.current_animation == ANIM_ATAQUE and animation_player.is_playing():
 		return
-	if caminando:
-		animation_player.play(anim_caminar, 0.2)
+	
+	var velocidad_horizontal = Vector2(velocity.x, velocity.z).length()
+	
+	if velocidad_horizontal > 0.1:
+		animation_player.play(ANIM_CAMINAR, 0.2)
 	else:
 		animation_player.stop()
+
+#puede ser authority
+@rpc("any_peer", "call_local", "reliable")
+func activar_enemigo() -> void:
+	activo = true
+	visible = true
+	_cambiar_estado_colisiones(false)
+	set_physics_process(true)
+	

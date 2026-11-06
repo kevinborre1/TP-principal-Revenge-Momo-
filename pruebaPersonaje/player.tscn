@@ -1872,6 +1872,8 @@ player = NodePath("..")
 texturas = Array[Texture2D]([ExtResource("10_pewqx"), ExtResource("11_hcfve"), ExtResource("12_8kgnt"), ExtResource("13_yf4ho"), ExtResource("14_pi8sm"), ExtResource("15_4dshx"), ExtResource("16_y8vk6"), ExtResource("17_jh84y"), ExtResource("18_h5773"), ExtResource("19_rmyj6"), ExtResource("20_m5yyv")])
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1306570859]
+replication_interval = 0.033
+delta_interval = 0.05
 replication_config = SubResource("SceneReplicationConfig_cm308")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1629578674]

@@ -445,6 +445,9 @@ func _servidor_enviar_estado_vivo_mapa(peer_id: int) -> void:
 		if jugador.has_node("Inventario") and int(jugador.get_multiplayer_authority()) != peer_id :
 			inventarios_vivos[jugador.name] = jugador.get_node("Inventario").items.duplicate(true)
 			print("Linea 417 save_and_load.gb El nombre del jugador en el mapa vivo es: "+jugador.name +" y el id: "+ str(peer_id))
+		else:
+			inventarios_vivos[jugador.name] = cache_inventario_cliente
+			
 	 #Le manda la lista exclusivamente al jugador que acaba de entrar
 	var barriles_vivos: Array = []
 	for b in get_tree().get_nodes_in_group("BarrilesMapa"):
@@ -475,7 +478,8 @@ func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array, in
 			
 	for b in get_tree().get_nodes_in_group("BarrilesMapa"):
 		if not barriles_vivos.has(str(b.get_path())):
-			b.queue_free()		
+			b._destruir_barril()
+	
 			
 	print("Mapa sincronizado con el estado en vivo del servidor.")
 func cargar_configuracion() -> void:
