@@ -30,6 +30,9 @@ func _on_creditos_pressed() -> void:
 func _on_salir_pressed() -> void:
 	get_tree().quit()
 func _on_tutorial_pressed() -> void:
+	NetworkManager.disconnect_game()
+	NetworkManager.quiero_ser_host = false
+	NetworkManager.codigo_para_unirse = ""
 	Global.modo_multijugador = "linea"
 	Global.mapa_seleccionado = "tutorial"
 	get_tree().change_scene_to_file("res://Tutorial/Tutorial.tscn")
