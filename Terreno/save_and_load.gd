@@ -478,7 +478,8 @@ func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array, in
 			
 	for b in get_tree().get_nodes_in_group("BarrilesMapa"):
 		if not barriles_vivos.has(str(b.get_path())):
-			b.queue_free()		
+			b._destruir_barril()
+	
 			
 	print("Mapa sincronizado con el estado en vivo del servidor.")
 func cargar_configuracion() -> void:
