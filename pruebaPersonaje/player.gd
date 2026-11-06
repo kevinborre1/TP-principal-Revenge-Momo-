@@ -46,7 +46,7 @@ var minijuego_instance: Control = null
 
 @onready var inventario_manager = $Inventario
 @onready var fps = $FPS
-
+@export var velocidadActual = SPEED
 # Referencias a los nodos
 @onready var barraSalud = $BarraSalud
 @onready var detector_items = $DetectorItems
@@ -264,8 +264,6 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	fps.text = "FPS: " + str(Engine.get_frames_per_second())
-		
-	var velocidadActual = SPEED
 	actualizar_barraStamina()
 	
 	if not is_on_floor():
@@ -311,7 +309,6 @@ func _physics_process(delta: float) -> void:
 			if StaminaActual <= 0.0:
 				agotado = true
 		actualizar_barraStamina()
-
 	elif StaminaActual < StaminaMax:
 		StaminaActual = min(StaminaMax, StaminaActual + StaminaRegeneracion)
 		actualizar_barraStamina()
