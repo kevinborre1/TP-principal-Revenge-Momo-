@@ -108,5 +108,5 @@ mesh = SubResource("ArrayMesh_tyq5b")
 [node name="StaticBody3D" type="StaticBody3D" parent="M_Fence_4x6_B_mo_Material_064_0" unique_id=78334492]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="M_Fence_4x6_B_mo_Material_064_0/StaticBody3D" unique_id=924736434]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.720767, -0.36889362, 2.5583797)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.720767, 0.015639305, 2.5583797)
 shape = SubResource("BoxShape3D_sxovr")
