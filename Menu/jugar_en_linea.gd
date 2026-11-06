@@ -43,10 +43,12 @@ func _iniciar_host(ruta: String) -> void:
 	NetworkManager.quiero_ser_host = true
 	
 	if FileAccess.file_exists(ruta):
+		Global.es_partida_nueva = false 
 		cartel_error.text = "Cargando partida guardada..."
 		cartel_error.show()
 		_cargar_mapa_correspondiente()
 	else:
+		Global.es_partida_nueva = true 
 		cartel_error.text = "Cargando mapa para crear sesión..."
 		cartel_error.show()
 		get_tree().change_scene_to_file("res://Menu/MenuSeleccionModo.tscn")
