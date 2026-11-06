@@ -65,6 +65,10 @@ func rpc_host_shutting_down() -> void:
 
 # host 
 func _on_peer_disconnected(id: int) -> void:
+	# si se fue el compañero, el host vuelve a abrir la sala
+	if is_instance_valid(tube_client) and tube_client.is_server:
+		tube_client.refuse_new_connections = false
+		
 	var active_players = get_tree().get_nodes_in_group("jugadores")
 	
 	for player in active_players:
