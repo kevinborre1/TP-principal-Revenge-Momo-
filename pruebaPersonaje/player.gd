@@ -851,3 +851,6 @@ func _obtener_contenedor_items() -> Node:
 	if escena == null:
 		return null
 	return escena.find_child("ContenedorItemsSoltados", true, false)
+
+func estoy_muerto() -> bool:
+	return muerto

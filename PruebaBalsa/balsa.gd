@@ -120,7 +120,7 @@ func rpc_abordar_balsa(id_jugador: int, subiendo: bool) -> void:
 
 	var jugador_objetivo = get_tree().current_scene.find_child(str(id_jugador), true, false)
 
-	if subiendo:
+	if subiendo and not jugador_objetivo.estoy_muerto():
 		set_multiplayer_authority(id_jugador)
 		is_controlled = true
 		_inicio_marcha_ms = Time.get_ticks_msec() + int(retraso_inicio * 1000.0)

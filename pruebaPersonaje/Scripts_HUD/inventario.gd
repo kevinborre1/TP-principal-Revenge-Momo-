@@ -33,8 +33,13 @@ func _alternar_informacion() -> void:
 func _actualizar_texto_informacion() -> void:
 	var item_actual = items[slot_seleccionado]
 	
-	if item_actual != null:
-		label_detalles.text = item_actual.nombre + " : " + item_actual.descripcion
+	if item_actual != null and typeof(item_actual) == TYPE_DICTIONARY:
+		# .get("clave", "Valor de rescate") evita el crash si el dato no existe
+		var nombre = item_actual.get("nombre", "Objeto Desconocido")
+		var descripcion = item_actual.get("descripcion", "Sin descripción disponible.")
+		
+		label_detalles.text = "Objeto: " + str(nombre) + "\n"
+		label_detalles.text += "Info: " + str(descripcion)
 	else:
 		label_detalles.text = "Slot vacío"
 	
