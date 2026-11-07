@@ -67,19 +67,21 @@ func _ready() -> void:
 		#---------------------------------------------------------------
 		# MODO EN LÍNEA
 		if NetworkManager.quiero_ser_host:
-			# El host escucha cuando alguien se conecta para crearle su personaje
 			multiplayer.peer_connected.connect(_on_peer_connected)
-			
-			# Copiamos el código al portapapeles cuando se crea la sesión
-			NetworkManager.tube_client.session_created.connect(_on_session_created)
-			NetworkManager.tube_client.create_session()
-			
-			add_player(1) 
-		else:
+
+			if NetworkManager.sesion_host_activa():
+				# La sesión se creó en el tutorial: mismo código, y reabrimos la sala
+				NetworkManager.tube_client.refuse_new_connections = false
+				DisplayServer.clipboard_set(NetworkManager.tube_client.session_id)
+			else:
+				NetworkManager.tube_client.session_created.connect(_on_session_created)
+				NetworkManager.tube_client.create_session()
+			add_player(1)
+		else: 
 			NetworkManager.host_cerro_partida.connect(_on_servidor_desconectado)
 			_iniciar_espera_conexion()
-			NetworkManager.tube_client.join_session(NetworkManager.codigo_para_unirse)
-			
+			NetworkManager.unirse_a_sesion(NetworkManager.codigo_para_unirse)
+				
 	activador_victoria.body_entered.connect(_on_activador_victoria_body_entered)
 
 # El Host ejecuta esto automáticamente cuando un cliente entra
@@ -110,7 +112,7 @@ func add_player(peer_id: int) -> void:
 	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
 	new_player.add_to_group("jugadores")
 	
-	# Lo agregamos al árbol. Si usas un MultiplayerSpawner, debes agregarlo al nodo que el spawner está vigilando.
+	# Lo agregamos al árbol. 
 	add_child(new_player, true)
 
 func _on_session_created() -> void:
@@ -174,7 +176,12 @@ func _on_conexion_fallida() -> void:
 		_abortar_conexion.call_deferred("La conexión con el host falló.")
 
 func _on_escena_distinta_del_host(ruta: String) -> void:
-	_abortar_conexion.call_deferred("El host está en otra escena (%s).\nNo se puede unir a esa partida." % ruta)
+	if NetworkManager.es_escena_transicion(ruta):
+		NetworkManager.reintentar_union.call_deferred()   # el host sigue viendo el video
+	elif NetworkManager.puede_seguir_al_host(ruta):
+		NetworkManager.seguir_al_host.call_deferred(ruta)
+	else:
+		_abortar_conexion.call_deferred("El host está en otra escena (%s).\nNo se puede unir a esa partida." % ruta)
 
 func _abortar_conexion(mensaje: String) -> void:
 	if saliendo:
@@ -192,7 +199,7 @@ func _abortar_conexion(mensaje: String) -> void:
 		menu = "res://Menu/MenuPrincipal.tscn"
 	get_tree().change_scene_to_file(menu)
 
-# Tube se rindió (trackers caídos, falla de WebRTC o código inválido)
+# (trackers caídos, falla de WebRTC o código inválido)
 func _on_error_tube(_codigo: int, mensaje: String) -> void:
 	if not conexion_resuelta:
 		_abortar_conexion.call_deferred("No se pudo conectar con el host.\n(" + mensaje + ")")

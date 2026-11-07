@@ -2056,8 +2056,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4828568, 3.470337, -2.7375
 shape = SubResource("BoxShape3D_1weqr")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=225265740]
-_spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0")
+_spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0", "uid://cbdesbnctq0ih")
 spawn_path = NodePath("..")
+spawn_limit = 2
 
 [node name="BotellaCerveza" parent="." unique_id=1683750601 instance=ExtResource("13_j1fac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.66938, 0.7252264, -19.161137)
