@@ -3,10 +3,20 @@ extends Node3D
 signal host_cerro_partida
 signal escena_distinta_del_host(ruta: String)
 
+# Escenas donde se juega en línea (un cliente puede seguir al host hasta ellas)
+const ESCENAS_ONLINE := [
+	"res://Tutorial/Tutorial.tscn",
+	"res://Terreno/terreno.tscn",
+]
+
+const ESCENA_VIDEO := "res://videos/apertura.tscn"
+const ESCENAS_TRANSICION := [ESCENA_VIDEO]   # escenas de paso, sin red
+
 var quiero_ser_host: bool = false
 var codigo_para_unirse: String = ""
 var mensaje_error_conexion: String = ""
 var escena_menu_en_linea: String = ""
+var _siguiendo_al_host: bool = false   # NUEVO
 
 @onready var tube_client: TubeClient = $TubeClient
 
@@ -79,9 +89,61 @@ func _on_peer_disconnected(id: int) -> void:
 # cliente
 func _on_server_disconnected() -> void:
 	disconnect_game()
+	if _siguiendo_al_host:   # Nos fuimos nosotros a propósito, no cerró el host
+		return
 	host_cerro_partida.emit()
 
 # logica global 
 func disconnect_game() -> void:
 	if is_instance_valid(tube_client) and tube_client.state != TubeClient.State.IDLE:
 		tube_client.leave_session()
+
+func sesion_host_activa() -> bool:
+	return is_instance_valid(tube_client) and tube_client.is_server \
+			and tube_client.state != TubeClient.State.IDLE
+
+func puede_seguir_al_host(ruta: String) -> bool:
+	return _ruta_normalizada(ruta) in ESCENAS_ONLINE
+
+# CLIENTE: se une a la sesión esperando a que la anterior termine de cerrarse
+func unirse_a_sesion(codigo: String) -> void:
+	var intentos := 0
+	while tube_client.state != TubeClient.State.IDLE and intentos < 50:
+		await get_tree().create_timer(0.1).timeout
+		intentos += 1
+	tube_client.join_session(codigo)
+
+# CLIENTE: nos vamos a la escena del host y nos conectamos de nuevo desde ahí,
+# así el MultiplayerSpawner del host nos manda a los jugadores que ya existen
+func seguir_al_host(ruta: String) -> void:
+	print("[Red] Siguiendo al host a: ", ruta)
+	_siguiendo_al_host = true
+	get_tree().create_timer(3.0).timeout.connect(func(): _siguiendo_al_host = false)
+	disconnect_game()
+	get_tree().change_scene_to_file(ruta)
+
+# HOST: lleva a todos los jugadores a otra escena
+func host_cambia_escena(ruta: String) -> void:
+	if sesion_host_activa() and not multiplayer.get_peers().is_empty():
+		rpc("rpc_host_cambio_escena", ruta)
+	get_tree().change_scene_to_file(ruta)
+
+# CLIENTE
+@rpc("authority", "call_remote", "reliable")
+func rpc_host_cambio_escena(ruta: String) -> void:
+	print("[Red] El host cambió a: ", ruta) 
+	if puede_seguir_al_host(ruta) or es_escena_transicion(ruta):
+		seguir_al_host(ruta)
+		
+func es_escena_transicion(ruta: String) -> bool:
+	return _ruta_normalizada(ruta) in ESCENAS_TRANSICION
+
+# CLIENTE: el host todavía está en una escena de paso (el video).
+# Nos desconectamos y reintentamos en unos segundos
+func reintentar_union(espera: float = 3.0) -> void:
+	print("[Red] El host sigue en el video, reintento en ", espera, " s")
+	_siguiendo_al_host = true
+	disconnect_game()
+	await get_tree().create_timer(espera).timeout
+	_siguiendo_al_host = false
+	unirse_a_sesion(codigo_para_unirse)

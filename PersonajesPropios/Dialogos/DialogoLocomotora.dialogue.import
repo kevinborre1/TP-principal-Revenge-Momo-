@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://crl5gg2wc0g82"
+path="res://.godot/imported/DialogoLocomotora.dialogue-6dcdd8b794527e1f4024201c5f7ad7df.tres"
+
+[deps]
+
+source_file="res://PersonajesPropios/Dialogos/DialogoLocomotora.dialogue"
+dest_files=["res://.godot/imported/DialogoLocomotora.dialogue-6dcdd8b794527e1f4024201c5f7ad7df.tres"]
+
+[params]
+
+defaults=true

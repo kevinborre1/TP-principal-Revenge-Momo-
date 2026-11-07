@@ -46,7 +46,7 @@ var minijuego_instance: Control = null
 
 @onready var inventario_manager = $Inventario
 @onready var fps = $FPS
-
+@export var velocidadActual = SPEED
 # Referencias a los nodos
 @onready var barraSalud = $BarraSalud
 @onready var detector_items = $DetectorItems
@@ -69,7 +69,7 @@ var multiplicadorAgachado: float = 0.5
 var camera_rotation := Vector2.ZERO
 var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 # Ruta hacia tu BoneAttachment3D de la mano:
-@onready var mano: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
+@onready var mano: BoneAttachment3D = find_child("ManoDerechaAttachment", true, false)
 var item_en_mano: Node3D = null
 @onready var label_contrarreloj: Label = $CanvasLayer2/LabelContrarreloj
 @onready var contenedor_corazones = get_node_or_null("CanvasLayer2/ContenedorCorazones")
@@ -264,8 +264,6 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	fps.text = "FPS: " + str(Engine.get_frames_per_second())
-		
-	var velocidadActual = SPEED
 	actualizar_barraStamina()
 	
 	if not is_on_floor():
@@ -311,7 +309,6 @@ func _physics_process(delta: float) -> void:
 			if StaminaActual <= 0.0:
 				agotado = true
 		actualizar_barraStamina()
-
 	elif StaminaActual < StaminaMax:
 		StaminaActual = min(StaminaMax, StaminaActual + StaminaRegeneracion)
 		actualizar_barraStamina()
@@ -438,7 +435,6 @@ func _avisar_muerte_al_host() -> void:
 func respawnear():
 	hide()
 	set_physics_process(false)
-	
 	if is_multiplayer_authority() and Global.modo_multijugador == "local":
 		camara.current = false
 	
@@ -457,7 +453,6 @@ func respawnear():
 	show()
 	set_physics_process(true)
 	muerto = false
-	
 func actualizar_respawn(direccion_respawn: Vector3):
 	punto_respawn = direccion_respawn
 	

@@ -390,8 +390,6 @@ _data = {
 &"Idle": SubResource("Animation_srqwg")
 }
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4igdq"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxovr"]
 radius = 0.42138672
 height = 1.3642578
@@ -400,6 +398,7 @@ height = 1.3642578
 script = ExtResource("1_rhtwc")
 
 [node name="momo_chicken" type="Node3D" parent="." unique_id=294295265]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Esqueleto" type="Node3D" parent="momo_chicken" unique_id=1106747055]
 
@@ -496,13 +495,6 @@ skeleton = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="momo_chicken" unique_id=761441433]
 libraries/ = SubResource("AnimationLibrary_ow01q")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=760030789]
-physics_material_override = SubResource("PhysicsMaterial_4igdq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1663223180]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13013455, 0.58364916, 0.00609076)
-shape = SubResource("CapsuleShape3D_sxovr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1280671537]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13013455, 0.58657885, 0.00609076)
