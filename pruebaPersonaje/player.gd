@@ -69,7 +69,7 @@ var multiplicadorAgachado: float = 0.5
 var camera_rotation := Vector2.ZERO
 var correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 # Ruta hacia tu BoneAttachment3D de la mano:
-@onready var mano: BoneAttachment3D = $"Walk (1)/Skeleton3D/ManoDerechaAttachment"
+@onready var mano: BoneAttachment3D = find_child("ManoDerechaAttachment", true, false)
 var item_en_mano: Node3D = null
 @onready var label_contrarreloj: Label = $CanvasLayer2/LabelContrarreloj
 @onready var contenedor_corazones = get_node_or_null("CanvasLayer2/ContenedorCorazones")
