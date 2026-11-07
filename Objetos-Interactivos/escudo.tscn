@@ -17,6 +17,7 @@ script = ExtResource("1_jwyb0")
 nombre_item = "escudo"
 icono = ExtResource("2_texq2")
 ruta_escena = "res://Objetos-Interactivos/escudo.tscn"
+descripcion = "Sin daño 7s"
 
 [node name="Sketchfab_Scene" parent="." unique_id=564815555 instance=ExtResource("1_1glpd")]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0.09010708, 0, -0.017023802)

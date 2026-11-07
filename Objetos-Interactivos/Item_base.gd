@@ -4,6 +4,7 @@ class_name ItemBase
 @export var nombre_item: String = "Pocion"
 @export var icono: Texture2D
 @export var ruta_escena: String
+@export var descripcion: String = "Objeto sin descripcion"
 
 @export var activa_mira_combate: bool = false
 @export var modifica_camara: bool = false

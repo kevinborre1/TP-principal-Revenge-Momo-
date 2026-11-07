@@ -536,7 +536,7 @@ func intentar_recoger_item():
 			break
 		
 		elif cuerpo is ItemBase:
-			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena, self)
+			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena, cuerpo.descripcion, self)
 			if exito:
 				cuerpo.ser_recogido()
 				break

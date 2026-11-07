@@ -31,10 +31,10 @@
 [ext_resource type="Texture2D" uid="uid://dxrx62xiifj7p" path="res://Imagenes/corazonlleno.png" id="16_xspus"]
 [ext_resource type="Texture2D" uid="uid://dygqmbkcxvj16" path="res://Imagenes/Estamina/estamina60.png" id="16_y8vk6"]
 [ext_resource type="Texture2D" uid="uid://d1b5s54ccyjhp" path="res://Imagenes/Estamina/estamina70.png" id="17_jh84y"]
-[ext_resource type="Script" uid="uid://0lxksclcjhd3" path="res://pruebaPersonaje/Scripts_HUD/inventario.gd" id="17_xspus"]
 [ext_resource type="Texture2D" uid="uid://buexgpf67bndh" path="res://Imagenes/Estamina/estamina80.png" id="18_h5773"]
 [ext_resource type="Texture2D" uid="uid://d14anjp204fuo" path="res://Imagenes/Estamina/estamina90.png" id="19_rmyj6"]
 [ext_resource type="Texture2D" uid="uid://kmsfet4gvirv" path="res://Imagenes/Estamina/estamina100.png" id="20_m5yyv"]
+[ext_resource type="PackedScene" uid="uid://cqeg5wem0tjm0" path="res://pruebaPersonaje/Scripts_HUD/inventario.tscn" id="35_jh84y"]
 [ext_resource type="Script" uid="uid://dwa12qsssrre4" path="res://pruebaPersonaje/mira.gd" id="35_y8vk6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
@@ -1972,83 +1972,19 @@ stream = ExtResource("12_jwaew")
 [node name="musicaBaile2" type="AudioStreamPlayer" parent="." unique_id=616582377]
 stream = ExtResource("12_jwaew")
 
-[node name="Inventario" type="HBoxContainer" parent="." unique_id=278210272 node_paths=PackedStringArray("player")]
-anchors_preset = -1
-anchor_left = 0.33900002
-anchor_top = 0.94100004
-anchor_right = 0.63500005
-anchor_bottom = 0.94100004
-offset_left = 0.47198486
-offset_top = -33.768005
-offset_right = -0.52008057
-offset_bottom = 30.231995
-script = ExtResource("17_xspus")
-player = NodePath("..")
-
-[node name="Panel" type="Panel" parent="Inventario" unique_id=130061932]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="icono" type="TextureRect" parent="Inventario/Panel" unique_id=226924682]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+[node name="Inventario" parent="." unique_id=881336285 instance=ExtResource("35_jh84y")]
+top_level = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = -64.0
+offset_right = 236.0
+offset_bottom = 0.0
 grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-
-[node name="Panel2" type="Panel" parent="Inventario" unique_id=1300483122]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="icono" type="TextureRect" parent="Inventario/Panel2" unique_id=94118837]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-
-[node name="Panel3" type="Panel" parent="Inventario" unique_id=696213016]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="icono" type="TextureRect" parent="Inventario/Panel3" unique_id=16075145]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-
-[node name="Panel4" type="Panel" parent="Inventario" unique_id=641732325]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="icono" type="TextureRect" parent="Inventario/Panel4" unique_id=191225096]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-
-[node name="Panel5" type="Panel" parent="Inventario" unique_id=1967599951]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="icono" type="TextureRect" parent="Inventario/Panel5" unique_id=1328534898]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
+grow_vertical = 0
+size_flags_vertical = 8
 
 [node name="ContenedorMinijuego" type="PanelContainer" parent="." unique_id=573845450]
 modulate = Color(1, 1, 1, 0)

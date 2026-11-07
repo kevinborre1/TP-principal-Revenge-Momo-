@@ -18,6 +18,7 @@ script = ExtResource("1_ftwm8")
 nombre_item = "Cerveza"
 icono = ExtResource("2_w8mu1")
 ruta_escena = "res://Objetos-Interactivos/Botella_cerveza.tscn"
+descripcion = "Cura 1,5 corazones"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1697604349]
 transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, -0.1223061, -0.045144495, 0.05491233)

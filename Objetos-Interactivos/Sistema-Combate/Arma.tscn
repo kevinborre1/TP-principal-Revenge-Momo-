@@ -18,6 +18,7 @@ script = ExtResource("1_sjkoq")
 nombre_item = "NerfONada"
 icono = ExtResource("2_7c0ja")
 ruta_escena = "res://Objetos-Interactivos/Sistema-Combate/Arma.tscn"
+descripcion = "Es un arma"
 activa_mira_combate = true
 modifica_camara = true
 distancia_camara = 3.5
