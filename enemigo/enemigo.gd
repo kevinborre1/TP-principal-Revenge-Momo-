@@ -49,6 +49,9 @@ func _ready() -> void:
 		ANIM_MUERTE = "lider_muerte/mixamo_com"
 	else:
 		animation_player = $papitas/AnimationPlayer
+		ANIM_CAMINAR = "Caminar"
+		ANIM_ATAQUE = "Golpe"
+		ANIM_MUERTE = "Muerte"
 	
 	# El escudo es solo para las papitas chicas
 	_timer_escudo = Timer.new()
