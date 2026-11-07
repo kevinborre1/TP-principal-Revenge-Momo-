@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co2jlhk7oi8ob"
-path.s3tc="res://.godot/imported/adam_3.png-50ea66720d562e8d0717645107ba8298.s3tc.ctex"
+uid="uid://b25s0gxyq3tqr"
+path.s3tc="res://.godot/imported/adam_Image_22.jpg-86a2f78d63b85c326fb242cf08f1492a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "dc57cfe03ed28a871e7fb8c7f01c7ad9"
+"md5": "59590259f22ce8b36bdf48ce7f4294f3"
 }
 
 [deps]
 
-source_file="res://pruebaPersonaje/SegundoPerso/adam_3.png"
-dest_files=["res://.godot/imported/adam_3.png-50ea66720d562e8d0717645107ba8298.s3tc.ctex"]
+source_file="res://pruebaPersonaje/SegundoPerso/adam_Image_22.jpg"
+dest_files=["res://.godot/imported/adam_Image_22.jpg-86a2f78d63b85c326fb242cf08f1492a.s3tc.ctex"]
 
 [params]
 

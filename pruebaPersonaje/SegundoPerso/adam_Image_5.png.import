@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0swmxwsto3h6"
-path.s3tc="res://.godot/imported/adam_11.png-937d6bc7f7758e147ae5609d64c97dbe.s3tc.ctex"
+uid="uid://8lnk3obxhwx4"
+path.s3tc="res://.godot/imported/adam_Image_5.png-5f217a7ec2531ebc49500908992b466c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "9b3fda5de67ce494b5182901b04f87c2"
+"md5": "30d97f54c43afda4ae976520618b55ff"
 }
 
 [deps]
 
-source_file="res://pruebaPersonaje/SegundoPerso/adam_11.png"
-dest_files=["res://.godot/imported/adam_11.png-937d6bc7f7758e147ae5609d64c97dbe.s3tc.ctex"]
+source_file="res://pruebaPersonaje/SegundoPerso/adam_Image_5.png"
+dest_files=["res://.godot/imported/adam_Image_5.png-5f217a7ec2531ebc49500908992b466c.s3tc.ctex"]
 
 [params]
 
@@ -25,12 +25,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://pruebaPersonaje/SegundoPerso/adam_Image_5.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
