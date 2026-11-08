@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcn7yxgsn2jwx" path="res://PersonajesPropios/locomotora/locomotora.gd" id="1_636cs"]
 [ext_resource type="PackedScene" uid="uid://cmkbsvwnicgad" path="res://PersonajesPropios/locomotora/Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation.fbx" id="1_gbiqw"]
+[ext_resource type="Resource" uid="uid://crl5gg2wc0g82" path="res://PersonajesPropios/Dialogos/DialogoLocomotora.dialogue" id="2_6fskx"]
 [ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="3_mi2ni"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
@@ -10,6 +11,7 @@ height = 1.8847656
 
 [node name="Locomotora" type="StaticBody3D" unique_id=1106361132]
 script = ExtResource("1_636cs")
+dialogue_resource = ExtResource("2_6fskx")
 
 [node name="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation" parent="." unique_id=1633914622 instance=ExtResource("1_gbiqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027424216, 0, 0.10129619)
