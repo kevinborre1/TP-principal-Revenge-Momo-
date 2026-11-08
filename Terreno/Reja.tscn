@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://qk64c22avaw2"]
 
-[ext_resource type="ArrayMesh" uid="uid://b4wcobs5keqn" path="res://Terreno/Projectplaytime/reja_reducida.res" id="1_4rk8p"]
+[ext_resource type="ArrayMesh" uid="uid://dpxpmqi8pqi8f" path="res://Terreno/Projectplaytime/reja_reducida.res" id="1_4rk8p"]
 [ext_resource type="Texture2D" uid="uid://xv4xcb4q066w" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_2.png" id="3_0gunf"]
 [ext_resource type="Texture2D" uid="uid://b4k8w2h4ji5j2" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_3.png" id="4_a3gje"]
 

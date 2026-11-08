@@ -16260,7 +16260,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.659478, 0, 1189.016)
 transform = Transform3D(-0.73393697, 0, 2.3898404, 0, 2.5, 0, -2.3898404, 0, -0.73393697, -26.700003, 1.1225553, 978.3869)
 
 [node name="Final" type="Node3D" parent="." unique_id=967038656]
-visible = false
 
 [node name="EnemigoDelFinal" parent="Final" unique_id=1142631827 instance=ExtResource("125_i635x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.30886, 4.985863, 791.92914)
