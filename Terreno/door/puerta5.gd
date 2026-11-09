@@ -26,6 +26,9 @@ func ChequeoPepita(pepitas_del_jugador: int) -> void:
 
 func abrir_puerta() -> void:
 	esta_abierta = true
+	var oclusor := get_node_or_null("OccluderPuerta")
+	if oclusor:
+		oclusor.visible = false
 	if animation_player:
 		animation_player.play("Animation")
 		print("¡Pepita conseguida! Abriendo puerta automáticamente...")

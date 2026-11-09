@@ -19,6 +19,8 @@ var escudo_activo: bool = false
 var _timer_escudo: Timer
 @onready var malla_escudo: Node3D = get_node_or_null("Escudo")
 
+var tiempo_actualizacion_nav: float = 0.0
+const INTERVALO_NAV: float = 0.5
 
 signal activado
 @export var solo_danio_por_pantallas: bool = false # el líder del bar solo muere con el minijuego de colores
@@ -70,49 +72,68 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:
 		return
-# Aplicar gravedad para que no flote
+
+	# Aplicar gravedad para que no flote
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
+	# Si los enemigos no están atacando, quedarse quietos
 	if not GameManager.papas_atacan and not perseguir_siempre:
 		velocity.x = move_toward(velocity.x, 0, velocidad)
 		velocity.z = move_toward(velocity.z, 0, velocidad)
 		move_and_slide()
-		manejar_animaciones() # llamamos a la animacion de quieto
+		manejar_animaciones()
 		return
-		
-	# Mientras pega, se queda quieto hasta que termina la animación del golpe
+
+	# Mientras pega, se queda quieto hasta terminar la animación
 	if animation_player and animation_player.current_animation == ANIM_ATAQUE and animation_player.is_playing():
 		velocity.x = 0.0
 		velocity.z = 0.0
-		move_and_slide() # sigue aplicando la gravedad
+		move_and_slide()
 		return
 
 	# Buscar al jugador más cercano
 	var jugador_objetivo = obtener_jugador_mas_cercano()
-	
-	# Perseguir al jugador si existe
-	# Perseguir al jugador si existe usando NavigationAgent3D
+
+	# Controlar el intervalo de actualización de navegación
+	tiempo_actualizacion_nav -= delta
+
 	if jugador_objetivo:
-		# 1. Le decimos al agente cuál es el destino final (el jugador)
-		nav_agent.target_position = jugador_objetivo.global_position
-		
-		# 2. Obtenemos el siguiente paso en la ruta trazada por el NavMesh
+		# Actualizar el destino cada 0.2 segundos
+		if tiempo_actualizacion_nav <= 0.0:
+			nav_agent.target_position = jugador_objetivo.global_position
+			tiempo_actualizacion_nav = INTERVALO_NAV
+
+		# Obtener el siguiente punto de navegación
 		var siguiente_posicion = nav_agent.get_next_path_position()
-		
-		# 3. Orientamos al enemigo hacia ese siguiente paso (ignorando el eje Y)
-		var posicion_mirar = Vector3(siguiente_posicion.x, global_position.y, siguiente_posicion.z)
+
+		# Orientar al enemigo hacia el siguiente punto
+		var posicion_mirar = Vector3(
+			siguiente_posicion.x,
+			global_position.y,
+			siguiente_posicion.z
+		)
+
 		if global_position.distance_to(posicion_mirar) > 0.1:
 			look_at(posicion_mirar, Vector3.UP)
 
-		# 4. Calculamos la dirección y aplicamos la velocidad
+		# Calcular la dirección y aplicar velocidad
 		var direccion = global_position.direction_to(siguiente_posicion)
 		velocity.x = direccion.x * velocidad
 		velocity.z = direccion.z * velocidad
-		
+
+	else:
+		# Si no hay jugadores, detener el movimiento horizontal
+		velocity.x = 0.0
+		velocity.z = 0.0
+
+	# Aplicar movimiento
 	move_and_slide()
+	# Comprobar colisiones con jugadores
 	_comprobar_colisiones_jugador()
+	# Ataque especial del líder
 	_ataque_a_distancia(jugador_objetivo)
+	# Actualizar animaciones
 	manejar_animaciones()
 
 func _cambiar_estado_colisiones(desactivado: bool) -> void:

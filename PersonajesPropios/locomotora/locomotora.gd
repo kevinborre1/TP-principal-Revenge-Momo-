@@ -1,7 +1,7 @@
-extends StaticBody3D 
+extends StaticBody3D
 
 @export var dialogue_resource: DialogueResource
-@export var dialogue_start: String = "start"
+@export var dialogue_start: String = "start" # Asegúrate de que tu archivo .dialogue tenga una línea que diga "=> start" o simplemente comience con el título start
 
 @onready var exclamacion: Sprite3D = $ExclamacionSprite
 
@@ -15,24 +15,25 @@ func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
-# Esta función se conecta automáticamente desde el panel de señales
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("jugadores"):
-		print("¡Jugador cerca de la locomotora!")
 		player_in_range = true
 		if exclamacion:
 			exclamacion.visible = true
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	if body.is_in_group("jugadores"):    
-		print("¡Jugador se alejó!")
+	if body.is_in_group("jugadores"):
 		player_in_range = false
 		if exclamacion:
 			exclamacion.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if player_in_range and not dialogue_active and event.is_action_pressed("ui_accept"):
-		DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
+	# Cambiamos "ui_accept" por la acción "interactuar" que creamos para la letra E
+	if player_in_range and not dialogue_active and event.is_action_pressed("interactuar"):
+		if dialogue_resource:
+			DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
+		else:
+			print("Error: Falta asignar el Dialogue Resource en el Inspector de la Locomotora.")
 
 func _on_dialogue_started(_resource) -> void:
 	dialogue_active = true
