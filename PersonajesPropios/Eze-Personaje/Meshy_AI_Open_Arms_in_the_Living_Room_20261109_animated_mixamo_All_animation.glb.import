@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cimhdy8p6g1m0"
-path="res://.godot/imported/Meshy_AI_Quiet_Room_Portrait_20261102_texture.fbx-df671371a7b9f89cc0942bcb8e4d4b12.scn"
+uid="uid://bu0dfuax053dg"
+path="res://.godot/imported/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation.glb-be1c892db601d6b21e3e52b834c521c8.scn"
 
 [deps]
 
-source_file="res://PersonajesPropios/eze asset/Meshy_AI_Quiet_Room_Portrait_20261102_texture.fbx"
-dest_files=["res://.godot/imported/Meshy_AI_Quiet_Room_Portrait_20261102_texture.fbx-df671371a7b9f89cc0942bcb8e4d4b12.scn"]
+source_file="res://PersonajesPropios/Eze-Personaje/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation.glb"
+dest_files=["res://.godot/imported/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation.glb-be1c892db601d6b21e3e52b834c521c8.scn"]
 
 [params]
 
@@ -32,7 +32,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -40,7 +40,6 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
-fbx/naming_version=2
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

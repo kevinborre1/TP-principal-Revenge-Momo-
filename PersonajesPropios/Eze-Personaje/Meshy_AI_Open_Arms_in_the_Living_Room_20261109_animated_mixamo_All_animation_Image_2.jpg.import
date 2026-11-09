@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nmwqdh1yo8oh"
-path.s3tc="res://.godot/imported/Meshy_AI_Quiet_Room_Portrait_20261102_texture_1.png-68b2f028311d7136e96b8252afad063b.s3tc.ctex"
+uid="uid://bxxo4tlmdnuum"
+path.s3tc="res://.godot/imported/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation_Image_2.jpg-31dca60be09ba31abfb179be4d4630e6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "e386135ad81c61f94dab9173207a8357"
+"md5": "86a9c0d200723f9e4b5ef2849fe2a7c1"
 }
 
 [deps]
 
-source_file="res://PersonajesPropios/eze asset/Meshy_AI_Quiet_Room_Portrait_20261102_texture_1.png"
-dest_files=["res://.godot/imported/Meshy_AI_Quiet_Room_Portrait_20261102_texture_1.png-68b2f028311d7136e96b8252afad063b.s3tc.ctex"]
+source_file="res://PersonajesPropios/Eze-Personaje/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation_Image_2.jpg"
+dest_files=["res://.godot/imported/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation_Image_2.jpg-31dca60be09ba31abfb179be4d4630e6.s3tc.ctex"]
 
 [params]
 
@@ -30,7 +30,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://PersonajesPropios/eze asset/Meshy_AI_Quiet_Room_Portrait_20261102_texture_1.png"
+roughness/src_normal="res://PersonajesPropios/Eze-Personaje/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation_Image_2.jpg"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

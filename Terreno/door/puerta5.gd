@@ -2,7 +2,10 @@ extends Node3D
 
 @export var Pepitas_necesarias: int = 1
 var esta_abierta: bool = false
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+# 1. Agregamos la referencia al nodo (asegurate de que la ruta coincida con tu árbol)
+@onready var occluder: OccluderInstance3D = $OccluderInstance3D 
 
 func _ready() -> void:
 	if animation_player:
@@ -26,3 +29,7 @@ func abrir_puerta() -> void:
 	if animation_player:
 		animation_player.play("Animation")
 		print("¡Pepita conseguida! Abriendo puerta automáticamente...")
+	
+	# 2. Apagamos el occluder para que deje pasar la visión
+	if occluder:
+		occluder.visible = false
