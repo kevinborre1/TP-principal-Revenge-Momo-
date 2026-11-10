@@ -29,6 +29,11 @@
 [ext_resource type="PackedScene" uid="uid://c6yr2jemw2ntr" path="res://Objetos-Interactivos/Sistema-Combate/Arma.tscn" id="26_wyg2x"]
 [ext_resource type="PackedScene" uid="uid://dwki634comsxy" path="res://enemigo/enemigo2.tscn" id="27_qpfw8"]
 [ext_resource type="PackedScene" uid="uid://b44bt33yq56r7" path="res://Menu/menu_pausa.tscn" id="29_c3dwn"]
+[ext_resource type="Script" uid="uid://cf72r4yxpkpcj" path="res://Terreno/logros.gd" id="30_eeckh"]
+[ext_resource type="Texture2D" uid="uid://bkkl8agj6knu4" path="res://Imagenes/Logros.png" id="31_l5jyt"]
+[ext_resource type="Texture2D" uid="uid://olvcc8aqrd1b" path="res://Imagenes/No Descubierto.png" id="32_2klwg"]
+[ext_resource type="PackedScene" uid="uid://bd2wghj4ijklk" path="res://Menu/pantalla_desconexion.tscn" id="33_2klwg"]
+[ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="34_iffks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1weqr"]
 sky_top_color = Color(0.34343228, 0.55091774, 0.726523, 1)
@@ -750,6 +755,11 @@ size = Vector3(19.024597, 1, 30.69226)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1weqr"]
 size = Vector3(1.5292969, 7.940674, 8.132629)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iffks"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4id3d"]
 
 [node name="Tutorial" type="Node3D" unique_id=1249852627]
 script = ExtResource("1_1uqyg")
@@ -2066,4 +2076,121 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.66938, 0.7252264, -19.161
 [node name="BotellaCerveza2" parent="." unique_id=914954857 instance=ExtResource("13_j1fac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.171358, 1.758353, -18.433168)
 
-[node name="MenuPausa" parent="." unique_id=405466910 instance=ExtResource("29_c3dwn")]
+[node name="Pantallas" type="Node3D" parent="." unique_id=1905114529]
+
+[node name="MenuPausa" parent="Pantallas" unique_id=405466910 instance=ExtResource("29_c3dwn")]
+
+[node name="Logros" type="CanvasLayer" parent="Pantallas" unique_id=1901194748]
+script = ExtResource("30_eeckh")
+
+[node name="Fondo" type="TextureRect" parent="Pantallas/Logros" unique_id=1513256696]
+offset_right = 1153.0
+offset_bottom = 649.0
+texture = ExtResource("31_l5jyt")
+expand_mode = 1
+
+[node name="Rompiste15Barriles" type="TextureRect" parent="Pantallas/Logros" unique_id=1919588722]
+offset_left = 42.0
+offset_top = 181.0
+offset_right = 260.0
+offset_bottom = 396.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="JugasteElMinijuego" type="TextureRect" parent="Pantallas/Logros" unique_id=2022300113]
+offset_left = 265.0
+offset_top = 183.0
+offset_right = 478.0
+offset_bottom = 398.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="Mataste10Enemigos" type="TextureRect" parent="Pantallas/Logros" unique_id=1169704553]
+offset_left = 482.0
+offset_top = 182.0
+offset_right = 702.0
+offset_bottom = 397.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="Muere10Veces" type="TextureRect" parent="Pantallas/Logros" unique_id=1616255501]
+offset_left = 702.0
+offset_top = 182.0
+offset_right = 927.0
+offset_bottom = 397.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="EsterEgg1" type="TextureRect" parent="Pantallas/Logros" unique_id=1159596567]
+offset_left = 924.0
+offset_top = 184.0
+offset_right = 1149.0
+offset_bottom = 399.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="EsterEgg3" type="TextureRect" parent="Pantallas/Logros" unique_id=1572939661]
+offset_left = 927.0
+offset_top = 398.0
+offset_right = 1152.0
+offset_bottom = 613.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="EsterEgg2" type="TextureRect" parent="Pantallas/Logros" unique_id=2143315881]
+offset_left = 705.0
+offset_top = 399.0
+offset_right = 930.0
+offset_bottom = 614.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="CompletasteModulo7" type="TextureRect" parent="Pantallas/Logros" unique_id=1632943058]
+offset_left = 476.0
+offset_top = 396.0
+offset_right = 701.0
+offset_bottom = 611.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="CompletasteCampus" type="TextureRect" parent="Pantallas/Logros" unique_id=1104165515]
+offset_left = 254.0
+offset_top = 396.0
+offset_right = 479.0
+offset_bottom = 611.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="CompletasteVictors" type="TextureRect" parent="Pantallas/Logros" unique_id=1976720400]
+offset_left = 34.0
+offset_top = 400.0
+offset_right = 259.0
+offset_bottom = 615.0
+texture = ExtResource("32_2klwg")
+expand_mode = 1
+
+[node name="Salir" type="Button" parent="Pantallas/Logros" unique_id=1450404092]
+offset_left = 1063.0
+offset_top = 5.0
+offset_right = 1138.0
+offset_bottom = 56.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_iffks")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4id3d")
+text = "ESC
+"
+
+[node name="PantallaDesconexion" parent="Pantallas" unique_id=1061094305 instance=ExtResource("33_2klwg")]
+
+[node name="PantallaConexion" type="CanvasLayer" parent="Pantallas" unique_id=2112750204]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Pantallas/PantallaConexion" unique_id=93201437]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("34_iffks")
+expand_mode = 1
+
+[connection signal="pressed" from="Pantallas/Logros/Salir" to="Pantallas/Logros" method="_on_button_pressed"]
