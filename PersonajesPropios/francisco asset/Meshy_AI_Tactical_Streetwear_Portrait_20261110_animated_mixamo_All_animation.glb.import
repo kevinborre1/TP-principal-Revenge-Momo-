@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dqhwinejfd50v"
-path="res://.godot/imported/Meshy_AI_Urban_Recon_Selfie_20261026_texture.fbx-77aa3f839442aa00da569e77b0670dce.scn"
+uid="uid://cc0qd0vxrcrn1"
+path="res://.godot/imported/Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation.glb-aae864979ef2df88ff9dfe8347c87110.scn"
 
 [deps]
 
-source_file="res://PersonajesPropios/francisco asset/Meshy_AI_Urban_Recon_Selfie_20261026_texture.fbx"
-dest_files=["res://.godot/imported/Meshy_AI_Urban_Recon_Selfie_20261026_texture.fbx-77aa3f839442aa00da569e77b0670dce.scn"]
+source_file="res://PersonajesPropios/francisco asset/Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation.glb"
+dest_files=["res://.godot/imported/Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation.glb-aae864979ef2df88ff9dfe8347c87110.scn"]
 
 [params]
 
@@ -32,7 +32,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -40,7 +40,6 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
-fbx/naming_version=2
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1
