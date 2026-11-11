@@ -150,10 +150,9 @@ fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.6550154, 0.68604404, 0.7343105, 1)
 fog_density = 0.7365
-fog_depth_curve = 1.2311441
-fog_depth_begin = 25.0
+fog_depth_curve = 0.7071067
+fog_depth_begin = 50.0
 fog_depth_end = 90.0
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0191
 volumetric_fog_length = 10.56
 volumetric_fog_detail_spread = 0.78458375
@@ -2645,6 +2644,11 @@ size = Vector3(5.380615, 3.1722412, 0.23480225)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dkjj"]
 albedo_texture = ExtResource("78_3ql8u")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fujjj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vgqji"]
+size = Vector3(1.7075195, 1.7999268, 1.4891968)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnegy"]
 lightmap_size_hint = Vector2i(9, 21)
@@ -11254,7 +11258,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1226.397)
 cantidad_curacion = 40
 
 [node name="Arma" parent="VictorBars/Consumibles" unique_id=628720648 instance=ExtResource("65_qtcef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.917, 0.827, 1240.386)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.975914, 0.827, 1222.6664)
 
 [node name="Escudo" parent="VictorBars/Consumibles" unique_id=502743752 instance=ExtResource("65_lbu8e")]
 transform = Transform3D(-0.99131596, 0, 0.13150156, 0, 1, 0, -0.13150156, 0, -0.99131596, 46.547203, 0.6069056, 1241.9486)
@@ -11270,7 +11274,7 @@ ruta_escena = "res://Objetos-Interactivos/taza.tscn"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.66072, 0.39532948, 1246.5471)
 
 [node name="Area3D2" parent="VictorBars/Consumibles" unique_id=917328590 instance=ExtResource("65_qtcef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.734024, 1.2222517, 1238.3325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.18024, 1.2222517, 1218.933)
 
 [node name="PuntoAparicionDespCinematica" type="Marker3D" parent="VictorBars" unique_id=93465238]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 1221)
@@ -12378,6 +12382,13 @@ transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.004
 [node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(495327773, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
+[node name="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc" index="1" unique_id=98093302]
+physics_material_override = SubResource("PhysicsMaterial_fujjj")
+
+[node name="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/StaticBody3D" index="0" unique_id=154298500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2565918, 0.7593845, -0.5323181)
+shape = SubResource("BoxShape3D_vgqji")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc" unique_id=1065827404]
 transform = Transform3D(0.7330567, 2.7258633e-09, 7.025392e-09, -3.5932575e-09, 0.55254936, 2.8643658, 2.0209967e-10, -0.06235825, 25.380743, 0.0024414063, 1.3403813, -0.51395833)
 mesh = SubResource("BoxMesh_fnegy")
@@ -12387,9 +12398,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5notp")
 transform = Transform3D(1.0000001, 0, 0, 0, 38.70574, 0, 0, 0, 1, 0, 2.078788, 2.7847126)
 mesh = SubResource("PlaceholderMesh_x7dpw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc" unique_id=1039656811]
+[node name="StaticBody3D2" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc" unique_id=1039656811]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/StaticBody3D" unique_id=67077224]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/StaticBody3D2" unique_id=67077224]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0825806, 0.6387941, -0.3614142)
 shape = SubResource("BoxShape3D_8q3cn")
 
@@ -12413,14 +12424,21 @@ transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.004
 [node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(719054004, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
+[node name="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5" index="1" unique_id=98093302]
+physics_material_override = SubResource("PhysicsMaterial_fujjj")
+
+[node name="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/StaticBody3D" index="0" unique_id=154298500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2565918, 0.7593845, -0.5323181)
+shape = SubResource("BoxShape3D_vgqji")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5" unique_id=185962480]
 transform = Transform3D(1.0000001, 0, 0, 0, 38.70574, 0, 0, 0, 1, 0, 2.078788, 2.7847126)
 mesh = SubResource("PlaceholderMesh_7k8o0")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5" unique_id=1173281207]
+[node name="StaticBody3D2" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5" unique_id=1173281207]
 physics_material_override = SubResource("PhysicsMaterial_hi5mo")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/StaticBody3D" unique_id=215055539]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/StaticBody3D2" unique_id=215055539]
 transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 1, 2.0296326, 0.5891112, -0.58891964)
 shape = SubResource("BoxShape3D_qxnpl")
 
@@ -12443,6 +12461,13 @@ transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.004
 
 [node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(2064862844, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
+
+[node name="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6" index="1" unique_id=98093302]
+physics_material_override = SubResource("PhysicsMaterial_fujjj")
+
+[node name="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/StaticBody3D" index="0" unique_id=154298500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2565918, 0.7593845, -0.5323181)
+shape = SubResource("BoxShape3D_vgqji")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6" unique_id=281591423]
 transform = Transform3D(1.0000001, 0, 0, 0, 38.70574, 0, 0, 0, 1, 0, 2.078788, 2.7847126)
@@ -12468,13 +12493,20 @@ transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.004
 [node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1837296612, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
+[node name="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8" index="1" unique_id=98093302]
+physics_material_override = SubResource("PhysicsMaterial_fujjj")
+
+[node name="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/StaticBody3D" index="0" unique_id=154298500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2565918, 0.7593845, -0.5323181)
+shape = SubResource("BoxShape3D_vgqji")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8" unique_id=1400179928]
 transform = Transform3D(1.0000001, 0, 0, 0, 38.70574, 0, 0, 0, 1, 0, 2.078788, 2.7847126)
 mesh = SubResource("PlaceholderMesh_gg2bb")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8" unique_id=983516196]
+[node name="StaticBody3D2" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8" unique_id=983516196]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/StaticBody3D" unique_id=1517439955]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/StaticBody3D2" unique_id=1517439955]
 transform = Transform3D(1, 0, 4.8316906e-13, 0, 1, 0, 4.8316906e-13, 0, 1, 1.2548523, 0.6137086, -0.6464014)
 shape = SubResource("BoxShape3D_7kd6k")
 
@@ -12497,6 +12529,13 @@ transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.004
 
 [node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1223405864, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
+
+[node name="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9" index="1" unique_id=98093302]
+physics_material_override = SubResource("PhysicsMaterial_fujjj")
+
+[node name="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/StaticBody3D" index="0" unique_id=154298500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2565918, 0.7593845, -0.5323181)
+shape = SubResource("BoxShape3D_vgqji")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9" unique_id=906955051]
 transform = Transform3D(1.0000001, 0, 0, 0, 38.70574, 0, 0, 0, 1, 0, 2.078788, 2.7847126)
@@ -12522,6 +12561,13 @@ transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.004
 [node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1311748693, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
+[node name="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7" index="1" unique_id=98093302]
+physics_material_override = SubResource("PhysicsMaterial_fujjj")
+
+[node name="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/StaticBody3D" index="0" unique_id=154298500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2565918, 0.7593845, -0.5323181)
+shape = SubResource("BoxShape3D_vgqji")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7" unique_id=1288622925]
 transform = Transform3D(1.0000001, 0, 0, 0, 38.70574, 0, 0, 0, 1, 0, 2.078788, 2.7847126)
 mesh = SubResource("PlaceholderMesh_lbu8e")
@@ -12540,6 +12586,13 @@ transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 1.697405e-21, -0.004
 
 [node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(103870633, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 1.697405e-21, -0.0045820083, 100, 99.99942, -0.34402105, -1.5763073e-05, 83.609375, 3.2770195, -40.246918)
+
+[node name="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2" index="1" unique_id=98093302]
+physics_material_override = SubResource("PhysicsMaterial_fujjj")
+
+[node name="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/StaticBody3D" index="0" unique_id=154298500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2565918, 0.7593845, -0.5323181)
+shape = SubResource("BoxShape3D_vgqji")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2" unique_id=196103839]
 transform = Transform3D(0.7330567, 2.7258633e-09, 7.025392e-09, -3.5932575e-09, 0.55254936, 2.8643658, 2.0209967e-10, -0.06235825, 25.380743, 0.0024414063, 1.3403813, -0.51395833)
@@ -12572,6 +12625,13 @@ transform = Transform3D(0.34402105, 99.99941, 0.004581981, 3.391471e-21, -0.0045
 
 [node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(21545017, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99941, 0.004581981, 3.391471e-21, -0.0045820083, 100, 99.99943, -0.34402105, -1.5763073e-05, 83.61328, -0.96616745, -34.672203)
+
+[node name="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3" index="1" unique_id=98093302]
+physics_material_override = SubResource("PhysicsMaterial_fujjj")
+
+[node name="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/StaticBody3D" index="0" unique_id=154298500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2565918, 0.7593845, -0.5323181)
+shape = SubResource("BoxShape3D_vgqji")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3" unique_id=812135402]
 transform = Transform3D(1.0000001, 0, 0, 0, 38.70574, 0, 0, 0, 1, 0, 2.078788, 2.7847126)
