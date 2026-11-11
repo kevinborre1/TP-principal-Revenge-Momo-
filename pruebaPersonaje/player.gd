@@ -417,14 +417,15 @@ func _recibir_danio_red(danio: int):
 		muerto = true
 		saludActual = 0
 		actualizar_barraDeVida()
-		# El jugador ya no toma decisiones aquí. 
-		# Solo grita al GameManager que murió, y el Manager se encarga del resto.
-		jugador_murio.emit(self)
-		# Avisamos al host que este jugador murió (lo usa el líder en furia)
+		
+		# 1. PRIMERO: Hacemos toda la lógica de red mientras el nodo sigue en el SceneTree
 		if Global.modo_multijugador == "linea" and not multiplayer.is_server():
 			_avisar_muerte_al_host.rpc_id(1)
 		else:
 			GameManager.jugador_caido.emit(self)
+			
+		# 2. ÚLTIMO: Avisamos que murió, delegando el control total al GameManager
+		jugador_murio.emit(self)
 		
 	actualizar_barraDeVida()
 

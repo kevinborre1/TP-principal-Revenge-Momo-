@@ -131,7 +131,6 @@
 [ext_resource type="Texture2D" uid="uid://cyrvo12o8qes7" path="res://Terreno/door/low_poly_door_-_game_ready_1.png" id="103_d48u7"]
 [ext_resource type="Texture2D" uid="uid://bsdj8ebaf64rl" path="res://Terreno/door/low_poly_door_-_game_ready_2.png" id="104_6tfkg"]
 [ext_resource type="PackedScene" uid="uid://qcvy7id450rc" path="res://enemigo/EnemigoDelFinal.tscn" id="125_i635x"]
-[ext_resource type="ArrayOccluder3D" uid="uid://b8podsok8n2hg" path="res://Terreno/terreno.occ" id="128_wtxyr"]
 [ext_resource type="Script" uid="uid://bybbxkgmoqreb" path="res://Terreno/zonaAjedrez.gd" id="129_xx8as"]
 [ext_resource type="PackedScene" uid="uid://7y3f3n46anpp" path="res://assets/bandera_argentina.tscn" id="130_3h8wr"]
 [ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="131_idtyf"]
@@ -405,7 +404,7 @@ shadow_mesh = SubResource("ArrayMesh_vodbd")
 size = Vector3(0.08520508, 1.9857788, 2.0136719)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d6yw7"]
-size = Vector3(1.9987793, 0.18167114, 1.5102539)
+size = Vector3(1.9987793, 0.6494293, 1.5102539)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xp6v"]
 resource_name = "Material.001"
@@ -10112,7 +10111,7 @@ transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0.9497938, -0.0012513
 shape = SubResource("BoxShape3D_372xe")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Banio/Cube_002/StaticBody3D" unique_id=660782087]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, -0.00085401535, 0.9102303, 0.255188)
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, -0.00085401535, 0.6763511, 0.255188)
 shape = SubResource("BoxShape3D_d6yw7")
 
 [node name="Cube_003" type="MeshInstance3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Banio" unique_id=816865292]
@@ -10215,10 +10214,7 @@ shape = SubResource("BoxShape3D_vrlqc")
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 
-[node name="door l_0" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode" parent_id_path=PackedInt32Array(790094590, 152769421) index="0" unique_id=1330816599]
-transform = Transform3D(-0.5611988, 0, -0.8321099, 0, 1, 0, 0.82768106, 0, -0.5642017, 0.08904147, 0, 2.548793)
-
-[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" index="0" unique_id=1994626132]
+[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(790094590, 1330816599) index="0" unique_id=1994626132]
 transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, -0.04442978)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" index="0" unique_id=520507754]
@@ -10227,10 +10223,7 @@ transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, 
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
 shape = SubResource("BoxShape3D_tx3k5")
 
-[node name="door r_2" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode" parent_id_path=PackedInt32Array(790094590, 152769421) index="2" unique_id=1247375556]
-transform = Transform3D(-0.450228, 0, 0.89769155, 0, 1, 0, -0.89291364, 0, -0.45263717, 0.08904147, 0, -2.54879)
-
-[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" index="0" unique_id=1708783680]
+[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(790094590, 1247375556) index="0" unique_id=1708783680]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" index="0" unique_id=1916084811]
@@ -15963,7 +15956,6 @@ _spawnable_scenes = PackedStringArray("uid://c6yr2jemw2ntr", "uid://crefucvws2ep
 spawn_path = NodePath("../ContenedorItemsSoltados")
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="." unique_id=104292114]
-occluder = ExtResource("128_wtxyr")
 
 [node name="Pantallas" type="Node3D" parent="." unique_id=1258867666]
 
