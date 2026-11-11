@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpm5syrjx3b0y"
-path.s3tc="res://.godot/imported/Meshy_AI_Wide_Angle_Confidence_1110151055_texture_2.jpg-4ed26d05207bf1fdaab588bb54658bef.s3tc.ctex"
+uid="uid://ffttka6dveve"
+path.s3tc="res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_1.png-d8043fde82241e1bff53ad342c1b5630.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "2ebbd311547ff4ab8e20bba2f96941d7"
+"md5": "2d666fa3642d895f21b4282a6c3dc459"
 }
 
 [deps]
 
-source_file="res://PersonajesPropios/kevinAsset2/Meshy_AI_Wide_Angle_Confidence_1110151055_texture_2.jpg"
-dest_files=["res://.godot/imported/Meshy_AI_Wide_Angle_Confidence_1110151055_texture_2.jpg-4ed26d05207bf1fdaab588bb54658bef.s3tc.ctex"]
+source_file="res://PersonajesPropios/kevinAnimaciones/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_1.png"
+dest_files=["res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_1.png-d8043fde82241e1bff53ad342c1b5630.s3tc.ctex"]
 
 [params]
 
@@ -30,7 +30,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://PersonajesPropios/kevinAsset2/Meshy_AI_Wide_Angle_Confidence_1110151055_texture_2.jpg"
+roughness/src_normal="res://PersonajesPropios/kevinAnimaciones/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_1.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

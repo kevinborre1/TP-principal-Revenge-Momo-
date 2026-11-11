@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bdm56w1vyv0x8"
-path="res://.godot/imported/Meshy_AI_Wide_Angle_Confidence_1110151055_texture.glb-aa52b443fa4effb50f30e5086f4f214d.scn"
+uid="uid://bvwvafv7pfth4"
+path="res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx-735c17ab5304620a48442e822e588563.scn"
 
 [deps]
 
-source_file="res://PersonajesPropios/kevinAsset2/Meshy_AI_Wide_Angle_Confidence_1110151055_texture.glb"
-dest_files=["res://.godot/imported/Meshy_AI_Wide_Angle_Confidence_1110151055_texture.glb-aa52b443fa4effb50f30e5086f4f214d.scn"]
+source_file="res://PersonajesPropios/kevinAnimaciones/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx"
+dest_files=["res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx-735c17ab5304620a48442e822e588563.scn"]
 
 [params]
 
@@ -32,7 +32,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -40,6 +40,7 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=2
-gltf/embedded_image_handling=1
-gltf/texture_map_mode=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2

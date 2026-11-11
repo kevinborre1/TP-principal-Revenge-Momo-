@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgw36nkv1jeqg"
-path="res://.godot/imported/Meshy_AI_Courtyard_Smile_1025003233_texture_2.png-e491615db3265b6bbeddd29eb8751adf.ctex"
+uid="uid://bkb57di0qkove"
+path="res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_3.png-261d445558a955a1ea60352166330364.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "926a89d045fde25e1af1b6a41255aab8"
+"md5": "2ea6dfe90ee5ec58b27fa69d72cee26a"
 }
 
 [deps]
 
-source_file="res://PersonajesPropios/kevin asset/Meshy_AI_Courtyard_Smile_1025003233_texture_2.png"
-dest_files=["res://.godot/imported/Meshy_AI_Courtyard_Smile_1025003233_texture_2.png-e491615db3265b6bbeddd29eb8751adf.ctex"]
+source_file="res://PersonajesPropios/kevinAnimaciones/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_3.png"
+dest_files=["res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_3.png-261d445558a955a1ea60352166330364.ctex"]
 
 [params]
 

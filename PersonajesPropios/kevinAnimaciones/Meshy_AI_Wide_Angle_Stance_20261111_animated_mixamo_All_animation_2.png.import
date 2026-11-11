@@ -2,16 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chdq6q3nryscd"
-path="res://.godot/imported/Meshy_AI_Courtyard_Smile_1025003233_texture_metallic.png-a59c50d33064ede137e19bbd1c660a4c.ctex"
+uid="uid://0ldiioi2k7h4"
+path="res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_2.png-3336a6c354c2cec9475b1b37d43fe349.ctex"
 metadata={
 "vram_texture": false
+}
+generator_parameters={
+"md5": "87323a099547f0693e28e044a156610a"
 }
 
 [deps]
 
-source_file="res://PersonajesPropios/kevin asset/Meshy_AI_Courtyard_Smile_1025003233_texture_metallic.png"
-dest_files=["res://.godot/imported/Meshy_AI_Courtyard_Smile_1025003233_texture_metallic.png-a59c50d33064ede137e19bbd1c660a4c.ctex"]
+source_file="res://PersonajesPropios/kevinAnimaciones/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_2.png"
+dest_files=["res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation_2.png-3336a6c354c2cec9475b1b37d43fe349.ctex"]
 
 [params]
 
@@ -23,7 +26,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
