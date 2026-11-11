@@ -14961,11 +14961,11 @@ shape = SubResource("ConcavePolygonShape3D_fk4yt")
 [node name="CheckpointJefe" type="Marker3D" parent="Modulo7/ZonaJefe/Entrada" unique_id=1724819382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 2.9648895, 0.8315749, 56.935303)
 
-[node name="Area3D" type="Area3D" parent="Modulo7/ZonaJefe" unique_id=1253606655]
+[node name="Roles" type="Area3D" parent="Modulo7/ZonaJefe" unique_id=1253606655]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 52.635193)
 script = ExtResource("113_6126t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/ZonaJefe/Area3D" unique_id=1691289878]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/ZonaJefe/Roles" unique_id=1691289878]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0113678, 22.776337, 0.77612305)
 shape = SubResource("BoxShape3D_rogtm")
 
