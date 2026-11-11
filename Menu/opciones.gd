@@ -264,6 +264,15 @@ func _asignar(evento: InputEvent) -> void:
 	var accion := _accion_esperando
 	var codigo := _evento_a_codigo(evento)
 	if codigo != 0:
+		var en_uso := _accion_que_usa_codigo(codigo, accion)
+		if en_uso != "":
+			# Tecla repetida: no se asigna, se restaura el texto y se avisa
+			if _boton_esperando and is_instance_valid(_boton_esperando):
+				_boton_esperando.text = _texto_accion(accion)
+			_accion_esperando = ""
+			_boton_esperando = null
+			_avisar_conflicto(ACCIONES[en_uso])
+			return
 		_aplicar_control(accion, codigo)
 		_cfg().controles[accion] = codigo
 		SaveAndLoad.guardar_configuracion()  # SAVE
@@ -271,6 +280,25 @@ func _asignar(evento: InputEvent) -> void:
 		_boton_esperando.text = _texto_accion(accion)
 	_accion_esperando = ""
 	_boton_esperando = null
+
+
+# Devuelve la acción (distinta de "excepto") que ya usa ese código, o "" si está libre
+func _accion_que_usa_codigo(codigo: int, excepto: String) -> String:
+	for otra in ACCIONES:
+		if otra == excepto or not InputMap.has_action(otra):
+			continue
+		for ev in InputMap.action_get_events(otra):
+			if _evento_a_codigo(ev) == codigo:
+				return otra
+	return ""
+
+
+func _avisar_conflicto(nombre_accion: String) -> void:
+	var aviso := Label.new()
+	aviso.text = "Esa tecla ya está asignada a \"%s\"" % nombre_accion
+	aviso.add_theme_color_override("font_color", Color(1, 0.6, 0.5))
+	_contenido.add_child(aviso)
+	get_tree().create_timer(2.5).timeout.connect(aviso.queue_free)
 
 
 func _restablecer_controles() -> void:

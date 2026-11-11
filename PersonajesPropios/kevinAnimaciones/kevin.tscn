@@ -1,21 +1,23 @@
 [gd_scene format=3 uid="uid://cwe8qjn7a3my6"]
 
 [ext_resource type="Script" uid="uid://dcn7yxgsn2jwx" path="res://PersonajesPropios/locomotora/locomotora.gd" id="1_xo7ig"]
+[ext_resource type="Resource" uid="uid://b1xik0soo5r8x" path="res://DialogoKevin.dialogue" id="2_mdaui"]
 [ext_resource type="PackedScene" uid="uid://bvwvafv7pfth4" path="res://PersonajesPropios/kevinAnimaciones/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx" id="2_qy8er"]
 [ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="3_mdaui"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6fskx"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxovr"]
-radius = 0.2836914
-height = 1.8188477
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hvcuj"]
 radius = 0.49560547
 height = 1.8847656
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxovr"]
+radius = 0.2836914
+height = 1.8188477
+
 [node name="Kevin" type="StaticBody3D" unique_id=1156081099]
 script = ExtResource("1_xo7ig")
+dialogue_resource = ExtResource("2_mdaui")
 
 [node name="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation" parent="." unique_id=1701877001 instance=ExtResource("2_qy8er")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06876707, 0, -0.09178388)
@@ -53,10 +55,6 @@ bones/31/rotation = Quaternion(0.6342985, -0.72458255, 0.17254712, 0.20705798)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009769559, -0.09852922, -0.12474918)
 physics_material_override = SubResource("PhysicsMaterial_6fskx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D" unique_id=563351541]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07853663, 0.769192, 0.21653306)
-shape = SubResource("CapsuleShape3D_sxovr")
-
 [node name="Area3D" type="Area3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D" unique_id=1277638497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.28764534)
 collision_layer = 255
@@ -65,6 +63,10 @@ collision_mask = 255
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D/Area3D" unique_id=1843002452]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039597392, 0.8971821, -0.0010385513)
 shape = SubResource("CapsuleShape3D_hvcuj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D" unique_id=563351541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07853663, 0.769192, 0.21653306)
+shape = SubResource("CapsuleShape3D_sxovr")
 
 [node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=274720573]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.052786246, 1.6976786, 0.26259935)
