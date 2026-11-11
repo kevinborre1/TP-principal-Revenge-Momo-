@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://xv4xcb4q066w" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_2.png" id="3_0gunf"]
 [ext_resource type="Texture2D" uid="uid://b4k8w2h4ji5j2" path="res://Terreno/Projectplaytime/projectplaytime_destroy-a-toy_fences-pack_3.png" id="4_a3gje"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmha5"]
+albedo_color = Color(0, 0, 0, 1)
+disable_receive_shadows = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1874"]
 resource_name = "Material.064"
 transparency = 4
@@ -56,6 +60,7 @@ size = Vector3(5.765524, 0.2680664, 5.1223164)
 [node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="." unique_id=231711150]
 visibility_range_end = 150.0
 mesh = ExtResource("1_4rk8p")
+surface_material_override/0 = SubResource("StandardMaterial3D_bmha5")
 
 [node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="." unique_id=900366231]
 visibility_range_end = 150.0
