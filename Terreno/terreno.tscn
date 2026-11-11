@@ -9216,12 +9216,6 @@ size = Vector3(21.844482, 10.29187, 1)
 [node name="Node3D" type="Node3D" unique_id=695447382]
 script = ExtResource("1_bmrm7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1977473538]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
-directional_shadow_mode = 1
-directional_shadow_max_distance = 50.0
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=79602697]
 environment = SubResource("Environment_75c1s")
 
@@ -9836,6 +9830,7 @@ shape = SubResource("BoxShape3D_hi5mo")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Cocina/SM_Shop_Counter_Service_012" unique_id=1603381081]
 transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-14, 0, 1, 0.380661, 0.057241485, -1.010292)
+visible = false
 use_collision = true
 size = Vector3(0.1, 0.1, 0.2)
 
@@ -15405,78 +15400,103 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.69757, 0, 0)
 
 [node name="Perimetro98" parent="AlRededores/Perimetro" unique_id=2002793010 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.46774, 32.78363, 1.4323741e-06)
+visible = false
 
 [node name="Perimetro121" parent="AlRededores/Perimetro" unique_id=490232052 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(0.99941665, 0.034148127, 2.7222917e-09, -0.034148127, 0.99941665, -8.4842355e-11, -2.7235956e-09, -8.167689e-12, 1, 21.991627, 27.404053, 1.1976808e-06)
+visible = false
 
 [node name="Perimetro122" parent="AlRededores/Perimetro" unique_id=682223235 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(0.99941665, 0.034148127, 2.7222917e-09, -0.034148127, 0.99941665, -8.4842355e-11, -2.7235956e-09, -8.167689e-12, 1, 16.368656, 27.404053, 1.1976808e-06)
+visible = false
 
 [node name="Perimetro99" parent="AlRededores/Perimetro" unique_id=778171933 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.62173, 38.24945, 1.6726553e-06)
+visible = false
 
 [node name="Perimetro100" parent="AlRededores/Perimetro" unique_id=715416518 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.776226, 43.733704, 1.911074e-06)
+visible = false
 
 [node name="Perimetro101" parent="AlRededores/Perimetro" unique_id=1304875109 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.86436, 49.299316, 2.1550804e-06)
+visible = false
 
 [node name="Perimetro102" parent="AlRededores/Perimetro" unique_id=1164732200 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.018291, 54.763123, 2.3953617e-06)
+visible = false
 
 [node name="Perimetro103" parent="AlRededores/Perimetro" unique_id=1909008166 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.173077, 60.256836, 2.6375055e-06)
+visible = false
 
 [node name="Perimetro104" parent="AlRededores/Perimetro" unique_id=532768603 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.32751, 65.739075, 2.8740615e-06)
+visible = false
 
 [node name="Perimetro105" parent="AlRededores/Perimetro" unique_id=823660247 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.481853, 71.21735, 3.11248e-06)
+visible = false
 
 [node name="Perimetro106" parent="AlRededores/Perimetro" unique_id=376973598 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.63554, 76.6734, 3.3508986e-06)
+visible = false
 
 [node name="Perimetro107" parent="AlRededores/Perimetro" unique_id=227572355 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.789532, 82.13922, 3.5911798e-06)
+visible = false
 
 [node name="Perimetro108" parent="AlRededores/Perimetro" unique_id=634475582 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.944027, 87.623474, 3.8295984e-06)
+visible = false
 
 [node name="Perimetro109" parent="AlRededores/Perimetro" unique_id=1095212872 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 28.934109, 93.121216, 4.0698797e-06)
+visible = false
 
 [node name="Perimetro110" parent="AlRededores/Perimetro" unique_id=1530266258 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.08804, 98.58502, 4.3120235e-06)
+visible = false
 
 [node name="Perimetro111" parent="AlRededores/Perimetro" unique_id=363023580 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.242825, 104.078735, 4.5578927e-06)
+visible = false
 
 [node name="Perimetro112" parent="AlRededores/Perimetro" unique_id=1173593643 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.397259, 109.560974, 4.7888607e-06)
+visible = false
 
 [node name="Perimetro113" parent="AlRededores/Perimetro" unique_id=672493984 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.551601, 115.039246, 5.029142e-06)
+visible = false
 
 [node name="Perimetro114" parent="AlRededores/Perimetro" unique_id=1193928367 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.705288, 120.4953, 5.2675605e-06)
+visible = false
 
 [node name="Perimetro115" parent="AlRededores/Perimetro" unique_id=1083519402 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.85928, 125.96112, 5.505979e-06)
+visible = false
 
 [node name="Perimetro116" parent="AlRededores/Perimetro" unique_id=1665023250 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.013775, 131.44537, 5.7462603e-06)
+visible = false
 
 [node name="Perimetro117" parent="AlRededores/Perimetro" unique_id=1437026229 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 29.926464, 136.96652, 5.9865415e-06)
+visible = false
 
 [node name="Perimetro118" parent="AlRededores/Perimetro" unique_id=211348573 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.080395, 142.43027, 6.236136e-06)
+visible = false
 
 [node name="Perimetro119" parent="AlRededores/Perimetro" unique_id=2025436269 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.23518, 147.92401, 6.4708292e-06)
+visible = false
 
 [node name="Perimetro120" parent="AlRededores/Perimetro" unique_id=536348368 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.389614, 153.40625, 6.7055225e-06)
+visible = false
 
 [node name="Perimetro10" parent="AlRededores/Perimetro" unique_id=1750865025 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(1.0735035, 0, 0, 0, 1, 0, 0, 0, 1, -56.638916, 0, 0)
