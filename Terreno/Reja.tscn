@@ -58,12 +58,12 @@ size = Vector3(5.765524, 0.2680664, 5.1223164)
 [node name="Reja" type="Node3D" unique_id=490232052]
 
 [node name="M_Fence_4x6_B_mo_Material_037_0" type="MeshInstance3D" parent="." unique_id=231711150]
-visibility_range_end = 150.0
+visibility_range_end = 70.0
 mesh = ExtResource("1_4rk8p")
 surface_material_override/0 = SubResource("StandardMaterial3D_bmha5")
 
 [node name="M_Fence_4x6_B_mo_Material_064_0" type="MeshInstance3D" parent="." unique_id=900366231]
-visibility_range_end = 150.0
+visibility_range_end = 70.0
 mesh = SubResource("ArrayMesh_tyq5b")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="M_Fence_4x6_B_mo_Material_064_0" unique_id=78334492]
