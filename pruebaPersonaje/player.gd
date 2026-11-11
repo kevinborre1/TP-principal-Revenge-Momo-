@@ -421,9 +421,6 @@ func heridoPorEnemigo(danio: int = 10):
 		return
 	if Global.modo_multijugador == "linea":
 		if multiplayer.is_server():
-			if Global.modo_de_juego == "vida_compartida":
-				GameManager.vida_compartida.cambiar_salud_compartida(-danio)
-			else:
 				rpc_id(get_multiplayer_authority(), "_recibir_danio_red", danio)
 	else:
 		_recibir_danio_red(danio)
@@ -433,6 +430,15 @@ func heridoPorEnemigo(danio: int = 10):
 func _recibir_danio_red(danio: int):
 	if escudo_activo:
 		return
+	
+	if Global.modo_multijugador == "linea":
+		if multiplayer.is_server():
+			if Global.modo_de_juego == "vida_compartida":
+				GameManager.vida_compartida.cambiar_salud_compartida(-danio)
+
+	if not is_inside_tree():
+		return	
+				
 	saludActual -= danio
 	herido = true
 	if saludActual <= 0:

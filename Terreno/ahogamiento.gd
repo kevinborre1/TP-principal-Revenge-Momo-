@@ -14,5 +14,5 @@ func _on_body_entered(body: Node3D) -> void:
 	_aplicar_dano(body)
 
 func _aplicar_dano(jugador: Node3D) -> void:
-	jugador._recibir_danio_red(100)
+	jugador._recibir_danio_red(1000)
 	jugador.cambioSalud.emit()
