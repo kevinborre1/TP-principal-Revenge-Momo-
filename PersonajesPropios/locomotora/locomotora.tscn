@@ -9,6 +9,10 @@
 radius = 0.49560547
 height = 1.8847656
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxovr"]
+radius = 0.33544922
+height = 1.7871094
+
 [node name="Locomotora" type="StaticBody3D" unique_id=1106361132]
 script = ExtResource("1_636cs")
 dialogue_resource = ExtResource("2_6fskx")
@@ -16,7 +20,7 @@ dialogue_resource = ExtResource("2_6fskx")
 [node name="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation" parent="." unique_id=1633914622 instance=ExtResource("1_gbiqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5228752, 0, 0.10129619)
 
-[node name="Skeleton3D" parent="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1633914622, 137302611) index="0" unique_id=1077460017]
+[node name="Skeleton3D" parent="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1633914622, 1936151864) index="0" unique_id=135527053]
 bones/0/position = Vector3(0.52549255, 0.9307227, -0.43903032)
 bones/0/rotation = Quaternion(-0.032135237, -0.26623034, 0.015281432, 0.9632525)
 bones/1/rotation = Quaternion(0.09692249, -0.018208507, -0.041147664, 0.9942743)
@@ -95,6 +99,10 @@ collision_mask = 255
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation/StaticBody3D/Area3D" unique_id=943284136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06805968, 0.8971821, -0.19486219)
 shape = SubResource("CapsuleShape3D_rsdri")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Arms_Wide_Open_20261104_animated_mixamo_All_animation/StaticBody3D" unique_id=1792245548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06882608, 0.7559266, -0.4947194)
+shape = SubResource("CapsuleShape3D_sxovr")
 
 [node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=417169476]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.045883045, 1.7190886, -0.18330002)

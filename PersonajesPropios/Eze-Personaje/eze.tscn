@@ -5,9 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://bu0dfuax053dg" path="res://PersonajesPropios/Eze-Personaje/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation.glb" id="3_24olb"]
 [ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="4_b13r2"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3yvcg"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t8mn"]
 radius = 0.49560547
 height = 1.8847656
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxovr"]
+radius = 0.33154297
+height = 1.8637695
 
 [node name="Eze" type="StaticBody3D" unique_id=1738230920]
 script = ExtResource("1_fednx")
@@ -16,7 +22,7 @@ dialogue_resource = ExtResource("2_iai61")
 [node name="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation" parent="." unique_id=1637711009 instance=ExtResource("3_24olb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035495043, 0, 0.10451388)
 
-[node name="Skeleton3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1637711009, 1278702582) index="0" unique_id=2075624187]
+[node name="Skeleton3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1637711009, 1744520845) index="0" unique_id=1574827423]
 bones/0/position = Vector3(0.0020085075, 0.8591255, -0.06013143)
 bones/0/rotation = Quaternion(-0.10742687, -0.13568418, -0.01620395, 0.98477757)
 bones/1/rotation = Quaternion(0.07971716, -0.0017948487, -0.00028988137, 0.9968159)
@@ -55,6 +61,7 @@ bones/35/rotation = Quaternion(-0.4052797, 0.4242584, 0.59017044, 0.5544836)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation" unique_id=1362538013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025725484, -0.09852922, -0.22926307)
+physics_material_override = SubResource("PhysicsMaterial_3yvcg")
 
 [node name="Area3D" type="Area3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/StaticBody3D" unique_id=19349935]
 collision_layer = 255
@@ -63,6 +70,10 @@ collision_mask = 255
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/StaticBody3D/Area3D" unique_id=365422644]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039597392, 0.8971821, -0.0010385513)
 shape = SubResource("CapsuleShape3D_0t8mn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/StaticBody3D" unique_id=1855619231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79716337, 0)
+shape = SubResource("CapsuleShape3D_sxovr")
 
 [node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=1136734816]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.015243337, 1.6503328, 0.1602081)

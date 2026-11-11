@@ -9,6 +9,10 @@
 radius = 0.49560547
 height = 1.8847656
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxovr"]
+radius = 0.25
+height = 1.8120117
+
 [node name="Franco" type="StaticBody3D" unique_id=1246472670]
 script = ExtResource("1_gsg3y")
 dialogue_resource = ExtResource("2_2mf2t")
@@ -16,7 +20,7 @@ dialogue_resource = ExtResource("2_2mf2t")
 [node name="Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation" parent="." unique_id=1258951491 instance=ExtResource("3_cjdf8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012327075, 0, 0.038411856)
 
-[node name="Skeleton3D" parent="Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1258951491, 652665599) index="0" unique_id=457565546]
+[node name="Skeleton3D" parent="Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1258951491, 2074429808) index="0" unique_id=1203545924]
 bones/0/position = Vector3(0.038759574, 0.88253313, -0.036177572)
 bones/0/rotation = Quaternion(-0.09074378, -0.13987245, -0.02305287, 0.98573315)
 bones/1/rotation = Quaternion(0.07988197, -0.015960567, -0.031966206, 0.99616385)
@@ -71,6 +75,10 @@ collision_mask = 255
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation/StaticBody3D/Area3D" unique_id=1109893612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039597392, 0.8971821, -0.0010385513)
 shape = SubResource("CapsuleShape3D_mgebf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation/StaticBody3D" unique_id=1337010631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81831896, 0)
+shape = SubResource("CapsuleShape3D_sxovr")
 
 [node name="ExclamacionSprite" type="Sprite3D" parent="Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation" unique_id=1085494599]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.032653585, 1.7023811, 0.12985992)

@@ -371,9 +371,15 @@ _data = {
 &"Boom_Dance_2": SubResource("Animation_xpd1m")
 }
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7kd6k"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vmjw8"]
 radius = 0.49560547
 height = 1.8847656
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxovr"]
+radius = 0.32373047
+height = 1.8178711
 
 [node name="Francis" type="StaticBody3D" unique_id=518589996]
 script = ExtResource("1_lq1qp")
@@ -381,7 +387,7 @@ dialogue_resource = ExtResource("2_sb08w")
 
 [node name="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation" parent="." unique_id=1224178730 instance=ExtResource("2_xpd1m")]
 
-[node name="Skeleton3D" parent="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1224178730, 1064493803) index="0" unique_id=63495934]
+[node name="Skeleton3D" parent="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1224178730, 797437475) index="0" unique_id=212551138]
 bones/0/position = Vector3(-0.0025537089, 0.80418634, 0.009915142)
 bones/0/rotation = Quaternion(-0.11582539, -0.06346584, 0.026852503, 0.99087614)
 bones/1/rotation = Quaternion(0.06921238, -0.08804619, -0.06143018, 0.99180835)
@@ -434,10 +440,11 @@ bones/47/rotation = Quaternion(-0.4738486, -0.18230294, 0.30527967, 0.8056287)
 bones/48/rotation = Quaternion(-0.49690112, 0.74521977, -0.079000145, -0.4376024)
 bones/49/rotation = Quaternion(0.16869207, -0.15778719, 0.5026689, 0.83304876)
 
-[node name="AnimationPlayer" parent="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation" index="1" unique_id=1423245209]
+[node name="AnimationPlayer" parent="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation" index="1" unique_id=295109642]
 libraries/baile = SubResource("AnimationLibrary_sb08w")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation" unique_id=1857178487]
+physics_material_override = SubResource("PhysicsMaterial_7kd6k")
 
 [node name="Area3D" type="Area3D" parent="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation/StaticBody3D" unique_id=1305467174]
 collision_layer = 255
@@ -446,6 +453,10 @@ collision_mask = 255
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation/StaticBody3D/Area3D" unique_id=651512843]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039597392, 0.8971821, -0.0010385513)
 shape = SubResource("CapsuleShape3D_vmjw8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Tactical_Streetwear_Portrait_20261110_animated_mixamo_All_animation/StaticBody3D" unique_id=468296634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7542037, 0)
+shape = SubResource("CapsuleShape3D_sxovr")
 
 [node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=1889278825]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.0048261136, 1.7190886, 0.106392205)

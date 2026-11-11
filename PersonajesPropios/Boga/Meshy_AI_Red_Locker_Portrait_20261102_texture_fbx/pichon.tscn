@@ -5,9 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://cf7vdysymfwek" path="res://PersonajesPropios/Boga/Meshy_AI_Red_Locker_Portrait_20261102_texture_fbx/Meshy_AI_Red_Locker_Portrait_20261102_texture.fbx" id="3_0ip5j"]
 [ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="4_s6n0m"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xpd1m"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w5wvn"]
 radius = 1.2392578
 height = 2.4785156
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y6u0y"]
+radius = 0.62646484
+height = 1.4700928
 
 [node name="Pichon" type="StaticBody3D" unique_id=2115852283]
 script = ExtResource("1_y6u0y")
@@ -18,6 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.070861995, 0, 0.46596813)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Red_Locker_Portrait_20261102_texture" unique_id=144782983]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58892345, -0.09852922, 0.5747669)
+physics_material_override = SubResource("PhysicsMaterial_xpd1m")
 
 [node name="Area3D" type="Area3D" parent="Meshy_AI_Red_Locker_Portrait_20261102_texture/StaticBody3D" unique_id=1869104955]
 collision_layer = 255
@@ -26,6 +33,10 @@ collision_mask = 255
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Red_Locker_Portrait_20261102_texture/StaticBody3D/Area3D" unique_id=1838193774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.61852455, 0.025327146, -0.67210275)
 shape = SubResource("CapsuleShape3D_w5wvn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Red_Locker_Portrait_20261102_texture/StaticBody3D" unique_id=1705829054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60607135, 0.122178435)
+shape = SubResource("CapsuleShape3D_y6u0y")
 
 [node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=1979217666]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.0379868, 0.9979662, 0.021584779)

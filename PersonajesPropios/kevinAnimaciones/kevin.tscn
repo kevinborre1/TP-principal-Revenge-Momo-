@@ -4,6 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bvwvafv7pfth4" path="res://PersonajesPropios/kevinAnimaciones/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx" id="2_qy8er"]
 [ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="3_mdaui"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6fskx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sxovr"]
+radius = 0.2836914
+height = 1.8188477
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hvcuj"]
 radius = 0.49560547
 height = 1.8847656
@@ -14,7 +20,7 @@ script = ExtResource("1_xo7ig")
 [node name="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation" parent="." unique_id=1701877001 instance=ExtResource("2_qy8er")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06876707, 0, -0.09178388)
 
-[node name="Skeleton3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1701877001, 332089686) index="0" unique_id=1806307133]
+[node name="Skeleton3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1701877001, 670690131) index="0" unique_id=209486915]
 bones/0/position = Vector3(-0.0044128895, 0.9395343, 0.14771503)
 bones/0/rotation = Quaternion(-0.06194274, -0.029582039, 0.057926275, 0.99595815)
 bones/1/rotation = Quaternion(0.029075438, -0.114148945, -0.07638682, 0.9900958)
@@ -45,6 +51,11 @@ bones/31/rotation = Quaternion(0.6342985, -0.72458255, 0.17254712, 0.20705798)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation" unique_id=1724902565]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009769559, -0.09852922, -0.12474918)
+physics_material_override = SubResource("PhysicsMaterial_6fskx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D" unique_id=563351541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07853663, 0.769192, 0.21653306)
+shape = SubResource("CapsuleShape3D_sxovr")
 
 [node name="Area3D" type="Area3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D" unique_id=1277638497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.28764534)
