@@ -136,7 +136,14 @@ func load_game() -> void:
 	if Global.modo_de_juego == "contrarreloj" and data.tiempo_contrarreloj > 0.0:
 		if is_instance_valid(GameManager.contrarreloj):
 			GameManager.contrarreloj.preparar_tiempo_guardado(data.tiempo_contrarreloj)
-
+	
+	# --- CARGA: Restaurar el Modo de Juego ---
+	if data.get("modo_de_juego") != null and data.modo_de_juego != "":
+		Global.modo_de_juego = data.modo_de_juego
+	else:
+		# Valor de rescate por si cargas una partida súper vieja sin datos
+		Global.modo_de_juego = "recoleccion" # O el modo "normal" de tu juego
+		
 	cache_inventario_host = data.inventario_host.duplicate(true)
 	#Si el cliente se une luego de el juego empezado se le da una copia del inventario del cliente 
 	if not data.inventario_cliente.is_empty():
@@ -206,6 +213,9 @@ func _servidor_enviar_posicion_a_jugador(peer_id: int) -> void:
 		if data.ataque_iniciado and data.fase_oleada >= 1 and data.fase_oleada <= 3:
 			activador.iniciar_fase(data.fase_oleada)
 
+	# AL FINAL DE LA FUNCIÓN, avísale al cliente qué modo jugar:
+	_sincronizar_modo_global.rpc_id(peer_id, Global.modo_de_juego)
+	
 @rpc("authority", "call_local", "reliable")
 func _cliente_aplicar_datos_guardados(
 	peer_id: int, 
@@ -472,6 +482,7 @@ func _servidor_enviar_estado_vivo_mapa(peer_id: int) -> void:
 			barriles_vivos.append(str(b.get_path()))
 			
 	# Actualiza la llamada RPC para incluir los barriles
+	_sincronizar_modo_global.rpc_id(peer_id, Global.modo_de_juego)
 	_cliente_sincronizar_mapa_vivo.rpc_id(peer_id, pepitas_vivas, items_vivos, inventarios_vivos, barriles_vivos)
 
 # 3. El cliente nuevo recibe la lista y destruye lo que sobra
@@ -496,7 +507,6 @@ func _cliente_sincronizar_mapa_vivo(pepitas_vivas: Array, items_vivos: Array, in
 	for b in get_tree().get_nodes_in_group("BarrilesMapa"):
 		if not barriles_vivos.has(str(b.get_path())):
 			b._destruir_barril()
-	
 			
 	print("Mapa sincronizado con el estado en vivo del servidor.")
 func cargar_configuracion() -> void:
@@ -542,6 +552,18 @@ func destruir_partida_y_limpiar() -> void:
 	cache_inventario_cliente.clear()
 	posicion_segura_host = Vector3.ZERO
 	posicion_segura_cliente = Vector3.ZERO
+	
+	Global.modo_de_juego = "" # <--- ESTO EVITA EL MODO FANTASMA
+
+@rpc("authority", "call_local", "reliable")
+func _sincronizar_modo_global(modo: String) -> void:
+	Global.modo_de_juego = modo
+	print("Modo de juego sincronizado con el Host: ", modo)	
+	# --- NUEVO: Obligamos al Terreno a actualizar su cartel con la nueva info ---
+	var mapa_actual = get_tree().current_scene
+	if mapa_actual.has_method("actualizar_cartel_modo"):
+		mapa_actual.actualizar_cartel_modo()
+
 func guardarEstadoMomo(muerto: bool) -> void:
 	if not multiplayer.is_server() or rutaUtilizada == "":
 		return

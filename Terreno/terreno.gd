@@ -23,13 +23,9 @@ var saliendo := false
 func _ready() -> void:
 	MenuOpciones.aplicar_calidad_terreno(get_node_or_null("Terrain3D"))
 	
-	if Global.modo_de_juego == "normal":
-		texto_modo.text = "Modo: Normal"
-	elif Global.modo_de_juego == "vida_compartida":
-		texto_modo.text = "Modo: Vida Compartida"
-	elif Global.modo_de_juego == "contrarreloj":
-		texto_modo.text = "Modo: Contrarreloj"
-
+	# El Host (que ya pre-cargó los datos en el menú) lo leerá bien de entrada
+	actualizar_cartel_modo()
+	
 	GameManager.set_mode(GameManager.GameMode.RECOLECCION, 3)
 	
 	# Configurar la UI
@@ -203,3 +199,14 @@ func _abortar_conexion(mensaje: String) -> void:
 func _on_error_tube(_codigo: int, mensaje: String) -> void:
 	if not conexion_resuelta:
 		_abortar_conexion.call_deferred("No se pudo conectar con el host.\n(" + mensaje + ")")
+		
+# Función pública para que la red la llame cuando llegue la info
+func actualizar_cartel_modo() -> void:
+	if Global.modo_de_juego == "normal":
+		texto_modo.text = "Modo: Normal"
+	elif Global.modo_de_juego == "vida_compartida":
+		texto_modo.text = "Modo: Vida Compartida"
+	elif Global.modo_de_juego == "contrarreloj":
+		texto_modo.text = "Modo: Contrarreloj"
+	else:
+		texto_modo.text = "Modo:No se cargo el global"

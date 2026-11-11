@@ -37,12 +37,14 @@ func _on_salir_menu_pressed() -> void:
 	await get_tree().create_timer(0.2).timeout
 	NetworkManager.disconnect_game()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Global.modo_de_juego = ""
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
 
 func _on_salir_escritorio_pressed() -> void:
 	NetworkManager.notify_disconnection()
 	await get_tree().create_timer(0.2).timeout
 	NetworkManager.disconnect_game()
+	Global.modo_de_juego = ""
 	get_tree().quit()
 	
 func Ponercodigo() -> void:
