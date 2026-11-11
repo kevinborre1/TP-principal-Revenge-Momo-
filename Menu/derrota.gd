@@ -4,7 +4,7 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	#motivo_derrota(Global.motivo_derrota)
+	motivo_derrota(Global.motivo_derrota)
 		
 func _on_button_pressed() -> void:
 	# quitamos la pausa antes de irnos
@@ -23,4 +23,5 @@ func _desconectar_red() -> void:
 	SaveAndLoad.destruir_partida_y_limpiar()
 
 func motivo_derrota(motivo_derrota: String)  -> void :
-	texto_derrota.text = motivo_derrota
+	if texto_derrota!= null:
+		texto_derrota.text = motivo_derrota

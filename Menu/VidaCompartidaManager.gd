@@ -107,6 +107,10 @@ func _ejecutar_respawn_compartido(corazones_restantes: int) -> void:
 
 @rpc("call_local", "reliable")
 func _ejecutar_game_over() -> void:
-	Global.motivo_derrota = "se acabaron las vidas"
+	Global.motivo_derrota = "Se acabaron las vidas"
 	print("¡Se acabaron los corazones compartidos! GAME OVER")
+	# Cuando abres tu menú o interfaz
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Global.menu_pausa_abierto = true # Si utilizas tu variable global existente
 	get_tree().change_scene_to_file("res://Menu/derrota.tscn")
+	

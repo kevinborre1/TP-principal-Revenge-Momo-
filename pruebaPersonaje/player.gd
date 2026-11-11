@@ -217,7 +217,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()) or muerto:
 		return
 	
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and minijuego_instance == null:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and minijuego_instance == null and not Global.menu_pausa_abierto:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	if event.is_action_pressed("hacer_ragdoll") and not is_on_floor():

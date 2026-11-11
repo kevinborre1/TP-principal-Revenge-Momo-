@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://dphtfpk5y1kqi"]
 
+[ext_resource type="Script" uid="uid://d303y2vinod0g" path="res://Menu/derrota.gd" id="1_j7vpu"]
 [ext_resource type="Texture2D" uid="uid://cai556ph3red5" path="res://Imagenes/menu fondo.png" id="2_p32m6"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=2042806066]
 process_mode = 3
+script = ExtResource("1_j7vpu")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2091850144]
 offset_right = 1152.0
