@@ -773,10 +773,6 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4id3d"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_jxvtg"]
-geometry_parsed_geometry_type = 1
-geometry_source_geometry_mode = 2
-
 [node name="Tutorial" type="Node3D" unique_id=1249852627]
 script = ExtResource("1_1uqyg")
 
@@ -2242,9 +2238,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("34_iffks")
 expand_mode = 1
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1189119145]
-navigation_mesh = SubResource("NavigationMesh_jxvtg")
-navigation_layers = 3
 
 [connection signal="pressed" from="Pantallas/Logros/Salir" to="Pantallas/Logros" method="_on_button_pressed"]
