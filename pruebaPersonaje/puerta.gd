@@ -27,7 +27,7 @@ func abrir_puerta():
 	esta_abierta = true
 	var tween = create_tween()
 	# Sube la puerta 3 metros en 1 segundo de forma fluida
-	tween.tween_property(self, "position:y", posicion_inicial_y + 103.0, 1.0)
+	tween.tween_property(self, "position:y", posicion_inicial_y + 20.0, 1.0)
 
 func cerrar_puerta():
 	esta_abierta = false
