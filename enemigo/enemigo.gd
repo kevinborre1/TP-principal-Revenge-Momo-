@@ -94,7 +94,7 @@ func _physics_process(delta: float) -> void:
 
 	# Buscar al jugador más cercano
 	var jugador_objetivo = obtener_jugador_mas_cercano()
-
+	
 	# Controlar el intervalo de actualización de navegación
 	tiempo_actualizacion_nav -= delta
 
@@ -106,6 +106,12 @@ func _physics_process(delta: float) -> void:
 
 		# Obtener el siguiente punto de navegación
 		var siguiente_posicion = nav_agent.get_next_path_position()
+		#Para cuando no hay NavMesh
+		# SI NO HAY NAVMESH EN LA ESCENA
+		if not nav_agent.is_navigation_finished() and global_position.distance_to(siguiente_posicion) < 0.1:
+			siguiente_posicion = jugador_objetivo.global_position
+		elif nav_agent.is_navigation_finished():
+			siguiente_posicion = jugador_objetivo.global_position
 
 		# Orientar al enemigo hacia el siguiente punto
 		var posicion_mirar = Vector3(
