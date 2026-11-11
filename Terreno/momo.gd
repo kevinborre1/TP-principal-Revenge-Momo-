@@ -244,11 +244,9 @@ func _spawnear_papa() -> void:
 	papa.perseguir_siempre = true
 	papa.position = raiz.to_local(punto.global_position)
 	raiz.add_child(papa, true)
-
 	# Esperar a que el cliente tenga su copia, y recién ahí configurar y despertar
 	await get_tree().create_timer(0.5).timeout
 	if is_instance_valid(papa):
-		papa._set_escudo.rpc(false)
 		papa.activar_enemigo.rpc()
 
 # --- PARA LA ONDA EXPANSIVA (la armamos después) ---

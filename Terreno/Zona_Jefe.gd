@@ -16,6 +16,10 @@ var _timer: Timer
 
 
 func _ready() -> void:
+	# Ninguna otra área (como las balas) puede detectar esta zona
+	monitorable = false
+	collision_layer = 0
+
 	# Solo el host decide cuándo y dónde cae cada ataque
 	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
 		return

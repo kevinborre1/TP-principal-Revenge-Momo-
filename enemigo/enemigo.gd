@@ -196,9 +196,11 @@ func recibir_bala(danio: int, tipo: String) -> void:
 		return
 	if escudo_activo:
 		if tipo != "letal":
+			print("recibir_bala: ", name, " | danio=", danio, " | tipo=", tipo, " | escudo=", escudo_activo)
 			_romper_escudo()
 		return
 	if tipo != "rompe_escudo":
+		print("recibir_bala: ", name, " | danio=", danio, " | tipo=", tipo, " | escudo=", escudo_activo)
 		_daniar(danio)
 
 @rpc("any_peer", "call_local", "reliable")
