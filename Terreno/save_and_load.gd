@@ -108,6 +108,14 @@ func save_game() -> void:
 		data.ataque_iniciado = activador.ataque_iniciado
 		data.fase_oleada = activador.fase_actual
 	
+	# --- GUARDADO: Modo de Juego y Tiempo ---
+	data.modo_de_juego = Global.modo_de_juego
+	
+	if Global.modo_de_juego == "contrarreloj" and is_instance_valid(GameManager.contrarreloj):
+		data.tiempo_contrarreloj = GameManager.contrarreloj.tiempo_restante
+	else:
+		data.tiempo_contrarreloj = -1.0
+		
 	var err = ResourceSaver.save(data, rutaUtilizada)
 	if err == OK:
 		print("Guardado exitoso -> Pepitas: ", data.cantidad_pepitas, " | Fase oleada: ", data.fase_oleada)
@@ -120,6 +128,15 @@ func load_game() -> void:
 	if data == null or data.pos_host == Vector3.ZERO:
 		return
 	
+	# --- CARGA: Restaurar el Modo de Juego ---
+	if data.get("modo_de_juego") != null and data.modo_de_juego != "":
+		Global.modo_de_juego = data.modo_de_juego
+
+	# Si es contrarreloj y el tiempo guardado es válido, delegamos la carga al manager
+	if Global.modo_de_juego == "contrarreloj" and data.tiempo_contrarreloj > 0.0:
+		if is_instance_valid(GameManager.contrarreloj):
+			GameManager.contrarreloj.preparar_tiempo_guardado(data.tiempo_contrarreloj)
+
 	cache_inventario_host = data.inventario_host.duplicate(true)
 	#Si el cliente se une luego de el juego empezado se le da una copia del inventario del cliente 
 	if not data.inventario_cliente.is_empty():
