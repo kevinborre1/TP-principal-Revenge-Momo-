@@ -7,6 +7,8 @@ const TIEMPO_TOTAL: float = 900.0
 var tiempo_restante: float = TIEMPO_TOTAL
 var timer_activo: bool = false
 
+# Variable para retener el tiempo cargado hasta que el jugador decida iniciar el reloj
+var _tiempo_en_cache: float = -1.0
 
 func _process(delta: float) -> void:
 	if Global.modo_de_juego == "contrarreloj" and timer_activo and not Global.menu_pausa_abierto:
@@ -20,8 +22,21 @@ func _process(delta: float) -> void:
 					SaveAndLoad.destruir_partida_y_limpiar()
 				_tiempo_agotado.rpc()
 
+# Función pública para que SaveAndLoad inyecte los datos (Encapsulamiento)
+func preparar_tiempo_guardado(tiempo: float) -> void:
+	_tiempo_en_cache = tiempo
+
+# Modificas tu función existente que inicia el timer
 func iniciar_timer() -> void:
-	tiempo_restante = TIEMPO_TOTAL
+	if _tiempo_en_cache > 0.0:
+		# Si venimos de cargar una partida, reanudamos desde el caché
+		tiempo_restante = _tiempo_en_cache
+		_tiempo_en_cache = -1.0 # Limpiamos el caché para la próxima vez
+		print("Reloj reanudado desde guardado: ", tiempo_restante)
+	else:
+		# Lógica normal si es una partida nueva
+		tiempo_restante = TIEMPO_TOTAL # O la variable de TIEMPO_MAXIMO que uses
+		print("Reloj iniciado desde cero.")
 	timer_activo = true
 	if Global.modo_multijugador == "linea" and multiplayer.is_server():
 		_sincronizar_timer.rpc(tiempo_restante, timer_activo, Global.modo_de_juego)

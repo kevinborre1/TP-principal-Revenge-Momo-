@@ -11,6 +11,9 @@ extends Resource
 @export var ataque_iniciado: bool = false
 @export var fase_oleada: int = 0 # 0 = sin iniciar, 1 = oleada 1, 2 = oleada 2, 3 = jefe, 4 = todos muertos
 
+@export var modo_de_juego: String = ""
+@export var tiempo_contrarreloj: float = -1.0
+
 @export var inventario_host: Array = [null, null, null, null, null]
 @export var inventario_cliente: Array = [null, null, null, null, null]
 @export var estado_pepitas_mapa_guardado: bool = false
