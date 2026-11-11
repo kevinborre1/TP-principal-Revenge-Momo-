@@ -11251,6 +11251,7 @@ script = ExtResource("30_v7i46")
 oleada_1 = [NodePath("../enemigo2"), NodePath("../enemigo3"), NodePath("../enemigo4"), NodePath("../enemigo5"), NodePath("../enemigo6")]
 oleada_2 = [NodePath("../enemigo7"), NodePath("../enemigo8"), NodePath("../enemigo9"), NodePath("../enemigo10"), NodePath("../enemigo11")]
 jefe = NodePath("../enemigoLider")
+permitir_un_jugador = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Enemigos VictorBars/PuntoActivacionOleadas" unique_id=1320325886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -11961,7 +11962,7 @@ shape = SubResource("BoxShape3D_b0rtu")
 transform = Transform3D(0.2982577, 0, 0, 0, 0.19891581, 0, 0, 0, 1.1690333, -4.5211015, 1.1374316, 1221.5844)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Modulo7" unique_id=1475672210]
-transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.99999976, 0, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_8w0r3")
 navigation_layers = 2
 
