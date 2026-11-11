@@ -45,16 +45,18 @@ func _ready() -> void:
 
 
 # ---------------------------------------------------------------
-# Activación / desactivación (las llama la zona en cada peer)
+# Activación / desactivación (las llama la zona en cada peer, por eso son llamadas directas)
 # ---------------------------------------------------------------
 
-@rpc("authority", "call_local", "reliable")
 func activar_enemigo() -> void:
+	# Siempre arranca desde su lugar inicial, igual en todos los peers
+	global_transform = _transform_inicial
+	velocity = Vector3.ZERO
+	tiempo_ultimo_ataque = Time.get_ticks_msec() / 1000.0  # no pega en el mismo instante en que aparece
 	_aplicar_estado(true)
 
 
 ## Lo deja invisible, sin colisión y de vuelta en su lugar inicial
-@rpc("authority", "call_local", "reliable")
 func desactivar_enemigo() -> void:
 	_aplicar_estado(false)
 	global_transform = _transform_inicial
@@ -155,6 +157,8 @@ func _mirar_a(direccion: Vector3, delta: float) -> void:
 # ---------------------------------------------------------------
 
 func _comprobar_colisiones_jugador() -> void:
+	if not activo:
+		return
 	var ahora := Time.get_ticks_msec() / 1000.0
 	if ahora - tiempo_ultimo_ataque < cooldown_ataque:
 		return
@@ -202,6 +206,7 @@ func obtener_jugador_mas_cercano() -> Node3D:
 func _actualizar_caminando() -> void:
 	var se_mueve := Vector2(velocity.x, velocity.z).length() > 0.1
 	if se_mueve != caminando:
+		caminando = se_mueve  # evita mandar el RPC en cada frame hasta que llegue
 		_rpc_caminando.rpc(se_mueve)
 
 

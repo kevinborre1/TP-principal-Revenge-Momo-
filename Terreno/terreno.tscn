@@ -15931,12 +15931,25 @@ mesh = SubResource("BoxMesh_vl2st")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final/NavigationRegion3D/Recorrido final/Piso 3/StaticBody3D" unique_id=623288004]
 shape = SubResource("BoxShape3D_sdpww")
 
-[node name="Area3D" type="Area3D" parent="Final" unique_id=1335054921 node_paths=PackedStringArray("enemigos")]
+[node name="Area3D" type="Area3D" parent="Final" unique_id=1335054921 node_paths=PackedStringArray("enemigos", "punto_inicio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.488144, 0, 804.7227)
 script = ExtResource("132_igocy")
 enemigos = [NodePath("../EnemigoDelFinal"), NodePath("../EnemigoDelFinal2"), NodePath("../EnemigoDelFinal3")]
+punto_inicio = NodePath("../../Guardados/Guardado Modulo7/Completo_Modulo7/P-A_Modulo7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final/Area3D" unique_id=2112322739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625122, 4.645935, 0)
+shape = SubResource("BoxShape3D_vwjq2")
+
+[node name="Area3D2" type="Area3D" parent="Final" unique_id=1500667553 node_paths=PackedStringArray("enemigos", "punto_inicio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.488144, 0, 804.7227)
+script = ExtResource("132_igocy")
+enemigos = [NodePath("../EnemigoDelFinal"), NodePath("../EnemigoDelFinal2"), NodePath("../EnemigoDelFinal3")]
+multiplicador_velocidad = 1.5
+multiplicador_carrera = 1.5
+punto_inicio = NodePath("../../Guardados/Guardado Modulo7/Completo_Modulo7/P-A_Modulo7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final/Area3D2" unique_id=1450907987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625122, 4.645935, 0)
 shape = SubResource("BoxShape3D_vwjq2")
 

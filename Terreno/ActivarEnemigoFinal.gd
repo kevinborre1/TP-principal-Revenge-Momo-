@@ -21,8 +21,12 @@ extends Area3D
 var _usada: bool = false
 var _reiniciando: bool = false
 var _velocidad_subida: bool = false
+## Se incrementa en cada reinicio. Sirve para cancelar activaciones pendientes (await viejos)
+var _epoca: int = 0
 # Jugadores que ya pasaron por la zona (clave: nombre + peer dueño)
 var _pasaron: Dictionary = {}
+# Velocidades originales de cada jugador (clave -> {"vel": x, "car": y})
+var _base: Dictionary = {}
 
 
 func _ready() -> void:
@@ -32,7 +36,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	# Solo el servidor decide; el resto lo recibe por RPC
-	if not multiplayer.is_server() or _usada:
+	if not multiplayer.is_server() or _usada or _reiniciando:
 		return
 	if not body.is_in_group("Jugador"):
 		return
@@ -44,7 +48,11 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 
 	_usada = true
+	var mi_epoca := _epoca
 	await get_tree().create_timer(retraso_activacion).timeout
+	# Si hubo un reinicio mientras esperaba, esta activación ya no vale
+	if mi_epoca != _epoca:
+		return
 	_activar_todo.rpc()
 
 
@@ -94,13 +102,18 @@ func _activar_enemigos() -> void:
 func _subir_velocidad_jugadores() -> void:
 	_velocidad_subida = true
 	for j in get_tree().get_nodes_in_group("Jugador"):
-		if not is_instance_valid(j):
+		if not is_instance_valid(j) or not j.is_multiplayer_authority():
 			continue
-		if propiedad_velocidad in j:
-			j.set(propiedad_velocidad, j.get(propiedad_velocidad) * multiplicador_velocidad)
-			j.set(propiedad_Carrera, j.get(propiedad_Carrera) * multiplicador_carrera)
-		else:
-			push_warning("El jugador %s no tiene la variable '%s'." % [j.name, propiedad_velocidad])
+		if not (propiedad_velocidad in j):
+			continue
+		# La base vive en el jugador: todas las zonas parten del mismo valor
+		if not j.has_meta("final_vel_base"):
+			j.set_meta("final_vel_base", j.get(propiedad_velocidad))
+			j.set_meta("final_car_base", j.get(propiedad_Carrera))
+		j.set(propiedad_velocidad, j.get_meta("final_vel_base") * multiplicador_velocidad)
+		j.set(propiedad_Carrera, j.get_meta("final_car_base") * multiplicador_carrera)
+
+
 
 
 # ---------------------------------------------------------------
@@ -120,14 +133,14 @@ func reiniciar_recorrido() -> void:
 ## Se ejecuta en todos los peers (también en el servidor)
 @rpc("authority", "call_local", "reliable")
 func _reiniciar_todo() -> void:
+	_epoca += 1  # cancela cualquier activación que estuviera esperando
 	_desactivar_enemigos()
 	_restaurar_velocidad_jugadores()
 	# La zona vuelve a quedar disponible para cuando los jugadores pasen de nuevo
 	_usada = false
 	_pasaron.clear()
-	# Cada jugador se mueve a sí mismo: el servidor le avisa a cada dueño
-	if multiplayer.is_server():
-		_mover_jugadores_al_inicio()
+	# Cada peer mueve SOLO a los jugadores que le pertenecen (sin RPC extra)
+	_mover_mis_jugadores_al_inicio()
 
 
 func _desactivar_enemigos() -> void:
@@ -137,29 +150,31 @@ func _desactivar_enemigos() -> void:
 
 
 func _restaurar_velocidad_jugadores() -> void:
-	if not _velocidad_subida:
-		return
 	_velocidad_subida = false
 	for j in get_tree().get_nodes_in_group("Jugador"):
-		if not is_instance_valid(j):
+		if not is_instance_valid(j) or not j.is_multiplayer_authority():
 			continue
-		if propiedad_velocidad in j:
-			j.set(propiedad_velocidad, j.get(propiedad_velocidad) / multiplicador_velocidad)
-			j.set(propiedad_Carrera, j.get(propiedad_Carrera) / multiplicador_carrera)
+		if j.has_meta("final_vel_base"):
+			j.set(propiedad_velocidad, j.get_meta("final_vel_base"))
+			j.set(propiedad_Carrera, j.get_meta("final_car_base"))
+			j.remove_meta("final_vel_base")
+			j.remove_meta("final_car_base")
 
-
-func _mover_jugadores_al_inicio() -> void:
+func _mover_mis_jugadores_al_inicio() -> void:
 	if punto_inicio == null:
 		push_warning("Falta asignar el Marker3D de inicio en la zona")
 		return
 	for j in get_tree().get_nodes_in_group("Jugador"):
-		if not is_instance_valid(j):
-			continue
+		if not is_instance_valid(j) or not j.is_multiplayer_authority():
+			continue  # este jugador lo mueve su dueño en su propio peer
 		var es_host: bool = j.get_multiplayer_authority() == 1 or j.name == "1"
 		var destino: Vector3 = punto_inicio.global_position + Vector3(0, 0.5, 0)
 		if not es_host:
 			destino += separacion_jugadores
-		if Global.modo_multijugador == "linea":
-			j.mover_a.rpc_id(j.get_multiplayer_authority(), destino)
+		if "velocity" in j:
+			j.velocity = Vector3.ZERO
+		# Llamada directa (local), no RPC
+		if j.has_method("mover_a"):
+			j.mover_a(destino)
 		else:
 			j.global_position = destino

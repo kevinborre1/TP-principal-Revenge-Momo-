@@ -357,8 +357,6 @@ func _cambiar_vsync(activo: bool) -> void:
 func _cambiar_fps(indice_o_valor: int) -> void:
 	var fps_elegido: int = OPCIONES_FPS[indice_o_valor] if indice_o_valor < OPCIONES_FPS.size() else indice_o_valor
 	_cfg().max_fps = fps_elegido
-	
-	# Si elige más de 60 FPS (75, 144, 250), apagamos V-Sync para no bloquear en 60 Hz
 	if fps_elegido == 0 or fps_elegido > 60:
 		_cfg().vsync = false
 		if _boton_vsync and is_instance_valid(_boton_vsync):
