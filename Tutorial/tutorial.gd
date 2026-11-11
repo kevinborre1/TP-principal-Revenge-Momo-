@@ -227,6 +227,12 @@ func _process(delta: float) -> void:
 func ir_al_juego_principal() -> void:
 	if _cambiando_escena:
 		return
+
+	if _rol == Rol.CLIENTE:
+		_cambiando_escena = true
+		_solicitar_fin_tutorial_al_host.rpc_id(1)
+		return
+		
 	_cambiando_escena = true
 
 	if _rol == Rol.HOST:
@@ -241,14 +247,19 @@ func ir_al_juego_principal() -> void:
 		NetworkManager.host_cambia_escena(ruta)
 		return
 
-	# SOLO: exactamente igual que antes
-	Global.modo_multijugador = _modo_multijugador_original
-	if Global.es_partida_nueva:
-		Global.es_partida_nueva = false
-		get_tree().change_scene_to_file(ESCENA_VIDEO)
-	else:
-		get_tree().change_scene_to_file(ESCENA_DESTINO)
+# SOLO: únicamente si realmente estamos en Rol.SOLO
+	if _rol == Rol.SOLO:
+		Global.modo_multijugador = _modo_multijugador_original
+		if Global.es_partida_nueva:
+			Global.es_partida_nueva = false
+			get_tree().change_scene_to_file(ESCENA_VIDEO)
+		else:
+			get_tree().change_scene_to_file(ESCENA_DESTINO)
 
+@rpc("any_peer", "reliable")
+func _solicitar_fin_tutorial_al_host() -> void:
+	if _rol == Rol.HOST and not _cambiando_escena:
+		ir_al_juego_principal()
 
 # ------------------------------------------------------------------- UI
 
