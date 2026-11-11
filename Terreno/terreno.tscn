@@ -15628,7 +15628,8 @@ transform = Transform3D(2.2296126, 0, -1.1308527, 0, 2.5, 0, 1.1308527, 0, 2.229
 [node name="Final" type="Node3D" parent="." unique_id=967038656]
 
 [node name="EnemigoDelFinal" parent="Final" unique_id=1142631827 instance=ExtResource("125_i635x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.30886, 4.985863, 791.92914)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -74.30886, 4.985863, 791.92914)
+velocidad = 15.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Final" unique_id=58799355]
 navigation_mesh = SubResource("NavigationMesh_tr3kr")
@@ -15930,13 +15931,22 @@ mesh = SubResource("BoxMesh_vl2st")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final/NavigationRegion3D/Recorrido final/Piso 3/StaticBody3D" unique_id=623288004]
 shape = SubResource("BoxShape3D_sdpww")
 
-[node name="Area3D" type="Area3D" parent="Final" unique_id=1335054921]
+[node name="Area3D" type="Area3D" parent="Final" unique_id=1335054921 node_paths=PackedStringArray("enemigos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.488144, 0, 804.7227)
 script = ExtResource("132_igocy")
+enemigos = [NodePath("../EnemigoDelFinal"), NodePath("../EnemigoDelFinal2"), NodePath("../EnemigoDelFinal3")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final/Area3D" unique_id=2112322739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625122, 4.645935, 0)
 shape = SubResource("BoxShape3D_vwjq2")
+
+[node name="EnemigoDelFinal2" parent="Final" unique_id=2036335105 instance=ExtResource("125_i635x")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -79.82916, 4.985863, 791.92914)
+velocidad = 15.0
+
+[node name="EnemigoDelFinal3" parent="Final" unique_id=713194674 instance=ExtResource("125_i635x")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -69.11645, 4.985863, 790.9095)
+velocidad = 15.0
 
 [node name="Francis" parent="." unique_id=885514182 instance=ExtResource("132_i635x")]
 transform = Transform3D(-2.218148, 0, 1.3563993, 0, 2.6, 0, -1.3563993, 0, -2.218148, -31.569397, 1.1184843, 981.8859)
