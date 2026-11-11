@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cd4fe5la0wclr"]
+
+[ext_resource type="Script" uid="uid://dcn7yxgsn2jwx" path="res://PersonajesPropios/locomotora/locomotora.gd" id="1_fednx"]
+[ext_resource type="Resource" uid="uid://d0xwp3m5cbvtl" path="res://DialogoEze.dialogue" id="2_iai61"]
+[ext_resource type="PackedScene" uid="uid://bu0dfuax053dg" path="res://PersonajesPropios/Eze-Personaje/Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation.glb" id="3_24olb"]
+[ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="4_b13r2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t8mn"]
+radius = 0.49560547
+height = 1.8847656
+
+[node name="Eze" type="StaticBody3D" unique_id=1738230920]
+script = ExtResource("1_fednx")
+dialogue_resource = ExtResource("2_iai61")
+
+[node name="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation" parent="." unique_id=1637711009 instance=ExtResource("3_24olb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035495043, 0, 0.10451388)
+
+[node name="Skeleton3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1637711009, 1278702582) index="0" unique_id=2075624187]
+bones/0/position = Vector3(0.0020085075, 0.8591255, -0.06013143)
+bones/0/rotation = Quaternion(-0.10742687, -0.13568418, -0.01620395, 0.98477757)
+bones/1/rotation = Quaternion(0.07971716, -0.0017948487, -0.00028988137, 0.9968159)
+bones/2/rotation = Quaternion(0.06414603, -0.009971434, -0.00054526335, 0.99789053)
+bones/3/rotation = Quaternion(0.11610812, -0.0063850456, -0.049961966, 0.9919587)
+bones/4/rotation = Quaternion(-0.13833843, 0.03133737, 0.06338099, 0.98785794)
+bones/5/rotation = Quaternion(0.0376931, 0.026461482, -0.01968412, 0.998745)
+bones/8/rotation = Quaternion(0.59632677, 0.54566246, 0.41977003, -0.4128437)
+bones/9/rotation = Quaternion(-0.26923165, 0.7163076, -0.5049501, 0.39930332)
+bones/10/rotation = Quaternion(0.07564261, 0.031447172, 0.030560184, 0.99617034)
+bones/11/rotation = Quaternion(-0.055932835, -0.052478805, -0.008179391, 0.99702084)
+bones/13/rotation = Quaternion(0.03690746, 0.3657635, -0.064714044, 0.9277214)
+bones/14/rotation = Quaternion(0.27062267, 0.03658259, -0.07507146, 0.95905656)
+bones/15/rotation = Quaternion(0.09208649, 0.011048034, -0.025621254, 0.9953601)
+bones/16/rotation = Quaternion(-9.9466815e-05, 0.0045864712, -0.00065147696, 0.99998933)
+bones/17/rotation = Quaternion(-0.6404881, 0.50692165, 0.4763839, 0.32536745)
+bones/18/rotation = Quaternion(-0.25806314, -0.7391832, 0.48898506, 0.3845845)
+bones/19/rotation = Quaternion(0.058204163, 0.011173561, -0.020437924, 0.9980329)
+bones/20/rotation = Quaternion(-0.081166774, 0.01390511, -0.006743827, 0.9965807)
+bones/22/rotation = Quaternion(0.056715224, -0.40540457, 0.07999195, 0.908863)
+bones/23/rotation = Quaternion(0.27038807, -0.03656575, 0.07590442, 0.95905787)
+bones/24/rotation = Quaternion(0.091931656, -0.008074798, 0.026181292, 0.9953884)
+bones/25/rotation = Quaternion(0.00021628189, -0.006319428, -0.0016902173, 0.9999786)
+bones/26/position = Vector3(0.10286784, -0.07336955, -0.031838812)
+bones/26/rotation = Quaternion(0.9794023, 0.09980803, -0.16644898, -0.055715613)
+bones/27/rotation = Quaternion(0.23562498, 0.010913544, 0.0068574436, 0.9717586)
+bones/28/rotation = Quaternion(-0.507659, 0.21754377, -0.19195886, 0.81123906)
+bones/29/rotation = Quaternion(0.583638, 0.65723664, -0.08457647, 0.46931177)
+bones/30/rotation = Quaternion(-0.64014524, -0.75972086, 0.053435467, -0.10091041)
+bones/31/position = Vector3(-0.09787332, -0.07332962, -0.032396503)
+bones/31/rotation = Quaternion(0.99081385, -0.08744847, 0.094073035, -0.04232149)
+bones/32/rotation = Quaternion(0.21796189, -0.012025332, -0.00651347, 0.97586155)
+bones/33/rotation = Quaternion(-0.48663458, -0.15103035, 0.1556114, 0.8462635)
+bones/34/rotation = Quaternion(-0.6583208, 0.61193496, -0.08381685, -0.43026066)
+bones/35/rotation = Quaternion(-0.4052797, 0.4242584, 0.59017044, 0.5544836)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation" unique_id=1362538013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025725484, -0.09852922, -0.22926307)
+
+[node name="Area3D" type="Area3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/StaticBody3D" unique_id=19349935]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/StaticBody3D/Area3D" unique_id=365422644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039597392, 0.8971821, -0.0010385513)
+shape = SubResource("CapsuleShape3D_0t8mn")
+
+[node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=1136734816]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.015243337, 1.6503328, 0.1602081)
+visible = false
+texture = ExtResource("4_b13r2")
+
+[connection signal="body_entered" from="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation/StaticBody3D/Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="Meshy_AI_Open_Arms_in_the_Living_Room_20261109_animated_mixamo_All_animation"]

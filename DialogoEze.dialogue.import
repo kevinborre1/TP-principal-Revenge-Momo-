@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://d0xwp3m5cbvtl"
+path="res://.godot/imported/DialogoEze.dialogue-b1640a9f354e584564d8453550ad7676.tres"
+
+[deps]
+
+source_file="res://DialogoEze.dialogue"
+dest_files=["res://.godot/imported/DialogoEze.dialogue-b1640a9f354e584564d8453550ad7676.tres"]
+
+[params]
+
+defaults=true

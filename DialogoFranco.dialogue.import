@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bxfp6efbmnh17"
+path="res://.godot/imported/DialogoFranco.dialogue-e95fab731842570e177afed0e1a9a05c.tres"
+
+[deps]
+
+source_file="res://DialogoFranco.dialogue"
+dest_files=["res://.godot/imported/DialogoFranco.dialogue-e95fab731842570e177afed0e1a9a05c.tres"]
+
+[params]
+
+defaults=true

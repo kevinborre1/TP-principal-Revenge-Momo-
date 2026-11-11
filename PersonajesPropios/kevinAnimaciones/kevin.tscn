@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cwe8qjn7a3my6"]
+
+[ext_resource type="Script" uid="uid://dcn7yxgsn2jwx" path="res://PersonajesPropios/locomotora/locomotora.gd" id="1_xo7ig"]
+[ext_resource type="PackedScene" uid="uid://bvwvafv7pfth4" path="res://PersonajesPropios/kevinAnimaciones/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx" id="2_qy8er"]
+[ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="3_mdaui"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hvcuj"]
+radius = 0.49560547
+height = 1.8847656
+
+[node name="Kevin" type="StaticBody3D" unique_id=1156081099]
+script = ExtResource("1_xo7ig")
+
+[node name="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation" parent="." unique_id=1701877001 instance=ExtResource("2_qy8er")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06876707, 0, -0.09178388)
+
+[node name="Skeleton3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/SmartRigArmature" parent_id_path=PackedInt32Array(1701877001, 332089686) index="0" unique_id=1806307133]
+bones/0/position = Vector3(-0.0044128895, 0.9395343, 0.14771503)
+bones/0/rotation = Quaternion(-0.06194274, -0.029582039, 0.057926275, 0.99595815)
+bones/1/rotation = Quaternion(0.029075438, -0.114148945, -0.07638682, 0.9900958)
+bones/2/rotation = Quaternion(0.05393643, 0.00085788267, -0.01994162, 0.9983449)
+bones/3/rotation = Quaternion(0.16383238, 6.9637763e-06, -1.1603074e-06, 0.9864882)
+bones/4/rotation = Quaternion(-0.065223195, 0.013808797, -0.031389073, 0.9972814)
+bones/5/rotation = Quaternion(0.041451044, 0.022280335, 0.01684765, 0.99875003)
+bones/8/rotation = Quaternion(0.59938794, 0.4973355, 0.47525525, -0.4092968)
+bones/9/rotation = Quaternion(-0.2258879, 0.7095996, -0.5007516, 0.441238)
+bones/10/rotation = Quaternion(0.08260025, 0.096662045, 0.041262455, 0.99102527)
+bones/11/rotation = Quaternion(-0.10060677, -0.08051136, -0.028984223, 0.99123967)
+bones/15/rotation = Quaternion(-0.5454863, 0.45983672, 0.56390905, 0.41593462)
+bones/16/rotation = Quaternion(-0.19865182, -0.6427781, 0.49817282, 0.5469897)
+bones/17/rotation = Quaternion(0.08423023, -0.11279158, -0.03505417, 0.9894214)
+bones/18/rotation = Quaternion(-0.07935388, 0.057107832, 0.04716681, 0.99409103)
+bones/22/position = Vector3(0.060725264, -0.108228795, -0.003575651)
+bones/22/rotation = Quaternion(0.99941576, 0.023525491, -0.0243193, -0.0048415074)
+bones/23/rotation = Quaternion(0.19605173, 0.039957505, 0.023789864, 0.97949034)
+bones/24/rotation = Quaternion(-0.42949116, 0.26623234, -0.34349027, 0.79162633)
+bones/25/rotation = Quaternion(0.33637404, 0.6524343, -0.09668831, 0.67218554)
+bones/26/rotation = Quaternion(-0.43992972, -0.8969918, 0.042719245, -0.0065348595)
+bones/27/position = Vector3(-0.10272201, -0.1079117, -0.03576866)
+bones/27/rotation = Quaternion(0.9721713, -0.16695888, 0.15761279, 0.04654021)
+bones/28/rotation = Quaternion(0.29059505, -0.021327496, -0.03405401, 0.9560022)
+bones/29/rotation = Quaternion(-0.45695886, -0.23702852, 0.36354354, 0.77642924)
+bones/30/rotation = Quaternion(0.54204476, -0.5944007, -0.04638905, 0.5922191)
+bones/31/rotation = Quaternion(0.6342985, -0.72458255, 0.17254712, 0.20705798)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation" unique_id=1724902565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009769559, -0.09852922, -0.12474918)
+
+[node name="Area3D" type="Area3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D" unique_id=1277638497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.28764534)
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D/Area3D" unique_id=1843002452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039597392, 0.8971821, -0.0010385513)
+shape = SubResource("CapsuleShape3D_hvcuj")
+
+[node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=274720573]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.052786246, 1.6976786, 0.26259935)
+visible = false
+texture = ExtResource("3_mdaui")
+
+[connection signal="body_entered" from="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation/StaticBody3D/Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation"]

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://b1xik0soo5r8x"
+path="res://.godot/imported/DialogoKevin.dialogue-994bdf402ef545748f97a9f94f9cc1bb.tres"
+
+[deps]
+
+source_file="res://DialogoKevin.dialogue"
+dest_files=["res://.godot/imported/DialogoKevin.dialogue-994bdf402ef545748f97a9f94f9cc1bb.tres"]
+
+[params]
+
+defaults=true

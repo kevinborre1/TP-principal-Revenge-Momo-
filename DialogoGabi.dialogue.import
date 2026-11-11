@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bo2kitntriaj0"
+path="res://.godot/imported/DialogoGabi.dialogue-11de308b5cac1cd69a9180325bf92d96.tres"
+
+[deps]
+
+source_file="res://DialogoGabi.dialogue"
+dest_files=["res://.godot/imported/DialogoGabi.dialogue-11de308b5cac1cd69a9180325bf92d96.tres"]
+
+[params]
+
+defaults=true
