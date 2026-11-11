@@ -34,6 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://olvcc8aqrd1b" path="res://Imagenes/No Descubierto.png" id="32_2klwg"]
 [ext_resource type="PackedScene" uid="uid://bd2wghj4ijklk" path="res://Menu/pantalla_desconexion.tscn" id="33_2klwg"]
 [ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="34_iffks"]
+[ext_resource type="Script" uid="uid://cvj67in43puq1" path="res://Terreno/Volumen.gd" id="35_4id3d"]
+[ext_resource type="Texture2D" uid="uid://djvpwbd3hehhj" path="res://Imagenes/Volumen 2.png" id="36_l8551"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1weqr"]
 sky_top_color = Color(0.34343228, 0.55091774, 0.726523, 1)
@@ -772,6 +774,12 @@ size = Vector3(1.5292969, 7.940674, 8.132629)
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4id3d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6fnc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8vqk"]
+bg_color = Color(0.80784315, 0.80784315, 0.80784315, 0.2901961)
 
 [node name="Tutorial" type="Node3D" unique_id=1249852627]
 script = ExtResource("1_1uqyg")
@@ -2270,4 +2278,22 @@ grow_vertical = 2
 texture = ExtResource("34_iffks")
 expand_mode = 1
 
+[node name="Volumen" type="CanvasLayer" parent="Pantallas" unique_id=1028661205]
+script = ExtResource("35_4id3d")
+
+[node name="TextureRect" type="TextureRect" parent="Pantallas/Volumen" unique_id=268068922]
+offset_right = 1155.0
+offset_bottom = 650.0
+texture = ExtResource("36_l8551")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="Pantallas/Volumen" unique_id=125043380]
+offset_left = 998.0
+offset_top = 19.0
+offset_right = 1121.0
+offset_bottom = 89.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_j6fnc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k8vqk")
+
 [connection signal="pressed" from="Pantallas/Logros/Salir" to="Pantallas/Logros" method="_on_button_pressed"]
+[connection signal="pressed" from="Pantallas/Volumen/Button" to="Pantallas/Volumen" method="_on_button_pressed"]

@@ -128,13 +128,14 @@
 [ext_resource type="Texture2D" uid="uid://bsdj8ebaf64rl" path="res://Terreno/door/low_poly_door_-_game_ready_2.png" id="104_6tfkg"]
 [ext_resource type="PackedScene" uid="uid://qcvy7id450rc" path="res://enemigo/EnemigoDelFinal.tscn" id="125_i635x"]
 [ext_resource type="Script" uid="uid://bybbxkgmoqreb" path="res://Terreno/zonaAjedrez.gd" id="129_xx8as"]
+[ext_resource type="Script" uid="uid://cvj67in43puq1" path="res://Terreno/Volumen.gd" id="129_y22ph"]
 [ext_resource type="PackedScene" uid="uid://7y3f3n46anpp" path="res://assets/bandera_argentina.tscn" id="130_3h8wr"]
+[ext_resource type="Texture2D" uid="uid://djvpwbd3hehhj" path="res://Imagenes/Volumen 2.png" id="130_y22ph"]
 [ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="131_idtyf"]
 [ext_resource type="PackedScene" uid="uid://cwe8qjn7a3my6" path="res://PersonajesPropios/kevinAnimaciones/kevin.tscn" id="131_o2qs7"]
 [ext_resource type="PackedScene" uid="uid://rykl25w87q8a" path="res://PersonajesPropios/Franco Morinigo/Meshy_animations/franco.tscn" id="132_h2m7w"]
 [ext_resource type="PackedScene" uid="uid://b6x1bjk3ovjjh" path="res://PersonajesPropios/francisco asset/francis.tscn" id="132_i635x"]
 [ext_resource type="Script" uid="uid://cr6gk5nb6jkx8" path="res://Terreno/ActivarEnemigoFinal.gd" id="132_igocy"]
-[ext_resource type="Resource" uid="uid://b1xik0soo5r8x" path="res://DialogoKevin.dialogue" id="132_y22ph"]
 [ext_resource type="PackedScene" uid="uid://dodptykxsjo0s" path="res://PersonajesPropios/locomotora/locomotora.tscn" id="134_4igdq"]
 [ext_resource type="PackedScene" uid="uid://cd4fe5la0wclr" path="res://PersonajesPropios/Eze-Personaje/eze.tscn" id="136_y22ph"]
 [ext_resource type="PackedScene" uid="uid://cnyjmcq3v2pql" path="res://PersonajesPropios/Boga/Meshy_AI_Red_Locker_Portrait_20261102_texture_fbx/pichon.tscn" id="137_6126t"]
@@ -9179,6 +9180,12 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr3kr"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1weqr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ect8u"]
+bg_color = Color(0.80784315, 0.80784315, 0.80784315, 0.2901961)
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_tr3kr"]
 vertices = PackedVector3Array(-86.30029, 10.25, 786.21814, -86.30029, 10.25, 1005.46814, -85.55029, 10.25, 1004.96814, -85.80029, 10.25, 786.21814, -62.550293, 1, 984.96814, -62.550293, 1, 786.96814, -84.80029, 1, 786.96814, -84.80029, 1, 985.21814, -61.050293, 1, 1003.96814, -60.800293, 1, 986.71814, -62.550293, 1, 986.46814, -84.80029, 1, 1003.96814, -20.550293, 1, 986.71814, -22.050293, 1, 986.71814, -21.800293, 1, 1003.96814, -19.050293, 1, 1003.96814, -20.300293, 1, 985.46814, -18.800293, 1, 1006.21814, 11.199707, 1, 1006.21814, 11.199707, 1, 985.46814, 12.199707, 10.25, 986.46814, 12.199707, 10.25, 1143.7181, 12.699707, 10.25, 1143.2181, -18.800293, 1, 1144.4681, -20.300293, 1, 1144.9681, 11.949707, 1, 1144.9681, 11.199707, 1, 1144.4681, -41.050293, 10.25, 1143.2181, -19.800293, 10.25, 1143.7181, -20.050293, 10.25, 1142.9681, 13.699707, 10.25, 1143.2181, 34.699707, 10.25, 1143.7181, 34.699707, 10.25, 1143.2181, 34.199707, 10.25, 1184.4681, 34.199707, 10.25, 1184.9681, 34.699707, 10.25, 1184.9681, 34.699707, 10.25, 1184.4681)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(10, 11, 7), PackedInt32Array(7, 4, 10), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(12, 16, 15), PackedInt32Array(15, 16, 17), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(22, 21, 20), PackedInt32Array(9, 13, 8), PackedInt32Array(8, 13, 14), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(26, 23, 18), PackedInt32Array(18, 23, 17), PackedInt32Array(29, 28, 27), PackedInt32Array(32, 31, 30), PackedInt32Array(36, 35, 33), PackedInt32Array(33, 35, 34)]
@@ -15626,6 +15633,23 @@ grow_vertical = 2
 texture = ExtResource("131_idtyf")
 expand_mode = 1
 
+[node name="Volumen" type="CanvasLayer" parent="Pantallas" unique_id=1729218771]
+script = ExtResource("129_y22ph")
+
+[node name="TextureRect" type="TextureRect" parent="Pantallas/Volumen" unique_id=314884811]
+offset_right = 1160.0
+offset_bottom = 650.0
+texture = ExtResource("130_y22ph")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="Pantallas/Volumen" unique_id=950108755]
+offset_left = 1017.0
+offset_top = 19.0
+offset_right = 1130.0
+offset_bottom = 93.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1weqr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ect8u")
+
 [node name="BanderaArgentina" parent="." unique_id=229400588 instance=ExtResource("130_3h8wr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.659478, 0, 1189.016)
 
@@ -15634,7 +15658,6 @@ transform = Transform3D(-2.3830266, 0, -0.7557672, 0, 2.4999998, 0, 0.7557672, 0
 
 [node name="Kevin" parent="." unique_id=1156081099 instance=ExtResource("131_o2qs7")]
 transform = Transform3D(-0.4407385, 0, -2.7144523, 0, 2.75, 0, 2.7144523, 0, -0.4407385, -12.893579, 1.185854, 976.41364)
-dialogue_resource = ExtResource("132_y22ph")
 
 [node name="Franco" parent="." unique_id=1246472670 instance=ExtResource("132_h2m7w")]
 transform = Transform3D(2.980753, 0, -0.33929014, 0, 3, 0, 0.33929014, 0, 2.980753, -20.153046, 1.1445273, 965.521)
@@ -15988,6 +16011,7 @@ transform = Transform3D(-1.474183, 0, -0.27710027, 0, 1.5, 0, 0.27710027, 0, -1.
 [connection signal="body_entered" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_entered"]
 [connection signal="body_exited" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_exited"]
 [connection signal="pressed" from="Pantallas/Logros/Salir" to="Pantallas/Logros" method="_on_button_pressed"]
+[connection signal="pressed" from="Pantallas/Volumen/Button" to="Pantallas/Volumen" method="_on_button_pressed"]
 
 [editable path="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5"]
 [editable path="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6"]

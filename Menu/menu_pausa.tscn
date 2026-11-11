@@ -84,6 +84,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_ab6gj")
 icon = ExtResource("3_ecdg0")
 
 [connection signal="pressed" from="Logros" to="." method="_on_logros_pressed"]
+[connection signal="pressed" from="Volumen" to="." method="_on_volumen_pressed"]
 [connection signal="pressed" from="SalirMenu" to="." method="_on_salir_menu_pressed"]
 [connection signal="pressed" from="SalirEscritorio" to="." method="_on_salir_escritorio_pressed"]
 [connection signal="pressed" from="BotonCopiarCodigo" to="." method="_on_boton_copiar_codigo_pressed"]

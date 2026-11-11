@@ -1,5 +1,6 @@
 extends CanvasLayer
 @onready var panel_logros = $"../Logros"
+@onready var panel_volumen = $"../Volumen"
 
 func _ready() -> void:
 	Global.menu_pausa_abierto = false
@@ -60,3 +61,7 @@ func _on_boton_copiar_codigo_pressed() -> void:
 	if codigo_actual != "":
 		DisplayServer.clipboard_set(codigo_actual)
 		print("Código copiado al portapapeles desde el menú de pausa: ", codigo_actual)
+
+
+func _on_volumen_pressed() -> void:
+	panel_volumen.show()
