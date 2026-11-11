@@ -14979,6 +14979,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 2.9648895, 0.8315749,
 [node name="Puerta Salida" type="Node3D" parent="Modulo7" unique_id=1840086433]
 transform = Transform3D(-1, 0, -1.7484555e-07, 0, 9, 0, 8.7422755e-08, 0, -1.9999998, -183.61539, -1.5480518, -365.51227)
 script = ExtResource("58_u51io")
+Pepitas_necesarias = 3
 
 [node name="Sketchfab_model" type="Node3D" parent="Modulo7/Puerta Salida" unique_id=1634540922]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)

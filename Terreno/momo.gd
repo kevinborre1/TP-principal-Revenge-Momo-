@@ -240,6 +240,7 @@ func _spawnear_papa() -> void:
 	var raiz := get_tree().current_scene
 	var papa = papa_escena.instantiate()
 	papa.add_to_group("PapaMomo")
+	papa._set_escudo(false)
 	papa.velocidad = CONFIG[fase]["vel_papas"]
 	papa.perseguir_siempre = true
 	papa.position = raiz.to_local(punto.global_position)
