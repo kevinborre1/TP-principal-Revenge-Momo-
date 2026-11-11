@@ -232,23 +232,23 @@ func _spawnear_papa() -> void:
 		return
 	if get_tree().get_nodes_in_group("PapaMomo").size() >= max_papas:
 		return
-	
+
 	var punto: Marker3D = puntos_spawn.pick_random()
 	if punto == null:
 		return
-	
+
 	var raiz := get_tree().current_scene
 	var papa = papa_escena.instantiate()
 	papa.add_to_group("PapaMomo")
-	papa._set_escudo(false)
 	papa.velocidad = CONFIG[fase]["vel_papas"]
 	papa.perseguir_siempre = true
 	papa.position = raiz.to_local(punto.global_position)
 	raiz.add_child(papa, true)
-	
-	# Se espera un momento a que el cliente tenga su copia y recién ahí se la despierta
+
+	# Esperar a que el cliente tenga su copia, y recién ahí configurar y despertar
 	await get_tree().create_timer(0.5).timeout
 	if is_instance_valid(papa):
+		papa._set_escudo.rpc(false)
 		papa.activar_enemigo.rpc()
 
 # --- PARA LA ONDA EXPANSIVA (la armamos después) ---

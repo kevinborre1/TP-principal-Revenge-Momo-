@@ -11963,6 +11963,7 @@ transform = Transform3D(0.2982577, 0, 0, 0, 0.19891581, 0, 0, 0, 1.1690333, -4.5
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Modulo7" unique_id=1475672210]
 transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_8w0r3")
+navigation_layers = 2
 
 [node name="modulo7-p1" type="Node3D" parent="Modulo7/NavigationRegion3D" unique_id=1343188347]
 transform = Transform3D(1.6764026, 0, 0, 0, 2.5136259, 0, 0, 0, 0.42770377, -20.339344, -16.261448, -225.26715)
