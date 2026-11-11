@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6k7i1bfhtg0"
-path.s3tc="res://.godot/imported/Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation_0.png-eb70b02cf6b9691f4c1f210c43596a18.s3tc.ctex"
+path.s3tc="res://.godot/imported/Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation_0.png-ca88411f93b1f33b578837864032e68b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://PersonajesPropios/Franco Morinigo/Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation/Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation_0.png"
-dest_files=["res://.godot/imported/Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation_0.png-eb70b02cf6b9691f4c1f210c43596a18.s3tc.ctex"]
+source_file="res://PersonajesPropios/Franco Morinigo/Meshy_animations/Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation_0.png"
+dest_files=["res://.godot/imported/Meshy_AI_Man_in_Black_T_Shirt_and_Jeans_20261104_animated_mixamo_All_animation_0.png-ca88411f93b1f33b578837864032e68b.s3tc.ctex"]
 
 [params]
 
