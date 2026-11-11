@@ -300,10 +300,10 @@ func _physics_process(delta: float) -> void:
 	and (not agotado or estamina_infinita)
 	and not agachado
 )
-
+	if not esta_corriendo and not agachado:
+		velocidadActual = SPEED
 	if esta_corriendo:
 		velocidadActual = SPEED * multiplicadorDeCarrera
-
 		if not estamina_infinita:
 			StaminaActual = max(0.0, StaminaActual - StaminaPerdida)
 			if StaminaActual <= 0.0:
