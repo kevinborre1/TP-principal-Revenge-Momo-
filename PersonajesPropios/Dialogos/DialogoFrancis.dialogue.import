@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://cgwc0esv2rta1"
+path="res://.godot/imported/DialogoFrancis.dialogue-418592b64b446f561409cfeb1d943f15.tres"
+
+[deps]
+
+source_file="res://PersonajesPropios/Dialogos/DialogoFrancis.dialogue"
+dest_files=["res://.godot/imported/DialogoFrancis.dialogue-418592b64b446f561409cfeb1d943f15.tres"]
+
+[params]
+
+defaults=true

@@ -338,6 +338,28 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, velocidadActual * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, velocidadActual * 4.0 * delta)
+
+		var act_bailar = "bailar"
+		if Global.modo_multijugador == "local" and name == "2":
+			act_bailar = "bailar_p2"
+
+		if Input.is_action_pressed(act_bailar):
+			if macarena and not macarena.playing:
+				macarena.play()
+			if animation and animation.has_animation("baile/Boom_Dance_2") and animation.current_animation != "baile/Boom_Dance_2":
+				animation.play("baile/Boom_Dance_2", 0.3)
+			
+			# Ordena permanentemente a los bots que bailen
+			get_tree().call_group("bots", "empezar_a_bailar")
+			
+		elif Input.is_action_just_released(act_bailar):
+			detener_musica_baile()
+			if animation:
+				animation.stop() 
+				
+			# Ordena a los bots que detengan el baile
+			get_tree().call_group("bots", "detener_baile")
+
 	move_and_slide()
 	player_animation()
 	
@@ -855,3 +877,7 @@ func _obtener_contenedor_items() -> Node:
 
 func estoy_muerto() -> bool:
 	return muerto
+
+func reproducir_baile_player():
+	if animation and animation.has_animation("Boom_Dance"):
+		animation.play("Boom_Dance", 0.3)

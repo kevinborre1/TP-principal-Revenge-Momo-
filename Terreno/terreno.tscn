@@ -130,6 +130,7 @@
 [ext_resource type="Script" uid="uid://bybbxkgmoqreb" path="res://Terreno/zonaAjedrez.gd" id="129_xx8as"]
 [ext_resource type="PackedScene" uid="uid://7y3f3n46anpp" path="res://assets/bandera_argentina.tscn" id="130_3h8wr"]
 [ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="131_idtyf"]
+[ext_resource type="PackedScene" uid="uid://b6x1bjk3ovjjh" path="res://PersonajesPropios/francisco asset/francis.tscn" id="132_i635x"]
 [ext_resource type="PackedScene" uid="uid://dodptykxsjo0s" path="res://PersonajesPropios/locomotora/locomotora.tscn" id="134_4igdq"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
@@ -4965,7 +4966,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_j0y8d")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o33t8"]
-size = Vector3(1.045166, 2.4499512, 1)
+size = Vector3(1.0569458, 2.4499512, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xe0k"]
 resource_name = "material"
@@ -13922,7 +13923,7 @@ mesh = SubResource("ArrayMesh_gj7px")
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/table_022/CAFETERIAdemoscene_1_1/Object_8" unique_id=1975959512]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/table_022/CAFETERIAdemoscene_1_1/Object_8/StaticBody3D" unique_id=602641647]
-transform = Transform3D(0.90258515, 0, -0.43051112, 0, 0.9999999, 0, 0.43051112, 0, 0.90258527, -3.6201172, 1.3050836, 3.8855286)
+transform = Transform3D(0.9025846, 0, -0.43051112, 0, 0.9999999, 0, 0.430511, 0, 0.90258527, -3.7050476, 1.3050835, 3.8450317)
 shape = SubResource("BoxShape3D_o33t8")
 debug_fill = false
 
@@ -15618,7 +15619,7 @@ expand_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.659478, 0, 1189.016)
 
 [node name="Locomotora" parent="." unique_id=442515351 instance=ExtResource("134_4igdq")]
-transform = Transform3D(-0.73393697, 0, 2.3898404, 0, 2.5, 0, -2.3898404, 0, -0.73393697, -26.700003, 1.1225553, 978.3869)
+transform = Transform3D(2.2296126, 0, -1.1308527, 0, 2.5, 0, 1.1308527, 0, 2.2296126, -16.213886, 1.1225553, 979.1769)
 
 [node name="Final" type="Node3D" parent="." unique_id=967038656]
 
@@ -15924,6 +15925,9 @@ mesh = SubResource("BoxMesh_vl2st")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final/NavigationRegion3D/Recorrido final/Piso 3/StaticBody3D" unique_id=623288004]
 shape = SubResource("BoxShape3D_sdpww")
+
+[node name="Francis" parent="." unique_id=885514182 instance=ExtResource("132_i635x")]
+transform = Transform3D(-2.218148, 0, 1.3563993, 0, 2.6, 0, -1.3563993, 0, -2.218148, -31.569397, 1.1184843, 981.8859)
 
 [connection signal="body_entered" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_entered"]
 [connection signal="body_exited" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_exited"]
