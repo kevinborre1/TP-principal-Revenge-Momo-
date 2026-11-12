@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xr5r8dc00epk" path="res://Menu/victoria.gd" id="1_my38n"]
 [ext_resource type="Texture2D" uid="uid://k73olqmna78k" path="res://Imagenes/victoria.png" id="2_my38n"]
+[ext_resource type="VideoStream" uid="uid://cr10bld0bk6n7" path="res://videos/CreditosFinal.ogv" id="3_adhpf"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1426188231]
 script = ExtResource("1_my38n")
@@ -23,6 +24,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.9852281, 0.88307387, 1.540184e-06, 1)
 theme_override_font_sizes/font_size = 42
-text = "Volver al menú"
+text = "Créditos "
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=2006490518]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 11.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("3_adhpf")
+expand = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
