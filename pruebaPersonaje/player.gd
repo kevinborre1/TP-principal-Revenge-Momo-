@@ -76,6 +76,8 @@ var item_en_mano: Node3D = null
 
 var punto_respawn : Vector3 = Vector3(36, 2, 1250)
 
+var esta_bailando: bool = false
+
 func _ready() -> void:
 	var id_player = name.to_int()
 	set_multiplayer_authority(id_player)
@@ -348,17 +350,23 @@ func _physics_process(delta: float) -> void:
 				macarena.play()
 			if animation and animation.has_animation("baile/Boom_Dance_2") and animation.current_animation != "baile/Boom_Dance_2":
 				animation.play("baile/Boom_Dance_2", 0.3)
-			
-			# Ordena permanentemente a los bots que bailen
-			get_tree().call_group("bots", "empezar_a_bailar")
-			
+			# Avisamos una sola vez cuando este jugador empieza a bailar
+			if not esta_bailando:
+				if Global.modo_multijugador == "linea":
+					_set_estado_baile.rpc(true)
+				else:
+					_set_estado_baile(true)		
+								
 		elif Input.is_action_just_released(act_bailar):
 			detener_musica_baile()
 			if animation:
-				animation.stop() 
-				
-			# Ordena a los bots que detengan el baile
-			get_tree().call_group("bots", "detener_baile")
+				animation.stop() 			
+			# Avisamos una sola vez cuando este jugador deja de bailar
+			if esta_bailando:
+				if Global.modo_multijugador == "linea":
+					_set_estado_baile.rpc(false)
+				else:
+					_set_estado_baile(false)
 
 	move_and_slide()
 	player_animation()
@@ -887,3 +895,11 @@ func estoy_muerto() -> bool:
 func reproducir_baile_player():
 	if animation and animation.has_animation("Boom_Dance"):
 		animation.play("Boom_Dance", 0.3)
+
+@rpc("any_peer", "call_local", "reliable")
+func _set_estado_baile(valor: bool) -> void:
+	esta_bailando = valor
+	if valor:
+		get_tree().call_group("bots", "empezar_a_bailar")
+	else:
+		get_tree().call_group("bots", "detener_baile")
