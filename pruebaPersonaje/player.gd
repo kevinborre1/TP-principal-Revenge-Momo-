@@ -903,3 +903,30 @@ func _set_estado_baile(valor: bool) -> void:
 		get_tree().call_group("bots", "empezar_a_bailar")
 	else:
 		get_tree().call_group("bots", "detener_baile")
+		
+# Sonidos 2D sólo del jugador
+func reproducir_sfx_local(stream: AudioStream, volumen_db: float = 0.0) -> void:
+	if stream == null:
+		return
+	var player_2d := AudioStreamPlayer.new()
+	player_2d.stream = stream
+	player_2d.volume_db = volumen_db
+	# If you have an "SFX" bus in the Audio tab at the bottom of Godot, uncomment the next line:
+	# player_2d.bus = &"SFX"
+	add_child(player_2d)
+	player_2d.play()
+	player_2d.finished.connect(player_2d.queue_free)
+
+# Sonidos en 3D que el otro escuchará
+func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono: bool = true) -> void:
+	if stream == null:
+		return
+	var player_3d := AudioStreamPlayer3D.new()
+	player_3d.stream = stream
+	player_3d.volume_db = volumen_db
+	player_3d.max_distance = 35.0 # Distance in meters at which the other player can hear it
+	if variar_tono:
+		player_3d.pitch_scale = randf_range(0.92, 1.08)
+	add_child(player_3d)
+	player_3d.play()
+	player_3d.finished.connect(player_3d.queue_free)
