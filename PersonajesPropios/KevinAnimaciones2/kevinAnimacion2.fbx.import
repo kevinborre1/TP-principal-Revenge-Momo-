@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://gprxbxhc468i"
-path="res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx-c3261c13ded0e9b9c0b5d6e300bf3200.scn"
+path="res://.godot/imported/kevinAnimacion2.fbx-209768edf7fb2488f02d2ef4025b3ff5.scn"
 
 [deps]
 
-source_file="res://PersonajesPropios/KevinAnimaciones2/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx"
-dest_files=["res://.godot/imported/Meshy_AI_Wide_Angle_Stance_20261111_animated_mixamo_All_animation.fbx-c3261c13ded0e9b9c0b5d6e300bf3200.scn"]
+source_file="res://PersonajesPropios/KevinAnimaciones2/kevinAnimacion2.fbx"
+dest_files=["res://.godot/imported/kevinAnimacion2.fbx-209768edf7fb2488f02d2ef4025b3ff5.scn"]
 
 [params]
 
