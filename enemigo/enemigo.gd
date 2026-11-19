@@ -65,9 +65,9 @@ func _ready() -> void:
 	
 	# NUEVO: Asignar la capa de navegación correcta según el tamaño
 	if es_lider:
-		nav_agent.navigation_layers = 1 # Lee el mapa donde NO cabe debajo de la mesa
+		nav_agent.navigation_layers = 2 # Lee el mapa donde NO cabe debajo de la mesa
 	else:
-		nav_agent.navigation_layers = 2 # Lee el mapa normal
+		nav_agent.navigation_layers = 1# Lee el mapa normal
 		add_to_group("Enemigos")
 		
 func _physics_process(delta: float) -> void:

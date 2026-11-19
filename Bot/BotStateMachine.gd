@@ -22,7 +22,9 @@ func inicializar(bot_ref) -> void:
 		estado_actual.enter()
 
 func _physics_process(delta: float) -> void:
-	if estado_actual and estado_actual.bot and not estado_actual.bot.estoy_muerto():
+	if estado_actual and estado_actual.bot:
+		if estado_actual.bot.estoy_muerto() or estado_actual.bot.controles_bloqueados:
+			return
 		estado_actual.physics_update(delta)
 
 func cambiar_estado(nombre_estado: String, datos: Dictionary = {}) -> void:

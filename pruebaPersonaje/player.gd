@@ -90,6 +90,7 @@ func _ready() -> void:
 	if Global.modo_multijugador == "local":
 		if camara:
 			camara.make_current()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		if barraStamina: barraStamina.show()
 		if barraSalud: barraSalud.show()
 		if inventario_manager: inventario_manager.show()

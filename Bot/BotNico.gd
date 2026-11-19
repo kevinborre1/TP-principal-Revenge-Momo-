@@ -20,6 +20,10 @@ var jugador_principal: Node3D = null
 var muerto: bool = false
 var _cooldown_disparo: float = 0.0
 
+# En BotNico.gd (junto a tus otras variables de estado)
+var punto_respawn: Vector3 = Vector3.ZERO
+var controles_bloqueados: bool = false
+
 func _ready() -> void:
 	add_to_group("Jugador")
 	add_to_group("BotCompanero")
@@ -60,6 +64,12 @@ func _buscar_jugador_principal() -> void:
 			jugador_principal = j
 			return
 
+# Cumple el mismo contrato que Player para cinemáticas y eventos de Door.gd
+func bloquear_controles(bloquear: bool) -> void:
+	controles_bloqueados = bloquear
+	if bloquear:
+		velocity = Vector3.ZERO
+		
 # --- API DE MOVIMIENTO Y ACCIONES (usada por todos los estados - DRY) ---
 
 func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:

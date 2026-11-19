@@ -9238,10 +9238,10 @@ expand = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="VictorBars" unique_id=245660252]
 navigation_mesh = SubResource("NavigationMesh_h4t55")
-navigation_layers = 2
 
 [node name="NavigationRegion3DPapaLider" type="NavigationRegion3D" parent="VictorBars/NavigationRegion3D" unique_id=1686856973]
 navigation_mesh = SubResource("NavigationMesh_xx8as")
+navigation_layers = 2
 
 [node name="Decoraciones VictorBars" type="Node3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider" unique_id=1458099527]
 
