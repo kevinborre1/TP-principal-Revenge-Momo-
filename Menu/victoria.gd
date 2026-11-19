@@ -12,6 +12,7 @@ func _ready() -> void:
 	video_player.visible = false
 
 func _on_button_pressed() -> void:
+	SaveAndLoad.actualizar_logro("EscapasteDelMomo")
 	boton_creditos.disabled = true
 	
 	video_player.visible = true

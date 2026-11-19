@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://dwki634comsxy" path="res://enemigo/enemigo2.tscn" id="27_qpfw8"]
 [ext_resource type="PackedScene" uid="uid://b44bt33yq56r7" path="res://Menu/menu_pausa.tscn" id="29_c3dwn"]
 [ext_resource type="Script" uid="uid://cf72r4yxpkpcj" path="res://Terreno/logros.gd" id="30_eeckh"]
-[ext_resource type="Texture2D" uid="uid://bkkl8agj6knu4" path="res://Imagenes/Logros.png" id="31_l5jyt"]
+[ext_resource type="Texture2D" uid="uid://xq14xxmdnr5n" path="res://Imagenes/Logros.jpg" id="31_4id3d"]
 [ext_resource type="Texture2D" uid="uid://olvcc8aqrd1b" path="res://Imagenes/No Descubierto.png" id="32_2klwg"]
 [ext_resource type="PackedScene" uid="uid://bd2wghj4ijklk" path="res://Menu/pantalla_desconexion.tscn" id="33_2klwg"]
 [ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="34_iffks"]
@@ -770,10 +770,11 @@ size = Vector3(19.024597, 1, 30.69226)
 [sub_resource type="BoxShape3D" id="BoxShape3D_1weqr"]
 size = Vector3(1.5292969, 7.940674, 8.132629)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iffks"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8551"]
+bg_color = Color(0, 0, 0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4id3d"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wixvs"]
+bg_color = Color(0.7666196, 0.76661956, 0.76661944, 0.23921569)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6fnc"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -2161,16 +2162,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.171358, 1.758353, -18.433
 
 [node name="MenuPausa" parent="Pantallas" unique_id=405466910 instance=ExtResource("29_c3dwn")]
 
-[node name="Logros" type="CanvasLayer" parent="Pantallas" unique_id=1901194748]
+[node name="Logros" type="CanvasLayer" parent="Pantallas" unique_id=434304094]
 script = ExtResource("30_eeckh")
 
-[node name="Fondo" type="TextureRect" parent="Pantallas/Logros" unique_id=1513256696]
-offset_right = 1153.0
-offset_bottom = 649.0
-texture = ExtResource("31_l5jyt")
+[node name="Fondo" type="TextureRect" parent="Pantallas/Logros" unique_id=1788590630]
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = ExtResource("31_4id3d")
 expand_mode = 1
 
-[node name="Rompiste15Barriles" type="TextureRect" parent="Pantallas/Logros" unique_id=1919588722]
+[node name="Rompiste15Barriles" type="TextureRect" parent="Pantallas/Logros" unique_id=452341823]
 offset_left = 42.0
 offset_top = 181.0
 offset_right = 260.0
@@ -2178,7 +2181,7 @@ offset_bottom = 396.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="JugasteElMinijuego" type="TextureRect" parent="Pantallas/Logros" unique_id=2022300113]
+[node name="JugasteElMinijuego" type="TextureRect" parent="Pantallas/Logros" unique_id=1585279788]
 offset_left = 265.0
 offset_top = 183.0
 offset_right = 478.0
@@ -2186,7 +2189,7 @@ offset_bottom = 398.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="Mataste10Enemigos" type="TextureRect" parent="Pantallas/Logros" unique_id=1169704553]
+[node name="Mataste10Enemigos" type="TextureRect" parent="Pantallas/Logros" unique_id=1215310108]
 offset_left = 482.0
 offset_top = 182.0
 offset_right = 702.0
@@ -2194,7 +2197,7 @@ offset_bottom = 397.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="Muere10Veces" type="TextureRect" parent="Pantallas/Logros" unique_id=1616255501]
+[node name="Muere10Veces" type="TextureRect" parent="Pantallas/Logros" unique_id=463626395]
 offset_left = 702.0
 offset_top = 182.0
 offset_right = 927.0
@@ -2202,7 +2205,7 @@ offset_bottom = 397.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="EsterEgg1" type="TextureRect" parent="Pantallas/Logros" unique_id=1159596567]
+[node name="Ajedrez" type="TextureRect" parent="Pantallas/Logros" unique_id=1446334681]
 offset_left = 924.0
 offset_top = 184.0
 offset_right = 1149.0
@@ -2210,7 +2213,7 @@ offset_bottom = 399.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="EsterEgg3" type="TextureRect" parent="Pantallas/Logros" unique_id=1572939661]
+[node name="BaileConjunto" type="TextureRect" parent="Pantallas/Logros" unique_id=1309243574]
 offset_left = 927.0
 offset_top = 398.0
 offset_right = 1152.0
@@ -2218,7 +2221,7 @@ offset_bottom = 613.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="EsterEgg2" type="TextureRect" parent="Pantallas/Logros" unique_id=2143315881]
+[node name="EscapasteDelMomo" type="TextureRect" parent="Pantallas/Logros" unique_id=520044592]
 offset_left = 705.0
 offset_top = 399.0
 offset_right = 930.0
@@ -2226,7 +2229,7 @@ offset_bottom = 614.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="CompletasteModulo7" type="TextureRect" parent="Pantallas/Logros" unique_id=1632943058]
+[node name="CompletasteModulo7" type="TextureRect" parent="Pantallas/Logros" unique_id=680152644]
 offset_left = 476.0
 offset_top = 396.0
 offset_right = 701.0
@@ -2234,7 +2237,7 @@ offset_bottom = 611.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="CompletasteCampus" type="TextureRect" parent="Pantallas/Logros" unique_id=1104165515]
+[node name="CompletasteCampus" type="TextureRect" parent="Pantallas/Logros" unique_id=275432239]
 offset_left = 254.0
 offset_top = 396.0
 offset_right = 479.0
@@ -2242,7 +2245,7 @@ offset_bottom = 611.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="CompletasteVictors" type="TextureRect" parent="Pantallas/Logros" unique_id=1976720400]
+[node name="CompletasteVictors" type="TextureRect" parent="Pantallas/Logros" unique_id=1773267330]
 offset_left = 34.0
 offset_top = 400.0
 offset_right = 259.0
@@ -2250,14 +2253,14 @@ offset_bottom = 615.0
 texture = ExtResource("32_2klwg")
 expand_mode = 1
 
-[node name="Salir" type="Button" parent="Pantallas/Logros" unique_id=1450404092]
-offset_left = 1063.0
-offset_top = 5.0
-offset_right = 1138.0
-offset_bottom = 56.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_iffks")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4id3d")
-text = "ESC
+[node name="Salir" type="Button" parent="Pantallas/Logros" unique_id=162921669]
+offset_left = 947.0
+offset_top = 24.0
+offset_right = 1123.0
+offset_bottom = 109.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_l8551")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wixvs")
+text = "
 "
 
 [node name="PantallaDesconexion" parent="Pantallas" unique_id=1061094305 instance=ExtResource("33_2klwg")]

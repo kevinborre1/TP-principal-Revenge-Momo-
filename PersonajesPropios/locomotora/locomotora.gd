@@ -71,7 +71,7 @@ func empezar_a_bailar() -> void:
 	# Solo reaccionan si AMBOS jugadores están bailando al mismo tiempo
 	if _contar_jugadores_bailando() < 2:
 		return
-		
+	SaveAndLoad.actualizar_logro("BaileConjunto")
 	_estaba_en_fiesta = true
 	if animation_player and animation_player.has_animation("baile/Boom_Dance_2"):
 		if animation_player.current_animation != "baile/Boom_Dance_2":
