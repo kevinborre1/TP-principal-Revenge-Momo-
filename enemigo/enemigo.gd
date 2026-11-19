@@ -68,6 +68,7 @@ func _ready() -> void:
 		nav_agent.navigation_layers = 1 # Lee el mapa donde NO cabe debajo de la mesa
 	else:
 		nav_agent.navigation_layers = 2 # Lee el mapa normal
+		add_to_group("Enemigos")
 		
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:

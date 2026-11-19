@@ -5,9 +5,9 @@ extends Node3D
 
 @onready var contenedor_principal = $HBoxContainer
 @onready var subviewport_container1 = $HBoxContainer/SubViewportContainer
-@onready var subviewport_container2 = $HBoxContainer/SubViewportContainer2
+
 @onready var subviewport1 = $HBoxContainer/SubViewportContainer/SubViewport
-@onready var subviewport2 = $HBoxContainer/SubViewportContainer2/SubViewport2
+
 @onready var cartel_conexion: CanvasLayer = $Pantallas/PantallaConexion
 @onready var pantalla_desconexion: CanvasLayer = $Pantallas/PantallaDesconexion
 @onready var texto_modo: Label = $Pantallas/Label
@@ -19,6 +19,9 @@ const MAX_JUGADORES := 2 # host + 1 cliente
 var timer_conexion: Timer
 var conexion_resuelta := false
 var saliendo := false
+
+const BOT_NICO_SCENE = preload("res://Bot/Bot.tscn")
+var bot_nico: BotNico = null
 
 func _ready() -> void:
 	MenuOpciones.aplicar_calidad_terreno(get_node_or_null("Terrain3D"))
@@ -33,9 +36,7 @@ func _ready() -> void:
 	subviewport_container1.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	subviewport_container1.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	subviewport_container1.stretch = true
-	subviewport_container2.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	subviewport_container2.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	subviewport_container2.stretch = true
+
 
 	# Ocultamos la UI por defecto para evitar pantallas grises
 	contenedor_principal.hide() 
@@ -43,23 +44,18 @@ func _ready() -> void:
 	if Global.modo_multijugador == "local":
 		# MODO LOCAL
 		contenedor_principal.show()
-		subviewport_container2.show()
-		subviewport2.world_3d = subviewport1.world_3d
-		
+
 		var p1= escena_personaje_host.instantiate()
 		p1.name = "1"
 		p1.position = Vector3(36, 2, 1250)
 		subviewport1.add_child(p1)
 		
-		var p2 = escena_personaje_cliente.instantiate()
-		p2.name = "2" 
-		p2.position = Vector3(40, 2, 1250)
-		subviewport2.add_child(p2)
+		_instanciar_bot_nico()
 		
 	if Global.modo_multijugador == "linea":
 		#LO AGREGUE PARA VER ALGO DE LA OPTIMIZACION, SI ROMPE ALGO SE SACA
 		subviewport1.render_target_update_mode = SubViewport.UPDATE_DISABLED
-		subviewport2.render_target_update_mode = SubViewport.UPDATE_DISABLED
+	
 		#---------------------------------------------------------------
 		# MODO EN LÍNEA
 		if NetworkManager.quiero_ser_host:
@@ -79,6 +75,14 @@ func _ready() -> void:
 			NetworkManager.unirse_a_sesion(NetworkManager.codigo_para_unirse)
 				
 	activador_victoria.body_entered.connect(_on_activador_victoria_body_entered)
+
+func _instanciar_bot_nico() -> void:
+	bot_nico = BOT_NICO_SCENE.instantiate()
+	bot_nico.name = "2" # Conserva el ID del segundo jugador
+	add_child(bot_nico)
+	bot_nico.global_position = Vector3(40, 2, 1250) # Al lado del Jugador 1
+
+
 
 # El Host ejecuta esto automáticamente cuando un cliente entra
 func _on_peer_connected(id: int) -> void:

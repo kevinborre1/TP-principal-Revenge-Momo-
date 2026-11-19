@@ -9,10 +9,10 @@ func _on_jugar_local_pressed() -> void:
 	if Global.es_partida_nueva:
 		Global.es_partida_nueva = false
 		
-		video_stream_player.visible = true
-		video_stream_player.play()
-		
-		await video_stream_player.finished
+		#video_stream_player.visible = true
+		#video_stream_player.play()
+		#
+		#await video_stream_player.finished
 
 	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
 	

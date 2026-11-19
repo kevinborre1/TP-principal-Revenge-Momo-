@@ -359,6 +359,9 @@ func _physics_process(delta: float) -> void:
 				
 			# Ordena a los bots que detengan el baile
 			get_tree().call_group("bots", "detener_baile")
+	if global_position.y < -20 :
+		respawnear()
+		
 
 	move_and_slide()
 	player_animation()
