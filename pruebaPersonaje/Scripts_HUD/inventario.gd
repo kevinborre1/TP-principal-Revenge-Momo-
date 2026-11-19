@@ -13,6 +13,9 @@ var slot_actual: int = 0
 @onready var menu_detalles = $MenuDetalle
 @onready var label_detalles = $MenuDetalle/TextoDetalle
 
+#Sonidos
+const SFX_CAMBIAR_SLOT = preload("res://sonidos/cambiar_slot.wav")
+
 func _ready() -> void:
 	# El recordatorio (Panel6) queda visible por defecto en el editor, 
 	# solo ocultamos el menú de detalles grandes.
@@ -49,6 +52,7 @@ func seleccionar_slot(indice: int, player: Node3D) -> void:
 		slot_seleccionado = indice
 		slot_actual = indice
 		actualizar_ui_seleccion()
+		reproducir_sfx_local(SFX_CAMBIAR_SLOT, -4.0)
 		print("Slot activo: ", slot_seleccionado + 1)
 		
 		# --- NUEVA LÓGICA DE EQUIPAMIENTO ---
@@ -142,3 +146,15 @@ func cargar_datos_guardados(items_guardados: Array, player: Node3D) -> void:
 				
 	# Refrescamos el slot actual por si tenía algo equipado en el slot seleccionado
 	seleccionar_slot(slot_seleccionado, player)
+
+func reproducir_sfx_local(stream: AudioStream, volumen_db: float = 0.0) -> void:
+	if stream == null:
+		return
+	var player_2d := AudioStreamPlayer.new()
+	player_2d.stream = stream
+	player_2d.volume_db = volumen_db
+	# If you have an "SFX" bus in the Audio tab at the bottom of Godot, uncomment the next line:
+	# player_2d.bus = &"SFX"
+	add_child(player_2d)
+	player_2d.play()
+	player_2d.finished.connect(player_2d.queue_free)

@@ -7,6 +7,9 @@ class_name Arma
 @export var cadencia: float = 0.2
 var puede_disparar: bool = true
 
+#Sonidos
+const SFX_DISPARO = preload("res://sonidos/disparo_nerf.wav")
+
 func _jugador_dueño() -> Player:
 	var nodo: Node = self
 	while nodo and not (nodo is Player):
@@ -34,6 +37,7 @@ func disparar() -> void:
 		puede_disparar = true
 		return
 		
+	reproducir_sfx_3d(SFX_DISPARO)
 	var raycast: RayCast3D = player.find_child("RayCastDisparo", true, false)
 	
 	# 1. Instanciamos la bala
@@ -108,3 +112,17 @@ func desactivar_para_mano() -> void:
 	var colision = get_node_or_null("CollisionShape3D")
 	if colision:
 		colision.set_deferred("disabled", true)	
+
+# Sonidos en 3D que el otro escuchará
+func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono: bool = true) -> void:
+	if stream == null:
+		return
+	var player_3d := AudioStreamPlayer3D.new()
+	player_3d.stream = stream
+	player_3d.volume_db = volumen_db
+	player_3d.max_distance = 35.0 # Distance in meters at which the other player can hear it
+	if variar_tono:
+		player_3d.pitch_scale = randf_range(0.92, 1.08)
+	add_child(player_3d)
+	player_3d.play()
+	player_3d.finished.connect(player_3d.queue_free)
