@@ -68,7 +68,6 @@ func _contar_jugadores_bailando() -> int:
 	return total
 
 func empezar_a_bailar() -> void:
-
 	SaveAndLoad.actualizar_logro("BaileConjunto")
 	_estaba_en_fiesta = true
 	if animation_player and animation_player.has_animation("baile/Boom_Dance_2"):

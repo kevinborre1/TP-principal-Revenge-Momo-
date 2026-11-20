@@ -270,8 +270,8 @@ func verificar_fin_partida() -> void:
 		mostrar_cartel_final("¡JAQUE MATE!\nGanaron las " + ganador)
 
 func _desbloquear_logro_ajedrez() -> void:
-	if SaveAndLoad.has_method("desbloquear_logro"):
-		SaveAndLoad.desbloquear_logro("Ajedrez")
+	if SaveAndLoad.has_method("actualizar_logro"):
+		SaveAndLoad.actualizar_logro("Ajedrez")
 	else:
 		if SaveAndLoad.logros == null:
 			SaveAndLoad.cargar_logros()
