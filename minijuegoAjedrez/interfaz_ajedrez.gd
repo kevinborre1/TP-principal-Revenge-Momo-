@@ -260,8 +260,25 @@ func _on_pieza_coronada_seleccionada(tipo: PiezaAjedrez.Tipo, panel: PanelContai
 
 func verificar_fin_partida() -> void:
 	if juego_logico.es_jaque_mate(juego_logico.turno_actual):
-		var ganador = "Blancas" if juego_logico.turno_actual == PiezaAjedrez.ColorPieza.NEGRO else "Negras"
+		var color_ganador = PiezaAjedrez.ColorPieza.BLANCO if juego_logico.turno_actual == PiezaAjedrez.ColorPieza.NEGRO else PiezaAjedrez.ColorPieza.NEGRO
+		var ganador = "Blancas" if color_ganador == PiezaAjedrez.ColorPieza.BLANCO else "Negras"
+		
+		# Desbloquea el logro en local (-1) o para el jugador que ganó en multijugador
+		if mi_color == -1 or mi_color == color_ganador:
+			_desbloquear_logro_ajedrez()
+			
 		mostrar_cartel_final("¡JAQUE MATE!\nGanaron las " + ganador)
+
+func _desbloquear_logro_ajedrez() -> void:
+	if SaveAndLoad.has_method("desbloquear_logro"):
+		SaveAndLoad.desbloquear_logro("Ajedrez")
+	else:
+		if SaveAndLoad.logros == null:
+			SaveAndLoad.cargar_logros()
+		if SaveAndLoad.logros != null:
+			SaveAndLoad.logros.set("Ajedrez", true)
+			if SaveAndLoad.has_method("guardar_logros"):
+				SaveAndLoad.guardar_logros()
 
 func mostrar_cartel_final(mensaje: String) -> void:
 	# 1. Usamos un CenterContainer que ocupe toda la pantalla para un centrado absoluto
