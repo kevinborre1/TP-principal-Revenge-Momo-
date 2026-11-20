@@ -274,6 +274,25 @@ func actualizar_logro(nombre_logro: String) -> void:
 	if logros == null:
 		cargar_logros()
 
+	print("actualizar_logro llamado con: '", nombre_logro, "'")
+
+	var actual = logros.get(nombre_logro)
+	if actual == null:
+		var disponibles := []
+		for p in logros.get_property_list():
+			if p.type == TYPE_BOOL and (p.usage & PROPERTY_USAGE_STORAGE):
+				disponibles.append(p.name)
+		push_error("No existe el logro '%s'. Disponibles: %s" % [nombre_logro, disponibles])
+		return
+
+	if actual == true:
+		print("El logro '", nombre_logro, "' ya estaba desbloqueado")
+		return
+
+	logros.set(nombre_logro, true)
+	guardar_logros()
+	print("Logro desbloqueado: ", nombre_logro)
+
 	for propiedad in logros.get_property_list():
 		if propiedad.name == nombre_logro:
 			logros.set(nombre_logro, true)

@@ -30,15 +30,17 @@ func _on_body_entered(body: Node3D) -> void:
 	body.punto_respawn = punto_de_aparicion.global_position
 	if multiplayer.is_server():
 		ya_activado = true
-		
-		# NUEVO: Le pasamos la posición predeterminada a nuestro sistema de guardado
+
 		if punto_de_aparicion != null:
 			SaveAndLoad.guardarEstadoMomo(muertoMomo)
 			SaveAndLoad.establecer_posicion_predeterminada(punto_de_aparicion.global_position)
 			print("guardando")
-		SaveAndLoad.actualizar_logro(nombre_logro)
+
+		# Se desbloquea en todas las PC (host y cliente)
+		if nombre_logro != "":
+			_dar_logro.rpc(nombre_logro)
+
 		SaveAndLoad.save_game()
-		
 @rpc("authority", "call_local", "reliable")
 func _dar_logro(nombre: String) -> void:
 	if nombre != "":
