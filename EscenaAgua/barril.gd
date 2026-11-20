@@ -1,6 +1,9 @@
 extends StaticBody3D
 
 var _destruido: bool = false
+#sonidos
+const SFX_BARRIL_CRASH = preload("res://sonidos/barril_crash.wav")
+
 
 func _ready() -> void:
 	# Añadimos todos los barriles al grupo para que la balsa los reconozca
@@ -9,6 +12,7 @@ func _ready() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
+	reproducir_sfx_3d(SFX_BARRIL_CRASH)
 	if _destruido:
 		return
 	print("¡El barril recibió un disparo!")
@@ -37,6 +41,7 @@ func _sincronizar_colision_balsa() -> void:
 	# 1. Apagamos la colisión. Usamos set_deferred por seguridad en las físicas de Godot.
 	$CollisionShape3D.set_deferred("disabled", true)
 	
+	reproducir_sfx_3d(SFX_BARRIL_CRASH)
 	# 2. Apagamos el modelo visual (el padre Sketchfab_Scene)
 	var nodo_padre = get_parent()
 	if nodo_padre:
@@ -71,3 +76,17 @@ func _destruir_barril() -> void:
 		get_parent().queue_free()
 	else:
 		queue_free()
+
+# Sonidos en 3D que el otro escuchará
+func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono: bool = true) -> void:
+	if stream == null:
+		return
+	var player_3d := AudioStreamPlayer3D.new()
+	player_3d.stream = stream
+	player_3d.volume_db = volumen_db
+	player_3d.max_distance = 35.0 # Distance in meters at which the other player can hear it
+	if variar_tono:
+		player_3d.pitch_scale = randf_range(0.92, 1.08)
+	add_child(player_3d)
+	player_3d.play()
+	player_3d.finished.connect(player_3d.queue_free)
