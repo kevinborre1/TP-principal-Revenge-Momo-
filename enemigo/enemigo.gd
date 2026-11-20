@@ -37,6 +37,12 @@ var _velocidad_normal: float
 var _danio_normal: int
 var _cooldown_normal: float
 
+@export var sonido_spawn: AudioStream
+@export var sonido_muerte: AudioStream
+
+# Para evitar 200 sonidos a la vez
+static var _ultimo_spawn_sfx: Dictionary = {}
+const COOLDOWN_SPAWN_MS: int = 800 #mínimo de cooldown para que vuelva a escucharse el sonido de spawn
 
 func _ready() -> void:
 	_velocidad_normal = velocidad
@@ -69,7 +75,8 @@ func _ready() -> void:
 	else:
 		nav_agent.navigation_layers = 1# Lee el mapa normal
 		add_to_group("Enemigos")
-		
+	_reproducir_sonido_spawn()
+	
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:
 		return
@@ -239,6 +246,7 @@ func _eliminar_en_todos() -> void:
 	muriendo = true
 	if es_lider:
 		MusicManager.stop_music()
+	reproducir_sfx_3d(sonido_muerte)
 	SaveAndLoad.sumar_estadistica("enemigosAsesinados")
 	set_physics_process(false)
 	_cambiar_estado_colisiones(true)  # las balas y el jugador ya no chocan con ella
@@ -320,3 +328,29 @@ func _ataque_a_distancia(objetivo: Node3D) -> void:
 		objetivo.heridoPorEnemigo(danio_golpe)
 		tiempo_ultimo_ataque = tiempo_actual
 		_reproducir_ataque()
+
+func _reproducir_sonido_spawn() -> void:
+	if sonido_spawn == null:
+		return
+	var ahora: int = Time.get_ticks_msec()
+	var ultimo: int = _ultimo_spawn_sfx.get(sonido_spawn, -COOLDOWN_SPAWN_MS)
+	if ahora - ultimo < COOLDOWN_SPAWN_MS:
+		return
+	_ultimo_spawn_sfx[sonido_spawn] = ahora
+	reproducir_sfx_3d(sonido_spawn)
+	
+func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono: bool = true) -> void:
+	if stream == null:
+		return
+	var player_3d := AudioStreamPlayer3D.new()
+	player_3d.stream = stream
+	player_3d.volume_db = volumen_db
+	player_3d.max_distance = 40.0
+	if variar_tono:
+		player_3d.pitch_scale = randf_range(0.92, 1.08)
+		
+	var contenedor := get_tree().current_scene if get_tree().current_scene else get_tree().root
+	contenedor.add_child(player_3d)
+	player_3d.global_position = global_position
+	player_3d.play()
+	player_3d.finished.connect(player_3d.queue_free)

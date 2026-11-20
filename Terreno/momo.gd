@@ -43,6 +43,8 @@ var _pausa_papas_hasta_ms := 0
 
 var _timer_onda: Timer
 
+@export var sonido_muerte: AudioStream
+
 func _ready() -> void:
 	vida = vida_max
 	_mostrar_campo(false)
@@ -138,6 +140,7 @@ func _sincronizar(vida_nueva: int, fase_nueva: int, campo: bool) -> void:
 	if fase != fase_anterior:
 		fase_cambiada.emit(fase)
 		if fase == Fase.MUERTO:
+			_reproducir_sonido_muerte()
 			_desaparecer()   # <-- NUEVO
 			derrotado.emit()
 
@@ -306,3 +309,13 @@ func _aplicar_muerte_guardada() -> void:
 	vida_cambiada.emit(vida, vida_max)
 	fase_cambiada.emit(fase)
 	derrotado.emit()
+	
+func _reproducir_sonido_muerte() -> void:
+	if sonido_muerte == null:
+		return
+	var player_2d := AudioStreamPlayer.new()
+	player_2d.stream = sonido_muerte
+	var contenedor := get_tree().current_scene if get_tree().current_scene else get_tree().root
+	contenedor.add_child(player_2d)
+	player_2d.play()
+	player_2d.finished.connect(player_2d.queue_free)

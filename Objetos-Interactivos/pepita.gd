@@ -77,6 +77,7 @@ func _procesar_pepita_host() -> void:
 
 @rpc("call_local", "reliable")
 func _borrar_pepita_visual() -> void:
+	reproducir_sfx_local(SFX_AGARRAR_PEPITA, -4.0)
 	queue_free()
 
 func reproducir_sfx_local(stream: AudioStream, volumen_db: float = 0.0) -> void:
@@ -85,8 +86,7 @@ func reproducir_sfx_local(stream: AudioStream, volumen_db: float = 0.0) -> void:
 	var player_2d := AudioStreamPlayer.new()
 	player_2d.stream = stream
 	player_2d.volume_db = volumen_db
-	# If you have an "SFX" bus in the Audio tab at the bottom of Godot, uncomment the next line:
-	# player_2d.bus = &"SFX"
-	add_child(player_2d)
+	var contenedor := get_tree().current_scene if get_tree().current_scene else get_tree().root
+	contenedor.add_child(player_2d)
 	player_2d.play()
 	player_2d.finished.connect(player_2d.queue_free)
