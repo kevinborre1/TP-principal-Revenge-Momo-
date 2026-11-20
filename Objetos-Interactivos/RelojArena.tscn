@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://df7lds78xcx0" path="res://Objetos-Interactivos/reloj_arena.gd" id="1_tphx6"]
 [ext_resource type="PackedScene" uid="uid://rg4qdusa7ijv" path="res://Objetos-Interactivos/hourglass__sand_clock.glb" id="1_ustl3"]
 [ext_resource type="Texture2D" uid="uid://cabwyn63qjqfd" path="res://Objetos-Interactivos/relojArena.png" id="2_jk86e"]
+[ext_resource type="AudioStream" uid="uid://dtccp8qxodlbg" path="res://sonidos/consum_reloj.wav" id="3_jk86e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(0.5, 0.8, 0.5)
@@ -12,6 +13,7 @@ script = ExtResource("1_tphx6")
 nombre_item = "RelojArena"
 icono = ExtResource("2_jk86e")
 ruta_escena = "res://Objetos-Interactivos/RelojArena.tscn"
+sonido_uso = ExtResource("3_jk86e")
 
 [node name="Sketchfab_Scene" parent="." unique_id=551812017 instance=ExtResource("1_ustl3")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

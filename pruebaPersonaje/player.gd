@@ -80,6 +80,8 @@ var punto_respawn : Vector3 = Vector3(36, 2, 1250)
 
 #sonidos
 const SFX_SALTO = preload("res://sonidos/salto.wav")
+const SFX_OBTENER_ITEM = preload("res://sonidos/recolectar_item.wav")
+const SFX_CURACION = preload("res://sonidos/curacion.wav")
 
 func _ready() -> void:
 	var id_player = name.to_int()
@@ -576,6 +578,7 @@ func intentar_recoger_item():
 		elif cuerpo is ItemBase:
 			var exito = inventario_manager.agregar_item(cuerpo.nombre_item, cuerpo.icono, cuerpo.ruta_escena, cuerpo.descripcion, self)
 			if exito:
+				reproducir_sfx_local(SFX_OBTENER_ITEM)
 				cuerpo.ser_recogido()
 				break
 				
@@ -657,6 +660,10 @@ func consumir_item_actual():
 				var se_uso = item_en_mano.usar_item(self)
 				
 				if se_uso == true:
+					if item_en_mano.sonido_uso != null:
+						# POR SER RPC, SOLO EN PC DEL QUE USO EL ÍTEM
+						if Global.modo_multijugador != "linea" or is_multiplayer_authority():
+							reproducir_sfx_local(item_en_mano.sonido_uso)
 					inventario_manager.borrar_item_actual()
 					solicitar_desequipar()
 					
@@ -671,7 +678,7 @@ func recibir_cura(puntos_cura: int) -> bool:
 		return true
 		
 	saludActual += puntos_cura
-	
+	reproducir_sfx_local(SFX_CURACION)
 	if saludActual > saludMax:
 		saludActual = saludMax
 	print("Te curaste. Tu salud ahora es: ", saludActual)
@@ -915,6 +922,18 @@ func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono
 	add_child(player_3d)
 	player_3d.play()
 	player_3d.finished.connect(player_3d.queue_free)
+
+func reproducir_sfx_local(stream: AudioStream, volumen_db: float = 0.0) -> void:
+	if stream == null:
+		return
+	var player_2d := AudioStreamPlayer.new()
+	player_2d.stream = stream
+	player_2d.volume_db = volumen_db
+	# If you have an "SFX" bus in the Audio tab at the bottom of Godot, uncomment the next line:
+	# player_2d.bus = &"SFX"
+	add_child(player_2d)
+	player_2d.play()
+	player_2d.finished.connect(player_2d.queue_free)
 
 @rpc("any_peer", "call_local", "reliable")
 func _cambiar_estado_baile(bailando: bool) -> void:

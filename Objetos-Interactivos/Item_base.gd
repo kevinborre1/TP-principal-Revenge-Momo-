@@ -16,6 +16,10 @@ class_name ItemBase
 
 # --- NUEVO ---
 @export var texto_interaccion: String = "Presiona [E]"
+
+#para que cada uno tenga sonido distinto
+@export var sonido_uso: AudioStream
+
 var label_3d: Label3D = null # Guardamos la referencia para prenderlo/apagarlo rápido
 
 func _ready() -> void:
