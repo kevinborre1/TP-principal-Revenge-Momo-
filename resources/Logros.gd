@@ -10,9 +10,9 @@ extends Resource
 @export var JugasteElMinijuego: bool = false
 @export var Moriste10Veces: bool = false
 @export var AsesinasteA10Enemigos: bool = false
-@export var AgarrasteEsterEgg1: bool = false
-@export var AgarrasteEsterEgg2: bool = false
-@export var AgarrasteEsterEgg3: bool = false
+@export var Ajedrez: bool = false
+@export var EscapasteDelMomo: bool = false
+@export var BaileConjunto: bool = false
 #VALORES PARA CONTAR LOGROS INDIVIDUALES
 @export var muertes: int = 0
 @export var barrilesRotos: int = 0
