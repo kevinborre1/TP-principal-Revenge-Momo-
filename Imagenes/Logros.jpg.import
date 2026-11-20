@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkkl8agj6knu4"
-path="res://.godot/imported/Logros.png-4c1d2359da740fc9b3e9e969a1afd711.ctex"
+uid="uid://xq14xxmdnr5n"
+path="res://.godot/imported/Logros.jpg-3cfa8bb4c0e1ddbc034fc4b10401b987.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Imagenes/Logros.png"
-dest_files=["res://.godot/imported/Logros.png-4c1d2359da740fc9b3e9e969a1afd711.ctex"]
+source_file="res://Imagenes/Logros.jpg"
+dest_files=["res://.godot/imported/Logros.jpg-3cfa8bb4c0e1ddbc034fc4b10401b987.ctex"]
 
 [params]
 

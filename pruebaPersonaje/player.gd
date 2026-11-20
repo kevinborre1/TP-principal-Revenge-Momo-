@@ -76,6 +76,9 @@ var item_en_mano: Node3D = null
 
 var punto_respawn : Vector3 = Vector3(36, 2, 1250)
 
+#sonidos
+const SFX_SALTO = preload("res://sonidos/salto.wav")
+
 func _ready() -> void:
 	var id_player = name.to_int()
 	set_multiplayer_authority(id_player)
@@ -284,7 +287,9 @@ func _physics_process(delta: float) -> void:
 		act_salto = "Salto_p2"
 
 	if Input.is_action_just_pressed(act_salto) and is_on_floor() and not agachado:
+		reproducir_sfx_3d(SFX_SALTO)
 		velocity.y = JUMP_VELOCITY
+		
 	correr_fisico = Input.is_physical_key_pressed(KEY_SHIFT)
 	if Global.modo_multijugador == "local" and name == "2":
 		correr_fisico = Input.is_physical_key_pressed(KEY_P)
@@ -891,3 +896,17 @@ func estoy_muerto() -> bool:
 func reproducir_baile_player():
 	if animation and animation.has_animation("Boom_Dance"):
 		animation.play("Boom_Dance", 0.3)
+
+# Sonidos en 3D que el otro escuchará
+func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono: bool = true) -> void:
+	if stream == null:
+		return
+	var player_3d := AudioStreamPlayer3D.new()
+	player_3d.stream = stream
+	player_3d.volume_db = volumen_db
+	player_3d.max_distance = 35.0 # Distance in meters at which the other player can hear it
+	if variar_tono:
+		player_3d.pitch_scale = randf_range(0.92, 1.08)
+	add_child(player_3d)
+	player_3d.play()
+	player_3d.finished.connect(player_3d.queue_free)
