@@ -109,7 +109,7 @@ func add_player(peer_id: int) -> void:
 		
 	# Es obligatorio asignar el ID como nombre para que el set_multiplayer_authority del player.gd funcione
 	new_player.name = str(peer_id)
-	new_player.position = Vector3(randf_range(36, 40), 2, 1150)
+	new_player.position = Vector3(randf_range(36, 40), 2, 1250)
 	new_player.add_to_group("jugadores")
 	
 	# Lo agregamos al árbol. 
