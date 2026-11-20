@@ -237,6 +237,8 @@ func _eliminar_en_todos() -> void:
 	if muriendo or is_queued_for_deletion():
 		return
 	muriendo = true
+	if es_lider:
+		MusicManager.stop_music()
 	SaveAndLoad.sumar_estadistica("enemigosAsesinados")
 	set_physics_process(false)
 	_cambiar_estado_colisiones(true)  # las balas y el jugador ya no chocan con ella
