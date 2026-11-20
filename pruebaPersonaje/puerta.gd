@@ -1,36 +1,38 @@
 extends Node3D
 
-var boton_1_activo: bool = false
-var boton_2_activo: bool = false
+@export var altura_apertura: float = 20.0
+@export var duracion_movimiento: float = 1.0
+
 var esta_abierta: bool = false
+var _botones_activos: Dictionary = {}
+var _tween_activo: Tween
 
-# Guarda la posición inicial en Y para saber a dónde volver o cuánto subir
-@onready var posicion_inicial_y: float = position.y
+@onready var _posicion_inicial_y: float = position.y
 
-func actualizar_estado_boton(id: int, activo: bool):
-	if id == 1:
-		boton_1_activo = activo
-	elif id == 2:
-		boton_2_activo = activo
-		
-	verificar_apertura()
+func actualizar_estado_boton(id: int, activo: bool) -> void:
+	_botones_activos[id] = activo
+	_verificar_apertura()
 
-func verificar_apertura():
-	# Si los dos están presionados y la puerta está cerrada, se abre
-	if boton_1_activo or boton_2_activo and not esta_abierta:
+func _verificar_apertura() -> void:
+	var algun_boton_activo := _botones_activos.values().has(true)
+	
+	if algun_boton_activo and not esta_abierta:
 		abrir_puerta()
-	# Si alguno se baja y la puerta estaba abierta, se cierra (opcional)
-	elif (not boton_1_activo and not boton_2_activo) and esta_abierta:
+	elif not algun_boton_activo and esta_abierta:
 		cerrar_puerta()
 
-func abrir_puerta():
+func abrir_puerta() -> void:
 	esta_abierta = true
-	var tween = create_tween()
-	# Sube la puerta 3 metros en 1 segundo de forma fluida
-	tween.tween_property(self, "position:y", posicion_inicial_y + 20.0, 1.0)
+	_mover_puerta(_posicion_inicial_y + altura_apertura)
 
-func cerrar_puerta():
+func cerrar_puerta() -> void:
 	esta_abierta = false
-	var tween = create_tween()
-	# Vuelve a su posición inicial
-	tween.tween_property(self, "position:y", posicion_inicial_y, 1.0)
+	_mover_puerta(_posicion_inicial_y)
+
+func _mover_puerta(destino_y: float) -> void:
+	# Si había un movimiento en curso, lo cancela antes de iniciar el nuevo
+	if _tween_activo and _tween_activo.is_valid():
+		_tween_activo.kill()
+	
+	_tween_activo = create_tween()
+	_tween_activo.tween_property(self, "position:y", destino_y, duracion_movimiento)

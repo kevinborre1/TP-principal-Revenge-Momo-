@@ -1904,5 +1904,8 @@ script = ExtResource("45_33ti0")
 script = ExtResource("46_dbup7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=865914353]
+path_desired_distance = 1.5
+target_desired_distance = 0.3
+debug_enabled = true
 
 [node name="PuntoDisparo" type="Marker3D" parent="." unique_id=259971585]

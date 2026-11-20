@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var velocidad_correr: float = 10.0
 @export var cadencia_disparo: float = 0.45
 @export var altura_sentado: float = -0.4
+@export var altura_limite_caida: float = -20.0
 
 @export_enum("ambos", "rompe_escudo", "letal") var rol: String = "ambos"
 
@@ -18,30 +19,33 @@ extends CharacterBody3D
 
 var jugador_principal: Node3D = null
 var muerto: bool = false
-var _cooldown_disparo: float = 0.0
-
-# En BotNico.gd (junto a tus otras variables de estado)
-var punto_respawn: Vector3 = Vector3.ZERO
+var punto_respawn: Vector3 = Vector3(46 ,1 , 1243)
 var controles_bloqueados: bool = false
 
+var _cooldown_disparo: float = 0.0
+
 func _ready() -> void:
-	add_to_group("Jugador")
-	add_to_group("BotCompanero")
-	
-	await get_tree().process_frame
-	obtener_jugador_principal()
-	if state_machine:
-		state_machine.inicializar(self)
-	else:
-		push_error("[BotNico] Falta el nodo hijo llamado exactamente 'StateMachine'.")
 	# Se suma al grupo "Jugador" para que botones, puertas y la balsa lo detecten igual que a un humano
 	add_to_group("Jugador")
 	add_to_group("BotCompanero")
 	
-	# Buscamos al Jugador 1 tras un frame para asegurar que ya esté en el árbol
+	if punto_respawn == Vector3.ZERO:
+		punto_respawn = global_position
+	
+	# Esperamos un frame para asegurar que el Jugador 1 ya esté en el árbol
 	await get_tree().process_frame
-	_buscar_jugador_principal()
-	state_machine.inicializar(self)
+	obtener_jugador_principal()
+	
+	if state_machine:
+		state_machine.inicializar(self)
+	else:
+		push_error("[BotNico] Falta el nodo hijo llamado exactamente 'StateMachine'.")
+
+func _physics_process(delta: float) -> void:
+	if _cooldown_disparo > 0.0:
+		_cooldown_disparo -= delta
+	
+	_verificar_caida_vacio()
 
 # Búsqueda perezosa (lazy): si el jugador spawnea más tarde o se llama distinto a "1", igual lo encuentra
 func obtener_jugador_principal() -> Node3D:
@@ -53,38 +57,37 @@ func obtener_jugador_principal() -> Node3D:
 			jugador_principal = j
 			return jugador_principal
 	return null
-	
-func _physics_process(delta: float) -> void:
-	if _cooldown_disparo > 0.0:
-		_cooldown_disparo -= delta
 
-func _buscar_jugador_principal() -> void:
-	for j in get_tree().get_nodes_in_group("Jugador"):
-		if j != self and j.name == "1":
-			jugador_principal = j
-			return
+# --- INTEGRIDAD FÍSICA Y RESPAWN ---
+
+func _verificar_caida_vacio() -> void:
+	if global_position.y < altura_limite_caida:
+		print("cAI nICO")
+		respawnear()
+
+func respawnear() -> void:
+	velocity = Vector3.ZERO
+	global_position = punto_respawn
+	
+	if nav_agent:
+		nav_agent.target_position = global_position
+	
+	if state_machine:
+		state_machine.cambiar_estado("Seguir")
 
 # Cumple el mismo contrato que Player para cinemáticas y eventos de Door.gd
 func bloquear_controles(bloquear: bool) -> void:
 	controles_bloqueados = bloquear
 	if bloquear:
 		velocity = Vector3.ZERO
-		
+
 # --- API DE MOVIMIENTO Y ACCIONES (usada por todos los estados - DRY) ---
 
 func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	var siguiente_punto := destino
-	
-	# Usa NavigationAgent3D solo si existe y tiene un mapa de navegación válido;
-	# si no, camina directo hacia el destino para que funcione igual sin NavMesh.
-	if nav_agent and NavigationServer3D.map_get_iteration_id(nav_agent.get_navigation_map()) > 0:
-		nav_agent.target_position = destino
-		if not nav_agent.is_navigation_finished():
-			siguiente_punto = nav_agent.get_next_path_position()
-	
+	var siguiente_punto := _calcular_siguiente_punto(destino)
 	var direccion := siguiente_punto - global_position
 	direccion.y = 0.0
 	
@@ -100,6 +103,32 @@ func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:
 	
 	move_and_slide()
 	_actualizar_animacion(correr)
+
+func _calcular_siguiente_punto(destino: Vector3) -> Vector3:
+	if not nav_agent:
+		return destino
+	
+	var mapa := nav_agent.get_navigation_map()
+	if NavigationServer3D.map_get_iteration_id(mapa) == 0:
+		return destino
+	
+	# Último tramo: si ya está al lado del destino, camina directo para no trabarse con el borde del NavMesh
+	var dist_horiz := Vector2(global_position.x - destino.x, global_position.z - destino.z).length()
+	if dist_horiz < 1.2:
+		return destino
+	
+	if nav_agent.target_position.distance_squared_to(destino) > 0.04:
+		nav_agent.target_position = destino
+	
+	var siguiente := nav_agent.get_next_path_position()
+	
+	# Si el NavMesh terminó antes de llegar o el destino quedó inalcanzable, intenta caminar directo
+	if nav_agent.is_navigation_finished():
+		if not nav_agent.is_target_reachable():
+			return destino
+		return global_position
+	
+	return siguiente
 
 func detener_movimiento(delta: float) -> void:
 	if not is_on_floor():
@@ -128,17 +157,16 @@ func disparar_a(objetivo: Node3D, delta: float) -> void:
 	_cooldown_disparo = cadencia_disparo
 	
 	# TODO: Conectá acá con tu sistema real de balas o raycast.
-	# Opción A (Impacto directo tipo Hitscan / método del objetivo):
 	if objetivo.has_method("_daniar"):
 		objetivo._daniar(1)
 	elif objetivo.has_method("recibir_disparo"):
 		objetivo.recibir_disparo(rol)
-	# Opción B: Instanciar tu escena bala.tscn en punto_disparo apuntando a objetivo.global_position
 
 func _actualizar_animacion(corriendo: bool) -> void:
 	if not animation:
 		return
-	var moviendose := Vector2(velocity.x, velocity.z).length() > 0.2
+	var vel_real := get_real_velocity()
+	var moviendose := Vector2(vel_real.x, vel_real.z).length() > 0.2
 	if moviendose:
 		var anim := "Fast Run/mixamo_com" if corriendo and animation.has_animation("Fast Run/mixamo_com") else "camina"
 		if animation.has_animation(anim) and animation.current_animation != anim:
@@ -149,7 +177,8 @@ func _actualizar_animacion(corriendo: bool) -> void:
 # --- COMPATIBILIDAD CON TUS SCRIPTS ACTUALES (player.gd / balsa.gd / roles) ---
 
 func cambiar_estado(nombre: String, datos: Dictionary = {}) -> void:
-	state_machine.cambiar_estado(nombre, datos)
+	if state_machine:
+		state_machine.cambiar_estado(nombre, datos)
 
 func asignar_rol(nuevo_rol: String) -> void:
 	rol = nuevo_rol
