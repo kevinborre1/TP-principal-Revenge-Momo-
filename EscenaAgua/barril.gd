@@ -12,7 +12,6 @@ func _ready() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
-	reproducir_sfx_3d(SFX_BARRIL_CRASH)
 	if _destruido:
 		return
 	print("¡El barril recibió un disparo!")
@@ -61,6 +60,8 @@ func _destruir_barril() -> void:
 		return
 	_destruido = true
 	
+	reproducir_sfx_3d(SFX_BARRIL_CRASH)
+	
 	# 1. Desactivamos la colisión para que no choque mientras se encoge
 	$CollisionShape3D.set_deferred("disabled", true)
 
@@ -77,16 +78,23 @@ func _destruir_barril() -> void:
 	else:
 		queue_free()
 
-# Sonidos en 3D que el otro escuchará
+# Sonidos en 3D independientes del nodo del barril para que no se corten al destruirse
 func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono: bool = true) -> void:
 	if stream == null:
 		return
 	var player_3d := AudioStreamPlayer3D.new()
 	player_3d.stream = stream
 	player_3d.volume_db = volumen_db
-	player_3d.max_distance = 35.0 # Distance in meters at which the other player can hear it
+	player_3d.max_distance = 35.0
 	if variar_tono:
 		player_3d.pitch_scale = randf_range(0.92, 1.08)
-	add_child(player_3d)
+		
+	var escena_actual := get_tree().current_scene
+	if escena_actual:
+		escena_actual.add_child(player_3d)
+	else:
+		add_child(player_3d)
+		
+	player_3d.global_position = global_position
 	player_3d.play()
 	player_3d.finished.connect(player_3d.queue_free)
