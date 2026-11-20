@@ -25,6 +25,8 @@ var input_bloqueado: bool = false
 # Variable para controlar si el consumo de estamina está desactivado y el escudo
 var estamina_infinita: bool = false
 var escudo_activo: bool = false
+var esta_bailando: bool = false
+
 
 var esta_corriendo: bool = false
 var agotado: bool = false # se queda sin estamina: no puede correr hasta recuperar un mínimo
@@ -332,6 +334,8 @@ func _physics_process(delta: float) -> void:
 	var direction = move_vector.normalized()
 	
 	if direction:
+		if esta_bailando and is_multiplayer_authority():
+			_cambiar_estado_baile.rpc(false)
 		velocity.x = direction.x * velocidadActual
 		velocity.z = direction.z * velocidadActual
 		
@@ -349,21 +353,19 @@ func _physics_process(delta: float) -> void:
 			act_bailar = "bailar_p2"
 
 		if Input.is_action_pressed(act_bailar):
+			if not esta_bailando:
+				_cambiar_estado_baile.rpc(true)
 			if macarena and not macarena.playing:
 				macarena.play()
 			if animation and animation.has_animation("baile/Boom_Dance_2") and animation.current_animation != "baile/Boom_Dance_2":
 				animation.play("baile/Boom_Dance_2", 0.3)
 			
-			# Ordena permanentemente a los bots que bailen
-			get_tree().call_group("bots", "empezar_a_bailar")
-			
 		elif Input.is_action_just_released(act_bailar):
+			if esta_bailando:
+				_cambiar_estado_baile.rpc(false)
 			detener_musica_baile()
 			if animation:
-				animation.stop() 
-				
-			# Ordena a los bots que detengan el baile
-			get_tree().call_group("bots", "detener_baile")
+				animation.stop()
 	if global_position.y < -20 :
 		respawnear()
 		
@@ -527,11 +529,14 @@ func player_animation():
 	detener_musica_baile()
 	
 	if agachado:
-		if is_moving():
-			animation.play("Sneaking Forward/mixamo_com", 0.2)
-		else:
-			animation.play("Crouching Idle/mixamo_com", 0.2)
-		return
+			detener_musica_baile()
+			if esta_bailando and is_multiplayer_authority():
+				_cambiar_estado_baile.rpc(false)
+			if is_moving():
+				animation.play("Sneaking Forward/mixamo_com", 0.2)
+			else:
+				animation.play("Crouching Idle/mixamo_com", 0.2)
+			return
 
 	var armado = item_en_mano is ItemBase and item_en_mano.activa_mira_combate
 
@@ -909,3 +914,29 @@ func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono
 	add_child(player_3d)
 	player_3d.play()
 	player_3d.finished.connect(player_3d.queue_free)
+
+@rpc("any_peer", "call_local", "reliable")
+func _cambiar_estado_baile(bailando: bool) -> void:
+	esta_bailando = bailando
+	
+	if Global.modo_multijugador == "local" or multiplayer.is_server():
+		_verificar_baile_grupal()
+
+func _verificar_baile_grupal() -> void:
+	var jugadores = get_tree().get_nodes_in_group("Jugador")
+	var activos := []
+	for j in jugadores:
+		if j is Player and not j.muerto:
+			activos.append(j)
+	
+	if activos.size() >= 2:
+		var todos_bailan := true
+		for j in activos:
+			if not j.esta_bailando:
+				todos_bailan = false
+				break
+		
+		if todos_bailan:
+			get_tree().call_group("bots", "empezar_a_bailar")
+		else:
+			get_tree().call_group("bots", "detener_baile")

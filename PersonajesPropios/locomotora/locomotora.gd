@@ -68,9 +68,7 @@ func _contar_jugadores_bailando() -> int:
 	return total
 
 func empezar_a_bailar() -> void:
-	# Solo reaccionan si AMBOS jugadores están bailando al mismo tiempo
-	if _contar_jugadores_bailando() < 2:
-		return
+
 	SaveAndLoad.actualizar_logro("BaileConjunto")
 	_estaba_en_fiesta = true
 	if animation_player and animation_player.has_animation("baile/Boom_Dance_2"):
@@ -78,12 +76,6 @@ func empezar_a_bailar() -> void:
 			animation_player.play("baile/Boom_Dance_2")
 
 func detener_baile() -> void:
-	# Si solo había 1 jugador bailando, no aplauden ni hacen nada al soltar Q
-	if not _estaba_en_fiesta:
-		return
-		
-	# Recién cuando AMBOS jugadores dejaron de bailar (0 bailando), todos aplauden
-	if _contar_jugadores_bailando() == 0:
 		_estaba_en_fiesta = false
 		if animation_player and animation_player.has_animation("Agree_Gesture"):
 			animation_player.play("Agree_Gesture", 0.3)
