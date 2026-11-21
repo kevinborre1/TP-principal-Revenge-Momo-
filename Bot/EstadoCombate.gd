@@ -86,11 +86,14 @@ func physics_update(delta: float) -> void:
 
 func _evadir_jefe(delta: float, jugador: Node3D) -> void:
 	var en_furia: bool = jefe_actual.get("en_furia") == true
-	var margen_seguro := distancia_segura_jefe + (4.0 if en_furia else 0.0)
-	var dist_jefe := Vector2(bot.global_position.x - jefe_actual.global_position.x, bot.global_position.z - jefe_actual.global_position.z).length()
+	var margen_seguro: float = distancia_segura_jefe + (4.0 if en_furia else 0.0)
+	var dist_jefe: float = Vector2(
+		bot.global_position.x - jefe_actual.global_position.x,
+		bot.global_position.z - jefe_actual.global_position.z
+	).length()
 	
 	if dist_jefe < margen_seguro:
-		var destino_escape := _calcular_destino_escape_jefe(jefe_actual)
+		var destino_escape: Vector3 = _calcular_destino_escape_jefe(jefe_actual)
 		bot.mover_hacia(destino_escape, delta, true)
 	elif is_instance_valid(jugador) and bot.global_position.distance_to(jugador.global_position) > 10.0:
 		bot.mover_hacia(jugador.global_position, delta, false)
@@ -99,40 +102,70 @@ func _evadir_jefe(delta: float, jugador: Node3D) -> void:
 		bot.rotar_hacia(jefe_actual.global_position, delta)
 
 func _calcular_destino_escape_jefe(jefe: Node3D) -> Vector3:
-	var desde_jefe := bot.global_position - jefe.global_position
+	var origen: Vector3 = bot.global_position
+	var desde_jefe: Vector3 = origen - jefe.global_position
 	desde_jefe.y = 0.0
-	var dir_base := desde_jefe.normalized() if desde_jefe.length_squared() > 0.001 else Vector3.BACK
+	var dir_base: Vector3 = desde_jefe.normalized() if desde_jefe.length_squared() > 0.001 else Vector3.BACK
 	
-	# Si toca una pared, desliza paralelo a ella hacia el lado que más lo aleje del jefe
+	# Si toca una pared o puerta, priorizamos deslizar lateralmente en vez de insistir hacia atrás de ella
 	if bot.is_on_wall():
-		var normal_pared := bot.get_wall_normal()
+		var normal_pared: Vector3 = bot.get_wall_normal()
 		normal_pared.y = 0.0
 		if normal_pared.length_squared() > 0.001:
 			normal_pared = normal_pared.normalized()
 			var tangente := Vector3(-normal_pared.z, 0.0, normal_pared.x)
 			if tangente.dot(dir_base) < 0.0:
 				tangente = -tangente
-			dir_base = (tangente * 0.85 + normal_pared * 0.35).normalized()
+			dir_base = (tangente * 0.9 + normal_pared * 0.25).normalized()
 	
-	# Evalúa múltiples ángulos sobre el NavMesh real para evitar puntos detrás de muros
-	var angulos := [0.0, 0.75 * _direccion_strafe, -0.75 * _direccion_strafe, 1.45 * _direccion_strafe, -1.45 * _direccion_strafe]
-	var mejor_punto := bot.global_position + dir_base * 4.5
-	var mejor_puntaje := -INF
+	var angulos: Array[float] = [
+		0.0,
+		0.75 * _direccion_strafe,
+		-0.75 * _direccion_strafe,
+		1.45 * _direccion_strafe,
+		-1.45 * _direccion_strafe,
+		2.2 * _direccion_strafe,
+		-2.2 * _direccion_strafe
+	]
+	var mejor_punto: Vector3 = origen
+	var mejor_puntaje: float = -INF
 	
 	var mapa: RID = bot.nav_agent.get_navigation_map() if bot.nav_agent else RID()
-	var tiene_mapa := mapa.is_valid() and NavigationServer3D.map_get_iteration_id(mapa) > 0
+	var tiene_mapa: bool = mapa.is_valid() and NavigationServer3D.map_get_iteration_id(mapa) > 0
+	var espacio: PhysicsDirectSpaceState3D = bot.get_world_3d().direct_space_state
+	
+	var exclusiones: Array[RID] = [bot.get_rid()]
+	if jefe is CollisionObject3D:
+		exclusiones.append((jefe as CollisionObject3D).get_rid())
+	var jugador: Node3D = bot.obtener_jugador_principal()
+	if is_instance_valid(jugador) and jugador is CollisionObject3D:
+		exclusiones.append((jugador as CollisionObject3D).get_rid())
 	
 	for angulo in angulos:
-		var dir_cand := dir_base.rotated(Vector3.UP, angulo)
-		var punto_crudo := bot.global_position + dir_cand * 5.0
-		var punto_nav := NavigationServer3D.map_get_closest_point(mapa, punto_crudo) if tiene_mapa else punto_crudo
+		var dir_cand: Vector3 = dir_base.rotated(Vector3.UP, angulo)
+		var punto_crudo: Vector3 = origen + dir_cand * 4.5
+		var punto_nav: Vector3 = NavigationServer3D.map_get_closest_point(mapa, punto_crudo) if tiene_mapa else punto_crudo
 		
-		var desplazamiento := Vector2(punto_nav.x - bot.global_position.x, punto_nav.z - bot.global_position.z).length()
-		if desplazamiento < 1.5:
+		# Evita puntos que caen en otro nivel/escalera o saltan del otro lado de una barrera
+		if absf(punto_nav.y - origen.y) > 1.2:
 			continue
 		
-		var dist_al_jefe := Vector2(punto_nav.x - jefe.global_position.x, punto_nav.z - jefe.global_position.z).length()
-		var puntaje := dist_al_jefe + desplazamiento * 0.4
+		var desplazamiento: float = Vector2(punto_nav.x - origen.x, punto_nav.z - origen.z).length()
+		if desplazamiento < 1.2 or desplazamiento > 6.5:
+			continue
+		
+		# Si hay una puerta o pared bloqueando el tramo directo hacia punto_nav, descartamos este candidato
+		if espacio:
+			var query := PhysicsRayQueryParameters3D.create(
+				origen + Vector3(0.0, 0.85, 0.0),
+				punto_nav + Vector3(0.0, 0.85, 0.0)
+			)
+			query.exclude = exclusiones
+			if not espacio.intersect_ray(query).is_empty():
+				continue
+		
+		var dist_al_jefe: float = Vector2(punto_nav.x - jefe.global_position.x, punto_nav.z - jefe.global_position.z).length()
+		var puntaje: float = dist_al_jefe + desplazamiento * 0.35
 		if puntaje > mejor_puntaje:
 			mejor_puntaje = puntaje
 			mejor_punto = punto_nav
