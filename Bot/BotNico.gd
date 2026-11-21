@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var altura_sentado: float = -0.4
 @export var altura_limite_caida: float = -20.0
 @export var friccion_empuje: float = 24.0
+@export var intervalo_navegacion: float = 0.25
 @export var escena_arma: PackedScene # Arrastrá acá la escena .tscn de tu pistola
 
 @export_enum("ambos", "rompe_escudo", "letal") var rol: String = "ambos"
@@ -16,7 +17,6 @@ extends CharacterBody3D
 const ESCENA_BALA_RESPALDO: PackedScene = preload("res://Objetos-Interactivos/Sistema-Combate/Bala.tscn")
 const SFX_DISPARO_RESPALDO: AudioStream = preload("res://sonidos/disparo_nerf.wav")
 
-# Usamos get_node_or_null para evitar crasheos si cambia el nombre en la escena
 @onready var nav_agent: NavigationAgent3D = get_node_or_null("NavigationAgent3D")
 @onready var state_machine: BotStateMachine = get_node_or_null("StateMachine")
 @onready var punto_disparo: Marker3D = get_node_or_null("PuntoDisparo")
@@ -32,12 +32,13 @@ var controles_bloqueados: bool = false
 var arma_desenfundada: bool = false
 
 var _cooldown_disparo: float = 0.0
+var _timer_nav: float = 0.0
+var _ultimo_destino_nav: Vector3 = Vector3(INF, INF, INF)
 var _velocidad_empuje: Vector3 = Vector3.ZERO
 var _arma_instancia: Node3D = null
 
 func _ready() -> void:
 	salud_actual = salud_max
-	# Se suma al grupo "Jugador" para que botones, puertas, enemigos, balas y balsa lo reconozcan
 	add_to_group("Jugador")
 	add_to_group("BotCompanero")
 	
@@ -46,7 +47,6 @@ func _ready() -> void:
 	
 	_inicializar_arma()
 	
-	# Esperamos un frame para asegurar que el Jugador 1 ya esté en el árbol
 	await get_tree().process_frame
 	obtener_jugador_principal()
 	
@@ -61,10 +61,11 @@ func _physics_process(delta: float) -> void:
 	
 	if _cooldown_disparo > 0.0:
 		_cooldown_disparo -= delta
+	if _timer_nav > 0.0:
+		_timer_nav -= delta
 	
 	_verificar_caida_vacio()
 
-# Búsqueda perezosa (lazy): si el jugador spawnea más tarde o se llama distinto a "1", igual lo encuentra
 func obtener_jugador_principal() -> Node3D:
 	if is_instance_valid(jugador_principal):
 		return jugador_principal
@@ -98,7 +99,6 @@ func _obtener_o_crear_mano_derecha() -> Node3D:
 	if existente:
 		return existente
 	
-	# Si Bot.tscn aún no tiene el BoneAttachment3D, lo creamos sobre el hueso de la mano derecha
 	var esqueleto := find_child("Skeleton3D", true, false) as Skeleton3D
 	if esqueleto:
 		for nombre_hueso in ["mixamorig_RightHand", "RightHand", "mixamorig:RightHand"]:
@@ -135,7 +135,6 @@ func _morir() -> void:
 	velocity = Vector3.ZERO
 	_velocidad_empuje = Vector3.ZERO
 	
-	# Lo sacamos temporalmente de "Jugador" para que las papitas no acampen sobre su cuerpo muerto
 	if is_in_group("Jugador"):
 		remove_from_group("Jugador")
 	
@@ -153,15 +152,13 @@ func _morir() -> void:
 	_cambiar_colisiones(false)
 	show()
 	
-	# Si el jugador avanzó lejos (por ejemplo cruzó una puerta), reaparece cerca suyo para no quedar encerrado
 	var destino_respawn := punto_respawn
 	var jugador := obtener_jugador_principal()
 	if is_instance_valid(jugador) and punto_respawn.distance_to(jugador.global_position) > 25.0:
 		destino_respawn = jugador.global_position + Vector3(1.2, 0.2, 1.2)
 	
 	global_position = destino_respawn
-	if nav_agent:
-		nav_agent.target_position = global_position
+	_reiniciar_navegacion()
 	
 	if state_machine:
 		state_machine.cambiar_estado("Seguir")
@@ -179,12 +176,16 @@ func respawnear() -> void:
 	velocity = Vector3.ZERO
 	_velocidad_empuje = Vector3.ZERO
 	global_position = punto_respawn
-	
-	if nav_agent:
-		nav_agent.target_position = global_position
+	_reiniciar_navegacion()
 	
 	if state_machine:
 		state_machine.cambiar_estado("Seguir")
+
+func _reiniciar_navegacion() -> void:
+	_timer_nav = 0.0
+	_ultimo_destino_nav = Vector3(INF, INF, INF)
+	if nav_agent:
+		nav_agent.target_position = global_position
 
 # --- EMPUJE EXTERNO ---
 
@@ -212,7 +213,6 @@ func _aplicar_empuje_externo(delta: float) -> void:
 		velocity.z += _velocidad_empuje.z
 		_velocidad_empuje = _velocidad_empuje.move_toward(Vector3.ZERO, friccion_empuje * delta)
 
-# Cumple el mismo contrato que Player para cinemáticas y eventos de Door.gd
 func bloquear_controles(bloquear: bool) -> void:
 	controles_bloqueados = bloquear
 	if bloquear:
@@ -245,7 +245,6 @@ func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:
 	move_and_slide()
 	_actualizar_animacion(correr)
 
-# Permite desplazarse lateralmente o retroceder mientras mantiene la mirada/puntería sobre el objetivo
 func mover_tactico(objetivo_pos: Vector3, direccion_movimiento: Vector3, delta: float) -> void:
 	if muerto:
 		return
@@ -280,8 +279,11 @@ func _calcular_siguiente_punto(destino: Vector3) -> Vector3:
 	if dist_horiz < 1.2:
 		return destino
 	
-	if nav_agent.target_position.distance_squared_to(destino) > 0.04:
+	# Limitamos las consultas A* al NavigationServer3D para reducir el costo de CPU de 60/s a 4/s
+	if _timer_nav <= 0.0 and _ultimo_destino_nav.distance_squared_to(destino) > 0.09:
 		nav_agent.target_position = destino
+		_ultimo_destino_nav = destino
+		_timer_nav = intervalo_navegacion
 	
 	var siguiente := nav_agent.get_next_path_position()
 	
@@ -321,13 +323,11 @@ func disparar_a(objetivo: Node3D, delta: float) -> void:
 		return
 	_cooldown_disparo = cadencia_disparo
 	
-	# Apuntamos al centro del torso de la papita para que la bala viaje horizontal y no pegue en el piso
 	var blanco := objetivo.global_position + Vector3(0.0, 0.75, 0.0)
 	
 	if is_instance_valid(_arma_instancia) and _arma_instancia.has_method("disparar_desde_ia"):
 		_arma_instancia.disparar_desde_ia(blanco, rol)
 	else:
-		# Respaldo directo con Bala.tscn si todavía no arrastraste la escena del arma en el Inspector
 		var origen := punto_disparo.global_position if is_instance_valid(punto_disparo) else (global_position + Vector3(0.0, 1.1, 0.0))
 		var dir := (blanco - origen).normalized()
 		var bala := ESCENA_BALA_RESPALDO.instantiate() as Area3D
