@@ -5,6 +5,10 @@ extends Node3D
 @export var tiempo_por_ronda: float = 12.0 # 0 = sin límite
 @export var pausa_entre_rondas: float = 1.5
 
+@export_group("Asistencia del Bot")
+@export var retraso_ayuda_bot: float = 6.0 # Segundos que espera antes de intervenir (0 = desactivado)
+@export_range(0.0, 1.0) var probabilidad_acierto_bot: float = 0.65 # 0.5 = 50% de acertar, 50% de errar
+
 @export_group("Furia")
 @export var max_fallos: int = 3
 @export var fallos_para_reiniciar: int = 2 # 0 = nunca se reinicia
@@ -31,6 +35,7 @@ var _ultimos_datos: Array = []
 
 var _timer_ronda: Timer
 var _timer_furia: Timer
+var _timer_ayuda_bot: Timer
 var _hud: CanvasLayer
 var _estilo: StyleBoxFlat
 var _consigna: Label
@@ -47,10 +52,17 @@ func _ready() -> void:
 	_timer_ronda.one_shot = true
 	_timer_ronda.timeout.connect(_on_tiempo_agotado)
 	add_child(_timer_ronda)
+	
 	_timer_furia = Timer.new()
 	_timer_furia.one_shot = true
 	_timer_furia.timeout.connect(_terminar_furia)
 	add_child(_timer_furia)
+	
+	_timer_ayuda_bot = Timer.new()
+	_timer_ayuda_bot.one_shot = true
+	_timer_ayuda_bot.timeout.connect(_on_tiempo_ayuda_bot)
+	add_child(_timer_ayuda_bot)
+	
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	GameManager.jugador_caido.connect(_on_jugador_caido)
 	if jefe:
@@ -94,12 +106,39 @@ func _nueva_ronda() -> void:
 	_aplicar_ronda.rpc(_ultima_consigna, datos, aciertos, fallos)
 	if tiempo_por_ronda > 0:
 		_timer_ronda.start(tiempo_por_ronda)
+	if retraso_ayuda_bot > 0.0:
+		_timer_ayuda_bot.start(retraso_ayuda_bot)
+
+func _on_tiempo_ayuda_bot() -> void:
+	if not multiplayer.is_server() or not activo or esperando or en_furia or pantallas.is_empty():
+		return
+	
+	var bot := get_tree().get_first_node_in_group("BotCompanero")
+	if not is_instance_valid(bot) or bot.get("muerto") == true:
+		return
+	
+	var indice_elegido := indice_correcto
+	# 50% de probabilidad de equivocarse y disparar a una pantalla incorrecta
+	if randf() >= probabilidad_acierto_bot and pantallas.size() > 1:
+		var incorrectos: Array[int] = []
+		for i in pantallas.size():
+			if i != indice_correcto:
+				incorrectos.append(i)
+		indice_elegido = incorrectos.pick_random()
+	
+	if indice_elegido >= 0 and indice_elegido < pantallas.size() and bot.has_method("cambiar_estado"):
+		bot.cambiar_estado("CartelColor", {
+			"pantalla": pantallas[indice_elegido],
+			"minijuego": self,
+			"jefe": jefe
+		})
 
 func pantalla_disparada(indice: int) -> void:
 	if not activo or esperando or en_furia:
 		return
 	esperando = true
 	_timer_ronda.stop()
+	_timer_ayuda_bot.stop()
 	var acierto := indice == indice_correcto
 	if not acierto:
 		fallos += 1
@@ -108,7 +147,7 @@ func pantalla_disparada(indice: int) -> void:
 		aciertos += 1
 		if is_instance_valid(jefe):
 			var danio := ceili(float(jefe.get("vida_maxima")) / aciertos_necesarios)
-			jefe.call("_daniar", danio) # si muere, _on_jefe_murio apaga el minijuego
+			jefe.call("_daniar", danio)
 	elif fallos >= max_fallos:
 		_reiniciar_progreso()
 		_activar_furia()
@@ -122,6 +161,7 @@ func _on_tiempo_agotado() -> void:
 	if not activo or esperando or en_furia:
 		return
 	esperando = true
+	_timer_ayuda_bot.stop()
 	if el_tiempo_activa_furia:
 		_mostrar_resultado.rpc(-1, false, fallos)
 		_activar_furia()
@@ -142,14 +182,12 @@ func _siguiente_ronda() -> void:
 	if activo and not en_furia:
 		_nueva_ronda()
 
-# Solo el host: borra el progreso (aciertos, fallos y vida del líder)
 func _reiniciar_progreso() -> void:
 	aciertos = 0
 	fallos = 0
 	if reiniciar_vida_jefe and is_instance_valid(jefe):
 		jefe.set("vida_actual", jefe.get("vida_maxima"))
 
-# Solo el host: vuelve el minijuego a cero
 func _reiniciar_minijuego() -> void:
 	_reiniciar_progreso()
 	_mostrar_reinicio.rpc()
@@ -161,6 +199,7 @@ func _activar_furia() -> void:
 	en_furia = true
 	esperando = true
 	_timer_ronda.stop()
+	_timer_ayuda_bot.stop()
 	jefe.rpc("set_furia", true, multiplicador_velocidad_furia, cooldown_ataque_furia)
 	_mostrar_furia.rpc(true)
 	if duracion_maxima_furia > 0:
@@ -178,7 +217,6 @@ func _terminar_furia() -> void:
 	if activo:
 		_siguiente_ronda()
 
-# GameManager solo emite esto en el host
 func _on_jugador_caido(_jugador: Node) -> void:
 	if multiplayer.is_server() and en_furia:
 		_terminar_furia()
@@ -190,6 +228,7 @@ func _on_jefe_murio() -> void:
 	en_furia = false
 	_timer_ronda.stop()
 	_timer_furia.stop()
+	_timer_ayuda_bot.stop()
 	_terminar.rpc()
 
 func _on_peer_connected(id: int) -> void:

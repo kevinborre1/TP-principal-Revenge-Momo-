@@ -42,7 +42,7 @@ var _cooldown_normal: float
 
 # Para evitar 200 sonidos a la vez
 static var _ultimo_spawn_sfx: Dictionary = {}
-const COOLDOWN_SPAWN_MS: int = 800 #mínimo de cooldown para que vuelva a escucharse el sonido de spawn
+const COOLDOWN_SPAWN_MS: int = 800 # mínimo de cooldown para que vuelva a escucharse el sonido de spawn
 
 func _ready() -> void:
 	_velocidad_normal = velocidad
@@ -50,7 +50,7 @@ func _ready() -> void:
 	_cooldown_normal = cooldown_ataque
 	visible = false
 	_cambiar_estado_colisiones(true)
-	set_physics_process(false) # apagamos las fisicas de los enemigos al empezar hasta que se activen
+	set_physics_process(false)
 	if es_lider:
 		animation_player = $patato/AnimationPlayer
 		ANIM_ATAQUE = "lider_ataque/mixamo_com"
@@ -69,11 +69,12 @@ func _ready() -> void:
 	add_child(_timer_escudo)
 	_set_escudo(tiene_escudo and not es_lider)
 	
-	# NUEVO: Asignar la capa de navegación correcta según el tamaño
+	# Asignar la capa de navegación correcta según el tamaño
 	if es_lider:
 		nav_agent.navigation_layers = 2 # Lee el mapa donde NO cabe debajo de la mesa
+		add_to_group("JefeFinal")
 	else:
-		nav_agent.navigation_layers = 1# Lee el mapa normal
+		nav_agent.navigation_layers = 1 # Lee el mapa normal
 		add_to_group("Enemigos")
 	_reproducir_sonido_spawn()
 	
@@ -81,11 +82,9 @@ func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server() or not activo:
 		return
 
-	# Aplicar gravedad para que no flote
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Si los enemigos no están atacando, quedarse quietos
 	if not GameManager.papas_atacan and not perseguir_siempre:
 		velocity.x = move_toward(velocity.x, 0, velocidad)
 		velocity.z = move_toward(velocity.z, 0, velocidad)
@@ -93,35 +92,26 @@ func _physics_process(delta: float) -> void:
 		manejar_animaciones()
 		return
 
-	# Mientras pega, se queda quieto hasta terminar la animación
 	if animation_player and animation_player.current_animation == ANIM_ATAQUE and animation_player.is_playing():
 		velocity.x = 0.0
 		velocity.z = 0.0
 		move_and_slide()
 		return
 
-	# Buscar al jugador más cercano
 	var jugador_objetivo = obtener_jugador_mas_cercano()
-	
-	# Controlar el intervalo de actualización de navegación
 	tiempo_actualizacion_nav -= delta
 
 	if jugador_objetivo:
-		# Actualizar el destino cada 0.2 segundos
 		if tiempo_actualizacion_nav <= 0.0:
 			nav_agent.target_position = jugador_objetivo.global_position
 			tiempo_actualizacion_nav = INTERVALO_NAV
 
-		# Obtener el siguiente punto de navegación
 		var siguiente_posicion = nav_agent.get_next_path_position()
-		#Para cuando no hay NavMesh
-		# SI NO HAY NAVMESH EN LA ESCENA
 		if not nav_agent.is_navigation_finished() and global_position.distance_to(siguiente_posicion) < 0.1:
 			siguiente_posicion = jugador_objetivo.global_position
 		elif nav_agent.is_navigation_finished():
 			siguiente_posicion = jugador_objetivo.global_position
 
-		# Orientar al enemigo hacia el siguiente punto
 		var posicion_mirar = Vector3(
 			siguiente_posicion.x,
 			global_position.y,
@@ -131,23 +121,16 @@ func _physics_process(delta: float) -> void:
 		if global_position.distance_to(posicion_mirar) > 0.1:
 			look_at(posicion_mirar, Vector3.UP)
 
-		# Calcular la dirección y aplicar velocidad
 		var direccion = global_position.direction_to(siguiente_posicion)
 		velocity.x = direccion.x * velocidad
 		velocity.z = direccion.z * velocidad
-
 	else:
-		# Si no hay jugadores, detener el movimiento horizontal
 		velocity.x = 0.0
 		velocity.z = 0.0
 
-	# Aplicar movimiento
 	move_and_slide()
-	# Comprobar colisiones con jugadores
 	_comprobar_colisiones_jugador()
-	# Ataque especial del líder
 	_ataque_a_distancia(jugador_objetivo)
-	# Actualizar animaciones
 	manejar_animaciones()
 
 func _cambiar_estado_colisiones(desactivado: bool) -> void:
@@ -155,28 +138,22 @@ func _cambiar_estado_colisiones(desactivado: bool) -> void:
 		if hijo is CollisionShape3D:
 			hijo.disabled = desactivado
 
-
 func _comprobar_colisiones_jugador() -> void:
 	for i in get_slide_collision_count():
 		var colision = get_slide_collision(i)
 		var colisionador = colision.get_collider()
 		
-		# Comprobamos si con lo que chocamos es el Player (por clase o grupo)
 		if colisionador is Player or colisionador.is_in_group("Jugador"):
 			var tiempo_actual = Time.get_ticks_msec() / 1000.0
 			
-			# Comprobamos si ya pasó el tiempo de cooldown
 			if tiempo_actual - tiempo_ultimo_ataque >= cooldown_ataque:
 				if colisionador.has_method("heridoPorEnemigo"):
-					# Llamamos a la función de daño del Player
 					colisionador.heridoPorEnemigo(danio_golpe)
 					tiempo_ultimo_ataque = tiempo_actual
 					_reproducir_ataque()
 
-# Función para encontrar al jugador más cercano en juegos multijugador
 func obtener_jugador_mas_cercano() -> Node3D:
-	# Obtenemos todos los nodos que asignamos al grupo "jugadores"
-	var jugadores = get_tree().get_nodes_in_group("Jugador") # ¡OJO AQUÍ! Lo cambié a "Jugador" con mayúscula porque así lo tienes en el _ready de tu script Player
+	var jugadores = get_tree().get_nodes_in_group("Jugador")
 	
 	if jugadores.is_empty():
 		return null
@@ -184,7 +161,6 @@ func obtener_jugador_mas_cercano() -> Node3D:
 	var jugador_cercano = null
 	var distancia_minima = INF
 	
-	# Comparamos la distancia con cada jugador en el mapa
 	for j in jugadores:
 		if is_instance_valid(j):
 			var distancia = global_position.distance_to(j.global_position)
@@ -194,7 +170,6 @@ func obtener_jugador_mas_cercano() -> Node3D:
 				
 	return jugador_cercano
 
-# Las balas de jugador entran por acá: el tipo decide si rompe el escudo o hace daño
 func recibir_bala(danio: int, tipo: String) -> void:
 	if solo_danio_por_pantallas:
 		return
@@ -204,18 +179,15 @@ func recibir_bala(danio: int, tipo: String) -> void:
 		return
 	if escudo_activo:
 		if tipo != "letal":
-			print("recibir_bala: ", name, " | danio=", danio, " | tipo=", tipo, " | escudo=", escudo_activo)
 			_romper_escudo()
 		return
 	if tipo != "rompe_escudo":
-		print("recibir_bala: ", name, " | danio=", danio, " | tipo=", tipo, " | escudo=", escudo_activo)
 		_daniar(danio)
 
 @rpc("any_peer", "call_local", "reliable")
 func _daniar(danio: int) -> void:
 	if muriendo:
 		return
-	# En línea solo el host resuelve el daño: las balas existen en todos los peers
 	if Global.modo_multijugador == "linea" and not multiplayer.is_server():
 		return
 	if is_queued_for_deletion():
@@ -224,7 +196,6 @@ func _daniar(danio: int) -> void:
 		_romper_escudo()
 		return
 	vida_actual -= danio
-	print("¡El enemigo recibió un disparo! Daño:", danio, " | Vida restante:", vida_actual)
 	
 	if vida_actual <= 0:
 		morir()
@@ -238,7 +209,6 @@ func morir() -> void:
 	else:
 		_eliminar_en_todos()
 
-# El host la llama para borrar la papita en todos los peers
 @rpc("authority", "call_local", "reliable")
 func _eliminar_en_todos() -> void:
 	if muriendo or is_queued_for_deletion():
@@ -249,7 +219,7 @@ func _eliminar_en_todos() -> void:
 	reproducir_sfx_3d(sonido_muerte)
 	SaveAndLoad.sumar_estadistica("enemigosAsesinados")
 	set_physics_process(false)
-	_cambiar_estado_colisiones(true)  # las balas y el jugador ya no chocan con ella
+	_cambiar_estado_colisiones(true)
 	if animation_player and animation_player.has_animation(ANIM_MUERTE):
 		animation_player.play(ANIM_MUERTE, 0.1)
 		await get_tree().create_timer(animation_player.current_animation_length).timeout
@@ -262,7 +232,6 @@ func _reproducir_ataque() -> void:
 func manejar_animaciones() -> void:
 	if not animation_player or not is_instance_valid(animation_player) or muriendo:
 		return
-	# No cortar el golpe a la mitad
 	if animation_player.current_animation == ANIM_ATAQUE and animation_player.is_playing():
 		return
 	
@@ -273,7 +242,6 @@ func manejar_animaciones() -> void:
 	else:
 		animation_player.stop()
 
-#puede ser authority
 @rpc("any_peer", "call_local", "reliable")
 func activar_enemigo() -> void:
 	activo = true
@@ -282,7 +250,6 @@ func activar_enemigo() -> void:
 	set_physics_process(true)
 	activado.emit()
 	
-# Solo el host llega acá (en línea _daniar corta antes en los clientes)
 func _romper_escudo() -> void:
 	_set_escudo.rpc(false)
 	_timer_escudo.start()
@@ -298,7 +265,6 @@ func _set_escudo(valor: bool) -> void:
 	if malla_escudo:
 		malla_escudo.visible = valor
 
-# El minijuego de colores pone al líder en furia: más rápido y pega más seguido
 @rpc("authority", "call_local", "reliable")
 func set_furia(activa: bool, multiplicador_velocidad: float = 2.5, cooldown_furia: float = 0.3) -> void:
 	en_furia = activa
@@ -308,14 +274,13 @@ func set_furia(activa: bool, multiplicador_velocidad: float = 2.5, cooldown_furi
 	if animation_player:
 		animation_player.speed_scale = 3.0 if activa else 1.0
 
-# En furia golpea a los jugadores cercanos aunque no los toque (por ejemplo, escondidos bajo una mesa)
 func _ataque_a_distancia(objetivo: Node3D) -> void:
 	if not en_furia or objetivo == null or not is_instance_valid(objetivo):
 		return
 	if objetivo.get("muerto") == true:
 		return
 	var diferencia := objetivo.global_position - global_position
-	if absf(diferencia.y) > 3.0: # no pegar a través de pisos
+	if absf(diferencia.y) > 3.0:
 		return
 	var distancia := Vector2(diferencia.x, diferencia.z).length()
 	if distancia > alcance_furia or distancia < 0.1:

@@ -2,8 +2,10 @@ class_name EstadoCombate
 extends BotState
 
 @export var grupo_enemigos: String = "Enemigos"
+@export var grupo_jefe: String = "JefeFinal"
 @export var rango_combate: float = 22.0
 @export var distancia_segura: float = 6.5
+@export var distancia_segura_jefe: float = 9.5
 @export var distancia_maxima_jugador: float = 30.0
 
 var jefe_actual: Node3D = null
@@ -15,6 +17,8 @@ var _direccion_strafe: float = 1.0
 func enter(datos: Dictionary = {}) -> void:
 	jefe_actual = datos.get("jefe", null)
 	boton_escudo_jefe = datos.get("boton_escudo", null)
+	if not is_instance_valid(jefe_actual):
+		jefe_actual = _buscar_jefe_activo()
 	_tiempo_strafe = randf_range(1.2, 2.2)
 	_direccion_strafe = 1.0 if randf() > 0.5 else -1.0
 	bot.equipar_arma(true)
@@ -25,6 +29,9 @@ func exit() -> void:
 func physics_update(delta: float) -> void:
 	if bot.muerto:
 		return
+	
+	if not is_instance_valid(jefe_actual) or jefe_actual.get("muriendo") == true:
+		jefe_actual = _buscar_jefe_activo()
 	
 	# 1. Prioridad máxima en nivel de jefe: si el jefe activó su escudo, ir al botón
 	if is_instance_valid(jefe_actual) and is_instance_valid(boton_escudo_jefe):
@@ -45,20 +52,20 @@ func physics_update(delta: float) -> void:
 			state_machine.cambiar_estado("Seguir")
 			return
 	
-	# 2. Buscar mejor blanco activo según el rol actual
-	var objetivo := _buscar_mejor_objetivo()
-	if not is_instance_valid(objetivo):
-		if not is_instance_valid(jefe_actual):
-			state_machine.cambiar_estado("Seguir")
-		else:
-			bot.detener_movimiento(delta)
-		return
-	
-	# 3. Actualizar temporizador de desplazamiento lateral evasivo (strafe)
+	# 2. Actualizar temporizador de desplazamiento lateral evasivo (strafe)
 	_tiempo_strafe -= delta
 	if _tiempo_strafe <= 0.0 or bot.is_on_wall():
 		_direccion_strafe *= -1.0
 		_tiempo_strafe = randf_range(1.4, 2.4)
+	
+	# 3. Buscar mejor blanco activo según el rol actual
+	var objetivo := _buscar_mejor_objetivo()
+	if not is_instance_valid(objetivo):
+		if is_instance_valid(jefe_actual) and jefe_actual.get("activo") == true:
+			_evadir_jefe(delta, jugador)
+		else:
+			state_machine.cambiar_estado("Seguir")
+		return
 	
 	var hacia_objetivo := objetivo.global_position - bot.global_position
 	hacia_objetivo.y = 0.0
@@ -76,6 +83,67 @@ func physics_update(delta: float) -> void:
 		bot.mover_tactico(objetivo.global_position, dir_lateral, delta)
 	
 	bot.disparar_a(objetivo, delta)
+
+func _evadir_jefe(delta: float, jugador: Node3D) -> void:
+	var en_furia: bool = jefe_actual.get("en_furia") == true
+	var margen_seguro := distancia_segura_jefe + (4.0 if en_furia else 0.0)
+	var dist_jefe := Vector2(bot.global_position.x - jefe_actual.global_position.x, bot.global_position.z - jefe_actual.global_position.z).length()
+	
+	if dist_jefe < margen_seguro:
+		var destino_escape := _calcular_destino_escape_jefe(jefe_actual)
+		bot.mover_hacia(destino_escape, delta, true)
+	elif is_instance_valid(jugador) and bot.global_position.distance_to(jugador.global_position) > 10.0:
+		bot.mover_hacia(jugador.global_position, delta, false)
+	else:
+		bot.detener_movimiento(delta)
+		bot.rotar_hacia(jefe_actual.global_position, delta)
+
+func _calcular_destino_escape_jefe(jefe: Node3D) -> Vector3:
+	var desde_jefe := bot.global_position - jefe.global_position
+	desde_jefe.y = 0.0
+	var dir_base := desde_jefe.normalized() if desde_jefe.length_squared() > 0.001 else Vector3.BACK
+	
+	# Si toca una pared, desliza paralelo a ella hacia el lado que más lo aleje del jefe
+	if bot.is_on_wall():
+		var normal_pared := bot.get_wall_normal()
+		normal_pared.y = 0.0
+		if normal_pared.length_squared() > 0.001:
+			normal_pared = normal_pared.normalized()
+			var tangente := Vector3(-normal_pared.z, 0.0, normal_pared.x)
+			if tangente.dot(dir_base) < 0.0:
+				tangente = -tangente
+			dir_base = (tangente * 0.85 + normal_pared * 0.35).normalized()
+	
+	# Evalúa múltiples ángulos sobre el NavMesh real para evitar puntos detrás de muros
+	var angulos := [0.0, 0.75 * _direccion_strafe, -0.75 * _direccion_strafe, 1.45 * _direccion_strafe, -1.45 * _direccion_strafe]
+	var mejor_punto := bot.global_position + dir_base * 4.5
+	var mejor_puntaje := -INF
+	
+	var mapa: RID = bot.nav_agent.get_navigation_map() if bot.nav_agent else RID()
+	var tiene_mapa := mapa.is_valid() and NavigationServer3D.map_get_iteration_id(mapa) > 0
+	
+	for angulo in angulos:
+		var dir_cand := dir_base.rotated(Vector3.UP, angulo)
+		var punto_crudo := bot.global_position + dir_cand * 5.0
+		var punto_nav := NavigationServer3D.map_get_closest_point(mapa, punto_crudo) if tiene_mapa else punto_crudo
+		
+		var desplazamiento := Vector2(punto_nav.x - bot.global_position.x, punto_nav.z - bot.global_position.z).length()
+		if desplazamiento < 1.5:
+			continue
+		
+		var dist_al_jefe := Vector2(punto_nav.x - jefe.global_position.x, punto_nav.z - jefe.global_position.z).length()
+		var puntaje := dist_al_jefe + desplazamiento * 0.4
+		if puntaje > mejor_puntaje:
+			mejor_puntaje = puntaje
+			mejor_punto = punto_nav
+	
+	return mejor_punto
+
+func _buscar_jefe_activo() -> Node3D:
+	for jefe in get_tree().get_nodes_in_group(grupo_jefe):
+		if is_instance_valid(jefe) and jefe.get("activo") == true and jefe.get("muriendo") != true:
+			return jefe
+	return null
 
 func _buscar_mejor_objetivo() -> Node3D:
 	var mejor: Node3D = null

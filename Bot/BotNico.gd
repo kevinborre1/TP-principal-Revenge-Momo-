@@ -116,7 +116,7 @@ func equipar_arma(activa: bool) -> void:
 	if is_instance_valid(_arma_instancia):
 		_arma_instancia.visible = activa
 
-# --- SALUD, DAÑO, MUERTE Y RESPAWN (Contrato compatible con Player) ---
+# --- SALUD, DAÑO, MUERTE Y RESPAWN ---
 
 func heridoPorEnemigo(danio: int = 10) -> void:
 	if muerto or controles_bloqueados:
@@ -274,12 +274,10 @@ func _calcular_siguiente_punto(destino: Vector3) -> Vector3:
 	if NavigationServer3D.map_get_iteration_id(mapa) == 0:
 		return destino
 	
-	# Último tramo: si ya está al lado del destino, camina directo para no trabarse con el borde del NavMesh
 	var dist_horiz := Vector2(global_position.x - destino.x, global_position.z - destino.z).length()
 	if dist_horiz < 1.2:
 		return destino
 	
-	# Limitamos las consultas A* al NavigationServer3D para reducir el costo de CPU de 60/s a 4/s
 	if _timer_nav <= 0.0 and _ultimo_destino_nav.distance_squared_to(destino) > 0.09:
 		nav_agent.target_position = destino
 		_ultimo_destino_nav = destino
@@ -314,16 +312,18 @@ func rotar_hacia(objetivo_pos: Vector3, delta: float) -> void:
 	if modelo:
 		modelo.rotation.y = lerp_angle(modelo.rotation.y, angulo_objetivo + PI, 12.0 * delta)
 
-func disparar_a(objetivo: Node3D, delta: float) -> void:
+# Devuelve true si efectuó el disparo en este frame (útil para estados de disparo único)
+# Devuelve true si efectuó el disparo en este frame (útil para estados de disparo único)
+func disparar_a(objetivo: Node3D, delta: float, offset_altura: float = 0.75) -> bool:
 	if muerto or not is_instance_valid(objetivo):
-		return
+		return false
 	rotar_hacia(objetivo.global_position, delta)
 	
 	if _cooldown_disparo > 0.0:
-		return
+		return false
 	_cooldown_disparo = cadencia_disparo
 	
-	var blanco := objetivo.global_position + Vector3(0.0, 0.75, 0.0)
+	var blanco := objetivo.global_position + Vector3(0.0, offset_altura, 0.0)
 	
 	if is_instance_valid(_arma_instancia) and _arma_instancia.has_method("disparar_desde_ia"):
 		_arma_instancia.disparar_desde_ia(blanco, rol)
@@ -336,6 +336,7 @@ func disparar_a(objetivo: Node3D, delta: float) -> void:
 		bala._direccion_salida(dir)
 		bala.set_tipo(rol)
 		_reproducir_sonido_respaldo()
+	return true
 
 func _reproducir_sonido_respaldo() -> void:
 	var player_3d := AudioStreamPlayer3D.new()
@@ -366,7 +367,7 @@ func _actualizar_animacion(corriendo: bool) -> void:
 		if animation.has_animation(anim_quieto) and animation.current_animation != anim_quieto:
 			animation.play(anim_quieto, 0.25)
 
-# --- COMPATIBILIDAD CON TUS SCRIPTS ACTUALES (player.gd / balsa.gd / roles) ---
+# --- COMPATIBILIDAD CON TUS SCRIPTS ACTUALES ---
 
 func cambiar_estado(nombre: String, datos: Dictionary = {}) -> void:
 	if state_machine:

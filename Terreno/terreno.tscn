@@ -515,10 +515,10 @@ uv1_scale = Vector3(9, 9, 9)
 size = Vector3(0.41027832, 4.8710938, 5.331665)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tx3k5"]
-size = Vector3(0.41125488, 4.743164, 2.9868164)
+size = Vector3(0.94607544, 4.743164, 3.013916)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fnegy"]
-size = Vector3(0.43701172, 4.901245, 3.0620117)
+size = Vector3(0.9782715, 4.901245, 3.0620117)
 
 [sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_u7jy5"]
 vertices = PackedVector3Array(-0.1257574, 4.158928, -0.02581954, -0.24001226, 4.158928, 2.5119114, -0.24001226, 4.158928, -0.02581954, -0.1257574, 4.158928, 2.5119114, -0.1257574, 0, 2.5119114, -0.24001226, 0, 2.5119114, -0.24001226, 0, -0.02581954, -0.1257574, 0, -0.02581954, 0.021633, 1.8539547, 2.2679892, 0.021633, 1.9768789, 2.32332, 0.021633, 1.9768789, 2.2679892, 0.021633, 1.8539547, 2.32332, -0.3873964, 1.8539547, 2.2679892, -0.3873964, 1.9768789, 2.32332, -0.3873964, 1.8539547, 2.32332, -0.3873964, 1.9768789, 2.2679892, 0.021633, 1.8539547, 0.16585898, 0.021633, 1.9768789, 0.22118998, 0.021633, 1.9768789, 0.16585898, 0.021633, 1.8539547, 0.22118998, -0.3873964, 1.8539547, 0.16585898, -0.3873964, 1.9768789, 0.22118998, -0.3873964, 1.8539547, 0.22118998, -0.3873964, 1.9768789, 0.16585898, 0.021633, 1.8539547, 1.1041455, 0.021633, 1.9768789, 1.1594365, 0.021633, 1.9768789, 1.1041455, 0.021633, 1.8539547, 1.1594365, -0.3873964, 1.8539547, 1.1041455, -0.3873964, 1.9768789, 1.1594365, -0.3873964, 1.8539547, 1.1594365, -0.3873964, 1.9768789, 1.1041455, -0.088770926, 1.9736425, 0.08230901, -0.014223754, 1.9736425, 0.08230901, -0.088770926, 1.9736425, 2.3581886, -0.014223754, 1.9736425, 2.3581886, -0.088770926, 1.9305524, 0.08230901, -0.088770926, 1.9305524, 2.3581886, -0.014223754, 1.9305524, 2.3581886, -0.014223754, 1.9305524, 0.08230901, -0.278247, 1.9736425, 0.08230901, -0.278247, 1.9736425, 2.3581886, -0.35279414, 1.9736425, 2.3581886, -0.35279414, 1.9736425, 0.08230901, -0.278247, 1.9305524, 2.3581886, -0.278247, 1.9305524, 0.08230901, -0.35279414, 1.9305524, 0.08230901, -0.35279414, 1.9305524, 2.3581886, -0.2056971, 2.1872528, -0.060450554, -0.16007255, 2.1717684, -0.060450554, -0.16007255, 2.1872528, -0.060450554, -0.2056971, 2.1717684, -0.060450554, -0.21578942, 1.7486726, -0.042125702, -0.1499802, 2.307258, -0.042125702, -0.21578942, 2.307258, -0.042125702, -0.1499802, 1.7486726, -0.042125702, -0.1499802, 1.7486726, -0.009592056, -0.21578942, 1.7486726, -0.009592056, -0.1499802, 2.307258, -0.009592056, -0.21578942, 2.307258, -0.009592056, -0.2056971, 2.158505, -0.027916908, -0.2056971, 2.200516, -0.027916908, -0.16007255, 2.158505, -0.027916908, -0.16007255, 2.200516, -0.027916908, -0.10448673, 0.4550166, 2.48951, -0.10448673, 0.6870941, 2.48951, -0.15479232, 0.6870941, 2.48951, -0.15479232, 0.4550166, 2.48951, -0.10448673, 0.6870941, 2.518719, -0.10448673, 0.4550166, 2.518719, -0.15479232, 0.4550166, 2.518719, -0.15479232, 0.6870941, 2.518719, -0.10448673, 3.3203518, 2.48951, -0.10448673, 3.5524297, 2.48951, -0.15479232, 3.5524297, 2.48951, -0.15479232, 3.3203518, 2.48951, -0.10448673, 3.5524297, 2.518719, -0.10448673, 3.3203518, 2.518719, -0.15479232, 3.3203518, 2.518719, -0.15479232, 3.5524297, 2.518719, -0.16359675, 0, -2.7707999, 0.16359675, 4.383739, -2.7707999, -0.16359675, 4.383739, -2.7707999, 0.16359675, 0, -2.7707999, 0.16359675, 0, 2.7707999, -0.16359675, 4.383739, 2.7707999, 0.16359675, 4.383739, 2.7707999, -0.16359675, 0, 2.7707999, -0.051741354, 0, -2.5674345, 0.16359675, 4.184335, -2.5674345, 0.16359675, 0, -2.5674345, -0.051741354, 4.184335, -2.5674345, 0.16359675, 4.184335, 2.5673501, -0.051741354, 4.184335, 2.5673501, 0.16359675, 0, 2.5673501, -0.051741354, 0, 2.5673501, -0.16359675, 4.13517, 2.505791, -0.051741354, 0, 2.505791, -0.051741354, 4.13517, 2.505791, -0.16359675, 0, 2.505791, -0.051741354, 4.13517, -2.5058753, -0.16359675, 4.13517, -2.5058753, -0.16359675, 0, -2.5058753, -0.051741354, 0, -2.5058753, 0.114189446, 0.6991507, 2.5342028, 0.114189446, 0.93126446, 2.5342028, 0.063888475, 0.93126446, 2.5342028, 0.063888475, 0.6991507, 2.5342028, 0.114189446, 0.93126446, 2.5632908, 0.114189446, 0.6991507, 2.5632908, 0.063888475, 0.6991507, 2.5632908, 0.063888475, 0.93126446, 2.5632908, 0.114189446, 3.564518, 2.5342028, 0.114189446, 3.7965648, 2.5342028, 0.063888475, 3.7965648, 2.5342028, 0.063888475, 3.564518, 2.5342028, 0.114189446, 3.7965648, 2.5632908, 0.114189446, 3.564518, 2.5632908, 0.063888475, 3.564518, 2.5632908, 0.063888475, 3.7965648, 2.5632908, 0.11419445, 0.6991507, -2.5633757, 0.11419445, 0.93126446, -2.5633757, 0.063888475, 0.93126446, -2.5633757, 0.063888475, 0.6991507, -2.5633757, 0.11419445, 0.93126446, -2.5342872, 0.11419445, 0.6991507, -2.5342872, 0.063888475, 0.6991507, -2.5342872, 0.063888475, 0.93126446, -2.5342872, 0.11419445, 3.564518, -2.5633757, 0.11419445, 3.7965648, -2.5633757, 0.063888475, 3.7965648, -2.5633757, 0.063888475, 3.564518, -2.5633757, 0.11419445, 3.7965648, -2.5342872, 0.11419445, 3.564518, -2.5342872, 0.063888475, 3.564518, -2.5342872, 0.063888475, 3.7965648, -2.5342872, -0.1236822, 4.158928, -0.018886328, -0.23793706, 4.158928, -2.556617, -0.1236822, 4.158928, -2.556617, -0.23793706, 4.158928, -0.018886328, -0.1236822, 0, -2.556617, -0.23793706, 0, -2.556617, -0.23793706, 0, -0.018886328, -0.1236822, 0, -0.018886328, 0.023708194, 1.8539547, -2.312695, 0.023708194, 1.9768789, -2.3680258, 0.023708194, 1.8539547, -2.3680258, 0.023708194, 1.9768789, -2.312695, -0.3853212, 1.8539547, -2.312695, -0.3853212, 1.9768789, -2.3680258, -0.3853212, 1.9768789, -2.312695, -0.3853212, 1.8539547, -2.3680258, 0.023708194, 1.8539547, -0.21056485, 0.023708194, 1.9768789, -0.26589584, 0.023708194, 1.8539547, -0.26589584, 0.023708194, 1.9768789, -0.21056485, -0.3853212, 1.8539547, -0.21056485, -0.3853212, 1.9768789, -0.26589584, -0.3853212, 1.9768789, -0.21056485, -0.3853212, 1.8539547, -0.26589584, 0.023708194, 1.8539547, -1.1488512, 0.023708194, 1.9768789, -1.2041818, 0.023708194, 1.8539547, -1.2041818, 0.023708194, 1.9768789, -1.1488512, -0.3853212, 1.8539547, -1.1488512, -0.3853212, 1.9768789, -1.2041818, -0.3853212, 1.9768789, -1.1488512, -0.3853212, 1.8539547, -1.2041818, -0.08669573, 1.9736425, -0.12701488, -0.08669573, 1.9736425, -2.4028945, -0.012148559, 1.9736425, -0.12701488, -0.012148559, 1.9736425, -2.4028945, -0.08669573, 1.9305524, -0.12701488, -0.08669573, 1.9305524, -2.4028945, -0.012148559, 1.9305524, -2.4028945, -0.012148559, 1.9305524, -0.12701488, -0.2761718, 1.9736425, -0.12701488, -0.35071895, 1.9736425, -2.4028945, -0.2761718, 1.9736425, -2.4028945, -0.35071895, 1.9736425, -0.12701488, -0.2761718, 1.9305524, -2.4028945, -0.2761718, 1.9305524, -0.12701488, -0.35071895, 1.9305524, -0.12701488, -0.35071895, 1.9305524, -2.4028945, -0.20362191, 1.8930467, 0.015784264, -0.15799735, 1.8776257, 0.015784264, -0.20362191, 1.8776257, 0.015784264, -0.15799735, 1.8930467, 0.015784264, -0.21371423, 1.7486726, -0.0025801659, -0.147905, 2.307258, -0.0025801659, -0.147905, 1.7486726, -0.0025801659, -0.21371423, 2.307258, -0.0025801659, -0.147905, 1.7486726, -0.03511381, -0.21371423, 1.7486726, -0.03511381, -0.147905, 2.307258, -0.03511381, -0.21371423, 2.307258, -0.03511381, -0.20362191, 1.8642989, -0.016788721, -0.20362191, 1.9063102, -0.016788721, -0.15799735, 1.8642989, -0.016788721, -0.15799735, 1.9063102, -0.016788721, -0.10241154, 0.4550166, -2.5342157, -0.15271713, 0.6870941, -2.5342157, -0.10241154, 0.6870941, -2.5342157, -0.15271713, 0.4550166, -2.5342157, -0.10241154, 0.6870941, -2.5634246, -0.10241154, 0.4550166, -2.5634246, -0.15271713, 0.4550166, -2.5634246, -0.15271713, 0.6870941, -2.5634246, -0.10241154, 3.3203518, -2.5342157, -0.15271713, 3.5524297, -2.5342157, -0.10241154, 3.5524297, -2.5342157, -0.15271713, 3.3203518, -2.5342157, -0.10241154, 3.5524297, -2.5634246, -0.10241154, 3.3203518, -2.5634246, -0.15271713, 3.3203518, -2.5634246, -0.15271713, 3.5524297, -2.5634246)
@@ -1247,7 +1247,7 @@ albedo_texture = ExtResource("17_rygad")
 uv1_scale = Vector3(3, 3, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
-size = Vector3(0.91296387, 5.1462097, 7.8789406)
+size = Vector3(1.4535828, 5.1462097, 8.147958)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhfc8"]
 size = Vector3(0.31201172, 5.529297, 8.370918)
@@ -10123,8 +10123,9 @@ transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" index="0" unique_id=520507754]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1413139031]
-transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
+transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, -0.26745605, 1.8715822, -1.0069618)
 shape = SubResource("BoxShape3D_tx3k5")
+debug_color = Color(0.014038874, 0.65136486, 0, 0.41960785)
 
 [node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(790094590, 1247375556) index="0" unique_id=1708783680]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
@@ -10133,8 +10134,9 @@ transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=1278852078]
-transform = Transform3D(1, 0, -1.4068746e-12, 0, 1, 0, 0, 0, 1, 0, 1.9506226, 1.009285)
+transform = Transform3D(1, 0, -1.4068746e-12, 0, 1, 0, 0, 0, 1, -0.27062988, 1.9506226, 1.009285)
 shape = SubResource("BoxShape3D_fnegy")
+debug_color = Color(0.12321334, 0.6473531, 1.1551381e-06, 0.41960785)
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5" unique_id=2104414301]
 occluder = SubResource("ArrayOccluder3D_u7jy5")
@@ -10151,6 +10153,7 @@ transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1298585519]
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
 shape = SubResource("BoxShape3D_tx3k5")
+debug_color = Color(0.014038874, 0.65136486, 0, 0.41960785)
 
 [node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(1714256904, 1247375556) index="0" unique_id=1708783680]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
@@ -10161,6 +10164,7 @@ transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=1731547224]
 transform = Transform3D(1, 0, -1.4068746e-12, 0, 1, 0, 0, 0, 1, 0, 1.9506226, 1.009285)
 shape = SubResource("BoxShape3D_fnegy")
+debug_color = Color(0.12321334, 0.6473531, 1.1551381e-06, 0.41960785)
 
 [node name="Puerta4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada" unique_id=1464551731 instance=ExtResource("57_k37ix")]
 transform = Transform3D(-4.371139e-08, 0, 0.78652894, 0, 1.2954012, 0, -1, 0, -3.4380275e-08, 38.068268, 0.0021679401, 1207.9158)
@@ -11152,11 +11156,11 @@ transform = Transform3D(-0.019691402, 0, 0.4996121, 0, 0.5, 0, -0.4996121, 0, -0
 script = ExtResource("19_pdshk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/CortinaParaPepita/Cortina2" unique_id=93297095]
-transform = Transform3D(0.9979651, 0, -0.06345789, 0, 1, 0, 0.063457474, 0, 0.9979745, -0.2664795, 2.3224792, 0.7082634)
+transform = Transform3D(0.99798447, 0, -0.06345906, 0, 1, 0, 0.06345906, 0, 0.99798447, -0.53564453, 2.3224792, 0.6410675)
 shape = SubResource("BoxShape3D_lfkbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VictorBars/Interacciones VictorBars/CortinaParaPepita/Cortina2/CollisionShape3D" unique_id=1873423828]
-transform = Transform3D(0.9999939, 0, 0, 0, 1, 0, 1.527369e-07, 0, 0.9999999, 0.00024414063, -0.64701605, -0.029167175)
+transform = Transform3D(0.9999939, 0, 1.8626451e-09, 0, 1, 0, 1.5459955e-07, 0, 0.99999994, 0.24707031, -0.64701605, 0.020843506)
 mesh = SubResource("BoxMesh_vicex")
 surface_material_override/0 = SubResource("StandardMaterial3D_bulcj")
 
@@ -11170,12 +11174,14 @@ tipo_cooperacion = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/CortinaParaPepita/NicoAbrePuertaPepita" unique_id=1935539802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2092285, 1.9213257, 0.59114075)
 shape = SubResource("BoxShape3D_1pkoy")
+debug_color = Color(0.609153, 0.53984296, 0, 0.41960785)
 
 [node name="YAPasoPuertaPepita" type="Area3D" parent="VictorBars/Interacciones VictorBars/CortinaParaPepita" unique_id=386980775]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/CortinaParaPepita/YAPasoPuertaPepita" unique_id=1498494180]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7836914, 1.9213257, 0.7090759)
 shape = SubResource("BoxShape3D_1pkoy")
+debug_color = Color(0.609153, 0.53984296, 0, 0.41960785)
 
 [node name="Boton" parent="VictorBars/Interacciones VictorBars" unique_id=1661296307 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.38567, 0.0030641556, 1228.2744)
@@ -11533,6 +11539,12 @@ speed_scale = 0.05
 
 [node name="Balsa" parent="Campus" unique_id=803523883 instance=ExtResource("52_p5cfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.148, 0.331, 1198.564)
+speed = null
+turn_speed = null
+angulo_maximo_giro = null
+retraso_inicio = null
+vida_balsa = null
+tiempo_para_reiniciar = null
 
 [node name="Colisiones adicionales" type="Node3D" parent="Campus" unique_id=1387109892]
 
@@ -14308,6 +14320,7 @@ mesh = SubResource("ArrayMesh_c5nnd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Borrar/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=1350534692]
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0.08258057, 1.8715826, -0.9934044)
 shape = SubResource("BoxShape3D_tx3k5")
+debug_color = Color(0.014038874, 0.65136486, 0, 0.41960785)
 
 [node name="frame_1" type="Node3D" parent="Modulo7/Borrar/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=1580232373]
 
@@ -14327,6 +14340,7 @@ transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Borrar/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=742840424]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0974884, 1.9506227, 1.0309906)
 shape = SubResource("BoxShape3D_fnegy")
+debug_color = Color(0.12321334, 0.6473531, 1.1551381e-06, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Modulo7/Borrar" unique_id=109715976]
 libraries/ = SubResource("AnimationLibrary_m2yru")
@@ -14561,6 +14575,7 @@ mesh = SubResource("ArrayMesh_c5nnd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4/StaticBody3D" unique_id=871811705]
 transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.9934082)
 shape = SubResource("BoxShape3D_tx3k5")
+debug_color = Color(0.014038874, 0.65136486, 0, 0.41960785)
 
 [node name="frame_1" type="Node3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode" unique_id=1856561801]
 
@@ -14580,6 +14595,7 @@ transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Puerta Salida/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8/StaticBody3D" unique_id=1068436490]
 transform = Transform3D(1, 0, -1.4068746e-12, 0, 1, 0, 0, 0, 1, 0, 1.9506226, 1.009285)
 shape = SubResource("BoxShape3D_fnegy")
+debug_color = Color(0.12321334, 0.6473531, 1.1551381e-06, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Modulo7/Puerta Salida" unique_id=1366861745]
 libraries/ = SubResource("AnimationLibrary_m2yru")
