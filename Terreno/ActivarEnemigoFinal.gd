@@ -105,13 +105,23 @@ func _subir_velocidad_jugadores() -> void:
 		if not is_instance_valid(j) or not j.is_multiplayer_authority():
 			continue
 		if not (propiedad_velocidad in j):
+			push_error("El Player no tiene la propiedad '%s'" % propiedad_velocidad)
 			continue
 		# La base vive en el jugador: todas las zonas parten del mismo valor
 		if not j.has_meta("final_vel_base"):
 			j.set_meta("final_vel_base", j.get(propiedad_velocidad))
-			j.set_meta("final_car_base", j.get(propiedad_Carrera))
+			if propiedad_Carrera in j:
+				j.set_meta("final_car_base", j.get(propiedad_Carrera))
 		j.set(propiedad_velocidad, j.get_meta("final_vel_base") * multiplicador_velocidad)
-		j.set(propiedad_Carrera, j.get_meta("final_car_base") * multiplicador_carrera)
+		if propiedad_Carrera in j and j.has_meta("final_car_base"):
+			j.set(propiedad_Carrera, j.get_meta("final_car_base") * multiplicador_carrera)
+
+		# Estamina al máximo y sin consumo mientras dure el recorrido
+		if "estamina_infinita" in j:
+			j.estamina_infinita = true
+			j.StaminaActual = j.StaminaMax
+			j.agotado = false
+			j.actualizar_barraStamina()
 
 
 
@@ -156,9 +166,13 @@ func _restaurar_velocidad_jugadores() -> void:
 			continue
 		if j.has_meta("final_vel_base"):
 			j.set(propiedad_velocidad, j.get_meta("final_vel_base"))
-			j.set(propiedad_Carrera, j.get_meta("final_car_base"))
+			if j.has_meta("final_car_base"):
+				j.set(propiedad_Carrera, j.get_meta("final_car_base"))
 			j.remove_meta("final_vel_base")
 			j.remove_meta("final_car_base")
+		# La estamina vuelve a consumirse normalmente
+		if "estamina_infinita" in j:
+			j.estamina_infinita = false
 
 func _mover_mis_jugadores_al_inicio() -> void:
 	if punto_inicio == null:
