@@ -1322,9 +1322,11 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
+radius = 0.2163086
 height = 1.7507133
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf4ho"]
+radius = 0.2290039
 height = 1.1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cm308"]
@@ -1345,7 +1347,7 @@ properties/4/spawn = true
 properties/4/replication_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aud2g"]
-radius = 0.65185547
+radius = 0.27929688
 height = 2.137207
 
 [node name="BotNico" type="CharacterBody3D" unique_id=679560290 groups=["jugadores"]]
