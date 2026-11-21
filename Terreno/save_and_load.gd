@@ -499,6 +499,8 @@ func _servidor_enviar_estado_vivo_mapa(peer_id: int) -> void:
 	for b in get_tree().get_nodes_in_group("BarrilesMapa"):
 		if is_instance_valid(b) and not b.is_queued_for_deletion():
 			barriles_vivos.append(str(b.get_path()))
+		if b.get("indestructible_revelado") == true and b.has_method("sincronizar_revelado_tardio"):
+			b.sincronizar_revelado_tardio.rpc_id(peer_id)
 			
 	# Actualiza la llamada RPC para incluir los barriles
 	_sincronizar_modo_global.rpc_id(peer_id, Global.modo_de_juego)

@@ -33,7 +33,7 @@ func exit() -> void:
 	if is_instance_valid(jugador):
 		ref_pos = jugador.global_position
 	elif is_instance_valid(balsa):
-		ref_pos = balsa.global_position + balsa.transform.basis.x * 2.5
+		ref_pos = balsa.global_position
 	
 	bot.global_position = _calcular_punto_desembarco_seguro(ref_pos)
 	bot._reiniciar_navegacion()
@@ -47,8 +47,23 @@ func _calcular_punto_desembarco_seguro(ref_pos: Vector3) -> Vector3:
 		if mapa.is_valid() and NavigationServer3D.map_get_iteration_id(mapa) > 0:
 			var en_nav := NavigationServer3D.map_get_closest_point(mapa, ref_pos)
 			if Vector2(en_nav.x - ref_pos.x, en_nav.z - ref_pos.z).length() < 3.5 and absf(en_nav.y - ref_pos.y) < 2.0:
-				return en_nav + Vector3(0.0, 0.15, 0.0)
-	return ref_pos + Vector3(0.8, 0.2, 0.8)
+				# Verificamos con un rayo que no haya una pared invisible entre el jugador y el punto del NavMesh
+				var espacio := bot.get_world_3d().direct_space_state
+				if espacio:
+					var query := PhysicsRayQueryParameters3D.create(
+						ref_pos + Vector3(0.0, 1.0, 0.0),
+						en_nav + Vector3(0.0, 1.0, 0.0)
+					)
+					var exclusiones: Array[RID] = [bot.get_rid()]
+					var jugador := bot.obtener_jugador_principal()
+					if is_instance_valid(jugador) and jugador is CollisionObject3D:
+						exclusiones.append(jugador.get_rid())
+					query.exclude = exclusiones
+					if espacio.intersect_ray(query).is_empty():
+						return en_nav + Vector3(0.0, 0.15, 0.0)
+	
+	# Respaldo 100% seguro: exactamente en la posición validada del jugador (nunca cruza una pared invisible)
+	return ref_pos + Vector3(0.0, 0.1, 0.0)
 
 func esta_abordado() -> bool:
 	return _abordado
@@ -115,22 +130,36 @@ func _comportamiento_artillero(delta: float) -> void:
 
 func _buscar_barril_cercano(rango: float) -> Node3D:
 	var mas_cercano: Node3D = null
-	var min_dist := rango
+	var min_dist: float = rango
+	var frente_balsa: Vector3 = -balsa.transform.basis.z.normalized()
 	
-	var candidatos := get_tree().get_nodes_in_group("Barriles")
+	var candidatos: Array[Node] = get_tree().get_nodes_in_group("Barriles")
 	if candidatos.is_empty():
 		for nodo in get_tree().current_scene.find_children("*", "CollisionObject3D", true, false):
 			if nodo.has_method("_colision_balsa"):
 				candidatos.append(nodo)
 	
 	for b in candidatos:
-		if not is_instance_valid(b) or b.is_queued_for_deletion():
+		var barril := b as Node3D
+		if not is_instance_valid(barril) or barril.is_queued_for_deletion():
 			continue
-		if b.get("_destruido") == true or b.get("muriendo") == true:
+		if barril.get("_destruido") == true or barril.get("muriendo") == true:
 			continue
-		var d := bot.global_position.distance_to(b.global_position)
-		if d < min_dist:
-			min_dist = d
-			mas_cercano = b
+		# Si ya recibió un disparo y se puso rojo, Nico sabe que es indestructible y pasa al siguiente
+		if barril.get("indestructible_revelado") == true:
+			continue
+		
+		var hacia_barril: Vector3 = barril.global_position - balsa.global_position
+		hacia_barril.y = 0.0
+		var dist: float = hacia_barril.length()
+		if dist >= min_dist or dist < 0.1:
+			continue
+		
+		# Ignoramos barriles que ya quedaron detrás de la balsa
+		if frente_balsa.dot(hacia_barril.normalized()) < -0.15:
+			continue
+		
+		min_dist = dist
+		mas_cercano = barril
 	
 	return mas_cercano

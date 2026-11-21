@@ -11593,6 +11593,7 @@ transform = Transform3D(1, 6.5632055e-11, 1.1175871e-08, 1.1587953e-15, 1.000000
 [node name="StaticBody3D3" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene2" unique_id=514698220]
 transform = Transform3D(1, 8.187895e-16, 1.1175871e-08, 1.1518564e-15, 1, -2.4424907e-15, -1.1175871e-08, 1.7763568e-14, 1, 0.07128906, -3.3925781, 1.2421875)
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene2/StaticBody3D3" unique_id=775880764]
 transform = Transform3D(0.99999994, -3.469447e-15, 1.1175871e-08, 9.853229e-16, 0.99999994, -1.110223e-13, -1.4901161e-08, -2.220446e-16, 0.99999994, 5.5439453, 149.66992, -0.3046875)
@@ -11625,6 +11626,7 @@ transform = Transform3D(1, 6.5633055e-11, 7.450581e-09, 1.1657342e-15, 1.0000001
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene5" unique_id=1828306663]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene5/StaticBody3D" unique_id=851254512]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11635,6 +11637,7 @@ transform = Transform3D(1, 6.563389e-11, 7.450581e-09, 1.1657342e-15, 1.0000001,
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene6" unique_id=1055160463]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene6/StaticBody3D" unique_id=1784126949]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11755,6 +11758,7 @@ transform = Transform3D(1, 6.56374e-11, 7.450581e-09, 1.1657342e-15, 1.0000001, 
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene16" unique_id=1429569348]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene16/StaticBody3D" unique_id=933377142]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11765,6 +11769,7 @@ transform = Transform3D(1, 6.5637565e-11, 7.450581e-09, 1.1657342e-15, 1.0000001
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene17" unique_id=358448053]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene17/StaticBody3D" unique_id=503909335]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11785,6 +11790,7 @@ transform = Transform3D(1, 6.56384e-11, 7.450581e-09, 1.1657342e-15, 1.0000001, 
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene19" unique_id=984204111]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene19/StaticBody3D" unique_id=503730796]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11825,6 +11831,7 @@ transform = Transform3D(1, 6.5638564e-11, 1.1175871e-08, 1.1518564e-15, 1.000000
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene31" unique_id=1597434871]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene31/StaticBody3D" unique_id=2064952429]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11864,7 +11871,9 @@ shape = SubResource("CylinderShape3D_rsdri")
 transform = Transform3D(1, 6.5638564e-11, 1.1175871e-08, 1.1587953e-15, 1.0000001, -1.6168799e-09, -7.450581e-09, 1.2099213e-09, 1, 82.44678, -529.3594, 1519.6875)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene25" unique_id=999974216]
+transform = Transform3D(0.99999994, -4.968248e-15, 0, 9.020562e-16, 0.99999994, 4.440892e-16, -3.7252903e-09, -2.220446e-16, 0.99999994, 0, 0, 0)
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene25/StaticBody3D" unique_id=4269486]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11875,6 +11884,7 @@ transform = Transform3D(1, 6.5638564e-11, 1.1175871e-08, 1.1587953e-15, 1.000000
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene26" unique_id=1070984785]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene26/StaticBody3D" unique_id=589980819]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11885,6 +11895,7 @@ transform = Transform3D(1, 6.5638564e-11, 1.1175871e-08, 1.1518564e-15, 1.000000
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene27" unique_id=708452468]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene27/StaticBody3D" unique_id=1614979997]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11895,6 +11906,7 @@ transform = Transform3D(1, 6.5638564e-11, 1.1175871e-08, 1.1518564e-15, 1.000000
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene28" unique_id=388196428]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene28/StaticBody3D" unique_id=923037661]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11915,6 +11927,7 @@ transform = Transform3D(1, 6.56394e-11, 7.450581e-09, 1.1657342e-15, 1.0000001, 
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene22" unique_id=2054795482]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene22/StaticBody3D" unique_id=1057357818]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11985,6 +11998,7 @@ transform = Transform3D(1, 6.56394e-11, 1.1175871e-08, 1.1518564e-15, 1.0000001,
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene41" unique_id=544956035]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene41/StaticBody3D" unique_id=987778026]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)
@@ -11995,6 +12009,7 @@ transform = Transform3D(1, 6.56394e-11, 1.1175871e-08, 1.1518564e-15, 1.0000001,
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Campus/Barriles/Sketchfab_Scene42" unique_id=379269362]
 script = ExtResource("82_3nbgv")
+indestructible = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Campus/Barriles/Sketchfab_Scene42/StaticBody3D" unique_id=1674661767]
 transform = Transform3D(1, 8.6042284e-16, 1.1175871e-08, 1.1518564e-15, 1, -1.110223e-13, -1.1175871e-08, 0, 1, 0, 149.67041, 0)

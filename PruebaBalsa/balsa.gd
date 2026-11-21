@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var angulo_maximo_giro: float = 45.0  # grados a cada lado del rumbo inicial
 @export var retraso_inicio: float = 1.0       # segundos hasta que arranca después de subirse
 @export var asiento_companero: Marker3D       # Opcional: Marker3D sobre la cubierta para ubicar a Nico
+@export var punto_desembarco: Marker3D        # Opcional: Marker3D fijo en el muelle de llegada
 
 @onready var zona_cubierta: Area3D = get_node_or_null("ZonaCubierta")
 
@@ -109,8 +110,87 @@ func _arrastrar_pasajeros() -> void:
 func obtener_asiento_companero() -> Vector3:
 	if is_instance_valid(asiento_companero):
 		return asiento_companero.global_position
-	# Posición segura sobre la cubierta, ligeramente al costado del piloto
 	return to_global(Vector3(0.75, 0.65, 0.35))
+
+# Evalúa las direcciones alrededor de la balsa con raycasts para nunca atravesar paredes invisibles ni caer al vacío
+func _obtener_posicion_desembarco_segura(separacion_extra: float = 0.0) -> Vector3:
+	if is_instance_valid(punto_desembarco) and global_position.distance_to(punto_desembarco.global_position) < 15.0:
+		return punto_desembarco.global_position
+	
+	var espacio := get_world_3d().direct_space_state
+	if espacio == null:
+		return global_position + Vector3(0.0, 1.2, 0.0)
+	
+	var exclusiones := _obtener_exclusiones_fisicas()
+	var origen_pared := global_position + Vector3(0.0, 1.0, 0.0)
+	var distancia := 2.5 + separacion_extra
+	
+	# Probamos costados, frente, diagonales y atrás; si un lado tiene pared invisible, pasa al siguiente
+	var direcciones: Array[Vector3] = [
+		transform.basis.x,
+		-transform.basis.x,
+		-transform.basis.z,
+		(transform.basis.x - transform.basis.z).normalized(),
+		(-transform.basis.x - transform.basis.z).normalized(),
+		transform.basis.z
+	]
+	
+	var mapa: RID = get_world_3d().get_navigation_map()
+	var tiene_nav := mapa.is_valid() and NavigationServer3D.map_get_iteration_id(mapa) > 0
+	var respaldo_suelo_firme := Vector3.INF
+	
+	for dir in direcciones:
+		var dir_plana := Vector3(dir.x, 0.0, dir.z).normalized()
+		if dir_plana.length_squared() < 0.001:
+			continue
+		
+		var candidato := global_position + dir_plana * distancia
+		
+		# 1. ¿Hay una pared (invisible o sólida) entre la balsa y este punto?
+		var query_pared := PhysicsRayQueryParameters3D.create(origen_pared, candidato + Vector3(0.0, 1.0, 0.0))
+		query_pared.exclude = exclusiones
+		if not espacio.intersect_ray(query_pared).is_empty():
+			continue
+		
+		# 2. ¿Hay suelo firme debajo y no el vacío o agua?
+		var query_suelo := PhysicsRayQueryParameters3D.create(candidato + Vector3(0.0, 2.5, 0.0), candidato - Vector3(0.0, 4.5, 0.0))
+		query_suelo.exclude = exclusiones
+		var hit_suelo := espacio.intersect_ray(query_suelo)
+		if hit_suelo.is_empty():
+			continue
+		
+		var colisionador = hit_suelo.get("collider")
+		if colisionador and "agua" in colisionador.name.to_lower():
+			continue
+		
+		var pos_aterrizaje: Vector3 = hit_suelo.position + Vector3(0.0, 0.15, 0.0)
+		
+		# 3. Priorizamos puntos que además estén sobre el NavMesh (tierra firme / muelle)
+		if tiene_nav:
+			var en_nav := NavigationServer3D.map_get_closest_point(mapa, pos_aterrizaje)
+			if Vector2(en_nav.x - pos_aterrizaje.x, en_nav.z - pos_aterrizaje.z).length() < 2.0 and absf(en_nav.y - pos_aterrizaje.y) < 1.5:
+				return en_nav + Vector3(0.0, 0.15, 0.0)
+		
+		if respaldo_suelo_firme == Vector3.INF:
+			respaldo_suelo_firme = pos_aterrizaje
+	
+	if respaldo_suelo_firme != Vector3.INF:
+		return respaldo_suelo_firme
+	
+	# Último recurso: queda sobre la cubierta de la balsa sin atravesar ninguna pared
+	return global_position + Vector3(0.0, 1.2, 0.0)
+
+func _obtener_exclusiones_fisicas() -> Array[RID]:
+	var exclusiones: Array[RID] = [get_rid()]
+	if is_instance_valid(piloto) and piloto is CollisionObject3D:
+		exclusiones.append(piloto.get_rid())
+	for p in pasajeros:
+		if is_instance_valid(p) and p is CollisionObject3D:
+			exclusiones.append(p.get_rid())
+	for bot in get_tree().get_nodes_in_group("BotCompanero"):
+		if is_instance_valid(bot) and bot is CollisionObject3D:
+			exclusiones.append(bot.get_rid())
+	return exclusiones
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_abordar_balsa(id_jugador: int, subiendo: bool) -> void:
@@ -153,7 +233,7 @@ func _notificar_bot_balsa(subiendo: bool) -> void:
 		if bot.has_method("cambiar_estado"):
 			bot.cambiar_estado("Balsa", {"balsa": self})
 	else:
-		if bot.state_machine and bot.state_machine.estado_actual is EstadoBalsa:
+		if bot.state_machine and bot.state_machine.estado_actual and bot.state_machine.estado_actual.name == "Balsa":
 			bot.cambiar_estado("Seguir")
 
 func _on_zona_abordaje_body_entered(body: Node3D) -> void:
@@ -173,10 +253,9 @@ func _on_cubierta_body_entered(body: Node3D) -> void:
 		pasajeros.append(body)
 
 func _on_cubierta_body_exited(body: Node3D) -> void:
-	# Si Nico ya está sentado en EstadoBalsa, no lo sacamos de pasajeros por un roce de colisión
 	if body.is_in_group("BotCompanero"):
 		var sm = body.get("state_machine")
-		if sm and sm.estado_actual is EstadoBalsa and sm.estado_actual.esta_abordado():
+		if sm and sm.estado_actual and sm.estado_actual.has_method("esta_abordado") and sm.estado_actual.esta_abordado():
 			return
 	pasajeros.erase(body)
 
@@ -202,13 +281,14 @@ func _recibir_danio() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_eliminar_balsa() -> void:
-	_notificar_bot_balsa(false)
+	var piloto_anterior := piloto
 	bajar_piloto()
 	
 	for pasajero in pasajeros:
-		if not is_instance_valid(pasajero):
+		if not is_instance_valid(pasajero) or pasajero == piloto_anterior or pasajero.is_in_group("BotCompanero"):
 			continue
-		pasajero.set_deferred("global_position", global_position + transform.basis.x * 3.0)
+		var pos_pasajero := _obtener_posicion_desembarco_segura(0.7)
+		pasajero.set_deferred("global_position", pos_pasajero)
 
 	pasajeros.clear()
 	is_controlled = false
@@ -221,9 +301,9 @@ func rpc_eliminar_balsa() -> void:
 	vida_balsa = 1
 
 func bajar_piloto() -> void:
+	var pos_desembarco := _obtener_posicion_desembarco_segura()
 	rotation.y = _rotacion_inicial
 	is_controlled = false
-	var pos_desembarco := global_position + transform.basis.x * 2.5
 
 	if piloto:
 		piloto.reparent(get_tree().current_scene, false)
