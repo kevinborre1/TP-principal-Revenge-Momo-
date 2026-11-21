@@ -3,11 +3,6 @@ extends Node3D
 @export var escena_personaje_host = preload("res://pruebaPersonaje/player.tscn")
 @export var escena_personaje_cliente = preload("res://pruebaPersonaje/player2.tscn")
 
-@onready var contenedor_principal = $HBoxContainer
-@onready var subviewport_container1 = $HBoxContainer/SubViewportContainer
-
-@onready var subviewport1 = $HBoxContainer/SubViewportContainer/SubViewport
-
 @onready var cartel_conexion: CanvasLayer = $Pantallas/PantallaConexion
 @onready var pantalla_desconexion: CanvasLayer = $Pantallas/PantallaDesconexion
 @onready var texto_modo: Label = $Pantallas/Label
@@ -30,33 +25,13 @@ func _ready() -> void:
 	actualizar_cartel_modo()
 	
 	GameManager.set_mode(GameManager.GameMode.RECOLECCION, 3)
-	
-	# Configurar la UI
-	contenedor_principal.set_anchors_preset(Control.PRESET_FULL_RECT)
-	subviewport_container1.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	subviewport_container1.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	subviewport_container1.stretch = true
-
-
-	# Ocultamos la UI por defecto para evitar pantallas grises
-	contenedor_principal.hide() 
 
 	if Global.modo_multijugador == "local":
-		# MODO LOCAL
-		contenedor_principal.show()
-
-		var p1= escena_personaje_host.instantiate()
-		p1.name = "1"
-		p1.position = Vector3(36, 2, 1250)
-		subviewport1.add_child(p1)
-		
+		# MODO LOCAL: instanciamos directo en la escena raíz y sumamos a Nico
+		add_player(1, Vector3(36, 2, 1250))
 		_instanciar_bot_nico()
 		
-	if Global.modo_multijugador == "linea":
-		#LO AGREGUE PARA VER ALGO DE LA OPTIMIZACION, SI ROMPE ALGO SE SACA
-		subviewport1.render_target_update_mode = SubViewport.UPDATE_DISABLED
-	
-		#---------------------------------------------------------------
+	elif Global.modo_multijugador == "linea":
 		# MODO EN LÍNEA
 		if NetworkManager.quiero_ser_host:
 			multiplayer.peer_connected.connect(_on_peer_connected)
@@ -82,8 +57,6 @@ func _instanciar_bot_nico() -> void:
 	add_child(bot_nico)
 	bot_nico.global_position = Vector3(40, 2, 1250) # Al lado del Jugador 1
 
-
-
 # El Host ejecuta esto automáticamente cuando un cliente entra
 func _on_peer_connected(id: int) -> void:
 	if not multiplayer.is_server():
@@ -97,7 +70,7 @@ func _on_peer_connected(id: int) -> void:
 	if multiplayer.get_peers().size() + 1 >= MAX_JUGADORES:
 		NetworkManager.tube_client.refuse_new_connections = true # cerramos la sala
 
-func add_player(peer_id: int) -> void:
+func add_player(peer_id: int, posicion_inicial: Vector3 = Vector3.INF) -> void:
 	var new_player: Node3D
 	
 	# El ID 1 siempre representa al Host/Servidor
@@ -109,10 +82,10 @@ func add_player(peer_id: int) -> void:
 		
 	# Es obligatorio asignar el ID como nombre para que el set_multiplayer_authority del player.gd funcione
 	new_player.name = str(peer_id)
-	new_player.position = Vector3(randf_range(36, 40), 2, 1250)
+	new_player.position = posicion_inicial if posicion_inicial != Vector3.INF else Vector3(randf_range(36, 40), 2, 1250)
 	new_player.add_to_group("jugadores")
 	
-	# Lo agregamos al árbol. 
+	# Lo agregamos directamente al árbol de la escena principal
 	add_child(new_player, true)
 
 func _on_session_created() -> void:
@@ -138,10 +111,9 @@ func _on_activador_victoria_body_entered(body: Node3D) -> void:
 	# Verificamos si el objeto que entró al área pertenece al grupo 'jugadores'
 	if body.is_in_group("jugadores"):
 		print("¡Jugador tocó la meta! Cambiando a escena de victoria...")
-
 		get_tree().change_scene_to_file("res://Menu/Victoria.tscn")
 
-# Cliente mientras no aparezca el cliente no hay camara, asi que mostramos un aviso
+# Cliente: mientras no aparezca su personaje no hay cámara, así que mostramos un aviso
 func _iniciar_espera_conexion() -> void:
 	cartel_conexion.show()
 	
@@ -156,7 +128,7 @@ func _iniciar_espera_conexion() -> void:
 	NetworkManager.tube_client.error_raised.connect(_on_error_tube)
 	NetworkManager.escena_distinta_del_host.connect(_on_escena_distinta_del_host)
 	
-# El multiplayerSpawner agrega los jugadores en la raiz cuando llega le nuestro, ya estamos conectados
+# El MultiplayerSpawner agrega los jugadores en la raíz cuando llega el nuestro
 func _on_hijo_agregado(nodo: Node) -> void:
 	if conexion_resuelta or not NetworkManager.red_conectada():
 		return
@@ -177,7 +149,7 @@ func _on_conexion_fallida() -> void:
 
 func _on_escena_distinta_del_host(ruta: String) -> void:
 	if NetworkManager.es_escena_transicion(ruta):
-		NetworkManager.reintentar_union.call_deferred()   # el host sigue viendo el video
+		NetworkManager.reintentar_union.call_deferred() # el host sigue viendo el video
 	elif NetworkManager.puede_seguir_al_host(ruta):
 		NetworkManager.seguir_al_host.call_deferred(ruta)
 	else:

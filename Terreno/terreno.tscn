@@ -9225,16 +9225,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=1172638336]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" unique_id=674497882]
-handle_input_locally = false
-size = Vector2i(574, 648)
-render_target_update_mode = 4
-
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=274023316]
 _spawnable_scenes = PackedStringArray("uid://blmgdhrpsp8c0", "uid://cbdesbnctq0ih")
 spawn_path = NodePath("..")
