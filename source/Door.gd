@@ -13,6 +13,9 @@ class_name Door
 @export var tiempo_espera_maximo: float = 10.0 # Tiempo máxima abierta si nadie pasa
 @export var tiempo_limite_botones: float = 5.0 # Margen para apretar el segundo botón en solitario
 
+#Musica
+@export_enum("papas", "jefe_final", "escape_momo") var musica_al_terminar: String = "papas"
+
 signal cinematica_terminada
 
 var cinematica_activa: bool = false
@@ -130,27 +133,28 @@ func reproducir_cinematica() -> void:
 			jugadores[i].global_position = punto_aparicion.global_position + Vector3(i * 1.5, 0, 0)
 			jugadores[i].punto_respawn = punto_aparicion.global_position + Vector3(i * 1.5, 0, 0)
 
-		if video_player:
-			cinematica_activa = true
-			video_player.visible = true
-			video_player.play()
-			if boton_saltear:
-				boton_saltear.show()
-				_reposicionar_boton()
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE   # para poder clickear el botón
+	if video_player:
+		cinematica_activa = true
+		video_player.visible = true
+		video_player.play()
+		if boton_saltear:
+			boton_saltear.show()
+			_reposicionar_boton()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # para poder clickear el botón
 
-			await cinematica_terminada   # termina solo o por el botón
+		await cinematica_terminada # termina solo o por el botón
 
-			cinematica_activa = false
-			video_player.visible = false
-			if boton_saltear:
-				boton_saltear.hide()
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			GameManager.papas_atacan = true
- 
-	# 2. Desbloqueamos controles al terminar
+		cinematica_activa = false
+		video_player.visible = false
+		if boton_saltear:
+			boton_saltear.hide()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		GameManager.papas_atacan = true
+
+	# 2. Desbloqueamos controles y arrancamos la música del evento
 	get_tree().call_group("Jugador", "bloquear_controles", false)
-		
+	_reproducir_musica_evento()
+				
 func actualizar_estado_boton(id_boton: int, activado: bool) -> void:
 	# 1. TODOS los jugadores actualizan su diccionario local
 	estado_botones[id_boton] = activado
@@ -236,3 +240,12 @@ func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono
 	add_child(player_3d)
 	player_3d.play()
 	player_3d.finished.connect(player_3d.queue_free)
+
+func _reproducir_musica_evento() -> void: 
+	match musica_al_terminar:
+		"papas":
+			MusicManager.play_papas()
+		"jefe_final":
+			MusicManager.play_jefe_final()
+		"escape_momo":
+			MusicManager.play_escape_momo()

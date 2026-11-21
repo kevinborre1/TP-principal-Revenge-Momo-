@@ -33,6 +33,11 @@ var tiempo_ultimo_ataque: float = 0.0
 var _transform_inicial: Transform3D
 var _tiempo_debug: float = 0.0
 
+@export var sonido_spawn: AudioStream
+
+# Lo comparten los 3 que aparecen
+static var _ultimo_spawn_ms: int = -2000
+const COOLDOWN_SPAWN_MS: int = 1000
 
 func _ready() -> void:
 	# La zona Area3D busca a los enemigos de este grupo
@@ -54,7 +59,7 @@ func activar_enemigo() -> void:
 	velocity = Vector3.ZERO
 	tiempo_ultimo_ataque = Time.get_ticks_msec() / 1000.0  # no pega en el mismo instante en que aparece
 	_aplicar_estado(true)
-
+	_reproducir_sonido_spawn()
 
 ## Lo deja invisible, sin colisión y de vuelta en su lugar inicial
 func desactivar_enemigo() -> void:
@@ -234,3 +239,18 @@ func manejar_animaciones() -> void:
 		animation_player.play(ANIM_CAMINAR, 0.2)
 	else:
 		animation_player.stop()
+
+func _reproducir_sonido_spawn() -> void:
+	if sonido_spawn == null:
+		return
+	var ahora := Time.get_ticks_msec()
+	if ahora - _ultimo_spawn_ms < COOLDOWN_SPAWN_MS:
+		return
+	_ultimo_spawn_ms = ahora
+
+	var player_2d := AudioStreamPlayer.new()
+	player_2d.stream = sonido_spawn
+	var contenedor := get_tree().current_scene if get_tree().current_scene else get_tree().root
+	contenedor.add_child(player_2d)
+	player_2d.play()
+	player_2d.finished.connect(player_2d.queue_free)

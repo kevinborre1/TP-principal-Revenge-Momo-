@@ -23,6 +23,7 @@ GameManager="*uid://cchkgm2wgox1r"
 ScoreManager="*uid://dd0qpx7havwtf"
 SaveAndLoad="*uid://dxspbgftbu27"
 DialogueManager="*uid://c3rodes2l3gxb"
+MusicManager="*uid://byyvjj6apormy"
 
 [dialogue_manager]
 

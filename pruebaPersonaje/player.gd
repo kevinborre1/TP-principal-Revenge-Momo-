@@ -82,6 +82,7 @@ var punto_respawn : Vector3 = Vector3(36, 2, 1250)
 const SFX_SALTO = preload("res://sonidos/salto.wav")
 const SFX_OBTENER_ITEM = preload("res://sonidos/recolectar_item.wav")
 const SFX_CURACION = preload("res://sonidos/curacion.wav")
+const SFX_DANIO = preload("res://sonidos/jugador_herido.wav")
 
 func _ready() -> void:
 	var id_player = name.to_int()
@@ -451,6 +452,8 @@ func _recibir_danio_red(danio: int):
 
 	if not is_inside_tree():
 		return	
+		
+	reproducir_sfx_local(SFX_DANIO)
 				
 	saludActual -= danio
 	herido = true
