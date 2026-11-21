@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ce0rhrpc3lbov"]
+
+[ext_resource type="PackedScene" uid="uid://deqdlnvmjldjb" path="res://enemigo/momo/Meshy_AI_Boxer_Ready_in_the_Gym_20261121_animated_mixamo_Triple_Combo_Attack/Meshy_AI_Boxer_Ready_in_the_Gym_20261121_animated_mixamo_Triple_Combo_Attack.fbx" id="1_nai48"]
+
+[node name="Momo" type="StaticBody3D" unique_id=1810989977]
+
+[node name="Meshy_AI_Boxer_Ready_in_the_Gym_20261121_animated_mixamo_Triple_Combo_Attack" parent="." unique_id=54091476 instance=ExtResource("1_nai48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007326722, 0, 0.014667988)
