@@ -405,11 +405,7 @@ properties/1/replication_mode = 1
 
 [node name="EnemigoDelFinal" type="CharacterBody3D" unique_id=1142631827]
 script = ExtResource("1_rhtwc")
-<<<<<<< HEAD
 radio_contacto = 3.0
-=======
-sonido_spawn = ExtResource("2_rhtwc")
->>>>>>> db790bdf4347676cf54483f0a2471762ce2c729f
 
 [node name="momo_chicken" type="Node3D" parent="." unique_id=294295265]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
