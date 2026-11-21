@@ -221,9 +221,9 @@ func rpc_eliminar_balsa() -> void:
 	vida_balsa = 1
 
 func bajar_piloto() -> void:
-	_notificar_bot_balsa(false)
 	rotation.y = _rotacion_inicial
 	is_controlled = false
+	var pos_desembarco := global_position + transform.basis.x * 2.5
 
 	if piloto:
 		piloto.reparent(get_tree().current_scene, false)
@@ -235,5 +235,7 @@ func bajar_piloto() -> void:
 		if "input_bloqueado" in piloto:
 			piloto.input_bloqueado = false
 
-		piloto.set_deferred("global_position", global_position + transform.basis.x * 2.5)
+		piloto.global_position = pos_desembarco
 		piloto = null
+
+	_notificar_bot_balsa(false)

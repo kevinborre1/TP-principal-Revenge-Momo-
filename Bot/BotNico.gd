@@ -1,6 +1,8 @@
 class_name BotNico
 extends CharacterBody3D
 
+signal cambioSalud
+
 @export var velocidad_caminar: float = 5.0
 @export var velocidad_correr: float = 10.0
 @export var cadencia_disparo: float = 0.55
@@ -36,6 +38,9 @@ var _timer_nav: float = 0.0
 var _ultimo_destino_nav: Vector3 = Vector3(INF, INF, INF)
 var _velocidad_empuje: Vector3 = Vector3.ZERO
 var _arma_instancia: Node3D = null
+
+var _tiempo_atascado: float = 0.0
+var _pos_control_atasco: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	salud_actual = salud_max
@@ -116,13 +121,18 @@ func equipar_arma(activa: bool) -> void:
 	if is_instance_valid(_arma_instancia):
 		_arma_instancia.visible = activa
 
-# --- SALUD, DAÑO, MUERTE Y RESPAWN ---
+# --- SALUD, DAÑO, MUERTE Y RESPAWN (Contrato compatible con Player y Ahogamiento) ---
 
 func heridoPorEnemigo(danio: int = 10) -> void:
+	_recibir_danio_red(danio)
+
+@rpc("any_peer", "call_local", "reliable")
+func _recibir_danio_red(danio: int) -> void:
 	if muerto or controles_bloqueados:
 		return
 	
 	salud_actual = max(0, salud_actual - danio)
+	cambioSalud.emit()
 	if salud_actual <= 0:
 		_morir()
 
@@ -148,6 +158,7 @@ func _morir() -> void:
 	
 	salud_actual = salud_max
 	muerto = false
+	cambioSalud.emit()
 	add_to_group("Jugador")
 	_cambiar_colisiones(false)
 	show()
@@ -183,6 +194,8 @@ func respawnear() -> void:
 
 func _reiniciar_navegacion() -> void:
 	_timer_nav = 0.0
+	_tiempo_atascado = 0.0
+	_pos_control_atasco = global_position
 	_ultimo_destino_nav = Vector3(INF, INF, INF)
 	if nav_agent:
 		nav_agent.target_position = global_position
@@ -228,6 +241,20 @@ func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:
 		velocity += get_gravity() * delta
 	
 	var siguiente_punto := _calcular_siguiente_punto(destino)
+	
+	# Detector anti-atasco: si lleva >0.7s intentando avanzar sin moverse, camina directo hacia el destino
+	var dist_objetivo := Vector2(global_position.x - destino.x, global_position.z - destino.z).length()
+	if dist_objetivo > 1.5:
+		if Vector2(global_position.x - _pos_control_atasco.x, global_position.z - _pos_control_atasco.z).length() < 0.25:
+			_tiempo_atascado += delta
+			if _tiempo_atascado > 0.7:
+				siguiente_punto = destino
+		else:
+			_tiempo_atascado = 0.0
+			_pos_control_atasco = global_position
+	else:
+		_tiempo_atascado = 0.0
+	
 	var direccion := siguiente_punto - global_position
 	direccion.y = 0.0
 	
@@ -285,8 +312,13 @@ func _calcular_siguiente_punto(destino: Vector3) -> Vector3:
 	
 	var siguiente := nav_agent.get_next_path_position()
 	
+	# Evita que el NavMesh lo mande hacia un techo (ej. Módulo 7) cuando el destino real está al nivel del suelo
+	if absf(siguiente.y - destino.y) > 2.5 and absf(global_position.y - destino.y) < 2.5:
+		return destino
+	
 	if nav_agent.is_navigation_finished():
-		if not nav_agent.is_target_reachable():
+		# Si el NavMesh quedó cortado antes de llegar (ej. borde de muelle), avanza directo
+		if dist_horiz > 1.5:
 			return destino
 		return global_position
 	
@@ -312,8 +344,6 @@ func rotar_hacia(objetivo_pos: Vector3, delta: float) -> void:
 	if modelo:
 		modelo.rotation.y = lerp_angle(modelo.rotation.y, angulo_objetivo + PI, 12.0 * delta)
 
-# Devuelve true si efectuó el disparo en este frame (útil para estados de disparo único)
-# Devuelve true si efectuó el disparo en este frame (útil para estados de disparo único)
 func disparar_a(objetivo: Node3D, delta: float, offset_altura: float = 0.75) -> bool:
 	if muerto or not is_instance_valid(objetivo):
 		return false

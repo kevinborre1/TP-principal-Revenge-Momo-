@@ -4713,6 +4713,7 @@ size = Vector3(52.747803, 3.3916016, 29.562012)
 size = Vector3(50.765884, 2.4521332, 26.674805)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dj230"]
+size = Vector3(57.509155, 5.484131, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tr3kr"]
 size = Vector3(52.757507, 1, 10.539551)
@@ -11529,12 +11530,6 @@ speed_scale = 0.05
 
 [node name="Balsa" parent="Campus" unique_id=803523883 instance=ExtResource("52_p5cfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.148, 0.331, 1198.564)
-speed = null
-turn_speed = null
-angulo_maximo_giro = null
-retraso_inicio = null
-vida_balsa = null
-tiempo_para_reiniciar = null
 
 [node name="Colisiones adicionales" type="Node3D" parent="Campus" unique_id=1387109892]
 
@@ -12033,7 +12028,6 @@ transform = Transform3D(0.2982577, 0, 0, 0, 0.19891581, 0, 0, 0, 1.1690333, -4.5
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Modulo7" unique_id=1475672210]
 transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.99999976, 0, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_8w0r3")
-navigation_layers = 2
 
 [node name="modulo7-p1" type="Node3D" parent="Modulo7/NavigationRegion3D" unique_id=1343188347]
 transform = Transform3D(1.6764026, 0, 0, 0, 2.5136259, 0, 0, 0, 0.42770377, -20.339344, -16.261448, -225.26715)
@@ -13111,14 +13105,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tk8hj")
 physics_material_override = SubResource("PhysicsMaterial_w487l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Piso de Transicion/StaticBody3D" unique_id=656950450]
-transform = Transform3D(1, 0, 0, 0, 0.99999607, 0, 0, 0, 0.99999607, 0.92251587, 0.35494232, 1.5161133)
+transform = Transform3D(1, 0, 0, 0, 0.99999607, 0, 0, 0, 0.9999969, 0.92251587, 0.3549423, 1.5161133)
 shape = SubResource("BoxShape3D_dufpk")
 
 [node name="ZonaFrenadoBalsa" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Piso de Transicion" unique_id=692547283]
-transform = Transform3D(67.955, 0, 0, 0, 3.185, 0, 0, 0, 5, 8.980804, 3.8575945, 12.418823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.980804, 3.8575945, 12.418823)
 script = ExtResource("80_3h8wr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Piso de Transicion/ZonaFrenadoBalsa" unique_id=778155089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.384338, 0.38440323, 0)
 shape = SubResource("BoxShape3D_dj230")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1550429487]

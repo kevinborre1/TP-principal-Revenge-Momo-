@@ -28,15 +28,27 @@ func exit() -> void:
 	if is_instance_valid(balsa) and "pasajeros" in balsa:
 		balsa.pasajeros.erase(bot)
 	
-	# Lo ubicamos junto al jugador en la orilla para que no caiga al agua al bajar
+	var ref_pos := bot.global_position
 	var jugador: Node3D = bot.obtener_jugador_principal()
 	if is_instance_valid(jugador):
-		bot.global_position = jugador.global_position + Vector3(1.2, 0.2, 1.2)
+		ref_pos = jugador.global_position
 	elif is_instance_valid(balsa):
-		bot.global_position = balsa.global_position + balsa.transform.basis.x * 2.5
+		ref_pos = balsa.global_position + balsa.transform.basis.x * 2.5
+	
+	bot.global_position = _calcular_punto_desembarco_seguro(ref_pos)
+	bot._reiniciar_navegacion()
 	
 	balsa = null
 	_abordado = false
+
+func _calcular_punto_desembarco_seguro(ref_pos: Vector3) -> Vector3:
+	if bot.nav_agent:
+		var mapa := bot.nav_agent.get_navigation_map()
+		if mapa.is_valid() and NavigationServer3D.map_get_iteration_id(mapa) > 0:
+			var en_nav := NavigationServer3D.map_get_closest_point(mapa, ref_pos)
+			if Vector2(en_nav.x - ref_pos.x, en_nav.z - ref_pos.z).length() < 3.5 and absf(en_nav.y - ref_pos.y) < 2.0:
+				return en_nav + Vector3(0.0, 0.15, 0.0)
+	return ref_pos + Vector3(0.8, 0.2, 0.8)
 
 func esta_abordado() -> bool:
 	return _abordado
