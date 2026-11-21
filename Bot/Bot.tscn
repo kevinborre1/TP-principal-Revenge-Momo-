@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://q6fhgbx4dule"]
 
 [ext_resource type="Script" uid="uid://ubw4e40flklj" path="res://Bot/BotNico.gd" id="1_74cmg"]
+[ext_resource type="PackedScene" uid="uid://c6yr2jemw2ntr" path="res://Objetos-Interactivos/Sistema-Combate/Arma.tscn" id="2_74cmg"]
 [ext_resource type="Texture2D" uid="uid://pb2wss78tki0" path="res://pruebaPersonaje/SegundoPerso/adam_Image_19.jpg" id="2_w6cty"]
 [ext_resource type="Texture2D" uid="uid://cffs1nybi0d2k" path="res://pruebaPersonaje/SegundoPerso/adam_Image_20.png" id="3_o85x3"]
 [ext_resource type="Texture2D" uid="uid://d0356eo1k6da6" path="res://pruebaPersonaje/SegundoPerso/adam_Image_21.jpg" id="4_upl42"]
@@ -1352,6 +1353,7 @@ height = 2.137207
 
 [node name="BotNico" type="CharacterBody3D" unique_id=679560290 groups=["jugadores"]]
 script = ExtResource("1_74cmg")
+escena_arma = ExtResource("2_74cmg")
 
 [node name="Walk (1)" type="Node3D" parent="." unique_id=1565737251]
 

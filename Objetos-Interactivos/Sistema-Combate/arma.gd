@@ -7,7 +7,7 @@ class_name Arma
 @export var cadencia: float = 0.2
 var puede_disparar: bool = true
 
-#Sonidos
+# Sonidos
 const SFX_DISPARO = preload("res://sonidos/disparo_nerf.wav")
 
 func _jugador_dueño() -> Player:
@@ -20,7 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var jugador := _jugador_dueño()
 	if jugador == null or jugador.input_bloqueado or jugador.muerto:
 		return
-	# evita que un jugador dispare el arma de otro
+	# Evita que un jugador dispare el arma de otro
 	if not jugador.is_multiplayer_authority():
 		return
 	if event.is_action_pressed("disparar") and puede_disparar:
@@ -31,8 +31,7 @@ func disparar() -> void:
 		return
 	puede_disparar = false 
 		
-	# Buscamos al jugador y a la cámara / raycast
-	var player = _jugador_dueño() #get_tree().get_first_node_in_group("Jugador")
+	var player = _jugador_dueño()
 	if not player:
 		puede_disparar = true
 		return
@@ -40,15 +39,9 @@ func disparar() -> void:
 	reproducir_sfx_3d(SFX_DISPARO)
 	var raycast: RayCast3D = player.find_child("RayCastDisparo", true, false)
 	
-	# 1. Instanciamos la bala
-	#var bala = escena_bala.instantiate() as Area3D
-	#bala.global_position = punto_de_disparo.global_position
-	
 	if raycast:
-		# limpiamos reglas anteriores
 		raycast.clear_exceptions()
 		
-		# ignoramos al propio tirador
 		if player is CollisionObject3D:
 			raycast.add_exception(player)
 			
@@ -59,7 +52,6 @@ func disparar() -> void:
 			if otro is CollisionObject3D:
 				raycast.add_exception(otro)
 				
-		# forzamos al rayo a recalcular la física en este frame exacto con las excepciones aplicadas
 		raycast.force_raycast_update()
 		
 	var direccion_disparada = Vector3.FORWARD
@@ -67,28 +59,44 @@ func disparar() -> void:
 	
 	if raycast and raycast.is_colliding():
 		var objeto_colisionado = raycast.get_collider()
-		
-		# Verifica si el objeto tocado es un enemigo (asegúrate de usar tu nombre de grupo exacto)
 		if objeto_colisionado and objeto_colisionado.is_in_group("Enemigo"):
 			var punto_impacto = raycast.get_collision_point()
 			direccion_disparada = (punto_impacto - punto_de_disparo.global_position).normalized()
 			apuntando_a_enemigo = true
 			
-	# Si tocó una pared, el piso, o no chocó con nada, dispara paralelo a la cámara
-	# Si no choca con un enemigo, hacemos que la bala converja hacia la cruceta
 	if not apuntando_a_enemigo:
 		var camara: Camera3D = player.find_child("Camera3D", true, false)
 		if camara:
-			# Proyectamos un punto a 100 metros de distancia exactamente en el centro de la pantalla
 			var distancia_convergencia = 50.0
 			var punto_lejano = camara.global_position - (camara.global_transform.basis.z.normalized() * distancia_convergencia)
-			
-			# Trazamos la dirección desde el arma hacia ese punto central lejano
 			direccion_disparada = (punto_lejano - punto_de_disparo.global_position).normalized()
 		else:
 			direccion_disparada = -global_transform.basis.z.normalized()
 			
-	generar_bala.rpc(punto_de_disparo.global_position, direccion_disparada, player.rol)
+	if multiplayer.has_multiplayer_peer():
+		generar_bala.rpc(punto_de_disparo.global_position, direccion_disparada, player.rol)
+	else:
+		generar_bala(punto_de_disparo.global_position, direccion_disparada, player.rol)
+	
+	await get_tree().create_timer(cadencia).timeout
+	puede_disparar = true
+
+# Método reutilizable para que BotNico dispare usando el mismo cañón, sonido y sincronización de red
+func disparar_desde_ia(objetivo_pos: Vector3, rol_tirador: String = "ambos") -> void:
+	if not escena_bala or not puede_disparar:
+		return
+	puede_disparar = false
+	
+	reproducir_sfx_3d(SFX_DISPARO)
+	var origen := punto_de_disparo.global_position if is_instance_valid(punto_de_disparo) else global_position
+	var direccion_disparada := (objetivo_pos - origen).normalized()
+	if direccion_disparada == Vector3.ZERO:
+		direccion_disparada = -global_transform.basis.z.normalized()
+	
+	if multiplayer.has_multiplayer_peer():
+		generar_bala.rpc(origen, direccion_disparada, rol_tirador)
+	else:
+		generar_bala(origen, direccion_disparada, rol_tirador)
 	
 	await get_tree().create_timer(cadencia).timeout
 	puede_disparar = true
@@ -108,19 +116,17 @@ func desactivar_para_mano() -> void:
 	set_deferred("monitorable", false)
 	collision_layer = 0
 	collision_mask = 0
-	# Si tienes un CollisionShape3D hijo, también lo apagamos por seguridad
 	var colision = get_node_or_null("CollisionShape3D")
 	if colision:
 		colision.set_deferred("disabled", true)	
 
-# Sonidos en 3D que el otro escuchará
 func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono: bool = true) -> void:
 	if stream == null:
 		return
 	var player_3d := AudioStreamPlayer3D.new()
 	player_3d.stream = stream
 	player_3d.volume_db = volumen_db
-	player_3d.max_distance = 35.0 # Distance in meters at which the other player can hear it
+	player_3d.max_distance = 35.0
 	if variar_tono:
 		player_3d.pitch_scale = randf_range(0.92, 1.08)
 	add_child(player_3d)
