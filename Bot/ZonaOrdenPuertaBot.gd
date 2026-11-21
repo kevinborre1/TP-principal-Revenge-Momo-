@@ -2,6 +2,7 @@ class_name ZonaOrdenPuertaBot
 extends Area3D
 
 @export var boton_para_nico: Node3D
+@export var punto_parada_nico: Node3D # Opcional: Marker3D en el piso frente a un botón de pared
 @export var boton_liberacion: Node # Para MANTENER_HASTA_CRUCE: botón del otro lado que suelta a Nico
 @export var zona_cruce: Area3D # Para CRUZAR_Y_MANTENER: Area3D ubicada justo después de cruzar la puerta
 @export var puerta: Node
@@ -16,7 +17,6 @@ func _on_body_entered(body: Node3D) -> void:
 	if not body.is_in_group("Jugador") or body.is_in_group("BotCompanero"):
 		return
 	
-	# En modos donde la puerta aún debe abrirse, si ya está abierta no hacemos nada.
 	# En CRUZAR_Y_MANTENER la puerta se abre al pisar tu botón, así que sí debe ejecutarse.
 	if tipo_cooperacion != EstadoCooperarBoton.TipoCooperacion.CRUZAR_Y_MANTENER:
 		if is_instance_valid(puerta) and puerta.get("esta_abierta") == true:
@@ -26,13 +26,14 @@ func _on_body_entered(body: Node3D) -> void:
 	if not is_instance_valid(bot):
 		return
 	
-	# Si Nico ya está ejecutando una tarea cooperativa, no interrumpimos ni pisamos su estado actual
+	# Si Nico ya está ejecutando una tarea cooperativa, no pisamos su estado actual
 	if bot.state_machine and bot.state_machine.estado_actual is EstadoCooperarBoton:
 		return
 	
 	bot.cambiar_estado("CooperarBoton", {
 		"tipo": tipo_cooperacion,
 		"boton": boton_para_nico,
+		"punto_parada": punto_parada_nico,
 		"boton_liberacion": boton_liberacion,
 		"zona_cruce": zona_cruce,
 		"objetivo_estado": puerta

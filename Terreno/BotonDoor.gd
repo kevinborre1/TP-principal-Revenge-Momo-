@@ -10,20 +10,21 @@ var esta_activado: bool = false
 # Guardamos la referencia a la malla para no tener que buscarla repetidas veces
 @onready var malla_boton: MeshInstance3D = $MeshInstance3D
 
-#sonidos
+# Sonidos
 const SFX_BOTON_PARED = preload("res://sonidos/boton_pared.wav")
 
 func _ready() -> void:
 	add_to_group("BotonesPuerta")
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if jugador_cerca and event.is_action_pressed("interactuar"):
-		# ¡CAMBIO CLAVE AQUÍ!
-		# En lugar de ejecutarlo solo en esta computadora, le decimos a la red 
-		# que ejecute esta función en las pantallas de TODOS los jugadores.
+		interactuar()
+
+# Método público único: lo usa el input del jugador humano y también BotNico al llegar
+func interactuar() -> void:
+	if not esta_activado:
 		presionar_boton.rpc()
 
 ## (Red): any_peer permite que cualquier cliente dispare el botón.
@@ -31,7 +32,6 @@ func _unhandled_input(event: InputEvent) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func presionar_boton() -> void:
 	if not esta_activado:
-		
 		esta_activado = true
 		reproducir_sfx_3d(SFX_BOTON_PARED)
 		if puerta_destino and puerta_destino.has_method("actualizar_estado_boton"):
@@ -57,11 +57,11 @@ func _actualizar_visual_boton() -> void:
 		push_warning("BotonPuerta: No se encontró el MeshInstance3D para hacer visible.")
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("Jugador"):
+	if body.is_in_group("Jugador") and not body.is_in_group("BotCompanero"):
 		jugador_cerca = true
 
 func _on_body_exited(body: Node3D) -> void:
-	if body.is_in_group("Jugador"):
+	if body.is_in_group("Jugador") and not body.is_in_group("BotCompanero"):
 		jugador_cerca = false
 
 # Sonidos en 3D que el otro escuchará
@@ -71,7 +71,7 @@ func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono
 	var player_3d := AudioStreamPlayer3D.new()
 	player_3d.stream = stream
 	player_3d.volume_db = volumen_db
-	player_3d.max_distance = 35.0 # Distance in meters at which the other player can hear it
+	player_3d.max_distance = 35.0
 	if variar_tono:
 		player_3d.pitch_scale = randf_range(0.92, 1.08)
 	add_child(player_3d)

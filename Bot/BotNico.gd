@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var cadencia_disparo: float = 0.45
 @export var altura_sentado: float = -0.4
 @export var altura_limite_caida: float = -20.0
+@export var friccion_empuje: float = 24.0
 
 @export_enum("ambos", "rompe_escudo", "letal") var rol: String = "ambos"
 
@@ -19,10 +20,11 @@ extends CharacterBody3D
 
 var jugador_principal: Node3D = null
 var muerto: bool = false
-var punto_respawn: Vector3 = Vector3(46 ,1 , 1243)
+var punto_respawn: Vector3 = Vector3.ZERO
 var controles_bloqueados: bool = false
 
 var _cooldown_disparo: float = 0.0
+var _velocidad_empuje: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	# Se suma al grupo "Jugador" para que botones, puertas y la balsa lo detecten igual que a un humano
@@ -58,15 +60,15 @@ func obtener_jugador_principal() -> Node3D:
 			return jugador_principal
 	return null
 
-# --- INTEGRIDAD FÍSICA Y RESPAWN ---
+# --- INTEGRIDAD FÍSICA, EMPUJE Y RESPAWN ---
 
 func _verificar_caida_vacio() -> void:
 	if global_position.y < altura_limite_caida:
-		print("cAI nICO")
 		respawnear()
 
 func respawnear() -> void:
 	velocity = Vector3.ZERO
+	_velocidad_empuje = Vector3.ZERO
 	global_position = punto_respawn
 	
 	if nav_agent:
@@ -75,11 +77,37 @@ func respawnear() -> void:
 	if state_machine:
 		state_machine.cambiar_estado("Seguir")
 
+# Contrato público para que cualquier jugador o entidad pueda empujar a Nico sin tocar su velocity
+func recibir_empuje(impulso: Vector3) -> void:
+	if controles_bloqueados or muerto:
+		return
+	
+	if multiplayer.has_multiplayer_peer() and not is_multiplayer_authority():
+		_aplicar_empuje_red.rpc_id(get_multiplayer_authority(), impulso)
+		return
+	
+	_guardar_empuje(impulso)
+
+@rpc("any_peer", "call_local", "unreliable")
+func _aplicar_empuje_red(impulso: Vector3) -> void:
+	_guardar_empuje(impulso)
+
+func _guardar_empuje(impulso: Vector3) -> void:
+	impulso.y = 0.0
+	_velocidad_empuje = impulso
+
+func _aplicar_empuje_externo(delta: float) -> void:
+	if _velocidad_empuje.length_squared() > 0.001:
+		velocity.x += _velocidad_empuje.x
+		velocity.z += _velocidad_empuje.z
+		_velocidad_empuje = _velocidad_empuje.move_toward(Vector3.ZERO, friccion_empuje * delta)
+
 # Cumple el mismo contrato que Player para cinemáticas y eventos de Door.gd
 func bloquear_controles(bloquear: bool) -> void:
 	controles_bloqueados = bloquear
 	if bloquear:
 		velocity = Vector3.ZERO
+		_velocidad_empuje = Vector3.ZERO
 
 # --- API DE MOVIMIENTO Y ACCIONES (usada por todos los estados - DRY) ---
 
@@ -101,6 +129,7 @@ func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:
 		detener_movimiento(delta)
 		return
 	
+	_aplicar_empuje_externo(delta)
 	move_and_slide()
 	_actualizar_animacion(correr)
 
@@ -135,6 +164,7 @@ func detener_movimiento(delta: float) -> void:
 		velocity += get_gravity() * delta
 	velocity.x = move_toward(velocity.x, 0.0, velocidad_caminar * 4.0 * delta)
 	velocity.z = move_toward(velocity.z, 0.0, velocidad_caminar * 4.0 * delta)
+	_aplicar_empuje_externo(delta)
 	move_and_slide()
 	_actualizar_animacion(false)
 
@@ -156,7 +186,6 @@ func disparar_a(objetivo: Node3D, delta: float) -> void:
 		return
 	_cooldown_disparo = cadencia_disparo
 	
-	# TODO: Conectá acá con tu sistema real de balas o raycast.
 	if objetivo.has_method("_daniar"):
 		objetivo._daniar(1)
 	elif objetivo.has_method("recibir_disparo"):

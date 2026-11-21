@@ -372,9 +372,16 @@ func _physics_process(delta: float) -> void:
 				animation.stop()
 	if global_position.y < -20 :
 		respawnear()
-		
 
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var colision := get_slide_collision(i)
+		var cuerpo := colision.get_collider()
+		if cuerpo and cuerpo.has_method("recibir_empuje"):
+			var dir_empuje := -colision.get_normal()
+			dir_empuje.y = 0.0
+			if dir_empuje.length_squared() > 0.001:
+				cuerpo.recibir_empuje(dir_empuje.normalized() * 6.5)
 	player_animation()
 	
 	# Actualización visual de HUDs
