@@ -110,7 +110,8 @@ func _arrastrar_pasajeros() -> void:
 func obtener_asiento_companero() -> Vector3:
 	if is_instance_valid(asiento_companero):
 		return asiento_companero.global_position
-	return to_global(Vector3(0.75, 0.65, 0.35))
+	# X = 0.0 (centro exacto), Z = 1.35 (bien atrás en la popa, detrás del piloto)
+	return to_global(Vector3(0.0, 0.65, 1.35))
 
 # Evalúa las direcciones alrededor de la balsa con raycasts para nunca atravesar paredes invisibles ni caer al vacío
 func _obtener_posicion_desembarco_segura(separacion_extra: float = 0.0) -> Vector3:

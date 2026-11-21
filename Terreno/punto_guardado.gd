@@ -1,8 +1,9 @@
 extends Area3D
+
 @export var nombre_logro: String = ""
-# NUEVO: Referencia modular al punto donde queremos que reaparezca el jugador.
 @export var punto_de_aparicion: Marker3D
 @export var muertoMomo: bool
+
 var ya_activado: bool = false
 var puede_guardar: bool = false
 static var posiciones_cargadas_en_escena: bool = false
@@ -13,34 +14,43 @@ func _ready() -> void:
 	
 	if multiplayer.is_server() and not posiciones_cargadas_en_escena:
 		posiciones_cargadas_en_escena = true
-		# Esperamos 0.3s a que aparezcan los personajes y el piso cargue sus colisiones
 		await get_tree().create_timer(0.3).timeout
 		await get_tree().physics_frame
 		SaveAndLoad.load_game()
 		
-	# Esperamos 1 segundo antes de activar el checkpoint para no sobrescribir al aparecer
 	await get_tree().create_timer(1.0).timeout
 	puede_guardar = true
 
 func _on_body_entered(body: Node3D) -> void:
-	if ya_activado:
+	if ya_activado or not puede_guardar:
 		return
-	if not puede_guardar or not body.is_in_group("Jugador"):
+	if not body.is_in_group("Jugador") or body.is_in_group("BotCompanero"):
 		return
-	body.punto_respawn = punto_de_aparicion.global_position
+	
+	var pos_respawn := _obtener_posicion_respawn()
+	
+	# Actualizamos el respawn de todos los jugadores y del bot hacia el Marker3D de esta zona
+	for miembro in get_tree().get_nodes_in_group("Jugador"):
+		if is_instance_valid(miembro) and "punto_respawn" in miembro:
+			miembro.punto_respawn = pos_respawn
+	
 	if multiplayer.is_server():
 		ya_activado = true
+		SaveAndLoad.guardarEstadoMomo(muertoMomo)
+		SaveAndLoad.establecer_posicion_predeterminada(pos_respawn)
+		print("Guardando checkpoint en: ", pos_respawn)
 
-		if punto_de_aparicion != null:
-			SaveAndLoad.guardarEstadoMomo(muertoMomo)
-			SaveAndLoad.establecer_posicion_predeterminada(punto_de_aparicion.global_position)
-			print("guardando")
-
-		# Se desbloquea en todas las PC (host y cliente)
 		if nombre_logro != "":
 			_dar_logro.rpc(nombre_logro)
 
 		SaveAndLoad.save_game()
+
+func _obtener_posicion_respawn() -> Vector3:
+	if is_instance_valid(punto_de_aparicion):
+		return punto_de_aparicion.global_position
+	push_warning("[Checkpoint] '%s' no tiene asignado 'punto_de_aparicion'. Usando posición del área." % name)
+	return global_position + Vector3(0.0, 0.5, 0.0)
+
 @rpc("authority", "call_local", "reliable")
 func _dar_logro(nombre: String) -> void:
 	if nombre != "":

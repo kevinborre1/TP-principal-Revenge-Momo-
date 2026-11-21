@@ -4,7 +4,8 @@ extends BotState
 enum RolBalsa { ARTILLERO, PILOTO }
 
 @export var rango_disparo_barriles: float = 25.0
-@export var tiempo_maximo_abordaje: float = 2.2
+@export var tiempo_maximo_abordaje: float = 0.85
+@export var distancia_abordaje_directo: float = 4.5
 
 var balsa: Node3D = null
 var rol_balsa: RolBalsa = RolBalsa.ARTILLERO
@@ -82,7 +83,8 @@ func physics_update(delta: float) -> void:
 		var destino_asiento := _obtener_destino_asiento()
 		var dist_horiz := Vector2(bot.global_position.x - destino_asiento.x, bot.global_position.z - destino_asiento.z).length()
 		
-		if dist_horiz <= 1.6 or _tiempo_intentando_subir >= tiempo_maximo_abordaje:
+		# Si está lejos (>4.5 m), cerca (<1.6 m) o la balsa está por arrancar, sube directo antes de zarpar
+		if dist_horiz <= 1.6 or dist_horiz > distancia_abordaje_directo or _tiempo_intentando_subir >= tiempo_maximo_abordaje:
 			_completar_abordaje(destino_asiento)
 		else:
 			bot.mover_hacia(destino_asiento, delta, true)
@@ -95,19 +97,26 @@ func physics_update(delta: float) -> void:
 func _obtener_destino_asiento() -> Vector3:
 	if balsa.has_method("obtener_asiento_companero"):
 		return balsa.obtener_asiento_companero()
-	return balsa.global_position + Vector3(0.75, 0.35, 0.35)
+	return balsa.to_global(Vector3(0.0, 0.65, 1.35))
 
 func _completar_abordaje(pos_asiento: Vector3) -> void:
 	_abordado = true
 	bot.velocity = Vector3.ZERO
 	
-	# Si ya subió caminando a la cubierta, conservamos su altura exacta sobre el piso de la balsa
-	var zona := balsa.get_node_or_null("ZonaCubierta") as Area3D
-	if is_instance_valid(zona) and zona.overlaps_body(bot):
-		bot.global_position.x = pos_asiento.x
-		bot.global_position.z = pos_asiento.z
-	else:
-		bot.global_position = pos_asiento
+	# Ajustamos la altura exacta sobre la cubierta de la balsa con un raycast vertical
+	var pos_final := pos_asiento
+	var espacio := bot.get_world_3d().direct_space_state
+	if espacio:
+		var query := PhysicsRayQueryParameters3D.create(
+			pos_asiento + Vector3(0.0, 2.0, 0.0),
+			pos_asiento - Vector3(0.0, 2.0, 0.0)
+		)
+		query.exclude = [bot.get_rid()]
+		var hit := espacio.intersect_ray(query)
+		if not hit.is_empty():
+			pos_final.y = hit.position.y + 0.05
+	
+	bot.global_position = pos_final
 	
 	if "pasajeros" in balsa and bot not in balsa.pasajeros:
 		balsa.pasajeros.append(bot)
@@ -115,7 +124,6 @@ func _completar_abordaje(pos_asiento: Vector3) -> void:
 	if rol_balsa == RolBalsa.PILOTO:
 		bot.prepare_for_raft()
 	else:
-		# Artillero va de pie sobre la cubierta apuntando con su arma, igual que un 2do jugador
 		bot.salir_de_balsa()
 		bot.equipar_arma(true)
 		if bot.animation and bot.animation.has_animation("Pistol Idle/mixamo_com"):

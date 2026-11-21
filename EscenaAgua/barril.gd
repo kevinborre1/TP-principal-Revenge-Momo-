@@ -89,23 +89,38 @@ func _destruir_barril() -> void:
 	_destruido = true
 	
 	reproducir_sfx_3d(SFX_BARRIL_CRASH)
-	
-	# 1. Desactivamos la colisión para que no choque mientras se encoge
 	$CollisionShape3D.set_deferred("disabled", true)
-
-	# 2. Animar la escala hasta achicarse a 0 en 0.15 segundos
-	var tween := create_tween()
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.15)
 	
-	# 3. Esperar a que termine la animación del Tween
-	await tween.finished
-
-	# 4. Eliminar el nodo contenedor o el barril
+	var mallas: Array[MeshInstance3D] = _obtener_mallas_visuales()
+	if not mallas.is_empty():
+		var tween := create_tween()
+		tween.set_parallel(true)
+		for malla in mallas:
+			tween.tween_property(malla, "scale", Vector3(0.001, 0.001, 0.001), 0.15)
+		await tween.finished
+	
 	var nodo_padre := get_parent()
 	if nodo_padre and _es_contenedor_barril(nodo_padre):
 		nodo_padre.queue_free()
 	else:
 		queue_free()
+
+func _obtener_mallas_visuales() -> Array[MeshInstance3D]:
+	var resultado: Array[MeshInstance3D] = []
+	var nodo_padre := get_parent()
+	
+	# Si el padre es el contenedor visual del barril (y no la raíz del nivel), buscamos sus mallas
+	if nodo_padre and _es_contenedor_barril(nodo_padre):
+		for n in nodo_padre.find_children("*", "MeshInstance3D", true, false):
+			if n is MeshInstance3D:
+				resultado.append(n as MeshInstance3D)
+	
+	if resultado.is_empty():
+		for n in find_children("*", "MeshInstance3D", true, false):
+			if n is MeshInstance3D:
+				resultado.append(n as MeshInstance3D)
+	
+	return resultado
 
 func _aplicar_color_rojo() -> void:
 	indestructible_revelado = true
