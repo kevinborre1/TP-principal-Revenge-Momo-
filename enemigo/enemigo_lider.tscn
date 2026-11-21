@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dqee0eyyrmxgu" path="res://enemigo/enemigo.gd" id="1_cf2af"]
 [ext_resource type="PackedScene" uid="uid://inrn40injq63" path="res://enemigo/animacionesLider/lider_modelo.fbx" id="2_78f42"]
+[ext_resource type="AudioStream" uid="uid://c7prduximulwq" path="res://enemigo/papa_lider_aparece.wav" id="2_sdugh"]
 [ext_resource type="AnimationLibrary" uid="uid://c8qjqm810c8ye" path="res://enemigo/animacionesLider/lider_ataque.fbx" id="3_76ta6"]
 [ext_resource type="Texture2D" uid="uid://khub06gn2v3m" path="res://enemigo/TexturasEnemigos/potatoTexture.png" id="3_nj4ql"]
+[ext_resource type="AudioStream" uid="uid://3lwnv1r7m67c" path="res://sonidos/papa_lider_muere.wav" id="3_oh84u"]
 [ext_resource type="AnimationLibrary" uid="uid://emnb0rnt6i44" path="res://enemigo/animacionesLider/lider_muerte.fbx" id="4_nj4ql"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtxyr"]
@@ -34,11 +36,13 @@ properties/2/replication_mode = 2
 transform = Transform3D(0.052633945, 0, 0.9986139, 0, 1, 0, -0.9986139, 0, 0.052633945, 0, 0, 0)
 script = ExtResource("1_cf2af")
 es_lider = true
+sonido_spawn = ExtResource("2_sdugh")
+sonido_muerte = ExtResource("3_oh84u")
 
 [node name="patato" parent="." unique_id=1464567162 instance=ExtResource("2_78f42")]
 transform = Transform3D(-1.1, 0, -9.685755e-08, 0, 1.2, 0, 9.685755e-08, 0, -1.1, 0.18301286, 0, 0.15189855)
 
-[node name="Skeleton3D" parent="patato/Armature" parent_id_path=PackedInt32Array(1464567162, 950225293) index="0" unique_id=1117390867]
+[node name="Skeleton3D" parent="patato/Armature" parent_id_path=PackedInt32Array(1464567162, 1009109544) index="0" unique_id=795599108]
 bones/0/position = Vector3(0.1427542, 0.78743666, -0.1126373)
 bones/0/rotation = Quaternion(0.02665045, 0.0047646486, 0.025775282, 0.99930114)
 bones/1/rotation = Quaternion(0.061731413, 0.02287704, 0.0034570538, 0.99782467)
@@ -87,10 +91,10 @@ bones/53/rotation = Quaternion(-0.74686205, 0.0423107, -0.18118642, 0.63841873)
 bones/54/rotation = Quaternion(0.8185483, 0.19969752, 0.20307598, 0.49885842)
 bones/55/rotation = Quaternion(0.30840632, 0.2644463, -0.08507123, 0.90978944)
 
-[node name="Икосфера" parent="patato/Armature/Skeleton3D" index="0" unique_id=918038558]
+[node name="Икосфера" parent="patato/Armature/Skeleton3D" index="0" unique_id=151376326]
 surface_material_override/0 = SubResource("StandardMaterial3D_wtxyr")
 
-[node name="AnimationPlayer" parent="patato" index="1" unique_id=808960231]
+[node name="AnimationPlayer" parent="patato" index="1" unique_id=1635264428]
 libraries/lider_ataque = ExtResource("3_76ta6")
 libraries/lider_muerte = ExtResource("4_nj4ql")
 

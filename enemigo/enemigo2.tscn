@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dqee0eyyrmxgu" path="res://enemigo/enemigo.gd" id="1_d7g0g"]
 [ext_resource type="PackedScene" uid="uid://ci3cpc6mu42h8" path="res://enemigo/animacionesPapitas/papitav1.glb" id="2_d7g0g"]
+[ext_resource type="AudioStream" uid="uid://d13y4g8tjfy1r" path="res://sonidos/pepita_aparecer.wav" id="2_rcyi7"]
+[ext_resource type="AudioStream" uid="uid://d1rpcvi0ax7uy" path="res://sonidos/pepita_morir.wav" id="3_qdr5y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsdri"]
 height = 1.543457
@@ -33,6 +35,8 @@ height = 1.8
 [node name="enemigo2" type="CharacterBody3D" unique_id=485862913 groups=["papitas"]]
 transform = Transform3D(-0.06557017, 0, 0.997848, 0, 1, 0, -0.997848, 0, -0.06557017, 0, 0, 0)
 script = ExtResource("1_d7g0g")
+sonido_spawn = ExtResource("2_rcyi7")
+sonido_muerte = ExtResource("3_qdr5y")
 
 [node name="papitas" parent="." unique_id=1279067515 instance=ExtResource("2_d7g0g")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)

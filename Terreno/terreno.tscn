@@ -1249,8 +1249,14 @@ uv1_scale = Vector3(3, 3, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
 size = Vector3(0.91296387, 5.1462097, 7.8789406)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhfc8"]
+size = Vector3(0.31201172, 5.529297, 8.370918)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_aui74"]
 size = Vector3(1, 4.9375, 7.5802917)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vicex"]
+size = Vector3(0.7171631, 1, 0.6818924)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lfkbx"]
 size = Vector3(0.15066528, 0.17510986, 0.18215942)
@@ -11098,30 +11104,38 @@ transform = Transform3D(45, 0, -1.1368684e-12, 0, 45, 0, -1.4779289e-12, 0, 45.0
 shape = SubResource("BoxShape3D_x47i8")
 debug_color = Color(0.8265024, 0.001577341, 0.95403486, 0.41960785)
 
-[node name="Puerta" type="AnimatableBody3D" parent="VictorBars/Interacciones VictorBars" unique_id=2014995360]
+[node name="PuertaBaño" type="Node3D" parent="VictorBars/Interacciones VictorBars" unique_id=2018272551]
 transform = Transform3D(-0.039382804, 0, 0.9992242, 0, 1, 0, -0.9992242, 0, -0.039382804, 53.473286, 1.1637187, 1232.6576)
+
+[node name="Puerta" type="AnimatableBody3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño" unique_id=2014995360]
 script = ExtResource("13_gf7y2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VictorBars/Interacciones VictorBars/Puerta" unique_id=127223575]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño/Puerta" unique_id=127223575]
 transform = Transform3D(0.99797416, 0, -0.06345853, 0, 1, 0, 0.06345815, 0, 0.9979801, -0.265625, 1.6754632, 0.9407234)
 mesh = SubResource("BoxMesh_vicex")
 surface_material_override/0 = SubResource("StandardMaterial3D_bulcj")
 
-[node name="OccluderInstance3D" type="OccluderInstance3D" parent="VictorBars/Interacciones VictorBars/Puerta/MeshInstance3D" unique_id=1482518149]
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño/Puerta/MeshInstance3D" unique_id=1482518149]
 occluder = ExtResource("55_vgqji")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/Puerta" unique_id=484100518]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño/Puerta" unique_id=484100518]
 transform = Transform3D(0.99798036, 0, -0.063458644, 0, 1, 0, 0.063458644, 0, 0.99798036, -0.868042, 2.0731049, 0.90395355)
 shape = SubResource("BoxShape3D_lfkbx")
 
-[node name="ZonaNicoAbrir" type="Area3D" parent="VictorBars/Interacciones VictorBars/Puerta" unique_id=462970855 node_paths=PackedStringArray("boton_para_nico", "boton_liberacion", "puerta")]
+[node name="YaPasoPuertaBaño" type="Area3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño" unique_id=413397832]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño/YaPasoPuertaBaño" unique_id=1771737937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475708, 0.86616945, 0.92594147)
+shape = SubResource("BoxShape3D_nhfc8")
+
+[node name="ZonaNicoAbrir" type="Area3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño" unique_id=462970855 node_paths=PackedStringArray("boton_para_nico", "boton_liberacion", "puerta")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8104248, 0, -0.03194046)
 script = ExtResource("56_vgqji")
 boton_para_nico = NodePath("../../Boton2")
 boton_liberacion = NodePath("../../Boton")
-puerta = NodePath("..")
+puerta = NodePath("../Puerta")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/Puerta/ZonaNicoAbrir" unique_id=806581558]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño/ZonaNicoAbrir" unique_id=806581558]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9411621, 1.96875, 1.1316452)
 shape = SubResource("BoxShape3D_aui74")
 
@@ -11139,10 +11153,10 @@ mesh = SubResource("BoxMesh_vicex")
 surface_material_override/0 = SubResource("StandardMaterial3D_bulcj")
 
 [node name="Boton" parent="VictorBars/Interacciones VictorBars" unique_id=1661296307 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.02181, 0.0030641556, 1231.3691)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.38567, 0.0030641556, 1228.2744)
 script = ExtResource("15_bmrm7")
 id_boton = 1
-puerta_destino = NodePath("../Puerta")
+puerta_destino = NodePath("../PuertaBaño/Puerta")
 
 [node name="Boton3" parent="VictorBars/Interacciones VictorBars" unique_id=2042099905 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.88409, 0.0030641556, 1231.3999)
@@ -11152,7 +11166,18 @@ puerta_destino = NodePath("../Cortina2")
 [node name="Boton2" parent="VictorBars/Interacciones VictorBars" unique_id=1599931534 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.785, -0.003, 1234.86)
 script = ExtResource("15_bmrm7")
-puerta_destino = NodePath("../Puerta")
+puerta_destino = NodePath("../PuertaBaño/Puerta")
+
+[node name="AvisoParaNicoBot" type="Area3D" parent="VictorBars/Interacciones VictorBars/Boton2" unique_id=1471702391 node_paths=PackedStringArray("boton_para_nico", "zona_cruce", "puerta")]
+script = ExtResource("56_vgqji")
+boton_para_nico = NodePath("../../Boton")
+zona_cruce = NodePath("../../PuertaBaño/YaPasoPuertaBaño")
+puerta = NodePath("../../PuertaBaño/Puerta")
+tipo_cooperacion = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/Boton2/AvisoParaNicoBot" unique_id=473516126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16278076, 0, 0.09887695)
+shape = SubResource("BoxShape3D_vicex")
 
 [node name="Buttom" parent="VictorBars/Interacciones VictorBars" unique_id=377298075 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1217.951)
@@ -13113,6 +13138,7 @@ transform = Transform3D(1.0572433, 0, 0, 0, 1.0572433, 0, 0, 0, 1.0572433, 0.188
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/asensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0" parent_id_path=PackedInt32Array(145607892, 2063967092) index="1" unique_id=692582646]
+
 transform = Transform3D(-4.371137e-08, 2.6654842, -4.3711392e-08, -6.352747e-22, -1.16511984e-07, -0.9999993, -0.9999993, -1.16511984e-07, 1.9106842e-15, -0.07421875, 0.020961761, 3.4312952)
 mesh = SubResource("BoxMesh_pruwi")
 

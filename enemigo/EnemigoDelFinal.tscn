@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cipjpkg3kycwe" path="res://enemigo/enemigo_del_final.gd" id="1_rhtwc"]
 [ext_resource type="Texture2D" uid="uid://c15vlw62vxeqm" path="res://enemigo/momo_chicken/momo_chicken_Image_0.png" id="2_5jiqu"]
+[ext_resource type="AudioStream" uid="uid://cagvqxvhumyss" path="res://sonidos/chicken_momo.wav" id="2_rhtwc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgbmj"]
 resource_name = "Momo"
@@ -404,7 +405,11 @@ properties/1/replication_mode = 1
 
 [node name="EnemigoDelFinal" type="CharacterBody3D" unique_id=1142631827]
 script = ExtResource("1_rhtwc")
+<<<<<<< HEAD
 radio_contacto = 3.0
+=======
+sonido_spawn = ExtResource("2_rhtwc")
+>>>>>>> db790bdf4347676cf54483f0a2471762ce2c729f
 
 [node name="momo_chicken" type="Node3D" parent="." unique_id=294295265]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

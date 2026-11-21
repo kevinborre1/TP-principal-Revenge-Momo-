@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://byyvjj6apormy"]
+
+[ext_resource type="Script" uid="uid://jb384jkk5r40" path="res://sonidos/music_manager.gd" id="1_qtpi3"]
+[ext_resource type="AudioStream" uid="uid://brl0rt65lwh80" path="res://sonidos/MusicaPapaLider.ogg" id="2_060x4"]
+
+[node name="MusicManager" type="Node" unique_id=426408770]
+script = ExtResource("1_qtpi3")
+music_papas = ExtResource("2_060x4")
+
+[node name="PlayerA" type="AudioStreamPlayer" parent="." unique_id=1238487544]
+
+[node name="PlayerB" type="AudioStreamPlayer" parent="." unique_id=40618245]
