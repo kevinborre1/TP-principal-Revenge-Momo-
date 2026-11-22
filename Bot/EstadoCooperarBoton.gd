@@ -9,7 +9,10 @@ enum TipoCooperacion {
 }
 
 @export var tolerancia_llegada: float = 0.45
-@export var distancia_abandono: float = 50.0#SI me alejo eso metros deja de estar enfocado en hacer la accion con los botones
+@export var tolerancia_boton_jefe: float = 0.9
+@export var distancia_abandono: float = 50.0
+@export var rango_defensa_boton: float = 8.5
+@export var grupo_enemigos: String = "Enemigos"
 
 var tipo: TipoCooperacion = TipoCooperacion.MANTENER_HASTA_CRUCE
 var boton_objetivo: Node3D = null
@@ -35,19 +38,19 @@ func enter(datos: Dictionary = {}) -> void:
 	estado_siguiente = datos.get("estado_siguiente", "Seguir")
 	datos_siguiente = datos.get("datos_siguiente", {})
 	
-	# Si no se pasó un Marker3D separado, el destino es el propio botón (botones de piso)
 	if not is_instance_valid(punto_parada):
 		punto_parada = boton_objetivo
 	
 	_ya_piso_boton = false
 	_cooldown_interaccion = 0.0
 	
-	# Suscripción al botón del otro lado (modo MANTENER_HASTA_CRUCE)
+	# En pelea de jefe mantiene el arma lista desde que empieza a correr hacia el botón
+	bot.equipar_arma(tipo == TipoCooperacion.DESACTIVAR_ESCUDO_JEFE)
+	
 	if is_instance_valid(boton_liberacion) and boton_liberacion.has_signal("activado"):
 		if not boton_liberacion.activado.is_connected(_on_boton_liberacion_activado):
 			boton_liberacion.activado.connect(_on_boton_liberacion_activado)
 	
-	# Suscripción a la zona de cruce del otro lado de la puerta (modo CRUZAR_Y_MANTENER)
 	if tipo == TipoCooperacion.CRUZAR_Y_MANTENER and is_instance_valid(zona_cruce):
 		if not zona_cruce.body_entered.is_connected(_on_zona_cruce_body_entered):
 			zona_cruce.body_entered.connect(_on_zona_cruce_body_entered)
@@ -61,6 +64,7 @@ func exit() -> void:
 		if zona_cruce.body_entered.is_connected(_on_zona_cruce_body_entered):
 			zona_cruce.body_entered.disconnect(_on_zona_cruce_body_entered)
 	
+	bot.equipar_arma(false)
 	boton_liberacion = null
 	punto_parada = null
 	boton_objetivo = null
@@ -80,33 +84,115 @@ func physics_update(delta: float) -> void:
 		state_machine.cambiar_estado("Seguir")
 		return
 	
-	# Caso botón de piso (sin punto_parada separado): frena apenas entra en el Area3D
-	if punto_parada == boton_objetivo and boton_objetivo is Area3D and boton_objetivo.overlaps_body(bot):
-		_ya_piso_boton = true
-		bot.detener_movimiento(delta)
-		bot.rotar_hacia(boton_objetivo.global_position, delta)
-		_intentar_interactuar_boton()
-		return
+	if _esta_sobre_boton():
+		_sostener_posicion_en_boton(delta)
+	else:
+		_desplazar_hacia_boton(delta)
+
+# --- FASES DE MOVIMIENTO Y ANCLAJE ---
+
+func _desplazar_hacia_boton(delta: float) -> void:
+	_ya_piso_boton = false
+	var es_boton_jefe: bool = (tipo == TipoCooperacion.DESACTIVAR_ESCUDO_JEFE)
+	bot.equipar_arma(es_boton_jefe)
+	
+	if es_boton_jefe:
+		_reasignar_si_jugador_ocupo_boton()
+	
+	var correr: bool = (es_boton_jefe or tipo == TipoCooperacion.CRUZAR_Y_MANTENER)
+	bot.mover_hacia(punto_parada.global_position, delta, correr)
+	
+	# Dispara en movimiento a papitas cercanas sin frenar ni desviarse del botón
+	if es_boton_jefe:
+		_disparar_amenaza_cercana(delta)
+
+func _sostener_posicion_en_boton(delta: float) -> void:
+	_ya_piso_boton = true
+	var es_boton_jefe: bool = (tipo == TipoCooperacion.DESACTIVAR_ESCUDO_JEFE)
+	bot.detener_movimiento(delta, es_boton_jefe)
+	_intentar_interactuar_boton()
+	
+	if es_boton_jefe:
+		bot.equipar_arma(true)
+		if _disparar_amenaza_cercana(delta):
+			return
+		if is_instance_valid(nodo_puerta_o_jefe) and nodo_puerta_o_jefe is Node3D:
+			bot.rotar_hacia(obtener_posicion_jefe(nodo_puerta_o_jefe as Node3D), delta)
+			return
+	
+	bot.rotar_hacia(boton_objetivo.global_position, delta)
+
+func _esta_sobre_boton() -> bool:
+	if punto_parada == boton_objetivo:
+		if boton_objetivo is Area3D and (boton_objetivo as Area3D).overlaps_body(bot):
+			return true
+		for area in boton_objetivo.find_children("*", "Area3D", true, false):
+			if (area as Area3D).overlaps_body(bot):
+				return true
 	
 	var pos_bot := Vector2(bot.global_position.x, bot.global_position.z)
 	var pos_destino := Vector2(punto_parada.global_position.x, punto_parada.global_position.z)
-	var dist_horizontal := pos_bot.distance_to(pos_destino)
+	var radio_valido: float = tolerancia_boton_jefe if tipo == TipoCooperacion.DESACTIVAR_ESCUDO_JEFE else tolerancia_llegada
+	return pos_bot.distance_to(pos_destino) <= radio_valido
+
+# --- DEFENSA EN RUTA Y SOBRE EL BOTÓN ---
+
+func _disparar_amenaza_cercana(delta: float) -> bool:
+	var amenaza: Node3D = _buscar_enemigo_cercano_al_boton(rango_defensa_boton)
+	if is_instance_valid(amenaza):
+		bot.disparar_a(amenaza, delta)
+		return true
+	return false
+
+func _buscar_enemigo_cercano_al_boton(rango_max: float) -> Node3D:
+	var mejor: Node3D = null
+	var mejor_dist: float = rango_max
 	
-	var correr := (tipo == TipoCooperacion.DESACTIVAR_ESCUDO_JEFE or tipo == TipoCooperacion.CRUZAR_Y_MANTENER)
+	for enemigo in get_tree().get_nodes_in_group(grupo_enemigos):
+		if not (enemigo is Node3D) or not _es_amenaza_valida(enemigo as Node3D):
+			continue
+		var d: float = bot.global_position.distance_to((enemigo as Node3D).global_position)
+		if d < mejor_dist:
+			mejor_dist = d
+			mejor = enemigo as Node3D
 	
-	if dist_horizontal > tolerancia_llegada:
-		bot.mover_hacia(punto_parada.global_position, delta, correr)
-	else:
-		_ya_piso_boton = true
-		bot.detener_movimiento(delta)
-		bot.rotar_hacia(boton_objetivo.global_position, delta)
-		_intentar_interactuar_boton()
+	return mejor
+
+func _es_amenaza_valida(enemigo: Node3D) -> bool:
+	if not is_instance_valid(enemigo):
+		return false
+	if enemigo.get("activo") != true or enemigo.get("muriendo") == true:
+		return false
+	if enemigo.get("solo_danio_por_pantallas") == true:
+		return false
+	
+	var tiene_escudo: bool = bool(enemigo.get("escudo_activo"))
+	match bot.rol:
+		"rompe_escudo":
+			return tiene_escudo
+		"letal":
+			return not tiene_escudo
+		_:
+			return true
+
+# --- COOPERACIÓN Y FINALIZACIÓN ---
+
+func _reasignar_si_jugador_ocupo_boton() -> void:
+	var jugador_principal: Node3D = bot.obtener_jugador_principal()
+	if not bot.boton_ocupado_por_jugador(boton_objetivo, jugador_principal):
+		return
+	
+	var alternativo: Node3D = bot.obtener_boton_escudo_libre("BotonEscudoJefe", boton_objetivo)
+	if is_instance_valid(alternativo) and alternativo != boton_objetivo:
+		boton_objetivo = alternativo
+		punto_parada = alternativo
+		if datos_siguiente.has("boton_escudo"):
+			datos_siguiente["boton_escudo"] = alternativo
 
 func _intentar_interactuar_boton() -> void:
 	if _cooldown_interaccion > 0.0 or not is_instance_valid(boton_objetivo):
 		return
 	
-	# Compatible con BotonPuerta (esta_activado) y otros botones (esta_activo)
 	if boton_objetivo.get("esta_activado") == true or boton_objetivo.get("esta_activo") == true:
 		return
 	
@@ -128,9 +214,10 @@ func _tarea_completada() -> bool:
 	if condicion_salida.is_valid():
 		return condicion_salida.call()
 	
+	if tipo == TipoCooperacion.DESACTIVAR_ESCUDO_JEFE:
+		return _escudo_jefe_desactivado()
+	
 	if is_instance_valid(nodo_puerta_o_jefe):
-		if tipo == TipoCooperacion.DESACTIVAR_ESCUDO_JEFE and "escudo_activo" in nodo_puerta_o_jefe:
-			return not nodo_puerta_o_jefe.escudo_activo
 		if tipo == TipoCooperacion.SIMULTANEO and "esta_abierta" in nodo_puerta_o_jefe:
 			return nodo_puerta_o_jefe.esta_abierta
 	
@@ -143,9 +230,21 @@ func _tarea_completada() -> bool:
 			return zona_cruce.overlaps_body(jugador)
 		return _ya_piso_boton and bot.global_position.distance_to(jugador.global_position) < 2.5
 	
-	# Si te arrepentís y te alejás del puzzle sin cruzar, Nico suelta el botón
 	if distancia_abandono > 0.0 and is_instance_valid(boton_objetivo):
 		if jugador.global_position.distance_to(boton_objetivo.global_position) > distancia_abandono:
 			return true
 	
+	return false
+
+func _escudo_jefe_desactivado() -> bool:
+	if not is_instance_valid(nodo_puerta_o_jefe):
+		return true
+	if "fase" in nodo_puerta_o_jefe and int(nodo_puerta_o_jefe.get("fase")) == 3:
+		return true
+	if nodo_puerta_o_jefe.get("muriendo") == true:
+		return true
+	if "campo_activo" in nodo_puerta_o_jefe:
+		return not bool(nodo_puerta_o_jefe.get("campo_activo"))
+	if "escudo_activo" in nodo_puerta_o_jefe:
+		return not bool(nodo_puerta_o_jefe.get("escudo_activo"))
 	return false
