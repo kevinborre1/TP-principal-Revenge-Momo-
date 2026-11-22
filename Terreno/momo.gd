@@ -19,7 +19,7 @@ enum Fase { UNO, DOS, TRES, MUERTO }
 
 @export_group("Campo de fuerza (fase 2)")
 @export var campo_fuerza: Node3D          # lo visual: se ve mientras el campo está activo
-@export var duracion_campo_caido: float = 8.0
+@export var duracion_campo_caido: float = 10.0
 # Valores de cada fase: editá los números a gusto
 const CONFIG := {
 	Fase.UNO:  {"ladrillazo": 2.0, "papas": false, "cada_papa": 0.0, "vel_papas": 0.0, "vel_onda": 3.0, "cada_onda": 8.0},
@@ -47,19 +47,20 @@ var _timer_onda: Timer
 
 func _ready() -> void:
 	vida = vida_max
+	add_to_group("JefeFinal")
 	_mostrar_campo(false)
 	if not _soy_host():
 		return  # solo el host maneja la lógica del jefe
-	
+
 	_timer_papas = Timer.new()
 	_timer_papas.timeout.connect(_spawnear_papa)
 	add_child(_timer_papas)
-	
+
 	_timer_campo = Timer.new()
 	_timer_campo.one_shot = true
 	_timer_campo.timeout.connect(_subir_campo)
 	add_child(_timer_campo)
-	
+
 	_timer_onda = Timer.new()
 	_timer_onda.timeout.connect(_lanzar_onda)
 	add_child(_timer_onda)
@@ -78,7 +79,7 @@ func _daniar(cantidad: int) -> void:
 	print("Momo recibió daño: ", cantidad, " | vida: ", vida, " | campo: ", campo_activo)
 	if not _soy_host() or fase == Fase.MUERTO or campo_activo:
 		return
-	
+
 	vida = maxi(vida - cantidad, 0)
 	var nueva_fase := _fase_segun_vida(vida)
 	if nueva_fase != fase:
@@ -104,11 +105,11 @@ func _cambiar_fase(nueva: int) -> void:
 	_sincronizar.rpc(vida, nueva, false)
 	if nueva == Fase.DOS:
 		_subir_campo()
-	
+
 func _aplicar_config(f: int) -> void:
 	_timer_campo.stop()
 	_botones = {1: false, 2: false}
-	
+
 	if f == Fase.MUERTO:
 		_timer_onda.stop()
 		_timer_papas.stop()
@@ -135,7 +136,7 @@ func _sincronizar(vida_nueva: int, fase_nueva: int, campo: bool) -> void:
 	fase = fase_nueva
 	campo_activo = campo
 	_mostrar_campo(campo)
-	
+
 	vida_cambiada.emit(vida, vida_max)
 	if fase != fase_anterior:
 		fase_cambiada.emit(fase)
@@ -149,7 +150,7 @@ func _mostrar_campo(activo: bool) -> void:
 	if campo_fuerza == null:
 		return
 	campo_fuerza.visible = activo
-	
+
 	if campo_fuerza is CollisionShape3D:
 		campo_fuerza.set_deferred("disabled", not activo)
 	for c in campo_fuerza.find_children("*", "CollisionShape3D", true, false):
@@ -200,11 +201,11 @@ func _sacar_jugadores_del_campo() -> void:
 	if forma == null or forma.shape == null:
 		print("  -> el campo no tiene una CollisionShape3D con forma")
 		return
-	
+
 	# Caja que rodea al campo, en coordenadas globales
 	var caja: AABB = forma.global_transform * forma.shape.get_debug_mesh().get_aabb()
 	print("  -> caja del campo: ", caja)
-	
+
 	for jugador in get_tree().get_nodes_in_group("Jugador"):
 		var p: Vector3 = jugador.global_position
 		var adentro := (
@@ -215,7 +216,7 @@ func _sacar_jugadores_del_campo() -> void:
 		print("  -> ", jugador.name, " en ", p, " | adentro: ", adentro)
 		if not adentro:
 			continue
-		
+
 		# Desplazar al jugador únicamente hacia Z positiva
 		var destino: Vector3 = p
 		destino.z = caja.end.z + 1.5
@@ -273,22 +274,22 @@ func velocidad_onda() -> float:
 	if fase == Fase.MUERTO:
 		return 0.0
 	return CONFIG[fase]["vel_onda"]
-	
+
 func _desaparecer() -> void:
 	# Oculta a Momo y a todo lo que cuelga de él
 	visible = false
-	
+
 	# Apaga todas las formas de colisión
 	for c in find_children("*", "CollisionShape3D", true, false):
 		c.set_deferred("disabled", true)
 	for c in find_children("*", "CollisionPolygon3D", true, false):
 		c.set_deferred("disabled", true)
-	
+
 	# Por las dudas, también saca las capas/máscaras de los cuerpos y áreas
 	for c in find_children("*", "CollisionObject3D", true, false):
 		c.set_deferred("collision_layer", 0)
 		c.set_deferred("collision_mask", 0)
-		
+
 func _cargar_muerte() -> void:
 	# En el host se marca ya mismo, así no acepta daño mientras tanto
 	fase = Fase.MUERTO
@@ -309,7 +310,7 @@ func _aplicar_muerte_guardada() -> void:
 	vida_cambiada.emit(vida, vida_max)
 	fase_cambiada.emit(fase)
 	derrotado.emit()
-	
+
 func _reproducir_sonido_muerte() -> void:
 	if sonido_muerte == null:
 		return
@@ -319,3 +320,30 @@ func _reproducir_sonido_muerte() -> void:
 	contenedor.add_child(player_2d)
 	player_2d.play()
 	player_2d.finished.connect(player_2d.queue_free)
+	
+# --- CONSULTAS PARA IA Y COMBATE ---
+
+# --- CONSULTAS PARA LA IA DEL BOT ---
+
+func esta_en_combate() -> bool:
+	if fase == Fase.MUERTO or not visible:
+		return false
+	if is_instance_valid(zona_ataques) and "jugadores_en_zona" in zona_ataques:
+		var en_zona: Array = zona_ataques.get("jugadores_en_zona")
+		if not en_zona.is_empty():
+			return true
+	var centro := obtener_centro_real()
+	var radio_arena := 70.0 if (fase == Fase.DOS and campo_activo) else 60.0
+	for j in get_tree().get_nodes_in_group("Jugador"):
+		if j is Node3D and is_instance_valid(j):
+			if (j as Node3D).global_position.distance_to(centro) <= radio_arena:
+				return true
+	return false
+
+func obtener_centro_real() -> Vector3:
+	if is_instance_valid(punto_onda):
+		return punto_onda.global_position
+	var fisico := get_node_or_null("Fisico") as Node3D
+	if is_instance_valid(fisico):
+		return fisico.global_position
+	return global_position
