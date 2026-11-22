@@ -26,12 +26,6 @@ const SFX_DISPARO_RESPALDO: AudioStream = preload("res://sonidos/disparo_nerf.wa
 @onready var modelo: Node3D = get_node_or_null("Walk (1)")
 @onready var animation: AnimationPlayer = find_child("AnimationPlayer", true, false)
 
-# Agregá estas variables en BotNico.gd
-@export var velocidad_salto_onda: float = 4.5
-@export var margen_deteccion_onda: float = 1.4
-@export var factor_esquive_ladrillo: float = 1.25
-var _cooldown_salto_onda: float = 0.0
-
 var jugador_principal: Node3D = null
 var salud_actual: int = 100
 var muerto: bool = false
@@ -87,34 +81,6 @@ func obtener_jugador_principal() -> Node3D:
 			return jugador_principal
 	return null
 
-func obtener_boton_escudo_libre(grupo: String = "BotonEscudoJefe", boton_a_evitar: Node3D = null) -> Node3D:
-	var candidatos: Array[Node3D] = []
-	for nodo in get_tree().get_nodes_in_group(grupo):
-		if nodo is Node3D and is_instance_valid(nodo) and nodo != boton_a_evitar:
-			candidatos.append(nodo as Node3D)
-	
-	if candidatos.is_empty():
-		return boton_a_evitar
-	
-	var jugador: Node3D = obtener_jugador_principal()
-	var libres: Array[Node3D] = []
-	for btn in candidatos:
-		if not boton_ocupado_por_jugador(btn, jugador):
-			libres.append(btn)
-	
-	return libres.pick_random() if not libres.is_empty() else candidatos.pick_random()
-
-func boton_ocupado_por_jugador(boton: Node3D, jugador: Node3D) -> bool:
-	if not is_instance_valid(jugador):
-		return false
-	if boton is Area3D and (boton as Area3D).overlaps_body(jugador):
-		return true
-	var dist_xz := Vector2(
-		boton.global_position.x - jugador.global_position.x,
-		boton.global_position.z - jugador.global_position.z
-	).length()
-	return dist_xz < 1.3
-
 # --- GESTIÓN DEL ARMA DEL COMPAÑERO ---
 
 func _inicializar_arma() -> void:
@@ -157,14 +123,14 @@ func equipar_arma(activa: bool) -> void:
 
 # --- SALUD, DAÑO, MUERTE Y RESPAWN (Contrato compatible con Player y Ahogamiento) ---
 
-func heridoPorEnemigo(danio: float = 10.0) -> void:
-	_recibir_danio_red(int(roundi(danio)))
+func heridoPorEnemigo(danio: int = 10) -> void:
+	_recibir_danio_red(danio)
 
 @rpc("any_peer", "call_local", "reliable")
 func _recibir_danio_red(danio: int) -> void:
 	if muerto or controles_bloqueados:
 		return
-	print("[BotNico] Daño: -", danio, " | Salud: ", salud_actual, " | Desde: ", get_stack()[1].get("source", "").get_file(), ":", get_stack()[1].get("line", 0))
+	
 	salud_actual = max(0, salud_actual - danio)
 	cambioSalud.emit()
 	if salud_actual <= 0:
@@ -173,7 +139,7 @@ func _recibir_danio_red(danio: int) -> void:
 func _morir() -> void:
 	if muerto:
 		return
-	print("Murio BotNico")
+	
 	muerto = true
 	equipar_arma(false)
 	velocity = Vector3.ZERO
@@ -226,13 +192,6 @@ func respawnear() -> void:
 	if state_machine:
 		state_machine.cambiar_estado("Seguir")
 
-@rpc("any_peer", "call_local", "reliable")
-func mover_a(destino: Vector3) -> void:
-	velocity = Vector3.ZERO
-	_velocidad_empuje = Vector3.ZERO
-	global_position = destino
-	_reiniciar_navegacion()
-
 func _reiniciar_navegacion() -> void:
 	_timer_nav = 0.0
 	_tiempo_atascado = 0.0
@@ -275,8 +234,6 @@ func bloquear_controles(bloquear: bool) -> void:
 
 # --- API DE MOVIMIENTO Y ACCIONES (usada por todos los estados - DRY) ---
 
-# --- API DE MOVIMIENTO Y ACCIONES (usada por todos los estados - DRY) ---
-
 func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:
 	if muerto:
 		return
@@ -311,21 +268,10 @@ func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:
 		detener_movimiento(delta)
 		return
 	
-	_ejecutar_desplazamiento(delta, true)
-	_intentar_subir_escalon()
+	_aplicar_empuje_externo(delta)
+	move_and_slide()
 	_actualizar_animacion(correr)
 
-func _intentar_subir_escalon() -> void:
-	if not is_on_floor() or not is_on_wall():
-		return
-	# Solo impulsa si realmente está intentando avanzar horizontalmente
-	if Vector2(velocity.x, velocity.z).length() < 0.2:
-		return
-	var normal_pared := get_wall_normal()
-	# Solo actúa frente a bordes verticales (escalones), no en rampas ya caminables
-	if absf(normal_pared.y) < 0.2:
-		velocity.y = 3.8
-		
 func mover_tactico(objetivo_pos: Vector3, direccion_movimiento: Vector3, delta: float) -> void:
 	if muerto:
 		return
@@ -343,7 +289,8 @@ func mover_tactico(objetivo_pos: Vector3, direccion_movimiento: Vector3, delta: 
 		velocity.z = move_toward(velocity.z, 0.0, velocidad_caminar * 4.0 * delta)
 	
 	rotar_hacia(objetivo_pos, delta)
-	_ejecutar_desplazamiento(delta, true)
+	_aplicar_empuje_externo(delta)
+	move_and_slide()
 	_actualizar_animacion(false)
 
 func _calcular_siguiente_punto(destino: Vector3) -> Vector3:
@@ -377,23 +324,16 @@ func _calcular_siguiente_punto(destino: Vector3) -> Vector3:
 	
 	return siguiente
 
-func detener_movimiento(delta: float, mantener_posicion: bool = false) -> void:
+func detener_movimiento(delta: float) -> void:
 	if muerto:
 		return
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	velocity.x = move_toward(velocity.x, 0.0, velocidad_caminar * 4.0 * delta)
 	velocity.z = move_toward(velocity.z, 0.0, velocidad_caminar * 4.0 * delta)
-	_ejecutar_desplazamiento(delta, not mantener_posicion)
-	_actualizar_animacion(false)
-
-func _ejecutar_desplazamiento(delta: float, permitir_empuje_lateral: bool = true) -> void:
-	var esquive: Vector3 = esquivar_peligros_jefe(delta)
-	if permitir_empuje_lateral and esquive.length_squared() > 0.001:
-		velocity.x += esquive.x
-		velocity.z += esquive.z
 	_aplicar_empuje_externo(delta)
 	move_and_slide()
+	_actualizar_animacion(false)
 
 func rotar_hacia(objetivo_pos: Vector3, delta: float) -> void:
 	var dir := objetivo_pos - global_position
@@ -407,16 +347,13 @@ func rotar_hacia(objetivo_pos: Vector3, delta: float) -> void:
 func disparar_a(objetivo: Node3D, delta: float, offset_altura: float = 0.75) -> bool:
 	if muerto or not is_instance_valid(objetivo):
 		return false
-	
-	var blanco: Vector3 = _calcular_punto_impacto(objetivo, offset_altura)
-	rotar_hacia(blanco, delta)
+	rotar_hacia(objetivo.global_position, delta)
 	
 	if _cooldown_disparo > 0.0:
 		return false
 	_cooldown_disparo = cadencia_disparo
 	
-	var dist := snappedf(global_position.distance_to(blanco), 0.1)
-	print("[BotNico] Disparando a: ", objetivo.name, " | Blanco: ", blanco, " | Dist: ", dist, "m")
+	var blanco := objetivo.global_position + Vector3(0.0, offset_altura, 0.0)
 	
 	if is_instance_valid(_arma_instancia) and _arma_instancia.has_method("disparar_desde_ia"):
 		_arma_instancia.disparar_desde_ia(blanco, rol)
@@ -430,11 +367,6 @@ func disparar_a(objetivo: Node3D, delta: float, offset_altura: float = 0.75) -> 
 		bala.set_tipo(rol)
 		_reproducir_sonido_respaldo()
 	return true
-
-func _calcular_punto_impacto(objetivo: Node3D, offset_defecto: float) -> Vector3:
-	if objetivo.has_method("obtener_centro_real"):
-		return objetivo.obtener_centro_real() + Vector3(0.0, 1.8, 0.0)
-	return objetivo.global_position + Vector3(0.0, offset_defecto, 0.0)
 
 func _reproducir_sonido_respaldo() -> void:
 	var player_3d := AudioStreamPlayer3D.new()
@@ -464,6 +396,7 @@ func _actualizar_animacion(corriendo: bool) -> void:
 			anim_quieto = "Pistol Idle/mixamo_com"
 		if animation.has_animation(anim_quieto) and animation.current_animation != anim_quieto:
 			animation.play(anim_quieto, 0.25)
+
 # --- COMPATIBILIDAD CON TUS SCRIPTS ACTUALES ---
 
 func cambiar_estado(nombre: String, datos: Dictionary = {}) -> void:
@@ -487,41 +420,3 @@ func prepare_for_raft() -> void:
 func salir_de_balsa() -> void:
 	if modelo:
 		modelo.position.y = 0.0
-		
-func esquivar_peligros_jefe(delta: float) -> Vector3:
-	_cooldown_salto_onda = maxf(0.0, _cooldown_salto_onda - delta)
-	var empuje_lateral := Vector3.ZERO
-	var escena_actual := get_tree().current_scene
-	if escena_actual == null:
-		return empuje_lateral
-
-	for nodo in escena_actual.get_children():
-		if not is_instance_valid(nodo) or not (nodo is Node3D):
-			continue
-		var n3d := nodo as Node3D
-
-		# 1. Onda expansiva: en OndaExpansiva crece "_radio" y el anillo está en [ _radio - ancho, _radio ]
-		if "_radio" in n3d and "ancho" in n3d:
-			var radio_actual: float = float(n3d.get("_radio"))
-			var ancho_anillo: float = float(n3d.get("ancho"))
-			var altura_p: float = float(n3d.get("altura_peligro")) if "altura_peligro" in n3d else 0.1
-			var dist_xz := Vector2(global_position.x - n3d.global_position.x, global_position.z - n3d.global_position.z).length()
-			var borde_cercano := radio_actual - ancho_anillo
-			# Salta cuando el anillo está por alcanzarlo o cruzándolo y está a ras de piso
-			if _cooldown_salto_onda <= 0.0 and is_on_floor():
-				if dist_xz >= borde_cercano - margen_deteccion_onda and dist_xz <= radio_actual + 0.6:
-					if global_position.y - n3d.global_position.y < altura_p + 0.35:
-						velocity.y = velocidad_salto_onda
-						_cooldown_salto_onda = 0.45
-
-		# 2. Zona de ladrillazo: tiene "radio" y "retraso" (o "dano") y está en el piso
-		if "radio" in n3d and ("retraso" in n3d or "dano" in n3d):
-			var radio_zona: float = float(n3d.get("radio"))
-			var desde_centro := global_position - n3d.global_position
-			desde_centro.y = 0.0
-			var dist_zona := desde_centro.length()
-			if dist_zona < radio_zona + 0.6:
-				var dir_huida := desde_centro.normalized() if dist_zona > 0.01 else Vector3.RIGHT
-				empuje_lateral += dir_huida * factor_esquive_ladrillo
-
-	return empuje_lateral

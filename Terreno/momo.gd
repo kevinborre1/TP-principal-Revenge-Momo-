@@ -19,7 +19,7 @@ enum Fase { UNO, DOS, TRES, MUERTO }
 
 @export_group("Campo de fuerza (fase 2)")
 @export var campo_fuerza: Node3D          # lo visual: se ve mientras el campo está activo
-@export var duracion_campo_caido: float = 10.0
+@export var duracion_campo_caido: float = 8.0
 # Valores de cada fase: editá los números a gusto
 const CONFIG := {
 	Fase.UNO:  {"ladrillazo": 2.0, "papas": false, "cada_papa": 0.0, "vel_papas": 0.0, "vel_onda": 3.0, "cada_onda": 8.0},
@@ -47,7 +47,6 @@ var _timer_onda: Timer
 
 func _ready() -> void:
 	vida = vida_max
-	add_to_group("JefeFinal")
 	_mostrar_campo(false)
 	if not _soy_host():
 		return  # solo el host maneja la lógica del jefe
@@ -320,30 +319,3 @@ func _reproducir_sonido_muerte() -> void:
 	contenedor.add_child(player_2d)
 	player_2d.play()
 	player_2d.finished.connect(player_2d.queue_free)
-	
-# --- CONSULTAS PARA IA Y COMBATE ---
-
-# --- CONSULTAS PARA LA IA DEL BOT ---
-
-func esta_en_combate() -> bool:
-	if fase == Fase.MUERTO or not visible:
-		return false
-	if is_instance_valid(zona_ataques) and "jugadores_en_zona" in zona_ataques:
-		var en_zona: Array = zona_ataques.get("jugadores_en_zona")
-		if not en_zona.is_empty():
-			return true
-	var centro := obtener_centro_real()
-	var radio_arena := 70.0 if (fase == Fase.DOS and campo_activo) else 60.0
-	for j in get_tree().get_nodes_in_group("Jugador"):
-		if j is Node3D and is_instance_valid(j):
-			if (j as Node3D).global_position.distance_to(centro) <= radio_arena:
-				return true
-	return false
-
-func obtener_centro_real() -> Vector3:
-	if is_instance_valid(punto_onda):
-		return punto_onda.global_position
-	var fisico := get_node_or_null("Fisico") as Node3D
-	if is_instance_valid(fisico):
-		return fisico.global_position
-	return global_position

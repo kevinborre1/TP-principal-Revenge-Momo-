@@ -5,12 +5,11 @@ extends CharacterBody3D
 ## false = arranca apagado y lo activa la zona (Area3D). true = arranca activo (para probar)
 @export var activo_al_inicio: bool = false
 ## Daño que le hace al jugador en cada golpe
-@export var danio: int = 110
+@export var danio: float = 100.0
 ## Distancia a la que el enemigo frena junto al jugador
 @export var distancia_parada: float = 1.2
 ## Distancia a la que el enemigo "toca" al jugador (tiene que ser mayor que distancia_parada)
-@export var radio_contacto: float = 2.5
-@export var tolerancia_altura: float = 3.5
+@export var radio_contacto: float = 1.8
 @export var cooldown_ataque: float = 1.0 # El enemigo hace daño cada 1 segundo
 ## Qué tan rápido gira hacia el jugador
 @export var velocidad_giro: float = 8.0
@@ -168,41 +167,23 @@ func _comprobar_colisiones_jugador() -> void:
 	var ahora := Time.get_ticks_msec() / 1000.0
 	if ahora - tiempo_ultimo_ataque < cooldown_ataque:
 		return
-
-	# 1. Impacto por choque físico directo (evita que quede empujando detrás de Nico)
-	for i in get_slide_collision_count():
-		var colision := get_slide_collision(i)
-		var cuerpo := colision.get_collider() as Node3D
-		if _es_objetivo_golpeable(cuerpo):
-			_ejecutar_golpe(cuerpo, ahora)
-			return
-
-	# 2. Impacto por proximidad (respaldo si pasa rozando sin colisión de slide)
 	for j in get_tree().get_nodes_in_group("Jugador"):
-		if not (j is Node3D) or not _es_objetivo_golpeable(j as Node3D):
+		if not is_instance_valid(j):
 			continue
-		var objetivo := j as Node3D
-		var d: Vector3 = objetivo.global_position - global_position
-		if Vector2(d.x, d.z).length() <= radio_contacto and absf(d.y) <= tolerancia_altura:
-			_ejecutar_golpe(objetivo, ahora)
-			return
+		var d: Vector3 = j.global_position - global_position
+		if Vector2(d.x, d.z).length() <= radio_contacto and absf(d.y) <= 1.5:
+			tiempo_ultimo_ataque = ahora
+			_rpc_ataque.rpc()
+			_rpc_golpear_jugador.rpc_id(j.get_multiplayer_authority(), j.get_path(), danio)
+			# Después de herir: la zona manda a AMBOS jugadores al marker y apaga a TODOS los
+			# enemigos en todos los peers. Es diferido para no cambiar la física en pleno frame.
+			get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED, "ZonaFinal", "reiniciar_recorrido")
+			break
 
 
-func _es_objetivo_golpeable(nodo: Node3D) -> bool:
-	if not is_instance_valid(nodo) or nodo.get("muerto") == true:
-		return false
-	return nodo.is_in_group("Jugador") or nodo.is_in_group("BotCompanero")
-
-
-func _ejecutar_golpe(objetivo: Node3D, ahora: float) -> void:
-	tiempo_ultimo_ataque = ahora
-	_rpc_ataque.rpc()
-	_rpc_golpear_jugador.rpc_id(objetivo.get_multiplayer_authority(), objetivo.get_path(), danio)
-	get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED, "ZonaFinal", "reiniciar_recorrido")
-
-
+## Se ejecuta SOLO en el peer dueño del jugador golpeado
 @rpc("authority", "call_local", "reliable")
-func _rpc_golpear_jugador(ruta_jugador: NodePath, danio_recibido: int) -> void:
+func _rpc_golpear_jugador(ruta_jugador: NodePath, danio_recibido: float) -> void:
 	var jugador := get_node_or_null(ruta_jugador)
 	if jugador and jugador.has_method("heridoPorEnemigo"):
 		jugador.heridoPorEnemigo(danio_recibido)
@@ -214,12 +195,11 @@ func obtener_jugador_mas_cercano() -> Node3D:
 	var distancia_minima := INF
 
 	for j in get_tree().get_nodes_in_group("Jugador"):
-		if j is Node3D and _es_objetivo_golpeable(j as Node3D):
-			var objetivo := j as Node3D
-			var distancia: float = global_position.distance_to(objetivo.global_position)
+		if is_instance_valid(j):
+			var distancia: float = global_position.distance_to(j.global_position)
 			if distancia < distancia_minima:
 				distancia_minima = distancia
-				jugador_cercano = objetivo
+				jugador_cercano = j
 
 	return jugador_cercano
 
