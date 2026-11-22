@@ -119,7 +119,9 @@
 [ext_resource type="Texture2D" uid="uid://olvcc8aqrd1b" path="res://Imagenes/No Descubierto.png" id="90_7aiv5"]
 [ext_resource type="Texture2D" uid="uid://drihmvwdytg1t" path="res://Modulo7/jaque_mate_pastor_0.png" id="94_gg2bb"]
 [ext_resource type="PackedScene" uid="uid://ch4ky1enscdei" path="res://Modulo7/board_games_1.glb" id="94_oor61"]
+[ext_resource type="Script" uid="uid://edvcncmn1fy4" path="res://Terreno/door/AbrirPuertas.gd" id="95_efsrm"]
 [ext_resource type="Texture2D" uid="uid://bahk2tdikdqs4" path="res://Imagenes/Logo CE UNGS en azul profundo.png" id="95_hhtup"]
+[ext_resource type="Script" uid="uid://clu2g4earssmi" path="res://Terreno/puertaChica.gd" id="95_q4w1x"]
 [ext_resource type="Texture2D" uid="uid://ccxj5xodf1dj4" path="res://Modulo7/jaque_mate_pastor_1.jpg" id="95_vn0xn"]
 [ext_resource type="Texture2D" uid="uid://ccq1e02aeekp4" path="res://Imagenes/Logo azul con arcos blancos y tipografía institucional.png" id="96_efsrm"]
 [ext_resource type="Texture2D" uid="uid://creccg53jsj60" path="res://Modulo7/jaque_mate_pastor_2.jpg" id="96_lbu8e"]
@@ -2751,13 +2753,13 @@ shadow_mesh = SubResource("ArrayMesh_lm4a2")
 size = Vector3(0.091033936, 2.288391, 1.8927002)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hbpbi"]
-size = Vector3(1.2632141, 2.1239624, 0.05999756)
+size = Vector3(1.3479156, 2.1239624, 0.106658936)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fg3mm"]
-size = Vector3(0.107421875, 2.4629517, 1.8632813)
+size = Vector3(0.107421875, 2.4629517, 1.8719482)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8o40b"]
-size = Vector3(0.25631714, 2.19281, 0.095703125)
+size = Vector3(0.26597595, 2.19281, 0.099609375)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e0ret"]
 _surfaces = [{
@@ -4783,6 +4785,18 @@ size = Vector3(2.8509064, 6.0644836, 3.3251648)
 [sub_resource type="BoxShape3D" id="BoxShape3D_smqjg"]
 size = Vector3(338.3024, 763.2742, 103.64313)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_do0to"]
+size = Vector3(480.76752, 778.627, 524.3864)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rclcp"]
+size = Vector3(70.4671, 29.051502, 205.65103)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fk8gt"]
+size = Vector3(65.60809, 218.05035, 27.484634)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ystxd"]
+size = Vector3(175.40236, 206.53479, 132.09111)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5cv8"]
 albedo_texture = ExtResource("97_q4w1x")
 
@@ -4795,12 +4809,18 @@ albedo_texture = ExtResource("96_efsrm")
 [sub_resource type="QuadMesh" id="QuadMesh_f3mle"]
 material = SubResource("StandardMaterial3D_qlrki")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7oj3h"]
+size = Vector3(53.732178, 224.15137, 25.461578)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5ek0"]
 albedo_texture = ExtResource("95_hhtup")
 
 [sub_resource type="QuadMesh" id="QuadMesh_rsdri"]
 material = SubResource("StandardMaterial3D_m5ek0")
 size = Vector2(1.2, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jfvr6"]
+size = Vector3(54.497864, 209.49011, 22.6716)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mi2f"]
 albedo_texture = ExtResource("98_jaxmf")
@@ -4813,6 +4833,9 @@ albedo_texture = ExtResource("98_jaxmf")
 
 [sub_resource type="QuadMesh" id="QuadMesh_nuwrt"]
 material = SubResource("StandardMaterial3D_515ww")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ibyb"]
+size = Vector3(105.98099, 174.69806, 106.20242)
 
 [sub_resource type="BoxMesh" id="BoxMesh_d6yw7"]
 size = Vector3(4.7279053, 49.638077, 10.016235)
@@ -12776,15 +12799,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9561089, 0.111419916, 0.057
 shape = SubResource("BoxShape3D_ruyoj")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_036/StaticBody3D" unique_id=1904563895]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999978, 0.3631134, 0.029693723, 0.9771652)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.9999978, 0.32076263, 0.029693723, 0.957901)
 shape = SubResource("BoxShape3D_hbpbi")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_036/StaticBody3D" unique_id=550945501]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9604856, 0.22665393, 0.057640076)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9604856, 0.22665393, 0.06197357)
 shape = SubResource("BoxShape3D_fg3mm")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_036/StaticBody3D" unique_id=1349573712]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8711132, 0.105865955, 0.9598694)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86628366, 0.105865955, 0.95791626)
 shape = SubResource("BoxShape3D_8o40b")
 
 [node name="Cube_037" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1393265457]
@@ -13401,19 +13424,26 @@ shape = SubResource("BoxShape3D_al1i7")
 
 [node name="Door" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1251818677 instance=ExtResource("76_bm1h2")]
 transform = Transform3D(0.020339513, 0, 0, 0, 0.017067818, 0, 0, 0, 0.017999975, 90.2943, 6.358094, -17.506714)
+script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1251818677, 1427009633) index="1" unique_id=1251884836]
-transform = Transform3D(-61.334778, 1.2867686e-05, 78.9813, 7.1054274e-13, 100, -1.6292068e-05, -78.9813, -9.992702e-06, -61.334778, -11.917675, 193.97394, 184.02957)
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1251818677, 2035518603) index="1" unique_id=2052518299]
+transform = Transform3D(64.37455, 1.2467336e-05, 76.52398, 0, 100, -1.6292068e-05, -76.52398, 1.0487945e-05, 64.37455, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1251818677, 810831660) index="0" unique_id=705366605]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1251818677, 1752621479) index="0" unique_id=705366605]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=545292188]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" index="1" unique_id=1040295900]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" index="1" unique_id=1430787498]
 autoplay = &"Animka"
+
+[node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" unique_id=409919449]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Area3D" unique_id=73145512]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999968, 0, 0, 0, 1, -214.9939, 388.81226, -60.703125)
+shape = SubResource("BoxShape3D_do0to")
 
 [node name="Sketchfab_Scene3" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=858918242 instance=ExtResource("77_rp23r")]
 transform = Transform3D(-8.742278e-08, 0, 1.9999999, 0, 1.9999995, 0, -1.9999996, 0, -8.742275e-08, 66.9002, 15.0543, -37.554077)
@@ -13426,29 +13456,63 @@ shape = SubResource("BoxShape3D_ylryf")
 
 [node name="PuertaLabo" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1994616490 instance=ExtResource("82_7cy7j")]
 transform = Transform3D(0.14942627, 0, 0, 0, 0.064008154, 0, 0, 0, 0.09999992, 42.85013, 6.6048594, -19.793457)
+script = ExtResource("95_efsrm")
 
-[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 1322415538) index="0" unique_id=437894246]
+[node name="Skeleton3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5" parent_id_path=PackedInt32Array(1994616490, 1215917858) index="0" unique_id=1322415538]
+bones/2/rotation = Quaternion(0, 0.6385291, 0, 0.7695977)
+bones/4/rotation = Quaternion(0, -0.6385291, 0, 0.7695977)
+
+[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="0" unique_id=437894246]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 1.4210855e-14, 1, 0, 0, 0)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="1" unique_id=537079498]
+transform = Transform3D(0.18456113, 0, -0.9828211, -0.982821, -1.1920928e-07, -0.18456112, -1.171614e-07, 0.9999999, -2.20014e-08, -60.366066, -1.6207273, -1.9320576e-07)
+bone_name = "Ldoor_02"
+bone_idx = 4
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/BoneAttachment3D" unique_id=799980326]
+transform = Transform3D(0.99999994, 0, 0, 0, -1.192093e-07, -1, 0, 1, -1.192093e-07, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/BoneAttachment3D/StaticBody3D" unique_id=1321480061]
+transform = Transform3D(0.9999999, 0, 0, 0, 1.0000504, -1.4210855e-14, 0, -6.0111915e-12, 0.99999976, 28.14994, -6.5703125, -108.73259)
+shape = SubResource("BoxShape3D_rclcp")
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="2" unique_id=2008675277]
+transform = Transform3D(0.18456113, 0, 0.9828211, 0.982821, -1.1920928e-07, -0.18456112, 1.171614e-07, 0.9999999, -2.20014e-08, 60.366135, -1.6207273, -1.9320576e-07)
+bone_name = "Rdoor_01"
+bone_idx = 2
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/BoneAttachment3D2" unique_id=819298221]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/BoneAttachment3D2/StaticBody3D" unique_id=1310390532]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, -3.8156145e-12, 0, 4.789058e-12, 0.99999785, -28.009308, 100.04999, -6.2285156)
+shape = SubResource("BoxShape3D_fk8gt")
 
 [node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" index="1" unique_id=1378913686]
 autoplay = &"Armature|Open"
 
+[node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" unique_id=469292574]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Area3D" unique_id=585881690]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 1.6889801, 102.76739, 15.478516)
+shape = SubResource("BoxShape3D_ystxd")
+
+[node name="Label3D" type="Label3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" unique_id=932422333]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 70.74818, 8.578125)
+
 [node name="PuertaCentro" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=571571580 instance=ExtResource("82_7cy7j")]
 transform = Transform3D(-0.14942627, 0, -8.088924e-09, 0, 0.064008154, 0, 1.30632625e-08, 0, -0.09252653, -44.65442, 6.6048594, 8.10498)
+script = ExtResource("95_efsrm")
 
-[node name="Skeleton3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5" parent_id_path=PackedInt32Array(571571580, 1215917858) index="0" unique_id=1322415538]
-bones/2/rotation = Quaternion(0, 0.6427876, 0, 0.7660445)
-bones/4/rotation = Quaternion(0, -0.6427876, 0, 0.7660445)
-
-[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="0" unique_id=437894246]
+[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 1322415538) index="0" unique_id=437894246]
 transform = Transform3D(0.7771307, -1.4210855e-14, -2.5410988e-21, -7.1054274e-15, 0.9999999, 7.1054274e-15, 0, 1.4210855e-14, 0.876482, 9.829498, 0, 0)
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/Object_13" index="0" unique_id=1801762571]
 transform = Transform3D(51.471394, 1.5942673e-19, 1.8189894e-12, -4.5474735e-13, -9.015502e-06, -39.99998, -5.421011e-20, 86.28527, -5.44035e-06, -224.15787, -7.7734375, 136.45113)
 mesh = SubResource("QuadMesh_tx3k5")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="1" unique_id=1163479470]
-transform = Transform3D(0.17364824, 0, 0.9848078, 0.98480767, -1.1920928e-07, -0.17364822, 1.1739823e-07, 0.9999999, -2.0700481e-08, 60.366135, -1.6207273, -1.9320576e-07)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 1322415538) index="1" unique_id=1163479470]
+transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, 60.366135, -1.6207273, -1.9320576e-07)
 bone_name = "Rdoor_01"
 bone_idx = 2
 
@@ -13456,8 +13520,14 @@ bone_idx = 2
 transform = Transform3D(25.745842, 1.0635507e-20, 2.046363e-12, 2.1044347e-20, 56.291397, -9.01942e-13, 1.364242e-12, 5.4035124e-13, 33, -27.685791, 117.24432, -0.41210938)
 mesh = SubResource("QuadMesh_f3mle")
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" index="2" unique_id=857789090]
-transform = Transform3D(0.17364824, 0, -0.9848078, -0.98480767, -1.1920928e-07, -0.17364822, -1.1739823e-07, 0.9999999, -2.0700481e-08, -60.366066, -1.6207273, -1.9320576e-07)
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/BoneAttachment3D" unique_id=984199278]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/BoneAttachment3D/StaticBody3D" unique_id=260486190]
+transform = Transform3D(1, -2.5697933e-26, 1.5170087e-12, -5.129489e-26, 1, 0, -1.4210855e-14, -1.6940659e-21, 1, -22.90866, 110.91283, -4.0625)
+shape = SubResource("BoxShape3D_7oj3h")
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 1322415538) index="2" unique_id=857789090]
+transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, -60.366066, -1.6207273, -1.9320576e-07)
 bone_name = "Ldoor_02"
 bone_idx = 4
 
@@ -13469,6 +13539,12 @@ mesh = SubResource("QuadMesh_rsdri")
 transform = Transform3D(20.940742, -9.693523e-27, 4.5474735e-13, -3.2311743e-27, 61.29267, 0, -4.5474735e-13, 0, 39.99996, 46.505524, 118.837006, -0.16015625)
 mesh = SubResource("QuadMesh_rsdri")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/BoneAttachment3D2" unique_id=1478565300]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/BoneAttachment3D2/StaticBody3D" unique_id=761998560]
+transform = Transform3D(1, -3.1352488e-26, 1.8474111e-12, -6.2604e-26, 1, 0, -1.4210855e-14, -1.6940659e-21, 1, 43.212463, 104.245056, -6.2441406)
+shape = SubResource("BoxShape3D_jfvr6")
+
 [node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" index="1" unique_id=1378913686]
 autoplay = &"Armature|Open"
 
@@ -13479,6 +13555,12 @@ mesh = SubResource("QuadMesh_fnegy")
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" unique_id=1370675906]
 transform = Transform3D(-106.94677, 0, -3.4969132e-06, 0, 59.33185, 0, 9.349589e-06, 0, -39.99995, 10.394318, 188.8088, -18.791016)
 mesh = SubResource("QuadMesh_nuwrt")
+
+[node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" unique_id=858969527]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Area3D" unique_id=830432412]
+transform = Transform3D(0.9999999, 0, 1.6342483e-13, 0, 0.9999976, 0, 0, 0, 0.9999999, 6.304474, 86.84877, -2.0449219)
+shape = SubResource("BoxShape3D_2ibyb")
 
 [node name="Sketchfab_Scene4" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1028724958 instance=ExtResource("83_x7dpw")]
 transform = Transform3D(1.3, 0, 0, 0, 1.2999997, 0, 0, 0, 1.2999997, 209.31052, 7.8777823, 41.565308)
@@ -13958,14 +14040,14 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(-1.1920929e-07, 1, 2.9802322e-08, -0.48982865, -1.1920929e-07, 0.8718188, 0.8718188, 2.9802322e-08, 0.4898286, -0.4479164, 0, 0)
 bones/1/enabled = true
 bones/1/position = Vector3(-0.4479164, 0, 0)
-bones/1/rotation = Quaternion(-0.118762076, -0.54953873, -0.69706213, 0.44498003)
+bones/1/rotation = Quaternion(-0.35713145, -0.35713145, -0.61029273, 0.6102926)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Porta 02_13"
 bones/2/parent = 0
 bones/2/rest = Transform3D(0, -1, 0, 0, 0, 1, -1, 0, 0, 0.4479164, 0, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0.4479164, 0, 0)
-bones/2/rotation = Quaternion(0.29136252, -0.6442887, -0.6442887, -0.29136252)
+bones/2/rotation = Quaternion(0.5, -0.5, -0.5, -0.5)
 bones/2/scale = Vector3(1, 1, 1)
 
 [node name="Object_31" type="MeshInstance3D" parent="Modulo7/Sketchfab_Scene3/Sketchfab_model/root/GLTF_SceneRootNode/Armature_20/GLTF_created_0/Skeleton3D" unique_id=810956071]
@@ -15768,6 +15850,12 @@ transform = Transform3D(-1.2734098, 0, 2.7163262, 0, 3, 0, -2.7163262, 0, -1.273
 [node name="Gabi" parent="." unique_id=1085445521 instance=ExtResource("149_t71ts")]
 transform = Transform3D(-2.3028789, 0, 1.2069585, 0, 2.6, 0, -1.2069585, 0, -2.3028789, -26.365232, 1.1803516, 982.0278)
 
+[connection signal="body_entered" from="Modulo7/NavigationRegion3D/modulo7-p1/Door/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/Door" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Modulo7/NavigationRegion3D/modulo7-p1/Door/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/Door" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_entered"]
 [connection signal="body_exited" from="Modulo7/Ajedrez/areaAjedreez" to="Modulo7/Ajedrez/areaAjedreez" method="_on_body_exited"]
 [connection signal="pressed" from="Pantallas/Logros/Salir" to="Pantallas/Logros" method="_on_button_pressed"]
