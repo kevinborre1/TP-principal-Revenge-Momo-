@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8bl6h8bg80hs"
-path.s3tc="res://.godot/imported/pan_pan.png-d1193ff3d52da796e430b10b87deb9e0.s3tc.ctex"
+uid="uid://ccq1e02aeekp4"
+path.s3tc="res://.godot/imported/Logo azul con arcos blancos y tipografía institucional.png-c360554b085a072e3fe41762fe2e805d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "4832d8a6235a55ce993dfed2ef6191ab"
-}
 
 [deps]
 
-source_file="res://vitictorBar/assetsCocina/glb/pan_pan.png"
-dest_files=["res://.godot/imported/pan_pan.png-d1193ff3d52da796e430b10b87deb9e0.s3tc.ctex"]
+source_file="res://Imagenes/Logo azul con arcos blancos y tipografía institucional.png"
+dest_files=["res://.godot/imported/Logo azul con arcos blancos y tipografía institucional.png-c360554b085a072e3fe41762fe2e805d.s3tc.ctex"]
 
 [params]
 
