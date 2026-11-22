@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c1b7bmn6y5fat" path="res://sonidos/consum_manzana.wav" id="3_ltbas"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rsdri"]
-radius = 0.43867958
+radius = 0.60728085
 
 [node name="Manzana" type="Area3D" unique_id=2098178025]
 script = ExtResource("1_82pst")
@@ -19,7 +19,7 @@ sonido_uso = ExtResource("3_ltbas")
 [node name="Sketchfab_Scene" parent="." unique_id=113685842 instance=ExtResource("2_82pst")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.009417057, 0, 0.085184574)
 
-[node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_72/GLTF_created_0" parent_id_path=PackedInt32Array(113685842, 1591038503) index="0" unique_id=73868280]
+[node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/Armature_72/GLTF_created_0" parent_id_path=PackedInt32Array(113685842, 463628332) index="0" unique_id=2074109386]
 bones/1/position = Vector3(2.410598e-16, -0.0035443306, -0.004551233)
 bones/1/scale = Vector3(0.35427892, 0.35427892, 0.35427892)
 bones/3/position = Vector3(6.895744e-09, 0.04949904, 0.11569076)
@@ -51,7 +51,7 @@ bones/39/rotation = Quaternion(-0.24968328, -0.0042175725, -0.08507073, 0.964574
 bones/40/rotation = Quaternion(-0.04152307, 0.05017722, -0.1318538, 0.9891273)
 bones/41/rotation = Quaternion(-0.09905718, 0.16208567, -0.15621053, 0.9692855)
 
-[node name="AnimationPlayer" parent="Sketchfab_Scene" index="1" unique_id=1679181575]
+[node name="AnimationPlayer" parent="Sketchfab_Scene" index="1" unique_id=740291776]
 autoplay = &"ArmatureAction"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1021655129]

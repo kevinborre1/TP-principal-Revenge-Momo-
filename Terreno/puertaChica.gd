@@ -8,7 +8,7 @@ extends Node3D
 @onready var area_interaccion: Area3D = get_node_or_null("Area3D")
 @onready var cartel_interaccion: Label3D = get_node_or_null("Label3D")
 
-const SFX_PUERTA_MADERA = preload("res://sonidos/puerta_madera.wav")
+
 
 var esta_abierta: bool = false
 var animando: bool = false
@@ -50,7 +50,7 @@ func alternar_puerta() -> void:
 		return
 
 	animando = true
-	reproducir_sfx_3d(SFX_PUERTA_MADERA)
+
 
 	if not esta_abierta:
 		esta_abierta = true
