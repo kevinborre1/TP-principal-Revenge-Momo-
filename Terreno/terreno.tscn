@@ -10040,7 +10040,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47058105, 0.7352907, -0.44
 shape = SubResource("BoxShape3D_0u3xn")
 
 [node name="PepitaCafe" type="Area3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Cocina" unique_id=1166652405]
-transform = Transform3D(0.06666668, 0, 0, 0, 0.06666668, 0, 0, 0, 0.06666668, 18.201998, 0.002380848, -0.24157715)
+transform = Transform3D(0.06666668, 0, 0, 0, 0.06666668, 0, 0, 0, 0.06666668, 19.087091, 0.8380496, -0.3986206)
 script = ExtResource("51_vg8rj")
 
 [node name="Coffee bean by Poly by Google - 7ONZQTx9Tuz" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Cocina/PepitaCafe" unique_id=936193032 instance=ExtResource("48_yeivc")]
@@ -10313,7 +10313,7 @@ shape = SubResource("BoxShape3D_vrlqc")
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 
-[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(790094590, 566644319) index="0" unique_id=2134586947]
+[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(790094590, 2141463006) index="0" unique_id=2127451639]
 transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, -0.04442978)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" index="0" unique_id=520507754]
@@ -10323,7 +10323,7 @@ transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, -0.26745605, 1.87
 shape = SubResource("BoxShape3D_tx3k5")
 debug_color = Color(0.014038874, 0.65136486, 0, 0.41960785)
 
-[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(790094590, 869282972) index="0" unique_id=1456111907]
+[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(790094590, 126921989) index="0" unique_id=442130102]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" index="0" unique_id=1916084811]
@@ -10341,10 +10341,10 @@ occluder = SubResource("ArrayOccluder3D_u7jy5")
 transform = Transform3D(-5.6824803e-08, 0, 1.855, 0, 1.684, 0, -1.3, 0, -8.108463e-08, 74.71288, 0.8234103, 984.6666)
 script = ExtResource("47_igocy")
 
-[node name="door l_0" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode" parent_id_path=PackedInt32Array(1714256904, 1146160782) index="0" unique_id=566644319]
+[node name="door l_0" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode" parent_id_path=PackedInt32Array(1714256904, 419449142) index="0" unique_id=2141463006]
 transform = Transform3D(-0.5611988, 0, -0.8321099, 0, 1, 0, 0.82768106, 0, -0.5642017, 0.08904147, 0, 2.548793)
 
-[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" index="0" unique_id=2134586947]
+[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" index="0" unique_id=2127451639]
 transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, -0.04442978)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" index="0" unique_id=81545936]
@@ -10354,10 +10354,10 @@ transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.
 shape = SubResource("BoxShape3D_tx3k5")
 debug_color = Color(0.014038874, 0.65136486, 0, 0.41960785)
 
-[node name="door r_2" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode" parent_id_path=PackedInt32Array(1714256904, 1146160782) index="2" unique_id=869282972]
+[node name="door r_2" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode" parent_id_path=PackedInt32Array(1714256904, 419449142) index="2" unique_id=126921989]
 transform = Transform3D(-0.450228, 0, 0.89769155, 0, 1, 0, -0.89291364, 0, -0.45263717, 0.08904147, 0, -2.54879)
 
-[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" index="0" unique_id=1456111907]
+[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" index="0" unique_id=442130102]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" index="0" unique_id=1543166424]
@@ -11008,7 +11008,6 @@ shape = SubResource("BoxShape3D_tr3kr")
 
 [node name="techo" type="MeshInstance3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars" unique_id=739379608]
 transform = Transform3D(0, 0, 16.58906, 0, 0.4027191, 0, -12.872833, 0, 0, 47.865955, 9.221277, 1245.4353)
-visible = false
 layers = 2
 mesh = SubResource("ArrayMesh_imr2f")
 surface_material_override/0 = SubResource("StandardMaterial3D_l4k46")
@@ -11087,16 +11086,15 @@ shape = SubResource("BoxShape3D_b2y03")
 transform = Transform3D(1.0000237, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.63820577, -0.22265625, -0.6355899)
 shape = SubResource("BoxShape3D_rtbm7")
 
-[node name="teecho2" type="MeshInstance3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars" unique_id=1229884101]
+[node name="techo2" type="MeshInstance3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars" unique_id=1229884101]
 transform = Transform3D(0, 0, 46.146202, 0, 0.4027191, 0, -12.872833, 0, 0, 77.197205, 9.221277, 1220.1652)
-visible = false
 layers = 2
 mesh = SubResource("ArrayMesh_jju6t")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars/teecho2" unique_id=1948623389]
+[node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars/techo2" unique_id=1948623389]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars/teecho2/StaticBody3D" unique_id=1655236816]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars/techo2/StaticBody3D" unique_id=1655236816]
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 1, -0.021827698, 0, 0.0045164824)
 shape = SubResource("BoxShape3D_k6lso")
 
@@ -11419,7 +11417,7 @@ shape = SubResource("BoxShape3D_vicex")
 [node name="Buttom" parent="VictorBars/Interacciones VictorBars" unique_id=377298075 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1217.951)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=453417724]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=47785907]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="AreaButtom" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom" unique_id=1342207512 node_paths=PackedStringArray("puerta_destino")]
@@ -11455,7 +11453,7 @@ shape = SubResource("BoxShape3D_77to7")
 [node name="Buttom2" parent="VictorBars/Interacciones VictorBars" unique_id=2064960827 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1227.7134)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=453417724]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=47785907]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="AreaButtom2" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom2" unique_id=2133630934 node_paths=PackedStringArray("puerta_destino")]
@@ -12357,7 +12355,7 @@ shape = SubResource("BoxShape3D_iaoe2")
 
 [node name="TechoMod7" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1748701883]
 transform = Transform3D(113.0401, 0, 0, 0, -0.8122618, 0, 0, 0, 51.583946, 9.105843, 21.256674, 0.7302246)
-visible = false
+layers = 2
 mesh = SubResource("ArrayMesh_a475y")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
 
@@ -12425,15 +12423,15 @@ Su escudo, que lo mantiene inmune, solo puede ser desactivado mediante 2 botones
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026/ConsejoMomo" unique_id=33077025]
 shape = SubResource("BoxShape3D_8jko8")
 
-[node name="Cube_032" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=23734633]
+[node name="Techoo" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=23734633]
 transform = Transform3D(0.46884146, 0, 33.53383, 0, -0.9823973, 0, -164.6465, 0, 0.09548973, -69.48409, 20.94582, -210.34412)
-visible = false
+layers = 2
 mesh = SubResource("ArrayMesh_smadf")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_032" unique_id=1957355833]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Techoo" unique_id=1957355833]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_032/StaticBody3D" unique_id=63067451]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Techoo/StaticBody3D" unique_id=63067451]
 shape = SubResource("ConcavePolygonShape3D_xubbt")
 
 [node name="Cube_034" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1794210442]
@@ -12697,16 +12695,16 @@ shape = SubResource("BoxShape3D_72ksg")
 [node name="Pcc" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2" unique_id=495327773 instance=ExtResource("79_okn42")]
 transform = Transform3D(-4.783826e-09, 0, 0.109441176, 0, -0.584052, 0, 0.26835945, 0, 1.1730363e-08, -0.3411266, 0.92276096, -0.38182068)
 
-[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(495327773, 1926084098) index="0" unique_id=929424839]
+[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(495327773, 517923711) index="0" unique_id=1188942849]
 transform = Transform3D(-64.96894, 0.16642778, 0.09742879, 0.20484756, 3.8359995, 36.109615, 0.27791548, 36.078754, -3.839731, -0.01171875, 129.17043, -82.584076)
 
-[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(495327773, 1355017264) index="0" unique_id=437683275]
+[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(495327773, 969171322) index="0" unique_id=1806672905]
 visible = false
 
-[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(495327773, 1926084098) index="13" unique_id=1796876862]
+[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(495327773, 517923711) index="13" unique_id=1326471402]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -1.2767296, -36.584595)
 
-[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(495327773, 1926084098) index="14" unique_id=1075563082]
+[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(495327773, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc" unique_id=1065827404]
@@ -12727,7 +12725,7 @@ shape = SubResource("BoxShape3D_8q3cn")
 [node name="Pcc5" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2" unique_id=719054004 instance=ExtResource("79_okn42")]
 transform = Transform3D(-4.783826e-09, 0, 0.109441176, 0, -0.58405197, 0, 0.26835942, 0, 1.17303625e-08, 0.07008107, 0.92276096, -0.38182068)
 
-[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(719054004, 1926084098) index="0" unique_id=929424839]
+[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(719054004, 517923711) index="0" unique_id=1188942849]
 transform = Transform3D(-64.96894, 0.16642778, 0.09742879, 0.20484756, 3.8359995, 36.109615, 0.27791548, 36.078754, -3.839731, -0.01171875, 129.17043, -82.584076)
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode/Cube" index="0" unique_id=1636843479]
@@ -12735,13 +12733,13 @@ transform = Transform3D(-1.7091098, 0.004192055, 0.007224116, 0.01403847, -0.078
 mesh = SubResource("BoxMesh_f3mle")
 surface_material_override/0 = SubResource("StandardMaterial3D_nsrtk")
 
-[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(719054004, 1355017264) index="0" unique_id=437683275]
+[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(719054004, 969171322) index="0" unique_id=1806672905]
 visible = false
 
-[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(719054004, 1926084098) index="13" unique_id=1796876862]
+[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(719054004, 517923711) index="13" unique_id=1326471402]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -1.2767296, -36.584595)
 
-[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(719054004, 1926084098) index="14" unique_id=1075563082]
+[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(719054004, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc5" unique_id=185962480]
@@ -12758,7 +12756,7 @@ shape = SubResource("BoxShape3D_qxnpl")
 [node name="Pcc6" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2" unique_id=2064862844 instance=ExtResource("79_okn42")]
 transform = Transform3D(-4.783826e-09, 0, 0.109441176, 0, -0.5840519, 0, 0.26835942, 0, 1.1730362e-08, 0.07008107, 0.9227611, 0.085990906)
 
-[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(2064862844, 1926084098) index="0" unique_id=929424839]
+[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(2064862844, 517923711) index="0" unique_id=1188942849]
 transform = Transform3D(-64.96894, 0.16642778, 0.09742879, 0.20484756, 3.8359995, 36.109615, 0.27791548, 36.078754, -3.839731, -0.01171875, 129.17043, -82.584076)
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode/Cube" index="0" unique_id=767801122]
@@ -12766,13 +12764,13 @@ transform = Transform3D(-1.7091098, 0.004192055, 0.007224116, 0.01403847, -0.078
 mesh = SubResource("BoxMesh_f3mle")
 surface_material_override/0 = SubResource("StandardMaterial3D_nsrtk")
 
-[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(2064862844, 1355017264) index="0" unique_id=437683275]
+[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(2064862844, 969171322) index="0" unique_id=1806672905]
 visible = false
 
-[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(2064862844, 1926084098) index="13" unique_id=1796876862]
+[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(2064862844, 517923711) index="13" unique_id=1326471402]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -1.2767296, -36.584595)
 
-[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(2064862844, 1926084098) index="14" unique_id=1075563082]
+[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(2064862844, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc6" unique_id=281591423]
@@ -12782,7 +12780,7 @@ mesh = SubResource("PlaceholderMesh_oor61")
 [node name="Pcc8" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2" unique_id=1837296612 instance=ExtResource("79_okn42")]
 transform = Transform3D(-4.7838267e-09, 0, 0.109441176, 0, -0.584052, 0, 0.26835948, 0, 1.1730363e-08, 0.47885495, 0.9227613, 0.085990906)
 
-[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1837296612, 1926084098) index="0" unique_id=929424839]
+[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1837296612, 517923711) index="0" unique_id=1188942849]
 transform = Transform3D(-64.96894, 0.16642778, 0.09742879, 0.20484756, 3.8359995, 36.109615, 0.27791548, 36.078754, -3.839731, -0.01171875, 129.17043, -82.584076)
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode/Cube" index="0" unique_id=934755147]
@@ -12790,13 +12788,13 @@ transform = Transform3D(-1.7091098, 0.004192055, 0.007224116, 0.01403847, -0.078
 mesh = SubResource("BoxMesh_f3mle")
 surface_material_override/0 = SubResource("StandardMaterial3D_nsrtk")
 
-[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(1837296612, 1355017264) index="0" unique_id=437683275]
+[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(1837296612, 969171322) index="0" unique_id=1806672905]
 visible = false
 
-[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1837296612, 1926084098) index="13" unique_id=1796876862]
+[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1837296612, 517923711) index="13" unique_id=1326471402]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -1.2767296, -36.584595)
 
-[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1837296612, 1926084098) index="14" unique_id=1075563082]
+[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1837296612, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc8" unique_id=1400179928]
@@ -12812,7 +12810,7 @@ shape = SubResource("BoxShape3D_7kd6k")
 [node name="Pcc9" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2" unique_id=1223405864 instance=ExtResource("79_okn42")]
 transform = Transform3D(-4.783827e-09, 0, 0.109441176, 0, -0.58405215, 0, 0.26835954, 0, 1.1730365e-08, 0.47885507, 0.92276144, 0.5625992)
 
-[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1223405864, 1926084098) index="0" unique_id=929424839]
+[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1223405864, 517923711) index="0" unique_id=1188942849]
 transform = Transform3D(-64.96894, 0.16642778, 0.09742879, 0.20484756, 3.8359995, 36.109615, 0.27791548, 36.078754, -3.839731, -0.01171875, 129.17043, -82.584076)
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode/Cube" index="0" unique_id=562371255]
@@ -12820,13 +12818,13 @@ transform = Transform3D(-1.7091098, 0.004192055, 0.007224116, 0.01403847, -0.078
 mesh = SubResource("BoxMesh_f3mle")
 surface_material_override/0 = SubResource("StandardMaterial3D_nsrtk")
 
-[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(1223405864, 1355017264) index="0" unique_id=437683275]
+[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(1223405864, 969171322) index="0" unique_id=1806672905]
 visible = false
 
-[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1223405864, 1926084098) index="13" unique_id=1796876862]
+[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1223405864, 517923711) index="13" unique_id=1326471402]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -1.2767296, -36.584595)
 
-[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1223405864, 1926084098) index="14" unique_id=1075563082]
+[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1223405864, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc9" unique_id=906955051]
@@ -12836,7 +12834,7 @@ mesh = SubResource("PlaceholderMesh_vn0xn")
 [node name="Pcc7" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2" unique_id=1311748693 instance=ExtResource("79_okn42")]
 transform = Transform3D(-4.783826e-09, 0, 0.109441176, 0, -0.58405185, 0, 0.2683594, 0, 1.1730361e-08, 0.07008107, 0.9227611, 0.56804657)
 
-[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1311748693, 1926084098) index="0" unique_id=929424839]
+[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1311748693, 517923711) index="0" unique_id=1188942849]
 transform = Transform3D(-64.96894, 0.16642778, 0.09742879, 0.20484756, 3.8359995, 36.109615, 0.27791548, 36.078754, -3.839731, -0.01171875, 129.17043, -82.584076)
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode/Cube" index="0" unique_id=1096477740]
@@ -12844,13 +12842,13 @@ transform = Transform3D(-1.7091098, 0.004192055, 0.007224116, 0.01403847, -0.078
 mesh = SubResource("BoxMesh_f3mle")
 surface_material_override/0 = SubResource("StandardMaterial3D_nsrtk")
 
-[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(1311748693, 1355017264) index="0" unique_id=437683275]
+[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(1311748693, 969171322) index="0" unique_id=1806672905]
 visible = false
 
-[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1311748693, 1926084098) index="13" unique_id=1796876862]
+[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1311748693, 517923711) index="13" unique_id=1326471402]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -1.2767296, -36.584595)
 
-[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1311748693, 1926084098) index="14" unique_id=1075563082]
+[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(1311748693, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 3.391471e-21, -0.0045820083, 100, 99.99941, -0.34402102, -1.5763071e-05, 83.61328, -0.69392014, -36.526016)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc7" unique_id=1288622925]
@@ -12860,16 +12858,16 @@ mesh = SubResource("PlaceholderMesh_lbu8e")
 [node name="Pcc2" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2" unique_id=103870633 instance=ExtResource("79_okn42")]
 transform = Transform3D(-4.783826e-09, 0, 0.109441176, 0, -0.5840521, 0, 0.26835945, 0, 1.1730364e-08, -0.3411266, 0.92381424, 0.1187439)
 
-[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(103870633, 1926084098) index="0" unique_id=929424839]
+[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(103870633, 517923711) index="0" unique_id=1188942849]
 transform = Transform3D(-64.96894, 0.16642778, 0.09742879, 0.20484756, 3.8359995, 36.109615, 0.27791548, 36.078754, -3.839731, -0.01171875, 129.17043, -82.584076)
 
-[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(103870633, 1355017264) index="0" unique_id=437683275]
+[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(103870633, 969171322) index="0" unique_id=1806672905]
 visible = false
 
-[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(103870633, 1926084098) index="13" unique_id=1796876862]
+[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(103870633, 517923711) index="13" unique_id=1326471402]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 1.697405e-21, -0.0045820083, 100, 99.99942, -0.34402105, -1.5763073e-05, 83.609375, 2.6941872, -40.305496)
 
-[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(103870633, 1926084098) index="14" unique_id=1075563082]
+[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(103870633, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99943, 0.0045819813, 1.697405e-21, -0.0045820083, 100, 99.99942, -0.34402105, -1.5763073e-05, 83.609375, 3.2770195, -40.246918)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc2" unique_id=196103839]
@@ -12884,7 +12882,7 @@ mesh = SubResource("PlaceholderMesh_6cdnx")
 [node name="Pcc3" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2" unique_id=21545017 instance=ExtResource("79_okn42")]
 transform = Transform3D(-4.387964e-09, 0, 0.10038491, 0, -0.53570455, 0, 0.24615262, 0, 1.0759671e-08, -0.3411266, 0.88057935, 0.5638046)
 
-[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(21545017, 1926084098) index="0" unique_id=929424839]
+[node name="Cube" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(21545017, 517923711) index="0" unique_id=1188942849]
 transform = Transform3D(-64.96893, 0.16642776, 0.097428784, 0.20484753, 3.8359993, 36.109615, 0.27791548, 36.07875, -3.8397307, 46.535156, 129.17041, -82.58405)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode/Cube" index="0" unique_id=1980939444]
@@ -12892,16 +12890,16 @@ transform = Transform3D(-1.1282868, 0.0022709311, 0.18100704, 0.009267643, -0.00
 mesh = SubResource("BoxMesh_fnegy")
 surface_material_override/0 = SubResource("StandardMaterial3D_5notp")
 
-[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(21545017, 1355017264) index="0" unique_id=437683275]
+[node name="Cube_013_Material_004_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode/Cube_013" parent_id_path=PackedInt32Array(21545017, 969171322) index="0" unique_id=1806672905]
 visible = false
 
-[node name="Plane_001_Material_016_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode/Plane_001" parent_id_path=PackedInt32Array(21545017, 1533105228) index="0" unique_id=952024584]
+[node name="Plane_001_Material_016_0" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode/Plane_001" parent_id_path=PackedInt32Array(21545017, 2066143881) index="0" unique_id=1287830321]
 transform = Transform3D(0.9999999, 1.7763568e-15, 2.1175824e-22, 0, 1, 1.4210855e-14, 0, 2.9536724e-22, 1, 1.2271729, -9.536743e-07, 0)
 
-[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(21545017, 1926084098) index="13" unique_id=1796876862]
+[node name="Plane_002" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(21545017, 517923711) index="13" unique_id=1326471402]
 transform = Transform3D(0.34402105, 99.99941, 0.004581981, 3.391471e-21, -0.0045820083, 100, 99.99943, -0.34402105, -1.5763073e-05, 83.61328, -1.5489922, -34.730766)
 
-[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(21545017, 1926084098) index="14" unique_id=1075563082]
+[node name="Plane_003" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3/Sketchfab_model/90s pc set_fbx/RootNode" parent_id_path=PackedInt32Array(21545017, 517923711) index="14" unique_id=1450734289]
 transform = Transform3D(0.34402105, 99.99941, 0.004581981, 3.391471e-21, -0.0045820083, 100, 99.99943, -0.34402105, -1.5763073e-05, 83.61328, -0.96616745, -34.672203)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Aula2/Pcc3" unique_id=812135402]
@@ -13233,7 +13231,7 @@ shape = SubResource("ConcavePolygonShape3D_sexgh")
 
 [node name="techo" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=466944455]
 transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504534, 0, -0.01111077, 0, -0.9999383, 183.01334, 10.570522, -0.7030382)
-visible = false
+layers = 2
 mesh = SubResource("ArrayMesh_ek7cs")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
 
@@ -13422,10 +13420,10 @@ shape = SubResource("BoxShape3D_5e53f")
 transform = Transform3D(-1.5298986e-07, 0, -3.5, 0, 3.4999993, 0, 3.4999993, 0, -1.5298983e-07, 138.85287, 6.391319, -38.31299)
 script = ExtResource("89_jaxmf")
 
-[node name="LeftOutsideDoor_0_3" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1730266652) index="0" unique_id=15245507]
+[node name="LeftOutsideDoor_0_3" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1241488174) index="0" unique_id=1301708791]
 transform = Transform3D(1.7881395e-07, 0.43839866, 0, -1, 7.839179e-08, 0, 0, 0, 1, 0.025991244, 1, 0.4102844)
 
-[node name="Object_8" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/LeftOutsideDoor_0_3/Object_4_4" parent_id_path=PackedInt32Array(145607892, 1409353357) index="0" unique_id=399887736]
+[node name="Object_8" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/LeftOutsideDoor_0_3/Object_4_4" parent_id_path=PackedInt32Array(145607892, 72148715) index="0" unique_id=396696532]
 surface_material_override/0 = SubResource("StandardMaterial3D_d5tnb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/LeftOutsideDoor_0_3/Object_4_4/Object_8" index="0" unique_id=453216193]
@@ -13438,10 +13436,10 @@ shape = SubResource("BoxShape3D_6pxdu")
 transform = Transform3D(1.0000002, -7.6028073e-13, 1.2197274e-19, 2.7284841e-11, 1.0000398, -3.0979663e-12, -2.9730856e-19, 5.8619776e-14, 1, 1.0750976, -3.7401123, -0.7479553)
 shape = SubResource("BoxShape3D_vf4vc")
 
-[node name="RightOutsideDoor_1_5" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1730266652) index="1" unique_id=1576262215]
+[node name="RightOutsideDoor_1_5" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1241488174) index="1" unique_id=690417594]
 transform = Transform3D(1.7881395e-07, 0.43839866, 0, -1, 7.839179e-08, 0, 0, 0, 1, 0.02599139, 1, -0.4307986)
 
-[node name="Object_11" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/RightOutsideDoor_1_5/Object_6_6" parent_id_path=PackedInt32Array(145607892, 1556670975) index="0" unique_id=1764569433]
+[node name="Object_11" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/RightOutsideDoor_1_5/Object_6_6" parent_id_path=PackedInt32Array(145607892, 1597638062) index="0" unique_id=1242142538]
 transform = Transform3D(0.9999999, 1.4210855e-14, 0, -5.684342e-14, 0.88019913, -1.4210855e-14, 2.5410988e-21, 0, 1, 0, 0.045410156, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_bm1h2")
 
@@ -13451,13 +13449,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bm1h2")
 transform = Transform3D(1, 0, 0, 0, 1, -3.2330345e-13, 0, 3.2330345e-13, 1, -0.34655762, -0.2520752, -0.41033936)
 shape = SubResource("BoxShape3D_0vk2y")
 
-[node name="Wall_2_7" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1730266652) index="2" unique_id=1519888472]
+[node name="Wall_2_7" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1241488174) index="2" unique_id=1034778080]
 visible = false
 
-[node name="Object_17" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorOutsideArmature_3_9/Object_10_10" parent_id_path=PackedInt32Array(145607892, 1489346176) index="0" unique_id=1291528598]
+[node name="Object_17" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorOutsideArmature_3_9/Object_10_10" parent_id_path=PackedInt32Array(145607892, 1903035015) index="0" unique_id=302707285]
 surface_material_override/0 = SubResource("StandardMaterial3D_rsdri")
 
-[node name="Object_20" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Object_12_12" parent_id_path=PackedInt32Array(145607892, 92650386) index="0" unique_id=400709132]
+[node name="Object_20" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Object_12_12" parent_id_path=PackedInt32Array(145607892, 842339487) index="0" unique_id=564191598]
 surface_material_override/0 = SubResource("StandardMaterial3D_vjaep")
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Object_12_12/Object_20" index="0" unique_id=2106004871]
@@ -13466,42 +13464,42 @@ surface_material_override/0 = SubResource("StandardMaterial3D_vjaep")
 transform = Transform3D(0.99999976, 0, -2.4868996e-14, 0, 0.99999976, 0, -2.5224267e-12, 0, 0.9999993, -2.5905762, 0.91644275, -0.077739716)
 shape = SubResource("BoxShape3D_leu1c")
 
-[node name="Object_27" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/ElevatorInteriorButtons_4_14/Object_16_16" parent_id_path=PackedInt32Array(145607892, 2137095223) index="0" unique_id=765689477]
+[node name="Object_27" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/ElevatorInteriorButtons_4_14/Object_16_16" parent_id_path=PackedInt32Array(145607892, 463395384) index="0" unique_id=1365614061]
 surface_material_override/0 = SubResource("StandardMaterial3D_x47i8")
 
-[node name="LeftInteriorDoor_8_26" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11" parent_id_path=PackedInt32Array(145607892, 1813873465) index="6" unique_id=490484908]
+[node name="LeftInteriorDoor_8_26" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11" parent_id_path=PackedInt32Array(145607892, 1116355431) index="6" unique_id=1912986303]
 transform = Transform3D(3.576279e-07, 0.572317, 0, -1, 2.0467652e-07, 0, 0, 0, 1, -0.008280821, 0, 0.15378855)
 visible = false
 
-[node name="Object_27_27" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/LeftInteriorDoor_8_26" index="0" unique_id=1855759685]
+[node name="Object_27_27" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/LeftInteriorDoor_8_26" index="0" unique_id=622614722]
 visible = false
 
-[node name="Object_45" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/LeftInteriorDoor_8_26/Object_27_27" index="0" unique_id=1651741388]
+[node name="Object_45" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/LeftInteriorDoor_8_26/Object_27_27" index="0" unique_id=130067760]
 visible = false
 
-[node name="Object_48" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Mirror_9_28/Object_29_29" parent_id_path=PackedInt32Array(145607892, 1751502271) index="0" unique_id=1647736522]
+[node name="Object_48" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Mirror_9_28/Object_29_29" parent_id_path=PackedInt32Array(145607892, 351444200) index="0" unique_id=994004914]
 surface_material_override/0 = SubResource("StandardMaterial3D_f3mle")
 
-[node name="RightInteriorDoor_10_31" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11" parent_id_path=PackedInt32Array(145607892, 1813873465) index="8" unique_id=298065410]
+[node name="RightInteriorDoor_10_31" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11" parent_id_path=PackedInt32Array(145607892, 1116355431) index="8" unique_id=162718754]
 transform = Transform3D(3.576279e-07, 0.572317, 0, -1, 2.0467652e-07, 0, 0, 0, 1, -0.010248926, 0.39999986, -0.16425584)
 visible = false
 
-[node name="Object_32_32" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/RightInteriorDoor_10_31" index="0" unique_id=1251600552]
+[node name="Object_32_32" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/RightInteriorDoor_10_31" index="0" unique_id=1906835020]
 visible = false
 
-[node name="Object_53" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/RightInteriorDoor_10_31/Object_32_32" index="0" unique_id=157509395]
+[node name="Object_53" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/RightInteriorDoor_10_31/Object_32_32" index="0" unique_id=1584228547]
 visible = false
 
-[node name="ElevatorCallingButtons_007_13_36" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1730266652) index="6" unique_id=583162402]
+[node name="ElevatorCallingButtons_007_13_36" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1241488174) index="6" unique_id=2126579152]
 transform = Transform3D(1.0921792, 0, 0, 0, 1.0921792, 0, 0, 0, 1.0921792, 0.18848056, 3.3219762, 0.08579806)
 
-[node name="ElevatorCallingButtons_006_14_38" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1730266652) index="7" unique_id=1996697371]
+[node name="ElevatorCallingButtons_006_14_38" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1241488174) index="7" unique_id=1746833296]
 transform = Transform3D(0.008346796, 0, 0, 0, 0.008346796, 0, 0, 0, 0.008346796, 0.18848056, 3.283474, -0.072194755)
 
-[node name="Plane_16_42" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1730266652) index="9" unique_id=1532354556]
+[node name="Plane_16_42" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1241488174) index="9" unique_id=1372079897]
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0" parent_id_path=PackedInt32Array(145607892, 1259863363) index="1" unique_id=692582646]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0" parent_id_path=PackedInt32Array(145607892, 692043738) index="1" unique_id=692582646]
 transform = Transform3D(-4.371137e-08, 2.6654842, -4.3711392e-08, -6.352747e-22, -1.16511984e-07, -0.9999993, -0.9999993, -1.16511984e-07, 1.9106842e-15, -0.07421875, 0.020961761, 3.4312952)
 mesh = SubResource("BoxMesh_pruwi")
 
@@ -13526,7 +13524,7 @@ transform = Transform3D(1, -7.1054274e-15, 0, 0, 1.0000001, -3.5527137e-15, 0, -
 transform = Transform3D(1, -4.8672177e-12, 2.1175824e-21, 0, 1.0000002, -1.2789769e-12, 0, -7.81597e-12, 1, 1.6162994, -0.47070313, 1.3032532)
 shape = SubResource("BoxShape3D_nuwrt")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor" index="1" unique_id=106440197]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor" index="1" unique_id=803670982]
 autoplay = &"Animation"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor" unique_id=868376268]
@@ -13607,17 +13605,17 @@ shape = SubResource("BoxShape3D_al1i7")
 transform = Transform3D(0.020339513, 0, 0, 0, 0.017067818, 0, 0, 0, 0.017999975, 90.2943, 6.358094, -17.506714)
 script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1251818677, 2035518603) index="1" unique_id=2052518299]
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1251818677, 1167487734) index="1" unique_id=144814509]
 transform = Transform3D(64.37455, 1.2467336e-05, 76.52398, 0, 100, -1.6292068e-05, -76.52398, 1.0487945e-05, 64.37455, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1251818677, 1752621479) index="0" unique_id=705366605]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1251818677, 733234775) index="0" unique_id=705366605]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=545292188]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" index="1" unique_id=1430787498]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" index="1" unique_id=1592584497]
 autoplay = &"Animka"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" unique_id=409919449]
@@ -13630,17 +13628,17 @@ shape = SubResource("BoxShape3D_do0to")
 transform = Transform3D(-7.108286e-10, 0, -0.017999971, 0, 0.015691778, 0, 0.016261853, 0, -7.8680307e-10, 185.27356, 6.358087, -39.189087)
 script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1075297296, 2035518603) index="1" unique_id=2052518299]
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1075297296, 1167487734) index="1" unique_id=144814509]
 transform = Transform3D(100.00001, 0, 0, 0, 100, -1.6292068e-05, 0, 1.6292068e-05, 100.00001, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1075297296, 1752621479) index="0" unique_id=769599346]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1075297296, 733234775) index="0" unique_id=769599346]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=988801588]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2" index="1" unique_id=1430787498]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2" index="1" unique_id=1592584497]
 autoplay = &"Animka"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2" unique_id=913787978]
@@ -13653,17 +13651,17 @@ shape = SubResource("BoxShape3D_do0to")
 transform = Transform3D(-7.108286e-10, 0, -0.017999971, 0, 0.016245171, 0, 0.01626184, 0, -7.868027e-10, 184.84909, 6.3580837, 8.674561)
 script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1056319687, 2035518603) index="1" unique_id=2052518299]
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1056319687, 1167487734) index="1" unique_id=144814509]
 transform = Transform3D(100.00001, 0, 0, 0, 100, -1.6292068e-05, 0, 1.6292068e-05, 100.00001, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1056319687, 1752621479) index="0" unique_id=28954644]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1056319687, 733234775) index="0" unique_id=28954644]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=1009116970]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3" index="1" unique_id=1430787498]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3" index="1" unique_id=1592584497]
 autoplay = &"Animka"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3" unique_id=745809242]
@@ -13676,17 +13674,17 @@ shape = SubResource("BoxShape3D_do0to")
 transform = Transform3D(-7.481546e-10, 0, -0.017999971, 0, 0.016245164, 0, 0.01711575, 0, -7.8680246e-10, 184.1615, 6.358082, 38.35083)
 script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(863736658, 2035518603) index="1" unique_id=2052518299]
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(863736658, 1167487734) index="1" unique_id=144814509]
 transform = Transform3D(100.00001, 0, 0, 0, 100, -1.6292068e-05, 0, 1.6292068e-05, 100.00001, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(863736658, 1752621479) index="0" unique_id=1047858788]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(863736658, 733234775) index="0" unique_id=1047858788]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=278540478]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4" index="1" unique_id=1430787498]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4" index="1" unique_id=1592584497]
 autoplay = &"Animka"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4" unique_id=1231470233]
@@ -13708,10 +13706,10 @@ shape = SubResource("BoxShape3D_ylryf")
 transform = Transform3D(0.14942627, 0, 0, 0, 0.064008154, 0, 0, 0, 0.09999992, 42.85013, 6.6048594, -19.793457)
 script = ExtResource("95_efsrm")
 
-[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 1322415538) index="0" unique_id=437894246]
+[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 201317321) index="0" unique_id=67451124]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 1.4210855e-14, 1, 0, 0, 0)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 1322415538) index="1" unique_id=537079498]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 201317321) index="1" unique_id=537079498]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, -60.366066, -1.6207273, -1.9320576e-07)
 bone_name = "Ldoor_02"
 bone_idx = 4
@@ -13723,7 +13721,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, -1.192093e-07, -1, 0, 1, -1.192093e
 transform = Transform3D(0.9999999, 0, 0, 0, 1.0000504, -1.4210855e-14, 0, -6.0111915e-12, 0.99999976, 28.14994, -6.5703125, -108.73259)
 shape = SubResource("BoxShape3D_rclcp")
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 1322415538) index="2" unique_id=2008675277]
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 201317321) index="2" unique_id=2008675277]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, 60.366135, -1.6207273, -1.9320576e-07)
 bone_name = "Rdoor_01"
 bone_idx = 2
@@ -13734,7 +13732,7 @@ bone_idx = 2
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, -3.8156145e-12, 0, 4.789058e-12, 0.99999785, -28.009308, 100.04999, -6.2285156)
 shape = SubResource("BoxShape3D_fk8gt")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" index="1" unique_id=1378913686]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" index="1" unique_id=1596593904]
 autoplay = &"Armature|Open"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" unique_id=469292574]
@@ -13750,14 +13748,14 @@ transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 70.74818, 8.578125
 transform = Transform3D(-0.14942627, 0, -8.088924e-09, 0, 0.064008154, 0, 1.30632625e-08, 0, -0.09252653, -44.65442, 6.6048594, 8.10498)
 script = ExtResource("95_efsrm")
 
-[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 1322415538) index="0" unique_id=437894246]
+[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 201317321) index="0" unique_id=67451124]
 transform = Transform3D(0.7771307, -1.4210855e-14, -2.5410988e-21, -7.1054274e-15, 0.9999999, 7.1054274e-15, 0, 1.4210855e-14, 0.876482, 9.829498, 0, 0)
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/Object_13" index="0" unique_id=1801762571]
 transform = Transform3D(51.471394, 1.5942673e-19, 1.8189894e-12, -4.5474735e-13, -9.015502e-06, -39.99998, -5.421011e-20, 86.28527, -5.44035e-06, -224.15787, -7.7734375, 136.45113)
 mesh = SubResource("QuadMesh_tx3k5")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 1322415538) index="1" unique_id=1163479470]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 201317321) index="1" unique_id=1163479470]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, 60.366135, -1.6207273, -1.9320576e-07)
 bone_name = "Rdoor_01"
 bone_idx = 2
@@ -13772,7 +13770,7 @@ mesh = SubResource("QuadMesh_f3mle")
 transform = Transform3D(1, -2.5697933e-26, 1.5170087e-12, -5.129489e-26, 1, 0, -1.4210855e-14, -1.6940659e-21, 1, -22.90866, 110.91283, -4.0625)
 shape = SubResource("BoxShape3D_7oj3h")
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 1322415538) index="2" unique_id=857789090]
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 201317321) index="2" unique_id=857789090]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, -60.366066, -1.6207273, -1.9320576e-07)
 bone_name = "Ldoor_02"
 bone_idx = 4
@@ -13791,7 +13789,7 @@ mesh = SubResource("QuadMesh_rsdri")
 transform = Transform3D(1, -3.1352488e-26, 1.8474111e-12, -6.2604e-26, 1, 0, -1.4210855e-14, -1.6940659e-21, 1, 43.212463, 104.245056, -6.2441406)
 shape = SubResource("BoxShape3D_jfvr6")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" index="1" unique_id=1378913686]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" index="1" unique_id=1596593904]
 autoplay = &"Armature|Open"
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" unique_id=1795081632]
@@ -14946,7 +14944,7 @@ debug_color = Color(0.8265024, 0.001577341, 0.95403486, 0.41960785)
 [node name="Boton 2" parent="Modulo7/ZonaJefe/Entrada" unique_id=83118870 instance=ExtResource("55_veext")]
 transform = Transform3D(-4.371139e-08, 0, -5, 0, 8, 0, 1.0000001, 0, -2.1855695e-07, -13.607101, 6.9839497, 60.49463)
 
-[node name="Cube_002" parent="Modulo7/ZonaJefe/Entrada/Boton 2" index="0" unique_id=453417724]
+[node name="Cube_002" parent="Modulo7/ZonaJefe/Entrada/Boton 2" index="0" unique_id=47785907]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="AreaBoton2" type="Area3D" parent="Modulo7/ZonaJefe/Entrada/Boton 2" unique_id=1964758616 node_paths=PackedStringArray("puerta_destino")]
@@ -14983,7 +14981,7 @@ shape = SubResource("BoxShape3D_77to7")
 [node name="Boton 1" parent="Modulo7/ZonaJefe/Entrada" unique_id=1104928056 instance=ExtResource("55_veext")]
 transform = Transform3D(-4.371139e-08, 0, -4.9999995, 0, 8, 0, 1.0000001, 0, -2.1855695e-07, 39.85788, 6.6807375, 60.271667)
 
-[node name="Cube_002" parent="Modulo7/ZonaJefe/Entrada/Boton 1" index="0" unique_id=453417724]
+[node name="Cube_002" parent="Modulo7/ZonaJefe/Entrada/Boton 1" index="0" unique_id=47785907]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="AreaBoton1" type="Area3D" parent="Modulo7/ZonaJefe/Entrada/Boton 1" unique_id=1383935063 node_paths=PackedStringArray("puerta_destino")]
