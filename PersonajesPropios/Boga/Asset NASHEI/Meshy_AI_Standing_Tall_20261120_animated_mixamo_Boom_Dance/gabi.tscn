@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://blp3cw2bbnw5l"]
+
+[ext_resource type="Script" uid="uid://dcn7yxgsn2jwx" path="res://PersonajesPropios/locomotora/locomotora.gd" id="1_5sj1h"]
+[ext_resource type="PackedScene" uid="uid://co7v5jn8j6oi" path="res://PersonajesPropios/Boga/Asset NASHEI/Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance.fbx" id="1_uth4g"]
+[ext_resource type="Resource" uid="uid://bo2kitntriaj0" path="res://DialogoGabi.dialogue" id="2_mboj2"]
+[ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="2_voppt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5sj1h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mboj2"]
+radius = 0.62402344
+height = 1.8295898
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fv7jj"]
+radius = 0.359375
+height = 1.9074097
+
+[node name="Gabi" type="StaticBody3D" unique_id=1085445521]
+script = ExtResource("1_5sj1h")
+dialogue_resource = ExtResource("2_mboj2")
+
+[node name="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance" parent="." unique_id=1034284016 instance=ExtResource("1_uth4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.060775638, 0, 0.10211396)
+
+[node name="Skeleton3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/SmartRigArmature" parent_id_path=PackedInt32Array(1034284016, 508156054) index="0" unique_id=688106095]
+bones/0/position = Vector3(0.008614136, 0.79360163, -0.05541429)
+bones/0/rotation = Quaternion(0.034448016, -0.093347296, 0.12919025, 0.98661524)
+bones/1/rotation = Quaternion(0.061088298, 0.051761467, -0.06395893, 0.9947353)
+bones/2/rotation = Quaternion(0.16212222, 0.00787718, -0.0826309, 0.9832733)
+bones/4/rotation = Quaternion(0.38833827, -0.032013446, -0.047333263, 0.91974354)
+bones/5/rotation = Quaternion(-0.038785804, 0.027948547, 0.019637931, 0.99866354)
+bones/9/rotation = Quaternion(-0.15855843, -0.46197504, -0.56405175, 0.66579574)
+bones/10/rotation = Quaternion(-0.28853637, 0.6299237, -0.40543297, 0.59629446)
+bones/11/rotation = Quaternion(0.42612, 0.027935658, -0.41838455, 0.80162066)
+bones/12/rotation = Quaternion(0.11002832, 0.26370913, 0.12567718, 0.9500298)
+bones/13/rotation = Quaternion(0.36800927, 0.6599127, -0.24790956, 0.6063212)
+bones/14/rotation = Quaternion(-0.04664642, 0.12624075, -0.13713717, 0.9813668)
+bones/15/rotation = Quaternion(-0.0024573077, 0.1346226, -0.1527768, 0.9790455)
+bones/16/rotation = Quaternion(-0.036836363, 0.19572201, 0.062618345, 0.97796476)
+bones/17/rotation = Quaternion(-0.20316173, 0.0739222, -0.5126033, 0.83096254)
+bones/18/rotation = Quaternion(-0.47670236, -0.30795115, -0.5818295, 0.58257663)
+bones/19/rotation = Quaternion(-0.3928692, -0.30942556, -0.034490187, 0.86528605)
+bones/20/rotation = Quaternion(9.2801376e-05, -0.01692668, 0.00056796474, 0.99985665)
+bones/21/rotation = Quaternion(0.43865457, 0.87518424, -0.19470978, -0.06101607)
+bones/22/rotation = Quaternion(0.21704069, -0.010505348, 0.62251997, 0.7518324)
+bones/23/rotation = Quaternion(-0.20748073, 0.624142, 0.4086853, 0.63275176)
+bones/24/rotation = Quaternion(-0.00038992387, -0.25988752, -0.0006610374, 0.9656387)
+bones/25/rotation = Quaternion(0.4464769, 0.87596226, -0.1423761, -0.11435752)
+bones/26/rotation = Quaternion(0.17203514, 0.008622202, 0.19541098, 0.96547616)
+bones/27/rotation = Quaternion(0.09578975, -0.0015252924, 0.14995411, 0.9840406)
+bones/29/rotation = Quaternion(0.4093729, 0.8782659, -0.23593614, 0.07346504)
+bones/30/rotation = Quaternion(0.38228622, -0.014269333, 0.33628058, 0.8605632)
+bones/31/rotation = Quaternion(0.42594653, 0.15283693, 0.60027516, 0.6594545)
+bones/32/rotation = Quaternion(0.00064068043, 0.00455403, -0.00015172592, 0.9999895)
+bones/33/rotation = Quaternion(-0.38206142, 0.26142627, 0.67046756, 0.57979196)
+bones/34/rotation = Quaternion(-0.4095295, -0.52987474, 0.50250155, 0.5468187)
+bones/35/rotation = Quaternion(0.34604815, -0.0604729, 0.29534465, 0.8884623)
+bones/36/rotation = Quaternion(-0.037496235, -0.3448045, -0.13387908, 0.92832124)
+bones/37/rotation = Quaternion(-0.49162623, 0.7939507, -0.16482879, -0.31745484)
+bones/38/rotation = Quaternion(-0.05443562, -0.04068794, 0.19342558, 0.97875834)
+bones/39/rotation = Quaternion(-0.03024859, 0.028852142, 0.14955658, 0.98786914)
+bones/40/rotation = Quaternion(-0.011204184, -0.16918051, -0.07204713, 0.98288435)
+bones/41/rotation = Quaternion(-0.44180256, 0.6484636, 0.1530404, 0.60073626)
+bones/42/rotation = Quaternion(-0.76072896, 0.052027423, -0.39337972, 0.51365066)
+bones/43/rotation = Quaternion(-0.3398573, 0.0070358384, -0.1995733, 0.919031)
+bones/44/rotation = Quaternion(0.0010443225, 0.026846327, -0.0019453159, 0.9996371)
+bones/45/rotation = Quaternion(-0.38779265, 0.85755914, -0.26562977, -0.20892602)
+bones/46/rotation = Quaternion(0.436204, -0.14479358, -0.5308251, 0.7120293)
+bones/47/rotation = Quaternion(-0.21064156, -0.6938795, -0.42321968, 0.54318196)
+bones/48/rotation = Quaternion(9.3436065e-06, 0.027649796, 0.00030321945, 0.99961764)
+bones/49/rotation = Quaternion(-0.38566825, 0.8838965, -0.23265232, -0.12593547)
+bones/50/rotation = Quaternion(0.23268655, 0.017934958, -0.13437726, 0.9630566)
+bones/51/rotation = Quaternion(0.15658858, -0.549719, -0.26080698, 0.77799034)
+bones/52/rotation = Quaternion(0.001320343, 0.039676316, -0.0003893173, 0.99921167)
+bones/53/rotation = Quaternion(-0.42234284, 0.86067677, -0.24791953, -0.13927689)
+bones/54/rotation = Quaternion(0.3972901, 0.014293483, -0.26307175, 0.87906176)
+bones/55/rotation = Quaternion(0.45326477, -0.16916385, -0.4847263, 0.72868043)
+bones/56/rotation = Quaternion(-0.001607515, -0.0014012647, -0.0005683169, 0.9999976)
+bones/57/position = Vector3(0.1029565, -0.09020678, 0.050515845)
+bones/57/rotation = Quaternion(0.96674085, 0.056425035, -0.21522751, 0.12611702)
+bones/58/rotation = Quaternion(0.5618844, -0.009966764, 0.04801728, 0.82576096)
+bones/59/rotation = Quaternion(-0.5608662, 0.08856107, -0.15796763, 0.8078566)
+bones/60/rotation = Quaternion(0.14485492, 0.72869873, -0.4895504, 0.45646003)
+bones/61/rotation = Quaternion(-0.19162883, -0.98007303, 0.021147776, -0.047835305)
+bones/62/position = Vector3(-0.10084916, -0.093591295, 0.06084866)
+bones/62/rotation = Quaternion(0.8748964, -0.37797, 0.049461633, 0.2987451)
+bones/63/rotation = Quaternion(0.62484735, -0.021785965, -0.08876355, 0.77537876)
+bones/64/rotation = Quaternion(-0.53070694, -0.23642628, 0.32114467, 0.7478762)
+bones/65/rotation = Quaternion(0.18606372, -0.6627729, 0.31453237, 0.6535915)
+bones/66/rotation = Quaternion(-0.07889328, 0.25003532, 0.26085407, 0.9290928)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance" unique_id=2011762708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5281478, -0.09852922, 0.4726529)
+physics_material_override = SubResource("PhysicsMaterial_5sj1h")
+
+[node name="Area3D" type="Area3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D" unique_id=966597966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30099142, 0.5543655, 0)
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D/Area3D" unique_id=1829723481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1989373, 0.34979004, -0.50843495)
+shape = SubResource("CapsuleShape3D_mboj2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D" unique_id=1963017260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4509331, 0.8247298, -0.4154445)
+shape = SubResource("CapsuleShape3D_fv7jj")
+
+[node name="ExclamacionSprite" type="Sprite3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance" unique_id=971385592]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.042386904, 1.8765632, 0.14287987)
+visible = false
+texture = ExtResource("2_voppt")
+
+[editable path="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance"]
