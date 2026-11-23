@@ -48,7 +48,7 @@ func _ready() -> void:
 			NetworkManager.host_cerro_partida.connect(_on_servidor_desconectado)
 			_iniciar_espera_conexion()
 			NetworkManager.unirse_a_sesion(NetworkManager.codigo_para_unirse)
-	MenuOpciones.aplicar_brillo()
+				
 	activador_victoria.body_entered.connect(_on_activador_victoria_body_entered)
 
 func _instanciar_bot_nico() -> void:
