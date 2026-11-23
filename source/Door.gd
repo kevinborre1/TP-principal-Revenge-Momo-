@@ -15,6 +15,8 @@ class_name Door
 
 #Musica
 @export_enum("papas", "jefe_final", "escape_momo") var musica_al_terminar: String = "papas"
+@export var musica_personalizada: AudioStream # <-- Arrastrá acá la canción de la segunda puerta en el Inspector
+
 
 signal cinematica_terminada
 
