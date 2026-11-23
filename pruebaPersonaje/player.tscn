@@ -43,6 +43,8 @@ height = 1.7507133
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf4ho"]
 height = 1.1
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wbfmx"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riqsh"]
 resource_name = "Ch02_body"
 vertex_color_use_as_albedo = true
@@ -1337,9 +1339,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0.14)
 target_position = Vector3(0, 0.7, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1910096983]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.6595434, -0.22169197)
-collision_mask = 0
-spring_length = 1.55
+transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, 1.6595434, -0.794654)
+shape = SubResource("SphereShape3D_wbfmx")
+spring_length = 0.1
+margin = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=9406401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6198035e-08, 0, -0.41405725)
