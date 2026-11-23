@@ -174,7 +174,7 @@ func _es_objetivo_valido(enemigo: Node3D) -> bool:
 
 func _evadir_jefe(delta: float, jugador: Node3D) -> void:
 	var pos_jefe: Vector3 = obtener_posicion_jefe(jefe_actual)
-	var en_furia: bool = bool(jefe_actual.get("en_furia"))
+	var en_furia: bool = (jefe_actual.get("en_furia") == true) or (jefe_actual.get("fase") != null and int(jefe_actual.get("fase")) == 1)
 	var margen_seguro: float = distancia_segura_jefe + (4.0 if en_furia else 0.0)
 	var dist_jefe: float = Vector2(
 		bot.global_position.x - pos_jefe.x,

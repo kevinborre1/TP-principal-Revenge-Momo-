@@ -3,14 +3,17 @@ extends Area3D
 signal activado
 @export var id_boton: int = 2 # Pon 1 para el primer botón y 2 para el segundo
 @export var puerta_destino: Node3D # Arrastra la puerta aquí desde el Inspector
-
+@export var botonJefe: bool = false
 #sonidos
 const SFX_BOTON = preload("res://sonidos/boton.wav")
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-
+	if botonJefe:
+		add_to_group("BotonEscudoJefe")
+		print("boton jefe en "+str(global_position))
+		
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Jugador"):
 		if puerta_destino and puerta_destino.has_method("actualizar_estado_boton"):

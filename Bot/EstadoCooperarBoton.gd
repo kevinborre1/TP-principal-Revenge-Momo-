@@ -244,7 +244,7 @@ func _escudo_jefe_desactivado() -> bool:
 	if nodo_puerta_o_jefe.get("muriendo") == true:
 		return true
 	if "campo_activo" in nodo_puerta_o_jefe:
-		return not bool(nodo_puerta_o_jefe.get("campo_activo"))
+		return nodo_puerta_o_jefe.get("campo_activo") != true
 	if "escudo_activo" in nodo_puerta_o_jefe:
-		return not bool(nodo_puerta_o_jefe.get("escudo_activo"))
+		return nodo_puerta_o_jefe.get("escudo_activo") != true
 	return false
