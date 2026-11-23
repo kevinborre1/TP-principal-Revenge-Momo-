@@ -13,11 +13,65 @@ var esta_activado: bool = false
 # Sonidos
 const SFX_BOTON_PARED = preload("res://sonidos/boton_pared.wav")
 
+@export var texto_interaccion: String = "Presiona E para activar"
+@export var margen_label: float = 0.25
+var label_3d: Label3D = null # Guardamos la referencia para prenderlo/apagarlo rápido
+
+
 func _ready() -> void:
+	# 1. CREAR EL LABEL 3D POR CÓDIGO
+	label_3d = Label3D.new()
+	label_3d.text = texto_interaccion
+	label_3d.visible = false
+	label_3d.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label_3d.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+
+	# Configuración visual para que se vea bien en el mundo
+	label_3d.pixel_size = 0.005 # Tamaño del texto (ajustalo si lo ves muy grande o chico)
+	label_3d.position = _calcular_posicion_sobre_colision()
+	label_3d.outline_modulate = Color.BLACK
+	label_3d.outline_size = 4
+
+	# Lo añadimos como hijo del objeto interactuable
+	add_child(label_3d)
+
 	add_to_group("BotonesPuerta")
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
+
+func _calcular_posicion_sobre_colision() -> Vector3:
+	var colision := _obtener_collision_shape()
+	if not is_instance_valid(colision):
+		return Vector3(0.0, 0.8 + margen_label, 0.0)
+
+	var mitad_alto := _obtener_mitad_altura_shape(colision.shape) * absf(colision.scale.y)
+	var margen_local := margen_label / maxf(absf(scale.y), 0.01)
+	return Vector3(
+		colision.position.x,
+		colision.position.y + mitad_alto + margen_local,
+		colision.position.z
+	)
+
+
+func _obtener_collision_shape() -> CollisionShape3D:
+	for hijo in get_children():
+		if hijo is CollisionShape3D:
+			return hijo as CollisionShape3D
+	return null
+
+
+func _obtener_mitad_altura_shape(shape: Shape3D) -> float:
+	if shape is BoxShape3D:
+		return (shape as BoxShape3D).size.y * 0.5
+	if shape is CylinderShape3D:
+		return (shape as CylinderShape3D).height * 0.5
+	if shape is CapsuleShape3D:
+		return (shape as CapsuleShape3D).height * 0.5
+	if shape is SphereShape3D:
+		return (shape as SphereShape3D).radius
+	return 0.5
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if jugador_cerca and event.is_action_pressed("interactuar"):
 		interactuar()
@@ -58,10 +112,12 @@ func _actualizar_visual_boton() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Jugador") and not body.is_in_group("BotCompanero"):
+		label_3d.show()
 		jugador_cerca = true
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Jugador") and not body.is_in_group("BotCompanero"):
+		label_3d.hide()
 		jugador_cerca = false
 
 # Sonidos en 3D que el otro escuchará
