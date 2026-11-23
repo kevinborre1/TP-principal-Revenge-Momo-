@@ -15,6 +15,8 @@ shading_mode = 0
 albedo_color = Color(0.48761016, 0.24168018, 0.03355883, 1)
 
 [node name="Bala" type="Area3D" unique_id=565648693]
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("1_81lri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=366785130]
