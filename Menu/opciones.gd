@@ -1,6 +1,9 @@
 class_name MenuOpciones
 extends Control
 
+const BRILLO_MIN := 0.8
+const BRILLO_MAX := 2.0
+const GRISES_PREVIEW := [0.08, 0.2, 0.35, 0.5, 0.7]
 const RESOLUCIONES := [Vector2i(1280, 720), Vector2i(1366, 768), Vector2i(1600, 900), Vector2i(1920, 1080), Vector2i(2560, 1440)]
 const NOMBRES_MSAA := ["Apagado", "2x", "4x"]
 const NOMBRES_CALIDAD := ["Baja", "Media", "Alta"]
@@ -155,7 +158,29 @@ func _on_graficos_pressed() -> void:
 
 	_contenido.add_child(_fila_opciones("Suavizado de bordes (MSAA)", NOMBRES_MSAA, _cfg().msaa, _cambiar_msaa))
 	_contenido.add_child(_fila_opciones("Calidad 3D", NOMBRES_CALIDAD, _cfg().calidad_graficos, _cambiar_escala))
+	
+	var etiqueta_brillo := Label.new()
+	etiqueta_brillo.text = "Brillo: %d%%" % int(round(_cfg().brillo * 100.0))
+	_contenido.add_child(etiqueta_brillo)
 
+	var vista_previa := HBoxContainer.new()
+	vista_previa.add_theme_constant_override("separation", 0)
+	for g in GRISES_PREVIEW:
+		var muestra := ColorRect.new()
+		muestra.custom_minimum_size = Vector2(60, 40)
+		muestra.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		vista_previa.add_child(muestra)
+	_pintar_vista_previa(vista_previa, _cfg().brillo)
+	_contenido.add_child(vista_previa)
+
+	var deslizador_brillo := HSlider.new()
+	deslizador_brillo.min_value = BRILLO_MIN
+	deslizador_brillo.max_value = BRILLO_MAX
+	deslizador_brillo.step = 0.05
+	deslizador_brillo.value = _cfg().brillo
+	deslizador_brillo.custom_minimum_size = Vector2(300, 24)
+	deslizador_brillo.value_changed.connect(_cambiar_brillo.bind(etiqueta_brillo, vista_previa))
+	_contenido.add_child(deslizador_brillo)
 
 # ---------- EL RECUADRO MARRÓN ----------
 
@@ -459,3 +484,29 @@ static func aplicar_guardados() -> void:
 	_aplicar_volumen()
 	_aplicar_video()
 	_aplicar_graficos()
+
+func _cambiar_brillo(valor: float, etiqueta: Label, vista_previa: HBoxContainer) -> void:
+	etiqueta.text = "Brillo: %d%%" % int(round(valor * 100.0))
+	_cfg().brillo = valor
+	_pintar_vista_previa(vista_previa, valor)
+	SaveAndLoad.guardar_configuracion()  # SAVE
+	aplicar_brillo()
+
+
+func _pintar_vista_previa(caja: HBoxContainer, valor: float) -> void:
+	for i in caja.get_child_count():
+		# Curva suave: los claros se comprimen en vez de cortarse en blanco
+		var g: float = 1.0 - exp(-GRISES_PREVIEW[i] * valor * 1.2)
+		(caja.get_child(i) as ColorRect).color = Color(g, g, g)
+
+
+# Aplica el brillo a todos los WorldEnvironment que haya en el árbol
+# (también dentro de los SubViewport de la pantalla dividida)
+static func aplicar_brillo() -> void:
+	var raiz := (Engine.get_main_loop() as SceneTree).root
+	for nodo in raiz.find_children("*", "WorldEnvironment", true, false):
+		var env: Environment = (nodo as WorldEnvironment).environment
+		if env == null:
+			continue
+		env.adjustment_enabled = true
+		env.adjustment_brightness = _cfg().brillo

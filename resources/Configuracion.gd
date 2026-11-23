@@ -23,6 +23,8 @@ const NOMBRES_CALIDAD := ["Baja", "Media", "Alta"]
 @export var volumen: float = 1.0
 
 # GRAFICOS
+
+@export var brillo: float = 1.3   # 1.3 = normal
 @export var vsync: bool = true
 @export var msaa: int = 0
 @export var calidad_graficos: int = 2
