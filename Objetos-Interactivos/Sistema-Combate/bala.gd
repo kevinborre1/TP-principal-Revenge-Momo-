@@ -24,6 +24,12 @@ func _physics_process(delta: float) -> void:
 func _al_colisionar(body: Node3D) -> void:
 	if golpeo_algo or _es_jugador(body):
 		return  # atraviesa a los jugadores
+
+	# Si lo que tocó es una reja, la revela
+	var reja := _buscar_reja(body)
+	if reja:
+		reja.revelar()
+
 	var objetivo := _buscar_objetivo(body)
 	if objetivo:
 		_aplicar_dano(objetivo)
@@ -90,3 +96,10 @@ func set_tipo(nuevo_tipo: String) -> void:
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	for m in find_children("*", "MeshInstance3D", true, false):
 		m.material_override = mat
+func _buscar_reja(nodo: Node) -> Node:
+	var actual := nodo
+	while actual != null:
+		if actual.has_method("revelar"):
+			return actual
+		actual = actual.get_parent()
+	return null
