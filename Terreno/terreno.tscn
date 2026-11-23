@@ -14102,7 +14102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.357346, 5.380713, -3.53912
 shape = SubResource("BoxShape3D_ip032")
 
 [node name="Onda Expansiva" type="Node3D" parent="Modulo7/Momo/Zona Ataques" unique_id=45885112]
-transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 3.4246368, 0, -43.625427)
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 3.425, -3, -43.625)
 script = ExtResource("78_256fb")
 
 [node name="Fisico" type="Node3D" parent="Modulo7/Momo" unique_id=2021044576]
