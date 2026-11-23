@@ -13343,6 +13343,7 @@ transform = Transform3D(1.4035019, 0, -2.6514492, 0, 3, 0, 2.6514492, 0, 1.40350
 
 [node name="EnemigoDelFinal" parent="Final" unique_id=1142631827 instance=ExtResource("125_i635x")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -74.30886, 4.985863, 791.92914)
+velocidad = 15.0
 radio_contacto = 2.5
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Final" unique_id=58799355]
@@ -13727,11 +13728,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625122, 4.645935, 0)
 shape = SubResource("BoxShape3D_vwjq2")
 
 [node name="EnemigoDelFinal2" parent="Final" unique_id=2036335105 instance=ExtResource("125_i635x")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -79.82916, 4.985863, 791.92914)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -79.82725, 5.01783, 791.918)
+velocidad = 15.0
 radio_contacto = 2.5
 
 [node name="EnemigoDelFinal3" parent="Final" unique_id=713194674 instance=ExtResource("125_i635x")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -69.11645, 4.985863, 790.9095)
+velocidad = 15.0
 radio_contacto = 2.5
 
 [node name="Francis" parent="." unique_id=885514182 instance=ExtResource("132_i635x")]
