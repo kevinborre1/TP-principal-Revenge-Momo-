@@ -34,6 +34,8 @@ func _jugador_local_en_minijuego() -> bool:
 	return false
 			
 func _on_salir_menu_pressed() -> void:
+	if MusicManager:
+		MusicManager.stop_music()
 	NetworkManager.notify_disconnection()
 	await get_tree().create_timer(0.2).timeout
 	NetworkManager.disconnect_game()
@@ -42,6 +44,8 @@ func _on_salir_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
 
 func _on_salir_escritorio_pressed() -> void:
+	if MusicManager:
+		MusicManager.stop_music()
 	NetworkManager.notify_disconnection()
 	await get_tree().create_timer(0.2).timeout
 	NetworkManager.disconnect_game()
