@@ -1258,7 +1258,7 @@ albedo_texture = ExtResource("17_rygad")
 uv1_scale = Vector3(3, 3, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfkbx"]
-size = Vector3(0.72398376, 4.276718, 7.8464375)
+size = Vector3(1.0856247, 5.606045, 7.8464375)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhfc8"]
 size = Vector3(0.31201172, 5.529297, 8.370918)
@@ -9171,8 +9171,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bulcj")
 occluder = ExtResource("55_vgqji")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño/Puerta" unique_id=484100518]
-transform = Transform3D(0.99798036, 0, -0.063458644, 0, 1, 0, 0.063458644, 0, 0.99798036, -0.868042, 2.0731049, 0.90395355)
+transform = Transform3D(0.99798447, 0, -0.063459076, 0, 1, 0, 0.063459076, 0, 0.99798447, -0.22644043, 1.7135296, 0.9248657)
 shape = SubResource("BoxShape3D_lfkbx")
+debug_color = Color(0.7210481, 0.47962648, 0, 0.41960785)
 
 [node name="YaPasoPuertaBaño" type="Area3D" parent="VictorBars/Interacciones VictorBars/PuertaBaño" unique_id=413397832]
 
@@ -9201,6 +9202,7 @@ script = ExtResource("19_pdshk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Interacciones VictorBars/CortinaParaPepita/Cortina2" unique_id=93297095]
 transform = Transform3D(0.99798447, 0, -0.06345906, 0, 1, 0, 0.06345906, 0, 0.99798447, -0.17504883, 1.8877335, 0.7069397)
 shape = SubResource("BoxShape3D_lfkbx")
+debug_color = Color(0.7210481, 0.47962648, 0, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VictorBars/Interacciones VictorBars/CortinaParaPepita/Cortina2/CollisionShape3D" unique_id=1873423828]
 transform = Transform3D(0.9999939, 0, 1.8626451e-09, 0, 1, 0, 1.5459955e-07, 0, 0.99999994, 0.24707031, -0.64701605, 0.020843506)

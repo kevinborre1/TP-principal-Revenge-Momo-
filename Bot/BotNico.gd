@@ -220,7 +220,7 @@ func _verificar_caida_vacio() -> void:
 func respawnear() -> void:
 	velocity = Vector3.ZERO
 	_velocidad_empuje = Vector3.ZERO
-	global_position = punto_respawn
+	global_position = punto_respawn+Vector3(0,2,0)
 	_reiniciar_navegacion()
 	
 	if state_machine:

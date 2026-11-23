@@ -79,7 +79,10 @@ func _unhandled_input(event: InputEvent) -> void:
 # Método público único: lo usa el input del jugador humano y también BotNico al llegar
 func interactuar() -> void:
 	if not esta_activado:
-		presionar_boton.rpc()
+		if Global.modo_multijugador == "local":
+			presionar_boton()
+		else:	
+			presionar_boton.rpc()
 
 ## (Red): any_peer permite que cualquier cliente dispare el botón.
 ## call_local asegura que el que lo presiona también vea el cambio inmediatamente.

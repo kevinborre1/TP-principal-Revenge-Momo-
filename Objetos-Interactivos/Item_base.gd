@@ -63,7 +63,10 @@ func _on_area_exited(area: Area3D) -> void:
 func ser_recogido() -> void:
 	if ruta_escena.is_empty():
 		push_warning("El item que se quizo agarran no tiene ruta de escena")
-	destruir_item_rpc.rpc()
+	if Global.modo_multijugador == "local":
+		destruir_item_rpc()
+	else:	
+		destruir_item_rpc.rpc()
 	
 func usar_item(jugador) -> bool:
 	return false
