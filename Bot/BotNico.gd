@@ -27,8 +27,8 @@ const SFX_DISPARO_RESPALDO: AudioStream = preload("res://sonidos/disparo_nerf.wa
 @onready var animation: AnimationPlayer = find_child("AnimationPlayer", true, false)
 
 # Agregá estas variables en BotNico.gd
-@export var velocidad_salto_onda: float = 4.5
-@export var margen_deteccion_onda: float = 1.4
+@export var velocidad_salto_onda: float = 6
+@export var margen_deteccion_onda: float = 2.0
 @export var factor_esquive_ladrillo: float = 1.25
 var _cooldown_salto_onda: float = 0.0
 
