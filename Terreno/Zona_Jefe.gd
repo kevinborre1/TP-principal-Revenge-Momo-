@@ -3,9 +3,9 @@ extends Area3D
 enum Modo { UNO_AL_AZAR, AMBOS }
 
 @export var modo: Modo = Modo.UNO_AL_AZAR
-@export var intervalo: float = 4.0       # segundos entre ataques
+@export var intervalo: float = 5.5       # segundos entre ataques
 @export var retraso_caida: float = 2.0   # segundos que tarda en caer
-@export var radio: float = 4.0
+@export var radio: float = 2.0
 @export var dano: int = 30
 
 @export var ataque_ladrillo_escena: PackedScene

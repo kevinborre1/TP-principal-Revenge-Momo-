@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b7ofhjwj03neb" path="res://Modulo7/ladrillo_hueco_doble.glb" id="2_40i3d"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rsdri"]
-top_radius = 0.23828125
+top_radius = 0.238
 bottom_radius = 0.23828125
 height = 0.13671875
 
