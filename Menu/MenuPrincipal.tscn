@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsxcr5klie67l"]
 
 [ext_resource type="Script" uid="uid://wcigcklt1t8f" path="res://Menu/menu_principal.gd" id="1_75c1s"]
-[ext_resource type="Texture2D" uid="uid://dhioq3cu7oxw3" path="res://Imagenes/Menu-Principal-_2_.png" id="2_75c1s"]
+[ext_resource type="Texture2D" uid="uid://dsuht61lslk6w" path="res://Imagenes/Menu_definitivo.png" id="2_75c1s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ni12"]
 
@@ -74,15 +74,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
 theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
 text = " "
 
-[node name="Tutorial" type="Button" parent="Botones" unique_id=1660388416]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5ni12")
-theme_override_styles/hover = SubResource("StyleBoxFlat_75c1s")
-text = " Tutorial
-"
-alignment = 0
-
 [node name="Reglas" type="Button" parent="." unique_id=1835973867]
 layout_mode = 0
 offset_left = 1088.0
@@ -98,5 +89,4 @@ text = "   "
 [connection signal="pressed" from="Botones/Opciones" to="." method="_on_opciones_pressed"]
 [connection signal="pressed" from="Botones/Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="pressed" from="Botones/Salir" to="." method="_on_salir_pressed"]
-[connection signal="pressed" from="Botones/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="Reglas" to="." method="_on_reglas_pressed"]
