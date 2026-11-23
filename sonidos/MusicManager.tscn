@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://jb384jkk5r40" path="res://sonidos/music_manager.gd" id="1_qtpi3"]
 [ext_resource type="AudioStream" uid="uid://brl0rt65lwh80" path="res://sonidos/MusicaPapaLider.ogg" id="2_060x4"]
+[ext_resource type="AudioStream" uid="uid://v7w6blenb53w" path="res://sonidos/MusicaMomo.wav" id="3_rnung"]
+[ext_resource type="AudioStream" uid="uid://b81uhnsu2lt1g" path="res://sonidos/Elevador_abrindose.wav" id="4_1b2ea"]
 
 [node name="MusicManager" type="Node" unique_id=426408770]
 script = ExtResource("1_qtpi3")
 music_papas = ExtResource("2_060x4")
+music_jefe_final = ExtResource("3_rnung")
+music_escape_momo = ExtResource("4_1b2ea")
 
 [node name="PlayerA" type="AudioStreamPlayer" parent="." unique_id=1238487544]
 

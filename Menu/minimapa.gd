@@ -1,12 +1,19 @@
 extends CanvasLayer
 
 @export var altura: float = 50.0
-@export var zoom: float = 40.0   # metros que se ven de lado a lado
-@export var intervalo_refresco: float = 0.1   # segundos entre renders del minimapa
+@export var zoom: float = 40.0 # metros que se ven de lado a lado
+@export var intervalo_refresco: float = 0.1 # segundos entre renders del minimapa
+
+const TEX_HOST := preload("res://flechaMinimapa.png")
+const TEX_CLIENTE := preload("res://flechaMinimapa2.png")
 
 var objetivo: Node3D
 var _tiempo := 0.0
+var _centro_flecha := Vector2.ZERO
+var flecha_remota: TextureRect
 
+@onready var marco: Control = $Marco
+@onready var viewport_container: SubViewportContainer = $Marco/SubViewportContainer
 @onready var viewport: SubViewport = $Marco/SubViewportContainer/SubViewport
 @onready var camara: Camera3D = $Marco/SubViewportContainer/SubViewport/CamaraMinimapa
 @onready var flecha: TextureRect = $Marco/Flecha
@@ -18,7 +25,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	camara.projection = Camera3D.PROJECTION_ORTHOGONAL
 	camara.size = zoom
-	camara.rotation_degrees = Vector3(-90, 0, 0)  # mirando hacia abajo
+	camara.rotation_degrees = Vector3(-90, 0, 0) # mirando hacia abajo
 	camara.current = true
 
 	# Ajustes baratos para un viewport chico y cenital
@@ -30,6 +37,28 @@ func _ready() -> void:
 	# Ya no renderiza solo: lo disparamos nosotros
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 
+	# Guardamos la posición central original de la flecha y duplicamos el nodo para el otro jugador
+	_centro_flecha = flecha.position
+	flecha_remota = flecha.duplicate() as TextureRect
+	flecha_remota.name = "FlechaRemota"
+	flecha_remota.visible = false
+	marco.add_child(flecha_remota)
+
+	_configurar_iconos()
+
+func _configurar_iconos() -> void:
+	if objetivo == null or not is_instance_valid(objetivo):
+		return
+	
+	# El Host siempre sera la location roja
+	var es_host := (objetivo.name == "1")
+	if es_host:
+		flecha.texture = TEX_HOST
+		flecha_remota.texture = TEX_CLIENTE
+	else:
+		flecha.texture = TEX_CLIENTE
+		flecha_remota.texture = TEX_HOST
+
 func _process(delta: float) -> void:
 	# Ocultar mientras el menú de pausa está abierto
 	visible = not Global.menu_pausa_abierto
@@ -37,10 +66,38 @@ func _process(delta: float) -> void:
 		return
 
 	_tiempo += delta
-	if _tiempo < intervalo_refresco:
-		return
-	_tiempo = 0.0
+	if _tiempo >= intervalo_refresco:
+		_tiempo = 0.0
+		var pos := objetivo.global_position
+		camara.global_position = Vector3(pos.x, pos.y + altura, pos.z)
+		viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 
-	var pos := objetivo.global_position
-	camara.global_position = Vector3(pos.x, pos.y + altura, pos.z)
-	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+	_actualizar_flecha_remota()
+
+func _actualizar_flecha_remota() -> void:
+	if flecha_remota == null:
+		return
+
+	var otro_jugador: Node3D = null
+	for nodo in get_tree().get_nodes_in_group("Jugador"):
+		if nodo != objetivo and is_instance_valid(nodo):
+			otro_jugador = nodo
+			break
+
+	# Si todavía no entró ningún cliente, ocultamos la segunda flecha
+	if otro_jugador == null or ("muerto" in otro_jugador and otro_jugador.muerto):
+		flecha_remota.visible = false
+		return
+
+	flecha_remota.visible = true
+
+	var diff_x := otro_jugador.global_position.x - camara.global_position.x
+	var diff_z := otro_jugador.global_position.z - camara.global_position.z
+	var pixeles_por_metro := viewport_container.size.x / zoom
+	var offset_2d := Vector2(diff_x, diff_z) * pixeles_por_metro
+
+	var radio_max := (marco.size.x * 0.5) - 8.0
+	if offset_2d.length() > radio_max:
+		offset_2d = offset_2d.normalized() * radio_max
+
+	flecha_remota.position = _centro_flecha + offset_2d

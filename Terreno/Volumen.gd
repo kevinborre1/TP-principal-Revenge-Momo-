@@ -49,6 +49,15 @@ func _on_volumen_cambiado(valor: float) -> void:
 
 # Guarda al soltar, no en cada movimiento, para no escribir el archivo cientos de veces
 func _input(event: InputEvent) -> void:
+	if not visible:
+		return
+
+	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()  # evita que el Escape llegue al minimapa
+		SaveAndLoad.guardar_configuracion()
+		hide()
+		return
+
 	if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		SaveAndLoad.guardar_configuracion()
 

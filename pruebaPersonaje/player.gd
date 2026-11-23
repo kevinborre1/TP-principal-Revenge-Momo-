@@ -9,12 +9,12 @@ var mouse_sensitivy := 0.003
 @export var saludActual: int = saludMax
 signal cambioSalud
 signal cambioStamina
-
 const MINIMAPA = preload("res://Menu/minimapa.tscn")
 
 # --- NUEVA SEÑAL PARA EL GAMEMANAGER ---
 signal jugador_murio(jugador_nodo)
-
+@export var distancia := 3.5
+@export var margen := 0.25
 var muerto = false
 var herido = false
 var StaminaMax = 100.0
@@ -85,6 +85,12 @@ const SFX_CURACION = preload("res://sonidos/curacion.wav")
 const SFX_DANIO = preload("res://sonidos/jugador_herido.wav")
 
 func _ready() -> void:
+	spring_arm.spring_length = 4.0
+	spring_arm.margin = 0.1
+	spring_arm.collision_mask = 1  # la capa de tus paredes
+	var shape := SphereShape3D.new()
+	shape.radius = 0.25
+	spring_arm.shape = shape
 	var id_player = name.to_int()
 	set_multiplayer_authority(id_player)
 	add_to_group("Jugador")
@@ -336,7 +342,23 @@ func _physics_process(delta: float) -> void:
 	#CAMARA
 	var move_vector = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3.UP, spring_arm_3d.rotation.y)
 	var direction = move_vector.normalized()
-	
+	var desde = spring_arm.global_position
+	var hacia = desde + spring_arm.global_transform.basis.z * distancia
+
+	var query = PhysicsRayQueryParameters3D.create(desde, hacia)
+	query.exclude = [get_rid()]
+	query.collision_mask = 1  # capa de tus paredes
+
+	var hit = get_world_3d().direct_space_state.intersect_ray(query)
+	var dist = distancia
+	if hit:
+		dist = max(desde.distance_to(hit.position) - margen, 0.1)
+
+	# Se acerca de golpe (para no atravesar) y se aleja suave
+	if dist < camara.position.z:
+		camara.position.z = dist
+	else:
+		camara.position.z = lerp(camara.position.z, dist, 1.0 - exp(-10.0 * delta))
 	if direction:
 		if esta_bailando and is_multiplayer_authority():
 			_cambiar_estado_baile.rpc(false)
