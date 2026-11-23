@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cipjpkg3kycwe" path="res://enemigo/enemigo_del_final.gd" id="1_rhtwc"]
 [ext_resource type="Texture2D" uid="uid://c15vlw62vxeqm" path="res://enemigo/momo_chicken/momo_chicken_Image_0.png" id="2_5jiqu"]
-[ext_resource type="AudioStream" uid="uid://cagvqxvhumyss" path="res://sonidos/chicken_momo.wav" id="2_rhtwc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgbmj"]
 resource_name = "Momo"
@@ -252,6 +251,7 @@ tracks/8/keys = PackedFloat32Array(0, 1, -0.11434307, 0.0020494743, -0.00487498,
 [sub_resource type="Animation" id="Animation_grri8"]
 resource_name = "Correr"
 length = 0.7083333
+loop_mode = 1
 tracks/0/type = "rotation_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -406,6 +406,8 @@ properties/1/replication_mode = 1
 [node name="EnemigoDelFinal" type="CharacterBody3D" unique_id=1142631827]
 script = ExtResource("1_rhtwc")
 radio_contacto = 3.0
+ANIM_CAMINAR = &"Correr"
+ANIM_ATAQUE = &"Ataque"
 
 [node name="momo_chicken" type="Node3D" parent="." unique_id=294295265]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -418,14 +420,14 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(0.9998435, -0.017550515, 0.0022318342, 0.017651208, 0.98103094, -0.19304588, 0.0011985566, 0.19305506, 0.9811872, 0.0054069036, 0.24601404, 0.03784836)
 bones/0/enabled = true
 bones/0/position = Vector3(0.0054069036, 0.24601404, 0.03784836)
-bones/0/rotation = Quaternion(0.09698627, 0.00025955317, 0.008842465, 0.9952464)
+bones/0/rotation = Quaternion(0.33812827, 0.01561744, 0.01103748, 0.9409057)
 bones/0/scale = Vector3(0.99999994, 1, 1)
 bones/1/name = "Hueso.001"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.9998435, 0.017176725, -0.0042376504, -0.017550461, 0.99319595, -0.11512425, 0.0022313604, 0.115180604, 0.993342, -1.6734703e-10, 0.15403827, -2.246452e-09)
 bones/1/enabled = true
 bones/1/position = Vector3(-1.6734703e-10, 0.15403827, -2.246452e-09)
-bones/1/rotation = Quaternion(0.057674482, -0.0016200132, -0.008696614, 0.99829626)
+bones/1/rotation = Quaternion(0.057674475, -0.0016200133, -0.008696614, 0.99829626)
 bones/1/scale = Vector3(1, 0.9999999, 0.99999994)
 bones/2/name = "Hueso.001_L"
 bones/2/parent = 1
@@ -439,21 +441,21 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(-0.09652805, 0.97528535, 0.19874787, -0.80464035, 0.041071076, -0.5923404, -0.58586377, -0.217098, 0.78078943, 4.656613e-09, 0.25137743, 7.450581e-09)
 bones/3/enabled = true
 bones/3/position = Vector3(4.656613e-09, 0.25137743, 7.450581e-09)
-bones/3/rotation = Quaternion(0.14283854, 0.29866782, -0.6775408, 0.6567596)
+bones/3/rotation = Quaternion(0.004317916, 0.40358672, -0.662837, 0.6306713)
 bones/3/scale = Vector3(1, 0.99999994, 1)
 bones/4/name = "Hueso.001_L.002"
 bones/4/parent = 3
 bones/4/rest = Transform3D(0.95592594, -0.26478916, 0.12685528, 0.26356268, 0.5834846, -0.76816696, 0.12938416, 0.7677451, 0.62755656, 1.1175871e-08, 0.30864385, 1.4901161e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(1.1175871e-08, 0.30864385, 1.4901161e-08)
-bones/4/rotation = Quaternion(0.43153355, -0.0007105237, 0.14844699, 0.88979876)
+bones/4/rotation = Quaternion(0.36770797, -0.018002886, 0.12535085, 0.9212785)
 bones/4/scale = Vector3(0.99999994, 1, 1)
 bones/5/name = "Hueso.001_L.003"
 bones/5/parent = 4
 bones/5/rest = Transform3D(0.8259278, -0.38844767, 0.40859723, 0.56177026, 0.50596964, -0.6545295, 0.04751265, 0.7701319, 0.6361128, 4.074259e-09, 0.3165925, -3.591481e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(4.074259e-09, 0.3165925, -3.591481e-09)
-bones/5/rotation = Quaternion(0.4134747, 0.10479637, 0.2757786, 0.8613957)
+bones/5/rotation = Quaternion(0.6913459, 0.06786259, 0.36720642, 0.6185427)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Hueso.001_R"
 bones/6/parent = 1
@@ -467,21 +469,21 @@ bones/7/parent = 6
 bones/7/rest = Transform3D(-0.097604975, -0.9750321, -0.19946243, 0.8081486, 0.039319348, -0.5876644, 0.5808345, -0.21855427, 0.78413326, 4.656613e-10, 0.2565574, -1.8626451e-08)
 bones/7/enabled = true
 bones/7/position = Vector3(4.656613e-10, 0.2565574, -1.8626451e-08)
-bones/7/rotation = Quaternion(0.1404833, -0.29698104, 0.67867875, 0.6568576)
+bones/7/rotation = Quaternion(0.6893941, 0.43316302, 0.38631314, 0.43343705)
 bones/7/scale = Vector3(0.9999998, 0.99999976, 0.9999998)
 bones/8/name = "Hueso.001_R.002"
 bones/8/parent = 7
 bones/8/rest = Transform3D(0.95592594, 0.2647892, -0.1268552, -0.26356265, 0.5834846, -0.76816684, -0.12938425, 0.76774496, 0.6275566, 0, 0.30864376, -7.450581e-09)
 bones/8/enabled = true
 bones/8/position = Vector3(0, 0.30864376, -7.450581e-09)
-bones/8/rotation = Quaternion(0.43153355, 0.00071055675, -0.148447, 0.88979876)
+bones/8/rotation = Quaternion(-0.13405184, 0.018100625, 0.062296398, 0.9888487)
 bones/8/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
 bones/9/name = "Hueso.001_R.003"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0.8259278, 0.3884476, -0.40859717, -0.56177026, 0.50596964, -0.65452945, -0.04751262, 0.77013177, 0.63611275, 4.8147406e-09, 0.31659248, -9.996924e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(4.8147406e-09, 0.31659248, -9.996924e-09)
-bones/9/rotation = Quaternion(0.41347474, -0.104796395, -0.27577856, 0.8613957)
+bones/9/rotation = Quaternion(0.30851555, -0.1167593, -0.2300766, 0.9155601)
 bones/9/scale = Vector3(1, 0.9999999, 0.99999994)
 bones/10/name = "Hueso.002"
 bones/10/parent = 1
@@ -495,7 +497,7 @@ bones/11/parent = 10
 bones/11/rest = Transform3D(0.99995124, 0.009531072, 0.0025692936, -0.009657214, 0.99846023, 0.054625113, -0.0020447017, -0.054647267, 0.99850357, -2.2119977e-09, 0.17879605, -2.9802004e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(-2.2119977e-09, 0.17879605, -2.9802004e-08)
-bones/11/rotation = Quaternion(-0.027328642, 0.001153944, -0.004798922, 0.99961436)
+bones/11/rotation = Quaternion(-0.30799899, -0.017715314, -0.0028472743, 0.9512175)
 bones/11/scale = Vector3(0.99999994, 1, 0.99999994)
 
 [node name="Object_7" type="MeshInstance3D" parent="momo_chicken/Esqueleto/Skeleton3D" unique_id=164500215]
