@@ -85,6 +85,7 @@ func reproducir_sfx_local(stream: AudioStream, volumen_db: float = 0.0) -> void:
 		return
 	var player_2d := AudioStreamPlayer.new()
 	player_2d.stream = stream
+	player_2d.bus = &"SFX"
 	player_2d.volume_db = volumen_db
 	var contenedor := get_tree().current_scene if get_tree().current_scene else get_tree().root
 	contenedor.add_child(player_2d)

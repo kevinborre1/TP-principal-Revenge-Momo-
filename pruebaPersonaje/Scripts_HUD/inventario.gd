@@ -152,6 +152,7 @@ func reproducir_sfx_local(stream: AudioStream, volumen_db: float = 0.0) -> void:
 		return
 	var player_2d := AudioStreamPlayer.new()
 	player_2d.stream = stream
+	player_2d.bus = &"SFX"
 	player_2d.volume_db = volumen_db
 	# If you have an "SFX" bus in the Audio tab at the bottom of Godot, uncomment the next line:
 	# player_2d.bus = &"SFX"

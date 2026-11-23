@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djvpwbd3hehhj"
-path="res://.godot/imported/Volumen 2.png-969fc98a8b87090aec124797e76674cb.ctex"
+uid="uid://dj3lulm6ie1jk"
+path="res://.godot/imported/Volumen.png-4bee2bef8a65058c14eb6a351449eca8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Imagenes/Volumen 2.png"
-dest_files=["res://.godot/imported/Volumen 2.png-969fc98a8b87090aec124797e76674cb.ctex"]
+source_file="res://Imagenes/Volumen.png"
+dest_files=["res://.godot/imported/Volumen.png-4bee2bef8a65058c14eb6a351449eca8.ctex"]
 
 [params]
 

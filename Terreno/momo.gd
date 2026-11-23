@@ -315,6 +315,7 @@ func _reproducir_sonido_muerte() -> void:
 	if sonido_muerte == null:
 		return
 	var player_2d := AudioStreamPlayer.new()
+	player_2d.bus = &"SFX"
 	player_2d.stream = sonido_muerte
 	var contenedor := get_tree().current_scene if get_tree().current_scene else get_tree().root
 	contenedor.add_child(player_2d)

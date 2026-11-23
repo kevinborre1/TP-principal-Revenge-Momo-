@@ -126,10 +126,16 @@ func _on_resolucion_pressed() -> void:
 
 func _on_volumen_pressed() -> void:
 	_nueva_pagina("Volumen")
-	var valor := int(round(_cfg().volumen * 100.0))
+	_agregar_fila_volumen("Volumen general", "volumen")
+	_agregar_fila_volumen("Música", "volumen_musica")
+	_agregar_fila_volumen("Efectos", "volumen_sfx")
+	_agregar_fila_volumen("Cinemáticas", "volumen_cinematicas")
+	
+func _agregar_fila_volumen(titulo: String, propiedad: String) -> void:
+	var valor := int(round(float(_cfg().get(propiedad)) * 100.0))
 
 	var etiqueta := Label.new()
-	etiqueta.text = "Volumen general: %d%%" % valor
+	etiqueta.text = "%s: %d%%" % [titulo, valor]
 	_contenido.add_child(etiqueta)
 
 	var deslizador := HSlider.new()
@@ -138,10 +144,15 @@ func _on_volumen_pressed() -> void:
 	deslizador.step = 1
 	deslizador.value = valor
 	deslizador.custom_minimum_size = Vector2(300, 24)
-	deslizador.value_changed.connect(_cambiar_volumen.bind(etiqueta))
+	deslizador.value_changed.connect(_cambiar_volumen.bind(etiqueta, titulo, propiedad))
 	_contenido.add_child(deslizador)
-
-
+	
+func _cambiar_volumen(valor: float, etiqueta: Label, titulo: String, propiedad: String) -> void:
+	etiqueta.text = "%s: %d%%" % [titulo, int(valor)]
+	_cfg().set(propiedad, valor / 100.0)
+	SaveAndLoad.guardar_configuracion()  # SAVE
+	_aplicar_volumen()
+	
 func _on_graficos_pressed() -> void:
 	_nueva_pagina("Gráficos")
 
@@ -393,14 +404,6 @@ func _cambiar_pantalla_completa(activa: bool) -> void:
 	SaveAndLoad.guardar_configuracion()  # SAVE
 	_aplicar_video()
 
-
-func _cambiar_volumen(valor: float, etiqueta: Label) -> void:
-	etiqueta.text = "Volumen general: %d%%" % int(valor)
-	_cfg().volumen = valor / 100.0
-	SaveAndLoad.guardar_configuracion()  # SAVE
-	_aplicar_volumen()
-
-
 func _cambiar_vsync(activo: bool) -> void:
 	_cfg().vsync = activo
 	SaveAndLoad.guardar_configuracion() # SAVE
@@ -447,10 +450,20 @@ static func _aplicar_video() -> void:
 
 
 static func _aplicar_volumen() -> void:
-	var v := _cfg().volumen
-	AudioServer.set_bus_mute(0, v <= 0.0)
-	if v > 0.0:
-		AudioServer.set_bus_volume_db(0, linear_to_db(v))
+	var c := _cfg()
+	_set_bus("Master", c.volumen)
+	_set_bus("Musica", c.volumen_musica)
+	_set_bus("SFX", c.volumen_sfx)
+	_set_bus("Cinematicas", c.volumen_cinematicas)
+
+
+static func _set_bus(nombre: String, lineal: float) -> void:
+	var idx := AudioServer.get_bus_index(nombre)
+	if idx == -1:
+		return
+	AudioServer.set_bus_mute(idx, lineal <= 0.001)
+	if lineal > 0.001:
+		AudioServer.set_bus_volume_db(idx, linear_to_db(lineal))
 
 
 static func _aplicar_graficos() -> void:

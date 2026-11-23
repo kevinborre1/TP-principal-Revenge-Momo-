@@ -274,5 +274,6 @@ func _reproducir_sonido_spawn() -> void:
 	player_2d.stream = sonido_spawn
 	var contenedor := get_tree().current_scene if get_tree().current_scene else get_tree().root
 	contenedor.add_child(player_2d)
+	player_2d.bus = &"SFX"
 	player_2d.play()
 	player_2d.finished.connect(player_2d.queue_free)

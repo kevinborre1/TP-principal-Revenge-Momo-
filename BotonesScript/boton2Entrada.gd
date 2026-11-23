@@ -29,6 +29,7 @@ func reproducir_sfx_3d(stream: AudioStream, volumen_db: float = 0.0, variar_tono
 		return
 	var player_3d := AudioStreamPlayer3D.new()
 	player_3d.stream = stream
+	player_2d.bus = &"SFX"
 	player_3d.volume_db = volumen_db
 	player_3d.max_distance = 35.0 # Distance in meters at which the other player can hear it
 	if variar_tono:

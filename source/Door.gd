@@ -50,7 +50,8 @@ func _ready() -> void:
 	_crear_boton_saltear()
 	if video_player and not video_player.finished.is_connected(_on_video_finished):
 		video_player.finished.connect(_on_video_finished)
-		
+	if video_player:
+		video_player.bus = &"Cinematicas"
 func iniciar_timer_tolerancia() -> void:
 	timer_reinicio = get_tree().create_timer(tiempo_limite_botones)
 	await timer_reinicio.timeout

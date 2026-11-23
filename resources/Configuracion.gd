@@ -21,6 +21,9 @@ const NOMBRES_CALIDAD := ["Baja", "Media", "Alta"]
 
 # AUDIO
 @export var volumen: float = 1.0
+@export var volumen_musica: float = 1.0
+@export var volumen_sfx: float = 1.0
+@export var volumen_cinematicas: float = 1.0
 
 # GRAFICOS
 

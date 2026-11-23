@@ -16,6 +16,8 @@ var _tween: Tween
 func _ready() -> void:
 	_active_player = _player_a
 	_inactive_player = _player_b
+	_player_a.bus = &"Musica"
+	_player_b.bus = &"Musica"
 	_player_a.volume_db = -80.0
 	_player_b.volume_db = -80.0
 
