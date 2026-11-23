@@ -254,7 +254,7 @@ func ir_al_juego_principal() -> void:
 			Global.es_partida_nueva = false
 			get_tree().change_scene_to_file(ESCENA_VIDEO)
 		else:
-			get_tree().change_scene_to_file(ESCENA_DESTINO)
+			NetworkManager.cambiar_escena(ESCENA_DESTINO)
 
 @rpc("any_peer", "reliable")
 func _solicitar_fin_tutorial_al_host() -> void:

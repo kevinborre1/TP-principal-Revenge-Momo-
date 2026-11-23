@@ -9,6 +9,10 @@ const ESCENAS_ONLINE := [
 	"res://Terreno/terreno.tscn",
 ]
 
+# --- PRECARGA DE ESCENAS PESADAS ---
+const ESCENAS_A_PRECARGAR := ["res://Terreno/terreno.tscn", "res://Tutorial/Tutorial.tscn"]
+var _escenas_listas := {}   # ruta -> PackedScene ya cargada
+
 const ESCENA_VIDEO := "res://videos/apertura.tscn"
 const ESCENAS_TRANSICION := [ESCENA_VIDEO]   # escenas de paso, sin red
 
@@ -21,6 +25,7 @@ var _siguiendo_al_host: bool = false   # NUEVO
 @onready var tube_client: TubeClient = $TubeClient
 
 func _ready() -> void:
+	call_deferred("precargar_escenas")
 	# el host escucha cuando un cliente se va
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	# el cliente escucha cuando el host se va
@@ -120,13 +125,13 @@ func seguir_al_host(ruta: String) -> void:
 	_siguiendo_al_host = true
 	get_tree().create_timer(3.0).timeout.connect(func(): _siguiendo_al_host = false)
 	disconnect_game()
-	get_tree().change_scene_to_file(ruta)
+	cambiar_escena(ruta)
 
 # HOST: lleva a todos los jugadores a otra escena
 func host_cambia_escena(ruta: String) -> void:
 	if sesion_host_activa() and not multiplayer.get_peers().is_empty():
 		rpc("rpc_host_cambio_escena", ruta)
-	get_tree().change_scene_to_file(ruta)
+	cambiar_escena(ruta)
 
 # CLIENTE
 @rpc("authority", "call_remote", "reliable")
@@ -147,3 +152,27 @@ func reintentar_union(espera: float = 3.0) -> void:
 	await get_tree().create_timer(espera).timeout
 	_siguiendo_al_host = false
 	unirse_a_sesion(codigo_para_unirse)
+
+
+# Empieza a cargar de fondo las escenas pesadas
+func precargar_escenas() -> void:
+	for ruta in ESCENAS_A_PRECARGAR:
+		if not _escenas_listas.has(ruta) and ResourceLoader.load_threaded_get_status(ruta) == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+			ResourceLoader.load_threaded_request(ruta)
+
+# Cambia de escena sin congelar el juego
+func cambiar_escena(ruta: String) -> void:
+	ruta = _ruta_normalizada(ruta)
+	var escena: PackedScene = _escenas_listas.get(ruta)
+	if escena == null:
+		if ResourceLoader.load_threaded_get_status(ruta) == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+			ResourceLoader.load_threaded_request(ruta)
+		while ResourceLoader.load_threaded_get_status(ruta) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			await get_tree().process_frame
+		escena = ResourceLoader.load_threaded_get(ruta) as PackedScene
+		if escena:
+			_escenas_listas[ruta] = escena
+	if escena:
+		get_tree().change_scene_to_packed(escena)
+	else:
+		get_tree().change_scene_to_file(ruta)

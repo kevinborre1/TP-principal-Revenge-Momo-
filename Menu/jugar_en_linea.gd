@@ -96,9 +96,9 @@ func _cargar_mapa_correspondiente() -> void:
 	if ruta != "" and ResourceLoader.exists(ruta):
 		var data = ResourceLoader.load(ruta, "", ResourceLoader.CACHE_MODE_IGNORE) as SaveData
 		if data and data.escena_actual != "":
-			get_tree().change_scene_to_file(data.escena_actual)
+			NetworkManager.cambiar_escena(data.escena_actual)
 			return
-	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+	NetworkManager.cambiar_escena("res://Terreno/terreno.tscn")
 	
 func borrar_guardado(ruta: String) -> bool:
 	if ruta == "" or not FileAccess.file_exists(ruta):
