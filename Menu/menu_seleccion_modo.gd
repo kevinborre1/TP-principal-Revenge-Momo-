@@ -37,9 +37,9 @@ func _iniciar_modo(modo: String) -> void:
 
 func _cargar_mapa_correspondiente() -> void:
 	if Global.modo_de_juego == "normal":
-		get_tree().change_scene_to_file(RUTA_TUTORIAL)
+		NetworkManager.cambiar_escena(RUTA_TUTORIAL)
 	else:
-		get_tree().change_scene_to_file(RUTA_TERRENO)
+		NetworkManager.cambiar_escena(RUTA_TERRENO)
 
 func _enable_interface() -> void:
 	normal.disabled = false

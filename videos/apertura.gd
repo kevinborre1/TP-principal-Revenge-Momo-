@@ -14,4 +14,4 @@ func _on_finished() -> void:
 	visible = false
 	
 	# 2. Cambiamos inmediatamente al terreno del juego
-	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+	NetworkManager.cambiar_escena("res://Terreno/terreno.tscn")
