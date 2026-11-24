@@ -67,14 +67,33 @@ func _contar_jugadores_bailando() -> int:
 					total += 1
 	return total
 
+# Esta es la función que llamas desde tu diálogo o lógica de fiesta
 func empezar_a_bailar() -> void:
+	# Desbloquea el logro solo en el cliente local que activó la acción (o en todos si lo prefieres)
 	SaveAndLoad.actualizar_logro("BaileConjunto")
+	
+	# Si estás en una partida multijugador activa, avisa a todos (incluido vos mismo)
+	if multiplayer.has_multiplayer_peer():
+		_rpc_empezar_a_bailar.rpc()
+	else:
+		_rpc_empezar_a_bailar()
+
+@rpc("any_peer", "call_local", "reliable")
+func _rpc_empezar_a_bailar() -> void:
 	_estaba_en_fiesta = true
 	if animation_player and animation_player.has_animation("baile/Boom_Dance_2"):
 		if animation_player.current_animation != "baile/Boom_Dance_2":
 			animation_player.play("baile/Boom_Dance_2")
 
+
 func detener_baile() -> void:
-		_estaba_en_fiesta = false
-		if animation_player and animation_player.has_animation("Agree_Gesture"):
-			animation_player.play("Agree_Gesture", 0.3)
+	if multiplayer.has_multiplayer_peer():
+		_rpc_detener_baile.rpc()
+	else:
+		_rpc_detener_baile()
+
+@rpc("any_peer", "call_local", "reliable")
+func _rpc_detener_baile() -> void:
+	_estaba_en_fiesta = false
+	if animation_player and animation_player.has_animation("Agree_Gesture"):
+		animation_player.play("Agree_Gesture", 0.3)
