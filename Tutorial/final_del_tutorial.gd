@@ -11,4 +11,4 @@ func _on_body_entered(body: Node3D) -> void:
 	if escena_actual and escena_actual.has_method("ir_al_juego_principal"):
 		escena_actual.ir_al_juego_principal()
 	else:
-		get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+		NetworkManager.cambiar_escena("res://Terreno/terreno.tscn")

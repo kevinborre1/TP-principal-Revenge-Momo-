@@ -17,7 +17,7 @@ func _on_jugar_local_pressed() -> void:
 		#
 		#await video_stream_player.finished
 
-	get_tree().change_scene_to_file("res://Terreno/terreno.tscn")
+	NetworkManager.cambiar_escena("res://Terreno/terreno.tscn")
 	
 func _on_jugar_en_linea_pressed() -> void:
 	Global.modo_multijugador = "linea"
@@ -38,7 +38,7 @@ func _on_tutorial_pressed() -> void:
 	NetworkManager.codigo_para_unirse = ""
 	Global.modo_multijugador = "linea"
 	Global.mapa_seleccionado = "tutorial"
-	get_tree().change_scene_to_file("res://Tutorial/Tutorial.tscn")
+	NetworkManager.cambiar_escena("res://Tutorial/Tutorial.tscn")
 
 
 func _on_reglas_pressed() -> void:
