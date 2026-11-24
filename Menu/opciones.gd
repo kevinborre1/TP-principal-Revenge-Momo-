@@ -102,13 +102,14 @@ func _on_resolucion_pressed() -> void:
 
 	var fila := HBoxContainer.new()
 	var etiqueta := Label.new()
-	etiqueta.text = "Tamaño de ventana"
+	etiqueta.text = "Resolución"
 	etiqueta.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var lista := OptionButton.new()
 	for i in RESOLUCIONES.size():
 		var r: Vector2i = RESOLUCIONES[i]
 		if r.x <= pantalla.x and r.y <= pantalla.y:  # solo las que entran en tu pantalla
-			lista.add_item("%d x %d" % [r.x, r.y], i)
+			var formato := "4:3" if absf(float(r.x) / r.y - 4.0 / 3.0) < 0.02 else "16:9"
+			lista.add_item("%d x %d (%s)" % [r.x, r.y, formato], i)
 	var pos := lista.get_item_index(guardada)
 	if pos >= 0:
 		lista.select(pos)
@@ -436,18 +437,49 @@ func _cambiar_escala(indice: int) -> void:
 
 static func _aplicar_video() -> void:
 	var cfg := _cfg()
-	var ventana := (Engine.get_main_loop() as SceneTree).root
+	var arbol := Engine.get_main_loop() as SceneTree
+	var ventana := arbol.root
 
 	if cfg.pantalla_completa:
+		_escalado_normal(ventana)
 		ventana.mode = Window.MODE_FULLSCREEN
+		ventana.scaling_3d_scale = _escala_3d()
 		return
 
-	ventana.mode = Window.MODE_WINDOWED
-	ventana.size = cfg.resolucion
+	_escalado_normal(ventana)
+	if ventana.mode != Window.MODE_WINDOWED:
+		ventana.mode = Window.MODE_WINDOWED
+		await arbol.process_frame  # esperar a que Windows termine de salir de pantalla completa
 
-	# Centrar solo cuando se ejecuta en una ventana independiente
-	if DisplayServer.get_name() != "headless":
-		ventana.position = (DisplayServer.screen_get_size() - cfg.resolucion) / 2
+	# Área de la pantalla sin la barra de tareas
+	var pantalla := DisplayServer.window_get_current_screen()
+	var area := DisplayServer.screen_get_usable_rect(pantalla)
+
+	if cfg.resolucion.x >= area.size.x or cfg.resolucion.y >= area.size.y:
+		# No entra con la barra de título: se maximiza para que se pueda mover y cerrar
+		ventana.mode = Window.MODE_MAXIMIZED
+	else:
+		ventana.size = cfg.resolucion
+		ventana.position = area.position + (area.size - cfg.resolucion) / 2
+
+	ventana.scaling_3d_scale = _escala_3d()
+
+# Vuelve al escalado normal del proyecto (canvas_items, manteniendo proporción)
+static func _escalado_normal(ventana: Window) -> void:
+	ventana.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+	ventana.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+	ventana.content_scale_size = Vector2i(
+			ProjectSettings.get_setting("display/window/size/viewport_width"),
+			ProjectSettings.get_setting("display/window/size/viewport_height"))
+
+# Escala del 3D: la calidad elegida y, en pantalla completa, también la resolución elegida
+static func _escala_3d() -> float:
+	var cfg := _cfg()
+	var escala: float = ESCALAS_3D[cfg.calidad_graficos]
+	if cfg.pantalla_completa:
+		var alto_pantalla := float(DisplayServer.screen_get_size().y)
+		escala *= minf(1.0, cfg.resolucion.y / alto_pantalla)
+	return escala
 
 
 static func _aplicar_volumen() -> void:
@@ -472,7 +504,7 @@ static func _aplicar_graficos() -> void:
 	var ventana := (Engine.get_main_loop() as SceneTree).root
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if cfg.vsync else DisplayServer.VSYNC_DISABLED)
 	ventana.msaa_3d = [Viewport.MSAA_DISABLED, Viewport.MSAA_2X, Viewport.MSAA_4X][cfg.msaa]
-	ventana.scaling_3d_scale = ESCALAS_3D[cfg.calidad_graficos]
+	ventana.scaling_3d_scale = _escala_3d()
 	Engine.max_fps = cfg.max_fps if "max_fps" in cfg else 60
 
 
