@@ -5,6 +5,8 @@ var mapa_seleccionado : String = "terreno" # Nueva variable para saber qué mapa
 var modo_de_juego : String = "" 
 var motivo_derrota : String = "" 
 var cinematicas_vistas: Array[String] = []
+var en_minijuego: bool = false
+
 
 # Variable global para saber si es la primera vez que se juega y mostrar la cinemática
 var es_partida_nueva: bool = true

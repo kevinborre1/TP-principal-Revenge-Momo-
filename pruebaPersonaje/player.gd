@@ -226,13 +226,15 @@ func _actualizar_visibilidad_hud_pausa() -> void:
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
 		return
 
-	var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true
+	var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true or Global.get("en_minijuego") == true
 	var tiene_rol: bool = rol == "rompe_escudo" or rol == "letal"
 
 	if mira_rect:
 		mira_rect.visible = not pausado
 	if label_rol:
 		label_rol.visible = tiene_rol and not pausado	
+	if label_contrarreloj:
+		label_contrarreloj.visible = (Global.modo_de_juego == "contrarreloj") and not pausado
 	
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()) or muerto:

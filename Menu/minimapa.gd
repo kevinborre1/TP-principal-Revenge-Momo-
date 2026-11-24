@@ -61,7 +61,7 @@ func _configurar_iconos() -> void:
 
 func _process(delta: float) -> void:
 	# Ocultar mientras el menú de pausa está abierto
-	visible = not Global.menu_pausa_abierto
+	visible = not Global.menu_pausa_abierto and not Global.en_minijuego
 	if not visible or objetivo == null or not is_instance_valid(objetivo):
 		return
 

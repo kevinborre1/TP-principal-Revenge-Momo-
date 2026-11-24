@@ -24,6 +24,8 @@ var juego_terminado: bool = false
 
 
 func _ready() -> void:
+	Global.en_minijuego = is_visible_in_tree()
+	visibility_changed.connect(func(): Global.en_minijuego = is_visible_in_tree())
 	_armar_mazo()
 	for i in cartas.size():
 		cartas[i].pressed.connect(_on_carta_pressed.bind(i))
@@ -46,6 +48,7 @@ func _process(delta: float) -> void:
 	label_timer.text = "%02d:%02d" % [int(tiempo_restante) / 60, int(tiempo_restante) % 60]
 	if tiempo_restante <= 0:
 		_terminar_juego(false)
+	
 
 func _refrescar_tabla_ranking() -> void:
 	# Si el juego ya terminó y el cartel de resultados está abierto, 
@@ -169,3 +172,6 @@ func _armar_texto_final(gano: bool, puntaje: int, posicion: int) -> String:
 	else:
 		texto += "¡Se te acabó el tiempo!"
 	return texto
+
+func _exit_tree() -> void:
+	Global.en_minijuego = false
