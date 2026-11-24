@@ -5,7 +5,6 @@ extends Node3D
 @export var escena_personaje_cliente: PackedScene = preload("res://pruebaPersonaje/player2.tscn")
 
 const ESCENA_DESTINO := "res://Terreno/terreno.tscn"
-const ESCENA_VIDEO := "res://videos/apertura.tscn"
 const SEGUNDOS_PARA_SALTAR := 2.5
 const TIEMPO_MAX_CONEXION := 40.0
 const MAX_JUGADORES := 2   # host + 1 cliente
@@ -37,7 +36,6 @@ func _ready() -> void:
 	_canvas.layer = 20
 	add_child(_canvas)
 
-	
 	if _rol != Rol.CLIENTE:
 		_crear_ui_saltar()
 
@@ -165,7 +163,7 @@ func _on_hijo_agregado(nodo: Node) -> void:
 
 func _on_escena_distinta_del_host(ruta: String) -> void:
 	if NetworkManager.es_escena_transicion(ruta):
-		NetworkManager.reintentar_union.call_deferred()   # el host sigue viendo el video
+		NetworkManager.reintentar_union.call_deferred()
 	elif NetworkManager.puede_seguir_al_host(ruta):
 		NetworkManager.seguir_al_host.call_deferred(ruta)
 	else:
@@ -216,7 +214,7 @@ func _process(delta: float) -> void:
 			if _barra_progreso:
 				_barra_progreso.value = 0.0
 		return
-		
+
 	if _cambiando_escena or _rol == Rol.CLIENTE:
 		return
 
@@ -242,29 +240,23 @@ func ir_al_juego_principal() -> void:
 		_cambiando_escena = true
 		_solicitar_fin_tutorial_al_host.rpc_id(1)
 		return
-		
+
 	_cambiando_escena = true
 
 	if _rol == Rol.HOST:
-		var ruta := ESCENA_DESTINO
 		print("[Tutorial] nueva=", Global.es_partida_nueva, " peers=", multiplayer.get_peers().size())
 		if Global.es_partida_nueva:
 			Global.es_partida_nueva = false
-			ruta = ESCENA_VIDEO
-			# Solo si el host está solo cerramos la sala durante el video
-			if multiplayer.get_peers().is_empty():
-				NetworkManager.tube_client.refuse_new_connections = true
-		NetworkManager.host_cambia_escena(ruta)
+		NetworkManager.host_cambia_escena(ESCENA_DESTINO)
 		return
 
-# SOLO: únicamente si realmente estamos en Rol.SOLO
+	# SOLO: únicamente si realmente estamos en Rol.SOLO
 	if _rol == Rol.SOLO:
 		Global.modo_multijugador = _modo_multijugador_original
 		if Global.es_partida_nueva:
 			Global.es_partida_nueva = false
-			get_tree().change_scene_to_file(ESCENA_VIDEO)
-		else:
-			NetworkManager.cambiar_escena(ESCENA_DESTINO)
+		NetworkManager.cambiar_escena(ESCENA_DESTINO)
+
 
 @rpc("any_peer", "reliable")
 func _solicitar_fin_tutorial_al_host() -> void:
@@ -346,6 +338,7 @@ func _crear_cartel_conexion() -> void:
 	_cartel_conexion.add_child(texto)
 
 	_canvas.add_child(_cartel_conexion)
+
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PAUSED:
