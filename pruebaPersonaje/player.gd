@@ -214,6 +214,26 @@ func _ready() -> void:
 	GameManager.registrar_jugador(self)
 	inventario_manager.seleccionar_slot(0, self)
 	
+func _process(_delta: float) -> void:
+	_actualizar_visibilidad_hud_pausa()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED or what == NOTIFICATION_UNPAUSED:
+		_actualizar_visibilidad_hud_pausa()
+
+func _actualizar_visibilidad_hud_pausa() -> void:
+	# Online: never touch the remote player's HUD
+	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
+		return
+
+	var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true
+	var tiene_rol: bool = rol == "rompe_escudo" or rol == "letal"
+
+	if mira_rect:
+		mira_rect.visible = not pausado
+	if label_rol:
+		label_rol.visible = tiene_rol and not pausado	
+	
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()) or muerto:
 		return
@@ -861,7 +881,8 @@ func _actualizar_hud_rol(animar: bool) -> void:
 		mira_rect.modulate = color
 	
 	if label_rol:
-		label_rol.visible = texto != ""
+		var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true
+		label_rol.visible = (texto != "") and not pausado
 		label_rol.text = texto
 		label_rol.modulate = color
 		# "Pop" para avisar que el rol cambió

@@ -8,10 +8,28 @@ extends Area3D
 var _ya_mostrado: bool = false
 var _en_cooldown: bool = false
 
+var _canvas_actual: CanvasLayer = null
+
 const SFX_MENSAJE_CONSEJO = preload("res://sonidos/consejo.wav")
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	
+func _process(_delta: float) -> void:
+	if is_instance_valid(_canvas_actual):
+		_actualizar_visibilidad_cartel()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED and is_instance_valid(_canvas_actual):
+		_canvas_actual.visible = false
+	elif what == NOTIFICATION_UNPAUSED:
+		_actualizar_visibilidad_cartel()
+
+func _actualizar_visibilidad_cartel() -> void:
+	if not is_instance_valid(_canvas_actual):
+		return
+	var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true
+	_canvas_actual.visible = not pausado
 
 func _on_body_entered(body: Node3D) -> void:
 	if _ya_mostrado or _en_cooldown:
@@ -47,6 +65,7 @@ func _crear_o_actualizar_cartel(texto: String, tiempo: float) -> void:
 	# Si ya había un cartel mostrándose en pantalla, lo eliminamos para poner el nuevo
 	var cartel_previo := escena.get_node_or_null("CanvasAvisoZona")
 	if cartel_previo:
+		escena.remove_child(cartel_previo)
 		cartel_previo.queue_free()
 		
 	var canvas := CanvasLayer.new()
@@ -54,8 +73,10 @@ func _crear_o_actualizar_cartel(texto: String, tiempo: float) -> void:
 	canvas.layer = 15
 	escena.add_child(canvas)
 	
+	_canvas_actual = canvas
+	_actualizar_visibilidad_cartel()
+	
 	var panel := PanelContainer.new()
-	# Lo anclamos a la derecha, justo debajo del minimapa (zona marcada en rojo)
 	panel.anchor_left = 1.0
 	panel.anchor_right = 1.0
 	panel.anchor_top = 0.33
@@ -65,7 +86,6 @@ func _crear_o_actualizar_cartel(texto: String, tiempo: float) -> void:
 	panel.offset_top = 0.0
 	panel.grow_vertical = Control.GROW_DIRECTION_END
 	
-	# Estilo visual del recuadro (semi-transparente con borde)
 	var estilo := StyleBoxFlat.new()
 	estilo.bg_color = Color(0.12, 0.12, 0.12, 0.85)
 	estilo.border_color = Color(0.85, 0.65, 0.2, 0.9)
@@ -84,7 +104,7 @@ func _crear_o_actualizar_cartel(texto: String, tiempo: float) -> void:
 	
 	canvas.add_child(panel)
 	reproducir_sfx_local(SFX_MENSAJE_CONSEJO)
-	# Animación suave de entrada y salida
+	
 	panel.modulate.a = 0.0
 	var tween := create_tween()
 	tween.tween_property(panel, "modulate:a", 1.0, 0.35)
@@ -94,6 +114,8 @@ func _crear_o_actualizar_cartel(texto: String, tiempo: float) -> void:
 	
 	if is_instance_valid(canvas):
 		canvas.queue_free()
+	if _canvas_actual == canvas:
+		_canvas_actual = null
 
 func reproducir_sfx_local(stream: AudioStream, volumen_db: float = 0.0) -> void:
 	if stream == null:

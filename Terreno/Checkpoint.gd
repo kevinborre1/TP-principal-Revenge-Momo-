@@ -5,6 +5,7 @@ extends Area3D
 @export var animacion_momo: AnimationPlayer      # opcional: arrastralo cuando lo tengas
 @export var nombre_animacion_momo: String = "intro"
 @export var duracion_provisoria: float = 3.0     # lo que dura la cinemática mientras no hay animación
+@export var video_player: VideoStreamPlayer
 
 var puerta_cerrada := false
 var _jugadores_dentro: Array[Node3D] = []

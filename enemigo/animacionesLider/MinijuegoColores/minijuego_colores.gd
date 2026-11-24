@@ -41,6 +41,8 @@ var _estilo: StyleBoxFlat
 var _consigna: Label
 var _info: Label
 
+var _hud_deberia_verse: bool = false
+
 func _ready() -> void:
 	for hijo in get_children():
 		if hijo is PantallaColor:
@@ -68,6 +70,21 @@ func _ready() -> void:
 	if jefe:
 		jefe.connect("activado", _on_jefe_activado)
 		jefe.connect("murio", _on_jefe_murio)
+
+func _process(_delta: float) -> void:
+	_actualizar_visibilidad_hud()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED and _hud:
+		_hud.visible = false
+	elif what == NOTIFICATION_UNPAUSED:
+		_actualizar_visibilidad_hud()
+
+func _actualizar_visibilidad_hud() -> void:
+	if not _hud:
+		return
+	var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true
+	_hud.visible = _hud_deberia_verse and not pausado
 
 # ---- Solo el host ----
 func _on_jefe_activado() -> void:
@@ -249,7 +266,8 @@ func _azar_excepto(excluir: Array) -> int:
 # ---- En todos los peers ----
 @rpc("authority", "call_local", "reliable")
 func _aplicar_ronda(consigna: Array, datos: Array, aciertos_actuales: int, fallos_actuales: int) -> void:
-	_hud.visible = true
+	_hud_deberia_verse = true
+	_actualizar_visibilidad_hud()
 	_consigna.text = NOMBRES[consigna[0]]
 	_consigna.add_theme_color_override("font_color", COLORES[consigna[1]])
 	_estilo.bg_color = COLORES[consigna[2]]
@@ -275,7 +293,8 @@ func _mostrar_reinicio() -> void:
 
 @rpc("authority", "call_local", "reliable")
 func _mostrar_furia(activa: bool) -> void:
-	_hud.visible = true
+	_hud_deberia_verse = true
+	_actualizar_visibilidad_hud()
 	if activa:
 		for p in pantallas:
 			p.apagar()
@@ -288,7 +307,8 @@ func _mostrar_furia(activa: bool) -> void:
 
 @rpc("authority", "call_local", "reliable")
 func _terminar() -> void:
-	_hud.visible = false
+	_hud_deberia_verse = false
+	_actualizar_visibilidad_hud()
 	for p in pantallas:
 		p.apagar()
 
