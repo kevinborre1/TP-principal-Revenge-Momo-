@@ -10576,76 +10576,76 @@ transform = Transform3D(1.4035019, 0, -2.6514492, 0, 3, 0, 2.6514492, 0, 1.40350
 [node name="Paredes Invisibles" type="Node3D" parent="Final" unique_id=895551501]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.994995, 0, 825.8159)
 
-[node name="Reja15" parent="Final/Paredes Invisibles" unique_id=588045758 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-6.556708e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -1.5, -4.371139e-08, 3.821371e-15, 15.252338, 9.101545, 169.42792)
+[node name="Rejas111" parent="Final/Paredes Invisibles" unique_id=2076179418 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, -3.5527137e-15, 0.029909983, 2.5942888, 0.015397936, -0.00015660972, -0.013583788, 2.940762, 4.391083, 2.2056427, 8.261719)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja11" parent="Final/Paredes Invisibles" unique_id=1719897850 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -17.226707, 9.092623, 128.02136)
+[node name="Rejas112" parent="Final/Paredes Invisibles" unique_id=978265082 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, -3.5527137e-15, 0.029909983, 2.5942888, 0.015397936, -0.00015660972, -0.013583788, 2.940762, -7.1176453, 2.2056427, 23.127686)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja9" parent="Final/Paredes Invisibles" unique_id=1234949820 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -9.771027, 9.575461, 121.78021)
+[node name="Rejas114" parent="Final/Paredes Invisibles" unique_id=2036654122 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, -3.5527137e-15, 0.029909983, 2.5942888, 0.015397936, -0.00015660972, -0.013583788, 2.940762, 4.2269897, 2.2056427, 52.657227)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja7" parent="Final/Paredes Invisibles" unique_id=859248283 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -3.7750092, 10.242903, 138.92407)
+[node name="Rejas116" parent="Final/Paredes Invisibles" unique_id=2035799270 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.8763657, -0.013594384, -3.5527137e-15, 0.025532475, 2.5962768, 0.015397936, -0.00013368893, -0.013594197, 2.940762, -0.23461914, 2.2056427, 75.89313)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja2" parent="Final/Paredes Invisibles" unique_id=869190083 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -16.363579, 9.612287, 23.933533)
+[node name="Rejas117" parent="Final/Paredes Invisibles" unique_id=374045344 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.8763657, -0.013594384, -3.5527137e-15, 0.025532475, 2.5962768, 0.015397936, -0.00013368893, -0.013594197, 2.940762, 4.0317154, 2.2056427, 86.9032)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja" parent="Final/Paredes Invisibles" unique_id=1741049841 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -4.1108093, 9.484124, 9.749268)
+[node name="Rejas118" parent="Final/Paredes Invisibles" unique_id=1650570472 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.8763657, -0.013594384, -3.5527137e-15, 0.025532475, 2.5962768, 0.015397936, -0.00013368893, -0.013594197, 2.940762, -5.7630386, 2.2056427, 100.48901)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja3" parent="Final/Paredes Invisibles" unique_id=1947385404 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -4.0218353, 9.7851515, 38.581726)
+[node name="Rejas119" parent="Final/Paredes Invisibles" unique_id=515822652 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.8152978, -0.013609872, -3.5527137e-15, 0.019976763, 2.5992346, 0.015397936, -0.00010459902, -0.013609685, 2.940762, 4.037033, 2.2056427, 108.423645)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja4" parent="Final/Paredes Invisibles" unique_id=1170620063 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -6.7267, 10.214344, 52.976868)
+[node name="Rejas120" parent="Final/Paredes Invisibles" unique_id=2015716939 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.0653062, -0.01362388, -3.5527137e-15, 0.016049834, 2.6019099, 0.015397936, -8.4037485e-05, -0.013623693, 2.940762, -5.1877747, 2.2056427, 121.082825)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja5" parent="Final/Paredes Invisibles" unique_id=1326786609 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(0.99939084, -0.034899496, 3.0510108e-09, 0, -4.371139e-08, -2, 0.034899496, 0.99939084, -8.736952e-08, -16.980225, 9.791697, 62.263977)
+[node name="Rejas121" parent="Final/Paredes Invisibles" unique_id=137741247 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.0653062, -0.01362388, -3.5527137e-15, 0.016049834, 2.6019099, 0.015397936, -8.4037485e-05, -0.013623693, 2.940762, -11.686333, 2.2056427, 128.08032)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja6" parent="Final/Paredes Invisibles" unique_id=93251664 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -8.29937, 10.103027, 75.89996)
+[node name="Rejas122" parent="Final/Paredes Invisibles" unique_id=652672637 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.455707, -0.013591523, -3.5527137e-15, 0.023329925, 2.5957303, 0.015397936, -0.00012215629, -0.013591337, 2.940762, 3.498932, 2.2056427, 139.47943)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja8" parent="Final/Paredes Invisibles" unique_id=1665117720 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.8, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -5.7076035, 9.457306, 86.74249)
+[node name="Rejas123" parent="Final/Paredes Invisibles" unique_id=1892591095 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.319693, -0.013609666, -3.5527137e-15, 0.017381795, 2.5991952, 0.015397936, -9.101167e-05, -0.01360948, 2.940762, 4.097809, 2.2056427, 160.43585)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja10" parent="Final/Paredes Invisibles" unique_id=1069966438 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -1.5340576, 9.543687, 108.710266)
+[node name="Rejas124" parent="Final/Paredes Invisibles" unique_id=1685305328 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.319693, -0.013609666, -3.5527137e-15, 0.017381795, 2.5991952, 0.015397936, -9.101167e-05, -0.01360948, 2.940762, -10.809952, 2.2056427, 165.96808)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja12" parent="Final/Paredes Invisibles" unique_id=1161368194 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -13.239258, 9.82814, 101.16998)
+[node name="Rejas125" parent="Final/Paredes Invisibles" unique_id=540814257 instance=ExtResource("154_515ww")]
+transform = Transform3D(-9.11568e-05, -0.013609479, 2.9407623, 0.017381793, 2.5991952, 0.015397936, -3.319693, 0.013609665, -1.285448e-07, 0.33032227, 2.2056427, 174.16913)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja13" parent="Final/Paredes Invisibles" unique_id=2072129863 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -1.179985, 10.098705, 160.27118)
+[node name="Rejas126" parent="Final/Paredes Invisibles" unique_id=41473866 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.000107092106, -0.013597022, 2.9407623, 0.02042034, 2.596816, 0.015397936, -3.9000156, 0.013597208, -1.285448e-07, 9.791138, 2.2056427, 161.70044)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja14" parent="Final/Paredes Invisibles" unique_id=128212484 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -15.890205, 10.010891, 167.55591)
+[node name="Rejas127" parent="Final/Paredes Invisibles" unique_id=1761509736 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.000107092106, -0.013597022, 2.9407623, 0.02042034, 2.596816, 0.015397936, -3.9000156, 0.013597208, -1.285448e-07, 19.94711, 2.2056427, 167.33844)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja16" parent="Final/Paredes Invisibles" unique_id=1118744801 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -2, -4.371139e-08, 3.821371e-15, 44.27244, 9.556434, 179.98584)
+[node name="Rejas128" parent="Final/Paredes Invisibles" unique_id=344127653 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.0001403451, -0.013574915, 2.9407623, 0.026761027, 2.5925941, 0.015397936, -5.111003, 0.013575101, -1.285448e-07, 44.314823, 2.2056427, 171.47992)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja17" parent="Final/Paredes Invisibles" unique_id=1945740185 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-6.556708e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -1.5, -4.371139e-08, 3.821371e-15, -0.29058075, 9.622512, 179.39954)
+[node name="Rejas115" parent="Final/Paredes Invisibles" unique_id=1932758496 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.0516467, -0.013604654, -3.5527137e-15, 0.021214277, 2.5982382, 0.015397936, -0.0001110787, -0.013604467, 2.940762, -9.7734375, 2.2056427, 62.983032)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja18" parent="Final/Paredes Invisibles" unique_id=1913772028 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-5.6824803e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -1.3, -4.371139e-08, 3.821371e-15, 28.275509, 9.148123, 174.17334)
+[node name="Rejas113" parent="Final/Paredes Invisibles" unique_id=1961232255 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.678147, -0.013596853, -3.5527137e-15, 0.024494607, 2.5967484, 0.015397936, -0.00012825463, -0.013596666, 2.940762, 4.1530075, 2.2056427, 37.303406)
 script = ExtResource("154_5mi2f")
 
 [node name="EnemigoDelFinal" parent="Final" unique_id=1142631827 instance=ExtResource("125_i635x")]
@@ -10660,7 +10660,7 @@ navigation_mesh = SubResource("NavigationMesh_tr3kr")
 [node name="Recorrido final" type="Node3D" parent="Final/NavigationRegion3D" unique_id=718019249]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.14346, 0, 796.1123)
 
-[node name="Rejas" parent="Final/NavigationRegion3D/Recorrido final" unique_id=978265082 instance=ExtResource("154_515ww")]
+[node name="Rejas" parent="Final/NavigationRegion3D/Recorrido final" unique_id=840582301 instance=ExtResource("154_515ww")]
 transform = Transform3D(-0.00015685942, -0.013583789, 2.9407623, 0.02990998, 2.5942888, 0.015397936, -5.7124114, 0.013583975, -1.285448e-07, 113.307434, 2.2056427, 402.1405)
 
 [node name="Rejas2" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1597938358 instance=ExtResource("154_515ww")]
@@ -10878,10 +10878,6 @@ transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.
 
 [node name="Rejas102" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1447228959 instance=ExtResource("154_515ww")]
 transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 47.680237)
-
-[node name="Rejas111" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2076179418 instance=ExtResource("154_515ww")]
-transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 2.5395508, 2.2056427, 33.293884)
-script = ExtResource("154_5mi2f")
 
 [node name="Rejas103" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2038200506 instance=ExtResource("154_515ww")]
 transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 38.707092)
