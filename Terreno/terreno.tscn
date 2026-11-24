@@ -5133,6 +5133,9 @@ size = Vector3(34.12967, 46.552673, 1.4144897)
 [sub_resource type="BoxShape3D" id="BoxShape3D_045ri"]
 size = Vector3(43.473694, 3.687378, 7.392456)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lr14e"]
+size = Vector3(4.51416, 25.481796, 26.758606)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3mle"]
 size = Vector3(20.455387, 5.4658813, 0.6328125)
 
@@ -8307,6 +8310,7 @@ shape = SubResource("BoxShape3D_8jko8")
 
 [node name="Techoo" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=23734633]
 transform = Transform3D(0.46884146, 0, 33.53383, 0, -0.9823973, 0, -164.6465, 0, 0.09548973, -69.48409, 20.94582, -210.34412)
+visible = false
 layers = 2
 mesh = SubResource("ArrayMesh_smadf")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
@@ -10100,6 +10104,17 @@ libraries/ = SubResource("AnimationLibrary_m2yru")
 transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, 7.1054274e-15, 0, 1, 9.528839, 1.343689, -0.47711182)
 shape = SubResource("BoxShape3D_045ri")
 
+[node name="AreaMomoss" type="Area3D" parent="Modulo7" unique_id=2058730933 node_paths=PackedStringArray("video_player")]
+transform = Transform3D(1, 0, 0, 0, 0.9999994, 0, 0, 0, 0.9999999, -145.56781, 0, -377.12823)
+script = ExtResource("52_6klk7")
+pepitas_necesarias = 3
+video_player = NodePath("../../VictorBars/CanvasLayerMomosss/VideoMomosss")
+video_cinematica = ExtResource("15_6klk7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/AreaMomoss" unique_id=870717723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7570801, 7.5411305, 7.543701)
+shape = SubResource("BoxShape3D_lr14e")
+
 [node name="Guardados" type="Node" parent="." unique_id=569926142]
 
 [node name="Guardado VictorBars" type="Node" parent="Guardados" unique_id=1056565737]
@@ -11035,6 +11050,7 @@ transform = Transform3D(-1.2734098, 0, 2.7163262, 0, 3, 0, -2.7163262, 0, -1.273
 
 [node name="Gabi" parent="." unique_id=1085445521 instance=ExtResource("149_t71ts")]
 transform = Transform3D(-2.3028789, 0, 1.2069585, 0, 2.6, 0, -1.2069585, 0, -2.3028789, -26.365232, 1.1803516, 982.0278)
+script = null
 
 [node name="ContenedorPapasMomo" type="Node3D" parent="." unique_id=1192629311]
 

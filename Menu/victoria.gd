@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var video_player: VideoStreamPlayer = $VideoStreamPlayer
 @onready var boton_creditos: Button = $Button # O el nombre exacto de tu nodo botón
-
+@onready var ruta: String = ""
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
@@ -20,6 +20,8 @@ func _on_button_pressed() -> void:
 
 func _on_video_finished() -> void:
 	get_tree().paused = false
+	ruta = SaveAndLoad.rutaUtilizada
+	borrar_guardado(ruta)
 	_desconectar_red()
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
 	
@@ -29,3 +31,15 @@ func _desconectar_red() -> void:
 	NetworkManager.disconnect_game()
 	
 	SaveAndLoad.destruir_partida_y_limpiar()
+func borrar_guardado(ruta: String) -> bool:
+	if ruta == "" or not FileAccess.file_exists(ruta):
+		print("No hay guardado para borrar en: ", ruta)
+		return false
+	
+	var err := DirAccess.remove_absolute(ruta)
+	if err != OK:
+		push_warning("No se pudo borrar %s (error %d)" % [ruta, err])
+		return false
+	
+	print("Guardado borrado: ", ruta)
+	return true
