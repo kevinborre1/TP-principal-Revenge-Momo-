@@ -207,6 +207,16 @@ func _abortar_conexion(mensaje: String) -> void:
 # ------------------------------------------------------- SALTAR TUTORIAL
 
 func _process(delta: float) -> void:
+	var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true
+	_aplicar_visibilidad_ui(not pausado)
+
+	if pausado:
+		if _tiempo_espacio > 0.0:
+			_tiempo_espacio = 0.0
+			if _barra_progreso:
+				_barra_progreso.value = 0.0
+		return
+		
 	if _cambiando_escena or _rol == Rol.CLIENTE:
 		return
 
@@ -336,3 +346,17 @@ func _crear_cartel_conexion() -> void:
 	_cartel_conexion.add_child(texto)
 
 	_canvas.add_child(_cartel_conexion)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED:
+		_aplicar_visibilidad_ui(false)
+	elif what == NOTIFICATION_UNPAUSED:
+		var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true
+		_aplicar_visibilidad_ui(not pausado)
+
+
+func _aplicar_visibilidad_ui(mostrar: bool) -> void:
+	if _contenedor_ui:
+		_contenedor_ui.visible = mostrar
+	if _label_codigo:
+		_label_codigo.visible = mostrar
