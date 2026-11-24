@@ -63,6 +63,7 @@
 [ext_resource type="PackedScene" uid="uid://cmpgb70r83wqk" path="res://vitictorBar/assetsCocina/Coffee bean by Poly by Google - 7ONZQTx9Tuz.glb" id="48_yeivc"]
 [ext_resource type="AudioStream" uid="uid://brl0rt65lwh80" path="res://sonidos/MusicaPapaLider.ogg" id="51_qlrki"]
 [ext_resource type="Script" uid="uid://cvj3tgrjkax1o" path="res://Objetos-Interactivos/pepita.gd" id="51_vg8rj"]
+[ext_resource type="Script" uid="uid://b8pk42d084ukp" path="res://Terreno/area_cinematica_barco.gd" id="52_6klk7"]
 [ext_resource type="PackedScene" uid="uid://drbl16pfdhvfc" path="res://PruebaBalsa/balsa.tscn" id="52_p5cfm"]
 [ext_resource type="PackedScene" uid="uid://df3k3tfxqurm3" path="res://Terreno/cube_004.scn" id="52_rchek"]
 [ext_resource type="PackedScene" uid="uid://c2ss50aamwhpy" path="res://vitictorBar/momo_toilet_dom_studio.glb" id="53_gkey5"]
@@ -506,6 +507,9 @@ size = Vector3(2.198944, 0.1076355, 1.2476196)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_snn8e"]
 size = Vector3(0.090408325, 0.604126, 0.071746826)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vue5m"]
+size = Vector3(1.4819336, 5.4210205, 23.742188)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qqfi"]
 
@@ -6338,12 +6342,10 @@ physics_material_override = SubResource("PhysicsMaterial_dufpk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01361084, 1.935547, -0.050354004)
 shape = SubResource("BoxShape3D_vrlqc")
 
-[node name="Puerta5" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada" unique_id=790094590 node_paths=PackedStringArray("area_cruzar", "video_player") instance=ExtResource("57_k37ix")]
+[node name="Puerta5" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada" unique_id=790094590 node_paths=PackedStringArray("area_cruzar") instance=ExtResource("57_k37ix")]
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 area_cruzar = NodePath("AreaCruzarPuerta")
-video_player = NodePath("../../../../../CanvasLayerBarco/VideoBarco")
-video_cinematica = ExtResource("14_515ww")
 musica_personalizada = ExtResource("47_rchek")
 
 [node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(790094590, 1621099697) index="0" unique_id=491442277]
@@ -6993,6 +6995,15 @@ shape = SubResource("BoxShape3D_dfpeg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
 shape = SubResource("BoxShape3D_72ksg")
 
+[node name="AreaCinematicaBarco" type="Area3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars" unique_id=1613796828 node_paths=PackedStringArray("video_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.507195, 0, 1220.4781)
+script = ExtResource("52_6klk7")
+video_player = NodePath("../../../../CanvasLayerBarco/VideoBarco")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/AreaCinematicaBarco" unique_id=862837222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.355896, 2.2105103, -0.13085938)
+shape = SubResource("BoxShape3D_vue5m")
+
 [node name="Base VictorBars" type="Node3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider" unique_id=2093273389]
 
 [node name="Cube_004" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars" unique_id=1332756245 instance=ExtResource("52_rchek")]
@@ -7106,6 +7117,7 @@ shape = SubResource("BoxShape3D_rtbm7")
 
 [node name="techo2" type="MeshInstance3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Base VictorBars" unique_id=1229884101]
 transform = Transform3D(0, 0, 46.146202, 0, 0.4027191, 0, -12.872833, 0, 0, 77.197205, 9.221277, 1220.1652)
+visible = false
 layers = 2
 mesh = SubResource("ArrayMesh_jju6t")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
@@ -10052,14 +10064,11 @@ script = ExtResource("113_6126t")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0113678, 22.776337, 0.77612305)
 shape = SubResource("BoxShape3D_rogtm")
 
-[node name="Puerta Salida" type="Node3D" parent="Modulo7" unique_id=1840086433 node_paths=PackedStringArray("area_cruzar", "video_player", "punto_aparicion")]
+[node name="Puerta Salida" type="Node3D" parent="Modulo7" unique_id=1840086433 node_paths=PackedStringArray("area_cruzar")]
 transform = Transform3D(-1, 0, -1.7484555e-07, 0, 9, 0, 8.742275e-08, 0, -1.9999998, -187.85312, -1.7249451, -365.01514)
 script = ExtResource("58_u51io")
 Pepitas_necesarias = 3
 area_cruzar = NodePath("AreaCruzarPuerta")
-video_player = NodePath("../../VictorBars/CanvasLayerMomosss/VideoMomosss")
-video_cinematica = ExtResource("15_6klk7")
-punto_aparicion = NodePath("../../Guardados/Guardado Modulo7/Completo_Modulo7/P-A_Modulo7")
 musica_personalizada = ExtResource("133_ixqge")
 
 [node name="Sketchfab_model" type="Node3D" parent="Modulo7/Puerta Salida" unique_id=1634540922]
