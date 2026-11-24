@@ -241,7 +241,7 @@ func _spawnear_papa() -> void:
 	if punto == null:
 		return
 
-	var raiz := get_tree().current_scene
+	var raiz: Node3D = contenedor_papas
 	var papa = papa_escena.instantiate()
 	papa.add_to_group("PapaMomo")
 	papa.velocidad = CONFIG[fase]["vel_papas"]
