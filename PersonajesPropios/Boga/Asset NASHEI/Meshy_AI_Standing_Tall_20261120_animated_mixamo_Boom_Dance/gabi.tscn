@@ -108,4 +108,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.10316253, 1.865594
 visible = false
 texture = ExtResource("2_voppt")
 
+[connection signal="body_entered" from="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2/StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2/StaticBody3D/Area3D" to="." method="_on_area_3d_body_exited"]
+
 [editable path="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2"]
