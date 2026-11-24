@@ -1352,6 +1352,7 @@ radius = 0.27929688
 height = 2.137207
 
 [node name="BotNico" type="CharacterBody3D" unique_id=679560290 groups=["jugadores"]]
+collision_mask = 33
 script = ExtResource("1_74cmg")
 escena_arma = ExtResource("2_74cmg")
 
