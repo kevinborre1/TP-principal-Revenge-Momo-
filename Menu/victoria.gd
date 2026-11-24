@@ -8,7 +8,6 @@ func _ready() -> void:
 	
 	if not video_player.finished.is_connected(_on_video_finished):
 		video_player.finished.connect(_on_video_finished)
-	
 	video_player.visible = false
 
 func _on_button_pressed() -> void:
@@ -17,6 +16,7 @@ func _on_button_pressed() -> void:
 	boton_creditos.disabled = true
 
 	video_player.visible = true
+	video_player.bus = &"Cinematicas"
 	video_player.play()
 
 func _on_video_finished() -> void:
