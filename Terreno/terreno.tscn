@@ -9255,7 +9255,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.38567, 0.0030641556, 1228.
 script = ExtResource("15_bmrm7")
 id_boton = 1
 puerta_destino = NodePath("../PuertaBaño/Puerta")
-botonJefe = null
 
 [node name="Boton3" parent="VictorBars/Interacciones VictorBars" unique_id=2042099905 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.88409, 0.0030641556, 1231.3999)
@@ -9265,9 +9264,7 @@ puerta_destino = NodePath("../CortinaParaPepita/Cortina2")
 [node name="Boton2" parent="VictorBars/Interacciones VictorBars" unique_id=1599931534 node_paths=PackedStringArray("puerta_destino") instance=ExtResource("14_vubg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.785, -0.003, 1234.86)
 script = ExtResource("15_bmrm7")
-id_boton = null
 puerta_destino = NodePath("../PuertaBaño/Puerta")
-botonJefe = null
 
 [node name="AvisoParaNicoBot" type="Area3D" parent="VictorBars/Interacciones VictorBars/Boton2" unique_id=1471702391 node_paths=PackedStringArray("boton_para_nico", "zona_cruce", "puerta")]
 script = ExtResource("56_vgqji")
@@ -12011,9 +12008,7 @@ botonJefe = true
 [node name="BotonMomo2" parent="Modulo7/Momo/CampoDeFuerza" unique_id=2007378883 node_paths=PackedStringArray("puerta_destino") groups=["BotonEscudoJefe"] instance=ExtResource("14_vubg1")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -37.085953, -5.686541, 26.789429)
 script = ExtResource("15_bmrm7")
-id_boton = null
 puerta_destino = NodePath("../..")
-botonJefe = null
 
 [node name="ContenedorDePapas" type="Node3D" parent="Modulo7/Momo" unique_id=871513914]
 transform = Transform3D(1, 0, 0, 0, 0.9999995, 0, 0, 0, 1, -1.8515167, 0, -3.0829468)
