@@ -8,11 +8,11 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5sj1h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mboj2"]
-radius = 0.62402344
+radius = 0.6821289
 height = 1.8295898
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fv7jj"]
-radius = 0.359375
+radius = 0.33447266
 height = 1.9074097
 
 [node name="Gabi" type="StaticBody3D" unique_id=1085445521]
@@ -22,7 +22,7 @@ dialogue_resource = ExtResource("2_mboj2")
 [node name="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance" parent="." unique_id=1034284016 instance=ExtResource("1_uth4g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.060775638, 0, 0.10211396)
 
-[node name="Skeleton3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/SmartRigArmature" parent_id_path=PackedInt32Array(1034284016, 508156054) index="0" unique_id=688106095]
+[node name="Skeleton3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/SmartRigArmature" parent_id_path=PackedInt32Array(1034284016, 2021371153) index="0" unique_id=1921576643]
 bones/0/position = Vector3(0.008614136, 0.79360163, -0.05541429)
 bones/0/rotation = Quaternion(0.034448016, -0.093347296, 0.12919025, 0.98661524)
 bones/1/rotation = Quaternion(0.061088298, 0.051761467, -0.06395893, 0.9947353)
@@ -106,9 +106,12 @@ shape = SubResource("CapsuleShape3D_mboj2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4509331, 0.8247298, -0.4154445)
 shape = SubResource("CapsuleShape3D_fv7jj")
 
-[node name="ExclamacionSprite" type="Sprite3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance" unique_id=971385592]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.042386904, 1.8765632, 0.14287987)
+[node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=971385592]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.10316254, 1.8765632, 0.24499384)
 visible = false
 texture = ExtResource("2_voppt")
+
+[connection signal="body_entered" from="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D/Area3D" to="." method="_on_area_3d_body_exited"]
 
 [editable path="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance"]

@@ -8236,6 +8236,7 @@ shape = SubResource("BoxShape3D_iaoe2")
 
 [node name="TechoMod7" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1748701883]
 transform = Transform3D(113.0401, 0, 0, 0, -0.8122618, 0, 0, 0, 51.583946, 9.105843, 21.256674, 0.7302246)
+visible = false
 layers = 2
 mesh = SubResource("ArrayMesh_a475y")
 surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
