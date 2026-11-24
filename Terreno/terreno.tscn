@@ -7605,27 +7605,27 @@ el_tiempo_activa_furia = false
 multiplicador_velocidad_furia = 5.0
 
 [node name="Pantalla_1" type="StaticBody3D" parent="VictorBars/MiniJuegoColores" unique_id=1134926328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109, 7, 1210)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109, 6, 1210)
 script = ExtResource("70_10eeh")
 
 [node name="Pantalla_2" type="StaticBody3D" parent="VictorBars/MiniJuegoColores" unique_id=1822560424]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 7, 1210)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 6, 1210)
 script = ExtResource("70_10eeh")
 
 [node name="Pantalla_3" type="StaticBody3D" parent="VictorBars/MiniJuegoColores" unique_id=1647647323]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 7, 1210)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 6, 1210)
 script = ExtResource("70_10eeh")
 
 [node name="Pantalla_4" type="StaticBody3D" parent="VictorBars/MiniJuegoColores" unique_id=1366508652]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 109, 7, 1232)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 109, 6, 1232)
 script = ExtResource("70_10eeh")
 
 [node name="Pantalla_5" type="StaticBody3D" parent="VictorBars/MiniJuegoColores" unique_id=1005640818]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 95, 7, 1232)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 95, 6, 1232)
 script = ExtResource("70_10eeh")
 
 [node name="Pantalla_6" type="StaticBody3D" parent="VictorBars/MiniJuegoColores" unique_id=255768]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 82, 7, 1232)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 82, 6, 1232)
 script = ExtResource("70_10eeh")
 
 [node name="Campus" type="Node3D" parent="." unique_id=597648874]
