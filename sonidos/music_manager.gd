@@ -30,6 +30,9 @@ func play_jefe_final() -> void:
 func play_escape_momo() -> void:
 	_switch_to(music_escape_momo)
 
+func play_stream(stream: AudioStream) -> void:
+	_switch_to(stream)
+	
 func stop_music() -> void:
 	_current_track = null
 	if _tween and _tween.is_valid():
