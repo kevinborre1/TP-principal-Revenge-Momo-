@@ -29,7 +29,7 @@ func _ready() -> void:
 		animation_player.stop()
 
 	# Si ya se vio la cinemática antes (al cargar partida o volver a entrar), dejamos la puerta abierta sin video
-	if Global.cinematica_agua_vista:
+	if Global.cinematicas_vistas.has(name):
 		esta_abierta = true
 		cinematica_reproducida = true
 		var oclusor := get_node_or_null("OccluderPuerta")
@@ -75,9 +75,9 @@ func abrir_puerta() -> void:
 
 	reproducir_sfx_3d(SFX_PUERTA_MADERA)
 
-	if not cinematica_reproducida and not Global.cinematica_agua_vista:
+	if not cinematica_reproducida and not Global.cinematicas_vistas.has(name):
 		cinematica_reproducida = true
-		Global.cinematica_agua_vista = true
+		Global.cinematicas_vistas.append(name)
 		reproducir_cinematica()
 
 func _on_area_cruzar_body_entered(body: Node3D) -> void:
