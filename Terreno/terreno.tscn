@@ -11031,7 +11031,7 @@ transform = Transform3D(-2.3028789, 0, 1.2069585, 0, 2.6, 0, -1.2069585, 0, -2.3
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="ContenedorPapasMomo" unique_id=655655363]
 _spawnable_scenes = PackedStringArray("uid://dwki634comsxy")
-spawn_path = NodePath("../../Modulo7/Momo/ContenedorDePapas")
+spawn_path = NodePath("..")
 
 [connection signal="body_entered" from="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/ascensor" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/ascensor" method="_on_area_3d_body_exited"]
