@@ -12,9 +12,10 @@ func _ready() -> void:
 	video_player.visible = false
 
 func _on_button_pressed() -> void:
+	_detener_musica()
 	SaveAndLoad.actualizar_logro("EscapasteDelMomo")
 	boton_creditos.disabled = true
-	
+
 	video_player.visible = true
 	video_player.play()
 
@@ -43,3 +44,15 @@ func borrar_guardado(ruta: String) -> bool:
 	
 	print("Guardado borrado: ", ruta)
 	return true
+	
+func _detener_musica() -> void:
+	var mm := get_node_or_null("/root/MusicManager")
+	if mm:
+		if mm.has_method("stop_music"):
+			mm.stop_music()
+		elif mm.has_method("detener_musica"):
+			mm.detener_musica()
+		elif mm.has_method("stop"):
+			mm.stop()
+		elif "stream" in mm:
+			mm.stream = null
