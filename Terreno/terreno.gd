@@ -20,7 +20,7 @@ var bot_nico: BotNico = null
 
 func _ready() -> void:
 	MenuOpciones.aplicar_calidad_terreno(get_node_or_null("Terrain3D"))
-	
+	MenuOpciones._aplicar_volumen()
 	# El Host (que ya pre-cargó los datos en el menú) lo leerá bien de entrada
 	actualizar_cartel_modo()
 	

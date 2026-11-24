@@ -29,8 +29,8 @@ var _saliendo := false
 
 
 func _ready() -> void:
+	MenuOpciones._aplicar_volumen()
 	MenuOpciones.aplicar_calidad_terreno(get_node_or_null("Entorno/Terrain3D"))
-
 	_rol = _determinar_rol()
 
 	_canvas = CanvasLayer.new()

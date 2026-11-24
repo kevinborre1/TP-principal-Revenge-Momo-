@@ -1,6 +1,7 @@
 extends VideoStreamPlayer
 
 func _ready() -> void:
+	bus = &"Cinematicas"
 	# Nos aseguramos de conectar la señal por código por si no quedó vinculada en el editor
 	if not finished.is_connected(_on_finished):
 		finished.connect(_on_finished)
