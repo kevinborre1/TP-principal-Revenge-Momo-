@@ -28,14 +28,24 @@ func _ready() -> void:
 	if animation_player:
 		animation_player.stop()
 
+	# Si ya se vio la cinemática antes (al cargar partida o volver a entrar), dejamos la puerta abierta sin video
+	if Global.cinematica_agua_vista:
+		esta_abierta = true
+		cinematica_reproducida = true
+		var oclusor := get_node_or_null("OccluderPuerta")
+		if oclusor:
+			oclusor.visible = false
+		if animation_player and animation_player.has_animation("Animation"):
+			animation_player.play("Animation")
+			animation_player.seek(animation_player.get_animation("Animation").length, true)
+			animation_player.pause()
+
 	if area_cruzar == null:
 		area_cruzar = get_node_or_null("AreaCruzarPuerta")
 
 	if area_cruzar:
 		if not area_cruzar.body_entered.is_connected(_on_area_cruzar_body_entered):
 			area_cruzar.body_entered.connect(_on_area_cruzar_body_entered)
-	else:
-		push_warning("No se encontró 'AreaCruzarPuerta' en la puerta. Agregalo o asignalo en el Inspector.")
 
 	_crear_boton_saltear()
 
@@ -65,8 +75,9 @@ func abrir_puerta() -> void:
 
 	reproducir_sfx_3d(SFX_PUERTA_MADERA)
 
-	if not cinematica_reproducida:
+	if not cinematica_reproducida and not Global.cinematica_agua_vista:
 		cinematica_reproducida = true
+		Global.cinematica_agua_vista = true
 		reproducir_cinematica()
 
 func _on_area_cruzar_body_entered(body: Node3D) -> void:
