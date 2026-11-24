@@ -5,24 +5,22 @@
 [ext_resource type="Resource" uid="uid://bo2kitntriaj0" path="res://DialogoGabi.dialogue" id="2_mboj2"]
 [ext_resource type="Texture2D" uid="uid://h8oidsw0v08l" path="res://assets/!.png" id="2_voppt"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5sj1h"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5sj1h"]
+radius = 0.49560547
+height = 1.9135742
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mboj2"]
-radius = 0.6821289
-height = 1.8295898
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fv7jj"]
-radius = 0.33447266
-height = 1.9074097
+radius = 0.33544922
+height = 1.7871094
 
 [node name="Gabi" type="StaticBody3D" unique_id=1085445521]
 script = ExtResource("1_5sj1h")
 dialogue_resource = ExtResource("2_mboj2")
 
-[node name="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance" parent="." unique_id=1034284016 instance=ExtResource("1_uth4g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.060775638, 0, 0.10211396)
+[node name="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2" parent="." unique_id=63962365 instance=ExtResource("1_uth4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14352858, 0, 0.08882856)
 
-[node name="Skeleton3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/SmartRigArmature" parent_id_path=PackedInt32Array(1034284016, 2021371153) index="0" unique_id=1921576643]
+[node name="Skeleton3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2/SmartRigArmature" parent_id_path=PackedInt32Array(63962365, 2021371153) index="0" unique_id=1921576643]
 bones/0/position = Vector3(0.008614136, 0.79360163, -0.05541429)
 bones/0/rotation = Quaternion(0.034448016, -0.093347296, 0.12919025, 0.98661524)
 bones/1/rotation = Quaternion(0.061088298, 0.051761467, -0.06395893, 0.9947353)
@@ -89,29 +87,25 @@ bones/64/rotation = Quaternion(-0.53070694, -0.23642628, 0.32114467, 0.7478762)
 bones/65/rotation = Quaternion(0.18606372, -0.6627729, 0.31453237, 0.6535915)
 bones/66/rotation = Quaternion(-0.07889328, 0.25003532, 0.26085407, 0.9290928)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance" unique_id=2011762708]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5281478, -0.09852922, 0.4726529)
-physics_material_override = SubResource("PhysicsMaterial_5sj1h")
+[node name="StaticBody3D" type="StaticBody3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2" unique_id=638646807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24544942, 0, 0.18473727)
 
-[node name="Area3D" type="Area3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D" unique_id=966597966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30099142, 0.5543655, 0)
+[node name="Area3D" type="Area3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2/StaticBody3D" unique_id=693853959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14927906, 0, -0.15564555)
 collision_layer = 255
 collision_mask = 255
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D/Area3D" unique_id=1829723481]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1989373, 0.34979004, -0.50843495)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2/StaticBody3D/Area3D" unique_id=1450995565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1376546, 0.8827778, -0.06742683)
+shape = SubResource("CapsuleShape3D_5sj1h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2/StaticBody3D" unique_id=51936264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2801938, 0.7559266, -0.28913134)
 shape = SubResource("CapsuleShape3D_mboj2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D" unique_id=1963017260]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4509331, 0.8247298, -0.4154445)
-shape = SubResource("CapsuleShape3D_fv7jj")
-
 [node name="ExclamacionSprite" type="Sprite3D" parent="." unique_id=971385592]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.10316254, 1.8765632, 0.24499384)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.10316253, 1.865594, 0.18240714)
 visible = false
 texture = ExtResource("2_voppt")
 
-[connection signal="body_entered" from="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/StaticBody3D/Area3D" to="." method="_on_area_3d_body_exited"]
-
-[editable path="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance"]
+[editable path="Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance2"]
