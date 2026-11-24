@@ -16,6 +16,7 @@ var posicion_segura_cliente: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	cargar_configuracion()
+	MenuOpciones.aplicar_guardados()
 # Llama a esta función desde el Area3D (Checkpoint) pasándole la posición del Marker3D
 func establecer_posicion_predeterminada(posicion_base: Vector3) -> void:
 	posicion_segura_host = posicion_base

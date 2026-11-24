@@ -304,6 +304,7 @@ func _asignar(evento: InputEvent) -> void:
 			# Tecla repetida: no se asigna, se restaura el texto y se avisa
 			if _boton_esperando and is_instance_valid(_boton_esperando):
 				_boton_esperando.text = _texto_accion(accion)
+				_boton_esperando.release_focus()
 			_accion_esperando = ""
 			_boton_esperando = null
 			_avisar_conflicto(ACCIONES[en_uso])
@@ -313,9 +314,9 @@ func _asignar(evento: InputEvent) -> void:
 		SaveAndLoad.guardar_configuracion()  # SAVE
 	if _boton_esperando and is_instance_valid(_boton_esperando):
 		_boton_esperando.text = _texto_accion(accion)
+		_boton_esperando.release_focus()
 	_accion_esperando = ""
 	_boton_esperando = null
-
 
 # Devuelve la acción (distinta de "excepto") que ya usa ese código, o "" si está libre
 func _accion_que_usa_codigo(codigo: int, excepto: String) -> String:

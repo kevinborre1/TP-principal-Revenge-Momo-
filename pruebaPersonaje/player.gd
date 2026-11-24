@@ -222,20 +222,20 @@ func _notification(what: int) -> void:
 		_actualizar_visibilidad_hud_pausa()
 
 func _actualizar_visibilidad_hud_pausa() -> void:
-	# Online: never touch the remote player's HUD
+	# En online, nunca tocar el HUD del otro jugador
 	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
+		if label_rol: label_rol.hide()
+		if mira_rect: mira_rect.hide()
 		return
 
-	var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true or Global.get("en_minijuego") == true
-	var tiene_rol: bool = rol == "rompe_escudo" or rol == "letal"
+	var pausado: bool = get_tree().paused or (Global.get("menu_pausa_abierto") == true) or (Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and minijuego_instance == null)
+	var tiene_rol: bool = (rol == "rompe_escudo" or rol == "letal")
 
 	if mira_rect:
 		mira_rect.visible = not pausado
 	if label_rol:
-		label_rol.visible = tiene_rol and not pausado	
-	if label_contrarreloj:
-		label_contrarreloj.visible = (Global.modo_de_juego == "contrarreloj") and not pausado
-	
+		label_rol.visible = tiene_rol and not pausado
+
 func _input(event: InputEvent) -> void:
 	if input_bloqueado or (Global.modo_multijugador == "linea" and not is_multiplayer_authority()) or muerto:
 		return
@@ -870,6 +870,9 @@ func asignar_rol(nuevo_rol: String) -> void:
 	_actualizar_hud_rol(cambio)
 
 func _actualizar_hud_rol(animar: bool) -> void:
+	if Global.modo_multijugador == "linea" and not is_multiplayer_authority():
+		return
+
 	var color = COLOR_MIRA_NORMAL
 	var texto = ""
 	if rol == "rompe_escudo":
@@ -883,17 +886,17 @@ func _actualizar_hud_rol(animar: bool) -> void:
 		mira_rect.modulate = color
 	
 	if label_rol:
-		var pausado: bool = get_tree().paused or Global.get("menu_pausa_abierto") == true
+		var pausado: bool = get_tree().paused or (Global.get("menu_pausa_abierto") == true) or (Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and minijuego_instance == null)
 		label_rol.visible = (texto != "") and not pausado
 		label_rol.text = texto
 		label_rol.modulate = color
-		# "Pop" para avisar que el rol cambió
+		
 		if animar and texto != "":
 			label_rol.pivot_offset = label_rol.size / 2
 			label_rol.scale = Vector2(1.6, 1.6)
 			var tween = create_tween()
 			tween.tween_property(label_rol, "scale", Vector2.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		
+			
 func salir_de_balsa() -> void:
 	var modelo = $"Walk (1)" if has_node("Walk (1)") else null
 	if modelo:

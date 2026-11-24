@@ -16,14 +16,16 @@ func _jugador_dueño() -> Player:
 		nodo = nodo.get_parent()
 	return nodo as Player
 
-func _unhandled_input(event: InputEvent) -> void:
+func _physics_process(_delta: float) -> void:
 	var jugador := _jugador_dueño()
 	if jugador == null or jugador.input_bloqueado or jugador.muerto:
 		return
-	# Evita que un jugador dispare el arma de otro
+	if Global.get("menu_pausa_abierto") == true:
+		return
 	if not jugador.is_multiplayer_authority():
 		return
-	if event.is_action_pressed("disparar") and puede_disparar:
+
+	if Input.is_action_just_pressed("disparar") and puede_disparar:
 		disparar()
 
 func disparar() -> void:
