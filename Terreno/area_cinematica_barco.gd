@@ -112,6 +112,9 @@ func reproducir_cinematica() -> void:
 			video_player.stream = video_cinematica
 		_conectar_senal_video_exclusiva()
 
+		if not boton_saltear:
+			_crear_boton_saltear()
+
 		cinematica_activa = true
 		video_player.visible = true
 		video_player.play()
@@ -119,6 +122,10 @@ func reproducir_cinematica() -> void:
 		if boton_saltear:
 			boton_saltear.show()
 			_reposicionar_boton()
+			print("BOTON -> visible:", boton_saltear.visible, " pos:", boton_saltear.position, " size:", boton_saltear.size, " parent:", boton_saltear.get_parent())
+		else:
+			print("BOTON ES NULL! video_player:", video_player)
+
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 		await cinematica_terminada
@@ -156,13 +163,9 @@ func _crear_boton_saltear() -> void:
 	boton_saltear.add_theme_color_override("font_hover_color", Color.WHITE)
 	boton_saltear.add_theme_font_size_override("font_size", 18)
 
-	var padre := video_player.get_parent()
-	padre.add_child(boton_saltear)
-	padre.move_child(boton_saltear, padre.get_child_count() - 1)
-	boton_saltear.z_index = 100
-
-	if not get_viewport().size_changed.is_connected(_reposicionar_boton):
-		get_viewport().size_changed.connect(_reposicionar_boton)
+	video_player.get_parent().add_child(boton_saltear)
+	boton_saltear.z_index = 10
+	get_viewport().size_changed.connect(_reposicionar_boton)
 	_reposicionar_boton()
 
 func _reposicionar_boton() -> void:
@@ -170,13 +173,7 @@ func _reposicionar_boton() -> void:
 		return
 	var tam_ventana := get_viewport().get_visible_rect().size
 	boton_saltear.size = boton_saltear.get_combined_minimum_size()
-	var pos_pantalla := tam_ventana - boton_saltear.size - Vector2(40, 40)
-
-	var padre_control := boton_saltear.get_parent() as Control
-	if padre_control:
-		boton_saltear.position = padre_control.get_global_transform_with_canvas().affine_inverse() * pos_pantalla
-	else:
-		boton_saltear.position = pos_pantalla
+	boton_saltear.position = tam_ventana - boton_saltear.size - Vector2(40, 40)
 
 func _on_video_finished() -> void:
 	if cinematica_activa:
