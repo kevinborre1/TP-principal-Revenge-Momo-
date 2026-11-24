@@ -7,7 +7,7 @@ signal derrotado
 enum Fase { UNO, DOS, TRES, MUERTO }
 
 @export var vida_max: int = 100
-
+@export var pepita: Node3D   
 @export_group("Ataques")
 @export var zona_ataques: Area3D          # el Area3D con zona_jefe.gd (los ladrillazos)
 
@@ -49,6 +49,11 @@ func _ready() -> void:
 	vida = vida_max
 	add_to_group("JefeFinal")
 	_mostrar_campo(false)
+
+	# Va antes de los return: tiene que correr en host y en cliente
+	_ocultar_item()
+	derrotado.connect(_mostrar_item)
+
 	if not _soy_host():
 		return  # solo el host maneja la lógica del jefe
 
@@ -263,7 +268,10 @@ func _lanzar_onda() -> void:
 
 @rpc("authority", "call_local", "reliable")
 func _crear_onda(centro: Vector3, vel: float) -> void:
+	if fase == Fase.MUERTO:
+		return
 	var onda := OndaExpansiva.new()
+	onda.add_to_group("OndaMomo")
 	onda.velocidad = vel
 	onda.dano = dano_onda
 	onda.radio_max = radio_max_onda
@@ -278,6 +286,9 @@ func velocidad_onda() -> float:
 func _desaparecer() -> void:
 	# Oculta a Momo y a todo lo que cuelga de él
 	visible = false
+	for onda in get_tree().get_nodes_in_group("OndaMomo"):
+		onda.queue_free()
+	# ... el resto queda igual
 
 	# Apaga todas las formas de colisión
 	for c in find_children("*", "CollisionShape3D", true, false):
@@ -348,3 +359,25 @@ func obtener_centro_real() -> Vector3:
 	if is_instance_valid(fisico):
 		return fisico.global_position
 	return global_position
+func _ocultar_item() -> void:
+	print("ocultar_item | pepita: ", pepita)
+	if not is_instance_valid(pepita):
+		return
+	pepita.visible = false
+	for c in pepita.find_children("*", "CollisionObject3D", true, false):
+		c.set_deferred("monitoring", false)
+		c.set_deferred("monitorable", false)
+	for c in pepita.find_children("*", "CollisionShape3D", true, false):
+		c.set_deferred("disabled", true)
+
+
+func _mostrar_item() -> void:
+	if not is_instance_valid(pepita):
+		return
+	for c in pepita.find_children("*", "CollisionObject3D", true, false):
+		c.set_deferred("monitoring", true)
+		c.set_deferred("monitorable", true)
+	if pepita.has_method("aparecer"):
+		pepita.aparecer()
+	else:
+		pepita.visible = true

@@ -1,5 +1,5 @@
 extends Area3D
-
+@export var controlada_externamente: bool = false
 @onready var collision_shape = $CollisionShape3D 
 var activada: bool = false
 var texto_interaccion: String = "Presiona [E]"
@@ -45,12 +45,12 @@ func _on_area_exited(area: Area3D) -> void:
 
 # --- EL RESTO DE TU CÓDIGO QUEDA IGUAL ---
 func _process(delta: float) -> void:
-	if not activada:
-		var papitas_vivas = get_tree().get_nodes_in_group("papitas").size()
-		var lider_vivo = get_tree().get_nodes_in_group("lider").size()
-		
-		if papitas_vivas <= 0 and lider_vivo <= 0:
-			aparecer()
+	if activada or controlada_externamente:
+		return
+	var papitas_vivas = get_tree().get_nodes_in_group("papitas").size()
+	var lider_vivo = get_tree().get_nodes_in_group("lider").size()
+	if papitas_vivas <= 0 and lider_vivo <= 0:
+		aparecer()
 
 func aparecer() -> void:
 	activada = true
