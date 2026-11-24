@@ -18,7 +18,7 @@ extends CanvasLayer
 @export var next_action: StringName = &"ui_accept"
 
 ## The action to use to skip typing the dialogue
-@export var skip_action: StringName = &"ui_cancel"
+@export var skip_action: StringName = &"ui_accept"
 
 ## A sound player for voice lines (if they exist).
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
@@ -214,6 +214,28 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
+
+func _input(event: InputEvent) -> void:
+	# Detecta ESC (ui_cancel) mientras el diálogo está activo
+	if event.is_action_pressed("ui_cancel") and is_instance_valid(dialogue_line):
+		cerrar_dialogo()
+		# IMPORTANTE: NO llamamos a get_viewport().set_input_as_handled()
+		# Así el evento ESC sigue de largo y tu menú de OPCIONES lo recibe y se abre normal.
+
+func cerrar_dialogo() -> void:
+	# 1. Frenar voz si está sonando
+	if audio_stream_player.playing:
+		audio_stream_player.stop()
+	
+	# 2. Avisar al DialogueManager que terminó para que el NPC desbloquee `dialogue_active`
+	Engine.get_singleton("DialogueManager").dialogue_ended.emit(dialogue_resource)
+	
+	# 3. Limpiar referencia y destruir/ocultar el globo
+	dialogue_line = null
+	if owner == null:
+		queue_free()
+	else:
+		hide()
 
 
 #endregion
