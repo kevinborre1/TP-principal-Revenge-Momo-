@@ -158,6 +158,7 @@
 [ext_resource type="Texture2D" uid="uid://dj3lulm6ie1jk" path="res://Imagenes/Volumen.png" id="148_5mi2f"]
 [ext_resource type="PackedScene" uid="uid://blp3cw2bbnw5l" path="res://PersonajesPropios/Boga/Asset NASHEI/Meshy_AI_Standing_Tall_20261120_animated_mixamo_Boom_Dance/gabi.tscn" id="149_t71ts"]
 [ext_resource type="Script" uid="uid://bf0jea5p4xfid" path="res://Terreno/ParedInvisible.gd" id="154_5mi2f"]
+[ext_resource type="PackedScene" uid="uid://xqd35q2qstg2" path="res://assets/Rejas.tscn" id="154_515ww"]
 
 [sub_resource type="Environment" id="Environment_75c1s"]
 tonemap_mode = 2
@@ -6341,7 +6342,7 @@ video_player = NodePath("../../../../../CanvasLayerBarco/VideoBarco")
 video_cinematica = ExtResource("14_515ww")
 musica_personalizada = ExtResource("47_rchek")
 
-[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(790094590, 414532725) index="0" unique_id=617300069]
+[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(790094590, 1621099697) index="0" unique_id=491442277]
 transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, -0.04442978)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" index="0" unique_id=520507754]
@@ -6351,7 +6352,7 @@ transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, -0.26745605, 1.87
 shape = SubResource("BoxShape3D_tx3k5")
 debug_color = Color(0.014038874, 0.65136486, 0, 0.41960785)
 
-[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(790094590, 1460253119) index="0" unique_id=769952834]
+[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(790094590, 508227605) index="0" unique_id=773702561]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" index="0" unique_id=1916084811]
@@ -6376,7 +6377,7 @@ shape = SubResource("BoxShape3D_37mq4")
 transform = Transform3D(-5.6824803e-08, 0, 1.855, 0, 1.684, 0, -1.3, 0, -8.108463e-08, 74.71288, 0.8234103, 984.6666)
 script = ExtResource("47_igocy")
 
-[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(1714256904, 414532725) index="0" unique_id=617300069]
+[node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(1714256904, 1621099697) index="0" unique_id=491442277]
 transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 0, 0, 1, -0.21862793, 0, -0.04442978)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door l_0/Object_4" index="0" unique_id=81545936]
@@ -6386,7 +6387,7 @@ transform = Transform3D(1, 0, -1.080025e-12, 0, 1, 0, 0, 0, 1, 0, 1.8715822, -0.
 shape = SubResource("BoxShape3D_tx3k5")
 debug_color = Color(0.014038874, 0.65136486, 0, 0.41960785)
 
-[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(1714256904, 1460253119) index="0" unique_id=769952834]
+[node name="Object_8" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door r_2" parent_id_path=PackedInt32Array(1714256904, 508227605) index="0" unique_id=773702561]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 0, 0, 1, -0.21655273, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta6/Sketchfab_model/root/GLTF_SceneRootNode/door r_2/Object_8" index="0" unique_id=1543166424]
@@ -7434,7 +7435,7 @@ shape = SubResource("BoxShape3D_vicex")
 [node name="Buttom" parent="VictorBars/Interacciones VictorBars" unique_id=377298075 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1217.951)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=1707274419]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom" index="0" unique_id=169852043]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="AreaButtom" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom" unique_id=1342207512 node_paths=PackedStringArray("puerta_destino")]
@@ -7470,7 +7471,7 @@ shape = SubResource("BoxShape3D_77to7")
 [node name="Buttom2" parent="VictorBars/Interacciones VictorBars" unique_id=2064960827 instance=ExtResource("55_veext")]
 transform = Transform3D(-1, -1.6292068e-07, -8.4408185e-08, -1.6292068e-07, 1, 2.0348393e-08, 2.3150847e-07, 9.3898564e-08, -0.99999994, 62.322716, 1.1840528, 1227.7134)
 
-[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=1707274419]
+[node name="Cube_002" parent="VictorBars/Interacciones VictorBars/Buttom2" index="0" unique_id=169852043]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="AreaButtom2" type="Area3D" parent="VictorBars/Interacciones VictorBars/Buttom2" unique_id=2133630934 node_paths=PackedStringArray("puerta_destino")]
@@ -8843,7 +8844,7 @@ shape = SubResource("BoxShape3D_5e53f")
 transform = Transform3D(-1.5298986e-07, 0, -3.5, 0, 3.4999993, 0, 3.4999993, 0, -1.5298983e-07, 138.85287, 6.391319, -38.31299)
 script = ExtResource("89_jaxmf")
 
-[node name="Object_8" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/LeftOutsideDoor_0_3/Object_4_4" parent_id_path=PackedInt32Array(145607892, 1157805899) index="0" unique_id=1540442214]
+[node name="Object_8" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/LeftOutsideDoor_0_3/Object_4_4" parent_id_path=PackedInt32Array(145607892, 1208255368) index="0" unique_id=435420256]
 surface_material_override/0 = SubResource("StandardMaterial3D_d5tnb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/LeftOutsideDoor_0_3/Object_4_4/Object_8" index="0" unique_id=453216193]
@@ -8856,7 +8857,7 @@ shape = SubResource("BoxShape3D_6pxdu")
 transform = Transform3D(1.0000002, -7.6028073e-13, 1.2197274e-19, 2.7284841e-11, 1.0000398, -3.0979663e-12, -2.9730856e-19, 5.8619776e-14, 1, 1.0750976, -3.7401123, -0.7479553)
 shape = SubResource("BoxShape3D_vf4vc")
 
-[node name="Object_11" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/RightOutsideDoor_1_5/Object_6_6" parent_id_path=PackedInt32Array(145607892, 1317969861) index="0" unique_id=821089698]
+[node name="Object_11" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/RightOutsideDoor_1_5/Object_6_6" parent_id_path=PackedInt32Array(145607892, 406669017) index="0" unique_id=849403197]
 transform = Transform3D(0.9999999, 1.4210855e-14, 0, -5.684342e-14, 0.88019913, -1.4210855e-14, 2.5410988e-21, 0, 1, 0, 0.045410156, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_bm1h2")
 
@@ -8866,13 +8867,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bm1h2")
 transform = Transform3D(1, 0, 0, 0, 1, -3.2330345e-13, 0, 3.2330345e-13, 1, -0.34655762, -0.2520752, -0.41033936)
 shape = SubResource("BoxShape3D_0vk2y")
 
-[node name="Wall_2_7" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1098506399) index="2" unique_id=388970996]
+[node name="Wall_2_7" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 377248758) index="2" unique_id=2133530152]
 visible = false
 
-[node name="Object_17" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorOutsideArmature_3_9/Object_10_10" parent_id_path=PackedInt32Array(145607892, 1950961757) index="0" unique_id=1221023985]
+[node name="Object_17" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorOutsideArmature_3_9/Object_10_10" parent_id_path=PackedInt32Array(145607892, 484369553) index="0" unique_id=1374161315]
 surface_material_override/0 = SubResource("StandardMaterial3D_rsdri")
 
-[node name="Object_20" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Object_12_12" parent_id_path=PackedInt32Array(145607892, 1631250226) index="0" unique_id=2095235139]
+[node name="Object_20" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Object_12_12" parent_id_path=PackedInt32Array(145607892, 271850123) index="0" unique_id=1198142775]
 surface_material_override/0 = SubResource("StandardMaterial3D_vjaep")
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Object_12_12/Object_20" index="0" unique_id=2106004871]
@@ -8881,37 +8882,37 @@ surface_material_override/0 = SubResource("StandardMaterial3D_vjaep")
 transform = Transform3D(0.99999976, 0, -2.4868996e-14, 0, 0.99999976, 0, -2.5224267e-12, 0, 0.9999993, -2.5905762, 0.91644275, -0.077739716)
 shape = SubResource("BoxShape3D_leu1c")
 
-[node name="Object_27" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/ElevatorInteriorButtons_4_14/Object_16_16" parent_id_path=PackedInt32Array(145607892, 1855022050) index="0" unique_id=2119828351]
+[node name="Object_27" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/ElevatorInteriorButtons_4_14/Object_16_16" parent_id_path=PackedInt32Array(145607892, 577592366) index="0" unique_id=663345348]
 surface_material_override/0 = SubResource("StandardMaterial3D_x47i8")
 
-[node name="LeftInteriorDoor_8_26" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11" parent_id_path=PackedInt32Array(145607892, 1407948374) index="6" unique_id=1879917176]
+[node name="LeftInteriorDoor_8_26" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11" parent_id_path=PackedInt32Array(145607892, 1187218698) index="6" unique_id=1217229262]
 visible = false
 
-[node name="Object_27_27" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/LeftInteriorDoor_8_26" index="0" unique_id=345118696]
+[node name="Object_27_27" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/LeftInteriorDoor_8_26" index="0" unique_id=1430456199]
 visible = false
 
-[node name="Object_45" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/LeftInteriorDoor_8_26/Object_27_27" index="0" unique_id=465857851]
+[node name="Object_45" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/LeftInteriorDoor_8_26/Object_27_27" index="0" unique_id=1501610524]
 visible = false
 
-[node name="Object_48" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Mirror_9_28/Object_29_29" parent_id_path=PackedInt32Array(145607892, 877732618) index="0" unique_id=1123507275]
+[node name="Object_48" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/Mirror_9_28/Object_29_29" parent_id_path=PackedInt32Array(145607892, 1459225035) index="0" unique_id=1710813396]
 surface_material_override/0 = SubResource("StandardMaterial3D_f3mle")
 
-[node name="RightInteriorDoor_10_31" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11" parent_id_path=PackedInt32Array(145607892, 1407948374) index="8" unique_id=2050921758]
+[node name="RightInteriorDoor_10_31" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11" parent_id_path=PackedInt32Array(145607892, 1187218698) index="8" unique_id=81779645]
 visible = false
 
-[node name="Object_32_32" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/RightInteriorDoor_10_31" index="0" unique_id=2022274056]
+[node name="Object_32_32" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/RightInteriorDoor_10_31" index="0" unique_id=590375204]
 visible = false
 
-[node name="Object_53" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/RightInteriorDoor_10_31/Object_32_32" index="0" unique_id=850568530]
+[node name="Object_53" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2/ElevatorCage_11_11/RightInteriorDoor_10_31/Object_32_32" index="0" unique_id=1779599519]
 visible = false
 
-[node name="ElevatorCallingButtons_006_14_38" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1098506399) index="7" unique_id=49730250]
+[node name="ElevatorCallingButtons_006_14_38" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 377248758) index="7" unique_id=1199233107]
 transform = Transform3D(0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0, 0.00999999, 0.18848056, 3.283474, -0.072194755)
 
-[node name="Plane_16_42" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 1098506399) index="9" unique_id=1235327298]
+[node name="Plane_16_42" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0/root_1/GLTF_SceneRootNode_2" parent_id_path=PackedInt32Array(145607892, 377248758) index="9" unique_id=580722951]
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0" parent_id_path=PackedInt32Array(145607892, 1571715739) index="1" unique_id=692582646]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor/Sketchfab_model/root/GLTF_SceneRootNode/Sketchfab_model_0" parent_id_path=PackedInt32Array(145607892, 874339692) index="1" unique_id=692582646]
 transform = Transform3D(-4.371137e-08, 2.6654842, -4.3711392e-08, -6.352747e-22, -1.16511984e-07, -0.9999993, -0.9999993, -1.16511984e-07, 1.9106842e-15, -0.07421875, 0.020961761, 3.4312952)
 mesh = SubResource("BoxMesh_pruwi")
 
@@ -8936,7 +8937,7 @@ transform = Transform3D(1, -7.1054274e-15, 0, 0, 1.0000001, -3.5527137e-15, 0, -
 transform = Transform3D(1, -4.8672177e-12, 2.1175824e-21, 0, 1.0000002, -1.2789769e-12, 0, -7.81597e-12, 1, 1.6162994, -0.47070313, 1.3032532)
 shape = SubResource("BoxShape3D_nuwrt")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor" index="1" unique_id=1327105740]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor" index="1" unique_id=1552063528]
 autoplay = &"Animation"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/ascensor" unique_id=868376268]
@@ -9021,17 +9022,17 @@ shape = SubResource("BoxShape3D_al1i7")
 transform = Transform3D(0.020339513, 0, 0, 0, 0.017067818, 0, 0, 0, 0.017999975, 90.2943, 6.358094, -17.506714)
 script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1251818677, 1375933232) index="1" unique_id=544273014]
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1251818677, 1992939481) index="1" unique_id=239928179]
 transform = Transform3D(100.00001, 0, 0, 0, 100, -1.6292068e-05, 0, 1.6292068e-05, 100.00001, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1251818677, 391184207) index="0" unique_id=705366605]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1251818677, 940185514) index="0" unique_id=705366605]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=545292188]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" index="1" unique_id=589368733]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" index="1" unique_id=978443555]
 autoplay = &"Animka"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door" unique_id=409919449]
@@ -9049,17 +9050,17 @@ text = "Presioná E"
 transform = Transform3D(-7.108286e-10, 0, -0.017999971, 0, 0.015691778, 0, 0.016261853, 0, -7.8680307e-10, 185.27356, 6.358087, -39.189087)
 script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1075297296, 1375933232) index="1" unique_id=544273014]
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1075297296, 1992939481) index="1" unique_id=239928179]
 transform = Transform3D(100.00001, 0, 0, 0, 100, -1.6292068e-05, 0, 1.6292068e-05, 100.00001, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1075297296, 391184207) index="0" unique_id=769599346]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1075297296, 940185514) index="0" unique_id=769599346]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=988801588]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2" index="1" unique_id=589368733]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2" index="1" unique_id=978443555]
 autoplay = &"Animka"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door2" unique_id=913787978]
@@ -9078,17 +9079,17 @@ text = "Presioná E
 transform = Transform3D(-7.108286e-10, 0, -0.017999971, 0, 0.016245171, 0, 0.01626184, 0, -7.868027e-10, 184.84909, 6.3580837, 8.674561)
 script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1056319687, 1375933232) index="1" unique_id=544273014]
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1056319687, 1992939481) index="1" unique_id=239928179]
 transform = Transform3D(100.00001, 0, 0, 0, 100, -1.6292068e-05, 0, 1.6292068e-05, 100.00001, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1056319687, 391184207) index="0" unique_id=28954644]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(1056319687, 940185514) index="0" unique_id=28954644]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=1009116970]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3" index="1" unique_id=589368733]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3" index="1" unique_id=978443555]
 autoplay = &"Animka"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door3" unique_id=745809242]
@@ -9107,17 +9108,17 @@ text = "Presioná E
 transform = Transform3D(-7.481546e-10, 0, -0.017999971, 0, 0.016245164, 0, 0.01711575, 0, -7.8680246e-10, 184.1615, 6.358082, 38.35083)
 script = ExtResource("95_q4w1x")
 
-[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(863736658, 1375933232) index="1" unique_id=544273014]
+[node name="Cube_002_Cube_000" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(863736658, 1992939481) index="1" unique_id=239928179]
 transform = Transform3D(100.00001, 0, 0, 0, 100, -1.6292068e-05, 0, 1.6292068e-05, 100.00001, -11.917675, 193.97394, 184.02957)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(863736658, 391184207) index="0" unique_id=1047858788]
+[node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0" parent_id_path=PackedInt32Array(863736658, 940185514) index="0" unique_id=1047858788]
 transform = Transform3D(-2.220446e-18, 6.123234e-19, -0.01, 1.6292068e-09, 0.01, 6.123231e-19, 0.01, -1.6292067e-09, -2.2204462e-18, -1.1186523, -1.9397395, 0.26765442)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4/Sketchfab_model/Door_fbx/Object_2/RootNode/Cube_002_Cube_000/Cube_002_Cube_000_My_Ui_0/StaticBody3D" unique_id=278540478]
 transform = Transform3D(1, 0, -1.5777218e-30, 0, 1, 0, 0, 0, 1, -202.48462, 392.4397, -141.35156)
 shape = SubResource("BoxShape3D_smqjg")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4" index="1" unique_id=589368733]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4" index="1" unique_id=978443555]
 autoplay = &"Animka"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Door4" unique_id=1231470233]
@@ -9145,10 +9146,10 @@ shape = SubResource("BoxShape3D_ylryf")
 transform = Transform3D(0.14942627, 0, 0, 0, 0.064008154, 0, 0, 0, 0.09999992, 42.85013, 6.6048594, -19.793457)
 script = ExtResource("95_efsrm")
 
-[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 711397387) index="0" unique_id=377716961]
+[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 651695583) index="0" unique_id=2123025463]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 1.4210855e-14, 1, 0, 0, 0)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 711397387) index="1" unique_id=537079498]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 651695583) index="1" unique_id=537079498]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, -60.366066, -1.6207273, -1.9320576e-07)
 bone_name = "Ldoor_02"
 bone_idx = 4
@@ -9160,7 +9161,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, -1.192093e-07, -1, 0, 1, -1.192093e
 transform = Transform3D(0.9999999, 0, 0, 0, 1.0000504, -1.4210855e-14, 0, -6.0111915e-12, 0.99999976, 28.14994, -6.5703125, -108.73259)
 shape = SubResource("BoxShape3D_rclcp")
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 711397387) index="2" unique_id=2008675277]
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(1994616490, 651695583) index="2" unique_id=2008675277]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, 60.366135, -1.6207273, -1.9320576e-07)
 bone_name = "Rdoor_01"
 bone_idx = 2
@@ -9171,7 +9172,7 @@ bone_idx = 2
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, -3.8156145e-12, 0, 4.789058e-12, 0.99999785, -28.009308, 100.04999, -6.2285156)
 shape = SubResource("BoxShape3D_fk8gt")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" index="1" unique_id=1889583075]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" index="1" unique_id=479768718]
 autoplay = &"Armature|Open"
 
 [node name="Area3D" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaLabo" unique_id=469292574]
@@ -9189,14 +9190,14 @@ text = "Presioná E"
 transform = Transform3D(-0.14942627, 0, -8.088924e-09, 0, 0.064008154, 0, 1.30632625e-08, 0, -0.09252653, -44.65442, 6.6048594, 8.10498)
 script = ExtResource("95_efsrm")
 
-[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 711397387) index="0" unique_id=377716961]
+[node name="Object_13" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 651695583) index="0" unique_id=2123025463]
 transform = Transform3D(0.7771307, -1.4210855e-14, -2.5410988e-21, -7.1054274e-15, 0.9999999, 7.1054274e-15, 0, 1.4210855e-14, 0.876482, 9.829498, 0, 0)
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D/Object_13" index="0" unique_id=1801762571]
 transform = Transform3D(51.471394, 1.5942673e-19, 1.8189894e-12, -4.5474735e-13, -9.015502e-06, -39.99998, -5.421011e-20, 86.28527, -5.44035e-06, -224.15787, -7.7734375, 136.45113)
 mesh = SubResource("QuadMesh_tx3k5")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 711397387) index="1" unique_id=1163479470]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 651695583) index="1" unique_id=1163479470]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, 60.366135, -1.6207273, -1.9320576e-07)
 bone_name = "Rdoor_01"
 bone_idx = 2
@@ -9207,7 +9208,7 @@ bone_idx = 2
 transform = Transform3D(1, -2.5697933e-26, 1.5170087e-12, -5.129489e-26, 1, 0, -1.4210855e-14, -1.6940659e-21, 1, -22.90866, 110.91283, -4.0625)
 shape = SubResource("BoxShape3D_7oj3h")
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 711397387) index="2" unique_id=857789090]
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5/Skeleton3D" parent_id_path=PackedInt32Array(571571580, 651695583) index="2" unique_id=857789090]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, -60.366066, -1.6207273, -1.9320576e-07)
 bone_name = "Ldoor_02"
 bone_idx = 4
@@ -9218,15 +9219,15 @@ bone_idx = 4
 transform = Transform3D(1, -3.1352488e-26, 1.8474111e-12, -6.2604e-26, 1, 0, -1.4210855e-14, -1.6940659e-21, 1, 43.212463, 104.245056, -6.2441406)
 shape = SubResource("BoxShape3D_jfvr6")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5" parent_id_path=PackedInt32Array(571571580, 101135726) index="1" unique_id=654174898]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5" parent_id_path=PackedInt32Array(571571580, 452556564) index="1" unique_id=654174898]
 transform = Transform3D(25.745842, -3.42372e-27, 2.3874236e-12, -4.5474735e-13, -6.7104565e-06, -33, -2.7105054e-20, 56.291386, -3.933907e-06, 84.76492, -8.388672, 117.24432)
 mesh = SubResource("QuadMesh_f3mle")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5" parent_id_path=PackedInt32Array(571571580, 101135726) index="2" unique_id=1502220822]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5" parent_id_path=PackedInt32Array(571571580, 452556564) index="2" unique_id=1502220822]
 transform = Transform3D(20.940742, -1.1580441e-20, 0, 4.5474735e-13, -7.3066544e-06, -39.99996, 5.421011e-20, 61.29266, -4.768367e-06, -62.676605, -11.173828, 118.837006)
 mesh = SubResource("QuadMesh_rsdri")
 
-[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" index="1" unique_id=1889583075]
+[node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" index="1" unique_id=479768718]
 autoplay = &"Armature|Open"
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" unique_id=1795081632]
@@ -9946,7 +9947,7 @@ debug_color = Color(0.8265024, 0.001577341, 0.95403486, 0.41960785)
 [node name="Boton 2" parent="Modulo7/ZonaJefe/Entrada" unique_id=83118870 instance=ExtResource("55_veext")]
 transform = Transform3D(-4.371139e-08, 0, -5, 0, 8, 0, 1.0000001, 0, -2.1855695e-07, -13.607101, 6.9839497, 60.49463)
 
-[node name="Cube_002" parent="Modulo7/ZonaJefe/Entrada/Boton 2" index="0" unique_id=1707274419]
+[node name="Cube_002" parent="Modulo7/ZonaJefe/Entrada/Boton 2" index="0" unique_id=169852043]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="AreaBoton2" type="Area3D" parent="Modulo7/ZonaJefe/Entrada/Boton 2" unique_id=1964758616 node_paths=PackedStringArray("puerta_destino")]
@@ -9983,7 +9984,7 @@ shape = SubResource("BoxShape3D_77to7")
 [node name="Boton 1" parent="Modulo7/ZonaJefe/Entrada" unique_id=1104928056 instance=ExtResource("55_veext")]
 transform = Transform3D(-4.371139e-08, 0, -4.9999995, 0, 8, 0, 1.0000001, 0, -2.1855695e-07, 39.85788, 6.6807375, 60.271667)
 
-[node name="Cube_002" parent="Modulo7/ZonaJefe/Entrada/Boton 1" index="0" unique_id=1707274419]
+[node name="Cube_002" parent="Modulo7/ZonaJefe/Entrada/Boton 1" index="0" unique_id=169852043]
 transform = Transform3D(0.042374976, -3.7677986e-15, -4.440892e-15, -2.4446795e-16, 0.084924325, -1.3322676e-15, 0, 7.993606e-15, 0.08454656, -1.4266548, -2.3841858e-07, 2.3068848)
 
 [node name="AreaBoton1" type="Area3D" parent="Modulo7/ZonaJefe/Entrada/Boton 1" unique_id=1383935063 node_paths=PackedStringArray("puerta_destino")]
@@ -10679,6 +10680,9 @@ script = ExtResource("154_5mi2f")
 [node name="Reja18" parent="Final/Paredes Invisibles" unique_id=1913772028 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-5.6824803e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -1.3, -4.371139e-08, 3.821371e-15, 28.275509, 9.148123, 174.17334)
 script = ExtResource("154_5mi2f")
+
+[node name="Rejas" parent="Final" unique_id=978265082 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -77.45473, 3.1551552, 825.8159)
 
 [node name="EnemigoDelFinal" parent="Final" unique_id=1142631827 instance=ExtResource("125_i635x")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -74.30886, 4.985863, 791.92914)
