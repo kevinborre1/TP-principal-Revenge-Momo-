@@ -964,7 +964,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053230286, 0.83740234, -9.5
 shape = SubResource("BoxShape3D_sxovr")
 
 [node name="Cartel Cooperar" parent="Laberinto/Carteles/Cartel Boton3" unique_id=2056166955 instance=ExtResource("22_1uqyg")]
-transform = Transform3D(0.9408678, 0, -0.33877462, 0, 1, 0, 0.33877462, 0, 0.9408678, 6.8232946, -1.1920929e-07, -8.920862)
+transform = Transform3D(-0.99973786, 0, -0.022905856, 0, 1, 0, 0.022905856, 0, -0.99973786, 6.8232965, -1.1920929e-07, -8.920862)
 
 [node name="Label3D" type="Label3D" parent="Laberinto/Carteles/Cartel Boton3/Cartel Cooperar" unique_id=1370288072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.057621002, 1.740379, 0.010120392)
