@@ -11,6 +11,9 @@ extends Area3D
 @export var propiedad_velocidad: StringName = &"velocidadActual"
 ## Cuántos jugadores tienen que haber pasado como mínimo (2 = host y cliente). Poné 1 para probar solo
 @export var jugadores_necesarios: int = 1
+## Barreras que bloquean el camino a la victoria hasta que aparecen los chicken momos
+## (cualquier nodo con CollisionShape3D adentro: un StaticBody3D o una instancia de Rejas)
+@export var barreras: Array[Node3D] = []
 
 @export_group("Reinicio al ser golpeados")
 ## Marker3D donde vuelven los jugadores (tiene que estar FUERA de esta zona)
@@ -31,6 +34,7 @@ var _pasaron: Dictionary = {}
 func _ready() -> void:
 	add_to_group("ZonaFinal")
 	body_entered.connect(_on_body_entered)
+	_set_barrera(true)
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -81,6 +85,7 @@ func _lista_enemigos() -> Array:
 
 @rpc("authority", "call_local", "reliable")
 func _activar_todo() -> void:
+	_set_barrera(false)
 	_subir_velocidad_jugadores()
 	_activar_enemigos()
 	get_tree().call_group("BotCompanero", "cambiar_estado", "Escape")
@@ -134,6 +139,7 @@ func reiniciar_recorrido() -> void:
 @rpc("authority", "call_local", "reliable")
 func _reiniciar_todo() -> void:
 	_epoca += 1
+	_set_barrera(true)
 	_desactivar_enemigos()
 	_restaurar_velocidad_jugadores()
 
@@ -237,3 +243,11 @@ func _aplicar_boost_bot(bot: Node3D, activar: bool) -> void:
 			bot.set("velocidad_caminar", bot.get_meta("final_bot_caminar_base"))
 			bot.remove_meta("final_bot_correr_base")
 			bot.remove_meta("final_bot_caminar_base")
+
+func _set_barrera(cerrada: bool) -> void:
+	for barrera in barreras:
+		if not is_instance_valid(barrera):
+			continue
+		barrera.visible = cerrada
+		for forma in barrera.find_children("*", "CollisionShape3D", true, false):
+			forma.set_deferred("disabled", not cerrada)
