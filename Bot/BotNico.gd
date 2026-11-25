@@ -309,19 +309,19 @@ func mover_hacia(destino: Vector3, delta: float, correr: bool = false) -> void:
 		detener_movimiento(delta)
 		return
 	_ejecutar_desplazamiento(delta, true)
-	_intentar_subir_escalon()
+	#_intentar_subir_escalon()
 	_actualizar_animacion(correr)
 
-func _intentar_subir_escalon() -> void:
-	if not is_on_floor() or not is_on_wall():
-		return
-	# Solo impulsa si realmente está intentando avanzar horizontalmente
-	if Vector2(velocity.x, velocity.z).length() < 0.2:
-		return
-	var normal_pared := get_wall_normal()
-	# Solo actúa frente a bordes verticales (escalones), no en rampas ya caminables
-	if absf(normal_pared.y) < 0.2:
-		velocity.y = 3.8
+#func _intentar_subir_escalon() -> void:
+	#if not is_on_floor() or not is_on_wall():
+		#return
+	## Solo impulsa si realmente está intentando avanzar horizontalmente
+	#if Vector2(velocity.x, velocity.z).length() < 0.2:
+		#return
+	#var normal_pared := get_wall_normal()
+	## Solo actúa frente a bordes verticales (escalones), no en rampas ya caminables
+	#if absf(normal_pared.y) < 0.2:
+		#velocity.y = 3.8
 	
 func mover_tactico(objetivo_pos: Vector3, direccion_movimiento: Vector3, delta: float) -> void:
 	if muerto:
