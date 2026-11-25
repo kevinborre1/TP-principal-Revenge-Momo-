@@ -85,6 +85,7 @@ const SFX_CURACION = preload("res://sonidos/curacion.wav")
 const SFX_DANIO = preload("res://sonidos/jugador_herido.wav")
 
 func _ready() -> void:
+	macarena.bus = &"SFX"
 	spring_arm.spring_length = 4.0
 	spring_arm.margin = 0.1
 	spring_arm.collision_mask = 1  # la capa de tus paredes

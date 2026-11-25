@@ -63,6 +63,7 @@
 [ext_resource type="PackedScene" uid="uid://cmpgb70r83wqk" path="res://vitictorBar/assetsCocina/Coffee bean by Poly by Google - 7ONZQTx9Tuz.glb" id="48_yeivc"]
 [ext_resource type="AudioStream" uid="uid://brl0rt65lwh80" path="res://sonidos/MusicaPapaLider.ogg" id="51_qlrki"]
 [ext_resource type="Script" uid="uid://cvj3tgrjkax1o" path="res://Objetos-Interactivos/pepita.gd" id="51_vg8rj"]
+[ext_resource type="Script" uid="uid://b8pk42d084ukp" path="res://Terreno/area_cinematica_barco.gd" id="52_6klk7"]
 [ext_resource type="PackedScene" uid="uid://drbl16pfdhvfc" path="res://PruebaBalsa/balsa.tscn" id="52_p5cfm"]
 [ext_resource type="PackedScene" uid="uid://df3k3tfxqurm3" path="res://Terreno/cube_004.scn" id="52_rchek"]
 [ext_resource type="PackedScene" uid="uid://c2ss50aamwhpy" path="res://vitictorBar/momo_toilet_dom_studio.glb" id="53_gkey5"]
@@ -346,9 +347,6 @@ albedo_texture = ExtResource("55_vygt8")
 material = SubResource("StandardMaterial3D_1cv7w")
 size = Vector2(8, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lr14e"]
-size = Vector3(1.0302734, 115.93704, 55.651398)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cnt6s"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qycj0"]
@@ -506,6 +504,9 @@ size = Vector3(2.198944, 0.1076355, 1.2476196)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_snn8e"]
 size = Vector3(0.090408325, 0.604126, 0.071746826)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vue5m"]
+size = Vector3(1.4819336, 5.4210205, 23.742188)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qqfi"]
 
@@ -5132,6 +5133,9 @@ size = Vector3(34.12967, 46.552673, 1.4144897)
 [sub_resource type="BoxShape3D" id="BoxShape3D_045ri"]
 size = Vector3(43.473694, 3.687378, 7.392456)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lr14e"]
+size = Vector3(4.51416, 25.481796, 26.758606)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3mle"]
 size = Vector3(20.455387, 5.4658813, 0.6328125)
 
@@ -5309,11 +5313,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yqtv4")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0ile7"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_u3qxy"]
-size = Vector3(7.858795, 2.0407562, 3.3674316)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gojle"]
 albedo_texture = ExtResource("71_vedoo")
 
@@ -5360,6 +5359,9 @@ size = Vector3(33.114975, 1, 160.11136)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vwjq2"]
 size = Vector3(21.844482, 10.29187, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
+size = Vector3(22, 16, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_snn8e"]
 
@@ -6157,7 +6159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47058105, 0.7352907, -0.44
 shape = SubResource("BoxShape3D_0u3xn")
 
 [node name="PepitaCafe" type="Area3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Cocina" unique_id=1166652405]
-transform = Transform3D(0.06666668, 0, 0, 0, 0.06666668, 0, 0, 0, 0.06666668, 18.08018, 0.010898739, -0.3986206)
+transform = Transform3D(0.06666668, 0, 0, 0, 0.06666668, 0, 0, 0, 0.06666668, 19.128439, 0.83159906, -0.3986206)
 script = ExtResource("51_vg8rj")
 
 [node name="Coffee bean by Poly by Google - 7ONZQTx9Tuz" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Cocina/PepitaCafe" unique_id=936193032 instance=ExtResource("48_yeivc")]
@@ -6203,22 +6205,6 @@ mesh = SubResource("PlaneMesh_f3mle")
 [node name="OtroLado" type="MeshInstance3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/cartel" unique_id=975723792]
 transform = Transform3D(-0.061640576, -0.87274545, -10.188248, 0.1488317, 0.25149623, -35.30449, 5.73834, -0.01589766, 0.80623347, -16.5, 70.96175, 7.6293945e-06)
 mesh = SubResource("PlaneMesh_f3mle")
-
-[node name="CaraCarterVictorVar1" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/cartel" unique_id=535789790]
-transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, -56.41797, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/cartel/CaraCarterVictorVar1" unique_id=838423615]
-transform = Transform3D(0.9659258, 0.258819, 0, -0.25881904, 0.9659259, 0, 0, -8.881784e-16, 1, 36.96875, 59.584324, -0.060394287)
-shape = SubResource("BoxShape3D_lr14e")
-debug_color = Color(0.86235255, 0.000640139, 0.8711823, 0.41960785)
-
-[node name="CaraCarterVictorVar2" type="StaticBody3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/cartel" unique_id=468771870]
-transform = Transform3D(-0.9997853, 0, 0.020723982, 0, 1, 0, -0.020723982, 0, -0.9997853, 58.45703, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/cartel/CaraCarterVictorVar2" unique_id=1259326260]
-transform = Transform3D(0.9659258, 0.258819, 0, -0.25881904, 0.9659259, 0, 0, -8.881784e-16, 1, 36.96875, 59.584324, -0.060394287)
-shape = SubResource("BoxShape3D_lr14e")
-debug_color = Color(0.86235255, 0.000640139, 0.8711823, 0.41960785)
 
 [node name="Banio" type="Node3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars" unique_id=1528389492]
 transform = Transform3D(0.5422553, 0, 0, 0, 0.5258939, 0, 0, 0, 0.550888, 36.170895, -0.12711287, 1220.4194)
@@ -6338,12 +6324,10 @@ physics_material_override = SubResource("PhysicsMaterial_dufpk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01361084, 1.935547, -0.050354004)
 shape = SubResource("BoxShape3D_vrlqc")
 
-[node name="Puerta5" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada" unique_id=790094590 node_paths=PackedStringArray("area_cruzar", "video_player") instance=ExtResource("57_k37ix")]
+[node name="Puerta5" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada" unique_id=790094590 node_paths=PackedStringArray("area_cruzar") instance=ExtResource("57_k37ix")]
 transform = Transform3D(-4.371139e-08, 0, 1.427239, 0, 1.2954012, 0, -1, 0, -6.23866e-08, 74.56456, 0.0021679401, 1207.6699)
 script = ExtResource("58_u51io")
 area_cruzar = NodePath("AreaCruzarPuerta")
-video_player = NodePath("../../../../../CanvasLayerBarco/VideoBarco")
-video_cinematica = ExtResource("14_515ww")
 musica_personalizada = ExtResource("47_rchek")
 
 [node name="Object_4" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/Puerta5/Sketchfab_model/root/GLTF_SceneRootNode/door l_0" parent_id_path=PackedInt32Array(790094590, 1330816599) index="0" unique_id=1994626132]
@@ -6992,6 +6976,16 @@ shape = SubResource("BoxShape3D_dfpeg")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/Haul de entrada/chair18/StaticBody3D" unique_id=1880679902]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013793945, -0.1888428, -0.23309326)
 shape = SubResource("BoxShape3D_72ksg")
+
+[node name="AreaCinematicaBarco" type="Area3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars" unique_id=1613796828 node_paths=PackedStringArray("video_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.507195, 0, 1220.4781)
+script = ExtResource("52_6klk7")
+video_player = NodePath("../../../../CanvasLayerBarco/VideoBarco")
+video_cinematica = ExtResource("14_515ww")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider/Decoraciones VictorBars/AreaCinematicaBarco" unique_id=862837222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.355896, 2.2105103, -0.13085938)
+shape = SubResource("BoxShape3D_vue5m")
 
 [node name="Base VictorBars" type="Node3D" parent="VictorBars/NavigationRegion3D/NavigationRegion3DPapaLider" unique_id=2093273389]
 
@@ -8315,6 +8309,15 @@ Su escudo, que lo mantiene inmune, solo puede ser desactivado mediante 2 botones
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026/ConsejoMomo" unique_id=33077025]
 shape = SubResource("BoxShape3D_8jko8")
 
+[node name="ConsejoChicken" type="Area3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026" unique_id=1789250349]
+transform = Transform3D(0.39500013, 0, 0, 0, 1.975, 0, 0, 0, 0.27, -1.1171547, 0.3557893, -0.7892685)
+script = ExtResource("46_idtyf")
+mensaje = "Algunas cosas de la vida no se ven a simple vista... Dispará para revelar los obstáculos."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_026/ConsejoChicken" unique_id=638712851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.49299526, 0)
+shape = SubResource("BoxShape3D_adtsf")
+
 [node name="Techoo" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=23734633]
 transform = Transform3D(0.46884146, 0, 33.53383, 0, -0.9823973, 0, -164.6465, 0, 0.09548973, -69.48409, 20.94582, -210.34412)
 layers = 2
@@ -8649,8 +8652,8 @@ mesh = SubResource("ArrayMesh_7yc8s")
 
 [node name="Cube_123" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1242626994]
 transform = Transform3D(-0.9999383, 0, 0.01111077, 0, 1.1504529, 0, -0.011110765, 0, -0.999938, 183.26593, 9.314668, 1.6488037)
-visible = false
 mesh = SubResource("ArrayMesh_07rq5")
+surface_material_override/0 = SubResource("StandardMaterial3D_nei3j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/Cube_123" unique_id=649239413]
 
@@ -10052,14 +10055,11 @@ script = ExtResource("113_6126t")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0113678, 22.776337, 0.77612305)
 shape = SubResource("BoxShape3D_rogtm")
 
-[node name="Puerta Salida" type="Node3D" parent="Modulo7" unique_id=1840086433 node_paths=PackedStringArray("area_cruzar", "video_player", "punto_aparicion")]
+[node name="Puerta Salida" type="Node3D" parent="Modulo7" unique_id=1840086433 node_paths=PackedStringArray("area_cruzar")]
 transform = Transform3D(-1, 0, -1.7484555e-07, 0, 9, 0, 8.742275e-08, 0, -1.9999998, -187.85312, -1.7249451, -365.01514)
 script = ExtResource("58_u51io")
 Pepitas_necesarias = 3
 area_cruzar = NodePath("AreaCruzarPuerta")
-video_player = NodePath("../../VictorBars/CanvasLayerMomosss/VideoMomosss")
-video_cinematica = ExtResource("15_6klk7")
-punto_aparicion = NodePath("../../Guardados/Guardado Modulo7/Completo_Modulo7/P-A_Modulo7")
 musica_personalizada = ExtResource("133_ixqge")
 
 [node name="Sketchfab_model" type="Node3D" parent="Modulo7/Puerta Salida" unique_id=1634540922]
@@ -10112,6 +10112,17 @@ libraries/ = SubResource("AnimationLibrary_m2yru")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/Puerta Salida/AreaCruzarPuerta" unique_id=853803259]
 transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, 7.1054274e-15, 0, 1, 9.528839, 1.343689, -0.47711182)
 shape = SubResource("BoxShape3D_045ri")
+
+[node name="AreaMomoss" type="Area3D" parent="Modulo7" unique_id=2058730933 node_paths=PackedStringArray("video_player")]
+transform = Transform3D(1, 0, 0, 0, 0.9999994, 0, 0, 0, 0.9999999, -145.56781, 0, -377.12823)
+script = ExtResource("52_6klk7")
+pepitas_necesarias = 3
+video_player = NodePath("../../VictorBars/CanvasLayerMomosss/VideoMomosss")
+video_cinematica = ExtResource("15_6klk7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/AreaMomoss" unique_id=870717723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7570801, 7.5411305, 7.543701)
+shape = SubResource("BoxShape3D_lr14e")
 
 [node name="Guardados" type="Node" parent="." unique_id=569926142]
 
@@ -10278,51 +10289,8 @@ visibility_range_end = 100.0
 visibility_range_end_margin = 5.0
 mesh = SubResource("ArrayMesh_n2rd3")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="AlRededores/Modulo 1" unique_id=267967418]
-physics_material_override = SubResource("PhysicsMaterial_0ile7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AlRededores/Modulo 1/StaticBody3D" unique_id=319799570]
-transform = Transform3D(1, 0, 0, 0, 1, -2.5179118e-20, 0, -2.5179118e-20, 1, 2.9466705, -0.010223389, -1.1837159)
-shape = SubResource("BoxShape3D_u3qxy")
-
 [node name="Perimetro" type="Node3D" parent="AlRededores" unique_id=1227957094]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 91.67982, 0.034261584, 1286.802)
-
-[node name="Perimetro4" parent="AlRededores/Perimetro" unique_id=84022479 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(0.38409472, 0, 0, 0, 1, 0, 0, 0, 1, -16.433516, 0, 0)
-
-[node name="Perimetro5" parent="AlRededores/Perimetro" unique_id=225778739 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.91793, 0, 0)
-
-[node name="Perimetro6" parent="AlRededores/Perimetro" unique_id=122616826 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.398367, 0, 0)
-
-[node name="Perimetro7" parent="AlRededores/Perimetro" unique_id=2003386704 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.85665, 0, 0)
-
-[node name="Perimetro8" parent="AlRededores/Perimetro" unique_id=1896028225 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.32461, 0, 0)
-
-[node name="Perimetro9" parent="AlRededores/Perimetro" unique_id=1064576755 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.0585811, 0, 0, 0, 1, 0, 0, 0, 1, -44.14516, 0, 0)
-
-[node name="Perimetro11" parent="AlRededores/Perimetro" unique_id=54903359 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.312614, 0, 0)
-
-[node name="Perimetro12" parent="AlRededores/Perimetro" unique_id=875029922 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.77861, 0, 0)
-
-[node name="Perimetro13" parent="AlRededores/Perimetro" unique_id=1315588645 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.27443, 0, 0)
-
-[node name="Perimetro14" parent="AlRededores/Perimetro" unique_id=1268673733 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.75885, 0, 0)
-
-[node name="Perimetro15" parent="AlRededores/Perimetro" unique_id=1553267736 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.23929, 0, 0)
-
-[node name="Perimetro16" parent="AlRededores/Perimetro" unique_id=1442389640 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.69757, 0, 0)
 
 [node name="Perimetro98" parent="AlRededores/Perimetro" unique_id=2002793010 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 27.46774, 32.78363, 1.4323741e-06)
@@ -10423,9 +10391,6 @@ visible = false
 [node name="Perimetro120" parent="AlRededores/Perimetro" unique_id=536348368 instance=ExtResource("74_qbwh1")]
 transform = Transform3D(-4.371139e-08, 0.99999994, 4.369406e-08, -0.99999994, -4.3711385e-08, -4.4942325e-08, -4.494232e-08, -4.369406e-08, 1, 30.389614, 153.40625, 6.7055225e-06)
 visible = false
-
-[node name="Perimetro10" parent="AlRededores/Perimetro" unique_id=1750865025 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.0735035, 0, 0, 0, 1, 0, 0, 0, 1, -56.638916, 0, 0)
 
 [node name="PuertaPrincipal" parent="AlRededores/Perimetro" unique_id=862817177 instance=ExtResource("70_vg8rj")]
 transform = Transform3D(2, 0, 0, 0, -8.838443e-08, -1.5, 0, 2.022, -6.556708e-08, -103.5244, -1.9776611, -0.017130878)
@@ -10615,80 +10580,77 @@ transform = Transform3D(1.4035019, 0, -2.6514492, 0, 3, 0, 2.6514492, 0, 1.40350
 [node name="Paredes Invisibles" type="Node3D" parent="Final" unique_id=895551501]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.994995, 0, 825.8159)
 
-[node name="Reja15" parent="Final/Paredes Invisibles" unique_id=588045758 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-6.556708e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -1.5, -4.371139e-08, 3.821371e-15, 15.252338, 9.101545, 169.42792)
+[node name="Rejas111" parent="Final/Paredes Invisibles" unique_id=2076179418 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, -3.5527137e-15, 0.029909983, 2.5942888, 0.015397936, -0.00015660972, -0.013583788, 2.940762, 4.391083, 2.2056427, 8.261719)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja11" parent="Final/Paredes Invisibles" unique_id=1719897850 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -17.226707, 9.092623, 128.02136)
+[node name="Rejas112" parent="Final/Paredes Invisibles" unique_id=978265082 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, -3.5527137e-15, 0.029909983, 2.5942888, 0.015397936, -0.00015660972, -0.013583788, 2.940762, -7.1176453, 2.2056427, 23.127686)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja9" parent="Final/Paredes Invisibles" unique_id=1234949820 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -9.771027, 9.575461, 121.78021)
+[node name="Rejas114" parent="Final/Paredes Invisibles" unique_id=2036654122 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, -3.5527137e-15, 0.029909983, 2.5942888, 0.015397936, -0.00015660972, -0.013583788, 2.940762, 4.2269897, 2.2056427, 52.657227)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja7" parent="Final/Paredes Invisibles" unique_id=859248283 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -3.7750092, 10.242903, 138.92407)
+[node name="Rejas116" parent="Final/Paredes Invisibles" unique_id=2035799270 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.8763657, -0.013594384, -3.5527137e-15, 0.025532475, 2.5962768, 0.015397936, -0.00013368893, -0.013594197, 2.940762, -0.23461914, 2.2056427, 75.89313)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja2" parent="Final/Paredes Invisibles" unique_id=869190083 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -16.363579, 9.612287, 23.933533)
+[node name="Rejas117" parent="Final/Paredes Invisibles" unique_id=374045344 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.8763657, -0.013594384, -3.5527137e-15, 0.025532475, 2.5962768, 0.015397936, -0.00013368893, -0.013594197, 2.940762, 4.0317154, 2.2056427, 86.9032)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja" parent="Final/Paredes Invisibles" unique_id=1741049841 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -4.1108093, 9.484124, 9.749268)
+[node name="Rejas118" parent="Final/Paredes Invisibles" unique_id=1650570472 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.8763657, -0.013594384, -3.5527137e-15, 0.025532475, 2.5962768, 0.015397936, -0.00013368893, -0.013594197, 2.940762, -5.7630386, 2.2056427, 100.48901)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja3" parent="Final/Paredes Invisibles" unique_id=1947385404 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -4.0218353, 9.7851515, 38.581726)
+[node name="Rejas119" parent="Final/Paredes Invisibles" unique_id=515822652 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.8152978, -0.013609872, -3.5527137e-15, 0.019976763, 2.5992346, 0.015397936, -0.00010459902, -0.013609685, 2.940762, 4.037033, 2.2056427, 108.423645)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja4" parent="Final/Paredes Invisibles" unique_id=1170620063 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -6.7267, 10.214344, 52.976868)
+[node name="Rejas120" parent="Final/Paredes Invisibles" unique_id=2015716939 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.0653062, -0.01362388, -3.5527137e-15, 0.016049834, 2.6019099, 0.015397936, -8.4037485e-05, -0.013623693, 2.940762, -5.1877747, 2.2056427, 121.082825)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja5" parent="Final/Paredes Invisibles" unique_id=1326786609 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(0.99939084, -0.034899496, 3.0510108e-09, 0, -4.371139e-08, -2, 0.034899496, 0.99939084, -8.736952e-08, -16.980225, 9.791697, 62.263977)
+[node name="Rejas121" parent="Final/Paredes Invisibles" unique_id=137741247 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.0653062, -0.01362388, -3.5527137e-15, 0.016049834, 2.6019099, 0.015397936, -8.4037485e-05, -0.013623693, 2.940762, -11.686333, 2.2056427, 128.08032)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja6" parent="Final/Paredes Invisibles" unique_id=93251664 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -8.29937, 10.103027, 75.89996)
+[node name="Rejas122" parent="Final/Paredes Invisibles" unique_id=652672637 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.455707, -0.013591523, -3.5527137e-15, 0.023329925, 2.5957303, 0.015397936, -0.00012215629, -0.013591337, 2.940762, 3.498932, 2.2056427, 139.47943)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja8" parent="Final/Paredes Invisibles" unique_id=1665117720 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.8, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -5.7076035, 9.457306, 86.74249)
+[node name="Rejas123" parent="Final/Paredes Invisibles" unique_id=1892591095 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.319693, -0.013609666, -3.5527137e-15, 0.017381795, 2.5991952, 0.015397936, -9.101167e-05, -0.01360948, 2.940762, 4.097809, 2.2056427, 160.43585)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja10" parent="Final/Paredes Invisibles" unique_id=1069966438 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -1.5340576, 9.543687, 108.710266)
+[node name="Rejas124" parent="Final/Paredes Invisibles" unique_id=1685305328 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.319693, -0.013609666, -3.5527137e-15, 0.017381795, 2.5991952, 0.015397936, -9.101167e-05, -0.01360948, 2.940762, -10.809952, 2.2056427, 165.96808)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja12" parent="Final/Paredes Invisibles" unique_id=1161368194 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -13.239258, 9.82814, 101.16998)
+[node name="Rejas125" parent="Final/Paredes Invisibles" unique_id=540814257 instance=ExtResource("154_515ww")]
+transform = Transform3D(-9.11568e-05, -0.013609479, 2.9407623, 0.017381793, 2.5991952, 0.015397936, -3.319693, 0.013609665, -1.285448e-07, 0.33032227, 2.2056427, 174.16913)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja13" parent="Final/Paredes Invisibles" unique_id=2072129863 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -1.179985, 10.098705, 160.27118)
+[node name="Rejas126" parent="Final/Paredes Invisibles" unique_id=41473866 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.000107092106, -0.013597022, 2.9407623, 0.02042034, 2.596816, 0.015397936, -3.9000156, 0.013597208, -1.285448e-07, 9.791138, 2.2056427, 161.70044)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja14" parent="Final/Paredes Invisibles" unique_id=128212484 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, -15.890205, 10.010891, 167.55591)
+[node name="Rejas127" parent="Final/Paredes Invisibles" unique_id=1761509736 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.000107092106, -0.013597022, 2.9407623, 0.02042034, 2.596816, 0.015397936, -3.9000156, 0.013597208, -1.285448e-07, 19.94711, 2.2056427, 167.33844)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja16" parent="Final/Paredes Invisibles" unique_id=1118744801 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -2, -4.371139e-08, 3.821371e-15, 44.27244, 9.556434, 179.98584)
+[node name="Rejas128" parent="Final/Paredes Invisibles" unique_id=344127653 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.0001403451, -0.013574915, 2.9407623, 0.026761027, 2.5925941, 0.015397936, -5.111003, 0.013575101, -1.285448e-07, 44.314823, 2.2056427, 171.47992)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja17" parent="Final/Paredes Invisibles" unique_id=1945740185 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-6.556708e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -1.5, -4.371139e-08, 3.821371e-15, -0.29058075, 9.622512, 179.39954)
+[node name="Rejas115" parent="Final/Paredes Invisibles" unique_id=1932758496 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.0516467, -0.013604654, -3.5527137e-15, 0.021214277, 2.5982382, 0.015397936, -0.0001110787, -0.013604467, 2.940762, -9.7734375, 2.2056427, 62.983032)
 script = ExtResource("154_5mi2f")
 
-[node name="Reja18" parent="Final/Paredes Invisibles" unique_id=1913772028 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-5.6824803e-08, 1, -8.742278e-08, 0, -4.371139e-08, -2, -1.3, -4.371139e-08, 3.821371e-15, 28.275509, 9.148123, 174.17334)
+[node name="Rejas113" parent="Final/Paredes Invisibles" unique_id=1961232255 instance=ExtResource("154_515ww")]
+transform = Transform3D(4.678147, -0.013596853, -3.5527137e-15, 0.024494607, 2.5967484, 0.015397936, -0.00012825463, -0.013596666, 2.940762, 4.1530075, 2.2056427, 37.303406)
 script = ExtResource("154_5mi2f")
-
-[node name="Rejas" parent="Final" unique_id=978265082 instance=ExtResource("154_515ww")]
-transform = Transform3D(3.3, 0, 0, 0, 3.3, 0, 0, 0, 3.3, -77.45473, 3.1551552, 825.8159)
 
 [node name="EnemigoDelFinal" parent="Final" unique_id=1142631827 instance=ExtResource("125_i635x")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -74.30886, 4.985863, 791.92914)
@@ -10702,269 +10664,317 @@ navigation_mesh = SubResource("NavigationMesh_tr3kr")
 [node name="Recorrido final" type="Node3D" parent="Final/NavigationRegion3D" unique_id=718019249]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.14346, 0, 796.1123)
 
-[node name="Perimetro2" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1744007409 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -7.4138336, 9.958533, -9.888306)
+[node name="Rejas" parent="Final/NavigationRegion3D/Recorrido final" unique_id=840582301 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685942, -0.013583789, 2.9407623, 0.02990998, 2.5942888, 0.015397936, -5.7124114, 0.013583975, -1.285448e-07, 113.307434, 2.2056427, 402.1405)
 
-[node name="Perimetro3" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1262775089 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -18.513428, 9.958533, -9.888306)
+[node name="Rejas2" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1597938358 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685942, -0.013583789, 2.9407623, 0.02990998, 2.5942888, 0.015397936, -5.7124114, 0.013583975, -1.285448e-07, 113.307434, 2.2056427, 393.31482)
 
-[node name="Perimetro4" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1933127292 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 0.9081421)
+[node name="Rejas3" parent="Final/NavigationRegion3D/Recorrido final" unique_id=253702358 instance=ExtResource("154_515ww")]
+transform = Transform3D(0.11971155, -0.014914249, 2.9401083, 0.030278273, 2.5942822, 0.016582612, -5.711155, 0.013441236, 0.061715547, 113.307434, 2.2056427, 384.46167)
 
-[node name="Perimetro5" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2143982293 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 12.02002)
+[node name="Rejas5" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2101368672 instance=ExtResource("154_515ww")]
+transform = Transform3D(0.11971155, -0.014914249, 2.9401083, 0.030278273, 2.5942822, 0.016582612, -5.711155, 0.013441236, 0.061715547, 104.16788, 2.2056427, 375.2683)
 
-[node name="Perimetro6" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1361769599 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 23.105469)
+[node name="Rejas6" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1962351620 instance=ExtResource("154_515ww")]
+transform = Transform3D(0.11971155, -0.014914249, 2.9401083, 0.030278273, 2.5942822, 0.016582612, -5.711155, 0.013441236, 0.061715547, 104.16788, 2.2056427, 366.44336)
 
-[node name="Perimetro7" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1708966974 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 34.180115)
+[node name="Rejas7" parent="Final/NavigationRegion3D/Recorrido final" unique_id=357053874 instance=ExtResource("154_515ww")]
+transform = Transform3D(0.11971155, -0.014914249, 2.9401083, 0.030278273, 2.5942822, 0.016582612, -5.711155, 0.013441236, 0.061715547, 104.16788, 2.2056427, 357.59058)
 
-[node name="Perimetro8" parent="Final/NavigationRegion3D/Recorrido final" unique_id=28003799 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 45.124084)
+[node name="Rejas8" parent="Final/NavigationRegion3D/Recorrido final" unique_id=206832885 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685942, -0.013583789, 2.9407623, 0.02990998, 2.5942888, 0.015397936, -5.7124114, 0.013583975, -1.285448e-07, 104.16788, 2.2056427, 348.61084)
 
-[node name="Perimetro9" parent="Final/NavigationRegion3D/Recorrido final" unique_id=96873460 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 56.00055)
+[node name="Rejas9" parent="Final/NavigationRegion3D/Recorrido final" unique_id=403841094 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 103.85185, 2.2056427, 348.61084)
 
-[node name="Perimetro10" parent="Final/NavigationRegion3D/Recorrido final" unique_id=504967153 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 66.915344)
+[node name="Rejas10" parent="Final/NavigationRegion3D/Recorrido final" unique_id=16639410 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 94.81065, 2.2056427, 348.61084)
 
-[node name="Perimetro11" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1561509022 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 78.03638)
+[node name="Rejas30" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1878561917 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 79.94196, 2.2056427, 490.29102)
 
-[node name="Perimetro12" parent="Final/NavigationRegion3D/Recorrido final" unique_id=913252803 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 89.14368)
+[node name="Rejas31" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1667089222 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 88.92688, 2.2056427, 490.29102)
 
-[node name="Perimetro13" parent="Final/NavigationRegion3D/Recorrido final" unique_id=615225274 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 99.91864)
+[node name="Rejas32" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1213347859 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 97.97821, 2.2056427, 490.29102)
 
-[node name="Perimetro14" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1974907770 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 110.75043)
+[node name="Rejas33" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1063368008 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 106.99521, 2.2056427, 490.29102)
 
-[node name="Perimetro15" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1429944700 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 121.73279)
+[node name="Rejas38" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1459750477 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 115.98723, 2.2056427, 490.29102)
 
-[node name="Perimetro16" parent="Final/NavigationRegion3D/Recorrido final" unique_id=995158552 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 132.65448)
+[node name="Rejas39" parent="Final/NavigationRegion3D/Recorrido final" unique_id=947803359 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 125.03856, 2.2056427, 490.29102)
 
-[node name="Perimetro17" parent="Final/NavigationRegion3D/Recorrido final" unique_id=841298443 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 143.64178)
+[node name="Rejas40" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1818192945 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 134.05556, 2.2056427, 490.29102)
 
-[node name="Perimetro18" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1855696344 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 154.25067)
+[node name="Rejas41" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1395133133 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 142.91626, 2.2056427, 490.29102)
 
-[node name="Perimetro19" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1830054717 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 165.26373)
+[node name="Rejas42" parent="Final/NavigationRegion3D/Recorrido final" unique_id=359182249 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 151.96759, 2.2056427, 490.29102)
 
-[node name="Perimetro20" parent="Final/NavigationRegion3D/Recorrido final" unique_id=974049195 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 176.3628)
+[node name="Rejas43" parent="Final/NavigationRegion3D/Recorrido final" unique_id=814776926 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 160.98459, 2.2056427, 490.29102)
 
-[node name="Perimetro21" parent="Final/NavigationRegion3D/Recorrido final" unique_id=571561273 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 187.2237)
+[node name="Rejas44" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1466155175 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 170.05878, 2.2056427, 490.29102)
 
-[node name="Perimetro22" parent="Final/NavigationRegion3D/Recorrido final" unique_id=750978870 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 198.21802)
+[node name="Rejas45" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1344258900 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 179.1101, 2.2056427, 490.29102)
 
-[node name="Perimetro23" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1187111046 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -18.408302, 9.958533, 209.39807)
+[node name="Rejas46" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1519594876 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 188.1271, 2.2056427, 490.29102)
 
-[node name="Perimetro24" parent="Final/NavigationRegion3D/Recorrido final" unique_id=71829252 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -18.408302, 9.958533, 209.56921)
+[node name="Rejas47" parent="Final/NavigationRegion3D/Recorrido final" unique_id=183412571 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.0001568594, -0.013583788, 2.9407623, 0.02990998, 2.5942888, 0.015397935, -5.712411, 0.013583976, -1.285448e-07, 187.71619, 2.2056427, 481.54663)
 
-[node name="Perimetro25" parent="Final/NavigationRegion3D/Recorrido final" unique_id=707183667 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -7.4252853, 9.958533, 209.56921)
+[node name="Rejas48" parent="Final/NavigationRegion3D/Recorrido final" unique_id=309192413 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.0001568594, -0.013583788, 2.9407623, 0.02990998, 2.5942888, 0.015397935, -5.712411, 0.013583976, -1.285448e-07, 187.74446, 2.2056427, 472.51917)
 
-[node name="Perimetro26" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1475199104 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 3.6840286, 9.958533, 209.56921)
+[node name="Rejas49" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1105711151 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.0001568594, -0.013583788, 2.9407623, 0.02990998, 2.5942888, 0.015397935, -5.712411, 0.013583976, -1.285448e-07, 187.86417, 2.2056427, 463.526)
 
-[node name="Perimetro27" parent="Final/NavigationRegion3D/Recorrido final" unique_id=361675862 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 14.543964, 9.958533, 209.56921)
+[node name="Rejas50" parent="Final/NavigationRegion3D/Recorrido final" unique_id=683306136 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.0001568594, -0.013583788, 2.9407623, 0.02990998, 2.5942888, 0.015397935, -5.712411, 0.013583976, -1.285448e-07, 187.74446, 2.2056427, 454.66003)
 
-[node name="Perimetro28" parent="Final/NavigationRegion3D/Recorrido final" unique_id=712865519 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 25.42971, 9.958533, 209.56921)
+[node name="Rejas51" parent="Final/NavigationRegion3D/Recorrido final" unique_id=26843574 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.0001568594, -0.013583788, 2.9407623, 0.02990998, 2.5942888, 0.015397935, -5.712411, 0.013583976, -1.285448e-07, 187.86417, 2.2056427, 445.66687)
 
-[node name="Perimetro29" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1869002534 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 36.454487, 9.958533, 209.56921)
+[node name="Rejas52" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1124124628 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.0001568594, -0.013583788, 2.9407623, 0.02990998, 2.5942888, 0.015397935, -5.712411, 0.013583976, -1.285448e-07, 187.86417, 2.2056427, 436.81055)
 
-[node name="Perimetro30" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2057349410 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 358.7439)
+[node name="Rejas34" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1102997515 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 29.998692, 2.2056427, 490.29102)
 
-[node name="Perimetro31" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1050857103 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -19.101692, 9.958533, 347.67163)
+[node name="Rejas35" parent="Final/NavigationRegion3D/Recorrido final" unique_id=30404541 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 38.98361, 2.2056427, 490.29102)
 
-[node name="Perimetro32" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1865172534 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 369.53687)
+[node name="Rejas36" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2144285560 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 48.03494, 2.2056427, 490.29102)
 
-[node name="Perimetro33" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1756087502 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 380.4879)
+[node name="Rejas53" parent="Final/NavigationRegion3D/Recorrido final" unique_id=256779661 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 3.124771, 2.2056427, 490.29102)
 
-[node name="Perimetro34" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1437558661 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 391.52222)
+[node name="Rejas56" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2056360069 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, -6.014969, 2.2056427, 490.29102)
 
-[node name="Perimetro35" parent="Final/NavigationRegion3D/Recorrido final" unique_id=787501324 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 402.3916)
+[node name="Rejas54" parent="Final/NavigationRegion3D/Recorrido final" unique_id=663421574 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 12.109684, 2.2056427, 490.29102)
 
-[node name="Perimetro36" parent="Final/NavigationRegion3D/Recorrido final" unique_id=283780675 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 413.28735)
+[node name="Rejas55" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1762397539 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 21.161015, 2.2056427, 490.29102)
 
-[node name="Perimetro37" parent="Final/NavigationRegion3D/Recorrido final" unique_id=324758263 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 424.4026)
+[node name="Rejas37" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1011048209 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.7124114, -0.013583975, 0, 0.02990998, 2.5942888, 0.015397936, -0.00015660972, -0.013583789, 2.9407623, 57.051937, 2.2056427, 490.29102)
 
-[node name="Perimetro38" parent="Final/NavigationRegion3D/Recorrido final" unique_id=614995347 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 435.42346)
+[node name="Rejas12" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1999680577 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 339.31763)
 
-[node name="Perimetro39" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1650411539 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 446.27576)
+[node name="Rejas63" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1130305429 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 338.65076)
 
-[node name="Perimetro40" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2072964683 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 457.16406)
+[node name="Rejas64" parent="Final/NavigationRegion3D/Recorrido final" unique_id=284529182 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 329.6145)
 
-[node name="Perimetro41" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1842136073 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 468.30774)
+[node name="Rejas65" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1797642195 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 320.5481)
 
-[node name="Perimetro42" parent="Final/NavigationRegion3D/Recorrido final" unique_id=307674291 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 479.24744)
+[node name="Rejas66" parent="Final/NavigationRegion3D/Recorrido final" unique_id=732189423 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 311.51184)
 
-[node name="Perimetro43" parent="Final/NavigationRegion3D/Recorrido final" unique_id=447591851 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, -19.150978, 9.958533, 490.38965)
+[node name="Rejas67" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1733872892 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 302.62915)
 
-[node name="Perimetro44" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1813041644 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -19.101692, 9.958533, 347.67163)
+[node name="Rejas68" parent="Final/NavigationRegion3D/Recorrido final" unique_id=958623912 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 293.5929)
 
-[node name="Perimetro45" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2082552442 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -8.132881, 9.958533, 347.67163)
+[node name="Rejas69" parent="Final/NavigationRegion3D/Recorrido final" unique_id=81447854 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 284.5265)
 
-[node name="Perimetro46" parent="Final/NavigationRegion3D/Recorrido final" unique_id=240671479 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 2.917389, 9.958533, 347.67163)
+[node name="Rejas70" parent="Final/NavigationRegion3D/Recorrido final" unique_id=534210030 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 275.49023)
 
-[node name="Perimetro47" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1582105059 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 13.9282875, 9.958533, 347.67163)
+[node name="Rejas71" parent="Final/NavigationRegion3D/Recorrido final" unique_id=169211540 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 266.41724)
 
-[node name="Perimetro48" parent="Final/NavigationRegion3D/Recorrido final" unique_id=582738986 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 25.117805, 9.958533, 347.67163)
+[node name="Rejas72" parent="Final/NavigationRegion3D/Recorrido final" unique_id=419039565 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 257.38098)
 
-[node name="Perimetro49" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1408501327 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 36.308514, 9.958533, 347.67163)
+[node name="Rejas73" parent="Final/NavigationRegion3D/Recorrido final" unique_id=742871443 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 248.31458)
 
-[node name="Perimetro50" parent="Final/NavigationRegion3D/Recorrido final" unique_id=384576443 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 79.8583, 9.958533, 347.67163)
+[node name="Rejas74" parent="Final/NavigationRegion3D/Recorrido final" unique_id=566813070 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 239.27832)
 
-[node name="Perimetro51" parent="Final/NavigationRegion3D/Recorrido final" unique_id=82151114 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 90.94949, 9.958533, 347.67163)
+[node name="Rejas85" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1625554744 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 200.33423)
 
-[node name="Perimetro52" parent="Final/NavigationRegion3D/Recorrido final" unique_id=839385789 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 358.79858)
+[node name="Rejas86" parent="Final/NavigationRegion3D/Recorrido final" unique_id=653842930 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 191.34991)
 
-[node name="Perimetro53" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1754408727 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 369.81116)
+[node name="Rejas87" parent="Final/NavigationRegion3D/Recorrido final" unique_id=638596895 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 182.37677)
 
-[node name="Perimetro54" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1660197974 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 380.91248)
+[node name="Rejas88" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2090390373 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 173.33685)
 
-[node name="Perimetro55" parent="Final/NavigationRegion3D/Recorrido final" unique_id=619066533 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-6.338151e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1.45, -8.742278e-08, 3.821371e-15, 101.93587, 9.958533, 388.89026)
+[node name="Rejas89" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1488453974 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 164.36371)
 
-[node name="Perimetro56" parent="Final/NavigationRegion3D/Recorrido final" unique_id=185464254 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 112.7985, 9.958533, 400.1494)
+[node name="Rejas90" parent="Final/NavigationRegion3D/Recorrido final" unique_id=314182036 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 155.41718)
 
-[node name="Perimetro57" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1714016423 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 112.69141, 9.958533, 400.12036)
+[node name="Rejas91" parent="Final/NavigationRegion3D/Recorrido final" unique_id=779185894 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 146.44403)
 
-[node name="Perimetro58" parent="Final/NavigationRegion3D/Recorrido final" unique_id=421890676 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 123.55812, 9.958533, 411.1305)
+[node name="Rejas92" parent="Final/NavigationRegion3D/Recorrido final" unique_id=46057661 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 137.40411)
 
-[node name="Perimetro59" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1171881914 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 101.93587, 9.958533, 389.06213)
+[node name="Rejas93" parent="Final/NavigationRegion3D/Recorrido final" unique_id=3109171 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 128.43097)
 
-[node name="Perimetro60" parent="Final/NavigationRegion3D/Recorrido final" unique_id=877526515 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 129.98535, 9.958533, 474.1532)
+[node name="Rejas94" parent="Final/NavigationRegion3D/Recorrido final" unique_id=118043900 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 119.68213)
 
-[node name="Perimetro61" parent="Final/NavigationRegion3D/Recorrido final" unique_id=53905385 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 130.05359, 9.958533, 485.17664)
+[node name="Rejas95" parent="Final/NavigationRegion3D/Recorrido final" unique_id=104698085 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 110.708984)
 
-[node name="Perimetro62" parent="Final/NavigationRegion3D/Recorrido final" unique_id=159108090 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-4.371139e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1, -8.742278e-08, 3.821371e-15, 130.14168, 9.958533, 490.70483)
+[node name="Rejas96" parent="Final/NavigationRegion3D/Recorrido final" unique_id=648165755 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 101.66907)
 
-[node name="Perimetro63" parent="Final/NavigationRegion3D/Recorrido final" unique_id=222159872 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 347.67163)
+[node name="Rejas97" parent="Final/NavigationRegion3D/Recorrido final" unique_id=388472768 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 92.69592)
 
-[node name="Perimetro64" parent="Final/NavigationRegion3D/Recorrido final" unique_id=901251975 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 336.72754)
+[node name="Rejas98" parent="Final/NavigationRegion3D/Recorrido final" unique_id=24811449 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 83.64636)
 
-[node name="Perimetro65" parent="Final/NavigationRegion3D/Recorrido final" unique_id=772721875 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 325.6798)
+[node name="Rejas99" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2009833366 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 74.67322)
 
-[node name="Perimetro66" parent="Final/NavigationRegion3D/Recorrido final" unique_id=645552763 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 314.5946)
+[node name="Rejas100" parent="Final/NavigationRegion3D/Recorrido final" unique_id=810388119 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 65.6333)
 
-[node name="Perimetro67" parent="Final/NavigationRegion3D/Recorrido final" unique_id=7092489 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 303.41187)
+[node name="Rejas101" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1040894683 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 56.660156)
 
-[node name="Perimetro68" parent="Final/NavigationRegion3D/Recorrido final" unique_id=759982975 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 292.2566)
+[node name="Rejas102" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1447228959 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 47.680237)
 
-[node name="Perimetro69" parent="Final/NavigationRegion3D/Recorrido final" unique_id=408201409 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 281.349)
+[node name="Rejas103" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2038200506 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 38.707092)
 
-[node name="Perimetro70" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1748546264 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 270.2788)
+[node name="Rejas104" parent="Final/NavigationRegion3D/Recorrido final" unique_id=897151831 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 29.667175)
 
-[node name="Perimetro71" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2085088920 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 259.23535)
+[node name="Rejas105" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1042910877 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 20.69403)
 
-[node name="Perimetro72" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1579241583 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 248.18909)
+[node name="Rejas106" parent="Final/NavigationRegion3D/Recorrido final" unique_id=685373420 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 11.861511)
 
-[node name="Perimetro73" parent="Final/NavigationRegion3D/Recorrido final" unique_id=332390577 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 237.03174)
+[node name="Rejas107" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1713803295 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, -17.961082, 2.2056427, 2.8883667)
 
-[node name="Perimetro74" parent="Final/NavigationRegion3D/Recorrido final" unique_id=707767540 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 225.95703)
+[node name="Rejas108" parent="Final/NavigationRegion3D/Recorrido final" unique_id=419604834 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00019417971, -0.013566866, 2.9407623, 0.037026223, 2.5910568, 0.015397936, -7.0715194, 0.013567052, -1.285448e-07, -17.961082, 2.2056427, -8.721863)
 
-[node name="Perimetro75" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1869627499 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 214.78552)
+[node name="Rejas109" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1143686196 instance=ExtResource("154_515ww")]
+transform = Transform3D(7.0715194, -0.013567052, 0, 0.03702622, 2.5910568, 0.015397936, -0.00019387061, -0.0135668665, 2.9407623, -6.585472, 2.2056427, -9.096436)
 
-[node name="Perimetro76" parent="Final/NavigationRegion3D/Recorrido final" unique_id=964845629 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-1.09278474e-07, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2.5, -8.742278e-08, 3.821371e-15, 79.8583, 9.958533, 203.85846)
+[node name="Rejas110" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2078154548 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.851244, -0.013572678, 0, 0.030636901, 2.5921314, 0.015397936, -0.0001604159, -0.013572493, 2.9407623, 2.3843231, 2.2056427, -9.096436)
 
-[node name="Perimetro77" parent="Final/NavigationRegion3D/Recorrido final" unique_id=994082410 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 347.67163)
+[node name="Rejas75" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1187612142 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 230.31006)
 
-[node name="Perimetro78" parent="Final/NavigationRegion3D/Recorrido final" unique_id=279247301 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 336.72754)
+[node name="Rejas76" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1346195254 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 47.995857, 2.2056427, 221.24359)
 
-[node name="Perimetro79" parent="Final/NavigationRegion3D/Recorrido final" unique_id=730505583 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 325.6798)
+[node name="Rejas78" parent="Final/NavigationRegion3D/Recorrido final" unique_id=516305239 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 47.966324, 2.2056427, 209.6828)
 
-[node name="Perimetro80" parent="Final/NavigationRegion3D/Recorrido final" unique_id=8644492 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 314.5946)
+[node name="Rejas79" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2031142389 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 39.022087, 2.2056427, 209.6828)
 
-[node name="Perimetro81" parent="Final/NavigationRegion3D/Recorrido final" unique_id=501402002 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 303.41187)
+[node name="Rejas80" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1286979218 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 29.929688, 2.2056427, 209.6828)
 
-[node name="Perimetro82" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1244714769 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 292.2566)
+[node name="Rejas81" parent="Final/NavigationRegion3D/Recorrido final" unique_id=761184843 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 20.98545, 2.2056427, 209.6828)
 
-[node name="Perimetro83" parent="Final/NavigationRegion3D/Recorrido final" unique_id=867978715 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 281.349)
+[node name="Rejas82" parent="Final/NavigationRegion3D/Recorrido final" unique_id=997338533 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 12.005066, 2.2056427, 209.6828)
 
-[node name="Perimetro84" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2098045904 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 270.2788)
+[node name="Rejas83" parent="Final/NavigationRegion3D/Recorrido final" unique_id=185599155 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 3.0608292, 2.2056427, 209.6828)
 
-[node name="Perimetro85" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2102098786 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 259.23535)
+[node name="Rejas84" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2108042716 instance=ExtResource("154_515ww")]
+transform = Transform3D(7.6123085, -0.013560318, 0, 0.03985777, 2.589771, 0.015397936, -0.00020869671, -0.013560133, 2.9407623, -5.9275284, 2.2056427, 209.6828)
 
-[node name="Perimetro86" parent="Final/NavigationRegion3D/Recorrido final" unique_id=859719887 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 248.18909)
+[node name="Rejas77" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1686373183 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00020320532, -0.013562774, 2.9407623, 0.038747225, 2.5902753, 0.015397936, -7.4002085, 0.01356296, -1.285448e-07, 47.995857, 2.2056427, 209.76282)
 
-[node name="Perimetro87" parent="Final/NavigationRegion3D/Recorrido final" unique_id=687956563 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 237.03174)
+[node name="Rejas13" parent="Final/NavigationRegion3D/Recorrido final" unique_id=629668381 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 330.38293)
 
-[node name="Perimetro88" parent="Final/NavigationRegion3D/Recorrido final" unique_id=176933019 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-8.742278e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -2, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 225.95703)
+[node name="Rejas14" parent="Final/NavigationRegion3D/Recorrido final" unique_id=119222366 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 321.52295)
 
-[node name="Perimetro89" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1926729641 instance=ExtResource("74_qbwh1")]
-transform = Transform3D(-4.371139e-08, 2, -8.742278e-08, 0, -8.742278e-08, -2, -1, -8.742278e-08, 3.821371e-15, 47.663315, 9.958533, 214.78552)
+[node name="Rejas15" parent="Final/NavigationRegion3D/Recorrido final" unique_id=604582970 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 312.58826)
+
+[node name="Rejas16" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1543723950 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 303.55554)
+
+[node name="Rejas17" parent="Final/NavigationRegion3D/Recorrido final" unique_id=531548222 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 294.69556)
+
+[node name="Rejas18" parent="Final/NavigationRegion3D/Recorrido final" unique_id=649207210 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 285.76086)
+
+[node name="Rejas19" parent="Final/NavigationRegion3D/Recorrido final" unique_id=380221801 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 276.7915)
+
+[node name="Rejas20" parent="Final/NavigationRegion3D/Recorrido final" unique_id=601224094 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 267.8568)
+
+[node name="Rejas21" parent="Final/NavigationRegion3D/Recorrido final" unique_id=820005139 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 258.8241)
+
+[node name="Rejas22" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1132247163 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 249.96411)
+
+[node name="Rejas23" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1398731859 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 241.02942)
+
+[node name="Rejas24" parent="Final/NavigationRegion3D/Recorrido final" unique_id=104248272 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 231.9834)
+
+[node name="Rejas25" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1569601652 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 223.0487)
+
+[node name="Rejas26" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1578836578 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 214.17365)
+
+[node name="Rejas27" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1039864272 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 205.23895)
+
+[node name="Rejas28" parent="Final/NavigationRegion3D/Recorrido final" unique_id=2099189882 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00015685943, -0.013583789, 2.9407623, 0.029909983, 2.5942888, 0.015397936, -5.712412, 0.013583975, -1.285448e-07, 79.623146, 2.2056427, 196.1944)
+
+[node name="Rejas29" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1567548124 instance=ExtResource("154_515ww")]
+transform = Transform3D(-0.00010119575, -0.013612679, 2.9407623, 0.019296024, 2.5998065, 0.015397936, -3.6852856, 0.0136128655, -1.285448e-07, 79.623146, 2.2056427, 190.52954)
+
+[node name="Rejas11" parent="Final/NavigationRegion3D/Recorrido final" unique_id=981399228 instance=ExtResource("154_515ww")]
+transform = Transform3D(3.9338577, -0.013606119, 0, 0.020597536, 2.598518, 0.015397936, -0.00010784943, -0.013605933, 2.9407623, 85.791885, 2.2056427, 348.61084)
+
+[node name="Rejas4" parent="Final/NavigationRegion3D/Recorrido final" unique_id=519281630 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 112.865845, 2.1459942, 384.50085)
 
 [node name="Piso1" type="MeshInstance3D" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1749046416]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22876, 0, 100.15808)
@@ -10996,22 +11006,36 @@ mesh = SubResource("BoxMesh_vl2st")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final/NavigationRegion3D/Recorrido final/Piso 3/StaticBody3D" unique_id=623288004]
 shape = SubResource("BoxShape3D_sdpww")
 
-[node name="Area3D" type="Area3D" parent="Final" unique_id=1335054921 node_paths=PackedStringArray("enemigos", "punto_inicio")]
+[node name="Rejas111" parent="Final/NavigationRegion3D/Recorrido final" unique_id=198402834 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 47.961845, 2.2056427, 347.89417)
+
+[node name="Rejas112" parent="Final/NavigationRegion3D/Recorrido final" unique_id=133546158 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 38.7769, 2.2056427, 347.89417)
+
+[node name="Rejas113" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1216655358 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 29.74228, 2.2056427, 347.89417)
+
+[node name="Rejas114" parent="Final/NavigationRegion3D/Recorrido final" unique_id=1944444884 instance=ExtResource("154_515ww")]
+transform = Transform3D(5.712412, -0.013583975, 0, 0.029909983, 2.5942888, 0.015397936, -0.00015660973, -0.013583789, 2.9407623, 20.73597, 2.2056427, 347.89417)
+
+[node name="Area3D" type="Area3D" parent="Final" unique_id=1335054921 node_paths=PackedStringArray("enemigos", "barreras", "punto_inicio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.488144, 0, 804.7227)
 script = ExtResource("132_igocy")
 enemigos = [NodePath("../EnemigoDelFinal"), NodePath("../EnemigoDelFinal2"), NodePath("../EnemigoDelFinal3")]
+barreras = [NodePath("../BarreraFinal")]
 punto_inicio = NodePath("../../Guardados/Guardado Modulo7/Completo_Modulo7/P-A_Modulo7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final/Area3D" unique_id=2112322739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625122, 4.645935, 0)
 shape = SubResource("BoxShape3D_vwjq2")
 
-[node name="Area3D2" type="Area3D" parent="Final" unique_id=1500667553 node_paths=PackedStringArray("enemigos", "punto_inicio")]
+[node name="Area3D2" type="Area3D" parent="Final" unique_id=1500667553 node_paths=PackedStringArray("enemigos", "barreras", "punto_inicio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.488144, 0, 804.7227)
 script = ExtResource("132_igocy")
 enemigos = [NodePath("../EnemigoDelFinal"), NodePath("../EnemigoDelFinal2"), NodePath("../EnemigoDelFinal3")]
 multiplicador_velocidad = 1.5
 multiplicador_carrera = 1.5
+barreras = [NodePath("../BarreraFinal")]
 punto_inicio = NodePath("../../Guardados/Guardado Modulo7/Completo_Modulo7/P-A_Modulo7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Final/Area3D2" unique_id=1450907987]
@@ -11028,6 +11052,12 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -69.11645, 4.985863, 790.9095
 velocidad = 15.0
 radio_contacto = 2.5
 
+[node name="BarreraFinal" type="StaticBody3D" parent="Final" unique_id=1770397621]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Final/BarreraFinal" unique_id=1383958147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.45342, 0, 946.9821)
+shape = SubResource("BoxShape3D_57qmd")
+
 [node name="Francis" parent="." unique_id=885514182 instance=ExtResource("132_i635x")]
 transform = Transform3D(-2.593729, 0, -0.18046927, 0, 2.6, 0, 0.18046927, 0, -2.593729, -22.997694, 1.1184843, 981.8859)
 physics_material_override = SubResource("PhysicsMaterial_snn8e")
@@ -11036,7 +11066,7 @@ physics_material_override = SubResource("PhysicsMaterial_snn8e")
 transform = Transform3D(-1.2734098, 0, 2.7163262, 0, 3, 0, -2.7163262, 0, -1.2734098, -29.332273, 1.1803526, 978.67755)
 
 [node name="Gabi" parent="." unique_id=1085445521 instance=ExtResource("149_t71ts")]
-transform = Transform3D(-2.3028789, 0, 1.2069585, 0, 2.6, 0, -1.2069585, 0, -2.3028789, -26.365232, 1.1803516, 982.0278)
+transform = Transform3D(-2.3028789, 0, 1.2069585, 0, 2.6, 0, -1.2069585, 0, -2.3028789, -26.207975, 0.89761984, 980.6524)
 
 [node name="ContenedorPapasMomo" type="Node3D" parent="." unique_id=1192629311]
 
@@ -11060,6 +11090,7 @@ spawn_path = NodePath("..")
 [connection signal="body_exited" from="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Area3D" to="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="Modulo7/Sketchfab_Scene3/Sketchfab_model/Area3D" to="Modulo7/Sketchfab_Scene3" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Modulo7/Sketchfab_Scene3/Sketchfab_model/Area3D" to="Modulo7/Sketchfab_Scene3" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Modulo7/AreaMomoss" to="Modulo7/AreaMomoss" method="_on_body_entered"]
 [connection signal="pressed" from="Pantallas/Logros/Salir" to="Pantallas/Logros" method="_on_button_pressed"]
 [connection signal="pressed" from="Pantallas/Volumen/Button" to="Pantallas/Volumen" method="_on_button_pressed"]
 

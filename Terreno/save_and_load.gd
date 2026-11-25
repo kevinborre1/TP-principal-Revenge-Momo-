@@ -269,11 +269,11 @@ func _cliente_aplicar_datos_guardados(
 			if jugador.has_node("Inventario"):
 				jugador.get_node("Inventario").cargar_datos_guardados(inv_guardado, jugador)
 			print("¡Datos, inventario y pepitas (", pepitas_guardadas, ") restaurados para el jugador ", peer_id, "!")
-
+		
+@rpc("any_peer", "call_local", "reliable")
 func actualizar_logro(nombre_logro: String) -> void:
 	if logros == null:
 		cargar_logros()
-
 	print("actualizar_logro llamado con: '", nombre_logro, "'")
 
 	var actual = logros.get(nombre_logro)
