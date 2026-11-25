@@ -21,13 +21,13 @@ var bot_nico: BotNico = null
 func _ready() -> void:
 	MenuOpciones.aplicar_calidad_terreno(get_node_or_null("Terrain3D"))
 	MenuOpciones._aplicar_volumen()
-	# El Host (que ya pre-cargó los datos en el menú) lo leerá bien de entrada
 	actualizar_cartel_modo()
 	
 	GameManager.set_mode(GameManager.GameMode.RECOLECCION, 3)
 
 	if Global.modo_multijugador == "local":
-		# MODO LOCAL: instanciamos directo en la escena raíz y sumamos a Nico
+		# Restaura el peer local (ID 1 conectado) antes de instanciar jugadores o correr el nivel
+		_asegurar_modo_offline()
 		add_player(1, Vector3(36, 2, 1250))
 		_instanciar_bot_nico()
 		
@@ -102,10 +102,11 @@ func _on_servidor_desconectado() -> void:
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	pantalla_desconexion.show()
-
+	
 func _on_boton_volver_menu_pressed() -> void:
 	get_tree().paused = false
 	NetworkManager.disconnect_game()
+	_asegurar_modo_offline()
 	get_tree().change_scene_to_file("res://Menu/MenuPrincipal.tscn")
 	
 func _on_activador_victoria_body_entered(body: Node3D) -> void:
@@ -187,3 +188,11 @@ func actualizar_cartel_modo() -> void:
 		texto_modo.text = "Modo: Contrarreloj"
 	else:
 		texto_modo.text = "Modo:No se cargo el global"
+		
+
+func _asegurar_modo_offline() -> void:
+	var peer := multiplayer.multiplayer_peer
+	if peer == null or peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED or not (peer is OfflineMultiplayerPeer):
+		if peer != null and not (peer is OfflineMultiplayerPeer):
+			peer.close()
+		multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
