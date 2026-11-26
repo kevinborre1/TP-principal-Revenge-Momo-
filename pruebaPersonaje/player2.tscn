@@ -1361,7 +1361,7 @@ properties/4/replication_mode = 2
 radius = 0.65185547
 height = 2.137207
 
-[sub_resource type="LabelSettings" id="LabelSettings_ww6v2"]
+[sub_resource type="LabelSettings" id="LabelSettings_cj86o"]
 font_size = 23
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -2039,15 +2039,6 @@ script = ExtResource("36_td1km")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1155286539]
 
-[node name="LabelContrarreloj" type="Label" parent="CanvasLayer2" unique_id=1172461086]
-offset_left = 488.0
-offset_top = 68.0
-offset_right = 576.0
-offset_bottom = 100.0
-scale = Vector2(2, 2)
-size_flags_vertical = 1
-label_settings = SubResource("LabelSettings_ww6v2")
-
 [node name="LabelRol" type="Label" parent="CanvasLayer2" unique_id=938340683]
 anchors_preset = 5
 anchor_left = 0.5
@@ -2061,6 +2052,15 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
+
+[node name="LabelContrarreloj" type="Label" parent="CanvasLayer2" unique_id=444395951]
+offset_left = 22.0
+offset_top = 74.0
+offset_right = 110.0
+offset_bottom = 106.0
+scale = Vector2(2, 2)
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_cj86o")
 
 [node name="FPS" type="Label" parent="." unique_id=755662092]
 offset_left = 500.0
