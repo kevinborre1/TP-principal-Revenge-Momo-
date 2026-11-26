@@ -7546,6 +7546,7 @@ script = ExtResource("30_v7i46")
 oleada_1 = [NodePath("../enemigo2"), NodePath("../enemigo3"), NodePath("../enemigo4"), NodePath("../enemigo5"), NodePath("../enemigo6")]
 oleada_2 = [NodePath("../enemigo7"), NodePath("../enemigo8"), NodePath("../enemigo9"), NodePath("../enemigo10"), NodePath("../enemigo11")]
 jefe = NodePath("../enemigoLider")
+permitir_un_jugador = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VictorBars/Enemigos VictorBars/PuntoActivacionOleadas" unique_id=1320325886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -9235,6 +9236,10 @@ mesh = SubResource("QuadMesh_f3mle")
 transform = Transform3D(20.940742, -1.1580441e-20, 0, 4.5474735e-13, -7.3066544e-06, -39.99996, 5.421011e-20, 61.29266, -4.768367e-06, -62.676605, -11.173828, 118.837006)
 mesh = SubResource("QuadMesh_rsdri")
 
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro/Sketchfab_model/ad94433c0d274c9ca7c09eec2d6cc43a_fbx/Object_2/RootNode/Armature/Object_5" parent_id_path=PackedInt32Array(571571580, 452556564) index="3" unique_id=530989001]
+transform = Transform3D(30, 4.6289865e-27, -1.3204786e-34, 0, -3.8382095e-06, -57.304, -1.5815142e-27, 87.808, -2.5048375e-06, 39.008636, 460.38477, 118.83705)
+mesh = SubResource("QuadMesh_rsdri")
+
 [node name="AnimationPlayer" parent="Modulo7/NavigationRegion3D/modulo7-p1/PuertaCentro" index="1" unique_id=479768718]
 autoplay = &"Armature|Open"
 
@@ -9265,7 +9270,7 @@ transform = Transform3D(1.3, 0, 0, 0, 1.2999996, 0, 0, 0, 1.2999997, 210.42545, 
 transform = Transform3D(5, 0, 0, 0, 4.9999943, 0, 0, 0, 4.9999943, 209.55008, 14.018715, 42.460693)
 
 [node name="microwave2" parent="Modulo7/NavigationRegion3D/modulo7-p1" unique_id=1255802187 instance=ExtResource("101_11km4")]
-transform = Transform3D(-1.7484555e-07, 0, -4, 0, 3.9999993, 0, 3.9999993, 0, -1.7484551e-07, 2.2532978, 12.202969, 12.359619)
+transform = Transform3D(-1.7484555e-07, 0, -4, 0, 3.9999986, 0, 3.9999986, 0, -1.7484547e-07, 2.2532978, 12.862427, 12.359619)
 
 [node name="Obstaculos" type="Node3D" parent="Modulo7/NavigationRegion3D" unique_id=389283052]
 transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 1, -135.45695, 0, -299.23975)
@@ -10572,13 +10577,13 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ect8u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.659478, 0, 1189.016)
 
 [node name="Locomotora" parent="." unique_id=442515351 instance=ExtResource("134_4igdq")]
-transform = Transform3D(1.7483206, 0, -1.7870015, 0, 2.5000002, 0, 1.7870015, 0, 1.7483206, -6.062648, 1.1225553, 980.3273)
+transform = Transform3D(-0.16075575, 0, -2.494826, 0, 2.5, 0, 2.494826, 0, -0.16075575, -17.263918, 1.1225553, 978.91406)
 
 [node name="Kevin" parent="." unique_id=1156081099 instance=ExtResource("131_o2qs7")]
-transform = Transform3D(-2.5055041, 0, -1.1335565, 0, 2.7500002, 0, 1.1335565, 0, -2.5055041, -18.847473, 1.185854, 982.0631)
+transform = Transform3D(-2.0371175, 0, -1.8473369, 0, 2.75, 0, 1.8473369, 0, -2.0371175, -18.847473, 1.185854, 981.557)
 
 [node name="Fran" parent="." unique_id=762441811 instance=ExtResource("136_fujjj")]
-transform = Transform3D(1.4035019, 0, -2.6514492, 0, 3, 0, 2.6514492, 0, 1.4035019, -18.348202, 0.60328865, 978.32355)
+transform = Transform3D(1.4035019, 0, -2.6514492, 0, 3, 0, 2.6514492, 0, 1.4035019, -18.348202, 0.60328865, 975.50287)
 
 [node name="Final" type="Node3D" parent="." unique_id=967038656]
 
@@ -11068,10 +11073,10 @@ transform = Transform3D(-2.593729, 0, -0.18046927, 0, 2.6, 0, 0.18046927, 0, -2.
 physics_material_override = SubResource("PhysicsMaterial_snn8e")
 
 [node name="Eze" parent="." unique_id=1738230920 instance=ExtResource("136_y22ph")]
-transform = Transform3D(-1.2734098, 0, 2.7163262, 0, 3, 0, -2.7163262, 0, -1.2734098, -29.332273, 1.1803526, 978.67755)
+transform = Transform3D(-1.2734098, 0, 2.7163262, 0, 3, 0, -2.7163262, 0, -1.2734098, -28.327927, 1.1803526, 977.02985)
 
 [node name="Gabi" parent="." unique_id=1085445521 instance=ExtResource("149_t71ts")]
-transform = Transform3D(-2.3028789, 0, 1.2069585, 0, 2.6, 0, -1.2069585, 0, -2.3028789, -26.207975, 0.89761984, 980.6524)
+transform = Transform3D(-2.657168, 0, 1.3926445, 0, 3, 0, -1.3926445, 0, -2.657168, -26.207975, 0.89761984, 980.6524)
 
 [node name="ContenedorPapasMomo" type="Node3D" parent="." unique_id=1192629311]
 
