@@ -4,7 +4,7 @@ extends CanvasLayer
 @export var zoom: float = 40.0 # metros que se ven de lado a lado
 @export var intervalo_refresco: float = 0.1 # segundos entre renders del minimapa
 
-const TEX_HOST := preload("res://flechaMinimapa.png")
+const TEX_HOST := preload("res://flechaminimapa.png")
 const TEX_CLIENTE := preload("res://flechaMinimapa2.png")
 
 var objetivo: Node3D
