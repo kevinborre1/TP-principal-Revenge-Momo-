@@ -196,3 +196,7 @@ func _asegurar_modo_offline() -> void:
 		if peer != null and not (peer is OfflineMultiplayerPeer):
 			peer.close()
 		multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
+
+
+func _on_area_cruzar_puerta_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.
