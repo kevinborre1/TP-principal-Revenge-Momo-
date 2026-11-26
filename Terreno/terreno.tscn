@@ -148,6 +148,7 @@
 [ext_resource type="PackedScene" uid="uid://sl04c2jtmqli" path="res://Terreno/modulo_2.scn" id="129_t71ts"]
 [ext_resource type="Script" uid="uid://cvj67in43puq1" path="res://Terreno/Volumen.gd" id="129_y22ph"]
 [ext_resource type="PackedScene" uid="uid://7y3f3n46anpp" path="res://assets/bandera_argentina.tscn" id="130_3h8wr"]
+[ext_resource type="PackedScene" uid="uid://clmbb61vkk506" path="res://enemigo/momo_chicken/Meshy_AI_Campen_del_Momo_s_Revenge_20261126_texture_fbx/Meshy_AI_Campen_del_Momo_s_Revenge_20261126_texture.fbx" id="131_fjeeg"]
 [ext_resource type="Texture2D" uid="uid://2j6nyd0324iy" path="res://Imagenes/conectando.png" id="131_idtyf"]
 [ext_resource type="PackedScene" uid="uid://cwe8qjn7a3my6" path="res://PersonajesPropios/kevinAnimaciones/kevin.tscn" id="131_o2qs7"]
 [ext_resource type="PackedScene" uid="uid://b6x1bjk3ovjjh" path="res://PersonajesPropios/francisco asset/francis.tscn" id="132_i635x"]
@@ -10124,6 +10125,9 @@ video_cinematica = ExtResource("15_6klk7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modulo7/AreaMomoss" unique_id=870717723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7570801, 7.5411305, 7.543701)
 shape = SubResource("BoxShape3D_lr14e")
+
+[node name="Meshy_AI_Campen_del_Momo_s_Revenge_20261126_texture" parent="Modulo7" unique_id=769859444 instance=ExtResource("131_fjeeg")]
+transform = Transform3D(10, 0, 0, 0, 14.991998, 0, 0, 0, 2.5499995, -0.8350153, 8.5825615, -62.22412)
 
 [node name="Guardados" type="Node" parent="." unique_id=569926142]
 

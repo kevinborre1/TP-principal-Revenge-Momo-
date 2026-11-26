@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d31xiojgj14k3"
-path="res://.godot/imported/Meshy_AI_Standing_Tall_20261126_animated_mixamo_All_animation.fbx-eb448f79d63eafead11c9d9fa9dda499.scn"
+path="res://.godot/imported/gabi.fbx-449e735e045d543b0d35a08667f7a381.scn"
 
 [deps]
 
-source_file="res://PersonajesPropios/Boga/Asset con todo/Meshy_AI_Standing_Tall_20261126_animated_mixamo_All_animation/Meshy_AI_Standing_Tall_20261126_animated_mixamo_All_animation.fbx"
-dest_files=["res://.godot/imported/Meshy_AI_Standing_Tall_20261126_animated_mixamo_All_animation.fbx-eb448f79d63eafead11c9d9fa9dda499.scn"]
+source_file="res://PersonajesPropios/Boga/Asset con todo/Meshy_AI_Standing_Tall_20261126_animated_mixamo_All_animation/gabi.fbx"
+dest_files=["res://.godot/imported/gabi.fbx-449e735e045d543b0d35a08667f7a381.scn"]
 
 [params]
 
